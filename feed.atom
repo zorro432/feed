@@ -1,10 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-03-09T02:06:09.832Z</id>
+    <id>urn:2026-03-10T01:58:25.779Z</id>
     <title>osmos::feed</title>
-    <updated>2026-03-09T02:06:09.832Z</updated>
+    <updated>2026-03-10T01:58:25.779Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[The greatest unsolved problem in computer science...]]></title>
+        <id>https://www.youtube.com/watch?v=x36UmiSiEzc</id>
+        <link href="https://www.youtube.com/watch?v=x36UmiSiEzc"/>
+        <updated>2026-03-09T18:31:50.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Production query plans without production data]]></title>
+        <id>https://simonwillison.net/2026/Mar/9/production-query-plans-without-production-data/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/9/production-query-plans-without-production-data/#atom-everything"/>
+        <updated>2026-03-09T15:05:15.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://boringsql.com/posts/portable-stats/">Production query plans without production data</a></strong></p>
+Radim Marek describes the new <a href="https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-STATSMOD"><code>pg_restore_relation_stats()</code> and <code>pg_restore_attribute_stats()</code> functions</a> that were introduced <a href="https://www.postgresql.org/docs/current/release-18.html">in PostgreSQL 18</a> in September 2025.</p>
+<p>The PostgreSQL query planner makes use of internal statistics to help it decide how to best execute a query. These statistics often differ between production data and development environments, which means the query plans used in production may not be replicable in development.</p>
+<p>PostgreSQL's new features now let you copy those statistics down to your development environment, allowing you to simulate the plans for production workloads without needing to copy in all of that data first.</p>
+<p>I found this illustrative example useful:</p>
+<pre><code>SELECT pg_restore_attribute_stats(
+    'schemaname', 'public',
+    'relname', 'test_orders',
+    'attname', 'status',
+    'inherited', false::boolean,
+    'null_frac', 0.0::real,
+    'avg_width', 9::integer,
+    'n_distinct', 5::real,
+    'most_common_vals', '{delivered,shipped,cancelled,pending,returned}'::text,
+    'most_common_freqs', '{0.95,0.015,0.015,0.015,0.005}'::real[]
+);
+</code></pre>
+<p>This simulates statistics for a <code>status</code> column that is 95% <code>delivered</code>. Based on these statistics PostgreSQL can decide to use an index for <code>status = 'shipped'</code> but to instead perform a full table scan for <code>status = 'delivered'</code>.</p>
+<p>These statistics are pretty small. Radim says:</p>
+<blockquote>
+<p>Statistics dumps are tiny. A database with hundreds of tables and thousands of columns produces a statistics dump under 1MB. The production data might be hundreds of GB. The statistics that describe it fit in a text file.</p>
+</blockquote>
+<p>I posted on the SQLite user forum asking if SQLite could offer a similar feature and D. Richard Hipp promptly replied <a href="https://sqlite.org/forum/forumpost/480c5cb8a3898346">that it has one already</a>:</p>
+<blockquote>
+<p>All of the data statistics used by the query planner in SQLite are available in the <a href="https://sqlite.org/fileformat.html#the_sqlite_stat1_table">sqlite_stat1 table</a> (or also in the <a href="https://sqlite.org/fileformat.html#the_sqlite_stat4_table">sqlite_stat4 table</a> if you happen to have compiled with SQLITE_ENABLE_STAT4).  That table is writable. You can inject whatever alternative statistics you like.</p>
+<p>This approach to controlling the query planner is mentioned in the documentation:
+<a href="https://sqlite.org/optoverview.html#manual_control_of_query_plans_using_sqlite_stat_tables">https://sqlite.org/optoverview.html#manual_control_of_query_plans_using_sqlite_stat_tables</a>.</p>
+<p>See also <a href="https://sqlite.org/lang_analyze.html#fixed_results_of_analyze">https://sqlite.org/lang_analyze.html#fixed_results_of_analyze</a>.</p>
+<p>The ".fullschema" command in the CLI outputs both the schema and the content of the sqlite_statN tables, exactly for the reasons outlined above - so that we can reproduce query problems for testing without have to load multi-terabyte database files.</p>
+</blockquote>
+
+    <p><small></small>Via <a href="https://lobste.rs/s/o8vbb7/production_query_plans_without">Lobste.rs</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/databases">databases</a>, <a href="https://simonwillison.net/tags/postgresql">postgresql</a>, <a href="https://simonwillison.net/tags/sql">sql</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/d-richard-hipp">d-richard-hipp</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Perhaps not Boring Technology after all]]></title>
+        <id>https://simonwillison.net/2026/Mar/9/not-so-boring/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/9/not-so-boring/#atom-everything"/>
+        <updated>2026-03-09T13:37:45.000Z</updated>
+        <summary type="html"><![CDATA[<p>A recurring concern I've seen regarding LLMs for programming is that they will push our technology choices towards the tools that are best represented in their training data, making it harder for new, better tools to break through the noise.</p>
+<p>This was certainly the case a couple of years ago, when asking models for help with Python or JavaScript appeared to give much better results than questions about less widely used languages.</p>
+<p>With <a href="https://simonwillison.net/tags/november-2025-inflection/">the latest models</a> running in good coding agent harnesses I'm not sure this continues to hold up.</p>
+<p>I'm seeing excellent results with my <a href="https://simonwillison.net/2026/Feb/17/chartroom-and-datasette-showboat/">brand new tools</a> where I start by prompting "use uvx showboat --help / rodney --help / chartroom --help to learn about these tools" - the context length of these new models is long enough that they can consume quite a lot of documentation before they start working on a problem.</p>
+<p>Drop a coding agent into <em>any</em> existing codebase that uses libraries and tools that are too private or too new to feature in the training data and my experience is that it works <em>just fine</em> - the agent will consult enough of the existing examples to understand patterns, then iterate and test its own output to fill in the gaps.</p>
+<p>This is a surprising result. I thought coding agents would prove to be the ultimate embodiment of the <a href="https://boringtechnology.club">Choose Boring Technology</a> approach, but in practice they don't seem to be affecting my technology choices in that way at all.</p>
+
+<p><strong>Update</strong>: A few follow-on thoughts:</p>
+<ol>
+<li>The issue of what technology LLMs <em>recommend</em> is a separate one. <a href="https://amplifying.ai/research/claude-code-picks">What Claude Code <em>Actually</em> Chooses</a> is an interesting recent study where Edwin Ong and Alex Vikati where they proved Claude Code over 2,000 times and found a strong bias towards build-over-buy but also identified a preferred technical stack, with GitHub Actions, Stripe, and shadcn/ui seeing a "near monopoly" in their respective categories. For the sake of this post my interest is in what happens when the human makes a technology choice that differs from those preferred by the model harness.</li>
+<li>The <a href="https://simonwillison.net/tags/skills/">Skills</a> mechanism that is being rapidly embraced by most coding agent tools is super-relevant here. We are already seeing projects release official skills to help agents use them - here are examples from <a href="https://github.com/remotion-dev/skills">Remotion</a>, <a href="https://github.com/supabase/agent-skills">Supabase</a>, <a href="https://github.com/vercel-labs/agent-skills">Vercel</a>, and <a href="https://github.com/prisma/skills">Prisma</a>.</li>
+</ol>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/boring-technology">boring-technology</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/november-2025-inflection">november-2025-inflection</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI to acquire Promptfoo]]></title>
+        <id>https://openai.com/index/openai-to-acquire-promptfoo</id>
+        <link href="https://openai.com/index/openai-to-acquire-promptfoo"/>
+        <updated>2026-03-09T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems during development.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Quoting Joseph Weizenbaum]]></title>
         <id>https://simonwillison.net/2026/Mar/8/joseph-weizenbaum/#atom-everything</id>
@@ -16,16 +102,6 @@
     <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/computer-history">computer-history</a>, <a href="https://simonwillison.net/tags/internet-archive">internet-archive</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The TLDR On Gemini 3.1 Flash-Lite]]></title>
-        <id>https://www.youtube.com/shorts/dEH17qq7wJQ</id>
-        <link href="https://www.youtube.com/shorts/dEH17qq7wJQ"/>
-        <updated>2026-03-08T13:27:21.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -44,16 +120,6 @@ Anthropic announced six months of free Claude Max for maintainers of popular ope
     <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/codex-cli">codex-cli</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Is GPT-5.4 Worth It?]]></title>
-        <id>https://www.youtube.com/shorts/g0AxIEMcEfM</id>
-        <link href="https://www.youtube.com/shorts/g0AxIEMcEfM"/>
-        <updated>2026-03-07T14:21:10.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -86,16 +152,6 @@ Anthropic announced six months of free Claude Max for maintainers of popular ope
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[News Update: OpenAI & Anthropic Feud Heats Up]]></title>
-        <id>https://www.youtube.com/shorts/W240HYPt38w</id>
-        <link href="https://www.youtube.com/shorts/W240HYPt38w"/>
-        <updated>2026-03-06T18:37:43.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How our open-source AI model SpeciesNet is helping to promote wildlife conservation]]></title>
         <id>https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/</id>
         <link href="https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/"/>
@@ -121,15 +177,6 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
     <p>Tags: <a href="https://simonwillison.net/tags/bruce-schneier">bruce-schneier</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: Everyone's Leaving ChatGPT!]]></title>
-        <id>https://www.youtube.com/watch?v=JH2ak7kS43E</id>
-        <link href="https://www.youtube.com/watch?v=JH2ak7kS43E"/>
-        <updated>2026-03-06T17:25:19.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -402,16 +449,6 @@ Two new API models: <a href="https://developers.openai.com/api/docs/models/gpt-5
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
-        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
-        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
-        <updated>2026-03-05T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing GPT-5.4]]></title>
         <id>https://openai.com/index/introducing-gpt-5-4</id>
         <link href="https://openai.com/index/introducing-gpt-5-4"/>
@@ -422,11 +459,31 @@ Two new API models: <a href="https://developers.openai.com/api/docs/models/gpt-5
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
+        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
+        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
+        <updated>2026-03-05T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Ensuring AI use in education leads to opportunity]]></title>
         <id>https://openai.com/index/ai-education-opportunity</id>
         <link href="https://openai.com/index/ai-education-opportunity"/>
         <updated>2026-03-05T09:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI shares new tools, certifications, and measurement resources to help schools and universities close AI capability gaps and expand opportunity.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The five AI value models driving business reinvention]]></title>
+        <id>https://openai.com/index/the-five-ai-value-models-driving-business-reinvention</id>
+        <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
+        <updated>2026-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -447,16 +504,6 @@ Two new API models: <a href="https://developers.openai.com/api/docs/models/gpt-5
         <link href="https://openai.com/index/chatgpt-for-excel"/>
         <updated>2026-03-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The five AI value models driving business reinvention]]></title>
-        <id>https://openai.com/index/the-five-ai-value-models-driving-business-reinvention</id>
-        <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
-        <updated>2026-03-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -560,16 +607,6 @@ Two new API models: <a href="https://developers.openai.com/api/docs/models/gpt-5
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How To Use AI On Your Phone WITHOUT Internet]]></title>
-        <id>https://www.youtube.com/shorts/-Ow2PsJUWO8</id>
-        <link href="https://www.youtube.com/shorts/-Ow2PsJUWO8"/>
-        <updated>2026-03-04T15:05:05.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Extending single-minus amplitudes to gravitons]]></title>
         <id>https://openai.com/index/extending-single-minus-amplitudes-to-gravitons</id>
         <link href="https://openai.com/index/extending-single-minus-amplitudes-to-gravitons"/>
@@ -580,12 +617,13 @@ Two new API models: <a href="https://developers.openai.com/api/docs/models/gpt-5
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This Free App Runs AI Offline On Your iPhone]]></title>
-        <id>https://www.youtube.com/watch?v=4dZ0VYjB8N8</id>
-        <link href="https://www.youtube.com/watch?v=4dZ0VYjB8N8"/>
-        <updated>2026-03-04T04:25:57.000Z</updated>
+        <title type="html"><![CDATA[Understanding AI and learning outcomes]]></title>
+        <id>https://openai.com/index/understanding-ai-and-learning-outcomes</id>
+        <link href="https://openai.com/index/understanding-ai-and-learning-outcomes"/>
+        <updated>2026-03-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.]]></summary>
         <author>
-            <name>Matt Wolfe</name>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -594,16 +632,6 @@ Two new API models: <a href="https://developers.openai.com/api/docs/models/gpt-5
         <link href="https://openai.com/index/axios-allison-murphy"/>
         <updated>2026-03-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Understanding AI and learning outcomes]]></title>
-        <id>https://openai.com/index/understanding-ai-and-learning-outcomes</id>
-        <link href="https://openai.com/index/understanding-ai-and-learning-outcomes"/>
-        <updated>2026-03-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -718,18 +746,18 @@ Google's latest model is an update to their inexpensive Flash-Lite family. At $0
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.3 Instant System Card]]></title>
-        <id>https://openai.com/index/gpt-5-3-instant-system-card</id>
-        <link href="https://openai.com/index/gpt-5-3-instant-system-card"/>
+        <title type="html"><![CDATA[GPT-5.3 Instant: Smoother, more useful everyday conversations]]></title>
+        <id>https://openai.com/index/gpt-5-3-instant</id>
+        <link href="https://openai.com/index/gpt-5-3-instant"/>
         <updated>2026-03-03T10:00:00.000Z</updated>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.3 Instant: Smoother, more useful everyday conversations]]></title>
-        <id>https://openai.com/index/gpt-5-3-instant</id>
-        <link href="https://openai.com/index/gpt-5-3-instant"/>
+        <title type="html"><![CDATA[GPT-5.3 Instant System Card]]></title>
+        <id>https://openai.com/index/gpt-5-3-instant-system-card</id>
+        <link href="https://openai.com/index/gpt-5-3-instant-system-card"/>
         <updated>2026-03-03T10:00:00.000Z</updated>
         <author>
             <name>OpenAI News</name>
@@ -938,16 +966,6 @@ The phrasing &quot;lack of fruiting rimu trees&quot; is slightly imprecise. The 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Sam Altman Compares Training AI To Raising Kids]]></title>
-        <id>https://www.youtube.com/shorts/M14ArIseaR8</id>
-        <link href="https://www.youtube.com/shorts/M14ArIseaR8"/>
-        <updated>2026-03-01T14:11:45.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Quoting claude.com/import-memory]]></title>
         <id>https://simonwillison.net/2026/Mar/1/claude-import-memory/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Mar/1/claude-import-memory/#atom-everything"/>
@@ -997,26 +1015,6 @@ You can <a href="https://tools.simonwillison.net/animated-word-cloud">play with 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This Claude Code Feature Is A Huge Improvement]]></title>
-        <id>https://www.youtube.com/shorts/-9NpUhapmrM</id>
-        <link href="https://www.youtube.com/shorts/-9NpUhapmrM"/>
-        <updated>2026-02-28T21:13:24.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To Generate .SVG Images With AI]]></title>
-        <id>https://www.youtube.com/shorts/awcHOLYyRv4</id>
-        <link href="https://www.youtube.com/shorts/awcHOLYyRv4"/>
-        <updated>2026-02-28T14:16:43.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our agreement with the Department of War]]></title>
         <id>https://openai.com/index/our-agreement-with-the-department-of-war</id>
         <link href="https://openai.com/index/our-agreement-with-the-department-of-war"/>
@@ -1024,16 +1022,6 @@ You can <a href="https://tools.simonwillison.net/animated-word-cloud">play with 
         <summary type="html"><![CDATA[Details on OpenAI’s contract with the Department of War, outlining safety red lines, legal protections, and how AI systems will be deployed in classified environments.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Crazy AI Story Just Got A Major Update]]></title>
-        <id>https://www.youtube.com/shorts/4SFt5UEidDo</id>
-        <link href="https://www.youtube.com/shorts/4SFt5UEidDo"/>
-        <updated>2026-02-28T00:47:27.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1054,16 +1042,6 @@ Because users lose their passkeys <em>all the time</em>, and may not understand 
     <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/usability">usability</a>, <a href="https://simonwillison.net/tags/passkeys">passkeys</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Cursor Rolls Out Major AI Agents Upgrade]]></title>
-        <id>https://www.youtube.com/shorts/_oJQEN6SwUk</id>
-        <link href="https://www.youtube.com/shorts/_oJQEN6SwUk"/>
-        <updated>2026-02-27T21:18:21.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1135,21 +1113,32 @@ Here's a little prototype I built this morning from my phone as an experiment in
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: AI's Biggest Stand Just Happened]]></title>
-        <id>https://www.youtube.com/watch?v=_CIL2g1oMSQ</id>
-        <link href="https://www.youtube.com/watch?v=_CIL2g1oMSQ"/>
-        <updated>2026-02-27T17:22:04.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Deadline Day for Autonomous AI Weapons & Mass Surveillance]]></title>
         <id>https://www.youtube.com/watch?v=Cru804JMjPI</id>
         <link href="https://www.youtube.com/watch?v=Cru804JMjPI"/>
         <updated>2026-02-27T14:57:29.000Z</updated>
         <author>
             <name>AI Explained</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
+        <id>https://openai.com/index/scaling-ai-for-everyone</id>
+        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Joint Statement from OpenAI and Microsoft]]></title>
+        <id>https://openai.com/index/continuing-microsoft-partnership</id>
+        <link href="https://openai.com/index/continuing-microsoft-partnership"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.]]></summary>
+        <author>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1170,36 +1159,6 @@ Here's a little prototype I built this morning from my phone as an experiment in
         <summary type="html"><![CDATA[Stateful Runtime for Agents in Amazon Bedrock brings persistent orchestration, memory, and secure execution to multi-step AI workflows powered by OpenAI.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Joint Statement from OpenAI and Microsoft]]></title>
-        <id>https://openai.com/index/continuing-microsoft-partnership</id>
-        <link href="https://openai.com/index/continuing-microsoft-partnership"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
-        <id>https://openai.com/index/scaling-ai-for-everyone</id>
-        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To Access Nano Banana 2]]></title>
-        <id>https://www.youtube.com/shorts/wKQF4Y_BeIk</id>
-        <link href="https://www.youtube.com/shorts/wKQF4Y_BeIk"/>
-        <updated>2026-02-27T00:17:58.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1470,15 +1429,6 @@ The key idea here is that coding agents mean we only ever need to figure out a u
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Google Upgraded Nano Banana (Free and Super Fast)!]]></title>
-        <id>https://www.youtube.com/watch?v=iMDibaO4dXw</id>
-        <link href="https://www.youtube.com/watch?v=iMDibaO4dXw"/>
-        <updated>2026-02-26T16:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Pacific Northwest National Laboratory and OpenAI partner to accelerate federal permitting]]></title>
         <id>https://openai.com/index/pacific-northwest-national-laboratory</id>
         <link href="https://openai.com/index/pacific-northwest-national-laboratory"/>
@@ -1723,58 +1673,6 @@ New Claude Code feature dropped yesterday: you can now run a "remote control" se
 <p>It's a neat illustration of how those of us with software engineering experience can expand our horizons in fun and interesting directions. I'm no longer afraid of Swift! Next time I need a small, personal macOS app I know that it's achievable with our existing set of tools.</p>
     
         <p>Tags: <a href="https://simonwillison.net/tags/macos">macos</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a href="https://simonwillison.net/tags/swift">swift</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/november-2025-inflection">november-2025-inflection</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Chinese AI Companies Are Using This Trick To Steal Model Data]]></title>
-        <id>https://www.youtube.com/shorts/of473UZ-A4Q</id>
-        <link href="https://www.youtube.com/shorts/of473UZ-A4Q"/>
-        <updated>2026-02-25T15:15:50.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Kellan Elliott-McCrea]]></title>
-        <id>https://simonwillison.net/2026/Feb/25/kellan-elliott-mccrea/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Feb/25/kellan-elliott-mccrea/#atom-everything"/>
-        <updated>2026-02-25T03:30:32.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://laughingmeme.org/2026/02/09/code-has-always-been-the-easy-part.html"><p>It’s also reasonable for people who entered technology in the last couple of decades because it was good job, or because they enjoyed coding to look at this moment with a real feeling of loss. That feeling of loss though can be hard to understand emotionally for people my age who entered tech because we were addicted to feeling of agency it gave us. The web was objectively awful as a technology, and genuinely amazing, and nobody got into it because programming in Perl was somehow aesthetically delightful.</p></blockquote>
-<p class="cite">&mdash; <a href="https://laughingmeme.org/2026/02/09/code-has-always-been-the-easy-part.html">Kellan Elliott-McCrea</a>, Code has <em>always</em> been the easy part</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/perl">perl</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/kellan-elliott-mccrea">kellan-elliott-mccrea</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/deep-blue">deep-blue</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linear walkthroughs]]></title>
-        <id>https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/#atom-everything</id>
-        <link href="https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/#atom-everything"/>
-        <updated>2026-02-25T01:07:10.000Z</updated>
-        <summary type="html"><![CDATA[<p><em><a href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic Engineering Patterns</a> &gt;</em></p>
-    <p>Sometimes it's useful to have a coding agent give you a structured walkthrough of a codebase. </p>
-<p>Maybe it's existing code you need to get up to speed on, maybe it's your own code that you've forgotten the details of, or maybe you vibe coded the whole thing and need to understand how it actually works.</p>
-<p>Frontier models with the right agent harness can construct a detailed walkthrough to help you understand how code works.</p>
-<h2 id="an-example-using-showboat-and-present">An example using Showboat and Present</h2>
-<p>I recently <a href="https://simonwillison.net/2026/Feb/25/present/">vibe coded a SwiftUI slide presentation app</a> on my Mac using Claude Code and Opus 4.6.</p>
-<p>I was speaking about the advances in frontier models between November 2025 and February 2026, and I like to include at least one gimmick in my talks (a <a href="https://simonwillison.net/2019/Dec/10/better-presentations/">STAR moment</a> - Something They'll Always Remember). In this case I decided the gimmick would be revealing at the end of the presentation that the slide mechanism itself was an example of what vibe coding could do.</p>
-<p>I released the code <a href="https://github.com/simonw/present">to GitHub</a> and then realized I didn't know anything about how it actually worked - I had prompted the whole thing into existence (<a href="https://gisthost.github.io/?bfbc338977ceb71e298e4d4d5ac7d63c">partial transcript here</a>) without paying any attention to the code it was writing.</p>
-<p>So I fired up a new instance of Claude Code for web, pointed it at my repo and prompted:
-<div><markdown-copy><textarea>Read the source and then plan a linear walkthrough of the code that explains how it all works in detail
-
-Then run “uvx showboat –help” to learn showboat - use showboat to create a walkthrough.md file in the repo and build the walkthrough in there, using showboat note for commentary and showboat exec plus sed or grep or cat or whatever you need to include snippets of code you are talking about</textarea></markdown-copy></div>
-<a href="https://github.com/simonw/showboat">Showboat</a> is a tool I built to help coding agents write documents that demonstrate their work. You can see the <a href="https://github.com/simonw/showboat/blob/main/help.txt">showboat --help output here</a>, which is designed to give the model everything it needs to know in order to use the tool.</p>
-<p>The <code>showboat note</code> command adds Markdown to the document. The <code>showboat exec</code> command accepts a shell command, executes it and then adds both the command and its output to the document.</p>
-<p>By telling it to use "sed or grep or cat or whatever you need to include snippets of code you are talking about" I ensured that Claude Code would not manually copy snippets of code into the document, since that could introduce a risk of hallucinations or mistakes.</p>
-<p>This worked extremely well. Here's the <a href="https://github.com/simonw/present/blob/main/walkthrough.md">document Claude Code created with Showboat</a>, which talks through all six <code>.swift</code> files in detail and provides a clear and actionable explanation about how the code works.</p>
-<p>I learned a great deal about how SwiftUI apps are structured and absorbed some solid details about the Swift language itself just from reading this document.</p>
-<p>If you are concerned that LLMs might reduce the speed at which you learn new skills I strongly recommend adopting patterns like this one.  Even a ~40 minute vibe coded toy project can become an opportunity to explore new ecosystems and pick up some interesting new tricks.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/swift">swift</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/showboat">showboat</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -2207,21 +2105,21 @@ Then run “uvx showboat –help” to learn showboat - use showboat to create a
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Bringing ChatGPT to GenAI.mil]]></title>
-        <id>https://openai.com/index/bringing-chatgpt-to-genaimil</id>
-        <link href="https://openai.com/index/bringing-chatgpt-to-genaimil"/>
-        <updated>2026-02-09T11:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI for Government announces the deployment of a custom ChatGPT on GenAI.mil, bringing secure, safety-forward AI to U.S. defense teams.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Testing ads in ChatGPT]]></title>
         <id>https://openai.com/index/testing-ads-in-chatgpt</id>
         <link href="https://openai.com/index/testing-ads-in-chatgpt"/>
         <updated>2026-02-09T11:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bringing ChatGPT to GenAI.mil]]></title>
+        <id>https://openai.com/index/bringing-chatgpt-to-genaimil</id>
+        <link href="https://openai.com/index/bringing-chatgpt-to-genaimil"/>
+        <updated>2026-02-09T11:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI for Government announces the deployment of a custom ChatGPT on GenAI.mil, bringing secure, safety-forward AI to U.S. defense teams.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>

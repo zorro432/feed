@@ -22,6 +22,184 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-09 datetime="2026-03-09T18:31:50.000Z">2026-03-09</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-09 datetime="2026-03-09T18:31:50.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;x36UmiSiEzc"
+                        open
+                      >
+                        <summary class="article-expander__title">The greatest unsolved problem in computer science...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;x36UmiSiEzc">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/9/production-query-plans-without-production-data/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Production query plans without production data</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/9/production-query-plans-without-production-data/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Production query plans without production data
+pg_restore_relation_stats() and pg_restore_attribute_stats() functions that were introduced in PostgreSQL 18 in September 2025.
+The PostgreSQL query planner makes use of internal statistics to help it decide how to best execute a query. These statistics often differ between production data and development environments, which means the query plans used in production may not be replicable in development.
+PostgreSQL&#x27;s new features now let you copy those statistics down to your development environment, allowing you to simulate the plans for production workloads without needing to copy in all of that data first.
+I found this illustrative example useful:
+SELECT pg_restore_attribute_stats(
+    &#x27;schemaname&#x27;, &#x27;public&#x27;,
+    &#x27;relname&#x27;, &#x27;test_orders&#x27;,
+    &#x27;attname&#x27;, &#x27;status&#x27;,
+    &#x27;inherited&#x27;, false::boolean,
+    &#x27;null_frac&#x27;, 0.0::real,
+    &#x27;avg_width&#x27;, 9::integer,
+    &#x27;n_distinct&#x27;, 5::real,
+    &#x27;most_common_vals&#x27;, &#x27;{delivered,shipped,cancelled,pending,returned}&#x27;::text,
+    &#x27;most_common_freqs&#x27;, &#x27;{0.95,0.015,0.015,0.015,0.005}&#x27;::real[]
+);
+
+This simulates statistics for a status column that is 95% delivered. Based on these statistics PostgreSQL can decide to use an index for status &#x3D; &#x27;shipped&#x27; but to instead perform a full table scan for status &#x3D; &#x27;delivered&#x27;.
+These statistics are pretty small. Radim says:
+Statistics dumps are tiny. A database with hundreds of tables and thousands of columns produces a statistics dump under 1MB. The production data might be hundreds of GB. The statistics that describe it fit in a text file.
+I posted on the SQLite user forum asking if SQLite could offer a similar feature and D. Richard Hipp promptly replied that it has one already:
+All of the data statistics used by the query planner in SQLite are available in the sqlite_stat1 table (or also in the sqlite_stat4 table if you happen to have compiled with SQLITE_ENABLE_STAT4).  That table is writable. You can inject whatever alternative statistics you like.
+This approach to controlling the query planner is mentioned in the documentation:
+https://sqlite.org/optoverview.html#manual_control_of_query_plans_using_sqlite_stat_tables.
+See also https://sqlite.org/lang_analyze.html#fixed_results_of_analyze.
+The &quot;.fullschema&quot; command in the CLI outputs both the schema and the content of the sqlite_statN tables, exactly for the reasons outlined above - so that we can reproduce query problems for testing without have to load multi-terabyte database files.
+Via Lobste.rs
+Tags: databases, postgresql, sql, sqlite, d-richard-hipp</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/9/not-so-boring/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Perhaps not Boring Technology after all</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/9/not-so-boring/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>A recurring concern I&#x27;ve seen regarding LLMs for programming is that they will push our technology choices towards the tools that are best represented in their training data, making it harder for new, better tools to break through the noise.
+
+This was certainly the case a couple of years ago, when asking models for help with Python or JavaScript appeared to give much better results than questions about less widely used languages.
+
+With the latest models running in good coding agent harnesses I&#x27;m not sure this continues to hold up.
+
+I&#x27;m seeing excellent results with my brand new tools where I start by prompting &quot;use uvx showboat --help / rodney --help / chartroom --help to learn about these tools&quot; - the context length of these new models is long enough that they can consume quite a lot of documentation before they start working on a problem.
+
+Drop a coding agent into any existing codebase that uses libraries and tools that are too private or too new to feature in the training data and my experience is that it works just fine - the agent will consult enough of the existing examples to understand patterns, then iterate and test its own output to fill in the gaps.
+
+This is a surprising result. I thought coding agents would prove to be the ultimate embodiment of the Choose Boring Technology approach, but in practice they don&#x27;t seem to be affecting my technology choices in that way at all.
+
+
+Update: A few follow-on thoughts:
+
+
+The issue of what technology LLMs recommend is a separate one. What Claude Code Actually Chooses is an interesting recent study where Edwin Ong and Alex Vikati where they proved Claude Code over 2,000 times and found a strong bias towards build-over-buy but also identified a preferred technical stack, with GitHub Actions, Stripe, and shadcn/ui seeing a &quot;near monopoly&quot; in their respective categories. For the sake of this post my interest is in what happens when the human makes a technology choice that differs from those preferred by the model harness.
+
+The Skills mechanism that is being rapidly embraced by most coding agent tools is super-relevant here. We are already seeing projects release official skills to help agents use them - here are examples from Remotion, Supabase, Vercel, and Prisma.
+
+
+    
+        
+Tags: ai, generative-ai, llms, ai-assisted-programming, boring-technology, coding-agents, agentic-engineering, november-2025-inflection</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/openai-to-acquire-promptfoo"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI to acquire Promptfoo</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/openai-to-acquire-promptfoo">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems during development.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-08 datetime="2026-03-08T14:59:48.000Z">2026-03-08</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-08 datetime="2026-03-08T14:59:48.000Z"></time>
           </button>
@@ -54,39 +232,6 @@
 — Joseph Weizenbaum, creator of ELIZA, in 1976 (via)
 Tags: ai-ethics, ai, computer-history, internet-archive</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/dEH17qq7wJQ"
-                        open
-                      >
-                        <summary class="article-expander__title">The TLDR On Gemini 3.1 Flash-Lite</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/dEH17qq7wJQ">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -141,39 +286,6 @@ Unlike Anthropic they don&#x27;t hint at the exact metrics they care about, but 
 Via @openaidevs
 Tags: open-source, ai, openai, generative-ai, llms, codex-cli</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/g0AxIEMcEfM"
-                        open
-                      >
-                        <summary class="article-expander__title">Is GPT-5.4 Worth It?</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/g0AxIEMcEfM">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -359,56 +471,6 @@ Via Hacker News
 Tags: security, ai, github-actions, prompt-injection, generative-ai, llms</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/W240HYPt38w"
-                        open
-                      >
-                        <summary class="article-expander__title">News Update: OpenAI &amp; Anthropic Feud Heats Up</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/W240HYPt38w">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;JH2ak7kS43E"
-                        open
-                      >
-                        <summary class="article-expander__title">AI News: Everyone&#x27;s Leaving ChatGPT!</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;JH2ak7kS43E">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -869,23 +931,6 @@ Tags: licensing, mark-pilgrim, open-source, ai, generative-ai, llms, ai-assisted
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/reasoning-models-chain-of-thought-controllability"
-                        open
-                      >
-                        <summary class="article-expander__title">Reasoning models struggle to control their chains of thought, and that’s good</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/introducing-gpt-5-4"
                         open
                       >
@@ -903,6 +948,23 @@ Tags: licensing, mark-pilgrim, open-source, ai, generative-ai, llms, ai-assisted
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/reasoning-models-chain-of-thought-controllability"
+                        open
+                      >
+                        <summary class="article-expander__title">Reasoning models struggle to control their chains of thought, and that’s good</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/ai-education-opportunity"
                         open
                       >
@@ -911,6 +973,23 @@ Tags: licensing, mark-pilgrim, open-source, ai, generative-ai, llms, ai-assisted
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI shares new tools, certifications, and measurement resources to help schools and universities close AI capability gaps and expand opportunity.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"
+                        open
+                      >
+                        <summary class="article-expander__title">The five AI value models driving business reinvention</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.</span>
                             </span>
                           </div>
                         </a>
@@ -945,23 +1024,6 @@ Tags: licensing, mark-pilgrim, open-source, ai, generative-ai, llms, ai-assisted
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"
-                        open
-                      >
-                        <summary class="article-expander__title">The five AI value models driving business reinvention</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.</span>
                             </span>
                           </div>
                         </a>
@@ -1212,56 +1274,6 @@ Tags: ai, generative-ai, llms, qwen, ai-in-china</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/-Ow2PsJUWO8"
-                        open
-                      >
-                        <summary class="article-expander__title">How To Use AI On Your Phone WITHOUT Internet</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/-Ow2PsJUWO8">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;4dZ0VYjB8N8"
-                        open
-                      >
-                        <summary class="article-expander__title">This Free App Runs AI Offline On Your iPhone</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;4dZ0VYjB8N8">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -1287,14 +1299,14 @@ Tags: ai, generative-ai, llms, qwen, ai-in-china</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
+                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
                         open
                       >
-                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
+                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
+                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
                             </span>
                           </div>
                         </a>
@@ -1304,14 +1316,14 @@ Tags: ai, generative-ai, llms, qwen, ai-in-china</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
+                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
                         open
                       >
-                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
+                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
+                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -1566,11 +1578,11 @@ Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-3-instant-system-card"
+                        data-accordion-key="https://openai.com/index/gpt-5-3-instant"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.3 Instant System Card</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant-system-card">
+                        <summary class="article-expander__title">GPT-5.3 Instant: Smoother, more useful everyday conversations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -1583,11 +1595,11 @@ Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-3-instant"
+                        data-accordion-key="https://openai.com/index/gpt-5-3-instant-system-card"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.3 Instant: Smoother, more useful everyday conversations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant">
+                        <summary class="article-expander__title">GPT-5.3 Instant System Card</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant-system-card">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -2022,39 +2034,6 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/M14ArIseaR8"
-                        open
-                      >
-                        <summary class="article-expander__title">Sam Altman Compares Training AI To Raising Kids</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/M14ArIseaR8">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -2119,77 +2098,6 @@ I found that this animation really helped make the way the algorithm worked clic
 I have long been a fan of animations and interactive interfaces to help explain different concepts. A good coding agent can produce these on demand to help explain code - its own code or code written by others.
 Tags: ai, llms, coding-agents, ai-assisted-programming, cognitive-debt, generative-ai, explorables, agentic-engineering</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/-9NpUhapmrM"
-                        open
-                      >
-                        <summary class="article-expander__title">This Claude Code Feature Is A Huge Improvement</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/-9NpUhapmrM">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/awcHOLYyRv4"
-                        open
-                      >
-                        <summary class="article-expander__title">How To Generate .SVG Images With AI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/awcHOLYyRv4">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/4SFt5UEidDo"
-                        open
-                      >
-                        <summary class="article-expander__title">This Crazy AI Story Just Got A Major Update</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/4SFt5UEidDo">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2375,75 +2283,6 @@ Tags: algorithms, http, research, tools, unicode, ai, generative-ai, llms, ai-as
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/_oJQEN6SwUk"
-                        open
-                      >
-                        <summary class="article-expander__title">Cursor Rolls Out Major AI Agents Upgrade</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/_oJQEN6SwUk">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;_CIL2g1oMSQ"
-                        open
-                      >
-                        <summary class="article-expander__title">AI News: AI&#x27;s Biggest Stand Just Happened</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;_CIL2g1oMSQ">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/wKQF4Y_BeIk"
-                        open
-                      >
-                        <summary class="article-expander__title">How To Access Nano Banana 2</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/wKQF4Y_BeIk">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >AI Explained</button>
                   <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
                 </h3>
@@ -2483,31 +2322,14 @@ Tags: algorithms, http, research, tools, unicode, ai, generative-ai, llms, ai-as
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/amazon-partnership"
+                        data-accordion-key="https://openai.com/index/scaling-ai-for-everyone"
                         open
                       >
-                        <summary class="article-expander__title">OpenAI and Amazon announce strategic partnership</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/amazon-partnership">
+                        <summary class="article-expander__title">Scaling AI for everyone</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/scaling-ai-for-everyone">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Stateful Runtime for Agents in Amazon Bedrock brings persistent orchestration, memory, and secure execution to multi-step AI workflows powered by OpenAI.</span>
+                              <span>Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.</span>
                             </span>
                           </div>
                         </a>
@@ -2534,14 +2356,31 @@ Tags: algorithms, http, research, tools, unicode, ai, generative-ai, llms, ai-as
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/scaling-ai-for-everyone"
+                        data-accordion-key="https://openai.com/index/amazon-partnership"
                         open
                       >
-                        <summary class="article-expander__title">Scaling AI for everyone</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/scaling-ai-for-everyone">
+                        <summary class="article-expander__title">OpenAI and Amazon announce strategic partnership</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/amazon-partnership">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.</span>
+                              <span>OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Stateful Runtime for Agents in Amazon Bedrock brings persistent orchestration, memory, and secure execution to multi-step AI workflows powered by OpenAI.</span>
                             </span>
                           </div>
                         </a>
@@ -3062,37 +2901,6 @@ Tags: openai, chatgpt, benedict-evans, ai</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;iMDibaO4dXw"
-                        open
-                      >
-                        <summary class="article-expander__title">Google Upgraded Nano Banana (Free and Super Fast)!</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;iMDibaO4dXw">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -3212,7 +3020,7 @@ Tags: openai, chatgpt, benedict-evans, ai</span>
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-02-26-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Feb 26, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3442,65 +3250,6 @@ Tags: macos, ai, generative-ai, llms, ai-assisted-programming, vibe-coding, swif
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Feb/25/kellan-elliott-mccrea/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Kellan Elliott-McCrea</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Feb/25/kellan-elliott-mccrea/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>It’s also reasonable for people who entered technology in the last couple of decades because it was good job, or because they enjoyed coding to look at this moment with a real feeling of loss. That feeling of loss though can be hard to understand emotionally for people my age who entered tech because we were addicted to feeling of agency it gave us. The web was objectively awful as a technology, and genuinely amazing, and nobody got into it because programming in Perl was somehow aesthetically delightful.
-
-— Kellan Elliott-McCrea, Code has always been the easy part
-Tags: perl, generative-ai, kellan-elliott-mccrea, agentic-engineering, ai, llms, deep-blue</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Linear walkthroughs</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Agentic Engineering Patterns &gt;
-Sometimes it&#x27;s useful to have a coding agent give you a structured walkthrough of a codebase. 
-Maybe it&#x27;s existing code you need to get up to speed on, maybe it&#x27;s your own code that you&#x27;ve forgotten the details of, or maybe you vibe coded the whole thing and need to understand how it actually works.
-Frontier models with the right agent harness can construct a detailed walkthrough to help you understand how code works.
-An example using Showboat and Present
-I recently vibe coded a SwiftUI slide presentation app on my Mac using Claude Code and Opus 4.6.
-I was speaking about the advances in frontier models between November 2025 and February 2026, and I like to include at least one gimmick in my talks (a STAR moment - Something They&#x27;ll Always Remember). In this case I decided the gimmick would be revealing at the end of the presentation that the slide mechanism itself was an example of what vibe coding could do.
-I released the code to GitHub and then realized I didn&#x27;t know anything about how it actually worked - I had prompted the whole thing into existence (partial transcript here) without paying any attention to the code it was writing.
-So I fired up a new instance of Claude Code for web, pointed it at my repo and prompted:
-Read the source and then plan a linear walkthrough of the code that explains how it all works in detail
-
-Then run “uvx showboat –help” to learn showboat - use showboat to create a walkthrough.md file in the repo and build the walkthrough in there, using showboat note for commentary and showboat exec plus sed or grep or cat or whatever you need to include snippets of code you are talking about
-Showboat is a tool I built to help coding agents write documents that demonstrate their work. You can see the showboat --help output here, which is designed to give the model everything it needs to know in order to use the tool.
-The showboat note command adds Markdown to the document. The showboat exec command accepts a shell command, executes it and then adds both the command and its output to the document.
-By telling it to use &quot;sed or grep or cat or whatever you need to include snippets of code you are talking about&quot; I ensured that Claude Code would not manually copy snippets of code into the document, since that could introduce a risk of hallucinations or mistakes.
-This worked extremely well. Here&#x27;s the document Claude Code created with Showboat, which talks through all six .swift files in detail and provides a clear and actionable explanation about how the code works.
-I learned a great deal about how SwiftUI apps are structured and absorbed some solid details about the Swift language itself just from reading this document.
-If you are concerned that LLMs might reduce the speed at which you learn new skills I strongly recommend adopting patterns like this one.  Even a ~40 minute vibe coded toy project can become an opportunity to explore new ecosystems and pick up some interesting new tricks.
-Tags: agentic-engineering, ai, llms, vibe-coding, coding-agents, ai-assisted-programming, swift, generative-ai, showboat</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -3549,39 +3298,6 @@ Tags: agentic-engineering, ai, llms, vibe-coding, coding-agents, ai-assisted-pro
                             <span class="media-object__text">
                               <span>We’ve updated Circle to Search so you can now explore multiple items in a single image.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;16
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/of473UZ-A4Q"
-                        open
-                      >
-                        <summary class="article-expander__title">Chinese AI Companies Are Using This Trick To Steal Model Data</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/of473UZ-A4Q">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5031,14 +4747,14 @@ Tags: agentic-engineering, ai, llms, vibe-coding, coding-agents, ai-assisted-pro
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bringing-chatgpt-to-genaimil"
+                        data-accordion-key="https://openai.com/index/testing-ads-in-chatgpt"
                         open
                       >
-                        <summary class="article-expander__title">Bringing ChatGPT to GenAI.mil</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bringing-chatgpt-to-genaimil">
+                        <summary class="article-expander__title">Testing ads in ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/testing-ads-in-chatgpt">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI for Government announces the deployment of a custom ChatGPT on GenAI.mil, bringing secure, safety-forward AI to U.S. defense teams.</span>
+                              <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
                             </span>
                           </div>
                         </a>
@@ -5048,14 +4764,14 @@ Tags: agentic-engineering, ai, llms, vibe-coding, coding-agents, ai-assisted-pro
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/testing-ads-in-chatgpt"
+                        data-accordion-key="https://openai.com/index/bringing-chatgpt-to-genaimil"
                         open
                       >
-                        <summary class="article-expander__title">Testing ads in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/testing-ads-in-chatgpt">
+                        <summary class="article-expander__title">Bringing ChatGPT to GenAI.mil</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bringing-chatgpt-to-genaimil">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
+                              <span>OpenAI for Government announces the deployment of a custom ChatGPT on GenAI.mil, bringing secure, safety-forward AI to U.S. defense teams.</span>
                             </span>
                           </div>
                         </a>
@@ -5102,8 +4818,8 @@ Tags: agentic-engineering, ai, llms, vibe-coding, coding-agents, ai-assisted-pro
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/22835391114">
-        <time id="build-timestamp" datetime="2026-03-09T02:06:09.808Z">2026-03-09T02:06:09.808Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/22883527998">
+        <time id="build-timestamp" datetime="2026-03-10T01:58:25.755Z">2026-03-10T01:58:25.755Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
