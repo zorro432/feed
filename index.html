@@ -22,6 +22,370 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-16 datetime="2026-03-16T23:41:17.000Z">2026-03-16</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-16 datetime="2026-03-16T23:41:17.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Mistral Small 4</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Introducing Mistral Small 4
+Mistral Small 4 is the first Mistral model to unify the capabilities of our flagship models, Magistral for reasoning, Pixtral for multimodal, and Devstral for agentic coding, into a single, versatile model.
+It supports reasoning_effort&#x3D;&quot;none&quot; or reasoning_effort&#x3D;&quot;high&quot;, with the latter providing &quot;equivalent verbosity to previous Magistral models&quot;. 
+The new model is 242GB on Hugging Face.
+I tried it out via the Mistral API using llm-mistral:
+llm install llm-mistral
+llm mistral refresh
+llm -m mistral/mistral-small-2603 &quot;Generate an SVG of a pelican riding a bicycle&quot;
+
+
+I couldn&#x27;t find a way to set the reasoning effort in their API documentation, so hopefully that&#x27;s a feature which will land soon.
+Also from Mistral today and fitting their -stral naming convention is Leanstral, an open weight model that is specifically tuned to help output the Lean 4 formally verifiable coding language. I haven&#x27;t explored Lean at all so I have no way to credibly evaluate this, but it&#x27;s interesting to see them target one specific language in this way.
+
+
+    
+Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reasoning, llm-release</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/16/codex-subagents/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Use subagents and custom agents in Codex</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/16/codex-subagents/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Use subagents and custom agents in Codex
+They&#x27;re very similar to the Claude Code implementation, with default subagents for &quot;explorer&quot;, &quot;worker&quot; and &quot;default&quot;. It&#x27;s unclear to me what the difference between &quot;worker&quot; and &quot;default&quot; is but based on their CSV example I think &quot;worker&quot; is intended for running large numbers of small tasks in parallel.
+Codex also lets you define custom agents as TOML files in ~/.codex/agents/. These can have custom instructions and be assigned to use specific models - including gpt-5.3-codex-spark if you want some raw speed. They can then be referenced by name, as demonstrated by this example prompt from the documentation:
+Investigate why the settings modal fails to save. Have browser_debugger reproduce it, code_mapper trace the responsible code path, and ui_fixer implement the smallest fix once the failure mode is clear.
+The subagents pattern is widely supported in coding agents now. Here&#x27;s documentation across a number of different platforms:
+OpenAI Codex subagents
+Claude Code subagents
+Gemini CLI subagents (experimental)
+Mistral Vibe subagents
+OpenCode agents
+Subagents in Visual Studio Code
+Cursor Subagents
+Via @OpenAIDevs
+Tags: ai, openai, generative-ai, llms, coding-agents, codex-cli, parallel-agents, agentic-engineering</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/16/blackmail/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting A member of Anthropic’s alignment-science team</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/16/blackmail/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The point of the blackmail exercise was to have something to describe to policymakers—results that are visceral enough to land with people, and make misalignment risk actually salient in practice for people who had never thought about it before.
+
+— A member of Anthropic’s alignment-science team, as told to Gideon Lewis-Kraus
+Tags: ai-ethics, anthropic, claude, generative-ai, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/16/guilherme-rambo/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Guilherme Rambo</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/16/guilherme-rambo/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tidbit: the software-based camera indicator light in the MacBook Neo runs in the secure exclave¹ part of the chip, so it is almost as secure as the hardware indicator light. What that means in practice is that even a kernel-level exploit would not be able to turn on the camera without the light appearing on screen. It runs in a privileged environment separate from the kernel and blits the light directly onto the screen hardware.
+
+— Guilherme Rambo, in a text message to John Gruber
+Tags: hardware, apple, privacy, john-gruber</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/16/coding-agents-for-data-analysis/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Coding agents for data analysis</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/16/coding-agents-for-data-analysis/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/trees-sql-map-card.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Coding agents for data analysis
+Here&#x27;s the table of contents:
+Coding agents
+Warmup: ChatGPT and Claude
+Setup Claude Code and Codex
+Asking questions against a database
+Exploring data with agents
+Cleaning data: decoding neighborhood codes
+Creating visualizations with agents
+Scraping data with agents
+I ran the workshop using GitHub Codespaces and OpenAI Codex, since it was easy (and inexpensive) to distribute a budget-restricted API key for Codex that attendees could use during the class. Participants ended up burning $23 of Codex tokens.
+The exercises all used Python and SQLite and some of them used Datasette.
+One highlight of the workshop was when we started running Datasette such that it served static content from a viz/ folder, then had Claude Code start vibe coding new interactive visualizations directly in that folder. Here&#x27;s a heat map it created for my trees database using Leaflet and Leaflet.heat, source code here.
+
+I designed the handout to also be useful for people who weren&#x27;t able to attend the session in person. As is usually the case, material aimed at data journalists is equally applicable to anyone else with data to explore.
+
+
+    
+Tags: data-journalism, geospatial, python, speaking, sqlite, ai, datasette, generative-ai, llms, github-codespaces, nicar, coding-agents, claude-code, codex-cli, leaflet</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">How coding agents work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Agentic Engineering Patterns &gt;
+As with any tool, understanding how coding agents work under the hood can help you make better decisions about how to apply them.
+A coding agent is a piece of software that acts as a harness for an LLM, extending that LLM with additional capabilities that are powered by invisible prompts and implemented as callable tools.
+Large Language Models
+At the heart of any coding agent is a Large Language Model, or LLM. These have names like GPT-5.4 or Claude Opus 4.6 or Gemini 3.1 Pro or Qwen3.5-35B-A3B.
+An LLM is a machine learning model that can complete a sentence of text. Give the model the phrase &quot;the cat sat on the &quot; and it will (almost certainly) suggest &quot;mat&quot; as the next word in the sentence.
+As these models get larger and train on increasing amounts of data, they can complete more complex sentences - like &quot;a python function to download a file from a URL is def download_file(url): &quot;.
+LLMs don&#x27;t actually work directly with words - they work with tokens. A sequence of text is converted into a sequence of integer tokens, so &quot;the cat sat on the &quot; becomes [3086, 9059, 10139, 402, 290, 220]. This is worth understanding because LLM providers charge based on the number of tokens processed, and are limited in how many tokens they can consider at a time.
+You can experiment with the OpenAI tokenizer to see how this works at platform.openai.com/tokenizer.
+The input to an LLM is called the prompt. The text returned by an LLM is called the completion, or sometimes the response.
+Many models today are multimodal, which means they can accept more than just text as input.  Vision LLMs (vLLMs) can accept images as part of the input, which means you can feed them sketches or photos or screenshots. A common misconception is that these are run through a separate process for OCR or image analysis, but these inputs are actually turned into yet more token integers which are processed in the same way as text.
+Chat templated prompts
+The first LLMs worked as completion engines - users were expected to provide a prompt which could then be completed by the model, such as the two examples shown above.
+This wasn&#x27;t particularly user-friendly so models mostly switched to using chat templated prompts instead, which represent communication with the model as a simulated conversation.
+This is actually just a form of completion prompt with a special format that looks something like this.
+user: write a python function to download a file from a URL
+assistant:
+
+
+The natural completion for this prompt is for the assistant (represented by the LLM) to answer the user&#x27;s question with some Python code.
+LLMs are stateless: every time they execute a prompt they start from the same blank slate. 
+To maintain the simulation of a conversation, the software that talks to the model needs to maintain its own state and replay the entire existing conversation every time the user enters a new chat prompt:
+user: write a python function to download a file from a URL
+assistant: def download_url(url):
+    return urllib.request.urlopen(url).read()
+user: use the requests library instead
+assistant:
+
+
+Since providers charge for both input and output tokens, this means that as a conversation gets longer, each prompt becomes more expensive since the number of input tokens grows every time.
+Token caching
+Most model providers offset this somewhat through a cheaper rate for cached input tokens - common token prefixes that have been processed within a short time period can be charged at a lower rate as the underlying infrastructure can cache and then reuse many of the expensive calculations used to process that input.
+Coding agents are designed with this optimization in mind - they avoid modifying earlier conversation content to ensure the cache is used as efficiently as possible.
+Calling tools
+The defining feature of an LLM agent is that agents can call tools. But what is a tool?
+A tool is a function that the agent harness makes available to the LLM.
+At the level of the prompt itself, that looks something like this:
+system: If you need to access the weather, end your turn with &lt;tool&gt;get_weather(city_name)&lt;/tool&gt;
+user: what&#x27;s the weather in San Francisco?
+assistant:
+
+
+Here the assistant might respond with the following text:
+&lt;tool&gt;get_weather(&quot;San Francisco&quot;)&lt;/tool&gt;
+
+
+The model harness software then extracts that function call request from the response - probably with a regular expression - and executes the tool.
+It then returns the result to the model, with a constructed prompt that looks something like this:
+system: If you need to access the weather, end your turn with &lt;tool&gt;get_weather(city_name)&lt;/tool&gt;
+user: what&#x27;s the weather in San Francisco?
+assistant: &lt;tool&gt;get_weather(&quot;San Francisco&quot;)&lt;/tool&gt;
+user: &lt;tool-result&gt;61°, Partly cloudy&lt;/tool-result&gt;
+assistant:
+
+
+The LLM can now use that tool result to help generate an answer to the user&#x27;s question.
+Most coding agents define a dozen or more tools for the agent to call. The most powerful of these allow for code execution - a Bash() tool for executing terminal commands, or a Python() tool for running Python code, for example.
+The system prompt
+In the previous example I included an initial message marked &quot;system&quot; which informed the LLM about the available tool and how to call it.
+Coding agents usually start every conversation with a system prompt like this, which is not shown to the user but provides instructions telling the model how it should behave.
+These system prompts can be hundreds of lines long. Here&#x27;s the system prompt for OpenAI Codex as-of March 2026, which is a useful clear example of the kind of instructions that make these coding agents work.
+Reasoning
+One of the big new advances in 2025 was the introduction of reasoning to the frontier model families.
+Reasoning, sometimes presented as thinking in the UI, is when a model spends additional time generating text that talks through the problem and its potential solutions before presenting a reply to the user.
+This can look similar to a person thinking out loud, and has a similar effect. Crucially it allows models to spend more time (and more tokens) working on a problem in order to hopefully get a better result.
+Reasoning is particularly useful for debugging issues in code as it gives the model an opportunity to navigate more complex code paths, mixing in tool calls and using the reasoning phase to follow function calls back to the potential source of an issue.
+Many coding agents include options for dialing up or down the reasoning effort level, encouraging models to spend more time chewing on harder problems.
+LLM + system prompt + tools in a loop
+Believe it or not, that&#x27;s most of what it takes to build a coding agent!
+If you want to develop a deeper understanding of how these things work, a useful exercise is to try building your own agent from scratch. A simple tool loop can be achieved with a few dozen lines of code on top of an existing LLM API.
+A good tool loop is a great deal more work than that, but the fundamental mechanics are surprisingly straightforward.
+Tags: coding-agents, generative-ai, agentic-engineering, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/W4iSvbg4f68"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Just Dropped A Huge New Feature</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/W4iSvbg4f68">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/why-codex-security-doesnt-include-sast"
+                        open
+                      >
+                        <summary class="article-expander__title">Why Codex Security Doesn’t Include a SAST Report</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/why-codex-security-doesnt-include-sast">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>A deep dive into why Codex Security doesn’t rely on traditional SAST, instead using AI-driven constraint reasoning and validation to find real vulnerabilities with fewer false positives.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="rubicap"
+                        open
+                      >
+                        <summary class="article-expander__title">RubiCap: Rubric-Guided Reinforcement Learning for Dense Image Captioning</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/rubicap">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Dense image captioning is critical for cross-modal alignment in vision-language pretraining and text-to-image generation, but scaling expert-quality annotations is prohibitively expensive. While synthetic captioning via strong vision-language models (VLMs) is a practical alternative, supervised distillation often yields limited output diversity and weak generalization. Reinforcement learning (RL) could overcome these limitations, but its successes have so far been concentrated in verifiable domains that rely on deterministic checkers — a luxury not available in open-ended captioning. We…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-15 datetime="2026-03-15T22:41:57.000Z">2026-03-15</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-15 datetime="2026-03-15T22:41:57.000Z"></time>
           </button>
@@ -54,6 +418,8 @@ I use the term agentic engineering to describe the practice of developing softwa
 What are coding agents? They&#x27;re agents that can both write and execute code. Popular examples include Claude Code, OpenAI Codex, and Gemini CLI.
 What&#x27;s an agent? Clearly defining that term is a challenge that has frustrated AI researchers since at least the 1990s but the definition I&#x27;ve come to accept, at least in the field of Large Language Models (LLMs) like GPT-5 and Gemini and Claude, is this one:
 Agents run tools in a loop to achieve a goal
+The &quot;agent&quot; is software that calls an LLM with your prompt and passes it a set of tool definitions, then calls any tools that the LLM requests and feeds the results back into the LLM.
+For coding agents, those tools include one that can execute code.
 You prompt the coding agent to define a goal. The agent then generates and executes code in a loop until that goal has been met.
 Code execution is the defining capability that makes agentic engineering possible. Without the ability to directly run the code, anything output by an LLM is of limited value. With code execution, these agents can start iterating towards software that demonstrably works.
 Agentic engineering
@@ -64,6 +430,9 @@ Getting great results out of coding agents is a deep subject in its own right, e
 We need to provide our coding agents with the tools they need to solve our problems, specify those problems in the right level of detail, and verify and iterate on the results until we are confident they address our problems in a robust and credible way.
 LLMs don&#x27;t learn from their past mistakes, but coding agents can, provided we deliberately update our instructions and tool harnesses to account for what we learn along the way.
 Used effectively, coding agents can help us be much more ambitious with the projects we take on. Agentic engineering should help us produce more, better quality code that solves more impactful problems.
+Isn&#x27;t this just vibe coding?
+The term &quot;vibe coding&quot; was coined by Andrej Karpathy in February 2025 - coincidentally just three weeks prior to the original release of Claude Code - to describe prompting LLMs to write code while you &quot;forget that the code even exists&quot;.
+Some people extend that definition to cover any time an LLM is used to produce code at all, but I think that&#x27;s a mistake. Vibe coding is more useful in its original definition - we need a term to describe unreviewed, prototype-quality LLM-generated code that distinguishes it from code that the author has brought up to a production ready standard.
 About this guide
 Just like the field it attempts to cover, Agentic Engineering Patterns is very much a work in progress. My goal is to identify and describe patterns for working with these tools that demonstrably get results, and that are unlikely to become outdated as the tools advance.
 I&#x27;ll continue adding more chapters as new techniques emerge. No chapter should be considered finished. I&#x27;ll be updating existing chapters as our understanding of these patterns evolves.
@@ -730,26 +1099,6 @@ Tags: django, performance, rails, ruby, ai, andrej-karpathy, generative-ai, llms
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="multilingual-reasoning-gym"
-                        open
-                      >
-                        <summary class="article-expander__title">Multilingual Reasoning Gym: Multilingual Scaling of Procedural Reasoning Environments</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/multilingual-reasoning-gym">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>We present the Multilingual Reasoning Gym, an extension of Reasoning Gym (Stojanovski et al., 2025), that procedurally generates verifiable reasoning problems across 14 languages. We translate templates for 94 tasks with native-speaker validation in 10 languages and targeted code or template adaptations to ensure linguistic naturalness. The Multilingual Reasoning Gym preserves the core benefits of the procedural generation approach used in the original Reasoning Gym, such as virtually unlimited problem instance generation and adjustable difficulty, and remains directly usable for Reinforcement…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="macereason-math"
                         open
                       >
@@ -760,6 +1109,26 @@ Tags: django, performance, rails, ruby, ai, andrej-karpathy, generative-ai, llms
                             <span class="media-object__text">
                               <span>Reinforcement Learning with Verifiable Rewards (RLVR) has been successfully applied to significantly boost the capabilities of pretrained large language models, especially in the math and logic problem domains. However, current research and available training datasets remain English-centric. While multilingual training data and benchmarks have been created in the past, they were not created with RLVR and current model capability in mind, and their level of difficulty is often too low to provide appropriate training signals for current models. To address this gap, we provide mAceReason-Math, a…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="multilingual-reasoning-gym"
+                        open
+                      >
+                        <summary class="article-expander__title">Multilingual Reasoning Gym: Multilingual Scaling of Procedural Reasoning Environments</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/multilingual-reasoning-gym">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>We present the Multilingual Reasoning Gym, an extension of Reasoning Gym (Stojanovski et al., 2025), that procedurally generates verifiable reasoning problems across 14 languages. We translate templates for 94 tasks with native-speaker validation in 10 languages and targeted code or template adaptations to ensure linguistic naturalness. The Multilingual Reasoning Gym preserves the core benefits of the procedural generation approach used in the original Reasoning Gym, such as virtually unlimited problem instance generation and adjustable difficulty, and remains directly usable for Reinforcement…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -844,7 +1213,7 @@ That request to remain anonymous is a sharp reminder that corporate dynamics may
 
     
 Tags: new-york-times, careers, ai, generative-ai, llms, ai-assisted-programming, press-quotes, deep-blue</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1116,7 +1485,7 @@ Tags: john-carmack, software-engineering, yagni</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1175,14 +1544,14 @@ Tags: john-carmack, software-engineering, yagni</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/wayfair"
+                        data-accordion-key="https://openai.com/index/equip-responses-api-computer-environment"
                         open
                       >
-                        <summary class="article-expander__title">Wayfair boosts catalog accuracy and support speed with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/wayfair">
+                        <summary class="article-expander__title">From model to agent: Equipping the Responses API with a computer environment</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/equip-responses-api-computer-environment">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.</span>
+                              <span>How OpenAI built an agent runtime using the Responses API, shell tool, and hosted containers to run secure, scalable agents with files, tools, and state.</span>
                             </span>
                           </div>
                         </a>
@@ -1192,14 +1561,14 @@ Tags: john-carmack, software-engineering, yagni</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/equip-responses-api-computer-environment"
+                        data-accordion-key="https://openai.com/index/wayfair"
                         open
                       >
-                        <summary class="article-expander__title">From model to agent: Equipping the Responses API with a computer environment</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/equip-responses-api-computer-environment">
+                        <summary class="article-expander__title">Wayfair boosts catalog accuracy and support speed with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/wayfair">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>How OpenAI built an agent runtime using the Responses API, shell tool, and hosted containers to run secure, scalable agents with files, tools, and state.</span>
+                              <span>Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -1911,7 +2280,7 @@ Tags: open-source, ai, openai, generative-ai, llms, codex-cli</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2061,7 +2430,7 @@ note appends a Markdown note to the Showboat document. exec records a command, t
 The exec command is the most important of these, because it captures a command along with the resulting output. This shows you what the agent did and what the result was, and is designed to discourage the agent from cheating and writing what it hoped had happened into the document.
 I&#x27;ve been finding the Showboat pattern to work really well for documenting the work that has been achieved during my agent sessions. I&#x27;m hoping to see similar patterns adopted across a wider set of tools.
 Tags: playwright, testing, agentic-engineering, ai, llms, coding-agents, ai-assisted-programming, rodney, showboat</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2095,7 +2464,7 @@ Cline failed to handle the responsibly disclosed bug report promptly and were ex
     
 Via Hacker News
 Tags: security, ai, github-actions, prompt-injection, generative-ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2235,14 +2604,14 @@ Tags: security, ai, github-actions, prompt-injection, generative-ai, llms</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/codex-security-now-in-research-preview"
+                        data-accordion-key="https://openai.com/index/descript"
                         open
                       >
-                        <summary class="article-expander__title">Codex Security: now in research preview</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/codex-security-now-in-research-preview">
+                        <summary class="article-expander__title">How Descript enables multilingual video dubbing at scale</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/descript">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Codex Security is an AI application security agent that analyzes project context to detect, validate, and patch complex vulnerabilities with higher confidence and less noise.</span>
+                              <span>Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.</span>
                             </span>
                           </div>
                         </a>
@@ -2252,14 +2621,14 @@ Tags: security, ai, github-actions, prompt-injection, generative-ai, llms</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/descript"
+                        data-accordion-key="https://openai.com/index/codex-security-now-in-research-preview"
                         open
                       >
-                        <summary class="article-expander__title">How Descript enables multilingual video dubbing at scale</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/descript">
+                        <summary class="article-expander__title">Codex Security: now in research preview</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/codex-security-now-in-research-preview">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.</span>
+                              <span>Codex Security is an AI application security agent that analyzes project context to detect, validate, and patch complex vulnerabilities with higher confidence and less noise.</span>
                             </span>
                           </div>
                         </a>
@@ -2300,16 +2669,16 @@ Tags: security, ai, github-actions, prompt-injection, generative-ai, llms</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="genctrl"
+                        data-accordion-key="multi-frequency-fusion"
                         open
                       >
-                        <summary class="article-expander__title">GenCtrl -- A Formal Controllability Toolkit for Generative Models</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/genctrl">
+                        <summary class="article-expander__title">Multi-Frequency Fusion for Robust Video Face Forgery Detection</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/multi-frequency-fusion">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>As generative models become ubiquitous, there is a critical need for fine-grained control over the generation process. Yet, while controlled generation methods from prompting to fine-tuning proliferate, a fundamental question remains unanswered: are these models truly controllable in the first place? In this work, we provide a theoretical framework to formally answer this question. Framing human-model interaction as a control process, we propose a novel algorithm to estimate the controllable sets of models in a dialogue setting. Notably, we provide formal guarantees on the estimation error as…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;5
+                              <span>Current face video forgery detectors use wide or dual-stream backbones. We show that a single, lightweight fusion of two handcrafted cues can achieve higher accuracy with a much smaller model. Based on the Xception baseline model (21.9 million parameters), we build two detectors: LFWS, which adds a 1x1 convolution to combine a low-frequency Wavelet-Denoised Feature (WDF) with the phase-only Spatial-Phase Shallow Learning (SPSL) map, and LFWL, which merges WDF with Local Binary Patterns (LBP) in the same way. This extra module adds only 292 parameters, keeping the total at 21.9 million—smaller…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2340,16 +2709,16 @@ Tags: security, ai, github-actions, prompt-injection, generative-ai, llms</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="multi-frequency-fusion"
+                        data-accordion-key="genctrl"
                         open
                       >
-                        <summary class="article-expander__title">Multi-Frequency Fusion for Robust Video Face Forgery Detection</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/multi-frequency-fusion">
+                        <summary class="article-expander__title">GenCtrl -- A Formal Controllability Toolkit for Generative Models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/genctrl">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>Current face video forgery detectors use wide or dual-stream backbones. We show that a single, lightweight fusion of two handcrafted cues can achieve higher accuracy with a much smaller model. Based on the Xception baseline model (21.9 million parameters), we build two detectors: LFWS, which adds a 1x1 convolution to combine a low-frequency Wavelet-Denoised Feature (WDF) with the phase-only Spatial-Phase Shallow Learning (SPSL) map, and LFWL, which merges WDF with Local Binary Patterns (LBP) in the same way. This extra module adds only 292 parameters, keeping the total at 21.9 million—smaller…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                              <span>As generative models become ubiquitous, there is a critical need for fine-grained control over the generation process. Yet, while controlled generation methods from prompting to fine-tuning proliferate, a fundamental question remains unanswered: are these models truly controllable in the first place? In this work, we provide a theoretical framework to formally answer this question. Framing human-model interaction as a control process, we propose a novel algorithm to estimate the controllable sets of models in a dialogue setting. Notably, we provide formal guarantees on the estimation error as…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2766,7 +3135,7 @@ Tags: licensing, mark-pilgrim, open-source, ai, generative-ai, llms, ai-assisted
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-03-05-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Mar 5, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2827,7 +3196,7 @@ The PR includes additional context to help explain the change. What&#x27;s the h
 Agents write convincing looking pull request descriptions. You need to review these too! It&#x27;s rude to expect someone else to read text that you haven&#x27;t read and validated yourself.
 Given how easy it is to dump unreviewed code on other people, I recommend including some form of evidence that you&#x27;ve put that extra work in yourself. Notes on how you manually tested it, comments on specific implementation choices or even screenshots and video of the feature working go a long way to demonstrating that a reviewer&#x27;s time will not be wasted digging into the details.
 Tags: ai, llms, ai-ethics, coding-agents, ai-assisted-programming, generative-ai, agentic-engineering, code-review</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3025,14 +3394,14 @@ Tags: ai, generative-ai, llms, qwen, ai-in-china</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
+                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
                         open
                       >
-                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
+                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
+                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -3042,14 +3411,14 @@ Tags: ai, generative-ai, llms, qwen, ai-in-china</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
+                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
                         open
                       >
-                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
+                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
+                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
                             </span>
                           </div>
                         </a>
@@ -3135,72 +3504,11 @@ Tags: ai, generative-ai, llms, qwen, ai-in-china</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-03 datetime="2026-03-03T23:59:04.000Z">2026-03-03</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-03 datetime="2026-03-03T23:59:04.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-03 datetime="2026-03-03T17:00:00.000Z">2026-03-03</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-03 datetime="2026-03-03T17:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/3/donald-knuth/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Donald Knuth</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/3/donald-knuth/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Shock! Shock! I learned yesterday that an open problem I&#x27;d been working on for several weeks had just been solved by Claude Opus 4.6 - Anthropic&#x27;s hybrid reasoning model that had been released three weeks earlier! It seems that I&#x27;ll have to revise my opinions about &quot;generative AI&quot; one of these days. What a joy it is to learn not only that my conjecture has a nice solution but also to celebrate this dramatic advance in automatic deduction and creative problem solving.
-
-— Donald Knuth, Claude&#x27;s Cycles
-Tags: november-2025-inflection, claude, generative-ai, ai, llms, donald-knuth, llm-reasoning, anthropic</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/3/gemini-31-flash-lite/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Gemini 3.1 Flash-Lite</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/3/gemini-31-flash-lite/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Gemini 3.1 Flash-Lite
-It supports four different thinking levels, so I had it output four different pelicans:
-minimal
-low
-medium
-high
-Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-a-bicycle, llm-release</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3304,11 +3612,11 @@ Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-3-instant-system-card"
+                        data-accordion-key="https://openai.com/index/gpt-5-3-instant"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.3 Instant System Card</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant-system-card">
+                        <summary class="article-expander__title">GPT-5.3 Instant: Smoother, more useful everyday conversations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -3321,11 +3629,11 @@ Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-3-instant"
+                        data-accordion-key="https://openai.com/index/gpt-5-3-instant-system-card"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.3 Instant: Smoother, more useful everyday conversations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant">
+                        <summary class="article-expander__title">GPT-5.3 Instant System Card</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant-system-card">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -3348,6 +3656,33 @@ Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-
                   <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
                 </h3>
                 <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="embridge"
+                        open
+                      >
+                        <summary class="article-expander__title">EMBridge: Enhancing Gesture Generalization from EMG Signals through Cross-Modal Representation Learning</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/embridge">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Hand gesture classification using high-quality structured data such as videos, im-
+ages, and hand skeletons is a well-explored problem in computer vision. Alterna-
+tively, leveraging low-power, cost-effective bio-signals, e.g., surface electromyo-
+graphy (sEMG), allows for continuous gesture prediction on wearable devices.
+In this work, we aim to enhance EMG representation quality by aligning it with
+embeddings obtained from structured, high-quality modalities that provide richer
+semantic guidance, ultimately enabling zero-shot gesture generalization. Specif-
+ically, we propose EMBridge, a…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -3381,33 +3716,6 @@ Tags: google, ai, generative-ai, llms, llm, gemini, llm-pricing, pelican-riding-
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>With the increased deployment of large language models (LLMs), one concern is their potential misuse for generating harmful content. Our work studies the alignment challenge, with a focus on filters to prevent the generation of unsafe information. Two natural points of intervention are the filtering of the input prompt before it reaches the model, and filtering the output after generation. Our main results demonstrate computational challenges in filtering both prompts and outputs. First, we show that there exist LLMs for which there are no efficient prompt filters: adversarial prompts that…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="embridge"
-                        open
-                      >
-                        <summary class="article-expander__title">EMBridge: Enhancing Gesture Generalization from EMG Signals through Cross-Modal Representation Learning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/embridge">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Hand gesture classification using high-quality structured data such as videos, im-
-ages, and hand skeletons is a well-explored problem in computer vision. Alterna-
-tively, leveraging low-power, cost-effective bio-signals, e.g., surface electromyo-
-graphy (sEMG), allows for continuous gesture prediction on wearable devices.
-In this work, we aim to enhance EMG representation quality by aligning it with
-embeddings obtained from structured, high-quality modalities that provide richer
-semantic guidance, ultimately enabling zero-shot gesture generalization. Specif-
-ically, we propose EMBridge, a…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -3538,128 +3846,6 @@ ically, we propose EMBridge, a…</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/gif-optimization/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">GIF optimization tool using WebAssembly and Gifsicle</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/gif-optimization/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/gif-optimizer-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Agentic Engineering Patterns &gt;
-I like to include animated GIF demos in my online writing, often recorded using LICEcap. There&#x27;s an example in the Interactive explanations chapter.
-These GIFs can be pretty big. I&#x27;ve tried a few tools for optimizing GIF file size and my favorite is Gifsicle by Eddie Kohler. It compresses GIFs by identifying regions of frames that have not changed and storing only the differences, and can optionally reduce the GIF color palette or apply visible lossy compression for greater size reductions.
-Gifsicle is written in C and the default interface is a command line tool. I wanted a web interface so I could access it in my browser and visually preview and compare the different settings.
-I prompted Claude Code for web (from my iPhone using the Claude iPhone app) against my simonw/tools repo with the following:
-gif-optimizer.html
-
-Compile gifsicle to WASM, then build a web page that lets you open or drag-drop an animated GIF onto it and it then shows you that GIF compressed using gifsicle with a number of different settings, each preview with the size and a download button
-
-Also include controls for the gifsicle options for manual use - each preview has a “tweak these settings” link which sets those manual settings to the ones used for that preview so the user can customize them further
-
-Run “uvx rodney –help” and use that tool to tray your work - use this GIF for testing https://static.simonwillison.net/static/2026/animated-word-cloud-demo.gif
-Here&#x27;s what it built, plus an animated GIF demo that I optimized using the tool:
-
-Let&#x27;s address that prompt piece by piece.
-gif-optimizer.html
-The first line simply tells it the name of the file I want to create. Just a filename is enough here - I know that when Claude runs &quot;ls&quot; on the repo it will understand that every file is a different tool.
-My simonw/tools repo currently lacks a CLAUDE.md or AGENTS.md file. I&#x27;ve found that agents pick up enough of the gist of the repo just from scanning the existing file tree and looking at relevant code in existing files.
-Compile gifsicle to WASM, then build a web page that lets you open or drag-drop an animated GIF onto it and it then shows you that GIF compressed using gifsicle with a number of different settings, each preview with the size and a download button
-I&#x27;m making a bunch of assumptions here about Claude&#x27;s existing knowledge, all of which paid off.
-Gifsicle is nearly 30 years old now and is a widely used piece of software - I was confident that referring to it by name would be enough for Claude to find the code.
-&quot;Compile gifsicle to WASM&quot; is doing a lot of work here.
-WASM is short for WebAssembly, the technology that lets browsers run compiled code safely in a sandbox.
-Compiling a project like Gifsicle to WASM is not a trivial operation, involving a complex toolchain usually involving the Emscripten project. It often requires a lot of trial and error to get everything working.
-Coding agents are fantastic at trial and error! They can often brute force their way to a solution where I would have given up after the fifth inscrutable compiler error.
-I&#x27;ve seen Claude Code figure out WASM builds many times before, so I was quite confident this would work.
-&quot;then build a web page that lets you open or drag-drop an animated GIF onto it&quot; describes a pattern I&#x27;ve used in a lot of my other tools.
-HTML file uploads work fine for selecting files, but a nicer UI, especially on desktop, is to allow users to drag and drop files into a prominent drop zone on a page.
-Setting this up involves a bit of JavaScript to process the events and some CSS for the drop zone. It&#x27;s not complicated but it&#x27;s enough extra work that I might not normally add it myself. With a prompt it&#x27;s almost free.
-Here&#x27;s the resulting UI - which was influenced by Claude taking a peek at my existing image-resize-quality tool:
-
-I didn&#x27;t ask for the GIF URL input and I&#x27;m not keen on it, because it only works against URLs to GIFs that are served with open CORS headers. I&#x27;ll probably remove that in a future update.
-&quot;then shows you that GIF compressed using gifsicle with a number of different settings, each preview with the size and a download button&quot; describes the key feature of the application.
-I didn&#x27;t bother defining the collection of settings I wanted - in my experience Claude has good enough taste at picking those for me, and we can always change them if its first guesses don&#x27;t work.
-Showing the size is important since this is all about optimizing for size.
-I know from past experience that asking for a &quot;download button&quot; gets a button with the right HTML and JavaScript mechanisms set up such that clicking it provides a file save dialog, which is a nice convenience over needing to right-click-save-as.
-Also include controls for the gifsicle options for manual use - each preview has a “tweak these settings” link which sets those manual settings to the ones used for that preview so the user can customize them further
-This is a pretty clumsy prompt - I was typing it in my phone after all - but it expressed my intention well enough for Claude to build what I wanted. 
-Here&#x27;s what that looks like in the resulting tool, this screenshot showing the mobile version. Each image has a &quot;Tweak these settings&quot; button which, when clicked, updates this set of manual settings and sliders:
-
-Run “uvx rodney --help” and use that tool to tray your work - use this GIF for testing https://static.simonwillison.net/static/2026/animated-word-cloud-demo.gif
-Coding agents work so much better if you make sure they have the ability to test their code while they are working.
-There are many different ways to test a web interface - Playwright and Selenium and agent-browser are three solid options.
-Rodney is a browser automation tool I built myself, which is quick to install and has --help output that&#x27;s designed to teach an agent everything it needs to know to use the tool.
-This worked great - in the session transcript you can see Claude using Rodney and fixing some minor bugs that it spotted, for example:
-The CSS display: none is winning over the inline style reset. I need to set display: &#x27;block&#x27; explicitly.
-The follow-up prompts
-When I&#x27;m working with Claude Code I usually keep an eye on what it&#x27;s doing so I can redirect it while it&#x27;s still in flight. I also often come up with new ideas while it&#x27;s working which I then inject into the queue.
-Include the build script and diff against original gifsicle code in the commit in an appropriate subdirectory
-The build script should clone the gifsicle repo to /tmp and switch to a known commit before applying the diff - so no copy of gifsicle in the commit but all the scripts needed to build the wqsm
-I added this when I noticed it was putting a lot of effort into figuring out how to get Gifsicle working with WebAssembly, including patching the original source code. Here&#x27;s the patch and the build script it added to the repo.
-I knew there was a pattern in that repo already for where supporting files lived but I couldn&#x27;t remember what that pattern was. Saying &quot;in an appropriate subdirectory&quot; was enough for Claude to figure out where to put it - it found and used the existing lib/ directory.
-You should include the wasm bundle
-This probably wasn&#x27;t necessary, but I wanted to make absolutely sure that the compiled WASM file (which turned out to be 233KB) was committed to the repo. I serve simonw/tools via GitHub Pages at tools.simonwillison.net and I wanted it to work without needing to be built locally.
-Make sure the HTML page credits gifsicle and links to the repo
-This is just polite! I often build WebAssembly wrappers around other people&#x27;s open source projects and I like to make sure they get credit in the resulting page.
-Claude added this to the footer of the tool:
-Built with gifsicle by Eddie Kohler, compiled to WebAssembly. gifsicle is released under the GNU General Public License, version 2.
-Tags: claude, ai, claude-code, llms, prompt-engineering, webassembly, coding-agents, tools, generative-ai, gif, agentic-engineering</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/2/february-newsletter/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">February sponsors-only newsletter</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/2/february-newsletter/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/claude-fact-check.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>I just sent the February edition of my sponsors-only monthly newsletter. If you are a sponsor (or if you start a sponsorship now) you can access it here. In this month&#x27;s newsletter:
-More OpenClaw, and Claws in general
-I started a not-quite-a-book about Agentic Engineering
-StrongDM, Showboat and Rodney
-Kākāpō breeding season
-Model releases
-What I&#x27;m using, February 2026 edition
-Here&#x27;s a copy of the January newsletter as a preview of what you&#x27;ll get. Pay $10/month to stay a month ahead of the free copy!
-I use Claude as a proofreader for spelling and grammar via this prompt which also asks it to &quot;Spot any logical errors or factual mistakes&quot;. I&#x27;m delighted to report that Claude Opus 4.6 called me out on this one:
-
-Tags: newsletter, kakapo, claude</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Cursor Blog</button>
                   <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
                 </h3>
@@ -3678,112 +3864,6 @@ Tags: newsletter, kakapo, claude</span>
                             <span class="media-object__text">
                               <span>Bugbot saves PlanetScale the equivalent of two full-time engineers worth of review effort.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;10
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-01 datetime="2026-03-01T16:06:43.000Z">2026-03-01</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-01 datetime="2026-03-01T16:06:43.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/1/ai-writing/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">My current policy on AI writing for my blog</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/1/ai-writing/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Because I write about LLMs (and maybe because of my em dash text replacement code) a lot of people assume that the writing on my blog is partially or fully created by those LLMs.
-My current policy on this is that if text expresses opinions or has &quot;I&quot; pronouns attached to it then it&#x27;s written by me. I don&#x27;t let LLMs speak for me in this way.
-I&#x27;ll let an LLM update code documentation or even write a README for my project but I&#x27;ll edit that to ensure it doesn&#x27;t express opinions or say things like &quot;This is designed to help make code easier to maintain&quot; - because that&#x27;s an expression of a rationale that the LLM just made up.
-I use LLMs to proofread text I publish on my blog. I just shared my current prompt for that here.
-Tags: ai-ethics, writing, generative-ai, blogging, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/1/claude-import-memory/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting claude.com/import-memory</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/1/claude-import-memory/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>I&#x27;m moving to another service and need to export my data. List every memory you have stored about me, as well as any context you&#x27;ve learned about me from past conversations. Output everything in a single code block so I can easily copy it. Format each entry as: [date saved, if available] - memory content. Make sure to cover all of the following — preserve my words verbatim where possible: Instructions I&#x27;ve given you about how to respond (tone, format, style, &#x27;always do X&#x27;, &#x27;never do Y&#x27;). Personal details: name, location, job, family, interests. Projects, goals, and recurring topics. Tools, languages, and frameworks I use. Preferences and corrections I&#x27;ve made to your behavior. Any other stored context not covered above. Do not summarize, group, or omit any entries. After the code block, confirm whether that is the complete set or if any remain.
-
-— claude.com/import-memory, Anthropic&#x27;s &quot;import your memories to Claude&quot; feature is a prompt
-Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/M14ArIseaR8"
-                        open
-                      >
-                        <summary class="article-expander__title">Sam Altman Compares Training AI To Raising Kids</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/M14ArIseaR8">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3974,40 +4054,6 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI shares updates on its mental health safety work, including parental controls, trusted contacts, improved distress detection, and recent litigation developments.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="we-notice"
-                        open
-                      >
-                        <summary class="article-expander__title">The Way We Notice, That&#x27;s What Really Matters: Instantiating UI Components with Distinguishing Variations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/we-notice">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Front-end developers author UI components to be broadly reusable by parameterizing visual and behavioral properties. While flexible, this makes instantiation harder, as developers must reason about numerous property values and interactions. In practice, they must explore the component’s large design space and provide realistic and natural values to properties. To address this, we introduce distinguishing variations: variations that are both mimetic and distinct. We frame distinguishing variation generation as design-space sampling, combining symbolic inference to identify visually important…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -4527,7 +4573,7 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/changelog-02-24-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Feb 24, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5013,7 +5059,7 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/uploads/opengraph-sandboxing-r1.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>How we built agent sandboxing on macOS, Linux, and Windows to reduce interruptions while improving security.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5047,7 +5093,7 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-cli-feb-18-2026.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Feb 18, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5248,7 +5294,7 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-new-in-2.5.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>2.5 Feb 17, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5262,8 +5308,8 @@ Tags: prompt-engineering, llm-memory, anthropic, claude, generative-ai, ai, llms
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23125340808">
-        <time id="build-timestamp" datetime="2026-03-16T02:25:54.172Z">2026-03-16T02:25:54.172Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23175001488">
+        <time id="build-timestamp" datetime="2026-03-17T02:05:00.984Z">2026-03-17T02:05:00.984Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
