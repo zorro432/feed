@@ -1,10 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-03-19T02:09:51.429Z</id>
+    <id>urn:2026-03-20T02:03:46.004Z</id>
     <title>osmos::feed</title>
-    <updated>2026-03-19T02:09:51.429Z</updated>
+    <updated>2026-03-20T02:03:46.004Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Google just changed the future of UI/UX design...]]></title>
+        <id>https://www.youtube.com/watch?v=qaB5HF4ax9M</id>
+        <link href="https://www.youtube.com/watch?v=qaB5HF4ax9M"/>
+        <updated>2026-03-19T19:35:06.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Thoughts on OpenAI acquiring Astral and uv/ruff/ty]]></title>
+        <id>https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything"/>
+        <updated>2026-03-19T16:45:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>The big news this morning: <a href="https://astral.sh/blog/openai">Astral to join OpenAI</a> (on the Astral blog) and <a href="https://openai.com/index/openai-to-acquire-astral/">OpenAI to acquire Astral</a> (the OpenAI announcement). Astral are the company behind <a href="https://simonwillison.net/tags/uv/">uv</a>, <a href="https://simonwillison.net/tags/ruff/">ruff</a>, and <a href="https://simonwillison.net/tags/ty/">ty</a> - three increasingly load-bearing open source projects in the Python ecosystem. I have thoughts!</p>
+<h4 id="the-official-line-from-openai-and-astral">The official line from OpenAI and Astral</h4>
+<p>The Astral team will become part of the Codex team at OpenAI.</p>
+<p>Charlie Marsh <a href="https://astral.sh/blog/openai">has this to say</a>:</p>
+<blockquote>
+<p>Open source is at the heart of that impact and the heart of that story; it sits at the center of everything we do. In line with our philosophy and <a href="https://openai.com/index/openai-to-acquire-astral/">OpenAI's own announcement</a>, OpenAI will continue supporting our open source tools after the deal closes. We'll keep building in the open, alongside our community -- and for the broader Python ecosystem -- just as we have from the start. [...]</p>
+<p>After joining the Codex team, we'll continue building our open source tools, explore ways they can work more seamlessly with Codex, and expand our reach to think more broadly about the future of software development.</p>
+</blockquote>
+<p>OpenAI's message <a href="https://openai.com/index/openai-to-acquire-astral/">has a slightly different focus</a> (highlights mine):</p>
+<blockquote>
+<p>As part of our developer-first philosophy, after closing OpenAI plans to support Astral’s open source products. <strong>By bringing Astral’s tooling and engineering expertise to OpenAI, we will accelerate our work on Codex</strong> and expand what AI can do across the software development lifecycle.</p>
+</blockquote>
+<p>This is a slightly confusing message. The <a href="https://github.com/openai/codex">Codex CLI</a> is a Rust application, and Astral have some of the best Rust engineers in the industry - <a href="https://github.com/burntsushi">BurntSushi</a> alone (<a href="https://github.com/rust-lang/regex">Rust regex</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, <a href="https://github.com/BurntSushi/jiff">jiff</a>) may be worth the price of acquisition!</p>
+<p>So is this about the talent or about the product? I expect both, but I know from past experience that a product+talent acquisition can turn into a talent-only acquisition later on.</p>
+<h4 id="uv-is-the-big-one">uv is the big one</h4>
+<p>Of Astral's projects the most impactful by far is <a href="https://github.com/astral-sh/uv">uv</a>. If you're not familiar with it, <code>uv</code> is by far the most convincing solution to Python's environment management problems, best illustrated by <a href="https://xkcd.com/1987/">this classic XKCD</a>:</p>
+<p style="text-align: center"><img src="https://imgs.xkcd.com/comics/python_environment.png" alt="xkcd comic showing a tangled, chaotic flowchart of Python environment paths and installations. Nodes include &quot;PIP&quot;, &quot;EASY_INSTALL&quot;, &quot;$PYTHONPATH&quot;, &quot;ANACONDA PYTHON&quot;, &quot;ANOTHER PIP??&quot;, &quot;HOMEBREW PYTHON (2.7)&quot;, &quot;OS PYTHON&quot;, &quot;HOMEBREW PYTHON (3.6)&quot;, &quot;PYTHON.ORG BINARY (2.6)&quot;, and &quot;(MISC FOLDERS OWNED BY ROOT)&quot; connected by a mess of overlapping arrows. A stick figure with a &quot;?&quot; stands at the top left. Paths at the bottom include &quot;/usr/local/Cellar&quot;, &quot;/usr/local/opt&quot;, &quot;/usr/local/lib/python3.6&quot;, &quot;/usr/local/lib/python2.7&quot;, &quot;/python/&quot;, &quot;/newenv/&quot;, &quot;$PATH&quot;, &quot;????&quot;, and &quot;/(A BUNCH OF PATHS WITH &quot;FRAMEWORKS&quot; IN THEM SOMEWHERE)/&quot;. Caption reads: &quot;MY PYTHON ENVIRONMENT HAS BECOME SO DEGRADED THAT MY LAPTOP HAS BEEN DECLARED A SUPERFUND SITE.&quot;" style="max-width: 100%;" /></p>
+<p>Switch from <code>python</code> to <code>uv run</code> and most of these problems go away. I've been using it extensively for the past couple of years and it's become an essential part of my workflow.</p>
+<p>I'm not alone in this. According to PyPI Stats <a href="https://pypistats.org/packages/uv">uv was downloaded</a> more than 126 million times last month! Since its release in February 2024 - just two years ago - it's become one of the most popular tools for running Python code.</p>
+<h4 id="ruff-and-ty">Ruff and ty</h4>
+<p>Astral's two other big projects are <a href="https://github.com/astral-sh/ruff">ruff</a> - a Python linter and formatter - and <a href="https://github.com/astral-sh/ty">ty</a> - a fast Python type checker.</p>
+<p>These are popular tools that provide a great developer experience but they aren't load-bearing in the same way that <code>uv</code> is.</p>
+<p>They do however resonate well with coding agent tools like Codex - giving an agent access to fast linting and type checking tools can help improve the quality of the code they generate.</p>
+<p>I'm not convinced that integrating them <em>into</em> the coding agent itself as opposed to telling it when to run them will make a meaningful difference, but I may just not be imaginative enough here.</p>
+<h4 id="what-of-pyx-">What of pyx?</h4>
+<p>Ever since <code>uv</code> started to gain traction the Python community has been worrying about the strategic risk of a single VC-backed company owning a key piece of Python infrastructure. I <a href="https://simonwillison.net/2024/Sep/8/uv-under-discussion-on-mastodon/">wrote about</a> one of those conversations in detail back in September 2024.</p>
+<p>The conversation back then focused on what Astral's business plan could be, which started to take form <a href="https://simonwillison.net/2025/Aug/13/pyx/">in August 2025</a> when they announced <a href="https://astral.sh/pyx">pyx</a>, their private PyPI-style package registry for organizations.</p>
+<p>I'm less convinced that pyx makes sense within OpenAI, and it's notably absent from both the Astral and OpenAI announcement posts.</p>
+<h4 id="competitive-dynamics">Competitive dynamics</h4>
+<p>An interesting aspect of this deal is how it might impact the competition between Anthropic and OpenAI.</p>
+<p>Both companies spent most of 2025 focused on improving the coding ability of their models, resulting in the <a href="https://simonwillison.net/tags/november-2025-inflection/">November 2025 inflection point</a> when coding agents went from often-useful to almost-indispensable tools for software development.</p>
+<p>The competition between Anthropic's Claude Code and OpenAI's Codex is <em>fierce</em>. Those $200/month subscriptions add up to billions of dollars a year in revenue, for companies that very much need that money.</p>
+<p>Anthropic <a href="https://www.anthropic.com/news/anthropic-acquires-bun-as-claude-code-reaches-usd1b-milestone">acquired the Bun JavaScript runtime</a> in December 2025, an acquisition that looks somewhat similar in shape to Astral.</p>
+<p>Bun was already a core component of Claude Code and that acquisition looked to mainly be about ensuring that a crucial dependency stayed actively maintained. Claude Code's performance has increased significantly since then thanks to the efforts of Bun's Jarred Sumner.</p>
+<p>One bad version of this deal would be if OpenAI start using their ownership of <code>uv</code> as leverage in their competition with Anthropic.</p>
+<h4 id="astral-s-quiet-series-a-and-b">Astral's quiet series A and B</h4>
+<p>One detail that caught my eye from Astral's announcement, in the section thanking the team, investors, and community:</p>
+<blockquote>
+<p>Second, to our investors, especially <a href="https://www.accel.com/team/casey-aylward#bay-area">Casey Aylward</a> from Accel, who led our Seed and Series A, and <a href="https://a16z.com/author/jennifer-li/">Jennifer Li</a> from Andreessen Horowitz, who led our Series B. As a first-time, technical, solo founder, you showed far more belief in me than I ever showed in myself, and I will never forget that.</p>
+</blockquote>
+<p>As far as I can tell neither the Series A nor the Series B were previously announced - I've only been able to find coverage of the original seed round <a href="https://astral.sh/blog/announcing-astral-the-company-behind-ruff">from April 2023</a>.</p>
+<p>Those investors presumably now get to exchange their stake in Astral for a piece of OpenAI. I wonder how much influence they had on Astral's decision to sell.</p>
+<h4 id="forking-as-a-credible-exit-">Forking as a credible exit?</h4>
+<p>Armin Ronacher built <a href="https://til.simonwillison.net/python/rye">Rye</a>, which was later taken over by Astral and effectively merged with uv. In <a href="https://lucumr.pocoo.org/2024/8/21/harvest-season/">August 2024</a> he wrote about the risk involved in a VC-backed company owning a key piece of open source infrastructure and said the following (highlight mine):</p>
+<blockquote>
+<p>However having seen the code and what uv is doing, <strong>even in the worst possible future this is a very forkable and maintainable thing</strong>. I believe that even in case Astral shuts down or were to do something incredibly dodgy licensing wise, the community would be better off than before uv existed.</p>
+</blockquote>
+<p>Astral's own Douglas Creager <a href="https://news.ycombinator.com/item?id=47438723#47439974">emphasized this angle on Hacker News today</a>:</p>
+<blockquote>
+<p>All I can say is that <em>right now</em>, we're committed to maintaining our open-source tools with the same level of effort, care, and attention to detail as before. That does not change with this acquisition. No one can guarantee how motives, incentives, and decisions might change years down the line. But that's why we bake optionality into it with the tools being permissively licensed. That makes the worst-case scenarios have the shape of "fork and move on", and not "software disappears forever".</p>
+</blockquote>
+<p>I like and trust the Astral team and I'm optimistic that their projects will be well-maintained in their new home.</p>
+<p>OpenAI don't yet have much of a track record with respect to acquiring and maintaining open source projects. They've been on a bit of an acquisition spree over the past three months though, snapping up <a href="https://openai.com/index/openai-to-acquire-promptfoo/">Promptfoo</a> and <a href="https://steipete.me/posts/2026/openclaw">OpenClaw</a> (sort-of, they hired creator Peter Steinberger and are spinning OpenClaw off to a foundation), plus closed source LaTeX platform <a href="https://openai.com/index/introducing-prism/">Crixet (now Prism)</a>.</p>
+<p>If things do go south for <code>uv</code> and the other Astral projects we'll get to see how credible the forking exit strategy turns out to be.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/ruff">ruff</a>, <a href="https://simonwillison.net/tags/uv">uv</a>, <a href="https://simonwillison.net/tags/astral">astral</a>, <a href="https://simonwillison.net/tags/charlie-marsh">charlie-marsh</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/codex-cli">codex-cli</a>, <a href="https://simonwillison.net/tags/ty">ty</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How we monitor internal coding agents for misalignment]]></title>
+        <id>https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment</id>
+        <link href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment"/>
+        <updated>2026-03-19T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How OpenAI uses chain-of-thought monitoring to study misalignment in internal coding agents—analyzing real-world deployments to detect risks and strengthen AI safety safeguards.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI to acquire Astral]]></title>
+        <id>https://openai.com/index/openai-to-acquire-astral</id>
+        <link href="https://openai.com/index/openai-to-acquire-astral"/>
+        <updated>2026-03-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Accelerates Codex growth to power the next generation of Python developer tools]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing Composer 2]]></title>
+        <id>https://cursor.com/blog/composer-2</id>
+        <link href="https://cursor.com/blog/composer-2"/>
+        <updated>2026-03-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Frontier-level coding with strong CursorBench results, higher token efficiency, and a faster default variant.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Autoresearching Apple's "LLM in a Flash" to run Qwen 397B locally]]></title>
         <id>https://simonwillison.net/2026/Mar/18/llm-in-a-flash/#atom-everything</id>
@@ -21,7 +125,8 @@ Here's a fascinating piece of research by Dan Woods, who managed to get a custom
 <p><a href="https://github.com/danveloper/flash-moe">danveloper/flash-moe</a> has the resulting code plus <a href="https://github.com/danveloper/flash-moe/blob/main/paper/flash_moe.pdf">a PDF paper</a> mostly written by Claude Opus 4.6 describing the experiment in full.</p>
 <p>The final model has the experts quantized to 2-bit, but the non-expert parts of the model such as the embedding table and routing matrices are kept at their original precision, adding up to 5.5GB which stays resident in memory while the model is running.</p>
 <p>Qwen 3.5 usually runs 10 experts per token, but this setup dropped that to 4 while claiming that the biggest quality drop-off occurred at 3.</p>
-<p>It's not clear to me how much the quality of the model results are affected. Claude claimed that "Output quality at 2-bit is indistinguishable from 4-bit for these evaluations", but the description of the evaluations it ran is quite thin.
+<p>It's not clear to me how much the quality of the model results are affected. Claude claimed that "Output quality at 2-bit is indistinguishable from 4-bit for these evaluations", but the description of the evaluations it ran is quite thin.</p>
+<p><strong>Update</strong>: Dan's <a href="https://twitter.com/danveloper/status/2034686509748462022">latest version</a> upgrades to 4-bit quantization of the experts (209GB on disk, 4.36 tokens/second) after finding that the 2-bit version broke tool calling while 4-bit handles that well.
 
 
     <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a></p>]]></summary>
@@ -30,7 +135,7 @@ Here's a fascinating piece of research by Dan Woods, who managed to get a custom
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The rise and fall of famo.us...]]></title>
+        <title type="html"><![CDATA[How to burn $30m on a JavaScript framework...]]></title>
         <id>https://www.youtube.com/watch?v=ReAnFFqvCeA</id>
         <link href="https://www.youtube.com/watch?v=ReAnFFqvCeA"/>
         <updated>2026-03-18T17:56:58.000Z</updated>
@@ -89,6 +194,16 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <summary type="html"><![CDATA[Reinforcement learning has emerged as a powerful paradigm for unlocking reasoning capabilities in large language models. However, relying on sparse rewards makes this process highly sample-inefficient, as models must navigate vast search spaces with minimal feedback. While classic curriculum learning aims to mitigate this by ordering data based on complexity, the right ordering for a specific model is often unclear. To address this, we propose Goldilocks, a novel teacher-driven data sampling strategy that aims to predict each question’s difficulty for the student model. The teacher model…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Money Forward brings Cursor’s coding agents to product, design, and QA]]></title>
+        <id>https://cursor.com/blog/money-forward</id>
+        <link href="https://cursor.com/blog/money-forward"/>
+        <updated>2026-03-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Over 1,000 Money Forward employees now use Cursor every day.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
         </author>
     </entry>
     <entry>
@@ -320,21 +435,21 @@ For tasks that involve editing several files - and where those files are not dep
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
-        <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
-        <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
-        <updated>2026-03-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
         <id>https://openai.com/index/japan-teen-safety-blueprint</id>
         <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
         <updated>2026-03-17T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
+        <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
+        <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
+        <updated>2026-03-17T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1239,21 +1354,21 @@ Today in animated explanations built using Claude: I've always been a fan of ani
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How we compare model quality in Cursor]]></title>
-        <id>https://cursor.com/blog/cursorbench</id>
-        <link href="https://cursor.com/blog/cursorbench"/>
-        <updated>2026-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We use a hybrid online-offline eval process to keep our understanding of model quality aligned with what developers actually do.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Over 30 new plugins join the Cursor Marketplace]]></title>
         <id>https://cursor.com/blog/new-plugins</id>
         <link href="https://cursor.com/blog/new-plugins"/>
         <updated>2026-03-11T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Extend Cursor with prebuilt capabilities in our marketplace.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How we compare model quality in Cursor]]></title>
+        <id>https://cursor.com/blog/cursorbench</id>
+        <link href="https://cursor.com/blog/cursorbench"/>
+        <updated>2026-03-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We use a hybrid online-offline eval process to keep our understanding of model quality aligned with what developers actually do.]]></summary>
         <author>
             <name>Cursor Blog</name>
         </author>
@@ -1568,24 +1683,6 @@ Anthropic announced six months of free Claude Max for maintainers of popular ope
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Anthropic and the Pentagon]]></title>
-        <id>https://simonwillison.net/2026/Mar/6/anthropic-and-the-pentagon/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/6/anthropic-and-the-pentagon/#atom-everything"/>
-        <updated>2026-03-06T17:26:50.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.schneier.com/blog/archives/2026/03/anthropic-and-the-pentagon.html">Anthropic and the Pentagon</a></strong></p>
-This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and grounded coverage I've seen of the recent and ongoing Pentagon/OpenAI/Anthropic contract situation.</p>
-<blockquote>
-<p>AI models are increasingly commodified. The top-tier offerings have about the same performance, and there is little to differentiate one from the other. The latest models from Anthropic, OpenAI and Google, in particular, tend to leapfrog each other with minor hops forward in quality every few months. [...]</p>
-<p>In this sort of market, branding matters a lot. Anthropic and its CEO, Dario Amodei, are positioning themselves as the moral and trustworthy AI provider. That has market value for both consumers and enterprise clients.</p>
-</blockquote>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/bruce-schneier">bruce-schneier</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[What the New ChatGPT 5.4 Means for the World]]></title>
         <id>https://www.youtube.com/watch?v=zizoDORjmlQ</id>
         <link href="https://www.youtube.com/watch?v=zizoDORjmlQ"/>
@@ -1665,11 +1762,11 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
-        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
-        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
+        <title type="html"><![CDATA[Introducing GPT-5.4]]></title>
+        <id>https://openai.com/index/introducing-gpt-5-4</id>
+        <link href="https://openai.com/index/introducing-gpt-5-4"/>
         <updated>2026-03-05T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
+        <summary type="html"><![CDATA[Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1684,11 +1781,11 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GPT-5.4]]></title>
-        <id>https://openai.com/index/introducing-gpt-5-4</id>
-        <link href="https://openai.com/index/introducing-gpt-5-4"/>
+        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
+        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
+        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
         <updated>2026-03-05T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.]]></summary>
+        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1699,6 +1796,16 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         <link href="https://openai.com/index/ai-education-opportunity"/>
         <updated>2026-03-05T09:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI shares new tools, certifications, and measurement resources to help schools and universities close AI capability gaps and expand opportunity.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing ChatGPT for Excel and new financial data integrations]]></title>
+        <id>https://openai.com/index/chatgpt-for-excel</id>
+        <link href="https://openai.com/index/chatgpt-for-excel"/>
+        <updated>2026-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1719,16 +1826,6 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
         <updated>2026-03-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing ChatGPT for Excel and new financial data integrations]]></title>
-        <id>https://openai.com/index/chatgpt-for-excel</id>
-        <link href="https://openai.com/index/chatgpt-for-excel"/>
-        <updated>2026-03-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1774,21 +1871,21 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Understanding AI and learning outcomes]]></title>
-        <id>https://openai.com/index/understanding-ai-and-learning-outcomes</id>
-        <link href="https://openai.com/index/understanding-ai-and-learning-outcomes"/>
-        <updated>2026-03-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How Axios uses AI to help deliver high-impact local journalism]]></title>
         <id>https://openai.com/index/axios-allison-murphy</id>
         <link href="https://openai.com/index/axios-allison-murphy"/>
         <updated>2026-03-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Understanding AI and learning outcomes]]></title>
+        <id>https://openai.com/index/understanding-ai-and-learning-outcomes</id>
+        <link href="https://openai.com/index/understanding-ai-and-learning-outcomes"/>
+        <updated>2026-03-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1930,16 +2027,6 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
-        <id>https://openai.com/index/scaling-ai-for-everyone</id>
-        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock]]></title>
         <id>https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock</id>
         <link href="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"/>
@@ -1955,6 +2042,16 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         <link href="https://openai.com/index/amazon-partnership"/>
         <updated>2026-02-27T05:30:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
+        <id>https://openai.com/index/scaling-ai-for-everyone</id>
+        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -2254,55 +2351,6 @@ This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and gr
         <summary type="html"><![CDATA[Lyria 3 is now available in the Gemini app. Create custom, high-quality 30-second tracks from text and images.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI Impact Summit 2026: How we’re partnering to make AI work for everyone]]></title>
-        <id>https://blog.google/innovation-and-ai/technology/ai/ai-impact-summit-2026-india/</id>
-        <link href="https://blog.google/innovation-and-ai/technology/ai/ai-impact-summit-2026-india/"/>
-        <updated>2026-02-18T10:30:00.000Z</updated>
-        <summary type="html"><![CDATA[An overview of Google’s new global partnerships and funding announcements at the AI Impact Summit in India.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing EVMbench]]></title>
-        <id>https://openai.com/index/introducing-evmbench</id>
-        <link href="https://openai.com/index/introducing-evmbench"/>
-        <updated>2026-02-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and Paradigm introduce EVMbench, a benchmark evaluating AI agents’ ability to detect, patch, and exploit high-severity smart contract vulnerabilities.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Implementing a secure sandbox for local agents]]></title>
-        <id>https://cursor.com/blog/agent-sandboxing</id>
-        <link href="https://cursor.com/blog/agent-sandboxing"/>
-        <updated>2026-02-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[How we built agent sandboxing on macOS, Linux, and Windows to reduce interruptions while improving security.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CLI Improvements and Mermaid ASCII Diagrams]]></title>
-        <id>https://cursor.com/changelog/cli-feb-18-2026</id>
-        <link href="https://cursor.com/changelog/cli-feb-18-2026"/>
-        <updated>2026-02-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Feb 18, 2026]]></summary>
-        <author>
-            <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How AI is breaking the SaaS business model...]]></title>
-        <id>https://www.youtube.com/watch?v=cxcb55zr2Q8</id>
-        <link href="https://www.youtube.com/watch?v=cxcb55zr2Q8"/>
-        <updated>2026-02-17T18:17:11.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
 </feed>

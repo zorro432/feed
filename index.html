@@ -22,6 +22,263 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-19 datetime="2026-03-19T19:35:06.000Z">2026-03-19</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-19 datetime="2026-03-19T19:35:06.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;qaB5HF4ax9M"
+                        open
+                      >
+                        <summary class="article-expander__title">Google just changed the future of UI/UX design...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;qaB5HF4ax9M">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Thoughts on OpenAI acquiring Astral and uv/ruff/ty</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The big news this morning: Astral to join OpenAI (on the Astral blog) and OpenAI to acquire Astral (the OpenAI announcement). Astral are the company behind uv, ruff, and ty - three increasingly load-bearing open source projects in the Python ecosystem. I have thoughts!
+
+The official line from OpenAI and Astral
+
+The Astral team will become part of the Codex team at OpenAI.
+
+Charlie Marsh has this to say:
+
+
+Open source is at the heart of that impact and the heart of that story; it sits at the center of everything we do. In line with our philosophy and OpenAI&#x27;s own announcement, OpenAI will continue supporting our open source tools after the deal closes. We&#x27;ll keep building in the open, alongside our community -- and for the broader Python ecosystem -- just as we have from the start. [...]
+
+After joining the Codex team, we&#x27;ll continue building our open source tools, explore ways they can work more seamlessly with Codex, and expand our reach to think more broadly about the future of software development.
+
+
+OpenAI&#x27;s message has a slightly different focus (highlights mine):
+
+
+As part of our developer-first philosophy, after closing OpenAI plans to support Astral’s open source products. By bringing Astral’s tooling and engineering expertise to OpenAI, we will accelerate our work on Codex and expand what AI can do across the software development lifecycle.
+
+
+This is a slightly confusing message. The Codex CLI is a Rust application, and Astral have some of the best Rust engineers in the industry - BurntSushi alone (Rust regex, ripgrep, jiff) may be worth the price of acquisition!
+
+So is this about the talent or about the product? I expect both, but I know from past experience that a product+talent acquisition can turn into a talent-only acquisition later on.
+
+uv is the big one
+
+Of Astral&#x27;s projects the most impactful by far is uv. If you&#x27;re not familiar with it, uv is by far the most convincing solution to Python&#x27;s environment management problems, best illustrated by this classic XKCD:
+
+
+
+Switch from python to uv run and most of these problems go away. I&#x27;ve been using it extensively for the past couple of years and it&#x27;s become an essential part of my workflow.
+
+I&#x27;m not alone in this. According to PyPI Stats uv was downloaded more than 126 million times last month! Since its release in February 2024 - just two years ago - it&#x27;s become one of the most popular tools for running Python code.
+
+Ruff and ty
+
+Astral&#x27;s two other big projects are ruff - a Python linter and formatter - and ty - a fast Python type checker.
+
+These are popular tools that provide a great developer experience but they aren&#x27;t load-bearing in the same way that uv is.
+
+They do however resonate well with coding agent tools like Codex - giving an agent access to fast linting and type checking tools can help improve the quality of the code they generate.
+
+I&#x27;m not convinced that integrating them into the coding agent itself as opposed to telling it when to run them will make a meaningful difference, but I may just not be imaginative enough here.
+
+What of pyx?
+
+Ever since uv started to gain traction the Python community has been worrying about the strategic risk of a single VC-backed company owning a key piece of Python infrastructure. I wrote about one of those conversations in detail back in September 2024.
+
+The conversation back then focused on what Astral&#x27;s business plan could be, which started to take form in August 2025 when they announced pyx, their private PyPI-style package registry for organizations.
+
+I&#x27;m less convinced that pyx makes sense within OpenAI, and it&#x27;s notably absent from both the Astral and OpenAI announcement posts.
+
+Competitive dynamics
+
+An interesting aspect of this deal is how it might impact the competition between Anthropic and OpenAI.
+
+Both companies spent most of 2025 focused on improving the coding ability of their models, resulting in the November 2025 inflection point when coding agents went from often-useful to almost-indispensable tools for software development.
+
+The competition between Anthropic&#x27;s Claude Code and OpenAI&#x27;s Codex is fierce. Those $200/month subscriptions add up to billions of dollars a year in revenue, for companies that very much need that money.
+
+Anthropic acquired the Bun JavaScript runtime in December 2025, an acquisition that looks somewhat similar in shape to Astral.
+
+Bun was already a core component of Claude Code and that acquisition looked to mainly be about ensuring that a crucial dependency stayed actively maintained. Claude Code&#x27;s performance has increased significantly since then thanks to the efforts of Bun&#x27;s Jarred Sumner.
+
+One bad version of this deal would be if OpenAI start using their ownership of uv as leverage in their competition with Anthropic.
+
+Astral&#x27;s quiet series A and B
+
+One detail that caught my eye from Astral&#x27;s announcement, in the section thanking the team, investors, and community:
+
+
+Second, to our investors, especially Casey Aylward from Accel, who led our Seed and Series A, and Jennifer Li from Andreessen Horowitz, who led our Series B. As a first-time, technical, solo founder, you showed far more belief in me than I ever showed in myself, and I will never forget that.
+
+
+As far as I can tell neither the Series A nor the Series B were previously announced - I&#x27;ve only been able to find coverage of the original seed round from April 2023.
+
+Those investors presumably now get to exchange their stake in Astral for a piece of OpenAI. I wonder how much influence they had on Astral&#x27;s decision to sell.
+
+Forking as a credible exit?
+
+Armin Ronacher built Rye, which was later taken over by Astral and effectively merged with uv. In August 2024 he wrote about the risk involved in a VC-backed company owning a key piece of open source infrastructure and said the following (highlight mine):
+
+
+However having seen the code and what uv is doing, even in the worst possible future this is a very forkable and maintainable thing. I believe that even in case Astral shuts down or were to do something incredibly dodgy licensing wise, the community would be better off than before uv existed.
+
+
+Astral&#x27;s own Douglas Creager emphasized this angle on Hacker News today:
+
+
+All I can say is that right now, we&#x27;re committed to maintaining our open-source tools with the same level of effort, care, and attention to detail as before. That does not change with this acquisition. No one can guarantee how motives, incentives, and decisions might change years down the line. But that&#x27;s why we bake optionality into it with the tools being permissively licensed. That makes the worst-case scenarios have the shape of &quot;fork and move on&quot;, and not &quot;software disappears forever&quot;.
+
+
+I like and trust the Astral team and I&#x27;m optimistic that their projects will be well-maintained in their new home.
+
+OpenAI don&#x27;t yet have much of a track record with respect to acquiring and maintaining open source projects. They&#x27;ve been on a bit of an acquisition spree over the past three months though, snapping up Promptfoo and OpenClaw (sort-of, they hired creator Peter Steinberger and are spinning OpenClaw off to a foundation), plus closed source LaTeX platform Crixet (now Prism).
+
+If things do go south for uv and the other Astral projects we&#x27;ll get to see how credible the forking exit strategy turns out to be.
+Tags: python, ai, rust, openai, ruff, uv, astral, charlie-marsh, coding-agents, codex-cli, ty</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment"
+                        open
+                      >
+                        <summary class="article-expander__title">How we monitor internal coding agents for misalignment</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>How OpenAI uses chain-of-thought monitoring to study misalignment in internal coding agents—analyzing real-world deployments to detect risks and strengthen AI safety safeguards.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/openai-to-acquire-astral"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI to acquire Astral</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/openai-to-acquire-astral">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Accelerates Codex growth to power the next generation of Python developer tools</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/composer-2"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Composer 2</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/composer-2">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/blog-introducing-composer-2-anim-20260318-110449-optim.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Frontier-level coding with strong CursorBench results, higher token efficiency, and a faster default variant.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-18 datetime="2026-03-18T23:56:46.000Z">2026-03-18</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-18 datetime="2026-03-18T23:56:46.000Z"></time>
           </button>
@@ -59,6 +316,7 @@ danveloper/flash-moe has the resulting code plus a PDF paper mostly written by C
 The final model has the experts quantized to 2-bit, but the non-expert parts of the model such as the embedding table and routing matrices are kept at their original precision, adding up to 5.5GB which stays resident in memory while the model is running.
 Qwen 3.5 usually runs 10 experts per token, but this setup dropped that to 4 while claiming that the biggest quality drop-off occurred at 3.
 It&#x27;s not clear to me how much the quality of the model results are affected. Claude claimed that &quot;Output quality at 2-bit is indistinguishable from 4-bit for these evaluations&quot;, but the description of the evaluations it ran is quite thin.
+Update: Dan&#x27;s latest version upgrades to 4-bit quantization of the experts (209GB on disk, 4.36 tokens/second) after finding that the 2-bit version broke tool calling while 4-bit handles that well.
 
 
     
@@ -122,7 +380,7 @@ Tags: sandboxing, security, ai, prompt-injection, generative-ai, llms</span>
                         data-accordion-key="https://www.youtube.com/watch?v&#x3D;ReAnFFqvCeA"
                         open
                       >
-                        <summary class="article-expander__title">The rise and fall of famo.us...</summary>
+                        <summary class="article-expander__title">How to burn $30m on a JavaScript framework...</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;ReAnFFqvCeA">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
@@ -213,6 +471,40 @@ Tags: sandboxing, security, ai, prompt-injection, generative-ai, llms</span>
                             <span class="media-object__text">
                               <span>Reinforcement learning has emerged as a powerful paradigm for unlocking reasoning capabilities in large language models. However, relying on sparse rewards makes this process highly sample-inefficient, as models must navigate vast search spaces with minimal feedback. While classic curriculum learning aims to mitigate this by ordering data based on complexity, the right ordering for a specific model is often unclear. To address this, we propose Goldilocks, a novel teacher-driven data sampling strategy that aims to predict each question’s difficulty for the student model. The teacher model…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/money-forward"
+                        open
+                      >
+                        <summary class="article-expander__title">Money Forward brings Cursor’s coding agents to product, design, and QA</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/money-forward">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://cursor.com/marketing-static/blog/og/money-forward-and-cursor-og.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Over 1,000 Money Forward employees now use Cursor every day.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -518,7 +810,7 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/agi_cognitive-framework_meta.width-1300.jpg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>We’re introducing a framework to measure progress toward AGI, and launching a Kaggle hackathon to build the relevant evaluations.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;15
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -552,7 +844,7 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Social_asset.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>We&#x27;re expanding Personal Intelligence across AI Mode in Search, the Gemini app and Gemini in Chrome.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -572,7 +864,7 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/25367___BRS___Aspen_Security_Forum_Blog_Heade.width-1300_kfcH16D.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Google is making new investments, building new tools and developing code security to improve open source security.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -605,7 +897,7 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;10
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -647,14 +939,14 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"
+                        data-accordion-key="https://openai.com/index/japan-teen-safety-blueprint"
                         open
                       >
-                        <summary class="article-expander__title">Introducing GPT-5.4 mini and nano</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano">
+                        <summary class="article-expander__title">OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/japan-teen-safety-blueprint">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span>
+                              <span>OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.</span>
                             </span>
                           </div>
                         </a>
@@ -664,14 +956,14 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/japan-teen-safety-blueprint"
+                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"
                         open
                       >
-                        <summary class="article-expander__title">OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/japan-teen-safety-blueprint">
+                        <summary class="article-expander__title">Introducing GPT-5.4 mini and nano</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.</span>
+                              <span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span>
                             </span>
                           </div>
                         </a>
@@ -1245,7 +1537,7 @@ Tags: coding-agents, agent-definitions, generative-ai, agentic-engineering, ai, 
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2110,7 +2402,7 @@ Tags: les-orchard, ai-assisted-programming, generative-ai, ai, llms, careers, de
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2260,7 +2552,7 @@ Tags: john-carmack, software-engineering, yagni</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2367,26 +2659,6 @@ Tags: john-carmack, software-engineering, yagni</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/cursorbench"
-                        open
-                      >
-                        <summary class="article-expander__title">How we compare model quality in Cursor</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/cursorbench">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/blog-cursor-eval-anim-20260309-124821-1200.gif" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>We use a hybrid online-offline eval process to keep our understanding of model quality aligned with what developers actually do.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://cursor.com/blog/new-plugins"
                         open
                       >
@@ -2397,6 +2669,26 @@ Tags: john-carmack, software-engineering, yagni</span>
                             <span class="media-object__text">
                               <span>Extend Cursor with prebuilt capabilities in our marketplace.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/cursorbench"
+                        open
+                      >
+                        <summary class="article-expander__title">How we compare model quality in Cursor</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/cursorbench">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/blog-cursor-eval-anim-20260309-124821-1200.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>We use a hybrid online-offline eval process to keep our understanding of model quality aligned with what developers actually do.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2820,7 +3112,7 @@ Tags: ai, generative-ai, llms, ai-assisted-programming, boring-technology, codin
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3055,7 +3347,7 @@ Tags: open-source, ai, openai, generative-ai, llms, codex-cli</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3115,28 +3407,6 @@ Questions for business stakeholders:
 
 — Ally Piechowski, How to Audit a Rails Codebase
 Tags: technical-debt, software-engineering, rails</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/6/anthropic-and-the-pentagon/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Anthropic and the Pentagon</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/6/anthropic-and-the-pentagon/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Anthropic and the Pentagon
-AI models are increasingly commodified. The top-tier offerings have about the same performance, and there is little to differentiate one from the other. The latest models from Anthropic, OpenAI and Google, in particular, tend to leapfrog each other with minor hops forward in quality every few months. [...]
-In this sort of market, branding matters a lot. Anthropic and its CEO, Dario Amodei, are positioning themselves as the moral and trustworthy AI provider. That has market value for both consumers and enterprise clients.
-Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -3447,14 +3717,14 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/reasoning-models-chain-of-thought-controllability"
+                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4"
                         open
                       >
-                        <summary class="article-expander__title">Reasoning models struggle to control their chains of thought, and that’s good</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability">
+                        <summary class="article-expander__title">Introducing GPT-5.4</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.</span>
+                              <span>Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.</span>
                             </span>
                           </div>
                         </a>
@@ -3481,14 +3751,14 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4"
+                        data-accordion-key="https://openai.com/index/reasoning-models-chain-of-thought-controllability"
                         open
                       >
-                        <summary class="article-expander__title">Introducing GPT-5.4</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4">
+                        <summary class="article-expander__title">Reasoning models struggle to control their chains of thought, and that’s good</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.</span>
+                              <span>OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.</span>
                             </span>
                           </div>
                         </a>
@@ -3506,6 +3776,23 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI shares new tools, certifications, and measurement resources to help schools and universities close AI capability gaps and expand opportunity.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/chatgpt-for-excel"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing ChatGPT for Excel and new financial data integrations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-for-excel">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.</span>
                             </span>
                           </div>
                         </a>
@@ -3540,23 +3827,6 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/chatgpt-for-excel"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing ChatGPT for Excel and new financial data integrations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-for-excel">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.</span>
                             </span>
                           </div>
                         </a>
@@ -3713,14 +3983,14 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
+                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
                         open
                       >
-                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
+                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
+                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -3730,14 +4000,14 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
+                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
                         open
                       >
-                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
+                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
+                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
                             </span>
                           </div>
                         </a>
@@ -3852,7 +4122,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Genie_2_social.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Learn more about Google DeepMind’s Project Genie and how to write prompts to create your own worlds.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3872,7 +4142,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3.1_flash_Lite_blog_keyword_metacard_d.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;17
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3906,7 +4176,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3.1_flash_Lite_blog_keyword_metacard_d.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;17
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4233,23 +4503,6 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/scaling-ai-for-everyone"
-                        open
-                      >
-                        <summary class="article-expander__title">Scaling AI for everyone</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/scaling-ai-for-everyone">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"
                         open
                       >
@@ -4275,6 +4528,23 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/scaling-ai-for-everyone"
+                        open
+                      >
+                        <summary class="article-expander__title">Scaling AI for everyone</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/scaling-ai-for-everyone">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.</span>
                             </span>
                           </div>
                         </a>
@@ -4378,7 +4648,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/NB2_SS.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Our latest image generation model offers advanced world knowledge, production-ready specs, subject consistency and more, all at Flash speed.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;20
+                                &ensp;<span class="article-reading-time">(&hairsp;21
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4398,7 +4668,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/BuildWith_SocialShare.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Nano Banana 2 (Gemini 3.1 Flash Image) delivers Pro-level intelligence and fidelity for all image applications.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4463,7 +4733,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/NB2_SS.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Our latest image generation model offers advanced world knowledge, production ready specs, subject consistency and more, all at Flash speed.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;20
+                                &ensp;<span class="article-reading-time">(&hairsp;21
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5028,7 +5298,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3.1_pro_meta_dark.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>3.1 Pro is designed for tasks where a simple answer isn’t enough.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5165,23 +5435,6 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-evmbench"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing EVMbench</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-evmbench">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI and Paradigm introduce EVMbench, a benchmark evaluating AI agents’ ability to detect, patch, and exploit high-severity smart contract vulnerabilities.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -5209,7 +5462,7 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/0217_KeywordHeaderFinalc.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>The Gemini app now features our most advanced music generation model Lyria 3, empowering anyone to make 30-second tracks using text or images.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5243,141 +5496,8 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/0217_KeywordHeaderFinalc.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Lyria 3 is now available in the Gemini app. Create custom, high-quality 30-second tracks from text and images.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/innovation-and-ai/technology/ai/ai-impact-summit-2026-india/"
-                        open
-                      >
-                        <summary class="article-expander__title">AI Impact Summit 2026: How we’re partnering to make AI work for everyone</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/ai/ai-impact-summit-2026-india/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AI-Summit-SS.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>An overview of Google’s new global partnerships and funding announcements at the AI Impact Summit in India.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Blog</button>
-                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/agent-sandboxing"
-                        open
-                      >
-                        <summary class="article-expander__title">Implementing a secure sandbox for local agents</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/agent-sandboxing">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/uploads/opengraph-sandboxing-r1.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>How we built agent sandboxing on macOS, Linux, and Windows to reduce interruptions while improving security.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Changelog</button>
-                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/changelog/cli-feb-18-2026"
-                        open
-                      >
-                        <summary class="article-expander__title">CLI Improvements and Mermaid ASCII Diagrams</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/cli-feb-18-2026">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-cli-feb-18-2026.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Feb 18, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-02-17 datetime="2026-02-17T18:17:11.000Z">2026-02-17</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-02-17 datetime="2026-02-17T18:17:11.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;cxcb55zr2Q8"
-                        open
-                      >
-                        <summary class="article-expander__title">How AI is breaking the SaaS business model...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;cxcb55zr2Q8">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -5390,8 +5510,8 @@ Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</spa
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23276406554">
-        <time id="build-timestamp" datetime="2026-03-19T02:09:51.395Z">2026-03-19T02:09:51.395Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23325963584">
+        <time id="build-timestamp" datetime="2026-03-20T02:03:45.982Z">2026-03-20T02:03:45.982Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
