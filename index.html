@@ -22,6 +22,303 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-23 datetime="2026-03-23T00:05:00.000Z">2026-03-23</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-23 datetime="2026-03-23T00:05:00.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/23/starlette-1-skill/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Starlette 1.0 skill</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/23/starlette-1-skill/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Research: Starlette 1.0 skill
+Starlette 1.0 Skill offers a concise guide for building robust web applications with Starlette, a lightweight ASGI framework. The accompanying demo showcases a task management app featuring projects, tasks, comments, and labels, illustrating Starlette&#x27;s flexibility in handling routing, templating (Jinja2), async database operations (aiosqlite), and real-time updates.
+See Experimenting with Starlette 1.0 with Claude skills.
+Tags: starlette</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-22 datetime="2026-03-22T23:57:44.000Z">2026-03-22</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-22 datetime="2026-03-22T23:57:44.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/22/starlette/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Experimenting with Starlette 1.0 with Claude skills</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/22/starlette/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/starlette-skill-card.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Starlette 1.0 is out! This is a really big deal. I think Starlette may be the Python framework with the most usage compared to its relatively low brand recognition because Starlette is the foundation of FastAPI, which has attracted a huge amount of buzz that seems to have overshadowed Starlette itself.
+
+Kim Christie started working on Starlette in 2018 and it quickly became my favorite out of the new breed of Python ASGI frameworks. The only reason I didn&#x27;t use it as the basis for my own Datasette project was that it didn&#x27;t yet promise stability, and I was determined to provide a stable API for Datasette&#x27;s own plugins... albeit I still haven&#x27;t been brave enough to ship my own 1.0 release (after 26 alphas and counting)!
+
+Then in September 2025 Marcelo Trylesinski announced that Starlette and Uvicorn were transferring to their GitHub account, in recognition of their many years of contributions and to make it easier for them to receive sponsorship against those projects.
+
+The 1.0 version has a few breaking changes compared to the 0.x series, described in the release notes for 1.0.0rc1 that came out in February.
+
+The most notable of these is a change to how code runs on startup and shutdown. Previously that was handled by on_startup and on_shutdown parameters, but the new system uses a neat lifespan mechanism instead based around an async context manager:
+
+@contextlib.asynccontextmanager
+async def lifespan(app):
+    async with some_async_resource():
+        print(&quot;Run at startup!&quot;)
+        yield
+        print(&quot;Run on shutdown!&quot;)
+
+app &#x3D; Starlette(
+    routes&#x3D;routes,
+    lifespan&#x3D;lifespan
+)
+
+If you haven&#x27;t tried Starlette before it feels to me like an asyncio-native cross between Flask and Django, unsurprising since creator Kim Christie is also responsible for Django REST Framework. Crucially, this means you can write most apps as a single Python file, Flask style.
+
+This makes it really easy for LLMs to spit out a working Starlette app from a single prompt.
+
+There&#x27;s just one problem there: if 1.0 breaks compatibility with the Starlette code that the models have been trained on, how can we have them generate code that works with 1.0?
+
+I decided to see if I could get this working with a Skill.
+
+Building a Skill with Claude
+
+Regular Claude Chat on claude.ai has skills, and one of those default skills is the skill-creator skill. This means Claude knows how to build its own skills.
+
+So I started a chat session and told it:
+
+
+Clone Starlette from GitHub - it just had its 1.0 release. Build a skill markdown document for this release which includes code examples of every feature.
+
+
+I didn&#x27;t even tell it where to find the repo, Starlette is widely enough known that I expected it could find it on its own.
+
+It ran git clone https://github.com/encode/starlette.git which is actually the old repository name, but GitHub handles redirects automatically so this worked just fine.
+
+The resulting skill document looked very thorough to me... and then I noticed a new button at the top I hadn&#x27;t seen before labelled &quot;Copy to your skills&quot;. So I clicked it:
+
+
+
+And now my regular Claude chat has access to that skill!
+
+A task management demo app
+
+I started a new conversation and prompted:
+
+
+Build a task management app with Starlette, it should have projects and tasks and comments and labels
+
+
+And Claude did exactly that, producing a simple GitHub Issues clone using Starlette 1.0, a SQLite database (via aiosqlite) and a Jinja2 template.
+
+Claude even tested the app manually like this:
+
+
+cd /home/claude/taskflow &amp;&amp; timeout 5 python -c &quot;
+import asyncio
+from database import init_db
+asyncio.run(init_db())
+print(&#x27;DB initialized successfully&#x27;)
+&quot; 2&gt;&amp;1
+
+pip install httpx --break-system-packages -q \
+  &amp;&amp; cd /home/claude/taskflow &amp;&amp; \
+  python -c &quot;
+from starlette.testclient import TestClient
+from main import app
+
+client &#x3D; TestClient(app)
+
+r &#x3D; client.get(&#x27;/api/stats&#x27;)
+print(&#x27;Stats:&#x27;, r.json())
+
+r &#x3D; client.get(&#x27;/api/projects&#x27;)
+print(&#x27;Projects:&#x27;, len(r.json()), &#x27;found&#x27;)
+
+r &#x3D; client.get(&#x27;/api/tasks&#x27;)
+print(&#x27;Tasks:&#x27;, len(r.json()), &#x27;found&#x27;)
+
+r &#x3D; client.get(&#x27;/api/labels&#x27;)
+print(&#x27;Labels:&#x27;, len(r.json()), &#x27;found&#x27;)
+
+r &#x3D; client.get(&#x27;/api/tasks/1&#x27;)
+t &#x3D; r.json()
+print(f&#x27;Task 1: \&quot;{t[\&quot;title\&quot;]}\&quot; - {len(t[\&quot;comments\&quot;])} comments, {len(t[\&quot;labels\&quot;])} labels&#x27;)
+
+r &#x3D; client.post(&#x27;/api/tasks&#x27;, json&#x3D;{&#x27;title&#x27;:&#x27;Test task&#x27;,&#x27;project_id&#x27;:1,&#x27;priority&#x27;:&#x27;high&#x27;,&#x27;label_ids&#x27;:[1,2]})
+print(&#x27;Created task:&#x27;, r.status_code, r.json()[&#x27;title&#x27;])
+
+r &#x3D; client.post(&#x27;/api/comments&#x27;, json&#x3D;{&#x27;task_id&#x27;:1,&#x27;content&#x27;:&#x27;Test comment&#x27;})
+print(&#x27;Created comment:&#x27;, r.status_code)
+
+r &#x3D; client.get(&#x27;/&#x27;)
+print(&#x27;Homepage:&#x27;, r.status_code, &#x27;- length:&#x27;, len(r.text))
+
+print(&#x27;\nAll tests passed!&#x27;)
+&quot;
+
+For all of the buzz about Claude Code, it&#x27;s easy to overlook that Claude itself counts as a coding agent now, fully able to both write and then test the code that it is writing.
+
+Here&#x27;s what the resulting app looked like. The code is here in my research repository.
+
+
+Tags: open-source, python, ai, asgi, kim-christie, generative-ai, llms, ai-assisted-programming, claude, coding-agents, skills, agentic-engineering, starlette</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/22/pcgamer-audit/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">PCGamer Article Performance Audit</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/22/pcgamer-audit/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Research: PCGamer Article Performance Audit
+A performance audit of the March 2026 PCGamer article on RSS readers reveals severe page bloat, with over 82% of network traffic and transferred bytes traced to ad-tech, tracking, and programmatic advertising scripts. Despite the core content consisting of just 10-15 KB of text and a handful of images (~150 KB total), the page triggers over 431 network requests and 5.5 MB of transfer (18.8 MB decoded) within 60 seconds—ballooning to 200+ MB in Firefox due to autoplay video carousels and…
+Stuart Breckenridge pointed out that PC Gamer Recommends RSS Readers in a 37MB Article That Just Keeps Downloading, highlighting a truly horrifying example of web bloat that added up to 100s more MBs thanks to auto-playing video ads. I decided to have Claude Code for web use Rodney to investigate the page - prompt here.
+Tags: web-performance, rodney</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/22/javascript-sandboxing-research/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">JavaScript Sandboxing Research</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/22/javascript-sandboxing-research/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Research: JavaScript Sandboxing Research
+Analyzing current JavaScript sandboxing options for running untrusted code, this research compares core approaches in Node.js (including worker_threads, node:vm, and the Permission Model), prominent npm packages (isolated-vm, vm2), and alternative engines like quickjs-emscripten.
+Aaron Harper wrote about Node.js worker threads, which inspired me to run a research task to see if they might help with running JavaScript in a sandbox. Claude Code went way beyond my initial question and produced a comparison of isolated-vm, vm2, quickjs-emscripten, QuickJS-NG, ShadowRealm, and Deno Workers.
+Tags: sandboxing, javascript, nodejs, claude-code</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/22/dns/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">DNS Lookup</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/22/dns/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tool: DNS Lookup
+TIL that Cloudflare&#x27;s 1.1.1.1 DNS service (and 1.1.1.2 and 1.1.1.3, which block malware and malware + adult content respectively) has a CORS-enabled JSON API, so I had Claude Code build me a UI for running DNS queries against all three of those resolvers.
+Tags: dns, cors, cloudflare</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/22/manyana/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Merge State Visualizer</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/22/manyana/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tool: Merge State Visualizer
+# CRDT Merge State Visualizer
+Bram Cohen wrote about his coherent vision for the future of version control using CRDTs, illustrated by 470 lines of Python.
+I fed that Python (minus comments) into Claude and asked for an explanation, then had it use Pyodide to build me an interactive UI for seeing how the algorithms work.
+Tags: vcs, pyodide, bram-cohen, crdt</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-21 datetime="2026-03-21T23:59:47.000Z">2026-03-21</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-21 datetime="2026-03-21T23:59:47.000Z"></time>
           </button>
@@ -152,6 +449,9 @@ Integrate latest changes from main
 There are multiple ways to merge changes, including merge, rebase, squash or fast-forward. If you can&#x27;t remember the details of these that&#x27;s fine:
 Discuss options for integrating changes from main
 Sort out this git mess for me
+
+I use this universal prompt surprisingly often! Here&#x27;s a recent example where it fixed a cherry-pick for me that failed with a merge conflict.
+There are plenty of ways you can get into a mess with Git, often through pulls or rebase commands that end in a merge conflict, or just through adding the wrong things to Git&#x27;s staging environment.
 Unpicking those used to be the most difficult and time consuming parts of working with Git. No more! Coding agents can navigate the most Byzantine of merge conflicts, reasoning through the intent of the new code and figuring out what to keep and how to combine conflicting changes. If your code has automated tests (and it should) the agent can ensure those pass before finalizing that merge.
 Find and recover my code that does ...
 git stash) your agent can probably find it for you. 
@@ -264,7 +564,7 @@ Note: Cursor accesses Kimi-k2.5 via @FireworksAI_HQ hosted RL and inference plat
 
 — Kimi.ai @Kimi_Moonshot, responding to reports that Composer 2 was built on top of Kimi K2.5
 Tags: kimi, generative-ai, ai, cursor, llms, ai-in-china</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;2
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2614,60 +2914,6 @@ Tags: open-source, ai, generative-ai, llms, ai-ethics</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/12/coding-after-coders/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Coding After Coders: The End of Computer Programming as We Know It</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/12/coding-after-coders/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Coding After Coders: The End of Computer Programming as We Know It
-I think the piece accurately and clearly captures what&#x27;s going on in our industry right now in terms appropriate for a wider audience.
-I talked to Clive a few weeks ago. Here&#x27;s the quote from me that made it into the piece.
-Given A.I.’s penchant to hallucinate, it might seem reckless to let agents push code out into the real world. But software developers point out that coding has a unique quality: They can tether their A.I.s to reality, because they can demand the agents test the code to see if it runs correctly. “I feel like programmers have it easy,” says Simon Willison, a tech entrepreneur and an influential blogger about how to code using A.I. “If you’re a lawyer, you’re screwed, right?” There’s no way to automatically check a legal brief written by A.I. for hallucinations — other than face total humiliation in court.
-The piece does raise the question of what this means for the future of our chosen line of work, but the general attitude from the developers interviewed was optimistic - there&#x27;s even a mention of the possibility that the Jevons paradox might increase demand overall.
-One critical voice came from an Apple engineer:
-A few programmers did say that they lamented the demise of hand-crafting their work. “I believe that it can be fun and fulfilling and engaging, and having the computer do it for you strips you of that,” one Apple engineer told me. (He asked to remain unnamed so he wouldn’t get in trouble for criticizing Apple’s embrace of A.I.)
-That request to remain anonymous is a sharp reminder that corporate dynamics may be suppressing an unknown number of voices on this topic.
-
-
-    
-Tags: new-york-times, careers, ai, generative-ai, llms, ai-assisted-programming, press-quotes, deep-blue</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/12/les-orchard/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Les Orchard</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/12/les-orchard/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Here&#x27;s what I think is happening: AI-assisted coding is exposing a divide among developers that was always there but maybe less visible.
-Before AI, both camps were doing the same thing every day. Writing code by hand. Using the same editors, the same languages, the same pull request workflows. The craft-lovers and the make-it-go people sat next to each other, shipped the same products, looked indistinguishable. The motivation behind the work was invisible because the process was identical.
-Now there&#x27;s a fork in the road. You can let the machine write the code and focus on directing what gets built, or you can insist on hand-crafting it. And suddenly the reason you got into this in the first place becomes visible, because the two camps are making different choices at that fork.
-
-— Les Orchard, Grief and the AI Split
-Tags: les-orchard, ai-assisted-programming, generative-ai, ai, llms, careers, deep-blue</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2812,80 +3058,11 @@ Tags: les-orchard, ai-assisted-programming, generative-ai, ai, llms, careers, de
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-11 datetime="2026-03-11T22:58:06.000Z">2026-03-11</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-11 datetime="2026-03-11T22:58:06.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-11 datetime="2026-03-11T14:29:17.000Z">2026-03-11</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-11 datetime="2026-03-11T14:29:17.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/11/sorting-algorithms/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Sorting algorithms</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/11/sorting-algorithms/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/sort-animation-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Sorting algorithms
-full sequence of prompts:
-Interactive animated demos of the most common sorting algorithms
-This gave me bubble sort, selection sort, insertion sort, merge sort, quick sort, and heap sort.
-Add timsort, look up details in a clone of python/cpython from GitHub
-Let&#x27;s add Python&#x27;s Timsort! Regular Claude chat can clone repos from GitHub these days. In the transcript you can see it clone the repo and then consult Objects/listsort.txt and Objects/listobject.c. (I should note that when I asked GPT-5.4 Thinking to review Claude&#x27;s implementation it picked holes in it and said the code &quot;is a simplified, Timsort-inspired adaptive mergesort&quot;.)
-I don&#x27;t like the dark color scheme on the buttons, do better
-Also add a &quot;run all&quot; button which shows smaller animated charts for every algorithm at once in a grid and runs them all at the same time
-It came up with a color scheme I liked better, &quot;do better&quot; is a fun prompt, and now the &quot;Run all&quot; button produces this effect:
-
-
-
-    
-Tags: algorithms, computer-science, javascript, sorting, ai, explorables, generative-ai, llms, claude, vibe-coding</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/11/john-carmack/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting John Carmack</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/11/john-carmack/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>It is hard for less experienced developers to appreciate how rarely architecting for future requirements / applications turns out net-positive.
-
-— John Carmack, a tweet in June 2021
-Tags: john-carmack, software-engineering, yagni</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3098,75 +3275,11 @@ Tags: john-carmack, software-engineering, yagni</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-10 datetime="2026-03-10T22:25:09.000Z">2026-03-10</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-10 datetime="2026-03-10T22:25:09.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-10 datetime="2026-03-10T14:23:03.000Z">2026-03-10</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-10 datetime="2026-03-10T14:23:03.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/better-code/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">AI should help us produce better code</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/better-code/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Agentic Engineering Patterns &gt;
-Many developers worry that outsourcing their code to AI tools will result in a drop in quality, producing bad code that&#x27;s churned out fast enough that decision makers are willing to overlook its flaws.
-If adopting coding agents demonstrably reduces the quality of the code and features you are producing, you should address that problem directly: figure out which aspects of your process are hurting the quality of your output and fix them.
-Shipping worse code with agents is a choice. We can choose to ship code that is better instead.
-Avoiding taking on technical debt
-I like to think about shipping better code in terms of technical debt. We take on technical debt as the result of trade-offs: doing things &quot;the right way&quot; would take too long, so we work within the time constraints we are under and cross our fingers that our project will survive long enough to pay down the debt later on.
-The best mitigation for technical debt is to avoid taking it on in the first place.
-In my experience, a common category of technical debt fixes is changes that are simple but time-consuming.
-Our original API design doesn&#x27;t cover an important case that emerged later on. Fixing that API would require changing code in dozens of different places, making it quicker to add a very slightly different new API and live with the duplication.
-We made a poor choice naming a concept early on - teams rather than groups for example - but cleaning up that nomenclature everywhere in the code is too much work so we only fix it in the UI.
-Our system has grown duplicate but slightly different functionality over time which needs combining and refactoring.
-One of our files has grown to several thousand lines of code which we would ideally split into separate modules.
-All of these changes are conceptually simple but still need time dedicated to them, which can be hard to justify given more pressing issues.
-Coding agents can handle these for us
-Refactoring tasks like this are an ideal application of coding agents.
-Fire up an agent, tell it what to change and leave it to churn away in a branch or worktree somewhere in the background.
-I usually use asynchronous coding agents for this such as Gemini Jules, OpenAI Codex web, or Claude Code on the web. That way I can run those refactoring jobs without interrupting my flow on my laptop.
-Evaluate the result in a Pull Request. If it&#x27;s good, land it. If it&#x27;s almost there, prompt it and tell it what to do differently. If it&#x27;s bad, throw it away.
-The cost of these code improvements has dropped so low that we can afford a zero tolerance attitude to minor code smells and inconveniences.
-AI tools let us consider more options
-Any software development task comes with a wealth of options for approaching the problem. Some of the most significant technical debt comes from making poor choices at the planning step - missing out on an obvious simple solution, or picking a technology that later turns out not to be exactly the right fit.
-LLMs can help ensure we don&#x27;t miss any obvious solutions that may not have crossed our radar before. They&#x27;ll only suggest solutions that are common in their training data but those tend to be the Boring Technology that&#x27;s most likely to work.
-More importantly, coding agents can help with exploratory prototyping.
-The best way to make confident technology choices is to prove that they are fit for purpose with a prototype.
-Is Redis a good choice for the activity feed on a site which expects thousands of concurrent users?
-The best way to know for sure is to wire up a simulation of that system and run a load test against it to see what breaks.
-Coding agents can build this kind of simulation from a single well crafted prompt, which drops the cost of this kind of experiment to almost nothing. And since they&#x27;re so cheap we can run multiple experiments at once, testing several solutions to pick the one that is the best fit for our problem.
-Embrace the compound engineering loop
-Agents follow instructions. We can evolve these instructions over time to get better results from future runs, based on what we&#x27;ve learned previously.
-Dan Shipper and Kieran Klaassen at Every describe their company&#x27;s approach to working with coding agents as Compound Engineering. Every coding project they complete ends with a retrospective, which they call the compound step where they take what worked and document that for future agent runs.
-If we want the best results from our agents, we should aim to continually increase the quality of our codebase over time. Small improvements compound. Quality enhancements that used to be time-consuming have now dropped in cost to the point that there&#x27;s no excuse not to invest in quality at the same time as shipping new features. Coding agents mean we can finally have both.
-Tags: coding-agents, ai-assisted-programming, generative-ai, agentic-engineering, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;5
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3351,66 +3464,6 @@ Tags: coding-agents, ai-assisted-programming, generative-ai, agentic-engineering
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/9/production-query-plans-without-production-data/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Production query plans without production data</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/9/production-query-plans-without-production-data/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Production query plans without production data
-pg_restore_relation_stats() and pg_restore_attribute_stats() functions that were introduced in PostgreSQL 18 in September 2025.
-The PostgreSQL query planner makes use of internal statistics to help it decide how to best execute a query. These statistics often differ between production data and development environments, which means the query plans used in production may not be replicable in development.
-PostgreSQL&#x27;s new features now let you copy those statistics down to your development environment, allowing you to simulate the plans for production workloads without needing to copy in all of that data first.
-I found this illustrative example useful:
-SELECT pg_restore_attribute_stats(
-    &#x27;schemaname&#x27;, &#x27;public&#x27;,
-    &#x27;relname&#x27;, &#x27;test_orders&#x27;,
-    &#x27;attname&#x27;, &#x27;status&#x27;,
-    &#x27;inherited&#x27;, false::boolean,
-    &#x27;null_frac&#x27;, 0.0::real,
-    &#x27;avg_width&#x27;, 9::integer,
-    &#x27;n_distinct&#x27;, 5::real,
-    &#x27;most_common_vals&#x27;, &#x27;{delivered,shipped,cancelled,pending,returned}&#x27;::text,
-    &#x27;most_common_freqs&#x27;, &#x27;{0.95,0.015,0.015,0.015,0.005}&#x27;::real[]
-);
-
-This simulates statistics for a status column that is 95% delivered. Based on these statistics PostgreSQL can decide to use an index for status &#x3D; &#x27;shipped&#x27; but to instead perform a full table scan for status &#x3D; &#x27;delivered&#x27;.
-These statistics are pretty small. Radim says:
-Statistics dumps are tiny. A database with hundreds of tables and thousands of columns produces a statistics dump under 1MB. The production data might be hundreds of GB. The statistics that describe it fit in a text file.
-I posted on the SQLite user forum asking if SQLite could offer a similar feature and D. Richard Hipp promptly replied that it has one already:
-All of the data statistics used by the query planner in SQLite are available in the sqlite_stat1 table (or also in the sqlite_stat4 table if you happen to have compiled with SQLITE_ENABLE_STAT4).  That table is writable. You can inject whatever alternative statistics you like.
-This approach to controlling the query planner is mentioned in the documentation:
-https://sqlite.org/optoverview.html#manual_control_of_query_plans_using_sqlite_stat_tables.
-See also https://sqlite.org/lang_analyze.html#fixed_results_of_analyze.
-The &quot;.fullschema&quot; command in the CLI outputs both the schema and the content of the sqlite_statN tables, exactly for the reasons outlined above - so that we can reproduce query problems for testing without have to load multi-terabyte database files.
-Via Lobste.rs
-Tags: databases, postgresql, sql, sqlite, d-richard-hipp</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Matt Wolfe</button>
                   <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
@@ -3427,7 +3480,7 @@ Tags: databases, postgresql, sql, sqlite, d-richard-hipp</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3539,7 +3592,7 @@ Tags: databases, postgresql, sql, sqlite, d-richard-hipp</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3586,7 +3639,7 @@ Tags: databases, postgresql, sql, sqlite, d-richard-hipp</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5315,117 +5368,10 @@ Tags: databases, postgresql, sql, sqlite, d-richard-hipp</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-02-20 datetime="2026-02-20T18:20:25.000Z">2026-02-20</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-02-20 datetime="2026-02-20T18:20:25.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;1fUBWAETmkk"
-                        open
-                      >
-                        <summary class="article-expander__title">TanStack Start in 100 Seconds</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;1fUBWAETmkk">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI Explained</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;2_DPnzoiHaY"
-                        open
-                      >
-                        <summary class="article-expander__title">Gemini 3.1 Pro and the Downfall of Benchmarks: Welcome to the Vibe Era of AI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;2_DPnzoiHaY">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/first-proof-submissions"
-                        open
-                      >
-                        <summary class="article-expander__title">Our First Proof submissions</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/first-proof-submissions">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>We share our AI model’s proof attempts for the First Proof math challenge, testing research-grade reasoning on expert-level problems.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23393644599">
-        <time id="build-timestamp" datetime="2026-03-22T02:10:29.706Z">2026-03-22T02:10:29.706Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23418459588">
+        <time id="build-timestamp" datetime="2026-03-23T02:11:11.005Z">2026-03-23T02:11:11.005Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
