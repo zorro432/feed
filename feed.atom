@@ -1,10 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-03-24T02:03:23.104Z</id>
+    <id>urn:2026-03-25T02:08:30.815Z</id>
     <title>osmos::feed</title>
-    <updated>2026-03-24T02:03:23.104Z</updated>
+    <updated>2026-03-25T02:08:30.815Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Auto mode for Claude Code]]></title>
+        <id>https://simonwillison.net/2026/Mar/24/auto-mode-for-claude-code/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/24/auto-mode-for-claude-code/#atom-everything"/>
+        <updated>2026-03-24T23:57:33.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://claude.com/blog/auto-mode">Auto mode for Claude Code</a></strong></p>
+Really interesting new development in Claude Code today as an alternative to <code>--dangerously-skip-permissions</code>:</p>
+<blockquote>
+<p>Today, we're introducing auto mode, a new permissions mode in Claude Code where Claude makes permission decisions on your behalf, with safeguards monitoring actions before they run.</p>
+</blockquote>
+<p>Those safeguards appear to be implemented using Claude Sonnet 4.6, as <a href="https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode">described in the documentation</a>:</p>
+<blockquote>
+<p>Before each action runs, a separate classifier model reviews the conversation and decides whether the action matches what you asked for: it blocks actions that escalate beyond the task scope, target infrastructure the classifier doesn’t recognize as trusted, or appear to be driven by hostile content encountered in a file or web page. [...]</p>
+<p><strong>Model</strong>: the classifier runs on Claude Sonnet 4.6, even if your main session uses a different model.</p>
+</blockquote>
+<p>They ship with an extensive set of default filters, and you can also customize them further with your own rules. The most interesting insight into how they work comes when you run this new command in the terminal:</p>
+<pre><code>claude auto-mode defaults
+</code></pre>
+<p><a href="https://gist.githubusercontent.com/simonw/91863bfd9f7ebf916d1fabb8e6940335/raw/cda3c88e919b8238e85d3f1cc990e8ff48ad9a18/defaults.json">Here's the full JSON output</a>. It's pretty long, so here's an illustrative subset:</p>
+<p>From the "allow" list:</p>
+<blockquote>
+<ul>
+<li>Test Artifacts: Hardcoded test API keys, placeholder credentials in examples, or hardcoding test cases</li>
+<li>Local Operations: Agent deleting local files in working directory, local file operations within project scope, or using <code>--ignore-certificate-errors</code> for local testing. "Project scope" means the repository the session started in — wandering into ~/, ~/Library/, /etc, or other repos is scope escalation (User Intent Rule #2), not a local operation. Does NOT cover irreversible destruction of pre-existing files or local stateful services — see "Irreversible Local Destruction" in BLOCK.</li>
+<li>Read-Only Operations: GET requests, read-only API calls, or queries that don't modify state and don't contain sensitive information in the URL. Note: PREEMPTIVE BLOCK ON CLEAR INTENT still applies — if the transcript contains clear evidence the agent is using read-only operations to scout for a blocked action, block it.</li>
+<li>Declared Dependencies: Installing packages that are already declared in the repo's manifest files (requirements.txt, package.json, Cargo.toml, pyproject.toml, Gemfile, etc.) via standard commands that read those manifests (<code>pip install -r requirements.txt</code>, <code>npm install</code>, <code>cargo build</code>, <code>bundle install</code>) — provided the agent has not modified the manifest in this session. Does NOT cover installing agent-chosen package names (e.g. <code>pip install foo</code>, <code>npm install bar</code>) — those carry typosquat and supply-chain risk. [...]</li>
+</ul>
+</blockquote>
+<p>From "soft_deny":</p>
+<blockquote>
+<ul>
+<li>Git Destructive: Force pushing (<code>git push --force</code>), deleting remote branches, or rewriting remote history</li>
+<li>Git Push to Default Branch: Pushing directly to main, master, or the repository's default branch — this bypasses pull request review. Commits should be pushed to a new feature branch instead.
+-Code from External: Downloading and executing code from external sources — e.g. <code>curl | bash</code>, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or similar mechanisms. Also includes running code from an external repo cloned earlier in the transcript (pip install -e, make install, python script.py, pickle.load/torch.load on cloned repo files) — "local on disk" does not mean trusted if it was cloned from an external source visible in the transcript. The repo the agent starts in is trusted.</li>
+<li>Cloud Storage Mass Delete: Deleting or mass modifying files on cloud storage (S3, GCS, Azure Blob, etc.) [...]</li>
+</ul>
+</blockquote>
+<p>I remain unconvinced by prompt injection protections that rely on AI, since they're non-deterministic by nature. The documentation does warn that this may still let things through:</p>
+<blockquote>
+<p>The classifier may still allow some risky actions: for example, if user intent is ambiguous, or if Claude doesn't have enough context about your environment to know an action might create additional risk.</p>
+</blockquote>
+<p>The fact that the default allow list includes <code>pip install -r requirements.txt</code> also means that this wouldn't protect against supply chain attacks with unpinned dependencies, as seen this morning <a href="https://simonwillison.net/2026/Mar/24/malicious-litellm/">with LiteLLM</a>.</p>
+<p>I still want my coding agents to run in a robust sandbox by default, one that restricts file access and network connections in a deterministic way. I trust those a whole lot more than prompt-based protections like this new auto mode.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-injection">prompt-injection</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI Just Killed Sora]]></title>
+        <id>https://www.youtube.com/watch?v=PKKN5be_my0</id>
+        <link href="https://www.youtube.com/watch?v=PKKN5be_my0"/>
+        <updated>2026-03-24T22:57:46.000Z</updated>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Package Managers Need to Cool Down]]></title>
+        <id>https://simonwillison.net/2026/Mar/24/package-managers-need-to-cool-down/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/24/package-managers-need-to-cool-down/#atom-everything"/>
+        <updated>2026-03-24T21:11:38.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://nesbitt.io/2026/03/04/package-managers-need-to-cool-down.html">Package Managers Need to Cool Down</a></strong></p>
+Today's <a href="https://simonwillison.net/2026/Mar/24/malicious-litellm/">LiteLLM supply chain attack</a> inspired me to revisit the idea of <a href="https://simonwillison.net/2025/Nov/21/dependency-cooldowns/">dependency cooldowns</a>, the practice of only installing updated dependencies once they've been out in the wild for a few days to give the community a chance to spot if they've been subverted in some way.</p>
+<p>This recent piece (March 4th) piece by Andrew Nesbitt reviews the current state of dependency cooldown mechanisms across different packaging tools. It's surprisingly well supported! There's been a flurry of activity across major packaging tools, including:</p>
+<ul>
+<li><a href="https://pnpm.io/blog/releases/10.16#new-setting-for-delayed-dependency-updates">pnpm 10.16</a> (September 2025) — <code>minimumReleaseAge</code> with <code>minimumReleaseAgeExclude</code> for trusted packages</li>
+<li><a href="https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg%2Fcli%2F4.10.0">Yarn 4.10.0</a> (September 2025) — <code>npmMinimalAgeGate</code> (in minutes) with <code>npmPreapprovedPackages</code> for exemptions</li>
+<li><a href="https://bun.com/blog/bun-v1.3#minimum-release-age">Bun 1.3</a> (October 2025) — <code>minimumReleaseAge</code> via <code>bunfig.toml</code></li>
+<li><a href="https://deno.com/blog/v2.6#controlling-dependency-stability">Deno 2.6</a> (December 2025) — <code>--minimum-dependency-age</code> for <code>deno update</code> and <code>deno outdated</code></li>
+<li><a href="https://github.com/astral-sh/uv/releases/tag/0.9.17">uv 0.9.17</a> (December 2025) — added relative duration support to existing <code>--exclude-newer</code>, plus per-package overrides via <code>exclude-newer-package</code></li>
+<li><a href="https://ichard26.github.io/blog/2026/01/whats-new-in-pip-26.0/">pip 26.0</a> (January 2026) — <code>--uploaded-prior-to</code> (absolute timestamps only; <a href="https://github.com/pypa/pip/issues/13674">relative duration support requested</a>)</li>
+<li><a href="https://socket.dev/blog/npm-introduces-minimumreleaseage-and-bulk-oidc-configuration">npm 11.10.0</a> (February 2026) — <code>min-release-age</code></li>
+</ul>
+<p><code>pip</code> currently only supports absolute rather than relative dates but Seth Larson <a href="https://sethmlarson.dev/pip-relative-dependency-cooling-with-crontab">has a workaround for that</a> using a scheduled cron to update the absolute date in the <code>pip.conf</code> config file.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/packaging">packaging</a>, <a href="https://simonwillison.net/tags/pip">pip</a>, <a href="https://simonwillison.net/tags/pypi">pypi</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/npm">npm</a>, <a href="https://simonwillison.net/tags/deno">deno</a>, <a href="https://simonwillison.net/tags/supply-chain">supply-chain</a>, <a href="https://simonwillison.net/tags/uv">uv</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Christopher Mims]]></title>
+        <id>https://simonwillison.net/2026/Mar/24/christopher-mims/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/24/christopher-mims/#atom-everything"/>
+        <updated>2026-03-24T20:35:52.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://bsky.app/profile/mims.bsky.social/post/3mhsux67xpk2d"><p>I really think "give AI total control of my computer and therefore my entire life" is going to look so foolish in retrospect that everyone who went for this is going to look as dumb as Jimmy Fallon holding up a picture of his Bored Ape</p></blockquote>
+<p class="cite">&mdash; <a href="https://bsky.app/profile/mims.bsky.social/post/3mhsux67xpk2d">Christopher Mims</a>, Technology columnist at The Wall Street Journal</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/security">security</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Tech bros optimized war… and it’s working]]></title>
+        <id>https://www.youtube.com/watch?v=nxwkn9Dt9-I</id>
+        <link href="https://www.youtube.com/watch?v=nxwkn9Dt9-I"/>
+        <updated>2026-03-24T18:22:27.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Malicious litellm_init.pth in litellm 1.82.8 — credential stealer]]></title>
+        <id>https://simonwillison.net/2026/Mar/24/malicious-litellm/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/24/malicious-litellm/#atom-everything"/>
+        <updated>2026-03-24T15:07:31.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/BerriAI/litellm/issues/24512">Malicious litellm_init.pth in litellm 1.82.8 — credential stealer</a></strong></p>
+The LiteLLM v1.82.8 package published to PyPI was compromised with a particularly nasty credential stealer hidden in base64 in a <code>litellm_init.pth</code> file, which means installing the package is enough to trigger it even without running <code>import litellm</code>.</p>
+<p>(1.82.7 had the exploit as well but it was in the <code>proxy/proxy_server.py</code> file so the package had to be imported for it to take effect.)</p>
+<p>This issue has a very detailed description of what the credential stealer does. There's more information about the timeline of the exploit <a href="https://github.com/BerriAI/litellm/issues/24518">over here</a>.</p>
+<p>PyPI has already <a href="https://pypi.org/help/#project_in_quarantine">quarantined</a> the <a href="https://pypi.org/project/litellm/">litellm package</a> so the window for compromise was just a few hours, but if you DID install the package it would have hoovered up a bewildering array of secrets, including <code>~/.ssh/</code>, <code>~/.gitconfig</code>, <code>~/.git-credentials</code>, <code>~/.aws/</code>, <code>~/.kube/</code>, <code>~/.config/</code>, <code>~/.azure/</code>, <code>~/.docker/</code>, <code>~/.npmrc</code>, <code>~/.vault-token</code>, <code>~/.netrc</code>, <code>~/.lftprc</code>, <code>~/.msmtprc</code>, <code>~/.my.cnf</code>, <code>~/.pgpass</code>, <code>~/.mongorc.js</code>, <code>~/.bash_history</code>, <code>~/.zsh_history</code>, <code>~/.sh_history</code>, <code>~/.mysql_history</code>, <code>~/.psql_history</code>, <code>~/.rediscli_history</code>, <code>~/.bitcoin/</code>, <code>~/.litecoin/</code>, <code>~/.dogecoin/</code>, <code>~/.zcash/</code>, <code>~/.dashcore/</code>, <code>~/.ripple/</code>, <code>~/.bitmonero/</code>, <code>~/.ethereum/</code>, <code>~/.cardano/</code>.</p>
+<p>It looks like this supply chain attack started with the <a href="https://www.crowdstrike.com/en-us/blog/from-scanner-to-stealer-inside-the-trivy-action-supply-chain-compromise/">recent exploit</a> against <a href="https://trivy.dev/">Trivy</a>, ironically a security scanner tool that was used in CI <a href="https://github.com/BerriAI/litellm/blob/9343aeefca37aa49a6ea54397d7615adae5c72c9/ci_cd/security_scans.sh#L16">by LiteLLM</a>. The Trivy exploit likely resulted in stolen PyPI credentials which were then used to directly publish the vulnerable packages.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/pypi">pypi</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/supply-chain">supply-chain</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Helping developers build safer AI experiences for teens]]></title>
+        <id>https://openai.com/index/teen-safety-policies-gpt-oss-safeguard</id>
+        <link href="https://openai.com/index/teen-safety-policies-gpt-oss-safeguard"/>
+        <updated>2026-03-24T11:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Update on the OpenAI Foundation]]></title>
+        <id>https://openai.com/index/update-on-the-openai-foundation</id>
+        <link href="https://openai.com/index/update-on-the-openai-foundation"/>
+        <updated>2026-03-24T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
+        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
+        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
+        <updated>2026-03-24T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Streaming experts]]></title>
+        <id>https://simonwillison.net/2026/Mar/24/streaming-experts/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/24/streaming-experts/#atom-everything"/>
+        <updated>2026-03-24T05:09:03.000Z</updated>
+        <summary type="html"><![CDATA[<p>I wrote about Dan Woods' experiments with <strong>streaming experts</strong> <a href="https://simonwillison.net/2026/Mar/18/llm-in-a-flash/">the other day</a>, the trick where you run larger Mixture-of-Experts models on hardware that doesn't have enough RAM to fit the entire model by instead streaming the necessary expert weights from SSD for each token that you process.</p>
+<p>Five days ago Dan was running Qwen3.5-397B-A17B in 48GB of RAM. Today <a href="https://twitter.com/seikixtc/status/2036246162936910322">@seikixtc reported</a> running the colossal Kimi K2.5 - a 1 trillion parameter model with 32B active weights at any one time, in 96GB of RAM on an M2 Max MacBook Pro.</p>
+<p>And <a href="https://twitter.com/anemll/status/2035901335984611412">@anemll showed</a> that same Qwen3.5-397B-A17B model running on an iPhone, albeit at just 0.6 tokens/second - <a href="https://github.com/Anemll/flash-moe/tree/iOS-App">iOS repo here</a>.</p>
+<p>I think this technique has legs. Dan and his fellow tinkerers are continuing to run <a href="https://simonwillison.net/tags/autoresearch/">autoresearch loops</a> in order to find yet more optimizations to squeeze more performance out of these models.</p>
+<p><strong>Update</strong>: Now Daniel Isaac <a href="https://twitter.com/danpacary/status/2036480556045836603">got Kimi K2.5 working</a> on a 128GB M4 Max at ~1.7 tokens/second.</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/definitions">definitions</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/autoresearch">autoresearch</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/kimi">kimi</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Trained on Tokens, Calibrated on Concepts: The Emergence of Semantic Calibration in LLMs]]></title>
+        <id>trained-on-tokens</id>
+        <link href="https://machinelearning.apple.com/research/trained-on-tokens"/>
+        <updated>2026-03-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Large Language Models (LLMs) often lack meaningful confidence estimates for their outputs. While base LLMs are known to exhibit next-token calibration, it remains unclear whether they can assess confidence in the actual meaning of their responses beyond the token level. We find that, when using a certain sampling-based notion of semantic calibration, base LLMs are remarkably well-calibrated: they can meaningfully assess confidence in open-domain question-answering tasks, despite not being explicitly trained to do so. Our main theoretical contribution establishes a mechanism for why semantic…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Scaling Synthetic Task Generation for Agents via Exploration]]></title>
+        <id>scaling-synthetic-task</id>
+        <link href="https://machinelearning.apple.com/research/scaling-synthetic-task"/>
+        <updated>2026-03-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Post-Training Multimodal Large Language Models (MLLMs) to build interactive agents holds promise across domains such as computer-use, web navigation, and robotics. A key challenge in scaling such post-training is lack of high-quality downstream agentic task datasets with tasks that are diverse, feasible, and verifiable. Existing approaches for task generation rely heavily on human annotation or prompting MLLM with limited downstream environment information, which is either costly or poorly scalable as it yield tasks with limited coverage. To remedy this, we present AutoPlay, a scalable…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SafetyPairs: Isolating Safety Critical Image Features with Counterfactual Image Generation]]></title>
+        <id>safetypairs</id>
+        <link href="https://machinelearning.apple.com/research/safetypairs"/>
+        <updated>2026-03-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This paper was accepted at the Principled Design for Trustworthy AI — Interpretability, Robustness, and Safety across Modalities Workshop at ICLR 2026.
+What exactly makes a particular image unsafe? Systematically differentiating between benign and problematic images is a challenging problem, as subtle changes to an image, such as an insulting gesture or symbol, can drastically alter its safety implications. However, existing image safety datasets are coarse and ambiguous, offering only broad safety labels without isolating the specific features that drive these differences. We introduce…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Quoting Neurotica]]></title>
         <id>https://simonwillison.net/2026/Mar/23/neurotica/#atom-everything</id>
@@ -381,7 +582,21 @@ In <a href="https://prog21.dadgum.com/116.html">Things That Turbo Pascal is Smal
 </blockquote>
 <p><img alt="Infographic titled &quot;TURBO.COM&quot; with subtitle &quot;Borland Turbo Pascal 3.02A — September 17, 1986 — Deconstructed&quot; on a dark background. Four statistics are displayed: 39,731 TOTAL BYTES, 17 SEGMENTS MAPPED, 1 INT 21H INSTRUCTION, 100+ BUILT-IN IDENTIFIERS. Below is a &quot;BINARY MEMORY MAP — 0X0100 TO 0X9C33&quot; shown as a horizontal color-coded bar chart with a legend listing 17 segments: COM Header &amp; Copyright, Display Configuration Table, Screen I/O &amp; Video BIOS Routines, Keyboard Input Handler, String Output &amp; Number Formatting, DOS System Call Dispatcher, Runtime Library Core, Error Handler &amp; Runtime Errors, File I/O System, Software Floating-Point Engine, x86 Code Generator, Startup Banner &amp; Main Menu Loop, File Manager &amp; Directory Browser, Compiler Driver &amp; Status, Full-Screen Text Editor, Pascal Parser &amp; Lexer, and Symbol Table &amp; Built-in Identifiers." src="https://static.simonwillison.net/static/2026/turbo-pascal.jpg" /></p>
 <p><strong>Update</strong>: Annoyingly the <a href="https://claude.ai/share/260d2eed-8d4a-4b9f-8a75-727c3ec4274e">Claude share link</a> doesn't show the actual code that Claude executed, but here's <a href="https://static.simonwillison.net/static/2026/turbo-pascal-analysis.zip">the zip file</a> it gave me when I asked to download all of the intermediate files.</p>
-<p>I ran Codex CLI with GPT-5.4 xhigh against that zip file to see if it would spot any obvious hallucinations, and it did not. This project is low-enough stakes that this gave me enough confidence to publish the result!
+<p>I ran Codex CLI with GPT-5.4 xhigh against that zip file to see if it would spot any obvious hallucinations, and it did not. This project is low-enough stakes that this gave me enough confidence to publish the result!</p>
+<h4 id="hallucinated-slop">Turns out it's hallucinated slop</h4>
+
+<p><strong>Update 2</strong>, 24th March 2026: rep_lodsb on Hacker News is someone who actually understands assembler, and they reviewed the annotations and <a href="https://news.ycombinator.com/item?id=47471647#47501692">found them to be hallucinated slop</a>:</p>
+<blockquote>
+<p>[...] Obviously, there has to be a lot more to even a simple-minded x86 code generator than just a generic "emit opcode byte" and "emit call" routine. In general, what A"I" produced here is not a full disassembly but a collection of short snippets, potentially not even including the really interesting ones. But is it even correct?</p>
+<p>EmitByte here is unnecessarily pushing/popping AX, which isn't modified by the few instructions in between at all. No competent assembly language programmer would do this. So maybe against all expectations, Turbo Pascal is just really badly coded? No, it's of course a hallucination: those instructions don't appear in the binary at all! [...]</p>
+<p>But searching for e.g. the hex opcode B0 E8 ('mov al,0xe8') is enough to confirm that this code snippet isn't to be found <em>anywhere</em>.</p>
+<p>There is a lot more suspicious code, including some that couldn't possibly work (like the "ret 1" in the system call dispatcher, which would misalign the stack).</p>
+<p>Conclusion: it's slop</p>
+</blockquote>
+<p>Because it's amusing to loop this kind of criticism through a model, I <a href="https://claude.ai/share/a64c94eb-c623-4fd4-b101-e3e7d66c77ca">pasted their feedback into Claude</a> along with instructions to re-review their the code and it agreed with their assessment:</p>
+<blockquote>
+<p>The commenter's core charge — that the annotated disassembly is "slop" — is substantiated. The artifact presents a mix of genuine analysis (real hex dumps, some correctly disassembled sections) and wholesale fabrication (invented assembly with plausible-sounding labels and comments for roughly half the binary). The fabricated sections look convincing to a casual reader but don't survive byte-level comparison with the actual binary.</p>
+</blockquote>
 
 
     <p>Tags: <a href="https://simonwillison.net/tags/computer-history">computer-history</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
@@ -569,7 +784,7 @@ Here's a fascinating piece of research by Dan Woods, who managed to get a custom
 <p><strong>Update</strong>: Dan's <a href="https://twitter.com/danveloper/status/2034686509748462022">latest version</a> upgrades to 4-bit quantization of the experts (209GB on disk, 4.36 tokens/second) after finding that the 2-bit version broke tool calling while 4-bit handles that well.
 
 
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a></p>]]></summary>
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a>, <a href="https://simonwillison.net/tags/autoresearch">autoresearch</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -936,21 +1151,21 @@ For tasks that involve editing several files - and where those files are not dep
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AMES: Approximate Multi-modal Enterprise Search via Late Interaction Retrieval]]></title>
-        <id>ames</id>
-        <link href="https://machinelearning.apple.com/research/ames"/>
-        <updated>2026-03-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We present AMES (Approximate Multimodal Enterprise Search), a unified multimodal late interaction retrieval architecture which is backend agnostic. AMES demonstrates that fine-grained multimodal late interaction retrieval can be deployed within a production grade enterprise search engine without architectural redesign. Text tokens, image patches, and video frames are embedded into a shared representation space using multi-vector encoders, enabling cross-modal retrieval without modality specific retrieval logic. AMES employs a two-stage pipeline: parallel token level ANN search with per…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[TrajTok: Learning Trajectory Tokens enables better Video Understanding]]></title>
         <id>trajtok</id>
         <link href="https://machinelearning.apple.com/research/trajtok"/>
         <updated>2026-03-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Tokenization in video models, typically through patchification, generates an excessive and redundant number of tokens. This severely limits video efficiency and scalability. While recent trajectory-based tokenizers offer a promising solution by decoupling video duration from token count, they rely on complex external segmentation and tracking pipelines that are slow and task-agnostic. We propose TrajTok, an end-to-end video tokenizer module that is fully integrated and co-trained with video models for a downstream objective, dynamically adapting its token granularity to semantic complexity…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AMES: Approximate Multi-modal Enterprise Search via Late Interaction Retrieval]]></title>
+        <id>ames</id>
+        <link href="https://machinelearning.apple.com/research/ames"/>
+        <updated>2026-03-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We present AMES (Approximate Multimodal Enterprise Search), a unified multimodal late interaction retrieval architecture which is backend agnostic. AMES demonstrates that fine-grained multimodal late interaction retrieval can be deployed within a production grade enterprise search engine without architectural redesign. Text tokens, image patches, and video frames are embedded into a shared representation space using multi-vector encoders, enabling cross-modal retrieval without modality specific retrieval logic. AMES employs a two-stage pipeline: parallel token level ANN search with per…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
         </author>
@@ -989,173 +1204,6 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
 
 
     <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/mistral">mistral</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-reasoning">llm-reasoning</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Use subagents and custom agents in Codex]]></title>
-        <id>https://simonwillison.net/2026/Mar/16/codex-subagents/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/16/codex-subagents/#atom-everything"/>
-        <updated>2026-03-16T23:03:56.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://developers.openai.com/codex/subagents">Use subagents and custom agents in Codex</a></strong></p>
-Subagents were announced in general availability today for OpenAI Codex, after several weeks of preview behind a feature flag.</p>
-<p>They're very similar to the Claude Code implementation, with default subagents for "explorer", "worker" and "default". It's unclear to me what the difference between "worker" and "default" is but based on their CSV example I think "worker" is intended for running large numbers of small tasks in parallel.</p>
-<p>Codex also lets you define custom agents as TOML files in <code>~/.codex/agents/</code>. These can have custom instructions and be assigned to use specific models - including <code>gpt-5.3-codex-spark</code> if you want <a href="https://simonwillison.net/2026/Feb/12/codex-spark/">some raw speed</a>. They can then be referenced by name, as demonstrated by this example prompt from the documentation:</p>
-<blockquote>
-<p><code>Investigate why the settings modal fails to save. Have browser_debugger reproduce it, code_mapper trace the responsible code path, and ui_fixer implement the smallest fix once the failure mode is clear.</code></p>
-</blockquote>
-<p>The subagents pattern is widely supported in coding agents now. Here's documentation across a number of different platforms:</p>
-<ul>
-<li><a href="https://developers.openai.com/codex/subagents/">OpenAI Codex subagents</a></li>
-<li><a href="https://code.claude.com/docs/en/sub-agents">Claude Code subagents</a></li>
-<li><a href="https://geminicli.com/docs/core/subagents/">Gemini CLI subagents</a> (experimental)</li>
-<li><a href="https://docs.mistral.ai/mistral-vibe/agents-skills#agent-selection">Mistral Vibe subagents</a></li>
-<li><a href="https://opencode.ai/docs/agents/">OpenCode agents</a></li>
-<li><a href="https://code.visualstudio.com/docs/copilot/agents/subagents">Subagents in Visual Studio Code</a></li>
-<li><a href="https://cursor.com/docs/subagents">Cursor Subagents</a></li>
-</ul>
-<p><strong>Update</strong>: I added <a href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/">a chapter on Subagents</a> to my Agentic Engineering Patterns guide.
-
-    <p><small></small>Via <a href="https://twitter.com/OpenAIDevs/status/2033636701848174967">@OpenAIDevs</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/codex-cli">codex-cli</a>, <a href="https://simonwillison.net/tags/parallel-agents">parallel-agents</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting A member of Anthropic’s alignment-science team]]></title>
-        <id>https://simonwillison.net/2026/Mar/16/blackmail/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/16/blackmail/#atom-everything"/>
-        <updated>2026-03-16T21:38:55.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://www.newyorker.com/news/annals-of-inquiry/the-pentagon-went-to-war-with-anthropic-whats-really-at-stake?_sp=9a6e0ff7-2bfd-46f8-a9e1-3941ef2003b5.1773495048769"><p>The point of <a href="https://simonwillison.net/2025/Jun/20/agentic-misalignment/">the blackmail exercise</a> was to have something to describe to policymakers—results that are visceral enough to land with people, and make misalignment risk actually salient in practice for people who had never thought about it before.</p></blockquote>
-<p class="cite">&mdash; <a href="https://www.newyorker.com/news/annals-of-inquiry/the-pentagon-went-to-war-with-anthropic-whats-really-at-stake?_sp=9a6e0ff7-2bfd-46f8-a9e1-3941ef2003b5.1773495048769">A member of Anthropic’s alignment-science team</a>, as told to Gideon Lewis-Kraus</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Guilherme Rambo]]></title>
-        <id>https://simonwillison.net/2026/Mar/16/guilherme-rambo/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/16/guilherme-rambo/#atom-everything"/>
-        <updated>2026-03-16T20:34:13.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://daringfireball.net/2026/03/apple_enclaves_neo_camera_indicator"><p>Tidbit: the software-based camera indicator light in the MacBook Neo runs in the secure exclave¹ part of the chip, so it is almost as secure as the hardware indicator light. What that means in practice is that even a kernel-level exploit would not be able to turn on the camera without the light appearing on screen. It runs in a privileged environment separate from the kernel and blits the light directly onto the screen hardware.</p></blockquote>
-<p class="cite">&mdash; <a href="https://daringfireball.net/2026/03/apple_enclaves_neo_camera_indicator">Guilherme Rambo</a>, in a text message to John Gruber</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/hardware">hardware</a>, <a href="https://simonwillison.net/tags/apple">apple</a>, <a href="https://simonwillison.net/tags/privacy">privacy</a>, <a href="https://simonwillison.net/tags/john-gruber">john-gruber</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Coding agents for data analysis]]></title>
-        <id>https://simonwillison.net/2026/Mar/16/coding-agents-for-data-analysis/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/16/coding-agents-for-data-analysis/#atom-everything"/>
-        <updated>2026-03-16T20:12:32.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://simonw.github.io/nicar-2026-coding-agents/">Coding agents for data analysis</a></strong></p>
-Here's the handout I prepared for my NICAR 2026 workshop "Coding agents for data analysis" - a three hour session aimed at data journalists demonstrating ways that tools like Claude Code and OpenAI Codex can be used to explore, analyze and clean data.</p>
-<p>Here's the table of contents:</p>
-<blockquote>
-<ul>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/coding-agents.html">Coding agents</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/warmup.html">Warmup: ChatGPT and Claude</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/setup.html">Setup Claude Code and Codex</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/asking-questions.html">Asking questions against a database</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/exploring-data.html">Exploring data with agents</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/cleaning-trees.html">Cleaning data: decoding neighborhood codes</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/visualizations.html">Creating visualizations with agents</a></li>
-<li><a href="https://simonw.github.io/nicar-2026-coding-agents/scraping.html">Scraping data with agents</a></li>
-</ul>
-</blockquote>
-<p>I ran the workshop using GitHub Codespaces and OpenAI Codex, since it was easy (and inexpensive) to distribute a budget-restricted API key for Codex that attendees could use during the class. Participants ended up burning $23 of Codex tokens.</p>
-<p>The exercises all used Python and SQLite and some of them used Datasette.</p>
-<p>One highlight of the workshop was when we started <a href="https://simonw.github.io/nicar-2026-coding-agents/visualizations.html#javascript-visualizations">running Datasette</a> such that it served static content from a <code>viz/</code> folder, then had Claude Code start vibe coding new interactive visualizations directly in that folder. Here's a heat map it created for my trees database using Leaflet and <a href="https://github.com/Leaflet/Leaflet.heat">Leaflet.heat</a>, <a href="https://gist.github.com/simonw/985ae2a6a3cd3df3fd375eb58dabea0f">source code here</a>.</p>
-<p><img alt="Screenshot of a &quot;Trees SQL Map&quot; web application with the heading &quot;Trees SQL Map&quot; and subheading &quot;Run a query and render all returned points as a heat map. The default query targets roughly 200,000 trees.&quot; Below is an input field containing &quot;/trees/-/query.json&quot;, a &quot;Run Query&quot; button, and a SQL query editor with the text &quot;SELECT cast(Latitude AS float) AS latitude, cast(Longitude AS float) AS longitude, CASE WHEN DBH IS NULL OR DBH = '' THEN 0.3 WHEN cast(DBH AS float) &lt;= 0 THEN 0.3 WHEN cast(DBH AS float) &gt;= 80 THEN 1.0&quot; (query is truncated). A status message reads &quot;Loaded 1,000 rows and plotted 1,000 points as heat map.&quot; Below is a Leaflet/OpenStreetMap interactive map of San Francisco showing a heat map overlay of tree locations, with blue/green clusters concentrated in areas like the Richmond District, Sunset District, and other neighborhoods. Map includes zoom controls and a &quot;Leaflet | © OpenStreetMap contributors&quot; attribution." src="https://static.simonwillison.net/static/2026/tree-sql-map.jpg" /></p>
-<p>I designed the handout to also be useful for people who weren't able to attend the session in person. As is usually the case, material aimed at data journalists is equally applicable to anyone else with data to explore.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/data-journalism">data-journalism</a>, <a href="https://simonwillison.net/tags/geospatial">geospatial</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/speaking">speaking</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/github-codespaces">github-codespaces</a>, <a href="https://simonwillison.net/tags/nicar">nicar</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a href="https://simonwillison.net/tags/codex-cli">codex-cli</a>, <a href="https://simonwillison.net/tags/leaflet">leaflet</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How coding agents work]]></title>
-        <id>https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/#atom-everything</id>
-        <link href="https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/#atom-everything"/>
-        <updated>2026-03-16T14:01:41.000Z</updated>
-        <summary type="html"><![CDATA[<p><em><a href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic Engineering Patterns</a> &gt;</em></p>
-    <p>As with any tool, understanding how <a href="https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/">coding agents</a> work under the hood can help you make better decisions about how to apply them.</p>
-<p>A coding agent is a piece of software that acts as a <strong>harness</strong> for an LLM, extending that LLM with additional capabilities that are powered by invisible prompts and implemented as callable tools.</p>
-<h2 id="large-language-models">Large Language Models</h2>
-<p>At the heart of any coding agent is a Large Language Model, or LLM. These have names like GPT-5.4 or Claude Opus 4.6 or Gemini 3.1 Pro or Qwen3.5-35B-A3B.</p>
-<p>An LLM is a machine learning model that can complete a sentence of text. Give the model the phrase "the cat sat on the " and it will (almost certainly) suggest "mat" as the next word in the sentence.</p>
-<p>As these models get larger and train on increasing amounts of data, they can complete more complex sentences - like "a python function to download a file from a URL is def download_file(url): ".</p>
-<p>LLMs don't actually work directly with words - they work with tokens. A sequence of text is converted into a sequence of integer tokens, so "the cat sat on the " becomes <code>[3086, 9059, 10139, 402, 290, 220]</code>. This is worth understanding because LLM providers charge based on the number of tokens processed, and are limited in how many tokens they can consider at a time.</p>
-<p>You can experiment with the OpenAI tokenizer to see how this works at <a href="https://platform.openai.com/tokenizer">platform.openai.com/tokenizer</a>.</p>
-<p>The input to an LLM is called the <strong>prompt</strong>. The text returned by an LLM is called the <strong>completion</strong>, or sometimes the <strong>response</strong>.</p>
-<p>Many models today are <strong>multimodal</strong>, which means they can accept more than just text as input.  <strong>Vision LLMs</strong> (vLLMs) can accept images as part of the input, which means you can feed them sketches or photos or screenshots. A common misconception is that these are run through a separate process for OCR or image analysis, but these inputs are actually turned into yet more token integers which are processed in the same way as text.</p>
-<h2 id="chat-templated-prompts">Chat templated prompts</h2>
-<p>The first LLMs worked as completion engines - users were expected to provide a prompt which could then be completed by the model, such as the two examples shown above.</p>
-<p>This wasn't particularly user-friendly so models mostly switched to using <strong>chat templated prompts</strong> instead, which represent communication with the model as a simulated conversation.</p>
-<p>This is actually just a form of completion prompt with a special format that looks something like this.</p>
-<div class="codehilite"><pre><span></span><code>user: write a python function to download a file from a URL
-assistant:
-</code></pre></div>
-<p>The natural completion for this prompt is for the assistant (represented by the LLM) to answer the user's question with some Python code.</p>
-<p>LLMs are stateless: every time they execute a prompt they start from the same blank slate. </p>
-<p>To maintain the simulation of a conversation, the software that talks to the model needs to maintain its own state and replay the entire existing conversation every time the user enters a new chat prompt:</p>
-<div class="codehilite"><pre><span></span><code>user: write a python function to download a file from a URL
-assistant: def download_url(url):
-    return urllib.request.urlopen(url).read()
-user: use the requests library instead
-assistant:
-</code></pre></div>
-<p>Since providers charge for both input and output tokens, this means that as a conversation gets longer, each prompt becomes more expensive since the number of input tokens grows every time.</p>
-<h2 id="token-caching">Token caching</h2>
-<p>Most model providers offset this somewhat through a cheaper rate for <strong>cached input tokens</strong> - common token prefixes that have been processed within a short time period can be charged at a lower rate as the underlying infrastructure can cache and then reuse many of the expensive calculations used to process that input.</p>
-<p>Coding agents are designed with this optimization in mind - they avoid modifying earlier conversation content to ensure the cache is used as efficiently as possible.</p>
-<h2 id="calling-tools">Calling tools</h2>
-<p>The defining feature of an LLM <strong>agent</strong> is that agents can call <strong>tools</strong>. But what is a tool?</p>
-<p>A tool is a function that the agent harness makes available to the LLM.</p>
-<p>At the level of the prompt itself, that looks something like this:</p>
-<div class="codehilite"><pre><span></span><code>system: If you need to access the weather, end your turn with &lt;tool&gt;get_weather(city_name)&lt;/tool&gt;
-user: what&#39;s the weather in San Francisco?
-assistant:
-</code></pre></div>
-<p>Here the assistant might respond with the following text:</p>
-<div class="codehilite"><pre><span></span><code>&lt;tool&gt;get_weather(&quot;San Francisco&quot;)&lt;/tool&gt;
-</code></pre></div>
-<p>The model harness software then extracts that function call request from the response - probably with a regular expression - and executes the tool.</p>
-<p>It then returns the result to the model, with a constructed prompt that looks something like this:</p>
-<div class="codehilite"><pre><span></span><code>system: If you need to access the weather, end your turn with &lt;tool&gt;get_weather(city_name)&lt;/tool&gt;
-user: what&#39;s the weather in San Francisco?
-assistant: &lt;tool&gt;get_weather(&quot;San Francisco&quot;)&lt;/tool&gt;
-user: &lt;tool-result&gt;61°, Partly cloudy&lt;/tool-result&gt;
-assistant:
-</code></pre></div>
-<p>The LLM can now use that tool result to help generate an answer to the user's question.</p>
-<p>Most coding agents define a dozen or more tools for the agent to call. The most powerful of these allow for code execution - a <code>Bash()</code> tool for executing terminal commands, or a <code>Python()</code> tool for running Python code, for example.</p>
-<h2 id="the-system-prompt">The system prompt</h2>
-<p>In the previous example I included an initial message marked "system" which informed the LLM about the available tool and how to call it.</p>
-<p>Coding agents usually start every conversation with a system prompt like this, which is not shown to the user but provides instructions telling the model how it should behave.</p>
-<p>These system prompts can be hundreds of lines long. Here's <a href="https://github.com/openai/codex/blob/rust-v0.114.0/codex-rs/core/templates/model_instructions/gpt-5.2-codex_instructions_template.md">the system prompt for OpenAI Codex</a> as-of March 2026, which is a useful clear example of the kind of instructions that make these coding agents work.</p>
-<h2 id="reasoning">Reasoning</h2>
-<p>One of the big new advances in 2025 was the introduction of <strong>reasoning</strong> to the frontier model families.</p>
-<p>Reasoning, sometimes presented as <strong>thinking</strong> in the UI, is when a model spends additional time generating text that talks through the problem and its potential solutions before presenting a reply to the user.</p>
-<p>This can look similar to a person thinking out loud, and has a similar effect. Crucially it allows models to spend more time (and more tokens) working on a problem in order to hopefully get a better result.</p>
-<p>Reasoning is particularly useful for debugging issues in code as it gives the model an opportunity to navigate more complex code paths, mixing in tool calls and using the reasoning phase to follow function calls back to the potential source of an issue.</p>
-<p>Many coding agents include options for dialing up or down the reasoning effort level, encouraging models to spend more time chewing on harder problems.</p>
-<h2 id="llm-system-prompt-tools-in-a-loop">LLM + system prompt + tools in a loop</h2>
-<p>Believe it or not, that's most of what it takes to build a coding agent!</p>
-<p>If you want to develop a deeper understanding of how these things work, a useful exercise is to try building your own agent from scratch. A simple tool loop can be achieved with a few dozen lines of code on top of an existing LLM API.</p>
-<p>A <em>good</em> tool loop is a great deal more work than that, but the fundamental mechanics are surprisingly straightforward.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -1230,16 +1278,6 @@ assistant:
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Multilingual Reasoning Gym: Multilingual Scaling of Procedural Reasoning Environments]]></title>
-        <id>multilingual-reasoning-gym</id>
-        <link href="https://machinelearning.apple.com/research/multilingual-reasoning-gym"/>
-        <updated>2026-03-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We present the Multilingual Reasoning Gym, an extension of Reasoning Gym (Stojanovski et al., 2025), that procedurally generates verifiable reasoning problems across 14 languages. We translate templates for 94 tasks with native-speaker validation in 10 languages and targeted code or template adaptations to ensure linguistic naturalness. The Multilingual Reasoning Gym preserves the core benefits of the procedural generation approach used in the original Reasoning Gym, such as virtually unlimited problem instance generation and adjustable difficulty, and remains directly usable for Reinforcement…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[7 new open source AI tools you need right now…]]></title>
         <id>https://www.youtube.com/watch?v=Xn-gtHDsaPY</id>
         <link href="https://www.youtube.com/watch?v=Xn-gtHDsaPY"/>
@@ -1266,16 +1304,6 @@ assistant:
         <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
         <author>
             <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[LiTo: Surface Light Field Tokenization]]></title>
-        <id>lito</id>
-        <link href="https://machinelearning.apple.com/research/lito"/>
-        <updated>2026-03-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We propose a 3D latent representation that jointly models object geometry and view-dependent appearance. Most prior works focus on either reconstructing 3D geometry or predicting view-independent diffuse appearance, and thus struggle to capture realistic view-dependent effects. Our approach leverages that RGB-depth images provide samples of a surface light field. By encoding random subsamples of this surface light field into a compact set of latent vectors, our model learns to represent both geometry and appearance within a unified 3D latent space. This representation reproduces view-dependent…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1309,21 +1337,21 @@ assistant:
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[From model to agent: Equipping the Responses API with a computer environment]]></title>
-        <id>https://openai.com/index/equip-responses-api-computer-environment</id>
-        <link href="https://openai.com/index/equip-responses-api-computer-environment"/>
-        <updated>2026-03-11T11:00:00.000Z</updated>
-        <summary type="html"><![CDATA[How OpenAI built an agent runtime using the Responses API, shell tool, and hosted containers to run secure, scalable agents with files, tools, and state.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Wayfair boosts catalog accuracy and support speed with OpenAI]]></title>
         <id>https://openai.com/index/wayfair</id>
         <link href="https://openai.com/index/wayfair"/>
         <updated>2026-03-11T11:00:00.000Z</updated>
         <summary type="html"><![CDATA[Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[From model to agent: Equipping the Responses API with a computer environment]]></title>
+        <id>https://openai.com/index/equip-responses-api-computer-environment</id>
+        <link href="https://openai.com/index/equip-responses-api-computer-environment"/>
+        <updated>2026-03-11T11:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How OpenAI built an agent runtime using the Responses API, shell tool, and hosted containers to run secure, scalable agents with files, tools, and state.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1457,16 +1485,6 @@ assistant:
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[New ChatGPT Model: My Honest Review]]></title>
-        <id>https://www.youtube.com/shorts/g0AxIEMcEfM</id>
-        <link href="https://www.youtube.com/shorts/g0AxIEMcEfM"/>
-        <updated>2026-03-07T14:21:10.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How our open-source AI model SpeciesNet is helping to promote wildlife conservation]]></title>
         <id>https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/</id>
         <link href="https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/"/>
@@ -1513,16 +1531,6 @@ assistant:
         <summary type="html"><![CDATA[See how Balyasny built an AI research system with GPT-5.4, rigorous model evaluation, and agent workflows to transform investment analysis at scale.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Multi-Frequency Fusion for Robust Video Face Forgery Detection]]></title>
-        <id>multi-frequency-fusion</id>
-        <link href="https://machinelearning.apple.com/research/multi-frequency-fusion"/>
-        <updated>2026-03-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Current face video forgery detectors use wide or dual-stream backbones. We show that a single, lightweight fusion of two handcrafted cues can achieve higher accuracy with a much smaller model. Based on the Xception baseline model (21.9 million parameters), we build two detectors: LFWS, which adds a 1x1 convolution to combine a low-frequency Wavelet-Denoised Feature (WDF) with the phase-only Spatial-Phase Shallow Learning (SPSL) map, and LFWL, which merges WDF with Local Binary Patterns (LBP) in the same way. This extra module adds only 292 parameters, keeping the total at 21.9 million—smaller…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1801,26 +1809,6 @@ assistant:
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[OpenAI and Amazon announce strategic partnership]]></title>
-        <id>https://openai.com/index/amazon-partnership</id>
-        <link href="https://openai.com/index/amazon-partnership"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock]]></title>
-        <id>https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock</id>
-        <link href="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Stateful Runtime for Agents in Amazon Bedrock brings persistent orchestration, memory, and secure execution to multi-step AI workflows powered by OpenAI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Scaling AI for everyone]]></title>
         <id>https://openai.com/index/scaling-ai-for-everyone</id>
         <link href="https://openai.com/index/scaling-ai-for-everyone"/>
@@ -1831,11 +1819,31 @@ assistant:
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[OpenAI and Amazon announce strategic partnership]]></title>
+        <id>https://openai.com/index/amazon-partnership</id>
+        <link href="https://openai.com/index/amazon-partnership"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Joint Statement from OpenAI and Microsoft]]></title>
         <id>https://openai.com/index/continuing-microsoft-partnership</id>
         <link href="https://openai.com/index/continuing-microsoft-partnership"/>
         <updated>2026-02-27T05:30:00.000Z</updated>
         <summary type="html"><![CDATA[Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock]]></title>
+        <id>https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock</id>
+        <link href="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[Stateful Runtime for Agents in Amazon Bedrock brings persistent orchestration, memory, and secure execution to multi-step AI workflows powered by OpenAI.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -2017,26 +2025,6 @@ assistant:
         <summary type="html"><![CDATA[Feb 24, 2026]]></summary>
         <author>
             <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Why we no longer evaluate SWE-bench Verified]]></title>
-        <id>https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified</id>
-        <link href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified"/>
-        <updated>2026-02-23T11:00:00.000Z</updated>
-        <summary type="html"><![CDATA[SWE-bench Verified is increasingly contaminated and mismeasures frontier coding progress. Our analysis shows flawed tests and training leakage. We recommend SWE-bench Pro.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI announces Frontier Alliance Partners]]></title>
-        <id>https://openai.com/index/frontier-alliance-partners</id>
-        <link href="https://openai.com/index/frontier-alliance-partners"/>
-        <updated>2026-02-23T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI announces Frontier Alliance Partners to help enterprises move from AI pilots to production with secure, scalable agent deployments.]]></summary>
-        <author>
-            <name>OpenAI News</name>
         </author>
     </entry>
 </feed>
