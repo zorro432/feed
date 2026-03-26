@@ -22,6 +22,364 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-25 datetime="2026-03-25T21:57:05.000Z">2026-03-25</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-25 datetime="2026-03-25T21:57:05.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/25/datasette-files-s3/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">datasette-files-s3 0.1a1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/25/datasette-files-s3/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: datasette-files-s3 0.1a1
+A backend for datasette-files that adds the ability to store and retrieve files using an S3 bucket. This release added a mechanism for fetching S3 configuration periodically from a URL, which means we can use time limited IAM credentials that are restricted to a prefix within a bucket.
+Tags: s3, datasette</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/25/thoughts-on-slowing-the-fuck-down/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Thoughts on slowing the fuck down</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/25/thoughts-on-slowing-the-fuck-down/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Thoughts on slowing the fuck down
+Pi agent framework used by OpenClaw, giving considerable credibility to his opinions on current trends in agentic engineering. He&#x27;s not impressed:
+We have basically given up all discipline and agency for a sort of addiction, where your highest goal is to produce the largest amount of code in the shortest amount of time. Consequences be damned.
+Agents and humans both make mistakes, but agent mistakes accumulate much faster:
+A human is a bottleneck. A human cannot shit out 20,000 lines of code in a few hours. Even if the human creates such booboos at high frequency, there&#x27;s only so many booboos the human can introduce in a codebase per day. [...]
+With an orchestrated army of agents, there is no bottleneck, no human pain. These tiny little harmless booboos suddenly compound at a rate that&#x27;s unsustainable. You have removed yourself from the loop, so you don&#x27;t even know that all the innocent booboos have formed a monster of a codebase. You only feel the pain when it&#x27;s too late. [...]
+You have zero fucking idea what&#x27;s going on because you delegated all your agency to your agents. You let them run free, and they are merchants of complexity.
+I think Mario is exactly right about this. Agents let us move so much faster, but this speed also means that changes which we would normally have considered over the course of weeks are landing in a matter of hours.
+It&#x27;s so easy to let the codebase evolve outside of our abilities to reason clearly about it. Cognitive debt is real.
+Mario recommends slowing down:
+Give yourself time to think about what you&#x27;re actually building and why. Give yourself an opportunity to say, fuck no, we don&#x27;t need this. Set yourself limits on how much code you let the clanker generate per day, in line with your ability to actually review the code.
+Anything that defines the gestalt of your system, that is architecture, API, and so on, write it by hand. [...]
+I&#x27;m not convinced writing by hand is the best way to address this, but it&#x27;s absolutely the case that we need the discipline to find a new balance of speed v.s. mental thoroughness now that typing out the code is no longer anywhere close to being the bottleneck on writing software.
+
+
+    
+Tags: ai, generative-ai, llms, coding-agents, cognitive-debt, agentic-engineering</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/25/datasette-llm/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">datasette-llm 0.1a1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/25/datasette-llm/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: datasette-llm 0.1a1
+New release of the base plugin that makes models from LLM available for use by other Datasette plugins such as datasette-enrichments-llm.
+New register_llm_purposes() plugin hook and get_purposes() function for retrieving registered purpose strings. #1
+One of the responsibilities of this plugin is to configure which models are used for which purposes, so you can say in one place &quot;data enrichment uses GPT-5.4-nano but SQL query assistance happens using Sonnet 4.6&quot;, for example.
+Plugins that depend on this can use model &#x3D; await llm.model(purpose&#x3D;&quot;enrichment&quot;) to indicate the purpose of the prompts they wish to execute against the model. Those plugins can now also use the new register_llm_purposes() hook to register those purpose strings, which means future plugins can list those purposes in one place to power things like an admin UI for assigning models to purposes.
+Tags: annotated-release-notes, llm, datasette, plugins</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/25/litellm-hack/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">LiteLLM Hack: Were You One of the 47,000?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/25/litellm-hack/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>LiteLLM Hack: Were You One of the 47,000?
+BigQuery PyPI dataset to determine how many downloads there were of the exploited LiteLLM packages during the 46 minute period they were live on PyPI. The answer was 46,996 across the two compromised release versions (1.82.7 and 1.82.8).
+They also identified 2,337 packages that depended on LiteLLM - 88% of which did not pin versions in a way that would have avoided the exploited version.
+
+    
+Via @hnykda
+Tags: packaging, pypi, python, security, supply-chain</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Google DeepMind News</button>
+                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/"
+                        open
+                      >
+                        <summary class="article-expander__title">Lyria 3 Pro: Create longer tracks in more</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria-3-Pro_thumbnail.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/"
+                        open
+                      >
+                        <summary class="article-expander__title">Build with Lyria 3, our newest music generation model</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/BuildWithLyria3_social.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Lyria 3 is now available in paid preview through the Gemini API and for testing in Google AI Studio.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/innovation-and-ai/technology/ai/lyria-3-pro/"
+                        open
+                      >
+                        <summary class="article-expander__title">Lyria 3 Pro: Create longer tracks in more Google products</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/ai/lyria-3-pro/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria-3-Pro_thumbnail.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>We are bringing Lyria 3 to the tools where professionals work and create every day.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/our-approach-to-the-model-spec"
+                        open
+                      >
+                        <summary class="article-expander__title">Inside our approach to the Model Spec</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/our-approach-to-the-model-spec">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how OpenAI’s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/safety-bug-bounty"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing the OpenAI Safety Bug Bounty program</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/safety-bug-bounty">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="exclusive-self-attention"
+                        open
+                      >
+                        <summary class="article-expander__title">Exclusive Self Attention</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/exclusive-self-attention">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>We introduce exclusive self attention (XSA), a simple modification of self attention (SA) that improves Transformer’s sequence modeling performance. The key idea is to constrain attention to capture only information orthogonal to the token’s own value vector (thus excluding information of self position), encouraging better context modeling. Evaluated on the standard language modeling task, XSA consistently outperforms SA across model sizes up to 2.7B parameters and shows increasingly larger gains as sequence length grows.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="latent-lookahead"
+                        open
+                      >
+                        <summary class="article-expander__title">Thinking into the Future: Latent Lookahead Training for Transformers</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/latent-lookahead">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>This paper was accepted at the Workshop on Latent &amp; Implicit Thinking – Going Beyond CoT Reasoning 2026 at ICLR.
+Autoregressive language models trained with next-token prediction generate text by sampling one discrete token at a time. Although very scalable, this objective forces the model to commit at every step, preventing it from exploring or reflecting upon multiple plausible continuations. Furthermore, the compute allocation across tokens is uniform; every token is formed based on a single forward-pass, potentially limiting the model’s expressiveness in cases where difficult tokens…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Changelog</button>
+                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/changelog/03-25-26"
+                        open
+                      >
+                        <summary class="article-expander__title">Self-hosted Cloud Agents</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/03-25-26">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-03-25-26.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Mar 25, 2026</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-24 datetime="2026-03-24T23:57:33.000Z">2026-03-24</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-24 datetime="2026-03-24T23:57:33.000Z"></time>
           </button>
@@ -597,6 +955,40 @@ Tags: starlette</span>
                               <span>This paper was accepted at the Workshop on Navigating and Addressing Data Problems for Foundation Models at ICLR 2026.
 Language models achieve impressive performance on a variety of knowledge, language, and reasoning tasks due to the scale and diversity of pretraining data available. The standard training recipe is a two-stage paradigm: pretraining first on the full corpus of data followed by specialization on a subset of high quality, specialized data from the full corpus. In the multi-domain setting, this involves continued pretraining of multiple models on each specialized domain, referred…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/fast-regex-search"
+                        open
+                      >
+                        <summary class="article-expander__title">Fast regex search: indexing text for agent tools</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/fast-regex-search">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/fast-regex-search-og.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>How we&#x27;re building indexes for regular expression search so agents can find text in large monorepos without the 15-second ripgrep waits.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;45
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1932,121 +2324,6 @@ Tags: ai, openai, generative-ai, llms, llm, vision-llms, llm-pricing, pelican-ri
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/17/llm/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">llm 0.29</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/17/llm/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: llm 0.29
-Adds support for OpenAI&#x27;s new models gpt-5.4, gpt-5.4-mini, and gpt-5.4-nano.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/17/tim-schilling/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Tim Schilling</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/17/tim-schilling/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>If you do not understand the ticket, if you do not understand the solution, or if you do not understand the feedback on your PR, then your use of LLM is hurting Django as a whole. [...]
-For a reviewer, it’s demoralizing to communicate with a facade of a human.
-This is because contributing to open source, especially Django, is a communal endeavor. Removing your humanity from that experience makes that endeavor more difficult. If you use an LLM to contribute to Django, it needs to be as a complementary tool, not as your vehicle.
-
-— Tim Schilling, Give Django your time and money, not your tokens
-Tags: ai-ethics, open-source, generative-ai, ai, django, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Subagents</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Agentic Engineering Patterns &gt;
-LLMs are restricted by their context limit - how many tokens they can fit in their working memory at any given time. These values have not increased much over the past two years even as the LLMs themselves have seen dramatic improvements in their abilities - they generally top out at around 1,000,000, and benchmarks frequently report better quality results below 200,000.
-Carefully managing the context such that it fits within those limits is critical to getting great results out of a model.
-Subagents provide a simple but effective way to handle larger tasks without burning through too much of the coding agent’s valuable top-level context.
-When a coding agent uses a subagent it effectively dispatches a fresh copy of itself to achieve a specified goal, with a new context window that starts with a fresh prompt.
-Claude Code’s Explore subagent
-Claude Code uses subagents extensively as part of its standard way of working. Let&#x27;s use that as an illustrative example.
-Any time you start a new task against an existing repo Claude Code first needs to explore that repo to figure out its general shape and find relevant information needed to achieve that task.
-It does this by constructing a prompt and dispatching a subagent to perform that exploration and return a description of what it finds.
-I kicked off a Claude Code session with a screenshot of a page from my guide and this prompt:
-Make the chapter diffs also show which characters have changed in this diff view with a darker color of red or green for the individually changed segments of text within the line
-Here&#x27;s the transcript of that session.
-Claude Code started by running an “Explore” subagent with the following starter prompt:
-Find the code that implements the diff view for &quot;chapters&quot; in this Django blog. I need to find:
-Templates that render diffs (look for diff-related HTML/CSS with red/green backgrounds)
-Python code that generates diffs (look for difflib usage or similar)
-Any JavaScript related to diff rendering
-CSS styles for the diff view (red/green line backgrounds)
-Search thoroughly - check templates/, static/, blog/ directories. Look for keywords like &quot;diff&quot;, &quot;chapter&quot;, &quot;revision&quot;, &quot;history&quot;, &quot;compare&quot;.
-Subagents work similar to any other tool call: the parent agent dispatches them just as they would any other tool and waits for the response. It&#x27;s interesting to see models prompt themselves in this way - they generally have good taste in prompting strategies.
-The Explore subagent churned away for a few seconds and returned a response that started like this:
-Perfect! Now let me create a comprehensive summary with all the findings:
-Summary: Chapter Diff View Implementation
-I found the complete implementation of the diff view for chapters in this Django blog. Here are the key components:
-1. Python Code - Diff Generation (/home/user/simonwillisonblog/guides/views.py, lines 139-202)
-The chapter_changes() view function uses Python&#x27;s built-in difflib.unified_diff() to generate diffs: […]
-The full subagent response included all of the details the parent agent needed in order to start editing the code to address my original request.
-Parallel subagents
-This Explore subagent is the simplest example of how subagents can work, with the parent agent pausing while the subagent runs. The principle advantage of this kind of subagent is that it can work with a fresh context in a way that avoids spending tokens from the parent’s available limit.
-Subagents can also provide a significant performance boost by having the parent agent run multiple subagents at the same time, potentially also using faster and cheaper models such as Claude Haiku to accelerate those tasks.
-Coding agents that support subagents can use them based on your instructions. Try prompts like this:
-
-Use subagents to find and update all of the templates that are affected by this change.
-
-
-For tasks that involve editing several files - and where those files are not dependent on each other - this can offer a significant speed boost.
-Specialist subagents
-Some coding agents allow subagents to run with further customizations, often in the form of a custom system prompt or custom tools or both, which allow those subagents to take on a different role.
-These roles can cover a variety of useful specialties:
-A code reviewer agent can review code and identify bugs, feature gaps or weaknesses in the design.
-A test runner agent can run the test. This is particularly worthwhile if your test suite is large and verbose, as the subagent can hide the full test output from the main coding agent and report back with just details of any failures.
-A debugger agent can specialize in debugging problems, spending its token allowance reasoning though the codebase and running snippets of code to help isolate steps to reproduce and determine the root cause of a bug.
-While it can be tempting to go overboard breaking up tasks across dozens of different specialist subagents, it&#x27;s important to remember that the main value of subagents is in preserving that valuable root context and managing token-heavy operations. Your root coding agent is perfectly capable of debugging or reviewing its own output provided it has the tokens to spare.
-Official documentation
-Several popular coding agents support subagents, each with their own documentation on how to use them:
-OpenAI Codex subagents
-Claude subagents
-Gemini CLI subagents
-Mistral Vibe subagents
-OpenCode agents
-Subagents in Visual Studio Code
-Cursor Subagents
-Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;5
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2161,7 +2438,7 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;10
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2350,60 +2627,11 @@ Tags: parallel-agents, coding-agents, generative-ai, agentic-engineering, ai, ll
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-16 datetime="2026-03-16T23:41:17.000Z">2026-03-16</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-16 datetime="2026-03-16T23:41:17.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-16 datetime="2026-03-16T13:05:30.000Z">2026-03-16</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-16 datetime="2026-03-16T13:05:30.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing Mistral Small 4</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Introducing Mistral Small 4
-Mistral Small 4 is the first Mistral model to unify the capabilities of our flagship models, Magistral for reasoning, Pixtral for multimodal, and Devstral for agentic coding, into a single, versatile model.
-It supports reasoning_effort&#x3D;&quot;none&quot; or reasoning_effort&#x3D;&quot;high&quot;, with the latter providing &quot;equivalent verbosity to previous Magistral models&quot;. 
-The new model is 242GB on Hugging Face.
-I tried it out via the Mistral API using llm-mistral:
-llm install llm-mistral
-llm mistral refresh
-llm -m mistral/mistral-small-2603 &quot;Generate an SVG of a pelican riding a bicycle&quot;
-
-
-I couldn&#x27;t find a way to set the reasoning effort in their API documentation, so hopefully that&#x27;s a feature which will land soon.
-Update 23rd March: Here&#x27;s new documentation for the reasoning_effort parameter.
-Also from Mistral today and fitting their -stral naming convention is Leanstral, an open weight model that is specifically tuned to help output the Lean 4 formally verifiable coding language. I haven&#x27;t explored Lean at all so I have no way to credibly evaluate this, but it&#x27;s interesting to see them target one specific language in this way.
-
-
-    
-Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reasoning, llm-release</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2427,7 +2655,7 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2460,40 +2688,6 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>A deep dive into why Codex Security doesn’t rely on traditional SAST, instead using AI-driven constraint reasoning and validation to find real vulnerabilities with fewer false positives.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="rubicap"
-                        open
-                      >
-                        <summary class="article-expander__title">RubiCap: Rubric-Guided Reinforcement Learning for Dense Image Captioning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/rubicap">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Dense image captioning is critical for cross-modal alignment in vision-language pretraining and text-to-image generation, but scaling expert-quality annotations is prohibitively expensive. While synthetic captioning via strong vision-language models (VLMs) is a practical alternative, supervised distillation often yields limited output diversity and weak generalization. Reinforcement learning (RL) could overcome these limitations, but its successes have so far been concentrated in verifiable domains that rely on deterministic checkers — a luxury not available in open-ended captioning. We…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -2605,40 +2799,6 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="macereason-math"
-                        open
-                      >
-                        <summary class="article-expander__title">mAceReason-Math: A Dataset of High-Quality Multilingual Math Problems Ready For RLVR</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/macereason-math">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Reinforcement Learning with Verifiable Rewards (RLVR) has been successfully applied to significantly boost the capabilities of pretrained large language models, especially in the math and logic problem domains. However, current research and available training datasets remain English-centric. While multilingual training data and benchmarks have been created in the past, they were not created with RLVR and current model capability in mind, and their level of difficulty is often too low to provide appropriate training signals for current models. To address this gap, we provide mAceReason-Math, a…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -2796,7 +2956,7 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2903,26 +3063,6 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/new-plugins"
-                        open
-                      >
-                        <summary class="article-expander__title">Over 30 new plugins join the Cursor Marketplace</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/new-plugins">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/opengraph-marketplace-final.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Extend Cursor with prebuilt capabilities in our marketplace.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://cursor.com/blog/cursorbench"
                         open
                       >
@@ -2933,6 +3073,26 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                             <span class="media-object__text">
                               <span>We use a hybrid online-offline eval process to keep our understanding of model quality aligned with what developers actually do.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;14
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/new-plugins"
+                        open
+                      >
+                        <summary class="article-expander__title">Over 30 new plugins join the Cursor Marketplace</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/new-plugins">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/opengraph-marketplace-final.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Extend Cursor with prebuilt capabilities in our marketplace.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3406,14 +3566,14 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/descript"
+                        data-accordion-key="https://openai.com/index/codex-security-now-in-research-preview"
                         open
                       >
-                        <summary class="article-expander__title">How Descript enables multilingual video dubbing at scale</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/descript">
+                        <summary class="article-expander__title">Codex Security: now in research preview</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/codex-security-now-in-research-preview">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.</span>
+                              <span>Codex Security is an AI application security agent that analyzes project context to detect, validate, and patch complex vulnerabilities with higher confidence and less noise.</span>
                             </span>
                           </div>
                         </a>
@@ -3423,14 +3583,14 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/codex-security-now-in-research-preview"
+                        data-accordion-key="https://openai.com/index/descript"
                         open
                       >
-                        <summary class="article-expander__title">Codex Security: now in research preview</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/codex-security-now-in-research-preview">
+                        <summary class="article-expander__title">How Descript enables multilingual video dubbing at scale</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/descript">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Codex Security is an AI application security agent that analyzes project context to detect, validate, and patch complex vulnerabilities with higher confidence and less noise.</span>
+                              <span>Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.</span>
                             </span>
                           </div>
                         </a>
@@ -3539,14 +3699,14 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/reasoning-models-chain-of-thought-controllability"
+                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4"
                         open
                       >
-                        <summary class="article-expander__title">Reasoning models struggle to control their chains of thought, and that’s good</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability">
+                        <summary class="article-expander__title">Introducing GPT-5.4</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.</span>
+                              <span>Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.</span>
                             </span>
                           </div>
                         </a>
@@ -3556,14 +3716,14 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4"
+                        data-accordion-key="https://openai.com/index/reasoning-models-chain-of-thought-controllability"
                         open
                       >
-                        <summary class="article-expander__title">Introducing GPT-5.4</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4">
+                        <summary class="article-expander__title">Reasoning models struggle to control their chains of thought, and that’s good</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/reasoning-models-chain-of-thought-controllability">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.</span>
+                              <span>OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.</span>
                             </span>
                           </div>
                         </a>
@@ -3715,7 +3875,7 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-03-05-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Mar 5, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4023,11 +4183,11 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-3-instant-system-card"
+                        data-accordion-key="https://openai.com/index/gpt-5-3-instant"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.3 Instant System Card</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant-system-card">
+                        <summary class="article-expander__title">GPT-5.3 Instant: Smoother, more useful everyday conversations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -4040,11 +4200,11 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-3-instant"
+                        data-accordion-key="https://openai.com/index/gpt-5-3-instant-system-card"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.3 Instant: Smoother, more useful everyday conversations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant">
+                        <summary class="article-expander__title">GPT-5.3 Instant System Card</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-3-instant-system-card">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -4308,23 +4468,6 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/scaling-ai-for-everyone"
-                        open
-                      >
-                        <summary class="article-expander__title">Scaling AI for everyone</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/scaling-ai-for-everyone">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/amazon-partnership"
                         open
                       >
@@ -4350,6 +4493,23 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/scaling-ai-for-everyone"
+                        open
+                      >
+                        <summary class="article-expander__title">Scaling AI for everyone</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/scaling-ai-for-everyone">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.</span>
                             </span>
                           </div>
                         </a>
@@ -4461,26 +4621,6 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/"
-                        open
-                      >
-                        <summary class="article-expander__title">Nano Banana 2: Combining Pro capabilities with lightning-fast speed</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/NB2_SS.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Our latest image generation model offers advanced world knowledge, production-ready specs, subject consistency and more, all at Flash speed.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;21
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://blog.google/innovation-and-ai/technology/developers-tools/build-with-nano-banana-2/"
                         open
                       >
@@ -4491,6 +4631,26 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                             <span class="media-object__text">
                               <span>Nano Banana 2 (Gemini 3.1 Flash Image) delivers Pro-level intelligence and fidelity for all image applications.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;16
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/"
+                        open
+                      >
+                        <summary class="article-expander__title">Nano Banana 2: Combining Pro capabilities with lightning-fast speed</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/NB2_SS.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Our latest image generation model offers advanced world knowledge, production-ready specs, subject consistency and more, all at Flash speed.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;21
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4628,26 +4788,6 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/bugbot-autofix"
-                        open
-                      >
-                        <summary class="article-expander__title">Closing the code review loop with Bugbot Autofix</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/bugbot-autofix">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/opengraph-bugbot-autofix.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Bugbot Autofix can find and automatically fix issues in PRs by spawning cloud agents to test your changes.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://cursor.com/blog/third-era"
                         open
                       >
@@ -4658,6 +4798,26 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
                             <span class="media-object__text">
                               <span>A third era of AI software development is emerging as autonomous cloud agents take on larger tasks over longer timescales.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;10
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/bugbot-autofix"
+                        open
+                      >
+                        <summary class="article-expander__title">Closing the code review loop with Bugbot Autofix</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/bugbot-autofix">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/opengraph-bugbot-autofix.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Bugbot Autofix can find and automatically fix issues in PRs by spawning cloud agents to test your changes.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4802,123 +4962,10 @@ Tags: ai, generative-ai, llms, llm, mistral, pelican-riding-a-bicycle, llm-reaso
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-02-24 datetime="2026-02-24T13:40:00.000Z">2026-02-24</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-02-24 datetime="2026-02-24T13:40:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/arvind-kc-chief-people-officer"
-                        open
-                      >
-                        <summary class="article-expander__title">Arvind KC appointed Chief People Officer</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/arvind-kc-chief-people-officer">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI appoints Arvind KC as Chief People Officer to help scale the company, strengthen its culture, and lead how work evolves in the age of AI.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Blog</button>
-                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/agent-computer-use"
-                        open
-                      >
-                        <summary class="article-expander__title">Cursor agents can now control their own computers</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/agent-computer-use">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/opengraph-computer-use.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Cloud agents use the software they create to verify changes and demo their work.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Changelog</button>
-                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/changelog/02-24-26"
-                        open
-                      >
-                        <summary class="article-expander__title">Cloud Agents with Computer Use</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/02-24-26">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/changelog-02-24-26.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Feb 24, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23521492684">
-        <time id="build-timestamp" datetime="2026-03-25T02:08:30.786Z">2026-03-25T02:08:30.786Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23574336957">
+        <time id="build-timestamp" datetime="2026-03-26T02:22:28.370Z">2026-03-26T02:22:28.370Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>

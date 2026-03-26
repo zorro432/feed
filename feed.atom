@@ -1,10 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-03-25T02:08:30.815Z</id>
+    <id>urn:2026-03-26T02:22:28.400Z</id>
     <title>osmos::feed</title>
-    <updated>2026-03-25T02:08:30.815Z</updated>
+    <updated>2026-03-26T02:22:28.400Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[datasette-files-s3 0.1a1]]></title>
+        <id>https://simonwillison.net/2026/Mar/25/datasette-files-s3/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/25/datasette-files-s3/#atom-everything"/>
+        <updated>2026-03-25T21:57:05.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-files-s3/releases/tag/0.1a1">datasette-files-s3 0.1a1</a></p>
+    <p>A backend for <a href="https://github.com/datasette/datasette-files">datasette-files</a> that adds the ability to store and retrieve files using an S3 bucket. This release added <a href="https://github.com/datasette/datasette-files-s3/blob/main/README.md#credentials-broker-response">a mechanism</a> for fetching S3 configuration periodically from a URL, which means we can use time limited IAM credentials that are restricted to a prefix within a bucket.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/s3">s3</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Thoughts on slowing the fuck down]]></title>
+        <id>https://simonwillison.net/2026/Mar/25/thoughts-on-slowing-the-fuck-down/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/25/thoughts-on-slowing-the-fuck-down/#atom-everything"/>
+        <updated>2026-03-25T21:47:17.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://news.ycombinator.com/item?id=47517539">Thoughts on slowing the fuck down</a></strong></p>
+Mario Zechner created the <a href="https://github.com/badlogic/pi-mono">Pi agent framework</a> used by OpenClaw, giving considerable credibility to his opinions on current trends in agentic engineering. He's not impressed:</p>
+<blockquote>
+<p>We have basically given up all discipline and agency for a sort of addiction, where your highest goal is to produce the largest amount of code in the shortest amount of time. Consequences be damned.</p>
+</blockquote>
+<p>Agents and humans both make mistakes, but agent mistakes accumulate much faster:</p>
+<blockquote>
+<p>A human is a bottleneck. A human cannot shit out 20,000 lines of code in a few hours. Even if the human creates such booboos at high frequency, there's only so many booboos the human can introduce in a codebase per day. [...]</p>
+<p>With an orchestrated army of agents, there is no bottleneck, no human pain. These tiny little harmless booboos suddenly compound at a rate that's unsustainable. You have removed yourself from the loop, so you don't even know that all the innocent booboos have formed a monster of a codebase. You only feel the pain when it's too late. [...]</p>
+<p>You have zero fucking idea what's going on because you delegated all your agency to your agents. You let them run free, and they are merchants of complexity.</p>
+</blockquote>
+<p>I think Mario is exactly right about this. Agents let us move <em>so much faster</em>, but this speed also means that changes which we would normally have considered over the course of weeks are landing in a matter of hours.</p>
+<p>It's so easy to let the codebase evolve outside of our abilities to reason clearly about it. <a href="https://simonwillison.net/tags/cognitive-debt/">Cognitive debt</a> is real.</p>
+<p>Mario recommends slowing down:</p>
+<blockquote>
+<p>Give yourself time to think about what you're actually building and why. Give yourself an opportunity to say, fuck no, we don't need this. Set yourself limits on how much code you let the clanker generate per day, in line with your ability to actually review the code.</p>
+<p>Anything that defines the gestalt of your system, that is architecture, API, and so on, write it by hand. [...]</p>
+</blockquote>
+<p>I'm not convinced writing by hand is the best way to address this, but it's absolutely the case that we need the discipline to find a new balance of speed v.s. mental thoroughness now that typing out the code is no longer anywhere close to being the bottleneck on writing software.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/cognitive-debt">cognitive-debt</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette-llm 0.1a1]]></title>
+        <id>https://simonwillison.net/2026/Mar/25/datasette-llm/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/25/datasette-llm/#atom-everything"/>
+        <updated>2026-03-25T21:24:31.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-llm/releases/tag/0.1a1">datasette-llm 0.1a1</a></p>
+    <p>New release of the base plugin that makes models from <a href="https://llm.datasette.io/">LLM</a> available for use by other Datasette plugins such as <a href="https://github.com/datasette/datasette-enrichments-llm">datasette-enrichments-llm</a>.</p>
+<blockquote>
+<ul>
+<li>New <a href="https://github.com/datasette/datasette-llm/blob/main/README.md#register_llm_purposes"><code>register_llm_purposes()</code> plugin hook</a> and <code>get_purposes()</code> function for retrieving registered purpose strings. <a href="https://github.com/datasette/datasette-llm/issues/1">#1</a></li>
+</ul>
+</blockquote>
+<p>One of the responsibilities of this plugin is to configure which models are used for which purposes, so you can say in one place "data enrichment uses GPT-5.4-nano but SQL query assistance happens using Sonnet 4.6", for example.</p>
+<p>Plugins that depend on this can use <code>model = await llm.model(purpose="enrichment")</code> to indicate the purpose of the prompts they wish to execute against the model. Those plugins can now also use the new <code>register_llm_purposes()</code> hook to register those purpose strings, which means future plugins can list those purposes in one place to power things like an admin UI for assigning models to purposes.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/annotated-release-notes">annotated-release-notes</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/plugins">plugins</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[LiteLLM Hack: Were You One of the 47,000?]]></title>
+        <id>https://simonwillison.net/2026/Mar/25/litellm-hack/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/25/litellm-hack/#atom-everything"/>
+        <updated>2026-03-25T17:21:04.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://futuresearch.ai/blog/litellm-hack-were-you-one-of-the-47000/">LiteLLM Hack: Were You One of the 47,000?</a></strong></p>
+Daniel Hnyk used the <a href="https://console.cloud.google.com/bigquery?p=bigquery-public-data&amp;d=pypi">BigQuery PyPI dataset</a> to determine how many downloads there were of <a href="https://simonwillison.net/2026/Mar/24/malicious-litellm/">the exploited LiteLLM packages</a> during the 46 minute period they were live on PyPI. The answer was 46,996 across the two compromised release versions (1.82.7 and 1.82.8).</p>
+<p>They also identified 2,337 packages that depended on LiteLLM - 88% of which did not pin versions in a way that would have avoided the exploited version.
+
+    <p><small></small>Via <a href="https://twitter.com/hnykda/status/2036834100342825369">@hnykda</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/packaging">packaging</a>, <a href="https://simonwillison.net/tags/pypi">pypi</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/supply-chain">supply-chain</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lyria 3 Pro: Create longer tracks in more]]></title>
+        <id>https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/</id>
+        <link href="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/"/>
+        <updated>2026-03-25T16:01:39.000Z</updated>
+        <summary type="html"><![CDATA[Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Build with Lyria 3, our newest music generation model]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/"/>
+        <updated>2026-03-25T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Lyria 3 is now available in paid preview through the Gemini API and for testing in Google AI Studio.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Lyria 3 Pro: Create longer tracks in more Google products]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/ai/lyria-3-pro/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/ai/lyria-3-pro/"/>
+        <updated>2026-03-25T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We are bringing Lyria 3 to the tools where professionals work and create every day.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Inside our approach to the Model Spec]]></title>
+        <id>https://openai.com/index/our-approach-to-the-model-spec</id>
+        <link href="https://openai.com/index/our-approach-to-the-model-spec"/>
+        <updated>2026-03-25T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how OpenAI’s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing the OpenAI Safety Bug Bounty program]]></title>
+        <id>https://openai.com/index/safety-bug-bounty</id>
+        <link href="https://openai.com/index/safety-bug-bounty"/>
+        <updated>2026-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Exclusive Self Attention]]></title>
+        <id>exclusive-self-attention</id>
+        <link href="https://machinelearning.apple.com/research/exclusive-self-attention"/>
+        <updated>2026-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We introduce exclusive self attention (XSA), a simple modification of self attention (SA) that improves Transformer’s sequence modeling performance. The key idea is to constrain attention to capture only information orthogonal to the token’s own value vector (thus excluding information of self position), encouraging better context modeling. Evaluated on the standard language modeling task, XSA consistently outperforms SA across model sizes up to 2.7B parameters and shows increasingly larger gains as sequence length grows.]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Thinking into the Future: Latent Lookahead Training for Transformers]]></title>
+        <id>latent-lookahead</id>
+        <link href="https://machinelearning.apple.com/research/latent-lookahead"/>
+        <updated>2026-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This paper was accepted at the Workshop on Latent & Implicit Thinking – Going Beyond CoT Reasoning 2026 at ICLR.
+Autoregressive language models trained with next-token prediction generate text by sampling one discrete token at a time. Although very scalable, this objective forces the model to commit at every step, preventing it from exploring or reflecting upon multiple plausible continuations. Furthermore, the compute allocation across tokens is uniform; every token is formed based on a single forward-pass, potentially limiting the model’s expressiveness in cases where difficult tokens…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Self-hosted Cloud Agents]]></title>
+        <id>https://cursor.com/changelog/03-25-26</id>
+        <link href="https://cursor.com/changelog/03-25-26"/>
+        <updated>2026-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Mar 25, 2026]]></summary>
+        <author>
+            <name>Cursor Changelog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Auto mode for Claude Code]]></title>
         <id>https://simonwillison.net/2026/Mar/24/auto-mode-for-claude-code/#atom-everything</id>
@@ -303,6 +465,16 @@ What exactly makes a particular image unsafe? Systematically differentiating bet
 Language models achieve impressive performance on a variety of knowledge, language, and reasoning tasks due to the scale and diversity of pretraining data available. The standard training recipe is a two-stage paradigm: pretraining first on the full corpus of data followed by specialization on a subset of high quality, specialized data from the full corpus. In the multi-domain setting, this involves continued pretraining of multiple models on each specialized domain, referred…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Fast regex search: indexing text for agent tools]]></title>
+        <id>https://cursor.com/blog/fast-regex-search</id>
+        <link href="https://cursor.com/blog/fast-regex-search"/>
+        <updated>2026-03-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How we're building indexes for regular expression search so agents can find text in large monorepos without the 15-second ripgrep waits.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
         </author>
     </entry>
     <entry>
@@ -973,32 +1145,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[llm 0.29]]></title>
-        <id>https://simonwillison.net/2026/Mar/17/llm/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/17/llm/#atom-everything"/>
-        <updated>2026-03-17T19:24:10.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.29">llm 0.29</a></p>
-    <p>Adds support for OpenAI's new models <code>gpt-5.4</code>, <code>gpt-5.4-mini</code>, and <code>gpt-5.4-nano</code>.</p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Tim Schilling]]></title>
-        <id>https://simonwillison.net/2026/Mar/17/tim-schilling/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/17/tim-schilling/#atom-everything"/>
-        <updated>2026-03-17T16:13:37.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://www.better-simple.com/django/2026/03/16/give-django-your-time-and-money/"><p>If you do not understand the ticket, if you do not understand the solution, or if you do not understand the feedback on your PR, then your use of LLM is hurting Django as a whole. [...]</p>
-<p>For a reviewer, it’s demoralizing to communicate with a facade of a human.</p>
-<p>This is because contributing to open source, especially Django, is a communal endeavor. Removing your humanity from that experience makes that endeavor more difficult. If you use an LLM to contribute to Django, it needs to be as a complementary tool, not as your vehicle.</p></blockquote>
-<p class="cite">&mdash; <a href="https://www.better-simple.com/django/2026/03/16/give-django-your-time-and-money/">Tim Schilling</a>, Give Django your time and money, not your tokens</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/django">django</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Measuring progress toward AGI: A cognitive framework]]></title>
         <id>https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/</id>
         <link href="https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/"/>
@@ -1036,79 +1182,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
         <author>
             <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Subagents]]></title>
-        <id>https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything</id>
-        <link href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything"/>
-        <updated>2026-03-17T12:32:28.000Z</updated>
-        <summary type="html"><![CDATA[<p><em><a href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic Engineering Patterns</a> &gt;</em></p>
-    <p>LLMs are restricted by their <strong>context limit</strong> - how many tokens they can fit in their working memory at any given time. These values have not increased much over the past two years even as the LLMs themselves have seen dramatic improvements in their abilities - they generally top out at around 1,000,000, and benchmarks frequently report better quality results below 200,000.</p>
-<p>Carefully managing the context such that it fits within those limits is critical to getting great results out of a model.</p>
-<p><strong>Subagents</strong> provide a simple but effective way to handle larger tasks without burning through too much of the coding agent’s valuable top-level context.</p>
-<p>When a coding agent uses a subagent it effectively dispatches a fresh copy of itself to achieve a specified goal, with a new context window that starts with a fresh prompt.</p>
-<h2 id="claude-codes-explore-subagent">Claude Code’s Explore subagent</h2>
-<p>Claude Code uses subagents extensively as part of its standard way of working. Let's use that as an illustrative example.</p>
-<p>Any time you start a new task against an existing repo Claude Code first needs to explore that repo to figure out its general shape and find relevant information needed to achieve that task.</p>
-<p>It does this by constructing a prompt and dispatching a subagent to perform that exploration and return a description of what it finds.</p>
-<p>I kicked off a Claude Code session with a screenshot of <a href="https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/changes/">a page from my guide</a> and this prompt:</p>
-<blockquote>
-<p>Make the chapter diffs also show which characters have changed in this diff view with a darker color of red or green for the individually changed segments of text within the line</p>
-</blockquote>
-<p>Here's <a href="https://gisthost.github.io/?effbdc564939b88fe5c6299387e217da/index.html">the transcript</a> of that session.</p>
-<p>Claude Code started by running an “Explore” subagent with the following starter prompt:</p>
-<blockquote>
-<p>Find the code that implements the diff view for "chapters" in this Django blog. I need to find:</p>
-<ol>
-<li>Templates that render diffs (look for diff-related HTML/CSS with red/green backgrounds)</li>
-<li>Python code that generates diffs (look for difflib usage or similar)</li>
-<li>Any JavaScript related to diff rendering</li>
-<li>CSS styles for the diff view (red/green line backgrounds)</li>
-</ol>
-<p>Search thoroughly - check templates/, static/, blog/ directories. Look for keywords like "diff", "chapter", "revision", "history", "compare".</p>
-</blockquote>
-<p>Subagents work similar to any other tool call: the parent agent dispatches them just as they would any other tool and waits for the response. It's interesting to see models prompt themselves in this way - they generally have good taste in prompting strategies.</p>
-<p>The Explore subagent churned away for a few seconds and returned a response that started like this:</p>
-<blockquote>
-<p>Perfect! Now let me create a comprehensive summary with all the findings:</p>
-<h3 id="summary-chapter-diff-view-implementation">Summary: Chapter Diff View Implementation</h3>
-<p>I found the complete implementation of the diff view for chapters in this Django blog. Here are the key components:</p>
-<h4 id="1-python-code-diff-generation-homeusersimonwillisonblogguidesviewspy-lines-139-202">1. <strong>Python Code - Diff Generation</strong> (<code>/home/user/simonwillisonblog/guides/views.py</code>, lines 139-202)</h4>
-<p>The <code>chapter_changes()</code> view function uses Python's built-in <code>difflib.unified_diff()</code> to generate diffs: […]</p>
-</blockquote>
-<p>The full subagent response included all of the details the parent agent needed in order to start editing the code to address my original request.</p>
-<h2 id="parallel-subagents">Parallel subagents</h2>
-<p>This Explore subagent is the simplest example of how subagents can work, with the parent agent pausing while the subagent runs. The principle advantage of this kind of subagent is that it can work with a fresh context in a way that avoids spending tokens from the parent’s available limit.</p>
-<p>Subagents can also provide a significant performance boost by having the parent agent run multiple subagents at the same time, potentially also using faster and cheaper models such as Claude Haiku to accelerate those tasks.</p>
-<p>Coding agents that support subagents can use them based on your instructions. Try prompts like this:</p>
-<p><div class="codehilite"><pre><span></span><code>Use subagents to find and update all of the templates that are affected by this change.
-</code></pre></div>
-For tasks that involve editing several files - and where those files are not dependent on each other - this can offer a significant speed boost.</p>
-<h2 id="specialist-subagents">Specialist subagents</h2>
-<p>Some coding agents allow subagents to run with further customizations, often in the form of a custom system prompt or custom tools or both, which allow those subagents to take on a different role.</p>
-<p>These roles can cover a variety of useful specialties:</p>
-<ul>
-<li>A <strong>code reviewer</strong> agent can review code and identify bugs, feature gaps or weaknesses in the design.</li>
-<li>A <strong>test runner</strong> agent can run the test. This is particularly worthwhile if your test suite is large and verbose, as the subagent can hide the full test output from the main coding agent and report back with just details of any failures.</li>
-<li>A <strong>debugger</strong> agent can specialize in debugging problems, spending its token allowance reasoning though the codebase and running snippets of code to help isolate steps to reproduce and determine the root cause of a bug.</li>
-</ul>
-<p>While it can be tempting to go overboard breaking up tasks across dozens of different specialist subagents, it's important to remember that the main value of subagents is in preserving that valuable root context and managing token-heavy operations. Your root coding agent is perfectly capable of debugging or reviewing its own output provided it has the tokens to spare.</p>
-<h2 id="official-documentation">Official documentation</h2>
-<p>Several popular coding agents support subagents, each with their own documentation on how to use them:</p>
-<ul>
-<li><a href="https://developers.openai.com/codex/subagents/">OpenAI Codex subagents</a></li>
-<li><a href="https://code.claude.com/docs/en/sub-agents">Claude subagents</a></li>
-<li><a href="https://geminicli.com/docs/core/subagents/">Gemini CLI subagents</a></li>
-<li><a href="https://docs.mistral.ai/mistral-vibe/agents-skills#agent-selection">Mistral Vibe subagents</a></li>
-<li><a href="https://opencode.ai/docs/agents/">OpenCode agents</a></li>
-<li><a href="https://code.visualstudio.com/docs/copilot/agents/subagents">Subagents in Visual Studio Code</a></li>
-<li><a href="https://cursor.com/docs/subagents">Cursor Subagents</a></li>
-</ul>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/parallel-agents">parallel-agents</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1181,34 +1254,6 @@ For tasks that involve editing several files - and where those files are not dep
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing Mistral Small 4]]></title>
-        <id>https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything"/>
-        <updated>2026-03-16T23:41:17.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://mistral.ai/news/mistral-small-4">Introducing Mistral Small 4</a></strong></p>
-Big new release from Mistral today (despite the name) - a new Apache 2 licensed 119B parameter (Mixture-of-Experts, 6B active) model which they describe like this:</p>
-<blockquote>
-<p>Mistral Small 4 is the first Mistral model to unify the capabilities of our flagship models, Magistral for reasoning, Pixtral for multimodal, and Devstral for agentic coding, into a single, versatile model.</p>
-</blockquote>
-<p>It supports <code>reasoning_effort="none"</code> or <code>reasoning_effort="high"</code>, with the latter providing "equivalent verbosity to previous Magistral models". </p>
-<p>The new model is <a href="https://huggingface.co/mistralai/Mistral-Small-4-119B-2603/tree/main">242GB on Hugging Face</a>.</p>
-<p>I <a href="https://gist.github.com/simonw/3dec228577559f15f26204a3cc550583">tried it out</a> via the Mistral API using <a href="https://github.com/simonw/llm-mistral">llm-mistral</a>:</p>
-<pre><code>llm install llm-mistral
-llm mistral refresh
-llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle"
-</code></pre>
-<p><img alt="The bicycle is upside down and mangled and the pelican is a series of grey curves with a triangular beak." src="https://static.simonwillison.net/static/2026/mistral-small-4.png" /></p>
-<p>I couldn't find a way to set the reasoning effort in their <a href="https://docs.mistral.ai/api/endpoint/chat#operation-chat_completion_v1_chat_completions_post">API documentation</a>, so hopefully that's a feature which will land soon.</p>
-<p><em><strong>Update 23rd March</strong>: Here's new documentation for the <a href="https://docs.mistral.ai/capabilities/reasoning/adjustable">reasoning_effort parameter</a>.</em></p>
-<p>Also from Mistral today and fitting their -stral naming convention is <a href="https://mistral.ai/news/leanstral">Leanstral</a>, an open weight model that is specifically tuned to help output the <a href="https://lean-lang.org/">Lean 4</a> formally verifiable coding language. I haven't explored Lean at all so I have no way to credibly evaluate this, but it's interesting to see them target one specific language in this way.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/mistral">mistral</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-reasoning">llm-reasoning</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Claude Just Dropped A Huge New Feature]]></title>
         <id>https://www.youtube.com/shorts/W4iSvbg4f68</id>
         <link href="https://www.youtube.com/shorts/W4iSvbg4f68"/>
@@ -1226,16 +1271,6 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         <summary type="html"><![CDATA[A deep dive into why Codex Security doesn’t rely on traditional SAST, instead using AI-driven constraint reasoning and validation to find real vulnerabilities with fewer false positives.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[RubiCap: Rubric-Guided Reinforcement Learning for Dense Image Captioning]]></title>
-        <id>rubicap</id>
-        <link href="https://machinelearning.apple.com/research/rubicap"/>
-        <updated>2026-03-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Dense image captioning is critical for cross-modal alignment in vision-language pretraining and text-to-image generation, but scaling expert-quality annotations is prohibitively expensive. While synthetic captioning via strong vision-language models (VLMs) is a practical alternative, supervised distillation often yields limited output diversity and weak generalization. Reinforcement learning (RL) could overcome these limitations, but its successes have so far been concentrated in verifiable domains that rely on deterministic checkers — a luxury not available in open-ended captioning. We…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1265,16 +1300,6 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         <updated>2026-03-13T16:14:48.000Z</updated>
         <author>
             <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[mAceReason-Math: A Dataset of High-Quality Multilingual Math Problems Ready For RLVR]]></title>
-        <id>macereason-math</id>
-        <link href="https://machinelearning.apple.com/research/macereason-math"/>
-        <updated>2026-03-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Reinforcement Learning with Verifiable Rewards (RLVR) has been successfully applied to significantly boost the capabilities of pretrained large language models, especially in the math and logic problem domains. However, current research and available training datasets remain English-centric. While multilingual training data and benchmarks have been created in the past, they were not created with RLVR and current model capability in mind, and their level of difficulty is often too low to provide appropriate training signals for current models. To address this gap, we provide mAceReason-Math, a…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1357,21 +1382,21 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Over 30 new plugins join the Cursor Marketplace]]></title>
-        <id>https://cursor.com/blog/new-plugins</id>
-        <link href="https://cursor.com/blog/new-plugins"/>
-        <updated>2026-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Extend Cursor with prebuilt capabilities in our marketplace.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How we compare model quality in Cursor]]></title>
         <id>https://cursor.com/blog/cursorbench</id>
         <link href="https://cursor.com/blog/cursorbench"/>
         <updated>2026-03-11T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We use a hybrid online-offline eval process to keep our understanding of model quality aligned with what developers actually do.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Over 30 new plugins join the Cursor Marketplace]]></title>
+        <id>https://cursor.com/blog/new-plugins</id>
+        <link href="https://cursor.com/blog/new-plugins"/>
+        <updated>2026-03-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Extend Cursor with prebuilt capabilities in our marketplace.]]></summary>
         <author>
             <name>Cursor Blog</name>
         </author>
@@ -1504,21 +1529,21 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How Descript enables multilingual video dubbing at scale]]></title>
-        <id>https://openai.com/index/descript</id>
-        <link href="https://openai.com/index/descript"/>
-        <updated>2026-03-06T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Codex Security: now in research preview]]></title>
         <id>https://openai.com/index/codex-security-now-in-research-preview</id>
         <link href="https://openai.com/index/codex-security-now-in-research-preview"/>
         <updated>2026-03-06T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Codex Security is an AI application security agent that analyzes project context to detect, validate, and patch complex vulnerabilities with higher confidence and less noise.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How Descript enables multilingual video dubbing at scale]]></title>
+        <id>https://openai.com/index/descript</id>
+        <link href="https://openai.com/index/descript"/>
+        <updated>2026-03-06T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1554,21 +1579,21 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
-        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
-        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
-        <updated>2026-03-05T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing GPT-5.4]]></title>
         <id>https://openai.com/index/introducing-gpt-5-4</id>
         <link href="https://openai.com/index/introducing-gpt-5-4"/>
         <updated>2026-03-05T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Introducing GPT-5.4, OpenAI’s most most capable and efficient frontier model for professional work, with state-of-the-art coding, computer use, tool search, and 1M-token context.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
+        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
+        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
+        <updated>2026-03-05T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1733,18 +1758,18 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.3 Instant System Card]]></title>
-        <id>https://openai.com/index/gpt-5-3-instant-system-card</id>
-        <link href="https://openai.com/index/gpt-5-3-instant-system-card"/>
+        <title type="html"><![CDATA[GPT-5.3 Instant: Smoother, more useful everyday conversations]]></title>
+        <id>https://openai.com/index/gpt-5-3-instant</id>
+        <link href="https://openai.com/index/gpt-5-3-instant"/>
         <updated>2026-03-03T10:00:00.000Z</updated>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.3 Instant: Smoother, more useful everyday conversations]]></title>
-        <id>https://openai.com/index/gpt-5-3-instant</id>
-        <link href="https://openai.com/index/gpt-5-3-instant"/>
+        <title type="html"><![CDATA[GPT-5.3 Instant System Card]]></title>
+        <id>https://openai.com/index/gpt-5-3-instant-system-card</id>
+        <link href="https://openai.com/index/gpt-5-3-instant-system-card"/>
         <updated>2026-03-03T10:00:00.000Z</updated>
         <author>
             <name>OpenAI News</name>
@@ -1809,16 +1834,6 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
-        <id>https://openai.com/index/scaling-ai-for-everyone</id>
-        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenAI and Amazon announce strategic partnership]]></title>
         <id>https://openai.com/index/amazon-partnership</id>
         <link href="https://openai.com/index/amazon-partnership"/>
@@ -1834,6 +1849,16 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         <link href="https://openai.com/index/continuing-microsoft-partnership"/>
         <updated>2026-02-27T05:30:00.000Z</updated>
         <summary type="html"><![CDATA[Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
+        <id>https://openai.com/index/scaling-ai-for-everyone</id>
+        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1898,21 +1923,21 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Nano Banana 2: Combining Pro capabilities with lightning-fast speed]]></title>
-        <id>https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/</id>
-        <link href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/"/>
-        <updated>2026-02-26T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Our latest image generation model offers advanced world knowledge, production-ready specs, subject consistency and more, all at Flash speed.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Build with Nano Banana 2, our best image generation and editing model]]></title>
         <id>https://blog.google/innovation-and-ai/technology/developers-tools/build-with-nano-banana-2/</id>
         <link href="https://blog.google/innovation-and-ai/technology/developers-tools/build-with-nano-banana-2/"/>
         <updated>2026-02-26T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[Nano Banana 2 (Gemini 3.1 Flash Image) delivers Pro-level intelligence and fidelity for all image applications.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nano Banana 2: Combining Pro capabilities with lightning-fast speed]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/"/>
+        <updated>2026-02-26T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Our latest image generation model offers advanced world knowledge, production-ready specs, subject consistency and more, all at Flash speed.]]></summary>
         <author>
             <name>AI</name>
         </author>
@@ -1938,21 +1963,21 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Closing the code review loop with Bugbot Autofix]]></title>
-        <id>https://cursor.com/blog/bugbot-autofix</id>
-        <link href="https://cursor.com/blog/bugbot-autofix"/>
-        <updated>2026-02-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Bugbot Autofix can find and automatically fix issues in PRs by spawning cloud agents to test your changes.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[The third era of AI software development]]></title>
         <id>https://cursor.com/blog/third-era</id>
         <link href="https://cursor.com/blog/third-era"/>
         <updated>2026-02-26T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A third era of AI software development is emerging as autonomous cloud agents take on larger tasks over longer timescales.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Closing the code review loop with Bugbot Autofix]]></title>
+        <id>https://cursor.com/blog/bugbot-autofix</id>
+        <link href="https://cursor.com/blog/bugbot-autofix"/>
+        <updated>2026-02-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Bugbot Autofix can find and automatically fix issues in PRs by spawning cloud agents to test your changes.]]></summary>
         <author>
             <name>Cursor Blog</name>
         </author>
@@ -1995,36 +2020,6 @@ llm -m mistral/mistral-small-2603 "Generate an SVG of a pelican riding a bicycle
         <summary type="html"><![CDATA[Our latest threat report examines how malicious actors combine AI models with websites and social platforms—and what it means for detection and defense.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Arvind KC appointed Chief People Officer]]></title>
-        <id>https://openai.com/index/arvind-kc-chief-people-officer</id>
-        <link href="https://openai.com/index/arvind-kc-chief-people-officer"/>
-        <updated>2026-02-24T13:40:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI appoints Arvind KC as Chief People Officer to help scale the company, strengthen its culture, and lead how work evolves in the age of AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Cursor agents can now control their own computers]]></title>
-        <id>https://cursor.com/blog/agent-computer-use</id>
-        <link href="https://cursor.com/blog/agent-computer-use"/>
-        <updated>2026-02-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Cloud agents use the software they create to verify changes and demo their work.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Cloud Agents with Computer Use]]></title>
-        <id>https://cursor.com/changelog/02-24-26</id>
-        <link href="https://cursor.com/changelog/02-24-26"/>
-        <updated>2026-02-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Feb 24, 2026]]></summary>
-        <author>
-            <name>Cursor Changelog</name>
         </author>
     </entry>
 </feed>
