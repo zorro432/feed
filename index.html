@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-27 datetime="2026-03-27T00:35:01.000Z">2026-03-27</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-27 datetime="2026-03-27T00:35:01.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-27 datetime="2026-03-27T23:42:47.000Z">2026-03-27</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-27 datetime="2026-03-27T23:42:47.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -38,6 +38,183 @@
                   <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
                 </h3>
                 <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/27/datasette-showboat/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">datasette-showboat 0.1a2</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/27/datasette-showboat/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: datasette-showboat 0.1a2
+I added an option to export a Markdown file from my app that lets Showboat incrementally publish updates to a remote server.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/27/richard-fontana/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Richard Fontana</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/27/richard-fontana/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>FWIW, IANDBL, TINLA, etc., I don’t currently see any basis for concluding that chardet 7.0.0 is required to be released under the LGPL. AFAIK no one including Mark Pilgrim has identified persistence of copyrightable expressive material from earlier versions in 7.0.0 nor has anyone articulated some viable alternate theory of license violation. [...]
+
+— Richard Fontana, LGPLv3 co-author, weighing in on the chardet relicensing situation
+Tags: open-source, ai-ethics, llms, ai, generative-ai, ai-assisted-programming</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/27/vibe-coding-swiftui/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Vibe coding SwiftUI apps is a lot of fun</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/27/vibe-coding-swiftui/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/gpuer-card.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>I have a new laptop - a 128GB M5 MacBook Pro, which early impressions show to be very capable for running good local LLMs. I got frustrated with Activity Monitor and decided to vibe code up some alternative tools for monitoring performance and I&#x27;m very happy with the results.
+
+This is my second experiment with vibe coding macOS apps - the first was this presentation app a few weeks ago.
+
+It turns out Claude Opus 4.6 and GPT-5.4 are both very competent at SwiftUI - and a full SwiftUI app can fit in a single text file, which means I can use them to spin something up without even opening Xcode.
+
+I’ve built two apps so far: Bandwidther shows me what apps are using network bandwidth and Gpuer to show me what’s going on with the GPU. At Claude’s suggestion both of these are now menu bar icons that open a panel full of information.
+
+Bandwidther
+
+I built this app first, because I wanted to see what Dropbox was doing. It looks like this:
+
+
+
+I’ve shared the full transcript I used to build the first version of the app. My prompts were pretty minimal:
+
+
+Show me how much network bandwidth is in use from this machine to the internet as opposed to local LAN
+
+
+(My initial curiosity was to see if Dropbox was transferring files via the LAN from my old computer or was downloading from the internet.)
+
+
+mkdir /tmp/bandwidther and write a native Swift UI app in there that shows me these details on a live ongoing basis
+
+
+This got me the first version, which proved to me this was worth pursuing further.
+
+
+git init and git commit what you have so far
+
+
+Since I was about to start adding new features.
+
+
+Now suggest features we could add to that app, the goal is to provide as much detail as possible concerning network usage including by different apps
+
+
+The nice thing about having Claude suggest features is that it has a much better idea for what’s possible than I do.
+
+We had a bit of back and forth fixing some bugs, then I sent a few more prompts to get to the two column layout shown above:
+
+
+add Per-Process Bandwidth, relaunch the app once that is done
+
+
+
+now add the reverse DNS feature but make sure original IP addresses are still visible too, albeit in smaller typeface
+
+
+
+redesign the app so that it is wider, I want two columns - the per-process one on the left and the rest on the right
+
+
+
+OK make it a task bar icon thing, when I click the icon I want the app to appear, the icon itself should be a neat minimal little thing
+
+
+The source code and build instructions are available in simonw/bandwidther.
+
+Gpuer
+
+While I was building Bandwidther in one session I had another session running to build a similar tool for seeing what the GPU was doing. Here’s what I ended up with:
+
+
+
+Here&#x27;s the transcript. This one took even less prompting because I could use the in-progress Bandwidther as an example:
+
+
+I want to know how much RAM and GPU this computer is using, which is hard because stuff on the GPU and RAM does not seem to show up in Activity Monitor
+
+
+This collected information using system_profiler and memory_pressure and gave me an answer - more importantly it showed me this was possible, so I said:
+
+
+Look at /tmp/bandwidther and then create a similar app in /tmp/gpuer which shows the information from above on an ongoing basis, or maybe does it better
+
+
+After a few more changes to the Bandwidther app I told it to catch up:
+
+
+Now take a look at recent changes in /tmp/bandwidther - that app now uses a sys tray icon, imitate that
+
+
+This remains one of my favorite tricks for using coding agents: having them recombine elements from other projects.
+
+The code for Gpuer can be found in simonw/gpuer on GitHub.
+
+You shouldn&#x27;t trust these apps
+
+These two apps are classic vibe coding: I don&#x27;t know Swift and I hardly glanced at the code they were writing.
+
+More importantly though, I have very little experience with macOS internals such as the values these tools are measuring. I am completely unqualified to evaluate if the numbers and charts being spat out by these tools are credible or accurate!
+
+I&#x27;ve added warnings to both GitHub repositories to that effect.
+
+This morning I caught Gpuer reporting that I had just 5GB of memory left when that clearly wasn&#x27;t the case (according to Activity Monitor). I pasted a screenshot into Claude Code and it adjusted the calculations and the new numbers look right, but I&#x27;m still not confident that it&#x27;s reporting things correctly.
+
+I only shared them on GitHub because I think they&#x27;re interesting as an example of what Claude can do with SwiftUI.
+
+Despite my lack of confidence in the apps themselves, I did learn some useful things from these projects:
+
+
+A SwiftUI app can get a whole lot done with a single file of code - here&#x27;s GpuerApp.swift (880 lines) and BandwidtherApp.swift (1063 lines).
+
+Wrapping various terminal commands in a neat UI with Swift is easily achieved.
+
+Claude has surprisingly good design taste when it comes to SwiftUI applications.
+
+Turning an app into a menu bar app is just a few lines of extra code as well.
+
+You don&#x27;t need to open Xcode to build this kind of application!
+
+
+These two apps took very little time to build and have convinced me that building macOS apps in SwiftUI is a new capability I should consider for future projects.
+Tags: macos, ai, generative-ai, llms, vibe-coding, coding-agents, swift, claude-code</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -57,6 +234,122 @@ The Reco team then used a shadow deployment for a week to run the new and old ve
 
     
 Tags: go, json, ai, generative-ai, llms, agentic-engineering, vibe-porting</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/stadler"
+                        open
+                      >
+                        <summary class="article-expander__title">STADLER reshapes knowledge work at a 230-year-old company</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/stadler">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how STADLER uses ChatGPT to transform knowledge work, saving time and accelerating productivity across 650 employees.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;OYyS0Gu5xj8"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: Anthropic Went Crazy This Week!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;OYyS0Gu5xj8">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="to-infinity"
+                        open
+                      >
+                        <summary class="article-expander__title">To Infinity and Beyond: Tool-Use Unlocks Length Generalization in State Space Models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/to-infinity">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>State Space Models (SSMs) have become the leading alternative to Transformers for sequence modeling. Their primary advantage is efficiency in long-context and long-form generation, enabled by fixed-size memory and linear scaling of computational complexity. We begin this work by showing a simple theoretical result stating that SSMs cannot accurately solve any “truly long-form” generation problem (in a sense we formally define), undermining their main competitive advantage. However, we show that this limitation can be mitigated by allowing SSMs interactive access to external tools. In fact, we…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="athena"
+                        open
+                      >
+                        <summary class="article-expander__title">Athena: Intermediate Representations for Iterative Scaffolded App Generation with an LLM</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/athena">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>It is challenging to generate the code for a complete user interface using a Large Language Model (LLM). User interfaces are complex and their implementations often consist of multiple, inter-related files that together specify the contents of each screen, the navigation flows between the screens, and the data model used throughout the application. It is challenging to craft a single prompt for an LLM that contains enough detail to generate a complete user interface, and even then the result is frequently a single large and difficult to understand file that contains all of the generated…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -393,26 +686,6 @@ Tags: computer-science, ai, explorables, generative-ai, llms, sam-rose, qwen</sp
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="drop-in"
-                        open
-                      >
-                        <summary class="article-expander__title">Drop-In Perceptual Optimization for 3D Gaussian Splatting</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/drop-in">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Despite their output being ultimately consumed by human viewers, 3D Gaussian Splatting (3DGS) methods often rely on ad-hoc combinations of pixel-level losses, resulting in blurry renderings. To address this, we systematically explore perceptual optimization strategies for 3DGS by searching over a diverse set of distortion losses. We conduct the first-of-its-kind large-scale human subjective study on 3DGS, involving 39,320 pairwise ratings across several datasets and 3DGS frameworks. A regularized version of Wasserstein Distortion, which we call WD-R, emerges as the clear winner, excelling at…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;5
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="downstream-metrics"
                         open
                       >
@@ -423,6 +696,26 @@ Tags: computer-science, ai, explorables, generative-ai, llms, sam-rose, qwen</sp
                             <span class="media-object__text">
                               <span>While scaling laws for Large Language Models (LLMs) traditionally focus on proxy metrics like pretraining loss, predicting downstream task performance has been considered unreliable. This paper challenges that view by proposing a direct framework to model the scaling of benchmark performance from the training budget. We find that for a fixed token-to-parameter ratio, a simple power law can accurately describe the scaling behavior of log accuracy on multiple popular downstream tasks. Our results show that the direct approach extrapolates better than the previously proposed two-stage procedure…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="drop-in"
+                        open
+                      >
+                        <summary class="article-expander__title">Drop-In Perceptual Optimization for 3D Gaussian Splatting</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/drop-in">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Despite their output being ultimately consumed by human viewers, 3D Gaussian Splatting (3DGS) methods often rely on ad-hoc combinations of pixel-level losses, resulting in blurry renderings. To address this, we systematically explore perceptual optimization strategies for 3DGS by searching over a diverse set of distortion losses. We conduct the first-of-its-kind large-scale human subjective study on 3DGS, involving 39,320 pairwise ratings across several datasets and 3DGS frameworks. A regularized version of Wasserstein Distortion, which we call WD-R, emerges as the clear winner, excelling at…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -609,7 +902,7 @@ Tags: packaging, pypi, python, security, supply-chain</span>
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria-3-Pro_thumbnail.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;15
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -643,7 +936,7 @@ Tags: packaging, pypi, python, security, supply-chain</span>
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/BuildWithLyria3_social.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Lyria 3 is now available in paid preview through the Gemini API and for testing in Google AI Studio.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -663,7 +956,7 @@ Tags: packaging, pypi, python, security, supply-chain</span>
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria-3-Pro_thumbnail.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>We are bringing Lyria 3 to the tools where professionals work and create every day.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;15
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1133,15 +1426,16 @@ Tags: definitions, llms, ai, autoresearch, generative-ai, kimi, local-llms, qwen
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="scaling-synthetic-task"
+                        data-accordion-key="safetypairs"
                         open
                       >
-                        <summary class="article-expander__title">Scaling Synthetic Task Generation for Agents via Exploration</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/scaling-synthetic-task">
+                        <summary class="article-expander__title">SafetyPairs: Isolating Safety Critical Image Features with Counterfactual Image Generation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/safetypairs">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>Post-Training Multimodal Large Language Models (MLLMs) to build interactive agents holds promise across domains such as computer-use, web navigation, and robotics. A key challenge in scaling such post-training is lack of high-quality downstream agentic task datasets with tasks that are diverse, feasible, and verifiable. Existing approaches for task generation rely heavily on human annotation or prompting MLLM with limited downstream environment information, which is either costly or poorly scalable as it yield tasks with limited coverage. To remedy this, we present AutoPlay, a scalable…</span>
+                              <span>This paper was accepted at the Principled Design for Trustworthy AI — Interpretability, Robustness, and Safety across Modalities Workshop at ICLR 2026.
+What exactly makes a particular image unsafe? Systematically differentiating between benign and problematic images is a challenging problem, as subtle changes to an image, such as an insulting gesture or symbol, can drastically alter its safety implications. However, existing image safety datasets are coarse and ambiguous, offering only broad safety labels without isolating the specific features that drive these differences. We introduce…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -1173,16 +1467,15 @@ Tags: definitions, llms, ai, autoresearch, generative-ai, kimi, local-llms, qwen
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="safetypairs"
+                        data-accordion-key="scaling-synthetic-task"
                         open
                       >
-                        <summary class="article-expander__title">SafetyPairs: Isolating Safety Critical Image Features with Counterfactual Image Generation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/safetypairs">
+                        <summary class="article-expander__title">Scaling Synthetic Task Generation for Agents via Exploration</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/scaling-synthetic-task">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>This paper was accepted at the Principled Design for Trustworthy AI — Interpretability, Robustness, and Safety across Modalities Workshop at ICLR 2026.
-What exactly makes a particular image unsafe? Systematically differentiating between benign and problematic images is a challenging problem, as subtle changes to an image, such as an insulting gesture or symbol, can drastically alter its safety implications. However, existing image safety datasets are coarse and ambiguous, offering only broad safety labels without isolating the specific features that drive these differences. We introduce…</span>
+                              <span>Post-Training Multimodal Large Language Models (MLLMs) to build interactive agents holds promise across domains such as computer-use, web navigation, and robotics. A key challenge in scaling such post-training is lack of high-quality downstream agentic task datasets with tasks that are diverse, feasible, and verifiable. Existing approaches for task generation rely heavily on human annotation or prompting MLLM with limited downstream environment information, which is either costly or poorly scalable as it yield tasks with limited coverage. To remedy this, we present AutoPlay, a scalable…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -2086,136 +2379,6 @@ Tags: json, sqlite</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Thoughts on OpenAI acquiring Astral and uv/ruff/ty</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The big news this morning: Astral to join OpenAI (on the Astral blog) and OpenAI to acquire Astral (the OpenAI announcement). Astral are the company behind uv, ruff, and ty - three increasingly load-bearing open source projects in the Python ecosystem. I have thoughts!
-
-The official line from OpenAI and Astral
-
-The Astral team will become part of the Codex team at OpenAI.
-
-Charlie Marsh has this to say:
-
-
-Open source is at the heart of that impact and the heart of that story; it sits at the center of everything we do. In line with our philosophy and OpenAI&#x27;s own announcement, OpenAI will continue supporting our open source tools after the deal closes. We&#x27;ll keep building in the open, alongside our community -- and for the broader Python ecosystem -- just as we have from the start. [...]
-
-After joining the Codex team, we&#x27;ll continue building our open source tools, explore ways they can work more seamlessly with Codex, and expand our reach to think more broadly about the future of software development.
-
-
-OpenAI&#x27;s message has a slightly different focus (highlights mine):
-
-
-As part of our developer-first philosophy, after closing OpenAI plans to support Astral’s open source products. By bringing Astral’s tooling and engineering expertise to OpenAI, we will accelerate our work on Codex and expand what AI can do across the software development lifecycle.
-
-
-This is a slightly confusing message. The Codex CLI is a Rust application, and Astral have some of the best Rust engineers in the industry - BurntSushi alone (Rust regex, ripgrep, jiff) may be worth the price of acquisition!
-
-So is this about the talent or about the product? I expect both, but I know from past experience that a product+talent acquisition can turn into a talent-only acquisition later on.
-
-uv is the big one
-
-Of Astral&#x27;s projects the most impactful is uv. If you&#x27;re not familiar with it, uv is by far the most convincing solution to Python&#x27;s environment management problems, best illustrated by this classic XKCD:
-
-
-
-Switch from python to uv run and most of these problems go away. I&#x27;ve been using it extensively for the past couple of years and it&#x27;s become an essential part of my workflow.
-
-I&#x27;m not alone in this. According to PyPI Stats uv was downloaded more than 126 million times last month! Since its release in February 2024 - just two years ago - it&#x27;s become one of the most popular tools for running Python code.
-
-Ruff and ty
-
-Astral&#x27;s two other big projects are ruff - a Python linter and formatter - and ty - a fast Python type checker.
-
-These are popular tools that provide a great developer experience but they aren&#x27;t load-bearing in the same way that uv is.
-
-They do however resonate well with coding agent tools like Codex - giving an agent access to fast linting and type checking tools can help improve the quality of the code they generate.
-
-I&#x27;m not convinced that integrating them into the coding agent itself as opposed to telling it when to run them will make a meaningful difference, but I may just not be imaginative enough here.
-
-What of pyx?
-
-Ever since uv started to gain traction the Python community has been worrying about the strategic risk of a single VC-backed company owning a key piece of Python infrastructure. I wrote about one of those conversations in detail back in September 2024.
-
-The conversation back then focused on what Astral&#x27;s business plan could be, which started to take form in August 2025 when they announced pyx, their private PyPI-style package registry for organizations.
-
-I&#x27;m less convinced that pyx makes sense within OpenAI, and it&#x27;s notably absent from both the Astral and OpenAI announcement posts.
-
-Competitive dynamics
-
-An interesting aspect of this deal is how it might impact the competition between Anthropic and OpenAI.
-
-Both companies spent most of 2025 focused on improving the coding ability of their models, resulting in the November 2025 inflection point when coding agents went from often-useful to almost-indispensable tools for software development.
-
-The competition between Anthropic&#x27;s Claude Code and OpenAI&#x27;s Codex is fierce. Those $200/month subscriptions add up to billions of dollars a year in revenue, for companies that very much need that money.
-
-Anthropic acquired the Bun JavaScript runtime in December 2025, an acquisition that looks somewhat similar in shape to Astral.
-
-Bun was already a core component of Claude Code and that acquisition looked to mainly be about ensuring that a crucial dependency stayed actively maintained. Claude Code&#x27;s performance has increased significantly since then thanks to the efforts of Bun&#x27;s Jarred Sumner.
-
-One bad version of this deal would be if OpenAI start using their ownership of uv as leverage in their competition with Anthropic.
-
-Astral&#x27;s quiet series A and B
-
-One detail that caught my eye from Astral&#x27;s announcement, in the section thanking the team, investors, and community:
-
-
-Second, to our investors, especially Casey Aylward from Accel, who led our Seed and Series A, and Jennifer Li from Andreessen Horowitz, who led our Series B. As a first-time, technical, solo founder, you showed far more belief in me than I ever showed in myself, and I will never forget that.
-
-
-As far as I can tell neither the Series A nor the Series B were previously announced - I&#x27;ve only been able to find coverage of the original seed round from April 2023.
-
-Those investors presumably now get to exchange their stake in Astral for a piece of OpenAI. I wonder how much influence they had on Astral&#x27;s decision to sell.
-
-Forking as a credible exit?
-
-Armin Ronacher built Rye, which was later taken over by Astral and effectively merged with uv. In August 2024 he wrote about the risk involved in a VC-backed company owning a key piece of open source infrastructure and said the following (highlight mine):
-
-
-However having seen the code and what uv is doing, even in the worst possible future this is a very forkable and maintainable thing. I believe that even in case Astral shuts down or were to do something incredibly dodgy licensing wise, the community would be better off than before uv existed.
-
-
-Astral&#x27;s own Douglas Creager emphasized this angle on Hacker News today:
-
-
-All I can say is that right now, we&#x27;re committed to maintaining our open-source tools with the same level of effort, care, and attention to detail as before. That does not change with this acquisition. No one can guarantee how motives, incentives, and decisions might change years down the line. But that&#x27;s why we bake optionality into it with the tools being permissively licensed. That makes the worst-case scenarios have the shape of &quot;fork and move on&quot;, and not &quot;software disappears forever&quot;.
-
-
-I like and trust the Astral team and I&#x27;m optimistic that their projects will be well-maintained in their new home.
-
-OpenAI don&#x27;t yet have much of a track record with respect to acquiring and maintaining open source projects. They&#x27;ve been on a bit of an acquisition spree over the past three months though, snapping up Promptfoo and OpenClaw (sort-of, they hired creator Peter Steinberger and are spinning OpenClaw off to a foundation), plus closed source LaTeX platform Crixet (now Prism).
-
-If things do go south for uv and the other Astral projects we&#x27;ll get to see how credible the forking exit strategy turns out to be.
-Tags: python, ai, rust, openai, ruff, uv, astral, charlie-marsh, coding-agents, codex-cli, ty</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -2334,78 +2497,11 @@ Tags: python, ai, rust, openai, ruff, uv, astral, charlie-marsh, coding-agents, 
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-18 datetime="2026-03-18T23:56:46.000Z">2026-03-18</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-18 datetime="2026-03-18T23:56:46.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-18 datetime="2026-03-18T17:56:58.000Z">2026-03-18</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-18 datetime="2026-03-18T17:56:58.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/18/llm-in-a-flash/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Autoresearching Apple&#x27;s &quot;LLM in a Flash&quot; to run Qwen 397B locally</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/18/llm-in-a-flash/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Autoresearching Apple&#x27;s &quot;LLM in a Flash&quot; to run Qwen 397B locally
-Qwen3.5-397B-A17B running at 5.5+ tokens/second on a 48GB MacBook Pro M3 Max despite that model taking up 209GB (120GB quantized) on disk.
-Qwen3.5-397B-A17B is a Mixture-of-Experts (MoE) model, which means that each token only needs to run against a subset of the overall model weights. These expert weights can be streamed into memory from SSD, saving them from all needing to be held in RAM at the same time.
-Dan used techniques described in Apple&#x27;s 2023 paper LLM in a flash: Efficient Large Language Model Inference with Limited Memory:
-This paper tackles the challenge of efficiently running LLMs that exceed the available DRAM capacity by storing the model parameters in flash memory, but bringing them on demand to DRAM. Our method involves constructing an inference cost model that takes into account the characteristics of flash memory, guiding us to optimize in two critical areas: reducing the volume of data transferred from flash and reading data in larger, more contiguous chunks.
-He fed the paper to Claude Code and used a variant of Andrej Karpathy&#x27;s autoresearch pattern to have Claude run 90 experiments and produce MLX Objective-C and Metal code that ran the model as efficiently as possible.
-danveloper/flash-moe has the resulting code plus a PDF paper mostly written by Claude Opus 4.6 describing the experiment in full.
-The final model has the experts quantized to 2-bit, but the non-expert parts of the model such as the embedding table and routing matrices are kept at their original precision, adding up to 5.5GB which stays resident in memory while the model is running.
-Qwen 3.5 usually runs 10 experts per token, but this setup dropped that to 4 while claiming that the biggest quality drop-off occurred at 3.
-It&#x27;s not clear to me how much the quality of the model results are affected. Claude claimed that &quot;Output quality at 2-bit is indistinguishable from 4-bit for these evaluations&quot;, but the description of the evaluations it ran is quite thin.
-Update: Dan&#x27;s latest version upgrades to 4-bit quantization of the experts (209GB on disk, 4.36 tokens/second) after finding that the 2-bit version broke tool calling while 4-bit handles that well.
-
-
-    
-Tags: ai, generative-ai, local-llms, llms, qwen, mlx, autoresearch</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/18/datasette/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette 1.0a26</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/18/datasette/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette 1.0a26
-Datasette now has a mechanism for assigning semantic column types. Built-in column types include url, email, and json, and plugins can register additional types using the new register_column_types() plugin hook.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2461,60 +2557,6 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="prose2policy"
-                        open
-                      >
-                        <summary class="article-expander__title">Prose2Policy (P2P): A Practical LLM Pipeline for Translating Natural-Language Access Policies into Executable Rego</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/prose2policy">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Prose2Policy (P2P) is a LLM-based practical tool that translates natural-language access control policies (NLACPs) into executable Rego code (the policy language of Open Policy Agent, OPA). It provides a modular, end-to-end pipeline that performs policy detection, component extraction, schema validation, linting, compilation, automatic test generation and execution. Prose2Policy is designed to bridge the gap between human-readable access requirements and machine-enforceable policy-as-code (PaC) while emphasizing deployment reliability and auditability. We evaluated Prose2Policy on the ACRE…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="goldilocks"
-                        open
-                      >
-                        <summary class="article-expander__title">Goldilocks RL: Tuning Task Difficulty to Escape Sparse Rewards for Reasoning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/goldilocks">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Reinforcement learning has emerged as a powerful paradigm for unlocking reasoning capabilities in large language models. However, relying on sparse rewards makes this process highly sample-inefficient, as models must navigate vast search spaces with minimal feedback. While classic curriculum learning aims to mitigate this by ordering data based on complexity, the right ordering for a specific model is often unclear. To address this, we propose Goldilocks, a novel teacher-driven data sampling strategy that aims to predict each question’s difficulty for the student model. The teacher model…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2924,7 +2966,7 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3197,23 +3239,6 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>How ChatGPT defends against prompt injection and social engineering by constraining risky actions and protecting sensitive data in agent workflows.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/wayfair"
-                        open
-                      >
-                        <summary class="article-expander__title">Wayfair boosts catalog accuracy and support speed with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/wayfair">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -3527,39 +3552,6 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/BIp9Q8M2QUw"
-                        open
-                      >
-                        <summary class="article-expander__title">The Coolest New Google AI Feature</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/BIp9Q8M2QUw">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -3928,40 +3920,6 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-the-adoption-news-channel"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing the Adoption news channel</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-the-adoption-news-channel">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Practical insights and frameworks to turn AI progress into business advantage</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/vfl-wolfsburg"
-                        open
-                      >
-                        <summary class="article-expander__title">VfL Wolfsburg turns ChatGPT into a club-wide capability</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/vfl-wolfsburg">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>By focusing on people, not pilots, the Bundesliga club is scaling efficiency, creativity, and knowledge—without losing its football identity.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/chatgpt-for-excel"
                         open
                       >
@@ -3987,6 +3945,40 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/introducing-the-adoption-news-channel"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing the Adoption news channel</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-the-adoption-news-channel">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Practical insights and frameworks to turn AI progress into business advantage</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/vfl-wolfsburg"
+                        open
+                      >
+                        <summary class="article-expander__title">VfL Wolfsburg turns ChatGPT into a club-wide capability</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/vfl-wolfsburg">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>By focusing on people, not pilots, the Bundesliga club is scaling efficiency, creativity, and knowledge—without losing its football identity.</span>
                             </span>
                           </div>
                         </a>
@@ -4053,7 +4045,7 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-03-05-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Mar 5, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4143,14 +4135,14 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
+                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
                         open
                       >
-                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
+                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
+                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
                             </span>
                           </div>
                         </a>
@@ -4160,14 +4152,14 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/understanding-ai-and-learning-outcomes"
+                        data-accordion-key="https://openai.com/index/axios-allison-murphy"
                         open
                       >
-                        <summary class="article-expander__title">Understanding AI and learning outcomes</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/understanding-ai-and-learning-outcomes">
+                        <summary class="article-expander__title">How Axios uses AI to help deliver high-impact local journalism</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-allison-murphy">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span>
+                              <span>Axios COO Allison Murphy explains how the company uses AI to support local reporters, streamline newsroom workflows, and deliver high-impact local journalism at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -4663,23 +4655,6 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/continuing-microsoft-partnership"
-                        open
-                      >
-                        <summary class="article-expander__title">Joint Statement from OpenAI and Microsoft</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/continuing-microsoft-partnership">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock"
                         open
                       >
@@ -4705,6 +4680,23 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/continuing-microsoft-partnership"
+                        open
+                      >
+                        <summary class="article-expander__title">Joint Statement from OpenAI and Microsoft</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/continuing-microsoft-partnership">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Microsoft and OpenAI continue to work closely across research, engineering, and product development, building on years of deep collaboration and shared success.</span>
                             </span>
                           </div>
                         </a>
@@ -4903,148 +4895,12 @@ Datasette now has a mechanism for assigning semantic column types. Built-in colu
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/pacific-northwest-national-laboratory"
-                        open
-                      >
-                        <summary class="article-expander__title">Pacific Northwest National Laboratory and OpenAI partner to accelerate federal permitting</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/pacific-northwest-national-laboratory">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI and Pacific Northwest National Laboratory introduce DraftNEPABench, a new benchmark evaluating how AI coding agents can accelerate federal permitting—showing potential to reduce NEPA drafting time by up to 15% and modernize infrastructure reviews.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/figma-partnership"
-                        open
-                      >
-                        <summary class="article-expander__title">OpenAI Codex and Figma launch seamless code-to-design experience</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/figma-partnership">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI and Figma launch a new Codex integration that connects code and design, enabling teams to move between implementation and the Figma canvas to iterate and ship faster.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Blog</button>
-                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/third-era"
-                        open
-                      >
-                        <summary class="article-expander__title">The third era of AI software development</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/third-era">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/blog-third-era-5a-20260304-072622-1200.gif" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>A third era of AI software development is emerging as autonomous cloud agents take on larger tasks over longer timescales.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/bugbot-autofix"
-                        open
-                      >
-                        <summary class="article-expander__title">Closing the code review loop with Bugbot Autofix</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/bugbot-autofix">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/opengraph-bugbot-autofix.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Bugbot Autofix can find and automatically fix issues in PRs by spawning cloud agents to test your changes.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Changelog</button>
-                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/changelog/02-26-26"
-                        open
-                      >
-                        <summary class="article-expander__title">Bugbot Autofix</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/02-26-26">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-02-26-26.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Feb 26, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23628053625">
-        <time id="build-timestamp" datetime="2026-03-27T02:23:31.576Z">2026-03-27T02:23:31.576Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23675100049">
+        <time id="build-timestamp" datetime="2026-03-28T02:06:38.984Z">2026-03-28T02:06:38.984Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
