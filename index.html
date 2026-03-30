@@ -22,6 +22,108 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-29 datetime="2026-03-29T20:08:45.000Z">2026-03-29</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-29 datetime="2026-03-29T20:08:45.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/29/pretext/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Pretext</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/29/pretext/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/pretex.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Pretext
+react-motion animation library.
+Pretext solves the problem of calculating the height of a paragraph of line-wrapped text without touching the DOM. The usual way of doing this is to render the text and measure its dimensions, but this is extremely expensive. Pretext uses an array of clever tricks to make this much, much faster, which enables all sorts of new text rendering effects in browser applications.
+Here&#x27;s one demo that shows the kind of things this makes possible:
+The key to how this works is the way it separates calculations into a call to a prepare() function followed by multiple calls to layout().
+The prepare() function splits the input text into segments (effectively words, but it can take things like soft hyphens and non-latin character sequences and emoji into account as well) and measures those using an off-screen canvas, then caches the results. This is comparatively expensive but only runs once.
+The layout() function can then emulate the word-wrapping logic in browsers to figure out how many wrapped lines the text will occupy at a specified width and measure the overall height.
+I had Claude build me this interactive artifact to help me visually understand what&#x27;s going on, based on a simplified version of Pretext itself.
+The way this is tested is particularly impressive. The earlier tests rendered a full copy of the Great Gatsby in multiple browsers to confirm that the estimated measurements were correct against a large volume of text. This was later joined by the corpora/ folder using the same technique against lengthy public domain documents in Thai, Chinese, Korean, Japanese, Arabic, and more.
+Cheng Lou says:
+The engine’s tiny (few kbs), aware of browser quirks, supports all the languages you’ll need, including Korean mixed with RTL Arabic and platform-specific emojis
+This was achieved through showing Claude Code and Codex the browsers ground truth, and have them measure &amp; iterate against those at every significant container width, running over weeks
+Via @_chenglou
+Tags: browsers, css, javascript, testing, react, typescript</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/29/pretext-explainer/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Pretext — Under the Hood</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/29/pretext-explainer/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tool: Pretext — Under the Hood
+See my notes on Pretext here.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Mar/29/python-vulnerability-lookup/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Python Vulnerability Lookup</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/29/python-vulnerability-lookup/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tool: Python Vulnerability Lookup
+I learned that the OSV.dev open source vulnerability database has an open CORS JSON API, so I had Claude Code build this HTML tool for pasting in a pyproject.toml or requirements.txt file (or name of a GitHub repo containing those) and seeing a list of all reported vulnerabilities from that API.
+Tags: tools, python, supply-chain, vibe-coding, security</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-28 datetime="2026-03-28T12:04:26.000Z">2026-03-28</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-28 datetime="2026-03-28T12:04:26.000Z"></time>
           </button>
@@ -2198,77 +2300,6 @@ Tags: hacker-news, ai, generative-ai, llms, ai-ethics</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/using-git-with-coding-agents/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Using Git with coding agents</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/using-git-with-coding-agents/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Agentic Engineering Patterns &gt;
-Git is a key tool for working with coding agents. Keeping code in version control lets us record how that code changes over time and investigate and reverse any mistakes. All of the coding agents are fluent in using Git&#x27;s features, both basic and advanced.
-This fluency means we can be more ambitious about how we use Git ourselves. We don&#x27;t need to  memorize how to do things with Git, but staying aware of what&#x27;s possible means we can take advantage of the full suite of Git&#x27;s abilities.
-Git essentials
-Each Git project lives in a repository - a folder on disk that can track changes made to the files within it. Those changes are recorded in commits - timestamped bundles of changes to one or more files accompanied by a commit message describing those changes and an author recording who made them.
-Git supports branches, which allow you to construct and experiment with new changes independently of each other. Branches can then be merged back into your main branch (using various methods) once they are deemed ready.
-Git repositories can be cloned onto a new machine, and that clone includes both the current files and the full history of changes to them.
-This means developers - or coding agents - can browse and explore that history without any extra network traffic, making history diving effectively free.
-Git repositories can live just on your own machine,  but Git is designed to support collaboration and backups by publishing them to a remote, which can be public or private. GitHub is the most popular place for these remotes but Git is open source software that enables hosting these remotes on any machine or service that supports the Git protocol.
-Core concepts and prompts
-Coding agents all have a deep understanding of Git jargon. The following prompts should work with any of them:
-Start a new Git repo here
-git init command. If you just say &quot;repo&quot; agents will assume you mean a Git repository.
-Commit these changes
-git commit -m &quot;commit message&quot; command.
-Add username/repo as a github remote
-github.com/new, and configure your machine to talk to GitHub.
-Review changes made today
-This is a great way to start a fresh coding agents session. Telling the agent to look at recent changes causes it to run git log, which can instantly load its context with details of what you have been working on recently - both the modified code and the commit messages that describe it.
-Seeding the session in this way means you can start talking about that code - suggest additional fixes, ask questions about how it works, or propose the next change that builds on what came before.
-Integrate latest changes from main
-There are multiple ways to merge changes, including merge, rebase, squash or fast-forward. If you can&#x27;t remember the details of these that&#x27;s fine:
-Discuss options for integrating changes from main
-Sort out this git mess for me
-
-I use this universal prompt surprisingly often! Here&#x27;s a recent example where it fixed a cherry-pick for me that failed with a merge conflict.
-There are plenty of ways you can get into a mess with Git, often through pulls or rebase commands that end in a merge conflict, or just through adding the wrong things to Git&#x27;s staging environment.
-Unpicking those used to be the most difficult and time consuming parts of working with Git. No more! Coding agents can navigate the most Byzantine of merge conflicts, reasoning through the intent of the new code and figuring out what to keep and how to combine conflicting changes. If your code has automated tests (and it should) the agent can ensure those pass before finalizing that merge.
-Find and recover my code that does ...
-git stash) your agent can probably find it for you. 
-Git has a mechanism called the reflog which can often capture details of code that hasn&#x27;t been committed to a permanent branch. Agents can search that, and search other branches too.
-Just tell them what to find and watch them dive in.
-Use git bisect to find when this bug was introduced: ...
-When you run a bisect operation you provide Git with some kind of test condition and a start and ending commit range. Git then runs a binary search to identify the earliest commit for which your test condition fails. 
-This can efficiently answer the question &quot;what first caused this bug&quot;. The only downside is the need to express the test for the bug in a format that Git bisect can execute.
-Coding agents can handle this boilerplate for you. This upgrades Git bisect from an occasional use tool to one you can deploy any time you are curious about the historic behavior of your software.
-Rewriting history
-Let&#x27;s get into the fun advanced stuff.
-The commit history of a Git repository is not fixed. The data is just files on disk after all (tucked away in a hidden .git/ directory), and Git itself provides tools that can be used to modify that history.
-Don&#x27;t think of the Git history as a permanent record of what actually happened - instead consider it to be a deliberately authored story that describes the progression of the software project.
-This story is a tool to aid future development. Permanently recording mistakes and cancelled directions can sometimes be useful, but repository authors can make editorial decisions about what to keep and how best to capture that history.
-Coding agents are really good at using Git&#x27;s advanced history rewriting features.
-Undo or rewrite commits
-Undo last commit
-git reset --soft HEAD~1. I&#x27;ve never been able to remember that, and now I don&#x27;t have to!
-Remove uv.lock from that last commit
-Combine last three commits with a better commit message
-I&#x27;ve found that frontier models usually have really good taste in commit messages. I used to insist on writing these myself but I&#x27;ve accepted that the quality they produce is generally good enough, and often even better than what I would have produced myself.
-Building a new repository from scraps of an older one
-A trick I find myself using quite often is extracting out code from a larger repository into a new one while maintaining the key history of that code.
-One common example is library extraction. I may have built some classes and functions into a project and later realized they would make more sense as a standalone reusable code library.
-Start a new repo at /tmp/distance-functions and build a Python library there with the lib/distance_functions.py module from here - build a similar commit history copying the author and commit dates in the new repo
-Tags: coding-agents, generative-ai, github, agentic-engineering, ai, git, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2281,89 +2312,11 @@ Tags: coding-agents, generative-ai, github, agentic-engineering, ai, git, llms</
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-20 datetime="2026-03-20T23:59:14.000Z">2026-03-20</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-20 datetime="2026-03-20T23:59:14.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-20 datetime="2026-03-20T19:32:24.000Z">2026-03-20</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-20 datetime="2026-03-20T19:32:24.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/20/turbo-pascal/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Turbo Pascal 3.02A, deconstructed</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/20/turbo-pascal/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/turbo-pascal-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Turbo Pascal 3.02A, deconstructed
-Things That Turbo Pascal is Smaller Than James Hague lists things (from 2011) that are larger in size than Borland&#x27;s 1985 Turbo Pascal 3.02 executable - a 39,731 byte file that somehow included a full text editor IDE and Pascal compiler.
-This inspired me to track down a copy of that executable (available as freeware since 2000) and see if Claude could interpret the binary and decompile it for me.
-It did a great job, so I had it create this interactive artifact illustrating the result. Here&#x27;s the sequence of prompts I used (in regular claude.ai chat, not Claude Code):
-Read this https://prog21.dadgum.com/116.html
-Now find a copy of that binary online
-Explore this (I attached the zip file)
-Build an artifact - no react - that embeds the full turbo.com binary and displays it in a way that helps understand it - broke into labeled segments for different parts of the application, decompiled to visible source code (I guess assembly?) and with that assembly then reconstructed into readable code with extensive annotations
-
-Update: Annoyingly the Claude share link doesn&#x27;t show the actual code that Claude executed, but here&#x27;s the zip file it gave me when I asked to download all of the intermediate files.
-I ran Codex CLI with GPT-5.4 xhigh against that zip file to see if it would spot any obvious hallucinations, and it did not. This project is low-enough stakes that this gave me enough confidence to publish the result!
-Turns out it&#x27;s hallucinated slop
-Update 2, 24th March 2026: rep_lodsb on Hacker News is someone who actually understands assembler, and they reviewed the annotations and found them to be hallucinated slop:
-[...] Obviously, there has to be a lot more to even a simple-minded x86 code generator than just a generic &quot;emit opcode byte&quot; and &quot;emit call&quot; routine. In general, what A&quot;I&quot; produced here is not a full disassembly but a collection of short snippets, potentially not even including the really interesting ones. But is it even correct?
-EmitByte here is unnecessarily pushing/popping AX, which isn&#x27;t modified by the few instructions in between at all. No competent assembly language programmer would do this. So maybe against all expectations, Turbo Pascal is just really badly coded? No, it&#x27;s of course a hallucination: those instructions don&#x27;t appear in the binary at all! [...]
-But searching for e.g. the hex opcode B0 E8 (&#x27;mov al,0xe8&#x27;) is enough to confirm that this code snippet isn&#x27;t to be found anywhere.
-There is a lot more suspicious code, including some that couldn&#x27;t possibly work (like the &quot;ret 1&quot; in the system call dispatcher, which would misalign the stack).
-Conclusion: it&#x27;s slop
-Because it&#x27;s amusing to loop this kind of criticism through a model, I pasted their feedback into Claude along with instructions to re-review their the code and it agreed with their assessment:
-The commenter&#x27;s core charge — that the annotated disassembly is &quot;slop&quot; — is substantiated. The artifact presents a mix of genuine analysis (real hex dumps, some correctly disassembled sections) and wholesale fabrication (invented assembly with plausible-sounding labels and comments for roughly half the binary). The fabricated sections look convincing to a casual reader but don&#x27;t survive byte-level comparison with the actual binary.
-Tags: computer-history, tools, ai, generative-ai, llms, claude</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/20/cursor-on-kimi/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Kimi.ai @Kimi_Moonshot</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/20/cursor-on-kimi/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Congrats to the @cursor_ai team on the launch of Composer 2!
-We are proud to see Kimi-k2.5 provide the foundation. Seeing our model integrated effectively through Cursor&#x27;s continued pretraining &amp; high-compute RL training is the open model ecosystem we love to support.
-Note: Cursor accesses Kimi-k2.5 via @FireworksAI_HQ hosted RL and inference platform as part of an authorized commercial partnership.
-
-— Kimi.ai @Kimi_Moonshot, responding to reports that Composer 2 was built on top of Kimi K2.5
-Tags: kimi, generative-ai, ai, cursor, llms, ai-in-china</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3112,7 +3065,7 @@ Tags: kimi, generative-ai, ai, cursor, llms, ai-in-china</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4144,7 +4097,7 @@ Tags: kimi, generative-ai, ai, cursor, llms, ai-in-china</span>
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-03-05-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Mar 5, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4634,100 +4587,10 @@ Tags: kimi, generative-ai, ai, cursor, llms, ai-in-china</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-02-28 datetime="2026-02-28T12:30:00.000Z">2026-02-28</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-02-28 datetime="2026-02-28T12:30:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/our-agreement-with-the-department-of-war"
-                        open
-                      >
-                        <summary class="article-expander__title">Our agreement with the Department of War</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/our-agreement-with-the-department-of-war">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Details on OpenAI’s contract with the Department of War, outlining safety red lines, legal protections, and how AI systems will be deployed in classified environments.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-02-27 datetime="2026-02-27T14:57:29.000Z">2026-02-27</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-02-27 datetime="2026-02-27T14:57:29.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI Explained</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;Cru804JMjPI"
-                        open
-                      >
-                        <summary class="article-expander__title">Deadline Day for Autonomous AI Weapons &amp; Mass Surveillance</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;Cru804JMjPI">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23699506418">
-        <time id="build-timestamp" datetime="2026-03-29T02:26:35.931Z">2026-03-29T02:26:35.931Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23725323890">
+        <time id="build-timestamp" datetime="2026-03-30T02:28:48.764Z">2026-03-30T02:28:48.764Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
