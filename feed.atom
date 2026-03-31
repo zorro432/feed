@@ -1,10 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-03-30T02:28:48.787Z</id>
+    <id>urn:2026-03-31T02:24:04.939Z</id>
     <title>osmos::feed</title>
-    <updated>2026-03-30T02:28:48.787Z</updated>
+    <updated>2026-03-31T02:24:04.939Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[datasette-files 0.1a3]]></title>
+        <id>https://simonwillison.net/2026/Mar/30/datasette-files/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/30/datasette-files/#atom-everything"/>
+        <updated>2026-03-30T23:58:49.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-files/releases/tag/0.1a3">datasette-files 0.1a3</a></p>
+    <p>I'm working on integrating <code>datasette-files</code> into other plugins, such as <a href="https://github.com/datasette/datasette-extract">datasette-extract</a>. This necessitated a new release of the base plugin.</p>
+<blockquote>
+<ul>
+<li><code>owners_can_edit</code> and <code>owners_can_delete</code> configuration options, plus the <code>files-edit</code> and <code>files-delete</code> actions are now scoped to a new <code>FileResource</code> which is a child of <code>FileSourceResource</code>. <a href="https://github.com/datasette/datasette-files/issues/18">#18</a></li>
+<li>The file picker UI is now available as a <code>&lt;datasette-file-picker&gt;</code> Web Component. Thanks, <a href="https://github.com/asg017">Alex Garcia</a>. <a href="https://github.com/datasette/datasette-files/issues/19">#19</a></li>
+<li>New <code>from datasette_files import get_file</code> Python API for other plugins that need to access file data. <a href="https://github.com/datasette/datasette-files/issues/20">#20</a></li>
+</ul>
+</blockquote>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Georgi Gerganov]]></title>
+        <id>https://simonwillison.net/2026/Mar/30/georgi-gerganov/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/30/georgi-gerganov/#atom-everything"/>
+        <updated>2026-03-30T21:31:02.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/ggerganov/status/2038674698809102599"><p>Note that the main issues that people currently unknowingly face with local models mostly revolve around the harness and some intricacies around model chat templates and prompt construction. Sometimes there are even pure inference bugs. From typing the task in the client to the actual result, there is a long chain of components that atm are not only fragile - are also developed by different parties. So it's difficult to consolidate the entire stack and you have to keep in mind that what you are currently observing is with very high probability still broken in some subtle way along that chain.</p></blockquote>
+<p class="cite">&mdash; <a href="https://twitter.com/ggerganov/status/2038674698809102599">Georgi Gerganov</a>, explaining why it's hard to find local models that work well with coding agents</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/georgi-gerganov">georgi-gerganov</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette-llm 0.1a3]]></title>
+        <id>https://simonwillison.net/2026/Mar/30/datasette-llm/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/30/datasette-llm/#atom-everything"/>
+        <updated>2026-03-30T19:48:43.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-llm/releases/tag/0.1a3">datasette-llm 0.1a3</a></p>
+    <p>Adds the ability to configure <a href="https://github.com/datasette/datasette-llm/tree/0.1a3#purpose-specific-configuration">which LLMs are available for which purpose</a>, which means you can restrict the list of models that can be used with a specific plugin. <a href="https://github.com/datasette/datasette-llm/issues/3">#3</a></p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mr. Chatterbox is a (weak) Victorian-era ethically trained model you can run on your own computer]]></title>
+        <id>https://simonwillison.net/2026/Mar/30/mr-chatterbox/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/30/mr-chatterbox/#atom-everything"/>
+        <updated>2026-03-30T14:28:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>Trip Venturella released <a href="https://huggingface.co/tventurella/mr_chatterbox_model">Mr. Chatterbox</a>, a language model trained entirely on out-of-copyright text from the British Library. Here's how he describes it:</p>
+<blockquote>
+<p>Mr. Chatterbox is a language model trained entirely from scratch on a corpus of over 28,000 Victorian-era British texts published between 1837 and 1899, drawn from a dataset made available <a href="https://huggingface.co/datasets/TheBritishLibrary/blbooks">by the British Library</a>. The model has absolutely no training inputs from after 1899 — the vocabulary and ideas are formed exclusively from nineteenth-century literature.</p>
+<p>Mr. Chatterbox's training corpus was 28,035 books, with an estimated 2.93 billion input tokens after filtering. The model has roughly 340 million paramaters, roughly the same size as GPT-2-Medium. The difference is, of course, that unlike GPT-2, Mr. Chatterbox is trained entirely on historical data.</p>
+</blockquote>
+<p>Given how hard it is to train a useful LLM without using vast amounts of scraped, unlicensed data I've been dreaming of a model like this for a couple of years now. What would a model trained on out-of-copyright text be like to chat with?</p>
+<p>Thanks to Trip we can now find out for ourselves!</p>
+<p>The model itself is tiny, at least by Large Language Model standards - just <a href="https://huggingface.co/tventurella/mr_chatterbox_model/tree/main">2.05GB</a> on disk. You can try it out using Trip's <a href="https://huggingface.co/spaces/tventurella/mr_chatterbox">HuggingFace Spaces demo</a>:</p>
+<p style="text-align: center"><img src="https://static.simonwillison.net/static/2026/chatterbox.jpg" alt="Screenshot of a Victorian-themed chatbot interface titled &quot;🎩 Mr. Chatterbox (Beta)&quot; with subtitle &quot;The Victorian Gentleman Chatbot&quot;. The conversation shows a user asking &quot;How should I behave at dinner?&quot; with the bot replying &quot;My good fellow, one might presume that such trivialities could not engage your attention during an evening's discourse!&quot; The user then asks &quot;What are good topics?&quot; and the bot responds &quot;The most pressing subjects of our society— Indeed, a gentleman must endeavor to engage the conversation with grace and vivacity. Such pursuits serve as vital antidotes against ennui when engaged in agreeable company.&quot; A text input field at the bottom reads &quot;Say hello...&quot; with a send button. The interface uses a dark maroon and cream color scheme." style="max-width: 80%;" /></p>
+<p>Honestly, it's pretty terrible. Talking with it feels more like chatting with a Markov chain than an LLM - the responses may have a delightfully Victorian flavor to them but it's hard to get a response that usefully answers a question.</p>
+<p>The <a href="https://arxiv.org/abs/2203.15556">2022 Chinchilla paper</a> suggests a ratio of 20x the parameter count to training tokens. For a 340m model that would suggest around 7 billion tokens, more than twice the British Library corpus used here. The smallest Qwen 3.5 model is 600m parameters and that model family starts to get interesting at 2b - so my hunch is we would need 4x or more the training data to get something that starts to feel like a useful conversational partner.</p>
+<p>But what a fun project!</p>
+<h4 id="running-it-locally-with-llm">Running it locally with LLM</h4>
+<p>I decided to see if I could run the model on my own machine using my <a href="https://llm.datasette.io/">LLM</a> framework.</p>
+<p>I got Claude Code to do most of the work - <a href="https://gisthost.github.io/?7d0f00e152dd80d617b5e501e4ff025b/index.html">here's the transcript</a>.</p>
+<p>Trip trained the model using Andrej Karpathy's <a href="https://github.com/karpathy/nanochat">nanochat</a>, so I cloned that project, pulled the model weights and told Claude to build a Python script to run the model. Once we had that working (which ended up needing some extra details from the <a href="https://huggingface.co/spaces/tventurella/mr_chatterbox/tree/main">Space demo source code</a>) I had Claude <a href="https://llm.datasette.io/en/stable/plugins/tutorial-model-plugin.html">read the LLM plugin tutorial</a> and build the rest of the plugin.</p>
+<p><a href="https://github.com/simonw/llm-mrchatterbox">llm-mrchatterbox</a> is the result. Install the plugin like this:</p>
+<pre><code>llm install llm-mrchatterbox
+</code></pre>
+<p>The first time you run a prompt it will fetch the 2.05GB model file from Hugging Face. Try that like this:</p>
+<pre><code>llm -m mrchatterbox "Good day, sir"
+</code></pre>
+<p>Or start an ongoing chat session like this:</p>
+<pre><code>llm chat -m mrchatterbox
+</code></pre>
+<p>If you don't have LLM installed you can still get a chat session started from scratch using uvx like this:</p>
+<pre><code>uvx --with llm-mrchatterbox llm chat -m mrchatterbox
+</code></pre>
+<p>When you are finished with the model you can delete the cached file using:</p>
+<pre><code>llm mrchatterbox delete-model
+</code></pre>
+<p>This is the first time I've had Claude Code build a full LLM model plugin from scratch and it worked really well. I expect I'll be using this method again in the future.</p>
+<p>I continue to hope we can get a useful model from entirely public domain data. The fact that Trip was able to get this far using nanochat and 2.93 billion training tokens is a promising start.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/andrej-karpathy">andrej-karpathy</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/training-data">training-data</a>, <a href="https://simonwillison.net/tags/uv">uv</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[llm-mrchatterbox 0.1]]></title>
+        <id>https://simonwillison.net/2026/Mar/30/llm-mrchatterbox-2/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Mar/30/llm-mrchatterbox-2/#atom-everything"/>
+        <updated>2026-03-30T02:20:46.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-mrchatterbox/releases/tag/0.1">llm-mrchatterbox 0.1</a></p>
+    <p>See <a href="https://simonwillison.net/2026/Mar/30/mr-chatterbox/">Mr. Chatterbox is a (weak) Victorian-era ethically trained model you can run on your own computer</a>.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Entropy-Preserving Reinforcement Learning]]></title>
+        <id>entropy-preserving-reinforcement-learning</id>
+        <link href="https://machinelearning.apple.com/research/entropy-preserving-reinforcement-learning"/>
+        <updated>2026-03-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Policy gradient algorithms have driven many recent advancements in language model reasoning. An appealing property is their ability to learn from exploration on their own trajectories, a process crucial for fostering diverse and creative solutions. As we show in this paper, many policy gradient algorithms naturally reduce the entropy—and thus the diversity of explored trajectories—as part of training, yielding a policy increasingly limited in its ability to explore. In this paper, we argue that entropy should be actively monitored and controlled throughout training. We formally analyze the…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Beyond Real Data: Synthetic Data through the Lens of Regularization]]></title>
+        <id>beyond-real-data</id>
+        <link href="https://machinelearning.apple.com/research/beyond-real-data"/>
+        <updated>2026-03-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Synthetic data can improve generalization when real data is scarce, but excessive reliance may introduce distributional mismatches that degrade performance. In this paper, we present a learning-theoretic framework to quantify the trade-off between synthetic and real data. Our approach leverages algorithmic stability to derive generalization error bounds, characterizing the optimal synthetic-to-real data ratio that minimizes expected test error as a function of the Wasserstein distance between the real and synthetic distributions. We motivate our framework in the setting of kernel ridge…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Helping disaster response teams turn AI into action across Asia]]></title>
+        <id>https://openai.com/index/helping-disaster-response-teams-asia</id>
+        <link href="https://openai.com/index/helping-disaster-response-teams-asia"/>
+        <updated>2026-03-29T22:15:00.000Z</updated>
+        <summary type="html"><![CDATA[AI for Disaster Response in Asia: OpenAI Workshop with Gates Foundation]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Pretext]]></title>
         <id>https://simonwillison.net/2026/Mar/29/pretext/#atom-everything</id>
@@ -725,21 +858,21 @@ The LiteLLM v1.82.8 package published to PyPI was compromised with a particularl
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
-        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
-        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
-        <updated>2026-03-24T09:00:00.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Update on the OpenAI Foundation]]></title>
         <id>https://openai.com/index/update-on-the-openai-foundation</id>
         <link href="https://openai.com/index/update-on-the-openai-foundation"/>
         <updated>2026-03-24T09:00:00.000Z</updated>
         <summary type="html"><![CDATA[The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
+        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
+        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
+        <updated>2026-03-24T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -766,27 +899,6 @@ The LiteLLM v1.82.8 package published to PyPI was compromised with a particularl
         <link href="https://machinelearning.apple.com/research/trained-on-tokens"/>
         <updated>2026-03-24T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Large Language Models (LLMs) often lack meaningful confidence estimates for their outputs. While base LLMs are known to exhibit next-token calibration, it remains unclear whether they can assess confidence in the actual meaning of their responses beyond the token level. We find that, when using a certain sampling-based notion of semantic calibration, base LLMs are remarkably well-calibrated: they can meaningfully assess confidence in open-domain question-answering tasks, despite not being explicitly trained to do so. Our main theoretical contribution establishes a mechanism for why semantic…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SafetyPairs: Isolating Safety Critical Image Features with Counterfactual Image Generation]]></title>
-        <id>safetypairs</id>
-        <link href="https://machinelearning.apple.com/research/safetypairs"/>
-        <updated>2026-03-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[This paper was accepted at the Principled Design for Trustworthy AI — Interpretability, Robustness, and Safety across Modalities Workshop at ICLR 2026.
-What exactly makes a particular image unsafe? Systematically differentiating between benign and problematic images is a challenging problem, as subtle changes to an image, such as an insulting gesture or symbol, can drastically alter its safety implications. However, existing image safety datasets are coarse and ambiguous, offering only broad safety labels without isolating the specific features that drive these differences. We introduce…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Scaling Synthetic Task Generation for Agents via Exploration]]></title>
-        <id>scaling-synthetic-task</id>
-        <link href="https://machinelearning.apple.com/research/scaling-synthetic-task"/>
-        <updated>2026-03-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Post-Training Multimodal Large Language Models (MLLMs) to build interactive agents holds promise across domains such as computer-use, web navigation, and robotics. A key challenge in scaling such post-training is lack of high-quality downstream agentic task datasets with tasks that are diverse, feasible, and verifiable. Existing approaches for task generation rely heavily on human annotation or prompting MLLM with limited downstream environment information, which is either costly or poorly scalable as it yield tasks with limited coverage. To remedy this, we present AutoPlay, a scalable…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
         </author>
@@ -984,103 +1096,6 @@ pip install httpx --break-system-packages -q \
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[PCGamer Article Performance Audit]]></title>
-        <id>https://simonwillison.net/2026/Mar/22/pcgamer-audit/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/22/pcgamer-audit/#atom-everything"/>
-        <updated>2026-03-22T22:49:00.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/pcgamer-audit#readme">PCGamer Article Performance Audit</a></p>
-    <p>Stuart Breckenridge pointed out that <a href="https://stuartbreckenridge.net/2026-03-19-pc-gamer-recommends-rss-readers-in-a-37mb-article/">PC Gamer Recommends RSS Readers in a 37MB Article That Just Keeps Downloading</a>, highlighting a truly horrifying example of web bloat that added up to 100s more MBs thanks to auto-playing video ads. I decided to have Claude Code for web use <a href="https://github.com/simonw/rodney/">Rodney</a> to investigate the page - <a href="https://github.com/simonw/research/pull/101#issue-4117308562">prompt here</a>.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/web-performance">web-performance</a>, <a href="https://simonwillison.net/tags/rodney">rodney</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[JavaScript Sandboxing Research]]></title>
-        <id>https://simonwillison.net/2026/Mar/22/javascript-sandboxing-research/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/22/javascript-sandboxing-research/#atom-everything"/>
-        <updated>2026-03-22T19:53:00.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/javascript-sandboxing-research#readme">JavaScript Sandboxing Research</a></p>
-    <p>Aaron Harper <a href="https://www.inngest.com/blog/node-worker-threads">wrote about Node.js worker threads</a>, which inspired me to run a research task to see if they might help with running JavaScript in a sandbox. Claude Code went way beyond my initial question and produced a comparison of <a href="https://github.com/laverdet/isolated-vm">isolated-vm</a>, <a href="https://github.com/patriksimek/vm2">vm2</a>, <a href="https://github.com/justjake/quickjs-emscripten">quickjs-emscripten</a>, <a href="https://github.com/quickjs-ng/quickjs">QuickJS-NG</a>, <a href="https://github.com/tc39/proposal-shadowrealm">ShadowRealm</a>, and <a href="https://docs.deno.com/runtime/manual/runtime/workers/">Deno Workers</a>.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/nodejs">nodejs</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[DNS Lookup]]></title>
-        <id>https://simonwillison.net/2026/Mar/22/dns/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/22/dns/#atom-everything"/>
-        <updated>2026-03-22T19:16:30.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/dns">DNS Lookup</a></p>
-    <p>TIL that Cloudflare's 1.1.1.1 DNS service (and 1.1.1.2 and 1.1.1.3, which block malware and malware + adult content respectively) has a CORS-enabled JSON API, so I <a href="https://github.com/simonw/tools/pull/258#issue-4116864108">had Claude Code build me</a> a UI for running DNS queries against all three of those resolvers.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/dns">dns</a>, <a href="https://simonwillison.net/tags/cors">cors</a>, <a href="https://simonwillison.net/tags/cloudflare">cloudflare</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Merge State Visualizer]]></title>
-        <id>https://simonwillison.net/2026/Mar/22/manyana/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/22/manyana/#atom-everything"/>
-        <updated>2026-03-22T18:57:32.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/manyana">Merge State Visualizer</a></p>
-    <p>Bram Cohen wrote about his <a href="https://bramcohen.com/p/manyana">coherent vision for the future of version control</a> using CRDTs, illustrated by <a href="https://github.com/bramcohen/manyana/blob/main/manyana.py">470 lines of Python</a>.</p>
-<p>I fed that Python (minus comments) into Claude and asked for <a href="https://claude.ai/share/8ce777cd-c7c3-4656-a45e-acbf66bf994b">an explanation</a>, then had it use Pyodide to build me an interactive UI for seeing how the algorithms work.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/vcs">vcs</a>, <a href="https://simonwillison.net/tags/pyodide">pyodide</a>, <a href="https://simonwillison.net/tags/bram-cohen">bram-cohen</a>, <a href="https://simonwillison.net/tags/crdt">crdt</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Profiling Hacker News users based on their comments]]></title>
-        <id>https://simonwillison.net/2026/Mar/21/profiling-hacker-news-users/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/21/profiling-hacker-news-users/#atom-everything"/>
-        <updated>2026-03-21T23:59:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>Here's a mildly dystopian prompt I've been experimenting with recently: "Profile this user", accompanied by a copy of their last 1,000 comments on Hacker News.</p>
-<p>Obtaining those comments is easy. The <a href="https://hn.algolia.com/api">Algolia Hacker News API</a> supports listing comments sorted by date that have a specific tag, and the author of a comment is tagged there as <code>author_username</code>. Here's a JSON feed of my (<code>simonw</code>) most recent comments, for example:</p>
-<p><a href="https://hn.algolia.com/api/v1/search_by_date?tags=comment,author_simonw&amp;hitsPerPage=1000">https://hn.algolia.com/api/v1/search_by_date?tags=comment,author_simonw&amp;hitsPerPage=1000</a></p>
-<p>The Algolia API is served with open CORS headers, which means you can access the API from JavaScript running on any web page.</p>
-<p>Last August I <a href="https://chatgpt.com/share/68a4d2b1-a678-8006-aca0-cec51b243bd3">had ChatGPT build me</a> a <a href="https://tools.simonwillison.net/hn-comments-for-user">simple tool</a> for hitting that API for any user which fetches their comments and gives me a mobile-friendly "copy to clipboard" button. I've since <a href="https://github.com/simonw/tools/commits/main/hn-comments-for-user.html">tweaked it a few times</a> with Claude.</p>
-<p>I can then paste the whole lot into any LLM - these days I mostly use Claude Opus 4.6 for this - and prompt "profile this user" to see what it can figure out.</p>
-<p>It's startlingly effective! It feels invasive to quote the profile of another user here, so I'll show you what it produces for me:</p>
-<blockquote>
-<p>This is <strong>Simon Willison</strong> — a prolific, independent software developer, blogger, and one of the most visible voices in the AI-assisted coding space. Here's a profile drawn from his comments:</p>
-<p><strong>Professional identity:</strong> Independent developer and writer. Co-creator of Django, creator of Datasette and many other open source tools. On the board of the Python Software Foundation. Runs a heavily-trafficked personal blog at simonwillison.net with multiple content types (entries, link blog, notes, quotations). Monetizes through GitHub sponsors, ethical ads, and occasional consulting — not through any AI company payroll, a point he defends frequently.</p>
-<p><strong>Core thesis on AI coding:</strong> He's the leading evangelist for what he calls "agentic engineering" — using coding agents (Claude Code, Codex CLI) as productivity multipliers for skilled developers. His central argument: LLMs don't replace programmers, they amplify existing expertise. He's writing a guide/book on this at simonwillison.net/guides. He insists these tools are deceptively difficult to use well, and that most people who report bad results simply haven't learned the craft yet.</p>
-<p><strong>Working style:</strong> He does most of his programming from his iPhone via Claude Code for web, often while riding BART, walking the dog, or sitting in the garden. He embraces "YOLO mode" (auto-approving agent actions) and frequently runs 2-3 agent sessions in parallel. He starts every session with "run uv run pytest" to anchor the agent in TDD. He's on the $200/month Claude Max plan.</p>
-<p><strong>Key technical interests:</strong> Sandboxing and security (WebAssembly, Pyodide, sandbox-exec, Firecracker), SQLite (deeply), Python packaging and tooling (uv, PyPI distribution tricks), browser-in-a-browser experiments (v86, WASM Linux), and local LLM inference. He's been learning Go "by osmosis" through coding agents.</p>
-<p><strong>Security consciousness:</strong> He coined the term "prompt injection" and the "lethal trifecta" (access to private data + exposure to untrusted input + ability to take actions). He's genuinely alarmed about OpenClaw/Clawdbot security risks and has been predicting a headline-grabbing prompt injection attack "in the next six months" for over two years — acknowledging it keeps not happening while insisting the risk is real. He references the "normalization of deviance" pattern frequently.</p>
-<p><strong>Personality and debate style:</strong> Energetic, combative when challenged, but generally good-natured. He engages heavily in HN comment threads — sometimes dozens of replies in a single discussion. He's transparent about his biases and maintains a public disclosures page. He pushes back hard against what he sees as motivated reasoning from AI skeptics, but also against AGI hype ("I refer to that as the science fiction version of AI"). He gets visibly frustrated by sock-puppet accounts and bad-faith criticism. He has a self-deprecating streak ("my stupid pelican benchmark").</p>
-<p><strong>Recurring themes across hundreds of comments:</strong></p>
-<ul>
-<li>"Two things can be true at the same time" — he holds nuanced positions</li>
-<li>Tests are for productivity, not just quality</li>
-<li>The November 2025 model releases (Opus 4.5, GPT-5.2) were a genuine inflection point</li>
-<li>Code review is the biggest bottleneck in agent-assisted workflows</li>
-<li>"Cognitive debt" is a real and unsolved problem</li>
-<li>The best engineering practices (tests, docs, CI/CD, clean code) also make agents work better</li>
-<li>He's deliberately trying to "teach people good software engineering while tricking them into thinking the book is about AI"</li>
-</ul>
-<p><strong>Personal interests mentioned:</strong> Niche museums (runs niche-museums.com), New Zealand kākāpō parrots, cooking food from countries he's never visited, chickens in his garden. Lives in Half Moon Bay, CA near a major pelican roost. The pelican-on-a-bicycle SVG test is his signature LLM benchmark.</p>
-<p><strong>In a sentence:</strong> A deeply experienced, independently-minded developer who's genuinely excited about AI coding tools, fights hard against both uncritical hype and reflexive dismissal, and is trying to professionalize how the industry uses these tools — while also worrying loudly about the security implications almost nobody else takes seriously enough.</p>
-</blockquote>
-<p>This all checks out! I ran this in Claude incognito mode to hopefully prevent Claude from guessing that I was evaluating myself and sycophantically glazing me - the tone of the response it gave here is similar to the tone I've seen against other accounts.</p>
-
-<p>I expect it guessed my real name due to my habit of linking to my own writing from some of my comments, which provides plenty of simonwillison.net URLs for it to associate with my public persona. I haven't seen it take a guess at a real name for any of the other profiles I've generated.</p>
-<p>It's a little creepy to be able to derive this much information about someone so easily, even when they've shared that freely in a public (and API-available) place.</p>
-<p>I mainly use this to check that I'm not getting embroiled in an extensive argument with someone who has a history of arguing in bad faith. Thankfully that's rarely the case - Hacker News continues to be a responsibly moderated online space.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/hacker-news">hacker-news</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[This new Linux distro is breaking the law, by design…]]></title>
         <id>https://www.youtube.com/watch?v=nkY_s9HpL9M</id>
         <link href="https://www.youtube.com/watch?v=nkY_s9HpL9M"/>
@@ -1217,21 +1232,21 @@ pip install httpx --break-system-packages -q \
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
-        <id>https://openai.com/index/japan-teen-safety-blueprint</id>
-        <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
-        <updated>2026-03-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
         <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
         <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
         <updated>2026-03-17T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
+        <id>https://openai.com/index/japan-teen-safety-blueprint</id>
+        <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
+        <updated>2026-03-17T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1620,16 +1635,6 @@ pip install httpx --break-system-packages -q \
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The five AI value models driving business reinvention]]></title>
-        <id>https://openai.com/index/the-five-ai-value-models-driving-business-reinvention</id>
-        <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
-        <updated>2026-03-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing the Adoption news channel]]></title>
         <id>https://openai.com/index/introducing-the-adoption-news-channel</id>
         <link href="https://openai.com/index/introducing-the-adoption-news-channel"/>
@@ -1645,6 +1650,16 @@ pip install httpx --break-system-packages -q \
         <link href="https://openai.com/index/vfl-wolfsburg"/>
         <updated>2026-03-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[By focusing on people, not pilots, the Bundesliga club is scaling efficiency, creativity, and knowledge—without losing its football identity.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The five AI value models driving business reinvention]]></title>
+        <id>https://openai.com/index/the-five-ai-value-models-driving-business-reinvention</id>
+        <link href="https://openai.com/index/the-five-ai-value-models-driving-business-reinvention"/>
+        <updated>2026-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Five AI value models show how leaders can sequence AI from workforce fluency to process reinvention and build durable business advantage.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1760,18 +1775,18 @@ pip install httpx --break-system-packages -q \
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.3 Instant: Smoother, more useful everyday conversations]]></title>
-        <id>https://openai.com/index/gpt-5-3-instant</id>
-        <link href="https://openai.com/index/gpt-5-3-instant"/>
+        <title type="html"><![CDATA[GPT-5.3 Instant System Card]]></title>
+        <id>https://openai.com/index/gpt-5-3-instant-system-card</id>
+        <link href="https://openai.com/index/gpt-5-3-instant-system-card"/>
         <updated>2026-03-03T10:00:00.000Z</updated>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.3 Instant System Card]]></title>
-        <id>https://openai.com/index/gpt-5-3-instant-system-card</id>
-        <link href="https://openai.com/index/gpt-5-3-instant-system-card"/>
+        <title type="html"><![CDATA[GPT-5.3 Instant: Smoother, more useful everyday conversations]]></title>
+        <id>https://openai.com/index/gpt-5-3-instant</id>
+        <link href="https://openai.com/index/gpt-5-3-instant"/>
         <updated>2026-03-03T10:00:00.000Z</updated>
         <author>
             <name>OpenAI News</name>
