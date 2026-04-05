@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-04T02:06:59.928Z</id>
+    <id>urn:2026-04-05T02:28:29.068Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-04T02:06:59.928Z</updated>
+    <updated>2026-04-05T02:28:29.068Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[research-llm-apis 2026-04-04]]></title>
+        <id>https://simonwillison.net/2026/Apr/5/research-llm-apis/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/5/research-llm-apis/#atom-everything"/>
+        <updated>2026-04-05T00:32:11.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/research-llm-apis/releases/tag/2026-04-04">research-llm-apis 2026-04-04</a></p>
+    <p>I'm working on a <a href="https://github.com/simonw/llm/issues/1314">major change</a> to my LLM Python library and CLI tool. LLM provides an abstraction layer over hundreds of different LLMs from dozens of different vendors thanks to its plugin system, and some of those vendors have grown new features over the past year which LLM's abstraction layer can't handle, such as server-side tool execution.</p>
+<p>To help design that new abstraction layer I had Claude Code read through the Python client libraries for Anthropic, OpenAI, Gemini and Mistral and use those to help craft <code>curl</code> commands to access the raw JSON for both streaming and non-streaming modes across a range of different scenarios. Both the scripts and the captured outputs now live in this new repo.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/apis">apis</a>, <a href="https://simonwillison.net/tags/json">json</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Kyle Daigle]]></title>
+        <id>https://simonwillison.net/2026/Apr/4/kyle-daigle/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/4/kyle-daigle/#atom-everything"/>
+        <updated>2026-04-04T02:20:17.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/kdaigle/status/2040164759836778878"><p>[GitHub] platform activity is surging. There were 1 billion commits in 2025. Now, it's 275 million per week, on pace for 14 billion this year if growth remains linear (spoiler: it won't.)</p>
+<p>GitHub Actions has grown from 500M minutes/week in 2023 to 1B minutes/week in 2025, and now 2.1B minutes so far this week.</p></blockquote>
+<p class="cite">&mdash; <a href="https://twitter.com/kdaigle/status/2040164759836778878">Kyle Daigle</a>, COO, GitHub</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/github">github</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vulnerability Research Is Cooked]]></title>
         <id>https://simonwillison.net/2026/Apr/3/vulnerability-research-is-cooked/#atom-everything</id>
@@ -929,19 +957,6 @@ Useful writeup of today's supply chain attack against Axios, the HTTP client NPM
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[llm-mrchatterbox 0.1]]></title>
-        <id>https://simonwillison.net/2026/Mar/30/llm-mrchatterbox-2/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/30/llm-mrchatterbox-2/#atom-everything"/>
-        <updated>2026-03-30T02:20:46.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-mrchatterbox/releases/tag/0.1">llm-mrchatterbox 0.1</a></p>
-    <p>See <a href="https://simonwillison.net/2026/Mar/30/mr-chatterbox/">Mr. Chatterbox is a (weak) Victorian-era ethically trained model you can run on your own computer</a>.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Beyond Real Data: Synthetic Data through the Lens of Regularization]]></title>
         <id>beyond-real-data</id>
         <link href="https://machinelearning.apple.com/research/beyond-real-data"/>
@@ -969,39 +984,6 @@ Useful writeup of today's supply chain attack against Axios, the HTTP client NPM
         <summary type="html"><![CDATA[AI for Disaster Response in Asia: OpenAI Workshop with Gates Foundation]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Pretext]]></title>
-        <id>https://simonwillison.net/2026/Mar/29/pretext/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Mar/29/pretext/#atom-everything"/>
-        <updated>2026-03-29T20:08:45.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/chenglou/pretext">Pretext</a></strong></p>
-Exciting new browser library from Cheng Lou, previously a React core developer and the original creator of the <a href="https://github.com/chenglou/react-motion">react-motion</a> animation library.</p>
-<p>Pretext solves the problem of calculating the height of a paragraph of line-wrapped text <em>without touching the DOM</em>. The usual way of doing this is to render the text and measure its dimensions, but this is extremely expensive. Pretext uses an array of clever tricks to make this much, much faster, which enables all sorts of new text rendering effects in browser applications.</p>
-<p>Here's <a href="https://chenglou.me/pretext/dynamic-layout/">one demo</a> that shows the kind of things this makes possible:</p>
-<video autoplay loop muted playsinline
-  poster="https://static.simonwillison.net/static/2026/pretex.jpg">
-  <source src="https://static.simonwillison.net/static/2026/pretex.mp4" type="video/mp4">
-</video>
-
-<p>The key to how this works is the way it separates calculations into a call to a <code>prepare()</code> function followed by multiple calls to <code>layout()</code>.</p>
-<p>The <code>prepare()</code> function splits the input text into segments (effectively words, but it can take things like soft hyphens and non-latin character sequences and emoji into account as well) and measures those using an off-screen canvas, then caches the results. This is comparatively expensive but only runs once.</p>
-<p>The <code>layout()</code> function can then emulate the word-wrapping logic in browsers to figure out how many wrapped lines the text will occupy at a specified width and measure the overall height.</p>
-<p>I <a href="https://claude.ai/share/7859cbe1-1350-4341-bb40-6aa241d6a1fe">had Claude</a> build me <a href="https://tools.simonwillison.net/pretext-explainer">this interactive artifact</a> to help me visually understand what's going on, based on a simplified version of Pretext itself.</p>
-<p>The way this is tested is particularly impressive. The earlier tests <a href="https://github.com/chenglou/pretext/commit/d07dd7a5008726f99a15cebe0abd9031022e28ef#diff-835c37ed3b9234ed4d90c7703addb8e47f4fee6d9a28481314afd15ac472f8d2">rendered a full copy of the Great Gatsby</a> in multiple browsers to confirm that the estimated measurements were correct against a large volume of text. This was later joined by <a href="https://github.com/chenglou/pretext/tree/main/corpora">the corpora/ folder</a> using the same technique against lengthy public domain documents in Thai, Chinese, Korean, Japanese, Arabic, and more.</p>
-<p>Cheng Lou <a href="https://twitter.com/_chenglou/status/2037715226838343871">says</a>:</p>
-<blockquote>
-<p>The engine’s tiny (few kbs), aware of browser quirks, supports all the languages you’ll need, including Korean mixed with RTL Arabic and platform-specific emojis</p>
-<p>This was achieved through showing Claude Code and Codex the browsers ground truth, and have them measure &amp; iterate against those at every significant container width, running over weeks</p>
-</blockquote>
-
-    <p><small></small>Via <a href="https://twitter.com/_chenglou/status/2037713766205608234">@_chenglou</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/browsers">browsers</a>, <a href="https://simonwillison.net/tags/css">css</a>, <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/testing">testing</a>, <a href="https://simonwillison.net/tags/react">react</a>, <a href="https://simonwillison.net/tags/typescript">typescript</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1738,56 +1720,6 @@ Autoregressive language models trained with next-token prediction generate text 
         <updated>2026-03-06T16:25:26.000Z</updated>
         <author>
             <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Codex Security: now in research preview]]></title>
-        <id>https://openai.com/index/codex-security-now-in-research-preview</id>
-        <link href="https://openai.com/index/codex-security-now-in-research-preview"/>
-        <updated>2026-03-06T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Codex Security is an AI application security agent that analyzes project context to detect, validate, and patch complex vulnerabilities with higher confidence and less noise.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How Balyasny Asset Management built an AI research engine for investing]]></title>
-        <id>https://openai.com/index/balyasny-asset-management</id>
-        <link href="https://openai.com/index/balyasny-asset-management"/>
-        <updated>2026-03-06T07:00:00.000Z</updated>
-        <summary type="html"><![CDATA[See how Balyasny built an AI research system with GPT-5.4, rigorous model evaluation, and agent workflows to transform investment analysis at scale.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How Descript engineers multilingual video dubbing at scale]]></title>
-        <id>https://openai.com/index/descript</id>
-        <link href="https://openai.com/index/descript"/>
-        <updated>2026-03-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Using OpenAI reasoning models, Descript unlocked automatic localization of large content libraries without losing timing or meaning.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Ask a Techspert: How does AI understand my visual searches?]]></title>
-        <id>https://blog.google/company-news/inside-google/googlers/how-google-ai-visual-search-works/</id>
-        <link href="https://blog.google/company-news/inside-google/googlers/how-google-ai-visual-search-works/"/>
-        <updated>2026-03-05T18:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn more about AI Mode in Search’s query fan-out method for visual search.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The latest AI news we announced in February]]></title>
-        <id>https://blog.google/innovation-and-ai/products/google-ai-updates-february-2026/</id>
-        <link href="https://blog.google/innovation-and-ai/products/google-ai-updates-february-2026/"/>
-        <updated>2026-03-05T16:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Here are Google’s latest AI updates from February 2026]]></summary>
-        <author>
-            <name>AI</name>
         </author>
     </entry>
 </feed>
