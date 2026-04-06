@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-05 datetime="2026-04-05T00:32:11.000Z">2026-04-05</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-05 datetime="2026-04-05T00:32:11.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-05 datetime="2026-04-05T23:54:18.000Z">2026-04-05</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-05 datetime="2026-04-05T23:54:18.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -42,6 +42,169 @@
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/5/building-with-ai/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Eight years of wanting, three months of building with AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/5/building-with-ai/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Eight years of wanting, three months of building with AI
+They spent eight years thinking about and then three months building syntaqlite, which they describe as &quot;high-fidelity devtools that SQLite deserves&quot;.
+The goal was to provide fast, robust and comprehensive linting and verifying tools for SQLite, suitable for use in language servers and other development tools - a parser, formatter, and verifier for SQLite queries. I&#x27;ve found myself wanting this kind of thing in the past myself, hence my (far less production-ready) sqlite-ast project from a few months ago.
+Lalit had been procrastinating on this project for years, because of the inevitable tedium of needing to work through 400+ grammar rules to help build a parser. That&#x27;s exactly the kind of tedious work that coding agents excel at!
+Claude Code helped get over that initial hump and build the first prototype:
+AI basically let me put aside all my doubts on technical calls, my uncertainty of building the right thing and my reluctance to get started by giving me very concrete problems to work on. Instead of “I need to understand how SQLite’s parsing works”, it was “I need to get AI to suggest an approach for me so I can tear it up and build something better&quot;. I work so much better with concrete prototypes to play with and code to look at than endlessly thinking about designs in my head, and AI lets me get to that point at a pace I could not have dreamed about before. Once I took the first step, every step after that was so much easier.
+That first vibe-coded prototype worked great as a proof of concept, but they eventually made the decision to throw it away and start again from scratch. AI worked great for the low level details but did not produce a coherent high-level architecture:
+I found that AI made me procrastinate on key design decisions. Because refactoring was cheap, I could always say “I’ll deal with this later.” And because AI could refactor at the same industrial scale it generated code, the cost of deferring felt low. But it wasn’t: deferring decisions corroded my ability to think clearly because the codebase stayed confusing in the meantime.
+The second attempt took a lot longer and involved a great deal more human-in-the-loop decision making, but the result is a robust library that can stand the test of time.
+It&#x27;s worth setting aside some time to read this whole thing - it&#x27;s full of non-obvious downsides to working heavily with AI, as well as a detailed explanation of how they overcame those hurdles.
+The key idea I took away from this concerns AI&#x27;s weakness in terms of design and architecture:
+When I was working on something where I didn’t even know what I wanted, AI was somewhere between unhelpful and harmful. The architecture of the project was the clearest case: I spent weeks in the early days following AI down dead ends, exploring designs that felt productive in the moment but collapsed under scrutiny. In hindsight, I have to wonder if it would have been faster just thinking it through without AI in the loop at all.
+But expertise alone isn’t enough. Even when I understood a problem deeply, AI still struggled if the task had no objectively checkable answer. Implementation has a right answer, at least at a local level: the code compiles, the tests pass, the output matches what you asked for. Design doesn’t. We’re still arguing about OOP decades after it first took off.
+Via Hacker News
+Tags: sqlite, ai, generative-ai, llms, ai-assisted-programming, vibe-coding, agentic-engineering</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/5/chengpeng-mou/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Chengpeng Mou</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/5/chengpeng-mou/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>From anonymized U.S. ChatGPT data, we are seeing:
+~2M weekly messages on health insurance
+~600K weekly messages [classified as healthcare] from people living in “hospital deserts” (30 min drive to nearest hospital)
+7 out of 10 msgs happen outside clinic hours
+
+— Chengpeng Mou, Head of Business Finance, OpenAI
+Tags: ai-ethics, generative-ai, openai, chatgpt, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/5/syntaqlite/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Syntaqlite Playground</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/5/syntaqlite/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/syntaqlite-playground.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Tool: Syntaqlite Playground
+Lalit Maganti&#x27;s syntaqlite is currently being discussed on Hacker News thanks to Eight years of wanting, three months of building with AI, a deep dive into how it was built.
+This inspired me to revisit a research project I ran when Lalit first released it a couple of weeks ago, where I tried it out and then compiled it to a WebAssembly wheel so it could run in Pyodide in a browser (the library itself uses C and Rust).
+This new playground loads up the Python library and provides a UI for trying out its different features: formating, parsing into an AST, validating, and tokenizing SQLite SQL queries.
+
+Update: not sure how I missed this but syntaqlite has its own WebAssembly playground linked to from the README.
+Tags: sql, ai-assisted-programming, sqlite, tools, agentic-engineering</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/5/scan-for-secrets/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">scan-for-secrets 0.2</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/5/scan-for-secrets/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: scan-for-secrets 0.2
+CLI tool now streams results as they are found rather than waiting until the end, which is better for large directories.
+-d/--directory option can now be used multiple times to scan multiple directories.
+New -f/--file option for specifying one or more individual files to scan.
+New scan_directory_iter(), scan_file() and scan_file_iter() Python API functions.
+New -v/--verbose option which shows each directory that is being scanned.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/5/scan-for-secrets-2/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">scan-for-secrets 0.1.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/5/scan-for-secrets-2/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: scan-for-secrets 0.1.1
+Added documentation of the escaping schemes that are also scanned.
+Removed unnecessary repr escaping scheme, which was already covered by json.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/5/scan-for-secrets-3/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">scan-for-secrets 0.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/5/scan-for-secrets-3/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: scan-for-secrets 0.1
+I like publishing transcripts of local Claude Code sessions using my claude-code-transcripts tool but I&#x27;m often paranoid that one of my API keys or similar secrets might inadvertently be revealed in the detailed log files.
+I built this new Python scanning tool to help reassure me. You can feed it secrets and have it scan for them in a specified directory:
+uvx scan-for-secrets $OPENAI_API_KEY -d logs-to-publish/
+
+If you leave off the -d it defaults to the current directory.
+It doesn&#x27;t just scan for the literal secrets - it also scans for common encodings of those secrets e.g. backslash or JSON escaping, as described in the README.
+If you have a set of secrets you always want to protect you can list commands to echo them in a ~/.scan-for-secrets.conf.sh file. Mine looks like this:
+llm keys get openai
+llm keys get anthropic
+llm keys get gemini
+llm keys get mistral
+awk -F&#x3D; &#x27;/aws_secret_access_key/{print $2}&#x27; ~/.aws/credentials | xargs
+
+I built this tool using README-driven-development: I carefully constructed the README describing exactly how the tool should work, then dumped it into Claude Code and told it to build the actual tool (using red/green TDD, naturally.)
+Tags: projects, security, agentic-engineering, coding-agents, ai-assisted-programming, claude-code</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://simonwillison.net/2026/Apr/5/research-llm-apis/#atom-everything"
                         open
                       >
@@ -53,7 +216,7 @@
 I&#x27;m working on a major change to my LLM Python library and CLI tool. LLM provides an abstraction layer over hundreds of different LLMs from dozens of different vendors thanks to its plugin system, and some of those vendors have grown new features over the past year which LLM&#x27;s abstraction layer can&#x27;t handle, such as server-side tool execution.
 To help design that new abstraction layer I had Claude Code read through the Python client libraries for Anthropic, OpenAI, Gemini and Mistral and use those to help craft curl commands to access the raw JSON for both streaming and non-streaming modes across a range of different scenarios. Both the scripts and the captured outputs now live in this new repo.
 Tags: llm, apis, json, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -350,7 +513,7 @@ Tags: open-source, packaging, security, social-engineering, supply-chain</span>
                         data-accordion-key="https://www.youtube.com/watch?v&#x3D;BZ1hs2ZcnJc"
                         open
                       >
-                        <summary class="article-expander__title">AI News: Anthropic Leak is Bigger Than You Think</summary>
+                        <summary class="article-expander__title">AI News: Anthropic Leak Shows Us The Future of AI</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;BZ1hs2ZcnJc">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
@@ -1502,50 +1665,6 @@ Tags: llm</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/31/llm-echo/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">llm-echo 0.4</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/31/llm-echo/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: llm-echo 0.4
-Prompts now have the input_tokens and output_tokens fields populated on the response.
-Tags: llm</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/31/llm-echo-2/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">llm-echo 0.3</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/31/llm-echo-2/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: llm-echo 0.3
-Mechanisms for testing tool calls. #3
-Mechanism for testing raw responses. #4
-New echo-needs-key model for testing model key logic. #7
-Tags: llm</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -1721,179 +1840,11 @@ Tags: llm</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-30 datetime="2026-03-30T23:58:49.000Z">2026-03-30</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-30 datetime="2026-03-30T23:58:49.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-30 datetime="2026-03-30T00:00:00.000Z">2026-03-30</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-30 datetime="2026-03-30T00:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/30/datasette-files/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette-files 0.1a3</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/30/datasette-files/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette-files 0.1a3
-I&#x27;m working on integrating datasette-files into other plugins, such as datasette-extract. This necessitated a new release of the base plugin.
-owners_can_edit and owners_can_delete configuration options, plus the files-edit and files-delete actions are now scoped to a new FileResource which is a child of FileSourceResource. #18
-The file picker UI is now available as a &lt;datasette-file-picker&gt; Web Component. Thanks, Alex Garcia. #19
-New from datasette_files import get_file Python API for other plugins that need to access file data. #20
-Tags: datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/30/georgi-gerganov/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Georgi Gerganov</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/30/georgi-gerganov/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Note that the main issues that people currently unknowingly face with local models mostly revolve around the harness and some intricacies around model chat templates and prompt construction. Sometimes there are even pure inference bugs. From typing the task in the client to the actual result, there is a long chain of components that atm are not only fragile - are also developed by different parties. So it&#x27;s difficult to consolidate the entire stack and you have to keep in mind that what you are currently observing is with very high probability still broken in some subtle way along that chain.
-
-— Georgi Gerganov, explaining why it&#x27;s hard to find local models that work well with coding agents
-Tags: coding-agents, generative-ai, ai, local-llms, llms, georgi-gerganov</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/30/datasette-llm/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette-llm 0.1a3</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/30/datasette-llm/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette-llm 0.1a3
-Adds the ability to configure which LLMs are available for which purpose, which means you can restrict the list of models that can be used with a specific plugin. #3
-Tags: llm, datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Mar/30/mr-chatterbox/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Mr. Chatterbox is a (weak) Victorian-era ethically trained model you can run on your own computer</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Mar/30/mr-chatterbox/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/chatterbox-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Trip Venturella released Mr. Chatterbox, a language model trained entirely on out-of-copyright text from the British Library. Here&#x27;s how he describes it in the model card:
-
-
-Mr. Chatterbox is a language model trained entirely from scratch on a corpus of over 28,000 Victorian-era British texts published between 1837 and 1899, drawn from a dataset made available by the British Library. The model has absolutely no training inputs from after 1899 — the vocabulary and ideas are formed exclusively from nineteenth-century literature.
-
-Mr. Chatterbox&#x27;s training corpus was 28,035 books, with an estimated 2.93 billion input tokens after filtering. The model has roughly 340 million paramaters, roughly the same size as GPT-2-Medium. The difference is, of course, that unlike GPT-2, Mr. Chatterbox is trained entirely on historical data.
-
-
-Given how hard it is to train a useful LLM without using vast amounts of scraped, unlicensed data I&#x27;ve been dreaming of a model like this for a couple of years now. What would a model trained on out-of-copyright text be like to chat with?
-
-Thanks to Trip we can now find out for ourselves!
-
-The model itself is tiny, at least by Large Language Model standards - just 2.05GB on disk. You can try it out using Trip&#x27;s HuggingFace Spaces demo:
-
-
-
-Honestly, it&#x27;s pretty terrible. Talking with it feels more like chatting with a Markov chain than an LLM - the responses may have a delightfully Victorian flavor to them but it&#x27;s hard to get a response that usefully answers a question.
-
-The 2022 Chinchilla paper suggests a ratio of 20x the parameter count to training tokens. For a 340m model that would suggest around 7 billion tokens, more than twice the British Library corpus used here. The smallest Qwen 3.5 model is 600m parameters and that model family starts to get interesting at 2b - so my hunch is we would need 4x or more the training data to get something that starts to feel like a useful conversational partner.
-
-But what a fun project!
-
-Running it locally with LLM
-
-I decided to see if I could run the model on my own machine using my LLM framework.
-
-I got Claude Code to do most of the work - here&#x27;s the transcript.
-
-Trip trained the model using Andrej Karpathy&#x27;s nanochat, so I cloned that project, pulled the model weights and told Claude to build a Python script to run the model. Once we had that working (which ended up needing some extra details from the Space demo source code) I had Claude read the LLM plugin tutorial and build the rest of the plugin.
-
-llm-mrchatterbox is the result. Install the plugin like this:
-
-llm install llm-mrchatterbox
-
-
-The first time you run a prompt it will fetch the 2.05GB model file from Hugging Face. Try that like this:
-
-llm -m mrchatterbox &quot;Good day, sir&quot;
-
-
-Or start an ongoing chat session like this:
-
-llm chat -m mrchatterbox
-
-
-If you don&#x27;t have LLM installed you can still get a chat session started from scratch using uvx like this:
-
-uvx --with llm-mrchatterbox llm chat -m mrchatterbox
-
-
-When you are finished with the model you can delete the cached file using:
-
-llm mrchatterbox delete-model
-
-
-This is the first time I&#x27;ve had Claude Code build a full LLM model plugin from scratch and it worked really well. I expect I&#x27;ll be using this method again in the future.
-
-I continue to hope we can get a useful model from entirely public domain data. The fact that Trip was able to get this far using nanochat and 2.93 billion training tokens is a promising start.
-
-
-Update 31st March 2026: I had missed this when I first published this piece but Trip has his own detailed writeup of the project which goes into much more detail about how he trained the model. Here&#x27;s how the books were filtered for pre-training:
-
-
-First, I downloaded the British Library dataset split of all 19th-century books. I filtered those down to books contemporaneous with the reign of Queen Victoria—which, unfortunately, cut out the novels of Jane Austen—and further filtered those down to a set of books with a optical character recognition (OCR) confidence of .65 or above, as listed in the metadata. This left me with 28,035 books, or roughly 2.93 billion tokes for pretraining data.
-
-
-Getting it to behave like a conversational model was a lot harder. Trip started by trying to train on plays by Oscar Wilde and George Bernard Shaw, but found they didn&#x27;t provide enough pairs. Then he tried extracting dialogue pairs from the books themselves with poor results. The approach that worked was to have Claude Haiku and GPT-4o-mini generate synthetic conversation pairs for the supervised fine tuning, which solved the problem but sadly I think dilutes the &quot;no training inputs from after 1899&quot; claim from the original model card.
-Tags: ai, andrej-karpathy, generative-ai, local-llms, llms, ai-assisted-programming, hugging-face, llm, training-data, uv, ai-ethics, claude-code</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2875,14 +2826,14 @@ Autoregressive language models trained with next-token prediction generate text 
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/update-on-the-openai-foundation"
+                        data-accordion-key="https://openai.com/index/powering-product-discovery-in-chatgpt"
                         open
                       >
-                        <summary class="article-expander__title">Update on the OpenAI Foundation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/update-on-the-openai-foundation">
+                        <summary class="article-expander__title">Powering product discovery in ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/powering-product-discovery-in-chatgpt">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.</span>
+                              <span>ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.</span>
                             </span>
                           </div>
                         </a>
@@ -2892,14 +2843,14 @@ Autoregressive language models trained with next-token prediction generate text 
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/powering-product-discovery-in-chatgpt"
+                        data-accordion-key="https://openai.com/index/update-on-the-openai-foundation"
                         open
                       >
-                        <summary class="article-expander__title">Powering product discovery in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/powering-product-discovery-in-chatgpt">
+                        <summary class="article-expander__title">Update on the OpenAI Foundation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/update-on-the-openai-foundation">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.</span>
+                              <span>The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.</span>
                             </span>
                           </div>
                         </a>
@@ -3503,14 +3454,14 @@ Autoregressive language models trained with next-token prediction generate text 
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"
+                        data-accordion-key="https://openai.com/index/japan-teen-safety-blueprint"
                         open
                       >
-                        <summary class="article-expander__title">Introducing GPT-5.4 mini and nano</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano">
+                        <summary class="article-expander__title">OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/japan-teen-safety-blueprint">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span>
+                              <span>OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.</span>
                             </span>
                           </div>
                         </a>
@@ -3520,14 +3471,14 @@ Autoregressive language models trained with next-token prediction generate text 
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/japan-teen-safety-blueprint"
+                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"
                         open
                       >
-                        <summary class="article-expander__title">OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/japan-teen-safety-blueprint">
+                        <summary class="article-expander__title">Introducing GPT-5.4 mini and nano</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.</span>
+                              <span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span>
                             </span>
                           </div>
                         </a>
@@ -3878,7 +3829,7 @@ Autoregressive language models trained with next-token prediction generate text 
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4313,89 +4264,10 @@ Autoregressive language models trained with next-token prediction generate text 
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-06 datetime="2026-03-06T18:00:00.000Z">2026-03-06</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-06 datetime="2026-03-06T18:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI</button>
-                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/"
-                        open
-                      >
-                        <summary class="article-expander__title">How our open-source AI model SpeciesNet is helping to promote wildlife conservation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/speciessocial.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>An overview of SpeciesNet, our open-source AI model that is helping people around the world protect and conserve wildlife.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;17
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI Explained</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;zizoDORjmlQ"
-                        open
-                      >
-                        <summary class="article-expander__title">What the New ChatGPT 5.4 Means for the World</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;zizoDORjmlQ">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/23992522351">
-        <time id="build-timestamp" datetime="2026-04-05T02:28:29.045Z">2026-04-05T02:28:29.045Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24016284516">
+        <time id="build-timestamp" datetime="2026-04-06T02:29:34.806Z">2026-04-06T02:29:34.806Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
