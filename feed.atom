@@ -1,27 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-07T02:24:52.562Z</id>
+    <id>urn:2026-04-08T02:25:55.938Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-07T02:24:52.562Z</updated>
+    <updated>2026-04-08T02:25:55.938Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
     <entry>
-        <title type="html"><![CDATA[Claude's Source Code Got Leaked Across The Whole Internet]]></title>
-        <id>https://www.youtube.com/shorts/4-XNvaV2KPk</id>
-        <link href="https://www.youtube.com/shorts/4-XNvaV2KPk"/>
-        <updated>2026-04-06T21:55:19.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <title type="html"><![CDATA[GLM-5.1: Towards Long-Horizon Tasks]]></title>
+        <id>https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything"/>
+        <updated>2026-04-07T21:25:14.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://z.ai/blog/glm-5.1">GLM-5.1: Towards Long-Horizon Tasks</a></strong></p>
+Chinese AI lab Z.ai's latest model is a giant 754B parameter 1.51TB (on <a href="https://huggingface.co/zai-org/GLM-5.1">Hugging Face</a>) MIT-licensed monster - the same size as their previous GLM-5 release, and sharing the <a href="https://huggingface.co/papers/2602.15763">same paper</a>.</p>
+<p>It's available <a href="https://openrouter.ai/z-ai/glm-5.1">via OpenRouter</a> so I asked it to draw me a pelican:</p>
+<pre><code>llm install llm-openrouter
+llm -m openrouter/z-ai/glm-5.1 'Generate an SVG of a pelican on a bicycle'
+</code></pre>
+<p>And something new happened... unprompted, the model <a href="https://gist.github.com/simonw/af7170f54256cc007ef28a8721564be8">decided to give me</a> an HTML page that included both the SVG and a separate set of CSS animations!</p>
+<p>The SVG was excellent, and might be my new favorite from an open weights model:</p>
+<p><img alt="The bicycle is red and has a frame the correct shape and wheels with spokes. The pelican is a perky little fella." src="https://static.simonwillison.net/static/2026/glm-5.1-pelican.png" /></p>
+<p>But the animation <a href="https://gisthost.github.io/?73bb6808b18c2482f66e5f082c75f36e">broke it</a>:</p>
+<p><img alt="Animation - the wheels and pedals rotate, the clouds move... and the pelican has vanished, but there is a little blob bobbing up and down in the top left corner." src="https://static.simonwillison.net/static/2026/glm-5.1-broken-light-lossy.gif" /></p>
+<p>That's the pelican, floating up in the top left corner.</p>
+<p>I usually don't do follow-up prompts for the pelican test, but in this case I made an exception:</p>
+<pre><code>llm -c 'the animation is a bit broken, the pelican ends up positioned off the screen at the top right'
+</code></pre>
+<p>GLM 5.1 replied:</p>
+<blockquote>
+<p>The issue is that CSS <code>transform</code> animations on SVG elements override the SVG <code>transform</code> attribute used for positioning, causing the pelican to lose its placement and fly off to the top-right. The fix is to separate positioning (SVG attribute) from animation (inner group) and use <code>&lt;animateTransform&gt;</code> for SVG rotations since it handles coordinate systems correctly.</p>
+</blockquote>
+<p>And spat out <a href="https://static.simonwillison.net/static/2026/glm-5.1-pelican-fixed.html">fresh HTML</a> which fixed the problem!</p>
+<p><img alt="Now everything is right - the bicycle rotates correctly, the pelican sits on it and bobs up and down, and its lower beak moves slightly as well." src="https://static.simonwillison.net/static/2026/glm-5.1-pelican-fixed-medium-lossy.gif" /></p>
+<p>I particularly like the animation of the beak, which is described in the SVG comments like so:</p>
+<div class="highlight highlight-text-xml-svg"><pre><span class="pl-c"><span class="pl-c">&lt;!--</span> Pouch (lower beak) with wobble <span class="pl-c">--&gt;</span></span>
+&lt;<span class="pl-ent">g</span>&gt;
+    &lt;<span class="pl-ent">path</span> <span class="pl-e">d</span>=<span class="pl-s"><span class="pl-pds">"</span>M42,-58 Q43,-50 48,-42 Q55,-35 62,-38 Q70,-42 75,-60 L42,-58 Z<span class="pl-pds">"</span></span> <span class="pl-e">fill</span>=<span class="pl-s"><span class="pl-pds">"</span>url(#pouchGrad)<span class="pl-pds">"</span></span> <span class="pl-e">stroke</span>=<span class="pl-s"><span class="pl-pds">"</span>#b06008<span class="pl-pds">"</span></span> <span class="pl-e">stroke-width</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">opacity</span>=<span class="pl-s"><span class="pl-pds">"</span>0.9<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">path</span> <span class="pl-e">d</span>=<span class="pl-s"><span class="pl-pds">"</span>M48,-50 Q55,-46 60,-52<span class="pl-pds">"</span></span> <span class="pl-e">fill</span>=<span class="pl-s"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span> <span class="pl-e">stroke</span>=<span class="pl-s"><span class="pl-pds">"</span>#c06a08<span class="pl-pds">"</span></span> <span class="pl-e">stroke-width</span>=<span class="pl-s"><span class="pl-pds">"</span>0.8<span class="pl-pds">"</span></span> <span class="pl-e">opacity</span>=<span class="pl-s"><span class="pl-pds">"</span>0.6<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">animateTransform</span> <span class="pl-e">attributeName</span>=<span class="pl-s"><span class="pl-pds">"</span>transform<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>scale<span class="pl-pds">"</span></span>
+    <span class="pl-e">values</span>=<span class="pl-s"><span class="pl-pds">"</span>1,1; 1.03,0.97; 1,1<span class="pl-pds">"</span></span> <span class="pl-e">dur</span>=<span class="pl-s"><span class="pl-pds">"</span>0.75s<span class="pl-pds">"</span></span> <span class="pl-e">repeatCount</span>=<span class="pl-s"><span class="pl-pds">"</span>indefinite<span class="pl-pds">"</span></span>
+    <span class="pl-e">additive</span>=<span class="pl-s"><span class="pl-pds">"</span>sum<span class="pl-pds">"</span></span>/&gt;
+&lt;/<span class="pl-ent">g</span>&gt;</pre></div>
+
+<p><strong>Update</strong>: On Bluesky <a href="https://bsky.app/profile/charles.capps.me/post/3miwrn42mjc2t">@charles.capps.me suggested</a> a "NORTH VIRGINIA OPOSSUM ON AN E-SCOOTER" and...</p>
+<p><img alt="This is so great. It's dark, the possum is clearly a possum, it's riding an escooter, lovely animation, tail bobbing up and down, caption says NORTH VIRGINIA OPOSSUM, CRUISING THE COMMONWEALTH SINCE DUSK - only glitch is that it occasionally blinks and the eyes fall off the face" src="https://static.simonwillison.net/static/2026/glm-possum-escooter.gif.gif" /></p>
+<p>The HTML+SVG comments on that one include <code>/* Earring sparkle */, &lt;!-- Opossum fur gradient --&gt;, &lt;!-- Distant treeline silhouette - Virginia pines --&gt;,  &lt;!-- Front paw on handlebar --&gt;</code> - here's <a href="https://gist.github.com/simonw/1864b89f5304eba03c3ded4697e156c4">the transcript</a> and the <a href="https://static.simonwillison.net/static/2026/glm-possum-escooter.html">HTML result</a>.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/css">css</a>, <a href="https://simonwillison.net/tags/svg">svg</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/glm">glm</a></p>]]></summary>
         <author>
-            <name>Matt Wolfe</name>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Cursor ditches VS Code, but not everyone is happy...]]></title>
-        <id>https://www.youtube.com/watch?v=JSuS-zXMVwE</id>
-        <link href="https://www.youtube.com/watch?v=JSuS-zXMVwE"/>
-        <updated>2026-04-06T18:37:57.000Z</updated>
+        <title type="html"><![CDATA[Anthropic's Project Glasswing - restricting Claude Mythos to security researchers - sounds necessary to me]]></title>
+        <id>https://simonwillison.net/2026/Apr/7/project-glasswing/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/7/project-glasswing/#atom-everything"/>
+        <updated>2026-04-07T20:52:54.000Z</updated>
+        <summary type="html"><![CDATA[<p>Anthropic <em>didn't</em> release their latest model, Claude Mythos (<a href="https://www-cdn.anthropic.com/53566bf5440a10affd749724787c8913a2ae0841.pdf">system card PDF</a>), today. They have instead made it available to a very restricted set of preview partners under their newly announced <a href="https://www.anthropic.com/glasswing">Project Glasswing</a>.</p>
+<p>The model is a general purpose model, similar to Claude Opus 4.6, but Anthropic claim that its cyber-security research abilities are strong enough that they need to give the software industry as a whole time to prepare.</p>
+<blockquote>
+<p>Mythos Preview has already found thousands of high-severity vulnerabilities, including some in <em>every major operating system and web browser</em>. Given the rate of AI progress, it will not be long before such capabilities proliferate, potentially beyond actors who are committed to deploying them safely.</p>
+<p>[...]</p>
+<p>Project Glasswing partners will receive access to Claude Mythos Preview to find and fix vulnerabilities or weaknesses in their foundational systems—systems that represent a very large portion of the world’s shared cyberattack surface. We anticipate this work will focus on tasks like local vulnerability detection, black box testing of binaries, securing endpoints, and penetration testing of systems.</p>
+</blockquote>
+
+<p>There's a great deal more technical detail in <a href="https://red.anthropic.com/2026/mythos-preview/"> Assessing Claude Mythos Preview’s cybersecurity capabilities</a> on the Anthropic Red Team blog:</p>
+
+<blockquote><p>In one case, Mythos Preview wrote a web browser exploit that chained together four vulnerabilities, writing a complex <a href="https://en.wikipedia.org/wiki/JIT_spraying ">JIT heap spray</a> that escaped both renderer and OS sandboxes. It autonomously obtained local privilege escalation exploits on Linux and other operating systems by exploiting subtle race conditions and KASLR-bypasses. And it autonomously wrote a remote code execution exploit on FreeBSD's NFS server that granted full root access to unauthenticated users by splitting a 20-gadget ROP chain over multiple packets.</p></blockquote>
+<p>Plus this comparison with Claude 4.6 Opus:</p>
+<blockquote><p>Our internal evaluations showed that Opus 4.6 generally had a near-0% success rate at autonomous exploit development. But Mythos Preview is in a different league. For example, Opus 4.6 turned the vulnerabilities it had found in Mozilla’s Firefox 147 JavaScript engine—all patched in Firefox 148—into JavaScript shell exploits only two times out of several hundred attempts. We re-ran this experiment as a benchmark for Mythos Preview, which developed working exploits 181 times, and achieved register control on 29 more.</p>
+</blockquote>
+
+<p>Saying "our model is too dangerous to release" is a great way to build buzz around a new model, but in this case I expect their caution is warranted.</p>
+<p>Just a few days (<a href="https://simonwillison.net/2026/Apr/3/">last Friday</a>) ago I started a new <a href="https://simonwillison.net/tags/ai-security-research/">ai-security-research</a> tag on this blog to acknowledge an uptick in credible security professionals pulling the alarm on how good modern LLMs have got at vulnerability research.</p>
+<p><a href="https://www.theregister.com/2026/03/26/greg_kroahhartman_ai_kernel/">Greg Kroah-Hartman</a> of the Linux kernel:</p>
+<blockquote>
+<p>Months ago, we were getting what we called 'AI slop,' AI-generated security reports that were obviously wrong or low quality. It was kind of funny. It didn't really worry us.</p>
+<p>Something happened a month ago, and the world switched. Now we have real reports. All open source projects have real reports that are made with AI, but they're good, and they're real.</p>
+</blockquote>
+<p><a href="https://mastodon.social/@bagder/116336957584445742">Daniel Stenberg</a> of <code>curl</code>:</p>
+<blockquote>
+<p>The challenge with AI in open source security has transitioned from an AI slop tsunami into more of a ... plain security report tsunami. Less slop but lots of reports. Many of them really good.</p>
+<p>I'm spending hours per day on this now. It's intense.</p>
+</blockquote>
+<p>And Thomas Ptacek published <a href="https://sockpuppet.org/blog/2026/03/30/vulnerability-research-is-cooked/">Vulnerability Research Is Cooked</a>, a post inspired by his <a href="https://securitycryptographywhatever.com/2026/03/25/ai-bug-finding/">podcast conversation</a> with Anthropic's Nicholas Carlini.</p>
+<p>Anthropic have a 5 minute <a href="https://www.youtube.com/watch?v=INGOC6-LLv0">talking heads video</a> describing the Glasswing project. Nicholas Carlini appears as one of those talking heads, where he said (highlights mine):</p>
+<blockquote>
+<p>It has the ability to chain together vulnerabilities. So what this means is you find two vulnerabilities, either of which doesn't really get you very much independently. But this model is able to create exploits out of three, four, or sometimes five vulnerabilities that in sequence give you some kind of very sophisticated end outcome. [...]</p>
+<p><strong>I've found more bugs in the last couple of weeks than I found in the rest of my life combined</strong>. We've used the model to scan a bunch of open source code, and the thing that we went for first was operating systems, because this is the code that underlies the entire internet infrastructure. <strong>For OpenBSD, we found a bug that's been present for 27 years, where I can send a couple of pieces of data to any OpenBSD server and crash it</strong>. On Linux, we found a number of vulnerabilities where as a user with no permissions, I can elevate myself to the administrator by just running some binary on my machine. For each of these bugs, we told the maintainers who actually run the software about them, and they went and fixed them and have deployed the patches  patches so that anyone who runs the software is no longer vulnerable to these attacks.</p>
+</blockquote>
+<p>I found this on the <a href="https://www.openbsd.org/errata78.html">OpenBSD 7.8 errata page</a>:</p>
+<blockquote>
+<p><strong>025: RELIABILITY FIX: March 25, 2026</strong>  <em>All architectures</em></p>
+<p>TCP packets with invalid SACK options could crash the kernel.</p>
+<p><a href="https://ftp.openbsd.org/pub/OpenBSD/patches/7.8/common/025_sack.patch.sig">A source code patch exists which remedies this problem.</a></p>
+</blockquote>
+<p>I tracked that change down in the <a href="https://github.com/openbsd/src">GitHub mirror</a> of the OpenBSD CVS repo (apparently they still use CVS!) and found it <a href="https://github.com/openbsd/src/blame/master/sys/netinet/tcp_input.c#L2461">using git blame</a>:</p>
+<p><img src="https://static.simonwillison.net/static/2026/openbsd-27-years.jpg" alt="Screenshot of a Git blame view of C source code around line 2455 showing TCP SACK hole validation logic. Code includes checks using SEQ_GT, SEQ_LT macros on fields like th-&gt;th_ack, tp-&gt;snd_una, sack.start, sack.end, tp-&gt;snd_max, and tp-&gt;snd_holes. Most commits are from 25–27 years ago with messages like &quot;more SACK hole validity testin...&quot; and &quot;knf&quot;, while one recent commit from 3 weeks ago (&quot;Ignore TCP SACK packets wit...&quot;) is highlighted with an orange left border, adding a new guard &quot;if (SEQ_LT(sack.start, tp-&gt;snd_una)) continue;&quot;" style="max-width: 100%;" /></p>
+<p>Sure enough, the surrounding code is from 27 years ago.</p>
+<p>I'm not sure which Linux vulnerability Nicholas was describing, but it may have been <a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=5133b61aaf437e5f25b1b396b14242a6bb0508e2">this NFS one</a> recently covered <a href="https://mtlynch.io/claude-code-found-linux-vulnerability/">by Michael Lynch
+</a>.</p>
+<p>There's enough smoke here that I believe there's a fire. It's not surprising to find vulnerabilities in decades-old software, especially given that they're mostly written in C, but what's new is that coding agents run by the latest frontier LLMs are proving tirelessly capable at digging up these issues.</p>
+<p>I actually thought to myself on Friday that this sounded like an industry-wide reckoning in the making, and that it might warrant a huge investment of time and money to get ahead of the inevitable barrage of vulnerabilities. Project Glasswing incorporates "$100M in usage credits ... as well as $4M in direct donations to open-source security organizations". Partners include AWS, Apple, Microsoft, Google, and the Linux Foundation. It would be great to see OpenAI involved as well - GPT-5.4 already has a strong reputation for finding security vulnerabilities and they have stronger models on the near horizon.</p>
+<p>The bad news for those of us who are <em>not</em> trusted partners is this:</p>
+<blockquote>
+<p>We do not plan to make Claude Mythos Preview generally available, but our eventual goal is to enable our users to safely deploy Mythos-class models at scale—for cybersecurity purposes, but also for the myriad other benefits that such highly capable models will bring. To do so, we need to make progress in developing cybersecurity (and other) safeguards that detect and block the model’s most dangerous outputs. We plan to launch new safeguards with an upcoming Claude Opus model, allowing us to improve and refine them with a model that does not pose the same level of risk as Mythos Preview.</p>
+</blockquote>
+<p>I can live with that. I think the security risks really are credible here, and having extra time for trusted teams to get ahead of them is a reasonable trade-off.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/thomas-ptacek">thomas-ptacek</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/nicholas-carlini">nicholas-carlini</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
         <author>
-            <name>Fireship</name>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SQLite WAL Mode Across Docker Containers Sharing a Volume]]></title>
+        <id>https://simonwillison.net/2026/Apr/7/sqlite-wal-docker-containers/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/7/sqlite-wal-docker-containers/#atom-everything"/>
+        <updated>2026-04-07T15:41:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/sqlite-wal-docker-containers#readme">SQLite WAL Mode Across Docker Containers Sharing a Volume</a></p>
+    <p>Inspired by <a href="https://news.ycombinator.com/item?id=47637353">this conversation</a> on Hacker News about whether two SQLite processes in separate Docker containers that share the same volume might run into problems due to WAL shared memory. The answer is that everything works fine - Docker containers on the same host and filesystem share the same shared memory in a way that allows WAL to collaborate as it should.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/docker">docker</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -413,15 +515,6 @@ Thomas Ptacek's take on the sudden and enormous impact the latest frontier model
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: Anthropic Leak Shows Us The Future of AI]]></title>
-        <id>https://www.youtube.com/watch?v=BZ1hs2ZcnJc</id>
-        <link href="https://www.youtube.com/watch?v=BZ1hs2ZcnJc"/>
-        <updated>2026-04-03T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[The Axios supply chain attack used individually targeted social engineering]]></title>
         <id>https://simonwillison.net/2026/Apr/3/supply-chain-social-engineering/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/3/supply-chain-social-engineering/#atom-everything"/>
@@ -683,15 +776,6 @@ Thomas Ptacek's take on the sudden and enormous impact the latest frontier model
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[He just crawled through hell to fix the browser…]]></title>
-        <id>https://www.youtube.com/watch?v=vd14EElCRvs</id>
-        <link href="https://www.youtube.com/watch?v=vd14EElCRvs"/>
-        <updated>2026-04-02T19:18:38.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Gemma 4: Byte for byte, the most capable open models]]></title>
         <id>https://simonwillison.net/2026/Apr/2/gemma-4/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/2/gemma-4/#atom-everything"/>
@@ -883,15 +967,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Tragic mistake... Anthropic leaks Claude’s source code]]></title>
-        <id>https://www.youtube.com/watch?v=mBHRPeg8zPU</id>
-        <link href="https://www.youtube.com/watch?v=mBHRPeg8zPU"/>
-        <updated>2026-04-01T17:27:05.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[We’re creating a new satellite imagery map to help protect Brazil’s forests.]]></title>
         <id>https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/</id>
         <link href="https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/"/>
@@ -927,60 +1002,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[datasette-enrichments-llm 0.2a0]]></title>
-        <id>https://simonwillison.net/2026/Apr/1/datasette-enrichments-llm/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/1/datasette-enrichments-llm/#atom-everything"/>
-        <updated>2026-04-01T03:28:44.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-enrichments-llm/releases/tag/0.2a0">datasette-enrichments-llm 0.2a0</a></p>
-    <blockquote>
-<ul>
-<li>This plugin now uses <a href="https://github.com/datasette/datasette-llm">datasette-llm</a> to configure and manage models. This means it's possible to <a href="https://github.com/datasette/datasette-enrichments-llm/blob/0.2a0/README.md#configuration">specify which models</a> should be made available for enrichments, using the new <code>enrichments</code> purpose.</li>
-</ul>
-</blockquote>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[datasette-llm-usage 0.2a0]]></title>
-        <id>https://simonwillison.net/2026/Apr/1/datasette-llm-usage/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/1/datasette-llm-usage/#atom-everything"/>
-        <updated>2026-04-01T03:24:03.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-llm-usage/releases/tag/0.2a0">datasette-llm-usage 0.2a0</a></p>
-    <blockquote>
-<ul>
-<li>Removed features relating to allowances and estimated pricing. These are now the domain of <a href="https://github.com/datasette/datasette-llm-accountant">datasette-llm-accountant</a>.</li>
-<li>Now depends on <a href="https://github.com/datasette/datasette-llm">datasette-llm</a> for model configuration. <a href="https://github.com/datasette/datasette-llm-usage/pull/3">#3</a></li>
-<li>Full prompts and responses and tool calls can now be logged to the <code>llm_usage_prompt_log</code> table in the internal database if you set the new <code>datasette-llm-usage.log_prompts</code> plugin configuration setting.</li>
-<li>Redesigned the <code>/-/llm-usage-simple-prompt</code> page, which now requires the <code>llm-usage-simple-prompt</code> permission.</li>
-</ul>
-</blockquote>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[datasette-llm 0.1a5]]></title>
-        <id>https://simonwillison.net/2026/Apr/1/datasette-llm/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/1/datasette-llm/#atom-everything"/>
-        <updated>2026-04-01T03:11:01.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-llm/releases/tag/0.1a5">datasette-llm 0.1a5</a></p>
-    <blockquote>
-<ul>
-<li>The <code>llm_prompt_context()</code> plugin hook wrapper mechanism now tracks prompts executed within a chain as well as one-off prompts, which means it can be used to track tool call loops. <a href="https://github.com/datasette/datasette-llm">#5</a></li>
-</ul>
-</blockquote>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Gradient Labs gives every bank customer an AI account manager]]></title>
         <id>https://openai.com/index/gradient-labs</id>
         <link href="https://openai.com/index/gradient-labs"/>
@@ -988,25 +1009,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[Gradient Labs uses GPT-4.1 and GPT-5.4 mini and nano to power AI agents that automate banking support workflows with low latency and high reliability.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How AI Gets Data Wrong (and how to fix it)]]></title>
-        <id>https://www.youtube.com/shorts/osycm8ZK7iY</id>
-        <link href="https://www.youtube.com/shorts/osycm8ZK7iY"/>
-        <updated>2026-03-31T20:46:22.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Millions of JS devs just got penetrated by a RAT…]]></title>
-        <id>https://www.youtube.com/watch?v=o7NYXvYohYk</id>
-        <link href="https://www.youtube.com/watch?v=o7NYXvYohYk"/>
-        <updated>2026-03-31T18:58:40.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1090,15 +1092,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: Anthropic Went Crazy This Week!]]></title>
-        <id>https://www.youtube.com/watch?v=OYyS0Gu5xj8</id>
-        <link href="https://www.youtube.com/watch?v=OYyS0Gu5xj8"/>
-        <updated>2026-03-27T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[To Infinity and Beyond: Tool-Use Unlocks Length Generalization in State Space Models]]></title>
         <id>to-infinity</id>
         <link href="https://machinelearning.apple.com/research/to-infinity"/>
@@ -1116,24 +1109,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[It is challenging to generate the code for a complete user interface using a Large Language Model (LLM). User interfaces are complex and their implementations often consist of multiple, inter-related files that together specify the contents of each screen, the navigation flows between the screens, and the data model used throughout the application. It is challenging to craft a single prompt for an LLM that contains enough detail to generate a complete user interface, and even then the result is frequently a single large and difficult to understand file that contains all of the generated…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?]]></title>
-        <id>https://www.youtube.com/watch?v=s4tptozUJ8Y</id>
-        <link href="https://www.youtube.com/watch?v=s4tptozUJ8Y"/>
-        <updated>2026-03-26T20:15:12.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Anthropic just released the real Claude Bot...]]></title>
-        <id>https://www.youtube.com/watch?v=wfeiCZK0mNs</id>
-        <link href="https://www.youtube.com/watch?v=wfeiCZK0mNs"/>
-        <updated>2026-03-26T18:11:51.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1184,15 +1159,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[We’re expanding Search Live globally, to all languages and locations where AI Mode is available.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Datacenter Problem Nobody's Talking About]]></title>
-        <id>https://www.youtube.com/watch?v=slX_lDDobEs</id>
-        <link href="https://www.youtube.com/watch?v=slX_lDDobEs"/>
-        <updated>2026-03-26T02:28:07.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1306,24 +1272,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[OpenAI Just Killed Sora]]></title>
-        <id>https://www.youtube.com/watch?v=PKKN5be_my0</id>
-        <link href="https://www.youtube.com/watch?v=PKKN5be_my0"/>
-        <updated>2026-03-24T22:57:46.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Tech bros optimized war… and it’s working]]></title>
-        <id>https://www.youtube.com/watch?v=nxwkn9Dt9-I</id>
-        <link href="https://www.youtube.com/watch?v=nxwkn9Dt9-I"/>
-        <updated>2026-03-24T18:22:27.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Helping developers build safer AI experiences for teens]]></title>
         <id>https://openai.com/index/teen-safety-policies-gpt-oss-safeguard</id>
         <link href="https://openai.com/index/teen-safety-policies-gpt-oss-safeguard"/>
@@ -1334,21 +1282,21 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
-        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
-        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
-        <updated>2026-03-24T09:00:00.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Update on the OpenAI Foundation]]></title>
         <id>https://openai.com/index/update-on-the-openai-foundation</id>
         <link href="https://openai.com/index/update-on-the-openai-foundation"/>
         <updated>2026-03-24T09:00:00.000Z</updated>
         <summary type="html"><![CDATA[The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
+        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
+        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
+        <updated>2026-03-24T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1371,33 +1319,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[Improving Composer through real-time RL]]></summary>
         <author>
             <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This new Linux distro is breaking the law, by design…]]></title>
-        <id>https://www.youtube.com/watch?v=nkY_s9HpL9M</id>
-        <link href="https://www.youtube.com/watch?v=nkY_s9HpL9M"/>
-        <updated>2026-03-20T19:32:24.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: Every Major Announcement From This Week]]></title>
-        <id>https://www.youtube.com/watch?v=V4un_4uTEHs</id>
-        <link href="https://www.youtube.com/watch?v=V4un_4uTEHs"/>
-        <updated>2026-03-20T15:04:52.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Google just changed the future of UI/UX design...]]></title>
-        <id>https://www.youtube.com/watch?v=qaB5HF4ax9M</id>
-        <link href="https://www.youtube.com/watch?v=qaB5HF4ax9M"/>
-        <updated>2026-03-19T19:35:06.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1441,25 +1362,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How to burn $30m on a JavaScript framework...]]></title>
-        <id>https://www.youtube.com/watch?v=ReAnFFqvCeA</id>
-        <link href="https://www.youtube.com/watch?v=ReAnFFqvCeA"/>
-        <updated>2026-03-18T17:56:58.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenClaw Just Got WAY Easier to Install]]></title>
-        <id>https://www.youtube.com/shorts/vpTvoxIrlHs</id>
-        <link href="https://www.youtube.com/shorts/vpTvoxIrlHs"/>
-        <updated>2026-03-18T14:31:57.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Money Forward brings Cursor’s coding agents to product, design, and QA]]></title>
         <id>https://cursor.com/blog/money-forward</id>
         <link href="https://cursor.com/blog/money-forward"/>
@@ -1500,26 +1402,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Perplexity “Computer” is Kind of Insane]]></title>
-        <id>https://www.youtube.com/shorts/nc0oIVfpSqo</id>
-        <link href="https://www.youtube.com/shorts/nc0oIVfpSqo"/>
-        <updated>2026-03-17T14:50:08.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
-        <id>https://openai.com/index/japan-teen-safety-blueprint</id>
-        <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
-        <updated>2026-03-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
         <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
         <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
@@ -1530,12 +1412,13 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The REAL Story from NVIDIA GTC This Week!]]></title>
-        <id>https://www.youtube.com/watch?v=JyWdgDcsmbk</id>
-        <link href="https://www.youtube.com/watch?v=JyWdgDcsmbk"/>
-        <updated>2026-03-17T06:27:28.000Z</updated>
+        <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
+        <id>https://openai.com/index/japan-teen-safety-blueprint</id>
+        <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
+        <updated>2026-03-17T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
         <author>
-            <name>Matt Wolfe</name>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1559,16 +1442,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Claude Just Dropped A Huge New Feature]]></title>
-        <id>https://www.youtube.com/shorts/W4iSvbg4f68</id>
-        <link href="https://www.youtube.com/shorts/W4iSvbg4f68"/>
-        <updated>2026-03-16T13:05:30.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Why Codex Security Doesn’t Include a SAST Report]]></title>
         <id>https://openai.com/index/why-codex-security-doesnt-include-sast</id>
         <link href="https://openai.com/index/why-codex-security-doesnt-include-sast"/>
@@ -1579,44 +1452,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This New Feature Is A Big Deal For Creatives]]></title>
-        <id>https://www.youtube.com/shorts/Yd10X5VyMng</id>
-        <link href="https://www.youtube.com/shorts/Yd10X5VyMng"/>
-        <updated>2026-03-15T12:59:24.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude Just Rolled Out 2 Big New Features]]></title>
-        <id>https://www.youtube.com/shorts/3B1c6Kq_aY0</id>
-        <link href="https://www.youtube.com/shorts/3B1c6Kq_aY0"/>
-        <updated>2026-03-13T20:04:18.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: They All Launched the Same Thing!]]></title>
-        <id>https://www.youtube.com/watch?v=syx_8UlEWlA</id>
-        <link href="https://www.youtube.com/watch?v=syx_8UlEWlA"/>
-        <updated>2026-03-13T16:14:48.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[7 new open source AI tools you need right now…]]></title>
-        <id>https://www.youtube.com/watch?v=Xn-gtHDsaPY</id>
-        <link href="https://www.youtube.com/watch?v=Xn-gtHDsaPY"/>
-        <updated>2026-03-12T17:49:19.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How AI is helping improve heart health in rural Australia]]></title>
         <id>https://blog.google/innovation-and-ai/technology/health/google-ai-heart-health-australia/</id>
         <link href="https://blog.google/innovation-and-ai/technology/health/google-ai-heart-health-australia/"/>
@@ -1624,16 +1459,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[A new Google AI initiative aims to improve heart health outcomes for people living in remote Australian communities.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Is ChatGPT Creating MORE Work?]]></title>
-        <id>https://www.youtube.com/shorts/retqU5rjzzI</id>
-        <link href="https://www.youtube.com/shorts/retqU5rjzzI"/>
-        <updated>2026-03-12T13:27:20.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1732,35 +1557,6 @@ to balance cost and latency.]]></summary>
         <link href="https://openai.com/index/new-ways-to-learn-math-and-science-in-chatgpt"/>
         <updated>2026-03-10T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[ChatGPT introduces interactive visual explanations for math and science, helping students explore formulas, variables, and concepts in real time.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The greatest unsolved problem in computer science...]]></title>
-        <id>https://www.youtube.com/watch?v=x36UmiSiEzc</id>
-        <link href="https://www.youtube.com/watch?v=x36UmiSiEzc"/>
-        <updated>2026-03-09T18:31:50.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[From games to biology and beyond: 10 years of AlphaGo’s impact]]></title>
-        <id>https://deepmind.google/blog/10-years-of-alphago/</id>
-        <link href="https://deepmind.google/blog/10-years-of-alphago/"/>
-        <updated>2026-03-09T13:52:36.000Z</updated>
-        <summary type="html"><![CDATA[Ten years since AlphaGo, we explore how it is catalyzing scientific discovery and paving a path to AGI.]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI to acquire Promptfoo]]></title>
-        <id>https://openai.com/index/openai-to-acquire-promptfoo</id>
-        <link href="https://openai.com/index/openai-to-acquire-promptfoo"/>
-        <updated>2026-03-09T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems during development.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
