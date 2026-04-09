@@ -22,6 +22,583 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-08 datetime="2026-04-08T23:07:44.000Z">2026-04-08</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-08 datetime="2026-04-08T23:07:44.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/8/muse-spark/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Meta&#x27;s new model is Muse Spark, and meta.ai chat has some interesting tools</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/8/muse-spark/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/muse-spark-thinking-pelican.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Meta announced Muse Spark today, their first model release since Llama 4 almost exactly a year ago. It&#x27;s hosted, not open weights, and the API is currently &quot;a private API preview to select users&quot;, but you can try it out today on meta.ai (Facebook or Instagram login required).
+
+Meta&#x27;s self-reported benchmarks show it competitive with Opus 4.6, Gemini 3.1 Pro, and GPT 5.4 on selected benchmarks, though notably behind on Terminal-Bench 2.0. Meta themselves say they &quot;continue to invest in areas with current performance gaps, such as long-horizon agentic systems and coding workflows&quot;.
+
+The model is exposed as two different modes on meta.ai - &quot;Instant&quot; and &quot;Thinking&quot;. Meta promise a &quot;Contemplating&quot; mode in the future which they say will offer much longer reasoning time and should behave more like Gemini Deep Think or GPT-5.4 Pro.
+
+A couple of pelicans
+
+I prefer to run my pelican test via API to avoid being influenced by any invisible system prompts, but since that&#x27;s not an option I ran it against the chat UI directly.
+
+Here&#x27;s the pelican I got for &quot;Instant&quot;:
+
+
+
+And this one for &quot;Thinking&quot;:
+
+
+
+Both SVGs were rendered inline by the Meta AI interface. Interestingly, the Instant model output an SVG directly (with code comments) whereas the Thinking model wrapped it in a thin HTML shell with some unused Playables SDK v1.0.0 JavaScript libraries.
+
+Which got me curious...
+
+Poking around with tools
+
+Clearly Meta&#x27;s chat harness has some tools wired up to it - at the very least it can render SVG and HTML as embedded frames, Claude Artifacts style.
+
+But what else can it do?
+
+I asked it:
+
+
+what tools do you have access to?
+
+
+And then:
+
+
+I want the exact tool names, parameter names and tool descriptions, in the original format
+
+
+It spat out detailed descriptions of 16 different tools. You can see the full list I got back here - credit to Meta for not telling their bot to hide these, since it&#x27;s far less frustrating if I can get them out without having to mess around with jailbreaks.
+
+Here are highlights derived from that response:
+
+
+
+Browse and search. browser.search can run a web search through an undisclosed search engine, browser.open can load the full page from one of those search results and browser.find can run pattern matches against the returned page content.
+
+
+
+Meta content search. meta_1p.content_search can run &quot;Semantic search across Instagram, Threads, and Facebook posts&quot; - but only for posts the user has access to view which were created since 2025-01-01. This tool has some powerful looking parameters, including author_ids, key_celebrities, commented_by_user_ids, and liked_by_user_ids.
+
+
+
+&quot;Catalog search&quot; - meta_1p.meta_catalog_search can &quot;Search for products in Meta&#x27;s product catalog&quot;, presumably for the &quot;Shopping&quot; option in the Meta AI model selector.
+
+
+
+Image generation. media.image_gen generates images from prompts, and &quot;returns a CDN URL and saves the image to the sandbox&quot;. It has modes &quot;artistic&quot; and &quot;realistic&quot; and can return &quot;square&quot;, &quot;vertical&quot; or &quot;landscape&quot; images.
+
+
+
+container.python_execution - yes! It&#x27;s Code Interpreter, my favourite feature of both ChatGPT and Claude.
+
+
+Execute Python code in a remote sandbox environment. Python 3.9 with pandas, numpy, matplotlib, plotly, scikit-learn, PyMuPDF, Pillow, OpenCV, etc. Files persist at /mnt/data/.
+
+
+Python 3.9 is EOL these days but the library collection looks useful.
+
+I prompted &quot;use python code to confirm sqlite version and python version&quot; and got back Python 3.9.25 and SQLite 3.34.1 (from January 2021).
+
+
+
+container.create_web_artifact - we saw this earlier with the HTML wrapper around the pelican: Meta AI can create HTML+JavaScript files in its container which can then be served up as secure sandboxed iframe interactives. &quot;Set kind to html for websites/apps or svg for vector graphics.&quot;
+
+
+
+container.download_meta_1p_media is interesting: &quot;Download media from Meta 1P sources into the sandbox. Use post_id for Instagram/Facebook/Threads posts, or catalog_search_citation_id for catalog product images&quot;. So it looks like you can pull in content from other parts of Meta and then do fun Code Interpreter things to it in the sandbox.
+
+
+
+container.file_search - &quot;Search uploaded files in this conversation and return relevant excerpts&quot; - I guess for digging through PDFs and similar?
+
+
+
+Tools for editing files in the container - container.view, container.insert (with new_str and insert_line), container.str_replace. These look similar to Claude&#x27;s text editor tool commands - these are becoming a common pattern across any file-equipped agent harness.
+
+
+
+container.visual_grounding - see below, this one is fun.
+
+
+
+subagents.spawn_agent - the sub-agent as a tool pattern. &quot;Spawn an independent sub-agent for research, analysis, or delegation. It returns its final text response.&quot;
+
+
+
+third_party.link_third_party_account - &quot;Initiate account linking for a third-party service&quot;, currently Google Calendar, Outlook Calendar, Gmail, or Outlook.
+
+
+
+Image analysis in the container
+
+Let&#x27;s talk about that container.visual_grounding one. Here&#x27;s the description in full:
+
+
+Description: Visual grounding tool that analyzes the image, identifies and labels objects, locates regions, or counts objects.
+
+Parameters:
+
+
+
+object_names (array, required)
+
+
+image_path (string, default &quot;&quot;)
+
+
+format_type (&quot;bbox&quot;|&quot;point&quot;|&quot;count&quot;|null, default &quot;bbox&quot;)
+
+
+title (string|null)[string]
+
+
+
+So it can take an image path, optional object names and return things in format bbox, point or count.
+
+Sounds to me like Meta&#x27;s Segment Anything. I decided to take it for a spin.
+
+Prompt:
+
+
+generate a photo of a raccoon sitting on a trash can wearing trash as a hat
+
+
+Response:
+
+
+Here you go — king of the alley, in full regalia:
+
+
+
+Coffee cup crown, banana peel brim, newspaper feather. Peak raccoon fashion. Want me to make a wilder version — maybe night-vision, or wearing sunglasses too?
+
+
+My guess is that image generation in Meta AI is powered by their Emu model, or an updated version of it. This is the same pattern as ChatGPT and Gemini image generation, where images are generated by a tool call (here that&#x27;s media.image_gen).
+
+The image_gen tool description said that it &quot;saves the image to the sandbox&quot;, so my guess was that I&#x27;d then be able to run Python code against it. I tried:
+
+
+use python OpenCV to analyze that image and find out neat things about it
+
+
+Annoyingly it did not show me the code it ran, but it did create this image:
+
+
+
+Pretty neat! We can both generate images and then use them with Python tools.
+
+Next, the visual_grounding tool. Knowing the names of the tools makes it easy to refer to them in prompts:
+
+
+Now try the container.visual_grounding tool
+
+
+The response (full response here):
+
+
+Done — visual_grounding pinpointed every piece of the outfit with pixel-level precision:
+
+
+
+[...]
+
+Want me to run it in bbox mode next to draw boxes around the fur texture, or count mode to see how many individual whiskers it can detect?
+
+
+Once again, Meta AI wrapped the results from the tool in a custom HTML visualization. That&#x27;s clearly point mode, but how about the others?
+
+I prompted:
+
+
+yes draw bounding boxes, can it do masks too?
+
+
+Response:
+
+
+Yes — bounding boxes work great. Masks? Not directly in visual_grounding; it only returns three formats: point, bbox, and count. No pixel-level segmentation masks.
+
+Here&#x27;s the bbox output:
+
+
+
+What you’re seeing:
+
+
+
+raccoon: big box from (270,240) to (892,845) — covers 62% of the width, basically the whole animal
+
+
+coffee cup: (424,115)-(610,273) — sits highest, 158px tall in the 0-1000 space
+
+
+banana peel: (472,215)-(667,291) — overlaps the cup&#x27;s base, confirming it&#x27;s draped over the side
+
+
+newspaper: (305,223)-(548,315) — left ear coverage
+
+
+trash can lid: (107,800)-(1000,998) — spans almost the full image width at the bottom
+
+
+face: (305,283)-(750,537) — tight crop around the mask
+
+
+eyes: both ~40×37 pixel boxes, perfectly level at y&#x3D;379
+
+
+Notice how the boxes nest: face is inside raccoon, eyes inside face, hat pieces overlap each other but stay above the face box. The tool is doing real object localization, not just guessing centers.
+
+
+About masks: since visual_grounding doesn&#x27;t output them, I can fake them with OpenCV in the container. Two quick options:
+
+
+
+GrabCut — I give it the raccoon bbox, it iteratively segments fur from background and returns a binary mask
+
+
+SAM-style color threshold — use the bbox plus k-means to isolate the coffee cup or banana peel
+
+
+Want me to generate an actual alpha mask for the raccoon (cut it out from the alley), or for the trash hat pieces separately? Takes about 10 seconds and I can give you a transparent PNG.
+
+
+Here&#x27;s the HTML for that bbox visualization.
+
+Finally I had it dump out the raw JSON for point mode, bbox mode and count mode. You can see that all here. The count mode is particularly interesting - here&#x27;s that in full:
+
+
+[
+  {
+    &quot;object_name&quot;: &quot;raccoon whisker&quot;,
+    &quot;points&quot;: [
+      {&quot;x&quot;: 403, &quot;y&quot;: 445},
+      {&quot;x&quot;: 397, &quot;y&quot;: 458},
+      {&quot;x&quot;: 392, &quot;y&quot;: 472},
+      {&quot;x&quot;: 391, &quot;y&quot;: 485},
+      {&quot;x&quot;: 398, &quot;y&quot;: 497},
+      {&quot;x&quot;: 415, &quot;y&quot;: 512},
+      {&quot;x&quot;: 618, &quot;y&quot;: 446},
+      {&quot;x&quot;: 622, &quot;y&quot;: 461},
+      {&quot;x&quot;: 625, &quot;y&quot;: 475},
+      {&quot;x&quot;: 628, &quot;y&quot;: 488},
+      {&quot;x&quot;: 635, &quot;y&quot;: 501},
+      {&quot;x&quot;: 651, &quot;y&quot;: 518}
+    ],
+    &quot;count&quot;: 12
+  },
+  {
+    &quot;object_name&quot;: &quot;raccoon paw claw&quot;,
+    &quot;points&quot;: [
+      {&quot;x&quot;: 406, &quot;y&quot;: 845},
+      {&quot;x&quot;: 424, &quot;y&quot;: 847},
+      {&quot;x&quot;: 441, &quot;y&quot;: 842},
+      {&quot;x&quot;: 473, &quot;y&quot;: 833},
+      {&quot;x&quot;: 596, &quot;y&quot;: 830},
+      {&quot;x&quot;: 635, &quot;y&quot;: 844},
+      {&quot;x&quot;: 660, &quot;y&quot;: 843},
+      {&quot;x&quot;: 679, &quot;y&quot;: 838}
+    ],
+    &quot;count&quot;: 8
+  },
+  {
+    &quot;object_name&quot;: &quot;trash item on head&quot;,
+    &quot;points&quot;: [
+      {&quot;x&quot;: 514, &quot;y&quot;: 191},
+      {&quot;x&quot;: 568, &quot;y&quot;: 263},
+      {&quot;x&quot;: 392, &quot;y&quot;: 274}
+    ],
+    &quot;count&quot;: 3
+  },
+  {
+    &quot;object_name&quot;: &quot;eye&quot;,
+    &quot;points&quot;: [
+      {&quot;x&quot;: 462, &quot;y&quot;: 395},
+      {&quot;x&quot;: 582, &quot;y&quot;: 398}
+    ],
+    &quot;count&quot;: 2
+  },
+  {
+    &quot;object_name&quot;: &quot;ear&quot;,
+    &quot;points&quot;: [
+      {&quot;x&quot;: 359, &quot;y&quot;: 313},
+      {&quot;x&quot;: 680, &quot;y&quot;: 294}
+    ],
+    &quot;count&quot;: 2
+  }
+]
+
+So Meta AI has the ability to count a raccoon&#x27;s whiskers baked into the default set of tools.
+
+Which means... it can count pelicans too!
+
+
+
+Here&#x27;s that overlay exported as HTML.
+
+
+Update: Meta&#x27;s Jack Wu confirms that these tools are part of the new harness they launched alongside the new model.
+
+
+Maybe open weights in the future?
+
+On Twitter Alexandr Wang said:
+
+
+this is step one. bigger models are already in development with infrastructure scaling to match. private api preview open to select partners today, with plans to open-source future versions.
+
+
+I really hope they do go back to open-sourcing their models. Llama 3.1/3.2/3.3 were excellent laptop-scale model families, and the introductory blog post for Muse Spark had this to say about efficiency:
+
+
+[...] we can reach the same capabilities with over an order of magnitude less compute than our previous model, Llama 4 Maverick. This improvement also makes Muse Spark significantly more efficient than the leading base models available for comparison.
+
+
+So are Meta back in the frontier model game? Artificial Analysis think so - they scored Meta Spark at 52, &quot;behind only Gemini 3.1 Pro, GPT-5.4, and Claude Opus 4.6&quot;. Last year&#x27;s Llama 4 Maverick and Scout scored 18 and 13 respectively.
+
+I&#x27;m waiting for API access - while the tool collection on meta.ai is quite strong the real test of a model like this is still what we can build on top of it.
+Tags: facebook, ai, generative-ai, llms, code-interpreter, llm-tool-use, meta, pelican-riding-a-bicycle, llm-reasoning, llm-release</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Giles Turnbull</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>I have a feeling that everyone likes using AI tools to try doing someone else’s profession. They’re much less keen when someone else uses it for their profession.
+
+— Giles Turnbull, AI and the human voice
+Tags: ai-ethics, writing, ai</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;-01ZCTt-CJw"
+                        open
+                      >
+                        <summary class="article-expander__title">Google just casually disrupted the open-source AI narrative…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;-01ZCTt-CJw">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;txx6ec6MLNY"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Mythos: Highlights from 244-page Release</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;txx6ec6MLNY">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/-lRnSrhTXDc"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI Just Made History (Holy Sh*t?!)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/-lRnSrhTXDc">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/next-phase-of-enterprise-ai"
+                        open
+                      >
+                        <summary class="article-expander__title">The next phase of enterprise AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/next-phase-of-enterprise-ai">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI outlines the next phase of enterprise AI, as adoption accelerates across industries with Frontier, ChatGPT Enterprise, Codex, and company-wide AI agents.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/introducing-child-safety-blueprint"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing the Child Safety Blueprint</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-child-safety-blueprint">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Discover OpenAI’s Child Safety Blueprint—a roadmap for building AI responsibly with safeguards, age-appropriate design, and collaboration to protect and empower young people online.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="governance-aware-agent-telemetry"
+                        open
+                      >
+                        <summary class="article-expander__title">Governance-Aware Agent Telemetry for Closed-Loop Enforcement in Multi-Agent AI Systems</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/governance-aware-agent-telemetry">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Enterprise multi-agent AI systems produce thousands of inter-agent interactions per hour, yet existing observability tools capture these dependencies without enforcing anything. OpenTelemetry and Langfuse collect telemetry but treat governance as a downstream analytics concern, not a real-time enforcement target. The result is an “observe-but-do-not-act” gap where policy violations are detected only after damage is done. We present Governance-Aware Agent Telemetry (GAAT), a reference architecture that closes the loop between telemetry collection and automated policy enforcement for multi-agent…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-07 datetime="2026-04-07T21:25:14.000Z">2026-04-07</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-07 datetime="2026-04-07T21:25:14.000Z"></time>
           </button>
@@ -224,6 +801,39 @@ Tags: docker, sqlite</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/QymmGOKO5sk"
+                        open
+                      >
+                        <summary class="article-expander__title">WTF Is OpenAI Doing??</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/QymmGOKO5sk">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -233,11 +843,75 @@ Tags: docker, sqlite</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-06 datetime="2026-04-06T10:00:00.000Z">2026-04-06</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-06 datetime="2026-04-06T10:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-06 datetime="2026-04-06T21:55:19.000Z">2026-04-06</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-06 datetime="2026-04-06T21:55:19.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/4-XNvaV2KPk"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude&#x27;s Source Code Got Leaked Across The Whole Internet</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/4-XNvaV2KPk">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;JSuS-zXMVwE"
+                        open
+                      >
+                        <summary class="article-expander__title">Cursor ditches VS Code, but not everyone is happy...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;JSuS-zXMVwE">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -946,6 +1620,37 @@ Tags: open-source, packaging, security, social-engineering, supply-chain</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;BZ1hs2ZcnJc"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: Anthropic Leak Shows Us The Future of AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;BZ1hs2ZcnJc">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -1365,7 +2070,7 @@ Here&#x27;s the full list of chapters Lenny&#x27;s team defined for the YouTube 
     
         
 Tags: ai, kakapo, generative-ai, llms, podcast-appearances, coding-agents, agentic-engineering</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1462,6 +2167,37 @@ Here&#x27;s a copy of the February newsletter as a preview of what you&#x27;ll g
 Tags: newsletter</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;vd14EElCRvs"
+                        open
+                      >
+                        <summary class="article-expander__title">He just crawled through hell to fix the browser…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;vd14EElCRvs">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -1656,26 +2392,6 @@ to balance cost and latency.</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/changelog"
-                        open
-                      >
-                        <summary class="article-expander__title">New Cursor Interface</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/uploads/changelog-og.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Cursor 3 is now available.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://cursor.com/changelog/3-0"
                         open
                       >
@@ -1686,6 +2402,26 @@ to balance cost and latency.</span>
                             <span class="media-object__text">
                               <span>Cursor 3 is now available.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;9
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/changelog"
+                        open
+                      >
+                        <summary class="article-expander__title">New Cursor Interface</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/uploads/changelog-og.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Cursor 3 is now available.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1742,43 +2478,32 @@ Tags: llm, datasette</span>
                         </a>
                       </details>
                     </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/1/datasette-enrichments-llm-2/#atom-everything"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;mBHRPeg8zPU"
                         open
                       >
-                        <summary class="article-expander__title">datasette-enrichments-llm 0.2a1</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/1/datasette-enrichments-llm-2/#atom-everything">
+                        <summary class="article-expander__title">Tragic mistake... Anthropic leaks Claude’s source code</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;mBHRPeg8zPU">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Release: datasette-enrichments-llm 0.2a1
-The actor who triggers an enrichment is now passed to the llm.mode(... actor&#x3D;actor) method. #3
-Tags: enrichments, llm, datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/1/datasette-extract/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette-extract 0.3a0</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/1/datasette-extract/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette-extract 0.3a0
-Now uses datasette-llm to manage model configuration, which means you can control which models are available for extraction tasks using the extract purpose and LLM model configuration. #38
-Tags: llm, datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -1881,11 +2606,75 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-31 datetime="2026-03-31T16:00:00.000Z">2026-03-31</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-31 datetime="2026-03-31T16:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-31 datetime="2026-03-31T20:46:22.000Z">2026-03-31</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-31 datetime="2026-03-31T20:46:22.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/osycm8ZK7iY"
+                        open
+                      >
+                        <summary class="article-expander__title">How AI Gets Data Wrong (and how to fix it)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/osycm8ZK7iY">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;o7NYXvYohYk"
+                        open
+                      >
+                        <summary class="article-expander__title">Millions of JS devs just got penetrated by a RAT…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;o7NYXvYohYk">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2198,30 +2987,41 @@ Tags: llm, datasette</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="to-infinity"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;OYyS0Gu5xj8"
                         open
                       >
-                        <summary class="article-expander__title">To Infinity and Beyond: Tool-Use Unlocks Length Generalization in State Space Models</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/to-infinity">
+                        <summary class="article-expander__title">AI News: Anthropic Went Crazy This Week!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;OYyS0Gu5xj8">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>State Space Models (SSMs) have become the leading alternative to Transformers for sequence modeling. Their primary advantage is efficiency in long-context and long-form generation, enabled by fixed-size memory and linear scaling of computational complexity. We begin this work by showing a simple theoretical result stating that SSMs cannot accurately solve any “truly long-form” generation problem (in a sense we formally define), undermining their main competitive advantage. However, we show that this limitation can be mitigated by allowing SSMs interactive access to external tools. In fact, we…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
                       </details>
                     </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
@@ -2242,6 +3042,26 @@ Tags: llm, datasette</span>
                         </a>
                       </details>
                     </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="to-infinity"
+                        open
+                      >
+                        <summary class="article-expander__title">To Infinity and Beyond: Tool-Use Unlocks Length Generalization in State Space Models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/to-infinity">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>State Space Models (SSMs) have become the leading alternative to Transformers for sequence modeling. Their primary advantage is efficiency in long-context and long-form generation, enabled by fixed-size memory and linear scaling of computational complexity. We begin this work by showing a simple theoretical result stating that SSMs cannot accurately solve any “truly long-form” generation problem (in a sense we formally define), undermining their main competitive advantage. However, we show that this limitation can be mitigated by allowing SSMs interactive access to external tools. In fact, we…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
                 </section>
               </section>
             </li>
@@ -2254,11 +3074,73 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-26 datetime="2026-03-26T17:00:00.000Z">2026-03-26</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-26 datetime="2026-03-26T17:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-26 datetime="2026-03-26T20:15:12.000Z">2026-03-26</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-26 datetime="2026-03-26T20:15:12.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;s4tptozUJ8Y"
+                        open
+                      >
+                        <summary class="article-expander__title">Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;s4tptozUJ8Y">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;wfeiCZK0mNs"
+                        open
+                      >
+                        <summary class="article-expander__title">Anthropic just released the real Claude Bot...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;wfeiCZK0mNs">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2394,6 +3276,37 @@ Tags: llm, datasette</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;slX_lDDobEs"
+                        open
+                      >
+                        <summary class="article-expander__title">This Datacenter Problem Nobody&#x27;s Talking About</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;slX_lDDobEs">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Apple Machine Learning Research</button>
                   <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
                 </h3>
@@ -2412,26 +3325,6 @@ Tags: llm, datasette</span>
                             <span class="media-object__text">
                               <span>While scaling laws for Large Language Models (LLMs) traditionally focus on proxy metrics like pretraining loss, predicting downstream task performance has been considered unreliable. This paper challenges that view by proposing a direct framework to model the scaling of benchmark performance from the training budget. We find that for a fixed token-to-parameter ratio, a simple power law can accurately describe the scaling behavior of log accuracy on multiple popular downstream tasks. Our results show that the direct approach extrapolates better than the previously proposed two-stage procedure…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="drop-in"
-                        open
-                      >
-                        <summary class="article-expander__title">Drop-In Perceptual Optimization for 3D Gaussian Splatting</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/drop-in">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Despite their output being ultimately consumed by human viewers, 3D Gaussian Splatting (3DGS) methods often rely on ad-hoc combinations of pixel-level losses, resulting in blurry renderings. To address this, we systematically explore perceptual optimization strategies for 3DGS by searching over a diverse set of distortion losses. We conduct the first-of-its-kind large-scale human subjective study on 3DGS, involving 39,320 pairwise ratings across several datasets and 3DGS frameworks. A regularized version of Wasserstein Distortion, which we call WD-R, emerges as the clear winner, excelling at…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;5
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2703,7 +3596,7 @@ Tags: llm, datasette</span>
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-03-25-26.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Mar 25, 2026</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2722,11 +3615,73 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-24 datetime="2026-03-24T11:00:00.000Z">2026-03-24</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-24 datetime="2026-03-24T11:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-24 datetime="2026-03-24T22:57:46.000Z">2026-03-24</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-24 datetime="2026-03-24T22:57:46.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;PKKN5be_my0"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI Just Killed Sora</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;PKKN5be_my0">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;nxwkn9Dt9-I"
+                        open
+                      >
+                        <summary class="article-expander__title">Tech bros optimized war… and it’s working</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;nxwkn9Dt9-I">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2880,11 +3835,118 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-19 datetime="2026-03-19T10:00:00.000Z">2026-03-19</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-19 datetime="2026-03-19T10:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-20 datetime="2026-03-20T19:32:24.000Z">2026-03-20</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-20 datetime="2026-03-20T19:32:24.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;nkY_s9HpL9M"
+                        open
+                      >
+                        <summary class="article-expander__title">This new Linux distro is breaking the law, by design…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;nkY_s9HpL9M">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;V4un_4uTEHs"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: Every Major Announcement From This Week</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;V4un_4uTEHs">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-19 datetime="2026-03-19T19:35:06.000Z">2026-03-19</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-19 datetime="2026-03-19T19:35:06.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;qaB5HF4ax9M"
+                        open
+                      >
+                        <summary class="article-expander__title">Google just changed the future of UI/UX design...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;qaB5HF4ax9M">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3010,11 +4072,75 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-18 datetime="2026-03-18T00:00:00.000Z">2026-03-18</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-18 datetime="2026-03-18T00:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-18 datetime="2026-03-18T17:56:58.000Z">2026-03-18</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-18 datetime="2026-03-18T17:56:58.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;ReAnFFqvCeA"
+                        open
+                      >
+                        <summary class="article-expander__title">How to burn $30m on a JavaScript framework...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;ReAnFFqvCeA">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/vpTvoxIrlHs"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenClaw Just Got WAY Easier to Install</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/vpTvoxIrlHs">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3158,27 +4284,60 @@ Tags: llm, datasette</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"
+                        data-accordion-key="https://www.youtube.com/shorts/nc0oIVfpSqo"
                         open
                       >
-                        <summary class="article-expander__title">Introducing GPT-5.4 mini and nano</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano">
+                        <summary class="article-expander__title">Perplexity “Computer” is Kind of Insane</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/nc0oIVfpSqo">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span>
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
                       </details>
                     </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;JyWdgDcsmbk"
+                        open
+                      >
+                        <summary class="article-expander__title">The REAL Story from NVIDIA GTC This Week!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;JyWdgDcsmbk">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
@@ -3191,6 +4350,23 @@ Tags: llm, datasette</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing GPT-5.4 mini and nano</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span>
                             </span>
                           </div>
                         </a>
@@ -3259,11 +4435,44 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-16 datetime="2026-03-16T00:00:00.000Z">2026-03-16</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-16 datetime="2026-03-16T00:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-16 datetime="2026-03-16T13:05:30.000Z">2026-03-16</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-16 datetime="2026-03-16T13:05:30.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/W4iSvbg4f68"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Just Dropped A Huge New Feature</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/W4iSvbg4f68">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3304,11 +4513,136 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-12 datetime="2026-03-12T15:00:00.000Z">2026-03-12</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-12 datetime="2026-03-12T15:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-15 datetime="2026-03-15T12:59:24.000Z">2026-03-15</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-15 datetime="2026-03-15T12:59:24.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/Yd10X5VyMng"
+                        open
+                      >
+                        <summary class="article-expander__title">This New Feature Is A Big Deal For Creatives</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Yd10X5VyMng">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-13 datetime="2026-03-13T20:04:18.000Z">2026-03-13</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-13 datetime="2026-03-13T20:04:18.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/3B1c6Kq_aY0"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Just Rolled Out 2 Big New Features</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/3B1c6Kq_aY0">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-12 datetime="2026-03-12T17:49:19.000Z">2026-03-12</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-12 datetime="2026-03-12T17:49:19.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;Xn-gtHDsaPY"
+                        open
+                      >
+                        <summary class="article-expander__title">7 new open source AI tools you need right now…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;Xn-gtHDsaPY">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3352,8 +4686,8 @@ Tags: llm, datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-11 datetime="2026-03-11T13:00:00.000Z">2026-03-11</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-11 datetime="2026-03-11T13:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-11 datetime="2026-03-11T11:30:00.000Z">2026-03-11</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-11 datetime="2026-03-11T11:30:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -3368,23 +4702,6 @@ Tags: llm, datasette</span>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
                 <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/rakuten"
-                        open
-                      >
-                        <summary class="article-expander__title">Rakuten fixes issues twice as fast with Codex</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/rakuten">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Rakuten uses Codex, the coding agent from OpenAI, to ship software faster and safer, reducing MTTR 50%, automating CI/CD reviews, and delivering full-stack builds in weeks.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -3431,6 +4748,23 @@ Tags: llm, datasette</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/rakuten"
+                        open
+                      >
+                        <summary class="article-expander__title">Rakuten fixes issues twice as fast with Codex</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/rakuten">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -3529,106 +4863,10 @@ Tags: llm, datasette</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-10 datetime="2026-03-10T13:00:00.000Z">2026-03-10</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-10 datetime="2026-03-10T13:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI</button>
-                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/products-and-platforms/products/workspace/gemini-google-sheets-state-of-the-art/"
-                        open
-                      >
-                        <summary class="article-expander__title">Gemini in Google Sheets just achieved state-of-the-art performance.</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/workspace/gemini-google-sheets-state-of-the-art/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Workspace_Jan_Moment_Sheets_Blog_Hero_2436x.max-1440x810.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Today we announced new beta features for Gemini in Sheets to help you create, organize and edit entire sheets, from basic tasks to complex data analysis — just describe …</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/instruction-hierarchy-challenge"
-                        open
-                      >
-                        <summary class="article-expander__title">Improving instruction hierarchy in frontier LLMs</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/instruction-hierarchy-challenge">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>IH-Challenge trains models to prioritize trusted instructions, improving instruction hierarchy, safety steerability, and resistance to prompt injection attacks.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/new-ways-to-learn-math-and-science-in-chatgpt"
-                        open
-                      >
-                        <summary class="article-expander__title">New ways to learn math and science in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/new-ways-to-learn-math-and-science-in-chatgpt">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>ChatGPT introduces interactive visual explanations for math and science, helping students explore formulas, variables, and concepts in real time.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24114353129">
-        <time id="build-timestamp" datetime="2026-04-08T02:25:55.907Z">2026-04-08T02:25:55.907Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24168783264">
+        <time id="build-timestamp" datetime="2026-04-09T02:12:19.299Z">2026-04-09T02:12:19.299Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
