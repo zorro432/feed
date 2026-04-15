@@ -1,22 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-14T02:31:58.737Z</id>
+    <id>urn:2026-04-15T02:30:24.123Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-14T02:31:58.737Z</updated>
+    <updated>2026-04-15T02:30:24.123Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
     <entry>
-        <title type="html"><![CDATA[Quoting Steve Yegge]]></title>
-        <id>https://simonwillison.net/2026/Apr/13/steve-yegge/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/13/steve-yegge/#atom-everything"/>
-        <updated>2026-04-13T20:59:45.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/steve_yegge/status/2043747998740689171"><p>The TL;DR is that Google engineering appears to have the same AI adoption footprint as John Deere, the tractor company. Most of the industry has the same internal adoption curve: 20% agentic power users, 20% outright refusers, 60% still using Cursor or equivalent chat tool. It turns out Google has this curve too. [...]</p>
-<p>There has been an industry-wide hiring freeze for 18+ months, during which time nobody has been moving jobs. So there are no clued-in people coming in from the outside to tell Google how far behind they are, how utterly mediocre they have become as an eng org.</p></blockquote>
-<p class="cite">&mdash; <a href="https://twitter.com/steve_yegge/status/2043747998740689171">Steve Yegge</a>, provocative, as always</p>
+        <title type="html"><![CDATA[Zig 0.16.0 release notes: "Juicy Main"]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/juicy-main/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/juicy-main/#atom-everything"/>
+        <updated>2026-04-15T01:59:21.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://ziglang.org/download/0.16.0/release-notes.html#Juicy-Main">Zig 0.16.0 release notes: &quot;Juicy Main&quot;</a></strong></p>
+Zig has <em>really good</em> release notes - comprehensive, detailed, and with relevant usage examples for each of the new features.</p>
+<p>Of particular note in the newly released Zig 0.16.0 is what they are calling "Juicy Main" - a dependency injection feature for your program's <code>main()</code> function where accepting a <code>process.Init</code> parameter grants access to a struct of useful properties:</p>
+<div class="highlight highlight-source-zig"><pre><span class="pl-k">const</span> <span class="pl-v">std</span> <span class="pl-k">=</span> <span class="pl-k">@import</span>(<span class="pl-s">"std"</span>);
 
-    <p>Tags: <a href="https://simonwillison.net/tags/steve-yegge">steve-yegge</a>, <a href="https://simonwillison.net/tags/google">google</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+<span class="pl-k">pub</span> <span class="pl-k">fn</span> <span class="pl-en">main</span>(<span class="pl-v">init</span>: <span class="pl-k">std.process.Init</span>) <span class="pl-k">!</span><span class="pl-k">void</span> {
+    <span class="pl-c">/// general purpose allocator for temporary heap allocations:</span>
+    <span class="pl-k">const</span> <span class="pl-v">gpa</span> <span class="pl-k">=</span> <span class="pl-v">init</span>.<span class="pl-v">gpa</span>;
+    <span class="pl-c">/// default Io implementation:</span>
+    <span class="pl-k">const</span> <span class="pl-v">io</span> <span class="pl-k">=</span> <span class="pl-v">init</span>.<span class="pl-v">io</span>;
+    <span class="pl-c">/// access to environment variables:</span>
+    <span class="pl-v">std</span>.<span class="pl-v">log</span>.<span class="pl-v">info</span>(<span class="pl-s">"{d} env vars"</span>, .{<span class="pl-v">init</span>.<span class="pl-v">environ_map</span>.<span class="pl-v">count</span>()});
+    <span class="pl-c">/// access to CLI arguments</span>
+    <span class="pl-k">const</span> <span class="pl-v">args</span> <span class="pl-k">=</span> <span class="pl-k">try</span> <span class="pl-v">init</span>.<span class="pl-v">minimal</span>.<span class="pl-v">args</span>.<span class="pl-v">toSlice</span>(
+        <span class="pl-v">init</span>.<span class="pl-v">arena</span>.<span class="pl-v">allocator</span>()
+    );
+}</pre></div>
+
+    <p><small></small>Via <a href="https://lobste.rs/s/4vvozb/zig_0_16_0_release_notes">Lobste.rs</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/zig">zig</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette PR #2689: Replace token-based CSRF with Sec-Fetch-Site header protection]]></title>
+        <id>https://simonwillison.net/2026/Apr/14/replace-token-based-csrf/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/14/replace-token-based-csrf/#atom-everything"/>
+        <updated>2026-04-14T23:58:53.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/simonw/datasette/pull/2689">datasette PR #2689: Replace token-based CSRF with Sec-Fetch-Site header protection</a></strong></p>
+Datasette has long protected against CSRF attacks using CSRF tokens, implemented using my <a href="https://github.com/simonw/asgi-csrf">asgi-csrf</a> Python library. These are something of a pain to work with - you need to scatter forms in templates with <code>&lt;input type="hidden" name="csrftoken" value="{{ csrftoken() }}"&gt;</code> lines and then selectively disable CSRF protection for APIs that are intended to be called from outside the browser.</p>
+<p>I've been following Filippo Valsorda's research here with interest, described in <a href="https://words.filippo.io/csrf/">this detailed essay from August 2025</a> and shipped <a href="https://tip.golang.org/doc/go1.25#nethttppkgnethttp">as part of Go 1.25</a> that same month.</p>
+<p>I've now landed the same change in Datasette. Here's the PR description - Claude Code did much of the work (across 10 commits, closely guided by me and cross-reviewed by GPT-5.4) but I've decided to start writing these PR descriptions by hand, partly to make them more concise and also as an exercise in keeping myself honest.</p>
+<blockquote>
+<ul>
+<li>New CSRF protection middleware inspired by Go 1.25 and <a href="https://words.filippo.io/csrf/">this research</a> by Filippo Valsorda. This replaces the old CSRF token based protection.</li>
+<li>Removes all instances of <code>&lt;input type="hidden" name="csrftoken" value="{{ csrftoken() }}"&gt;</code> in the templates - they are no longer needed.</li>
+<li>Removes the <code>def skip_csrf(datasette, scope):</code> plugin hook defined in <code>datasette/hookspecs.py</code> and its documentation and tests.</li>
+<li>Updated <a href="https://docs.datasette.io/en/latest/internals.html#csrf-protection">CSRF protection documentation</a> to describe the new approach.</li>
+<li>Upgrade guide now <a href="https://docs.datasette.io/en/latest/upgrade_guide.html#csrf-protection-is-now-header-based">describes the CSRF change</a>.</li>
+</ul>
+</blockquote>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/csrf">csrf</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Trusted access for the next era of cyber defense]]></title>
+        <id>https://simonwillison.net/2026/Apr/14/trusted-access-openai/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/14/trusted-access-openai/#atom-everything"/>
+        <updated>2026-04-14T21:23:59.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://openai.com/index/scaling-trusted-access-for-cyber-defense/">Trusted access for the next era of cyber defense</a></strong></p>
+OpenAI's answer to <a href="https://simonwillison.net/2026/Apr/7/project-glasswing/">Claude Mythos</a> appears to be a new model called GPT-5.4-Cyber:</p>
+<blockquote>
+<p>In preparation for increasingly more capable models from OpenAI over the next few months, we are fine-tuning our models specifically to enable defensive cybersecurity use cases, starting today with a variant of GPT‑5.4 trained to be cyber-permissive: GPT‑5.4‑Cyber.</p>
+</blockquote>
+<p>They're also extending a program they launched in February (which I had missed) called <a href="https://openai.com/index/trusted-access-for-cyber/">Trusted Access for Cyber</a>, where users can verify their identity (via a photo of a government-issued ID processed by <a href="https://withpersona.com/">Persona</a>) to gain "reduced friction" access to OpenAI's models for cybersecurity work.</p>
+<p>Honestly, this OpenAI announcement is difficult to follow. Unsurprisingly they don't mention Anthropic at all, but much of the piece emphasizes their many years of existing cybersecurity work and their goal to "democratize access" to these tools, hence the emphasis on that self-service verification flow from February.</p>
+<p>If you want access to their best security tools you still need to go through an extra Google Form application process though, which doesn't feel particularly different to me from Anthropic's <a href="https://www.anthropic.com/glasswing">Project Glasswing</a>.
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=47770770">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cybersecurity Looks Like Proof of Work Now]]></title>
+        <id>https://simonwillison.net/2026/Apr/14/cybersecurity-proof-of-work/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/14/cybersecurity-proof-of-work/#atom-everything"/>
+        <updated>2026-04-14T19:41:48.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://www.dbreunig.com/2026/04/14/cybersecurity-is-proof-of-work-now.html">Cybersecurity Looks Like Proof of Work Now</a></strong></p>
+The UK's AI Safety Institute recently published <a href="https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities">Our evaluation of Claude Mythos Preview’s cyber capabilities</a>, their own independent analysis of <a href="https://simonwillison.net/2026/Apr/7/project-glasswing/">Claude Mythos</a> which backs up Anthropic's claims that it is exceptionally effective at identifying security vulnerabilities.</p>
+<p>Drew Breunig notes that AISI's report shows that the more tokens (and hence money) they spent the better the result they got, which leads to a strong economic incentive to spend as much as possible on security reviews:</p>
+<blockquote>
+<p>If Mythos continues to find exploits so long as you keep throwing money at it, security is reduced to a brutally simple equation: <strong>to harden a system you need to spend more tokens discovering exploits than attackers will spend exploiting them</strong>.</p>
+</blockquote>
+<p>An interesting result of this is that open source libraries become <em>more</em> valuable, since the tokens spent securing them can be shared across all of their users. This directly counters the idea that the low cost of vibe-coding up a replacement for an open source library makes those open source projects less attractive.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/drew-breunig">drew-breunig</a>, <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Turn your best AI prompts into one-click tools in Chrome]]></title>
+        <id>https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/</id>
+        <link href="https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/"/>
+        <updated>2026-04-14T17:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Skills in Chrome let you discover, save and remix AI workflows — and repeat them instantly.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bringing people together at AI for the Economy Forum]]></title>
+        <id>https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/</id>
+        <link href="https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/"/>
+        <updated>2026-04-14T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Google is bringing people together in Washington D.C. at our AI for the Economy Forum.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Trusted access for the next era of cyber defense]]></title>
+        <id>https://openai.com/index/scaling-trusted-access-for-cyber-defense</id>
+        <link href="https://openai.com/index/scaling-trusted-access-for-cyber-defense"/>
+        <updated>2026-04-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI expands its Trusted Access for Cyber program, introducing GPT-5.4-Cyber to vetted defenders and strengthening safeguards as AI cybersecurity capabilities advance.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Steve Yegge]]></title>
+        <id>https://simonwillison.net/2026/Apr/13/steve-yegge/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/13/steve-yegge/#atom-everything"/>
+        <updated>2026-04-13T20:59:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://twitter.com/steve_yegge/status/2043747998740689171">Steve Yegge</a>:</p>
+<blockquote>
+<p>I was chatting with my buddy at Google, who's been a tech director there for about 20 years, about their AI adoption. Craziest convo I've had all year.</p>
+<p>The TL;DR is that Google engineering appears to have the same AI adoption footprint as John Deere, the tractor company. Most of the industry has the same internal adoption curve: 20% agentic power users, 20% outright refusers, 60% still using Cursor or equivalent chat tool. It turns out Google has this curve too. [...]</p>
+<p>There has been an industry-wide hiring freeze for 18+ months, during which time nobody has been moving jobs. So there are no clued-in people coming in from the outside to tell Google how far behind they are, how utterly mediocre they have become as an eng org.</p>
+</blockquote>
+<p><a href="https://twitter.com/addyosmani/status/2043812343508021460">Addy Osmani</a>:</p>
+<blockquote>
+<p>On behalf of @Google, this post doesn't match the state of agentic coding at our company. Over 40K SWEs use agentic coding weekly here. Googlers have access to our own versions of @antigravity, @geminicli, custom models, skills, CLIs and MCPs for our daily work. Orchestrators, agent loops, virtual SWE teams and many other systems are actively available to folks. [...]</p>
+</blockquote>
+<p><a href="https://twitter.com/demishassabis/status/2043867486320222333">Demis Hassabis</a>:</p>
+<blockquote>
+<p>Maybe tell your buddy to do some actual work and to stop spreading absolute nonsense. This post is completely false and just pure clickbait.</p>
+</blockquote>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/addy-osmani">addy-osmani</a>, <a href="https://simonwillison.net/tags/steve-yegge">steve-yegge</a>, <a href="https://simonwillison.net/tags/google">google</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning]]></title>
+        <id>https://deepmind.google/blog/gemini-robotics-er-1-6/</id>
+        <link href="https://deepmind.google/blog/gemini-robotics-er-1-6/"/>
+        <updated>2026-04-13T15:52:13.000Z</updated>
+        <summary type="html"><![CDATA[Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
         </author>
     </entry>
     <entry>
@@ -40,16 +188,6 @@ cargo build
         <p>Tags: <a href="https://simonwillison.net/tags/research">research</a>, <a href="https://simonwillison.net/tags/browsers">browsers</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a href="https://simonwillison.net/tags/servo">servo</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To Use Seedance's VIRAL AI]]></title>
-        <id>https://www.youtube.com/shorts/khIOqZIpbmg</id>
-        <link href="https://www.youtube.com/shorts/khIOqZIpbmg"/>
-        <updated>2026-04-13T12:13:39.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -117,16 +255,6 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ANOTHER Big AI Leak?!]]></title>
-        <id>https://www.youtube.com/shorts/ByZsafOOKoM</id>
-        <link href="https://www.youtube.com/shorts/ByZsafOOKoM"/>
-        <updated>2026-04-12T14:08:26.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[SQLite 3.53.0]]></title>
         <id>https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything"/>
@@ -159,26 +287,6 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Is Claude Mythos A Scam?]]></title>
-        <id>https://www.youtube.com/shorts/K_jquzUz5eA</id>
-        <link href="https://www.youtube.com/shorts/K_jquzUz5eA"/>
-        <updated>2026-04-11T13:06:37.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude Mythos Explained]]></title>
-        <id>https://www.youtube.com/shorts/pRoIjB5eNKo</id>
-        <link href="https://www.youtube.com/shorts/pRoIjB5eNKo"/>
-        <updated>2026-04-10T21:23:54.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -234,12 +342,93 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: The Model That Has Everyone Freaked Out!]]></title>
-        <id>https://www.youtube.com/watch?v=SguncMvE77I</id>
-        <link href="https://www.youtube.com/watch?v=SguncMvE77I"/>
-        <updated>2026-04-10T15:00:00.000Z</updated>
+        <title type="html"><![CDATA[Healthcare]]></title>
+        <id>https://openai.com/academy/healthcare</id>
+        <link href="https://openai.com/academy/healthcare"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.]]></summary>
         <author>
-            <name>Matt Wolfe</name>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Getting started with ChatGPT]]></title>
+        <id>https://openai.com/academy/getting-started</id>
+        <link href="https://openai.com/academy/getting-started"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for marketing teams]]></title>
+        <id>https://openai.com/academy/marketing</id>
+        <link href="https://openai.com/academy/marketing"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using custom GPTs]]></title>
+        <id>https://openai.com/academy/custom-gpts</id>
+        <link href="https://openai.com/academy/custom-gpts"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to build and use custom GPTs to automate workflows, maintain consistent outputs, and create purpose-built AI assistants.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Working with files in ChatGPT]]></title>
+        <id>https://openai.com/academy/working-with-files</id>
+        <link href="https://openai.com/academy/working-with-files"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Personalizing ChatGPT]]></title>
+        <id>https://openai.com/academy/personalization</id>
+        <link href="https://openai.com/academy/personalization"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
+        <id>https://openai.com/academy/data-analysis</id>
+        <link href="https://openai.com/academy/data-analysis"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using skills]]></title>
+        <id>https://openai.com/academy/skills</id>
+        <link href="https://openai.com/academy/skills"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AI fundamentals]]></title>
+        <id>https://openai.com/academy/what-is-ai</id>
+        <link href="https://openai.com/academy/what-is-ai"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.]]></summary>
+        <author>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -248,6 +437,26 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         <link href="https://openai.com/academy/operations"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Creating images with ChatGPT]]></title>
+        <id>https://openai.com/academy/image-generation</id>
+        <link href="https://openai.com/academy/image-generation"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
+        <id>https://openai.com/academy/sales</id>
+        <link href="https://openai.com/academy/sales"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -273,91 +482,11 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Brainstorming with ChatGPT]]></title>
-        <id>https://openai.com/academy/brainstorming</id>
-        <link href="https://openai.com/academy/brainstorming"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
-        <id>https://openai.com/index/axios-developer-tool-compromise</id>
-        <link href="https://openai.com/index/axios-developer-tool-compromise"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for marketing teams]]></title>
-        <id>https://openai.com/academy/marketing</id>
-        <link href="https://openai.com/academy/marketing"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
-        <id>https://openai.com/academy/writing</id>
-        <link href="https://openai.com/academy/writing"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for research]]></title>
-        <id>https://openai.com/academy/research</id>
-        <link href="https://openai.com/academy/research"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Financial services]]></title>
         <id>https://openai.com/academy/financial-services</id>
         <link href="https://openai.com/academy/financial-services"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI fundamentals]]></title>
-        <id>https://openai.com/academy/what-is-ai</id>
-        <link href="https://openai.com/academy/what-is-ai"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
-        <id>https://openai.com/academy/responsible-and-safe-use</id>
-        <link href="https://openai.com/academy/responsible-and-safe-use"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Healthcare]]></title>
-        <id>https://openai.com/academy/healthcare</id>
-        <link href="https://openai.com/academy/healthcare"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -393,16 +522,6 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Getting started with ChatGPT]]></title>
-        <id>https://openai.com/academy/getting-started</id>
-        <link href="https://openai.com/academy/getting-started"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Research with ChatGPT]]></title>
         <id>https://openai.com/academy/search-and-deep-research</id>
         <link href="https://openai.com/academy/search-and-deep-research"/>
@@ -413,81 +532,61 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
+        <id>https://openai.com/academy/responsible-and-safe-use</id>
+        <link href="https://openai.com/academy/responsible-and-safe-use"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for research]]></title>
+        <id>https://openai.com/academy/research</id>
+        <link href="https://openai.com/academy/research"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
+        <id>https://openai.com/academy/writing</id>
+        <link href="https://openai.com/academy/writing"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Brainstorming with ChatGPT]]></title>
+        <id>https://openai.com/academy/brainstorming</id>
+        <link href="https://openai.com/academy/brainstorming"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
+        <id>https://openai.com/index/axios-developer-tool-compromise</id>
+        <link href="https://openai.com/index/axios-developer-tool-compromise"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Prompting fundamentals]]></title>
         <id>https://openai.com/academy/prompting</id>
         <link href="https://openai.com/academy/prompting"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using skills]]></title>
-        <id>https://openai.com/academy/skills</id>
-        <link href="https://openai.com/academy/skills"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
-        <id>https://openai.com/academy/data-analysis</id>
-        <link href="https://openai.com/academy/data-analysis"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Personalizing ChatGPT]]></title>
-        <id>https://openai.com/academy/personalization</id>
-        <link href="https://openai.com/academy/personalization"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Working with files in ChatGPT]]></title>
-        <id>https://openai.com/academy/working-with-files</id>
-        <link href="https://openai.com/academy/working-with-files"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using custom GPTs]]></title>
-        <id>https://openai.com/academy/custom-gpts</id>
-        <link href="https://openai.com/academy/custom-gpts"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to build and use custom GPTs to automate workflows, maintain consistent outputs, and create purpose-built AI assistants.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Creating images with ChatGPT]]></title>
-        <id>https://openai.com/academy/image-generation</id>
-        <link href="https://openai.com/academy/image-generation"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
-        <id>https://openai.com/academy/sales</id>
-        <link href="https://openai.com/academy/sales"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -513,16 +612,6 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         <p>Tags: <a href="https://simonwillison.net/tags/cors">cors</a>, <a href="https://simonwillison.net/tags/github">github</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Unknown AI Model is Shockingly Good]]></title>
-        <id>https://www.youtube.com/shorts/7IgfvURUUx4</id>
-        <link href="https://www.youtube.com/shorts/7IgfvURUUx4"/>
-        <updated>2026-04-09T14:51:45.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -834,15 +923,6 @@ Language models have consistently grown to compress more world knowledge into th
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Claude Mythos: Highlights from 244-page Release]]></title>
-        <id>https://www.youtube.com/watch?v=txx6ec6MLNY</id>
-        <link href="https://www.youtube.com/watch?v=txx6ec6MLNY"/>
-        <updated>2026-04-08T17:39:20.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Quoting Giles Turnbull]]></title>
         <id>https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything"/>
@@ -853,16 +933,6 @@ Language models have consistently grown to compress more world knowledge into th
     <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/writing">writing</a>, <a href="https://simonwillison.net/tags/ai">ai</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI Just Made History (Holy Sh*t?!)]]></title>
-        <id>https://www.youtube.com/shorts/-lRnSrhTXDc</id>
-        <link href="https://www.youtube.com/shorts/-lRnSrhTXDc"/>
-        <updated>2026-04-08T14:16:58.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1014,26 +1084,6 @@ llm -m openrouter/z-ai/glm-5.1 'Generate an SVG of a pelican on a bicycle'
         <p>Tags: <a href="https://simonwillison.net/tags/docker">docker</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[WTF Is OpenAI Doing??]]></title>
-        <id>https://www.youtube.com/shorts/QymmGOKO5sk</id>
-        <link href="https://www.youtube.com/shorts/QymmGOKO5sk"/>
-        <updated>2026-04-07T14:01:35.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude's Source Code Got Leaked Across The Whole Internet]]></title>
-        <id>https://www.youtube.com/shorts/4-XNvaV2KPk</id>
-        <link href="https://www.youtube.com/shorts/4-XNvaV2KPk"/>
-        <updated>2026-04-06T21:55:19.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1303,91 +1353,6 @@ awk -F= '/aws_secret_access_key/{print $2}' ~/.aws/credentials | xargs
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[research-llm-apis 2026-04-04]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/research-llm-apis/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/research-llm-apis/#atom-everything"/>
-        <updated>2026-04-05T00:32:11.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/research-llm-apis/releases/tag/2026-04-04">research-llm-apis 2026-04-04</a></p>
-    <p>I'm working on a <a href="https://github.com/simonw/llm/issues/1314">major change</a> to my LLM Python library and CLI tool. LLM provides an abstraction layer over hundreds of different LLMs from dozens of different vendors thanks to its plugin system, and some of those vendors have grown new features over the past year which LLM's abstraction layer can't handle, such as server-side tool execution.</p>
-<p>To help design that new abstraction layer I had Claude Code read through the Python client libraries for Anthropic, OpenAI, Gemini and Mistral and use those to help craft <code>curl</code> commands to access the raw JSON for both streaming and non-streaming modes across a range of different scenarios. Both the scripts and the captured outputs now live in this new repo.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/apis">apis</a>, <a href="https://simonwillison.net/tags/json">json</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Kyle Daigle]]></title>
-        <id>https://simonwillison.net/2026/Apr/4/kyle-daigle/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/4/kyle-daigle/#atom-everything"/>
-        <updated>2026-04-04T02:20:17.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/kdaigle/status/2040164759836778878"><p>[GitHub] platform activity is surging. There were 1 billion commits in 2025. Now, it's 275 million per week, on pace for 14 billion this year if growth remains linear (spoiler: it won't.)</p>
-<p>GitHub Actions has grown from 500M minutes/week in 2023 to 1B minutes/week in 2025, and now 2.1B minutes so far this week.</p></blockquote>
-<p class="cite">&mdash; <a href="https://twitter.com/kdaigle/status/2040164759836778878">Kyle Daigle</a>, COO, GitHub</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/github">github</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Vulnerability Research Is Cooked]]></title>
-        <id>https://simonwillison.net/2026/Apr/3/vulnerability-research-is-cooked/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/3/vulnerability-research-is-cooked/#atom-everything"/>
-        <updated>2026-04-03T23:59:08.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://sockpuppet.org/blog/2026/03/30/vulnerability-research-is-cooked/">Vulnerability Research Is Cooked</a></strong></p>
-Thomas Ptacek's take on the sudden and enormous impact the latest frontier models are having on the field of vulnerability research.</p>
-<blockquote>
-<p>Within the next few months, coding agents will drastically alter both the practice and the economics of exploit development. Frontier model improvement won’t be a slow burn, but rather a step function. Substantial amounts of high-impact vulnerability research (maybe even most of it) will happen simply by pointing an agent at a source tree and typing “find me zero days”.</p>
-</blockquote>
-<p>Why are agents so good at this? A combination of baked-in knowledge, pattern matching ability and brute force:</p>
-<blockquote>
-<p>You can't design a better problem for an LLM agent than exploitation research.</p>
-<p>Before you feed it a single token of context, a frontier LLM already encodes supernatural amounts of correlation across vast bodies of source code. Is the Linux KVM hypervisor connected to the <code>hrtimer</code> subsystem, <code>workqueue</code>, or <code>perf_event</code>? The model knows.</p>
-<p>Also baked into those model weights: the complete library of documented "bug classes" on which all exploit development builds: stale pointers, integer mishandling, type confusion, allocator grooming, and all the known ways of promoting a wild write to a controlled 64-bit read/write in Firefox.</p>
-<p>Vulnerabilities are found by pattern-matching bug classes and constraint-solving for reachability and exploitability. Precisely the implicit search problems that LLMs are most gifted at solving. Exploit outcomes are straightforwardly testable success/failure trials. An agent never gets bored and will search forever if you tell it to.</p>
-</blockquote>
-<p>The article was partly inspired by <a href="https://securitycryptographywhatever.com/2026/03/25/ai-bug-finding/">this episode of the Security Cryptography Whatever podcast</a>, where David Adrian, Deirdre Connolly, and Thomas interviewed Anthropic's Nicholas Carlini for 1 hour 16 minutes.</p>
-<p>I just started a new tag here for <a href="https://simonwillison.net/tags/ai-security-research/">ai-security-research</a> - it's up to 11 posts already.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/thomas-ptacek">thomas-ptacek</a>, <a href="https://simonwillison.net/tags/careers">careers</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/nicholas-carlini">nicholas-carlini</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The cognitive impact of coding agents]]></title>
-        <id>https://simonwillison.net/2026/Apr/3/cognitive-cost/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/3/cognitive-cost/#atom-everything"/>
-        <updated>2026-04-03T23:57:04.000Z</updated>
-        <summary type="html"><![CDATA[<p>A fun thing about <a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">recording a podcast</a> with a professional like Lenny Rachitsky is that his team know how to slice the resulting video up into TikTok-sized short form vertical videos. Here's <a href="https://x.com/lennysan/status/2039845666680176703">one he shared on Twitter today</a> which ended up attracting over 1.1m views!</p>
-<p><video
-  src="https://static.simonwillison.net/static/2026/cognitive-cost.mp4"
-  poster="https://static.simonwillison.net/static/2026/cognitive-cost-poster.jpg"
-  controls
-  preload="none"
-  playsinline
-  style="display:block; max-width:400px; width:100%; height:auto; margin:0 auto"
-><track src="https://static.simonwillison.net/static/2026/cognitive-cost.vtt" kind="captions" srclang="en" label="English"></video>
-</p>
-<p>That was 48 seconds. Our <a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">full conversation</a> lasted 1 hour 40 minutes.</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/podcast-appearances">podcast-appearances</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/cognitive-debt">cognitive-debt</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: Anthropic Leak Shows Us The Future of AI]]></title>
-        <id>https://www.youtube.com/watch?v=BZ1hs2ZcnJc</id>
-        <link href="https://www.youtube.com/watch?v=BZ1hs2ZcnJc"/>
-        <updated>2026-04-03T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[He just crawled through hell to fix the browser…]]></title>
         <id>https://www.youtube.com/watch?v=vd14EElCRvs</id>
         <link href="https://www.youtube.com/watch?v=vd14EElCRvs"/>
@@ -1517,16 +1482,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How AI Gets Data Wrong (and how to fix it)]]></title>
-        <id>https://www.youtube.com/shorts/osycm8ZK7iY</id>
-        <link href="https://www.youtube.com/shorts/osycm8ZK7iY"/>
-        <updated>2026-03-31T20:46:22.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Millions of JS devs just got penetrated by a RAT…]]></title>
         <id>https://www.youtube.com/watch?v=o7NYXvYohYk</id>
         <link href="https://www.youtube.com/watch?v=o7NYXvYohYk"/>
@@ -1606,24 +1561,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: Anthropic Went Crazy This Week!]]></title>
-        <id>https://www.youtube.com/watch?v=OYyS0Gu5xj8</id>
-        <link href="https://www.youtube.com/watch?v=OYyS0Gu5xj8"/>
-        <updated>2026-03-27T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?]]></title>
-        <id>https://www.youtube.com/watch?v=s4tptozUJ8Y</id>
-        <link href="https://www.youtube.com/watch?v=s4tptozUJ8Y"/>
-        <updated>2026-03-26T20:15:12.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Anthropic just released the real Claude Bot...]]></title>
         <id>https://www.youtube.com/watch?v=wfeiCZK0mNs</id>
         <link href="https://www.youtube.com/watch?v=wfeiCZK0mNs"/>
@@ -1680,15 +1617,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[We’re expanding Search Live globally, to all languages and locations where AI Mode is available.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Datacenter Problem Nobody's Talking About]]></title>
-        <id>https://www.youtube.com/watch?v=slX_lDDobEs</id>
-        <link href="https://www.youtube.com/watch?v=slX_lDDobEs"/>
-        <updated>2026-03-26T02:28:07.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1782,15 +1710,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[OpenAI Just Killed Sora]]></title>
-        <id>https://www.youtube.com/watch?v=PKKN5be_my0</id>
-        <link href="https://www.youtube.com/watch?v=PKKN5be_my0"/>
-        <updated>2026-03-24T22:57:46.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Tech bros optimized war… and it’s working]]></title>
         <id>https://www.youtube.com/watch?v=nxwkn9Dt9-I</id>
         <link href="https://www.youtube.com/watch?v=nxwkn9Dt9-I"/>
@@ -1856,15 +1775,6 @@ to balance cost and latency.]]></summary>
         <updated>2026-03-20T19:32:24.000Z</updated>
         <author>
             <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: Every Major Announcement From This Week]]></title>
-        <id>https://www.youtube.com/watch?v=V4un_4uTEHs</id>
-        <link href="https://www.youtube.com/watch?v=V4un_4uTEHs"/>
-        <updated>2026-03-20T15:04:52.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1946,21 +1856,21 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Bringing the power of Personal Intelligence to more people]]></title>
-        <id>https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/</id>
-        <link href="https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/"/>
-        <updated>2026-03-17T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We're expanding Personal Intelligence across AI Mode in Search, the Gemini app and Gemini in Chrome.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our latest investment in open source security for the AI era]]></title>
         <id>https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/</id>
         <link href="https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/"/>
         <updated>2026-03-17T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[Google is making new investments, building new tools and developing code security to improve open source security.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bringing the power of Personal Intelligence to more people]]></title>
+        <id>https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/</id>
+        <link href="https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/"/>
+        <updated>2026-03-17T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We're expanding Personal Intelligence across AI Mode in Search, the Gemini app and Gemini in Chrome.]]></summary>
         <author>
             <name>AI</name>
         </author>
@@ -2003,16 +1913,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[Improving Composer through real-time RL]]></summary>
         <author>
             <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Why Codex Security Doesn’t Include a SAST Report]]></title>
-        <id>https://openai.com/index/why-codex-security-doesnt-include-sast</id>
-        <link href="https://openai.com/index/why-codex-security-doesnt-include-sast"/>
-        <updated>2026-03-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A deep dive into why Codex Security doesn’t rely on traditional SAST, instead using AI-driven constraint reasoning and validation to find real vulnerabilities with fewer false positives.]]></summary>
-        <author>
-            <name>OpenAI News</name>
         </author>
     </entry>
 </feed>
