@@ -1,10 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-15T02:30:24.123Z</id>
+    <id>urn:2026-04-16T02:37:16.002Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-15T02:30:24.123Z</updated>
+    <updated>2026-04-16T02:37:16.002Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[This AI Editing Trick Saves Me HOURS]]></title>
+        <id>https://www.youtube.com/shorts/7z8n8rUsHpQ</id>
+        <link href="https://www.youtube.com/shorts/7z8n8rUsHpQ"/>
+        <updated>2026-04-16T01:01:53.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette.io news preview]]></title>
+        <id>https://simonwillison.net/2026/Apr/16/datasette-io-preview/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/16/datasette-io-preview/#atom-everything"/>
+        <updated>2026-04-16T00:18:03.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/datasette-io-preview">datasette.io news preview</a></p>
+    <p>The <a href="https://datasette.io/">datasette.io</a> website has a news section built from this <a href="https://github.com/simonw/datasette.io/blob/main/news.yaml">news.yaml</a> file in the underlying GitHub repository. The YAML format looks like this:</p>
+<pre><code>- date: 2026-04-15
+  body: |-
+    [Datasette 1.0a27](https://docs.datasette.io/en/latest/changelog.html#a27-2026-04-15) changes how CSRF protection works in a way that simplifies form and API integration, and introduces a new `RenameTableEvent` for when a table is renamed by a SQL query.
+- date: 2026-03-18
+  body: |-
+    ...
+</code></pre>
+<p>This format is a little hard to edit, so I finally <a href="https://claude.ai/share/c96129b9-bcb0-4eba-aee9-4a7ad236dfb7">had Claude build a custom preview UI</a> to make checking for errors have slightly less friction.</p>
+<p>I built it using standard <a href="https://claude.ai/">claude.ai</a> and Claude Artifacts, taking advantage of Claude's ability to clone GitHub repos and look at their content as part of a regular chat:</p>
+<blockquote>
+<p><code>Clone https://github.com/simonw/datasette.io and look at the news.yaml file and how it is rendered on the homepage. Build an artifact I can paste that YAML into which previews what it will look like, and highlights any markdown errors or YAML errors</code></p>
+</blockquote>
+<p><img alt="Screenshot showing two side-by-side views of a datasette.io news preview tool. The left panel shows a dark-themed YAML editor with news entries containing date and body fields in Markdown format, with a red validation error at the bottom indicating the date field has an invalid format. The right panel shows the rendered preview output with formatted headings by date (April 2026, 18th March 2026), displaying 115 news entries with linked release names, inline code snippets, and changelog descriptions. A red badge with &quot;1&quot; appears on the left panel header indicating one validation error." src="https://static.simonwillison.net/static/2026/datasette-io-preview.jpg" /></p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette-export-database 0.3a1]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/datasette-export-database/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/datasette-export-database/#atom-everything"/>
+        <updated>2026-04-15T23:52:35.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-export-database/releases/tag/0.3a1">datasette-export-database 0.3a1</a></p>
+    <p>This plugin was using the <code>ds_csrftoken</code> cookie as part of a custom signed URL, which needed upgrading now that Datasette 1.0a27 <a href="https://simonwillison.net/2026/Apr/14/replace-token-based-csrf/">no longer sets that cookie</a>.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette 1.0a27]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/datasette/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/datasette/#atom-everything"/>
+        <updated>2026-04-15T23:16:34.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/datasette/releases/tag/1.0a27">datasette 1.0a27</a></p>
+    <p>Two major changes in this new Datasette alpha. I covered the first of those <a href="https://simonwillison.net/2026/Apr/14/replace-token-based-csrf/">in detail yesterday</a> - Datasette no longer uses Django-style CSRF form tokens, instead using modern browser headers <a href="https://words.filippo.io/csrf">as described by Filippo Valsorda</a>.</p>
+<p>The second big change is that Datasette now fires a new <a href="https://docs.datasette.io/en/latest/events.html#datasette.events.RenameTableEvent">RenameTableEvent</a> any time a table is renamed during a SQLite transaction. This is useful because some plugins (like <a href="https://github.com/datasette/datasette-comments">datasette-comments</a>) attach additional data to table records by name, so a renamed table requires them to react in appropriate ways.</p>
+<p>Here are the rest of the changes in the alpha:</p>
+<blockquote>
+<ul>
+<li>New <a href="https://docs.datasette.io/en/latest/internals.html#internals-datasette-client-actor">actor= parameter</a> for <code>datasette.client</code> methods, allowing internal requests to be made as a specific actor. This is particularly useful for writing automated tests. (<a href="https://github.com/simonw/datasette/pull/2688">#2688</a>)</li>
+<li>New <code>Database(is_temp_disk=True)</code> option, used internally for the internal database. This helps resolve intermittent database locked errors caused by the internal database being in-memory as opposed to on-disk. (<a href="https://github.com/simonw/datasette/issues/2683">#2683</a>) (<a href="https://github.com/simonw/datasette/pull/2684">#2684</a>)</li>
+<li>The <code>/&lt;database&gt;/&lt;table&gt;/-/upsert</code> API (<a href="https://docs.datasette.io/en/latest/json_api.html#tableupsertview">docs</a>) now rejects rows with <code>null</code> primary key values. (<a href="https://github.com/simonw/datasette/issues/1936">#1936</a>)</li>
+<li>Improved example in the API explorer for the <code>/-/upsert</code> endpoint (<a href="https://docs.datasette.io/en/latest/json_api.html#tableupsertview">docs</a>). (<a href="https://github.com/simonw/datasette/issues/1936">#1936</a>)</li>
+<li>The <code>/&lt;database&gt;.json</code> endpoint now includes an <code>"ok": true</code> key, for consistency with other JSON API responses.</li>
+<li><a href="https://docs.datasette.io/en/latest/internals.html#internals-utils-call-with-supported-arguments">call_with_supported_arguments()</a> is now documented as a supported public API. (<a href="https://github.com/simonw/datasette/pull/2678">#2678</a>)</li>
+</ul>
+</blockquote>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/annotated-release-notes">annotated-release-notes</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/python">python</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How Much I Make on YouTube (And How I Run EVERYTHING)]]></title>
+        <id>https://www.youtube.com/watch?v=ncVQneK7FlE</id>
+        <link href="https://www.youtube.com/watch?v=ncVQneK7FlE"/>
+        <updated>2026-04-15T22:03:19.000Z</updated>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting John Gruber]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/john-gruber/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/john-gruber/#atom-everything"/>
+        <updated>2026-04-15T17:13:57.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://daringfireball.net/2026/04/piece_android_iphone_apps"><p>The real goldmine isn’t that Apple gets a cut of every App Store transaction. It’s that Apple’s platforms have the best apps, and users who are drawn to the best apps are thus drawn to the iPhone, Mac, and iPad. That edge is waning. Not because software on other platforms is getting better, but because third-party software on iPhone, Mac, and iPad is regressing to the mean, <em>to some extent</em>, because fewer developers feel motivated — artistically, financially, or both — to create well-crafted idiomatic native apps exclusively for Apple’s platforms.</p></blockquote>
+<p class="cite">&mdash; <a href="https://daringfireball.net/2026/04/piece_android_iphone_apps">John Gruber</a></p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/apple">apple</a>, <a href="https://simonwillison.net/tags/john-gruber">john-gruber</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini 3.1 Flash TTS]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/#atom-everything"/>
+        <updated>2026-04-15T17:13:14.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-tts/">Gemini 3.1 Flash TTS</a></strong></p>
+Google released Gemini 3.1 Flash TTS today, a new text-to-speech model that can be directed using prompts.</p>
+<p>It's presented via the standard Gemini API using <code>gemini-3.1-flash-tts-preview</code> as the model ID, but can only output audio files.</p>
+<p>The <a href="https://ai.google.dev/gemini-api/docs/speech-generation#transcript-tags">prompting guide</a> is surprising, to say the least. Here's their example prompt to generate just a few short sentences of audio:</p>
+<pre><code># AUDIO PROFILE: Jaz R.
+## "The Morning Hype"
+
+## THE SCENE: The London Studio
+It is 10:00 PM in a glass-walled studio overlooking the moonlit London skyline, but inside, it is blindingly bright. The red "ON AIR" tally light is blazing. Jaz is standing up, not sitting, bouncing on the balls of their heels to the rhythm of a thumping backing track. Their hands fly across the faders on a massive mixing desk. It is a chaotic, caffeine-fueled cockpit designed to wake up an entire nation.
+
+### DIRECTOR'S NOTES
+Style:
+* The "Vocal Smile": You must hear the grin in the audio. The soft palate is always raised to keep the tone bright, sunny, and explicitly inviting.
+* Dynamics: High projection without shouting. Punchy consonants and elongated vowels on excitement words (e.g., "Beauuutiful morning").
+
+Pace: Speaks at an energetic pace, keeping up with the fast music.  Speaks with A "bouncing" cadence. High-speed delivery with fluid transitions — no dead air, no gaps.
+
+Accent: Jaz is from Brixton, London
+
+### SAMPLE CONTEXT
+Jaz is the industry standard for Top 40 radio, high-octane event promos, or any script that requires a charismatic Estuary accent and 11/10 infectious energy.
+
+#### TRANSCRIPT
+[excitedly] Yes, massive vibes in the studio! You are locked in and it is absolutely popping off in London right now. If you're stuck on the tube, or just sat there pretending to work... stop it. Seriously, I see you.
+[shouting] Turn this up! We've got the project roadmap landing in three, two... let's go!
+</code></pre>
+<p>Here's what I got using that example prompt:</p>
+<p><audio controls style="width: 100%">
+  <source src="https://static.simonwillison.net/static/2026/gemini-flash-tts-london.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio></p>
+<p>Then I modified it to say "Jaz is from Newcastle" and "... requires a charismatic Newcastle accent" and got this result:</p>
+<p><audio controls style="width: 100%">
+  <source src="https://static.simonwillison.net/static/2026/gemini-flash-tts-newcastle.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio></p>
+<p>Here's Exeter, Devon for good measure:</p>
+<p><audio controls style="width: 100%">
+  <source src="https://static.simonwillison.net/static/2026/gemini-flash-tts-devon.wav" type="audio/wav">
+  Your browser does not support the audio element.
+</audio></p>
+<p>I <a href="https://gemini.google.com/share/dd0fba5a83c4">had Gemini 3.1 Pro</a> vibe code <a href="https://tools.simonwillison.net/gemini-flash-tts">this UI for trying it out</a>:</p>
+<p><img alt="Screenshot of a &quot;Gemini 3.1 Flash TTS&quot; web application interface. At the top is an &quot;API Key&quot; field with a masked password. Below is a &quot;TTS Mode&quot; section with a dropdown set to &quot;Multi-Speaker (Conversation)&quot;. &quot;Speaker 1 Name&quot; is set to &quot;Joe&quot; with &quot;Speaker 1 Voice&quot; set to &quot;Puck (Upbeat)&quot;. &quot;Speaker 2 Name&quot; is set to &quot;Jane&quot; with &quot;Speaker 2 Voice&quot; set to &quot;Kore (Firm)&quot;. Under &quot;Script / Prompt&quot; is a tip reading &quot;Tip: Format your text as a script using the Exact Speaker Names defined above.&quot; The script text area contains &quot;TTS the following conversation between Joe and Jane:\n\nJoe: How's it going today Jane?\nJane: [yawn] Not too bad, how about you?&quot; A blue &quot;Generate Audio&quot; button is below. At the bottom is a &quot;Success!&quot; message with an audio player showing 00:00 / 00:06 and a &quot;Download WAV&quot; link." src="https://static.simonwillison.net/static/2026/gemini-flash-tts.jpg" />
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/google">google</a>, <a href="https://simonwillison.net/tags/text-to-speech">text-to-speech</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/gemini">gemini</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini 3.1 Flash TTS]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/gemini-flash-tts/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/gemini-flash-tts/#atom-everything"/>
+        <updated>2026-04-15T16:41:46.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/gemini-flash-tts">Gemini 3.1 Flash TTS</a></p>
+    <p>See <a href="https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/">my notes</a> on Google's new Gemini 3.1 Flash TTS text-to-speech model.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/gemini">gemini</a>, <a href="https://simonwillison.net/tags/google">google</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini 3.1 Flash TTS: the next generation of expressive AI speech]]></title>
+        <id>https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/</id>
+        <link href="https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/"/>
+        <updated>2026-04-15T16:03:19.000Z</updated>
+        <summary type="html"><![CDATA[Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Kyle Kingsbury]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/kyle-kingsbury/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/kyle-kingsbury/#atom-everything"/>
+        <updated>2026-04-15T15:36:02.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://aphyr.com/posts/419-the-future-of-everything-is-lies-i-guess-new-jobs"><p>I think we will see some people employed (though perhaps not explicitly) as <em>meat shields</em>: people who are accountable for ML systems under their supervision. The accountability may be purely internal, as when Meta hires human beings to review the decisions of automated moderation systems. It may be external, as when lawyers are penalized for submitting LLM lies to the court. It may involve formalized responsibility, like a Data Protection Officer. It may be convenient for a company to have third-party subcontractors, like Buscaglia, who can be thrown under the bus when the system as a whole misbehaves.</p></blockquote>
+<p class="cite">&mdash; <a href="https://aphyr.com/posts/419-the-future-of-everything-is-lies-i-guess-new-jobs">Kyle Kingsbury</a>, The Future of Everything is Lies, I Guess: New Jobs</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/careers">careers</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/kyle-kingsbury">kyle-kingsbury</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gemini 3.1 Flash TTS: the next generation of expressive AI speech]]></title>
+        <id>https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-tts/</id>
+        <link href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-tts/"/>
+        <updated>2026-04-15T15:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Gemini 3.1 Flash TTS is now available across Google products.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The next evolution of the Agents SDK]]></title>
+        <id>https://openai.com/index/the-next-evolution-of-the-agents-sdk</id>
+        <link href="https://openai.com/index/the-next-evolution-of-the-agents-sdk"/>
+        <updated>2026-04-15T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI updates the Agents SDK with native sandbox execution and a model-native harness, helping developers build secure, long-running agents across files and tools.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette-ports 0.3]]></title>
+        <id>https://simonwillison.net/2026/Apr/15/datasette-ports/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/15/datasette-ports/#atom-everything"/>
+        <updated>2026-04-15T02:50:57.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-ports/releases/tag/0.3">datasette-ports 0.3</a></p>
+    <p>A small update for my tool for helping me figure out what all of the Datasette instances on my laptop are up to.</p>
+<blockquote>
+<ul>
+<li>Show working directory derived from each PID</li>
+<li>Show the full path to each database file</li>
+</ul>
+</blockquote>
+<p>Output now looks like this:</p>
+<pre><code>http://127.0.0.1:8007/ - v1.0a26
+  Directory: /Users/simon/dev/blog
+  Databases:
+    simonwillisonblog: /Users/simon/dev/blog/simonwillisonblog.db
+  Plugins:
+    datasette-llm
+    datasette-secrets
+http://127.0.0.1:8001/ - v1.0a26
+  Directory: /Users/simon/dev/creatures
+  Databases:
+    creatures: /tmp/creatures.db
+</code></pre>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Zig 0.16.0 release notes: "Juicy Main"]]></title>
         <id>https://simonwillison.net/2026/Apr/15/juicy-main/#atom-everything</id>
@@ -113,6 +352,16 @@ The UK's AI Safety Institute recently published <a href="https://www.aisi.gov.uk
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Insane Open Source AI Model Just Dropped]]></title>
+        <id>https://www.youtube.com/shorts/0T3xgE_diIw</id>
+        <link href="https://www.youtube.com/shorts/0T3xgE_diIw"/>
+        <updated>2026-04-14T13:13:29.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Bringing people together at AI for the Economy Forum]]></title>
         <id>https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/</id>
         <link href="https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/"/>
@@ -191,6 +440,16 @@ cargo build
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Seedance Just Got Nerfed]]></title>
+        <id>https://www.youtube.com/shorts/khIOqZIpbmg</id>
+        <link href="https://www.youtube.com/shorts/khIOqZIpbmg"/>
+        <updated>2026-04-13T12:13:39.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI]]></title>
         <id>https://openai.com/index/cloudflare-openai-agent-cloud</id>
         <link href="https://openai.com/index/cloudflare-openai-agent-cloud"/>
@@ -255,6 +514,16 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[ANOTHER Big AI Leak?!]]></title>
+        <id>https://www.youtube.com/shorts/ByZsafOOKoM</id>
+        <link href="https://www.youtube.com/shorts/ByZsafOOKoM"/>
+        <updated>2026-04-12T14:08:26.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[SQLite 3.53.0]]></title>
         <id>https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything"/>
@@ -287,6 +556,26 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Is Claude Mythos A Marketing Ploy?]]></title>
+        <id>https://www.youtube.com/shorts/K_jquzUz5eA</id>
+        <link href="https://www.youtube.com/shorts/K_jquzUz5eA"/>
+        <updated>2026-04-11T13:06:37.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claude Mythos Explained]]></title>
+        <id>https://www.youtube.com/shorts/pRoIjB5eNKo</id>
+        <link href="https://www.youtube.com/shorts/pRoIjB5eNKo"/>
+        <updated>2026-04-10T21:23:54.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -342,31 +631,50 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Healthcare]]></title>
-        <id>https://openai.com/academy/healthcare</id>
-        <link href="https://openai.com/academy/healthcare"/>
+        <title type="html"><![CDATA[AI News: The Model That Has Everyone Freaked Out!]]></title>
+        <id>https://www.youtube.com/watch?v=SguncMvE77I</id>
+        <link href="https://www.youtube.com/watch?v=SguncMvE77I"/>
+        <updated>2026-04-10T15:00:00.000Z</updated>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Prompting fundamentals]]></title>
+        <id>https://openai.com/academy/prompting</id>
+        <link href="https://openai.com/academy/prompting"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.]]></summary>
+        <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Getting started with ChatGPT]]></title>
-        <id>https://openai.com/academy/getting-started</id>
-        <link href="https://openai.com/academy/getting-started"/>
+        <title type="html"><![CDATA[Using projects in ChatGPT]]></title>
+        <id>https://openai.com/academy/projects</id>
+        <link href="https://openai.com/academy/projects"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use orojects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT for marketing teams]]></title>
-        <id>https://openai.com/academy/marketing</id>
-        <link href="https://openai.com/academy/marketing"/>
+        <title type="html"><![CDATA[ChatGPT for research]]></title>
+        <id>https://openai.com/academy/research</id>
+        <link href="https://openai.com/academy/research"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for finance teams]]></title>
+        <id>https://openai.com/academy/finance</id>
+        <link href="https://openai.com/academy/finance"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how finance teams use ChatGPT to streamline reporting, analyze data, improve forecasts, and communicate insights more clearly.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -392,51 +700,11 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Personalizing ChatGPT]]></title>
-        <id>https://openai.com/academy/personalization</id>
-        <link href="https://openai.com/academy/personalization"/>
+        <title type="html"><![CDATA[Getting started with ChatGPT]]></title>
+        <id>https://openai.com/academy/getting-started</id>
+        <link href="https://openai.com/academy/getting-started"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
-        <id>https://openai.com/academy/data-analysis</id>
-        <link href="https://openai.com/academy/data-analysis"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using skills]]></title>
-        <id>https://openai.com/academy/skills</id>
-        <link href="https://openai.com/academy/skills"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI fundamentals]]></title>
-        <id>https://openai.com/academy/what-is-ai</id>
-        <link href="https://openai.com/academy/what-is-ai"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for operations teams]]></title>
-        <id>https://openai.com/academy/operations</id>
-        <link href="https://openai.com/academy/operations"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -452,111 +720,11 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
-        <id>https://openai.com/academy/sales</id>
-        <link href="https://openai.com/academy/sales"/>
+        <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
+        <id>https://openai.com/index/axios-developer-tool-compromise</id>
+        <link href="https://openai.com/index/axios-developer-tool-compromise"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Applications of AI at OpenAI]]></title>
-        <id>https://openai.com/academy/applications-of-ai</id>
-        <link href="https://openai.com/academy/applications-of-ai"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for finance teams]]></title>
-        <id>https://openai.com/academy/finance</id>
-        <link href="https://openai.com/academy/finance"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how finance teams use ChatGPT to streamline reporting, analyze data, improve forecasts, and communicate insights more clearly.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Financial services]]></title>
-        <id>https://openai.com/academy/financial-services</id>
-        <link href="https://openai.com/academy/financial-services"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using projects in ChatGPT]]></title>
-        <id>https://openai.com/academy/projects</id>
-        <link href="https://openai.com/academy/projects"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use orojects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for managers]]></title>
-        <id>https://openai.com/academy/managers</id>
-        <link href="https://openai.com/academy/managers"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how managers use ChatGPT to prepare for conversations, write clear feedback, stay organized, and improve team effectiveness.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for customer success teams]]></title>
-        <id>https://openai.com/academy/customer-success</id>
-        <link href="https://openai.com/academy/customer-success"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Research with ChatGPT]]></title>
-        <id>https://openai.com/academy/search-and-deep-research</id>
-        <link href="https://openai.com/academy/search-and-deep-research"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
-        <id>https://openai.com/academy/responsible-and-safe-use</id>
-        <link href="https://openai.com/academy/responsible-and-safe-use"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for research]]></title>
-        <id>https://openai.com/academy/research</id>
-        <link href="https://openai.com/academy/research"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
-        <id>https://openai.com/academy/writing</id>
-        <link href="https://openai.com/academy/writing"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
+        <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -572,21 +740,151 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
-        <id>https://openai.com/index/axios-developer-tool-compromise</id>
-        <link href="https://openai.com/index/axios-developer-tool-compromise"/>
+        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
+        <id>https://openai.com/academy/writing</id>
+        <link href="https://openai.com/academy/writing"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Prompting fundamentals]]></title>
-        <id>https://openai.com/academy/prompting</id>
-        <link href="https://openai.com/academy/prompting"/>
+        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
+        <id>https://openai.com/academy/responsible-and-safe-use</id>
+        <link href="https://openai.com/academy/responsible-and-safe-use"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for operations teams]]></title>
+        <id>https://openai.com/academy/operations</id>
+        <link href="https://openai.com/academy/operations"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Research with ChatGPT]]></title>
+        <id>https://openai.com/academy/search-and-deep-research</id>
+        <link href="https://openai.com/academy/search-and-deep-research"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for customer success teams]]></title>
+        <id>https://openai.com/academy/customer-success</id>
+        <link href="https://openai.com/academy/customer-success"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Healthcare]]></title>
+        <id>https://openai.com/academy/healthcare</id>
+        <link href="https://openai.com/academy/healthcare"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
+        <id>https://openai.com/academy/sales</id>
+        <link href="https://openai.com/academy/sales"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
+        <id>https://openai.com/academy/data-analysis</id>
+        <link href="https://openai.com/academy/data-analysis"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for managers]]></title>
+        <id>https://openai.com/academy/managers</id>
+        <link href="https://openai.com/academy/managers"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how managers use ChatGPT to prepare for conversations, write clear feedback, stay organized, and improve team effectiveness.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Applications of AI at OpenAI]]></title>
+        <id>https://openai.com/academy/applications-of-ai</id>
+        <link href="https://openai.com/academy/applications-of-ai"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Financial services]]></title>
+        <id>https://openai.com/academy/financial-services</id>
+        <link href="https://openai.com/academy/financial-services"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AI fundamentals]]></title>
+        <id>https://openai.com/academy/what-is-ai</id>
+        <link href="https://openai.com/academy/what-is-ai"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Personalizing ChatGPT]]></title>
+        <id>https://openai.com/academy/personalization</id>
+        <link href="https://openai.com/academy/personalization"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using skills]]></title>
+        <id>https://openai.com/academy/skills</id>
+        <link href="https://openai.com/academy/skills"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for marketing teams]]></title>
+        <id>https://openai.com/academy/marketing</id>
+        <link href="https://openai.com/academy/marketing"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -612,6 +910,16 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         <p>Tags: <a href="https://simonwillison.net/tags/cors">cors</a>, <a href="https://simonwillison.net/tags/github">github</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Extremely Underrated Open Source AI]]></title>
+        <id>https://www.youtube.com/shorts/7IgfvURUUx4</id>
+        <link href="https://www.youtube.com/shorts/7IgfvURUUx4"/>
+        <updated>2026-04-09T14:51:45.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -923,6 +1231,15 @@ Language models have consistently grown to compress more world knowledge into th
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Claude Mythos: Highlights from 244-page Release]]></title>
+        <id>https://www.youtube.com/watch?v=txx6ec6MLNY</id>
+        <link href="https://www.youtube.com/watch?v=txx6ec6MLNY"/>
+        <updated>2026-04-08T17:39:20.000Z</updated>
+        <author>
+            <name>AI Explained</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Quoting Giles Turnbull]]></title>
         <id>https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything"/>
@@ -933,6 +1250,16 @@ Language models have consistently grown to compress more world knowledge into th
     <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/writing">writing</a>, <a href="https://simonwillison.net/tags/ai">ai</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI Just Made History (Holy Sh*t?!)]]></title>
+        <id>https://www.youtube.com/shorts/-lRnSrhTXDc</id>
+        <link href="https://www.youtube.com/shorts/-lRnSrhTXDc"/>
+        <updated>2026-04-08T14:16:58.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1087,6 +1414,26 @@ llm -m openrouter/z-ai/glm-5.1 'Generate an SVG of a pelican on a bicycle'
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[WTF Is OpenAI Doing??]]></title>
+        <id>https://www.youtube.com/shorts/QymmGOKO5sk</id>
+        <link href="https://www.youtube.com/shorts/QymmGOKO5sk"/>
+        <updated>2026-04-07T14:01:35.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claude's Source Code Got Leaked Across The Whole Internet]]></title>
+        <id>https://www.youtube.com/shorts/4-XNvaV2KPk</id>
+        <link href="https://www.youtube.com/shorts/4-XNvaV2KPk"/>
+        <updated>2026-04-06T21:55:19.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Cursor ditches VS Code, but not everyone is happy...]]></title>
         <id>https://www.youtube.com/watch?v=JSuS-zXMVwE</id>
         <link href="https://www.youtube.com/watch?v=JSuS-zXMVwE"/>
@@ -1163,20 +1510,6 @@ Terrible name, really great app: this is Google's official app for running their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Cleanup Claude Code Paste]]></title>
-        <id>https://simonwillison.net/2026/Apr/6/cleanup-claude-code-paste/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/6/cleanup-claude-code-paste/#atom-everything"/>
-        <updated>2026-04-06T02:55:23.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/cleanup-claude-code-paste">Cleanup Claude Code Paste</a></p>
-    <p>Super-niche tool this. I sometimes copy prompts out of the Claude Code terminal app and they come out with a bunch of weird additional whitespace. This tool cleans that up.</p>
-<p><img alt="Screenshot of a web tool titled &quot;Cleanup Claude Code Paste&quot; with the subtitle &quot;Paste terminal output to remove the ❯ prompt, fix wrapped-line whitespace, and join lines into clean text.&quot; An input textarea contains pasted terminal output starting with &quot;❯ Add a -r/--redact option which asks for user approval (after telling it how many replacements will happen and in which files and which lines – standard output basically) and then rewrites the files in that folder to replace all matched secrets with REDACTED. Run tests with 'uv run pytest' and use red/green TDD&quot;. Below is a &quot;Cleaned output:&quot; section showing the same text with the ❯ prompt removed and whitespace cleaned up. A blue &quot;Copy to clipboard&quot; button appears at the bottom." src="https://static.simonwillison.net/static/2026/claude-code-cleanup.jpg" /></p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Industrial policy for the Intelligence Age]]></title>
         <id>https://openai.com/index/industrial-policy-for-the-intelligence-age</id>
         <link href="https://openai.com/index/industrial-policy-for-the-intelligence-age"/>
@@ -1184,34 +1517,6 @@ Terrible name, really great app: this is Google's official app for running their
         <summary type="html"><![CDATA[Explore our ambitious, people-first industrial policy ideas for the AI era—focused on expanding opportunity, sharing prosperity, and building resilient institutions as advanced intelligence evolves.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[datasette-ports 0.1]]></title>
-        <id>https://simonwillison.net/2026/Apr/6/datasette-ports/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/6/datasette-ports/#atom-everything"/>
-        <updated>2026-04-06T00:23:55.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-ports/releases/tag/0.1">datasette-ports 0.1</a></p>
-    <p>Another <a href="https://gisthost.github.io/?f92d8a6bdadee1c77972b5e51954144e">example</a> of README-driven development, this time solving a problem that might be unique to me.</p>
-<p>I often find myself running a bunch of different <a href="https://datasette.io">Datasette</a> instances with different databases and different in-development plugins, spreads across dozens of different terminal windows - enough that I frequently lose them!</p>
-<p>Now I can run this:</p>
-<pre><code>datasette install datasette-ports
-datasette ports
-</code></pre>
-<p>And get a list of every running instance that looks something like this:</p>
-<pre><code>http://127.0.0.1:8333/ - v1.0a26
-  Databases: data
-  Plugins: datasette-enrichments, datasette-enrichments-llm, datasette-llm, datasette-secrets
-http://127.0.0.1:8001/ - v1.0a26
-  Databases: creatures
-  Plugins: datasette-extract, datasette-llm, datasette-secrets
-http://127.0.0.1:8900/ - v0.65.2
-  Databases: logs
-</code></pre>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/datasette">datasette</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1225,131 +1530,12 @@ http://127.0.0.1:8900/ - v0.65.2
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Eight years of wanting, three months of building with AI]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/building-with-ai/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/building-with-ai/#atom-everything"/>
-        <updated>2026-04-05T23:54:18.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://lalitm.com/post/building-syntaqlite-ai/">Eight years of wanting, three months of building with AI</a></strong></p>
-Lalit Maganti provides one of my favorite pieces of long-form writing on agentic engineering I've seen in ages.</p>
-<p>They spent eight years thinking about and then three months building <a href="https://github.com/lalitMaganti/syntaqlite">syntaqlite</a>, which they describe as "<a href="https://lalitm.com/post/syntaqlite/">high-fidelity devtools that SQLite deserves</a>".</p>
-<p>The goal was to provide fast, robust and comprehensive linting and verifying tools for SQLite, suitable for use in language servers and other development tools - a parser, formatter, and verifier for SQLite queries. I've found myself wanting this kind of thing in the past myself, hence my (far less production-ready) <a href="https://simonwillison.net/2026/Jan/30/sqlite-ast-2/">sqlite-ast</a> project from a few months ago.</p>
-<p>Lalit had been procrastinating on this project for years, because of the inevitable tedium of needing to work through 400+ grammar rules to help build a parser. That's exactly the kind of tedious work that coding agents excel at!</p>
-<p>Claude Code helped get over that initial hump and build the first prototype:</p>
-<blockquote>
-<p>AI basically let me put aside all my doubts on technical calls, my uncertainty of building the right thing and my reluctance to get started by giving me very concrete problems to work on. Instead of “I need to understand how SQLite’s parsing works”, it was “I need to get AI to suggest an approach for me so I can tear it up and build something better". I work so much better with concrete prototypes to play with and code to look at than endlessly thinking about designs in my head, and AI lets me get to that point at a pace I could not have dreamed about before. Once I took the first step, every step after that was so much easier.</p>
-</blockquote>
-<p>That first vibe-coded prototype worked great as a proof of concept, but they eventually made the decision to throw it away and start again from scratch. AI worked great for the low level details but did not produce a coherent high-level architecture:</p>
-<blockquote>
-<p>I found that AI made me procrastinate on key design decisions. Because refactoring was cheap, I could always say “I’ll deal with this later.” And because AI could refactor at the same industrial scale it generated code, the cost of deferring felt low. But it wasn’t: deferring decisions corroded my ability to think clearly because the codebase stayed confusing in the meantime.</p>
-</blockquote>
-<p>The second attempt took a lot longer and involved a great deal more human-in-the-loop decision making, but the result is a robust library that can stand the test of time.</p>
-<p>It's worth setting aside some time to read this whole thing - it's full of non-obvious downsides to working heavily with AI, as well as a detailed explanation of how they overcame those hurdles.</p>
-<p>The key idea I took away from this concerns AI's weakness in terms of design and architecture:</p>
-<blockquote>
-<p>When I was working on something where I didn’t even know what I wanted, AI was somewhere between unhelpful and harmful. The architecture of the project was the clearest case: I spent weeks in the early days following AI down dead ends, exploring designs that felt productive in the moment but collapsed under scrutiny. In hindsight, I have to wonder if it would have been faster just thinking it through without AI in the loop at all.</p>
-<p>But expertise alone isn’t enough. Even when I understood a problem deeply, AI still struggled if the task had no objectively checkable answer. Implementation has a right answer, at least at a local level: the code compiles, the tests pass, the output matches what you asked for. Design doesn’t. We’re still arguing about OOP decades after it first took off.</p>
-</blockquote>
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=47648828">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>]]></summary>
+        <title type="html"><![CDATA[AI News: Anthropic Leak Shows Us The Future of AI]]></title>
+        <id>https://www.youtube.com/watch?v=BZ1hs2ZcnJc</id>
+        <link href="https://www.youtube.com/watch?v=BZ1hs2ZcnJc"/>
+        <updated>2026-04-03T15:00:00.000Z</updated>
         <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Chengpeng Mou]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/chengpeng-mou/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/chengpeng-mou/#atom-everything"/>
-        <updated>2026-04-05T21:47:06.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/cpmou2022/status/2040606209800290404"><p>From anonymized U.S. ChatGPT data, we are seeing:</p>
-<ul>
-<li>~2M weekly messages on health insurance</li>
-<li>~600K weekly messages [classified as healthcare] from people living in “hospital deserts” (30 min drive to nearest hospital)</li>
-<li>7 out of 10 msgs happen outside clinic hours</li>
-</ul></blockquote>
-<p class="cite">&mdash; <a href="https://twitter.com/cpmou2022/status/2040606209800290404">Chengpeng Mou</a>, Head of Business Finance, OpenAI</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Syntaqlite Playground]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/syntaqlite/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/syntaqlite/#atom-everything"/>
-        <updated>2026-04-05T19:32:59.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/syntaqlite">Syntaqlite Playground</a></p>
-    <p>Lalit Maganti's <a href="https://github.com/LalitMaganti/syntaqlite">syntaqlite</a> is currently being discussed <a href="https://news.ycombinator.com/item?id=47648828">on Hacker News</a> thanks to <a href="https://lalitm.com/post/building-syntaqlite-ai/">Eight years of wanting, three months of building with AI</a>, a deep dive into how it was built.</p>
-<p>This inspired me to revisit <a href="https://github.com/simonw/research/tree/main/syntaqlite-python-extension#readme">a research project</a> I ran when Lalit first released it a couple of weeks ago, where I tried it out and then compiled it to a WebAssembly wheel so it could run in Pyodide in a browser (the library itself uses C and Rust).</p>
-<p>This <a href="https://tools.simonwillison.net/syntaqlite">new playground</a> loads up the Python library and provides a UI for trying out its different features: formating, parsing into an AST, validating, and tokenizing SQLite SQL queries.</p>
-<p><img src="https://static.simonwillison.net/static/2026/syntaqlite-playground.jpg" alt="Screenshot of a dark-themed SQL validation playground called SyntaqLite. The &quot;Validate&quot; tab is selected from options including Format, Parse, Validate, and Tokenize. The SQL input contains &quot;SELECT id, name FROM usr WHERE active = 1&quot; with a schema defining &quot;users&quot; and &quot;posts&quot; tables. Example buttons for &quot;Table typo&quot;, &quot;Column typo&quot;, and &quot;Valid query&quot; are shown above a red &quot;Validate SQL&quot; button. The Diagnostics panel shows an error for unknown table 'usr' with the suggestion &quot;did you mean 'users'?&quot;, and the JSON panel displays the corresponding error object with severity, message, and offset fields."></p>
-<p><strong>Update</strong>: not sure how I missed this but <a href="https://playground.syntaqlite.com/#p=sqlite-basic-select">syntaqlite has its own WebAssembly playground</a> linked to from the README.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/sql">sql</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[scan-for-secrets 0.2]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/scan-for-secrets/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/scan-for-secrets/#atom-everything"/>
-        <updated>2026-04-05T04:07:13.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/scan-for-secrets/releases/tag/0.2">scan-for-secrets 0.2</a></p>
-    <ul>
-<li>CLI tool now streams results as they are found rather than waiting until the end, which is better for large directories.</li>
-<li><code>-d/--directory</code> option can now be used multiple times to scan multiple directories.</li>
-<li>New <code>-f/--file</code> option for specifying one or more individual files to scan.</li>
-<li>New <code>scan_directory_iter()</code>, <code>scan_file()</code> and <code>scan_file_iter()</code> Python API functions.</li>
-<li>New <code>-v/--verbose</code> option which shows each directory that is being scanned.</li>
-</ul>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[scan-for-secrets 0.1.1]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/scan-for-secrets-2/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/scan-for-secrets-2/#atom-everything"/>
-        <updated>2026-04-05T03:39:33.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/scan-for-secrets/releases/tag/0.1.1">scan-for-secrets 0.1.1</a></p>
-    <blockquote>
-<ul>
-<li>Added documentation of the escaping schemes that are also scanned.</li>
-<li>Removed unnecessary <code>repr</code> escaping scheme, which was already covered by <code>json</code>.</li>
-</ul>
-</blockquote>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[scan-for-secrets 0.1]]></title>
-        <id>https://simonwillison.net/2026/Apr/5/scan-for-secrets-3/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/5/scan-for-secrets-3/#atom-everything"/>
-        <updated>2026-04-05T03:27:13.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/scan-for-secrets/releases/tag/0.1">scan-for-secrets 0.1</a></p>
-    <p>I like publishing transcripts of local Claude Code sessions using my <a href="https://github.com/simonw/claude-code-transcripts">claude-code-transcripts</a> tool but I'm often paranoid that one of my API keys or similar secrets might inadvertently be revealed in the detailed log files.</p>
-<p>I built this new Python scanning tool to help reassure me. You can feed it secrets and have it scan for them in a specified directory:</p>
-<pre><code>uvx scan-for-secrets $OPENAI_API_KEY -d logs-to-publish/
-</code></pre>
-<p>If you leave off the <code>-d</code> it defaults to the current directory.</p>
-<p>It doesn't just scan for the literal secrets - it also scans for common encodings of those secrets e.g. backslash or JSON escaping, <a href="https://github.com/simonw/scan-for-secrets/blob/main/README.md#escaping-schemes">as described in the README</a>.</p>
-<p>If you have a set of secrets you always want to protect you can list commands to echo them in a <code>~/.scan-for-secrets.conf.sh</code> file. Mine looks like this:</p>
-<pre><code>llm keys get openai
-llm keys get anthropic
-llm keys get gemini
-llm keys get mistral
-awk -F= '/aws_secret_access_key/{print $2}' ~/.aws/credentials | xargs
-</code></pre>
-<p>I built this tool using README-driven-development: I carefully constructed the README describing exactly how the tool should work, then <a href="https://gisthost.github.io/?d4b1a398bf3b6b14aade923dea69a1ac/index.html">dumped it into Claude Code</a> and told it to build the actual tool (using <a href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/">red/green TDD</a>, naturally.)</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
+            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1482,6 +1668,16 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[How AI Gets Data Wrong (and how to fix it)]]></title>
+        <id>https://www.youtube.com/shorts/osycm8ZK7iY</id>
+        <link href="https://www.youtube.com/shorts/osycm8ZK7iY"/>
+        <updated>2026-03-31T20:46:22.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Millions of JS devs just got penetrated by a RAT…]]></title>
         <id>https://www.youtube.com/watch?v=o7NYXvYohYk</id>
         <link href="https://www.youtube.com/watch?v=o7NYXvYohYk"/>
@@ -1558,6 +1754,24 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[Learn how STADLER uses ChatGPT to transform knowledge work, saving time and accelerating productivity across 650 employees.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AI News: Anthropic Went Crazy This Week!]]></title>
+        <id>https://www.youtube.com/watch?v=OYyS0Gu5xj8</id>
+        <link href="https://www.youtube.com/watch?v=OYyS0Gu5xj8"/>
+        <updated>2026-03-27T15:00:00.000Z</updated>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?]]></title>
+        <id>https://www.youtube.com/watch?v=s4tptozUJ8Y</id>
+        <link href="https://www.youtube.com/watch?v=s4tptozUJ8Y"/>
+        <updated>2026-03-26T20:15:12.000Z</updated>
+        <author>
+            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -1729,21 +1943,21 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
-        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
-        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
-        <updated>2026-03-24T09:00:00.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Update on the OpenAI Foundation]]></title>
         <id>https://openai.com/index/update-on-the-openai-foundation</id>
         <link href="https://openai.com/index/update-on-the-openai-foundation"/>
         <updated>2026-03-24T09:00:00.000Z</updated>
         <summary type="html"><![CDATA[The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Powering product discovery in ChatGPT]]></title>
+        <id>https://openai.com/index/powering-product-discovery-in-chatgpt</id>
+        <link href="https://openai.com/index/powering-product-discovery-in-chatgpt"/>
+        <updated>2026-03-24T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1856,16 +2070,6 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Our latest investment in open source security for the AI era]]></title>
-        <id>https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/</id>
-        <link href="https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/"/>
-        <updated>2026-03-17T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Google is making new investments, building new tools and developing code security to improve open source security.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Bringing the power of Personal Intelligence to more people]]></title>
         <id>https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/</id>
         <link href="https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/"/>
@@ -1876,43 +2080,13 @@ to balance cost and latency.]]></summary>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GPT-5.4 mini and nano]]></title>
-        <id>https://openai.com/index/introducing-gpt-5-4-mini-and-nano</id>
-        <link href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano"/>
-        <updated>2026-03-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.]]></summary>
+        <title type="html"><![CDATA[Our latest investment in open source security for the AI era]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/"/>
+        <updated>2026-03-17T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Google is making new investments, building new tools and developing code security to improve open source security.]]></summary>
         <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first]]></title>
-        <id>https://openai.com/index/japan-teen-safety-blueprint</id>
-        <link href="https://openai.com/index/japan-teen-safety-blueprint"/>
-        <updated>2026-03-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Equipping workers with insights about compensation]]></title>
-        <id>https://openai.com/index/equipping-workers-with-insights-about-compensation</id>
-        <link href="https://openai.com/index/equipping-workers-with-insights-about-compensation"/>
-        <updated>2026-03-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[New research shows Americans send nearly 3 million daily messages to ChatGPT asking about compensation and earnings, helping close the wage information gap.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Training Composer for longer horizons]]></title>
-        <id>https://cursor.com/blog/self-summarization</id>
-        <link href="https://cursor.com/blog/self-summarization"/>
-        <updated>2026-03-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Improving Composer through real-time RL]]></summary>
-        <author>
-            <name>Cursor Blog</name>
+            <name>AI</name>
         </author>
     </entry>
 </feed>
