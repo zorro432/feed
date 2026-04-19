@@ -1,10 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-18T02:23:49.509Z</id>
+    <id>urn:2026-04-19T02:38:05.895Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-18T02:23:49.510Z</updated>
+    <updated>2026-04-19T02:38:05.896Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Changes in the system prompt between Claude Opus 4.6 and 4.7]]></title>
+        <id>https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything"/>
+        <updated>2026-04-18T23:59:40.000Z</updated>
+        <summary type="html"><![CDATA[<p>Anthropic are the only major AI lab to <a href="https://platform.claude.com/docs/en/release-notes/system-prompts">publish the system prompts</a> for their user-facing chat systems. Their system prompt archive now dates all the way back to Claude 3 in July 2024 and it's always interesting to see how the system prompt evolves as they publish new models.</p>
+<p>Opus 4.7 shipped the other day (April 16, 2026) with a <a href="https://claude.ai/">Claude.ai</a> system prompt update since Opus 4.6 (February 5, 2026).</p>
+<p>I had Claude Code take <a href="https://platform.claude.com/docs/en/release-notes/system-prompts.md">the Markdown version of their system prompts</a>, break that up into separate documents for each of the models and then construct <a href="https://github.com/simonw/research/tree/main/extract-system-prompts#readme">a Git history</a> of those files over time with fake commit dates representing the publication dates of each updated prompt - <a href="https://github.com/simonw/research/pull/109#issue-4287908903">here's the prompt I used</a> with Claude Code for the web.</p>
+<p>Here is the <a href="https://github.com/simonw/research/commit/888f21161500cd60b7c92367f9410e311ffcff09">git diff between Opus 4.6 and 4.7</a>. These are my own highlights extracted from that diff - in all cases text <strong>in bold</strong> is my emphasis:</p>
+<ul>
+<li>The "developer platform" is now called the "Claude Platform".</li>
+<li>The list of Claude tools mentioned in the system prompt now includes "Claude in Chrome - a browsing agent that can interact with websites autonomously, Claude in Excel - a spreadsheet agent, and <strong>Claude in Powerpoint</strong> - a slides agent. Claude Cowork can use all of these as tools." - Claude in Powerpoint was not mentioned in the 4.6 prompt.</li>
+<li>The child safety section has been greatly expanded, and is now wrapped in a new <code>&lt;critical_child_safety_instructions&gt;</code> tag. Of particular note: "Once Claude refuses a request for reasons of child safety, all subsequent requests in the same conversation must be approached with extreme caution."</li>
+<li>It looks like they're trying to make Claude less pushy: "If a user indicates they are ready to end the conversation, Claude does not request that the user stay in the interaction or try to elicit another turn and instead respects the user's request to stop."</li>
+<li>The new <code>&lt;acting_vs_clarifying&gt;</code> section includes:
+<blockquote>
+<p>When a request leaves minor details unspecified, <strong>the person typically wants Claude to make a reasonable attempt now, not to be interviewed first</strong>. Claude only asks upfront when the request is genuinely unanswerable without the missing information (e.g., it references an attachment that isn't there).</p>
+<p>When a tool is available that could resolve the ambiguity or supply the missing information — searching, looking up the person's location, checking a calendar, discovering available capabilities — Claude calls the tool to try and solve the ambiguity before asking the person. Acting with tools is preferred over asking the person to do the lookup themselves.</p>
+<p>Once Claude starts on a task, Claude sees it through to a complete answer rather than stopping partway. [...]</p>
+</blockquote>
+</li>
+<li>It looks like Claude chat now has a tool search mechanism, as seen in <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool">this API documentation</a> and described in <a href="https://www.anthropic.com/engineering/advanced-tool-use">this November 2025 post</a>:
+<blockquote>
+<p>Before concluding Claude lacks a capability — access to the person's location, memory, calendar, files, past conversations, or any external data — <strong>Claude calls tool_search to check whether a relevant tool is available but deferred</strong>. "I don't have access to X" is only correct after tool_search confirms no matching tool exists.</p>
+</blockquote>
+</li>
+<li>There's new language to encourage Claude to be less verbose:
+<blockquote>
+<p>Claude keeps its responses focused and concise so as to avoid potentially overwhelming the user with overly-long responses. Even if an answer has disclaimers or caveats, Claude discloses them briefly and keeps the majority of its response focused on its main answer.</p>
+</blockquote>
+</li>
+<li>This section was present in the 4.6 prompt but has been removed for 4.7, presumably because the new model no longer misbehaves in the same way:
+<blockquote>
+<p>Claude avoids the use of emotes or actions inside asterisks unless the person specifically asks for this style of communication.</p>
+<p>Claude avoids saying "genuinely", "honestly", or "straightforward".</p>
+</blockquote>
+</li>
+<li>There's a new section about "disordered eating", which was not previously mentioned by name:
+<blockquote>
+<p>If a user shows signs of disordered eating, Claude should not give precise nutrition, diet, or exercise guidance — no specific numbers, targets, or step-by-step plans - anywhere else in the conversation. Even if it's intended to help set healthier goals or highlight the potential dangers of disordered eating, responses with these details could trigger or encourage disordered tendencies.</p>
+</blockquote>
+</li>
+<li>A popular screenshot attack against AI models is to force them to say yes or no to a controversial question. Claude's system prompt now guards against that (in the <code>&lt;evenhandedness&gt;</code> section):
+<blockquote>
+<p>If people ask Claude to give a simple yes or no answer (or any other short or single word response) in response to complex or contested issues or as commentary on contested figures, Claude can decline to offer the short response and instead give a nuanced answer and explain why a short response wouldn't be appropriate.</p>
+</blockquote>
+</li>
+<li>Claude 4.6 had a section specifically clarifying that "Donald Trump is the current president of the United States and was inaugurated on January 20, 2025", because without that the model's knowledge cut-off date combined with its previous knowledge that Trump falsely claimed to win the 2020 election meant it would deny he was the president. That language is gone for 4.7, reflecting the model's new reliable knowledge cut-off date of January 2026.</li>
+</ul>
+<h4 id="and-the-tool-descriptions-too">And the tool descriptions too</h4>
+<p>The system prompts published by Anthropic are sadly not the entire story - their published information doesn't include the tool descriptions that are provided to the model, which is arguably an even more important piece of documentation if you want to take full advantage of what the Claude chat UI can do for you.</p>
+<p>Thanfully you can <a href="https://claude.ai/share/dc1e375e-2213-4afb-ac1b-812d42735a8e">ask Claude directly</a> - I used the prompt:</p>
+<blockquote>
+<p>List all tools you have available to you with an exact copy of the tool description and parameters</p>
+</blockquote>
+<p>My <a href="https://claude.ai/share/dc1e375e-2213-4afb-ac1b-812d42735a8e">shared transcript</a> has full details, but the list of named tools is as follows:</p>
+<ul>
+<li><code>ask_user_input_v0</code></li>
+<li><code>bash_tool</code></li>
+<li><code>conversation_search</code></li>
+<li><code>create_file</code></li>
+<li><code>fetch_sports_data</code></li>
+<li><code>image_search</code></li>
+<li><code>message_compose_v1</code></li>
+<li><code>places_map_display_v0</code></li>
+<li><code>places_search</code></li>
+<li><code>present_files</code></li>
+<li><code>recent_chats</code></li>
+<li><code>recipe_display_v0</code></li>
+<li><code>recommend_claude_apps</code></li>
+<li><code>search_mcp_registry</code></li>
+<li><code>str_replace</code></li>
+<li><code>suggest_connectors</code></li>
+<li><code>view</code></li>
+<li><code>weather_fetch</code></li>
+<li><code>web_fetch</code></li>
+<li><code>web_search</code></li>
+<li><code>tool_search</code></li>
+<li><code>visualize:read_me</code></li>
+<li><code>visualize:show_widget</code></li>
+</ul>
+<p>I don't believe this list has changed since Opus 4.6.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/system-prompts">system-prompts</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Testing Out OpenAI's New "Super App"]]></title>
+        <id>https://www.youtube.com/shorts/BLdY1fqy8FE</id>
+        <link href="https://www.youtube.com/shorts/BLdY1fqy8FE"/>
+        <updated>2026-04-18T13:17:37.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claude system prompts as a git timeline]]></title>
+        <id>https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything"/>
+        <updated>2026-04-18T12:25:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/extract-system-prompts#readme">Claude system prompts as a git timeline</a></p>
+    <p>Anthropic <a href="https://platform.claude.com/docs/en/release-notes/system-prompts">publish the system prompts</a> for Claude chat and make that page <a href="https://platform.claude.com/docs/en/release-notes/system-prompts.md">available as Markdown</a>. I had Claude Code turn that page into separate files for each model and model family with fake git commit dates to enable browsing the changes via the GitHub commit view.</p>
+<p>I used this to write my own <a href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/">detailed notes on the changes between Opus 4.6 and 4.7</a>.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/system-prompts">system-prompts</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Adding a new content type to my blog-to-newsletter tool]]></title>
+        <id>https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything</id>
+        <link href="https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything"/>
+        <updated>2026-04-18T03:15:36.000Z</updated>
+        <summary type="html"><![CDATA[<p><em><a href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic Engineering Patterns</a> &gt;</em></p>
+    <p>Here's an example of a deceptively short prompt that got a quite a lot of work done in a single shot.</p>
+<p>First, some background. I send out a <a href="https://simonw.substack.com/">free Substack newsletter</a> around once a week containing content copied-and-pasted from my blog. I'm effectively using Substack as a lightweight way to allow people to subscribe to my blog via email.</p>
+<p>I generate the newsletter with my <a href="https://tools.simonwillison.net/blog-to-newsletter">blog-to-newsletter</a> tool - an HTML and JavaScript app that fetches my latest content from <a href="https://datasette.simonwillison.net/">this Datasette instance</a> and formats it as rich text HTML, which I can then copy to my clipboard and paste into the Substack editor. Here's a <a href="https://simonwillison.net/2023/Apr/4/substack-observable/">detailed explanation of how that works</a>.</p>
+<p>I recently <a href="https://simonwillison.net/2026/Feb/20/beats/">added a new type of content</a> to my blog to capture content that I post elsewhere, which I called "beats". These include things like releases of my open source projects, new tools that I've built, museums that I've visited (from <a href="https://www.niche-museums.com/">niche-museums.com</a>) and other external content.</p>
+<p>I wanted to include these in the generated newsletter. Here's the prompt I ran against the <a href="https://github.com/simonw/tools">simonw/tools</a> repository that hosts my <code>blog-to-newsletter</code> tool, using <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>.</p>
+<p><pre>Clone simonw/simonwillisonblog from github to /tmp for reference
+
+Update blog-to-newsletter.html to include beats that have descriptions - similar to how the Atom everything feed on the blog works
+
+Run it with python -m http.server and use `uvx rodney --help` to test it - compare what shows up in the newsletter with what&#x27;s on the homepage of https://simonwillison.net</pre>
+This got me the <a href="https://github.com/simonw/tools/pull/268">exact solution</a> I needed. Let's break down the prompt.</p>
+<blockquote>
+<p><code>Clone simonw/simonwillisonblog from github to /tmp for reference</code></p>
+</blockquote>
+<p>I use this pattern a lot. Coding agents can clone code from GitHub, and the best way to explain a problem is often to have them look at relevant code. By telling them to clone to <code>/tmp</code> I ensure they don't accidentally end up including that reference code in their own commit later on.</p>
+<p>The <a href="https://github.com/simonw/simonwillisonblog">simonw/simonwillisonblog</a> repository contains the source code for my Django-powered <a href="https://simonwillison.net/">simonwillison.net</a> blog. This includes the logic and database schema for my new "beats" feature.</p>
+<blockquote>
+<p><code>Update blog-to-newsletter.html to include beats that have descriptions - similar to how the Atom everything feed on the blog works</code></p>
+</blockquote>
+<p>Referencing <code>blog-to-newsletter.html</code> is all I need here to tell Claude which of the 200+ HTML apps in that <code>simonw/tools</code> repo it should be modifying.</p>
+<p>Beats are automatically imported from multiple sources. Often they aren't very interesting - a dot-release bug fix for one of my smaller open source projects, for example.</p>
+<p>My blog includes a way for me to add additional descriptions to any beat, which provides extra commentary but also marks that beat as being more interesting than those that I haven't annotated in some way.</p>
+<p>I already use this as a distinction to decide which beats end up in my site's <a href="https://simonwillison.net/about/#atom">Atom feed</a>. Telling Claude to imitate that saves me from having to describe the logic in any extra detail.</p>
+<blockquote>
+<p><code>Run it with python -m http.server and use `uvx rodney --help` to test it - compare what shows up in the newsletter with what's on the homepage of https://simonwillison.net</code></p>
+</blockquote>
+<p>Coding agents always work best if they have some kind of validation mechanism they can use to test their own work.</p>
+<p>In this case I wanted Claude Code to actively check that the changes it made to my tool would correctly fetch and display the latest data.</p>
+<p>I reminded it to use <code>python -m http.server</code> as a static server because I've had issues in the past with applications that fetch data and break when served as a file from disk instead of a localhost server. In this particular case that may not have been necessary, but my prompting muscle memory has <code>python -m http.server</code> baked in at this point!</p>
+<p>I described the <code>uvx rodney --help</code> trick in <a href="https://simonwillison.net/guides/agentic-engineering-patterns/agentic-manual-testing/#using-browser-automation-for-web-uis">the agentic manual testing chapter</a>. Rodney is browser automation software that can be installed using <code>uvx</code>, and that has <code>--help</code> output designed to teach an agent everything it needs to know in order to use the tool.</p>
+<p>I figured that telling Claude to compare the results in the newsletter to the content of my blog's homepage would be enough for it to confidently verify that the new changes were working correctly, since I had recently posted content that matched the new requirements.</p>
+<p>You can see <a href="https://claude.ai/code/session_01BibYBuvJi2qNUyCYGaY3Ss">the full session here</a>, or if that doesn't work I have an <a href="https://gisthost.github.io/?e906e938100ab42f4d6a932505219324/page-001.html#msg-2026-04-18T00-13-57-081Z">alternative transcript</a> showing all of the individual tool calls.</p>
+<p>The <a href="https://github.com/simonw/tools/pull/268">resulting PR</a> made exactly the right change. It added an additional UNION clause to the SQL query that fetched the blog's content, filtering out draft beats and beats that have nothing in their <code>note</code> column:</p>
+<p><div class="codehilite"><pre><span></span><code><span class="p">...</span>
+<span class="k">union</span><span class="w"> </span><span class="k">all</span>
+<span class="k">select</span>
+<span class="w">  </span><span class="n">id</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;beat&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">type</span><span class="p">,</span>
+<span class="w">  </span><span class="n">title</span><span class="p">,</span>
+<span class="w">  </span><span class="n">created</span><span class="p">,</span>
+<span class="w">  </span><span class="n">slug</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;No HTML&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">html</span><span class="p">,</span>
+<span class="w">  </span><span class="n">json_object</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">created</span><span class="p">),</span>
+<span class="w">    </span><span class="s1">&#39;beat_type&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">beat_type</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;url&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">url</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;commentary&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">commentary</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;note&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">note</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">json</span><span class="p">,</span>
+<span class="w">  </span><span class="n">url</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">external_url</span>
+<span class="k">from</span><span class="w"> </span><span class="n">blog_beat</span>
+<span class="k">where</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">is_draft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">union</span><span class="w"> </span><span class="k">all</span>
+<span class="p">...</span>
+</code></pre></div>
+And it figured out a mapping of beat types to their formal names, presumably derived from the <a href="https://github.com/simonw/simonwillisonblog/blob/2e9d7ebe64da799b3927e61b4f85d98f7e9bc9aa/blog/models.py#L545-L551">Django ORM definition</a> that it read while it was exploring the reference codebase:
+<div class="codehilite"><pre><span></span><code>const beatTypeDisplay = {
+  release: &#39;Release&#39;,
+  til: &#39;TIL&#39;,
+  til_update: &#39;TIL updated&#39;,
+  research: &#39;Research&#39;,
+  tool: &#39;Tool&#39;,
+  museum: &#39;Museum&#39;
+};
+</code></pre></div>
+Telling agents to use another codebase as reference is a powerful shortcut for communicating complex concepts with minimal additional information needed in the prompt.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/github">github</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Join us at PyCon US 2026 in Long Beach - we have new AI and security tracks this year]]></title>
         <id>https://simonwillison.net/2026/Apr/17/pycon-us-2026/#atom-everything</id>
@@ -36,6 +227,15 @@
         <p>Tags: <a href="https://simonwillison.net/tags/conferences">conferences</a>, <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/pycon">pycon</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/psf">psf</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claude Opus 4.7 - A New Frontier, in Performance … and Drama]]></title>
+        <id>https://www.youtube.com/watch?v=QVJcdfkRpH8</id>
+        <link href="https://www.youtube.com/watch?v=QVJcdfkRpH8"/>
+        <updated>2026-04-17T18:07:46.000Z</updated>
+        <author>
+            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -647,7 +847,7 @@ The UK's AI Safety Institute recently published <a href="https://www.aisi.gov.uk
         <title type="html"><![CDATA[Exploring the new `servo` crate]]></title>
         <id>https://simonwillison.net/2026/Apr/13/servo-crate-exploration/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/13/servo-crate-exploration/#atom-everything"/>
-        <updated>2026-04-13T15:04:00.000Z</updated>
+        <updated>2026-04-13T15:19:00.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/servo-crate-exploration#readme">Exploring the new `servo` crate</a></p>
     <p>In <a href="https://servo.org/blog/2026/04/13/servo-0.1.0-release/">Servo is now available on crates.io</a> the Servo team announced the initial release of the <a href="https://crates.io/crates/servo">servo</a> crate, which packages their browser engine as an embeddable library.</p>
 <p>I set Claude Code for web <a href="https://github.com/simonw/research/pull/108">the task</a> of figuring out what it can do, building a CLI tool for taking screenshots using it and working out if it could be compiled to WebAssembly.</p>
@@ -1460,16 +1660,12 @@ Language models have consistently grown to compress more world knowledge into th
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Giles Turnbull]]></title>
-        <id>https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything"/>
-        <updated>2026-04-08T15:18:49.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://gilest.org/notes/2026/human-ai/"><p>I have a feeling that <strong>everyone likes using AI tools to try doing someone else’s profession</strong>. They’re much less keen when someone else uses it for their profession.</p></blockquote>
-<p class="cite">&mdash; <a href="https://gilest.org/notes/2026/human-ai/">Giles Turnbull</a>, AI and the human voice</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/writing">writing</a>, <a href="https://simonwillison.net/tags/ai">ai</a></p>]]></summary>
+        <title type="html"><![CDATA[Claude Mythos: Highlights from 244-page Release]]></title>
+        <id>https://www.youtube.com/watch?v=txx6ec6MLNY</id>
+        <link href="https://www.youtube.com/watch?v=txx6ec6MLNY"/>
+        <updated>2026-04-08T17:39:20.000Z</updated>
         <author>
-            <name>Simon Willison's Weblog</name>
+            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -1513,128 +1709,10 @@ Language models have consistently grown to compress more world knowledge into th
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GLM-5.1: Towards Long-Horizon Tasks]]></title>
-        <id>https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything"/>
-        <updated>2026-04-07T21:25:14.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://z.ai/blog/glm-5.1">GLM-5.1: Towards Long-Horizon Tasks</a></strong></p>
-Chinese AI lab Z.ai's latest model is a giant 754B parameter 1.51TB (on <a href="https://huggingface.co/zai-org/GLM-5.1">Hugging Face</a>) MIT-licensed monster - the same size as their previous GLM-5 release, and sharing the <a href="https://huggingface.co/papers/2602.15763">same paper</a>.</p>
-<p>It's available <a href="https://openrouter.ai/z-ai/glm-5.1">via OpenRouter</a> so I asked it to draw me a pelican:</p>
-<pre><code>llm install llm-openrouter
-llm -m openrouter/z-ai/glm-5.1 'Generate an SVG of a pelican on a bicycle'
-</code></pre>
-<p>And something new happened... unprompted, the model <a href="https://gist.github.com/simonw/af7170f54256cc007ef28a8721564be8">decided to give me</a> an HTML page that included both the SVG and a separate set of CSS animations!</p>
-<p>The SVG was excellent, and might be my new favorite from an open weights model:</p>
-<p><img alt="The bicycle is red and has a frame the correct shape and wheels with spokes. The pelican is a perky little fella." src="https://static.simonwillison.net/static/2026/glm-5.1-pelican.png" /></p>
-<p>But the animation <a href="https://gisthost.github.io/?73bb6808b18c2482f66e5f082c75f36e">broke it</a>:</p>
-<p><img alt="Animation - the wheels and pedals rotate, the clouds move... and the pelican has vanished, but there is a little blob bobbing up and down in the top left corner." src="https://static.simonwillison.net/static/2026/glm-5.1-broken-light-lossy.gif" /></p>
-<p>That's the pelican, floating up in the top left corner.</p>
-<p>I usually don't do follow-up prompts for the pelican test, but in this case I made an exception:</p>
-<pre><code>llm -c 'the animation is a bit broken, the pelican ends up positioned off the screen at the top right'
-</code></pre>
-<p>GLM 5.1 replied:</p>
-<blockquote>
-<p>The issue is that CSS <code>transform</code> animations on SVG elements override the SVG <code>transform</code> attribute used for positioning, causing the pelican to lose its placement and fly off to the top-right. The fix is to separate positioning (SVG attribute) from animation (inner group) and use <code>&lt;animateTransform&gt;</code> for SVG rotations since it handles coordinate systems correctly.</p>
-</blockquote>
-<p>And spat out <a href="https://static.simonwillison.net/static/2026/glm-5.1-pelican-fixed.html">fresh HTML</a> which fixed the problem!</p>
-<p><img alt="Now everything is right - the bicycle rotates correctly, the pelican sits on it and bobs up and down, and its lower beak moves slightly as well." src="https://static.simonwillison.net/static/2026/glm-5.1-pelican-fixed-medium-lossy.gif" /></p>
-<p>I particularly like the animation of the beak, which is described in the SVG comments like so:</p>
-<div class="highlight highlight-text-xml-svg"><pre><span class="pl-c"><span class="pl-c">&lt;!--</span> Pouch (lower beak) with wobble <span class="pl-c">--&gt;</span></span>
-&lt;<span class="pl-ent">g</span>&gt;
-    &lt;<span class="pl-ent">path</span> <span class="pl-e">d</span>=<span class="pl-s"><span class="pl-pds">"</span>M42,-58 Q43,-50 48,-42 Q55,-35 62,-38 Q70,-42 75,-60 L42,-58 Z<span class="pl-pds">"</span></span> <span class="pl-e">fill</span>=<span class="pl-s"><span class="pl-pds">"</span>url(#pouchGrad)<span class="pl-pds">"</span></span> <span class="pl-e">stroke</span>=<span class="pl-s"><span class="pl-pds">"</span>#b06008<span class="pl-pds">"</span></span> <span class="pl-e">stroke-width</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">opacity</span>=<span class="pl-s"><span class="pl-pds">"</span>0.9<span class="pl-pds">"</span></span>/&gt;
-    &lt;<span class="pl-ent">path</span> <span class="pl-e">d</span>=<span class="pl-s"><span class="pl-pds">"</span>M48,-50 Q55,-46 60,-52<span class="pl-pds">"</span></span> <span class="pl-e">fill</span>=<span class="pl-s"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span> <span class="pl-e">stroke</span>=<span class="pl-s"><span class="pl-pds">"</span>#c06a08<span class="pl-pds">"</span></span> <span class="pl-e">stroke-width</span>=<span class="pl-s"><span class="pl-pds">"</span>0.8<span class="pl-pds">"</span></span> <span class="pl-e">opacity</span>=<span class="pl-s"><span class="pl-pds">"</span>0.6<span class="pl-pds">"</span></span>/&gt;
-    &lt;<span class="pl-ent">animateTransform</span> <span class="pl-e">attributeName</span>=<span class="pl-s"><span class="pl-pds">"</span>transform<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>scale<span class="pl-pds">"</span></span>
-    <span class="pl-e">values</span>=<span class="pl-s"><span class="pl-pds">"</span>1,1; 1.03,0.97; 1,1<span class="pl-pds">"</span></span> <span class="pl-e">dur</span>=<span class="pl-s"><span class="pl-pds">"</span>0.75s<span class="pl-pds">"</span></span> <span class="pl-e">repeatCount</span>=<span class="pl-s"><span class="pl-pds">"</span>indefinite<span class="pl-pds">"</span></span>
-    <span class="pl-e">additive</span>=<span class="pl-s"><span class="pl-pds">"</span>sum<span class="pl-pds">"</span></span>/&gt;
-&lt;/<span class="pl-ent">g</span>&gt;</pre></div>
-
-<p><strong>Update</strong>: On Bluesky <a href="https://bsky.app/profile/charles.capps.me/post/3miwrn42mjc2t">@charles.capps.me suggested</a> a "NORTH VIRGINIA OPOSSUM ON AN E-SCOOTER" and...</p>
-<p><img alt="This is so great. It's dark, the possum is clearly a possum, it's riding an escooter, lovely animation, tail bobbing up and down, caption says NORTH VIRGINIA OPOSSUM, CRUISING THE COMMONWEALTH SINCE DUSK - only glitch is that it occasionally blinks and the eyes fall off the face" src="https://static.simonwillison.net/static/2026/glm-possum-escooter.gif.gif" /></p>
-<p>The HTML+SVG comments on that one include <code>/* Earring sparkle */, &lt;!-- Opossum fur gradient --&gt;, &lt;!-- Distant treeline silhouette - Virginia pines --&gt;,  &lt;!-- Front paw on handlebar --&gt;</code> - here's <a href="https://gist.github.com/simonw/1864b89f5304eba03c3ded4697e156c4">the transcript</a> and the <a href="https://static.simonwillison.net/static/2026/glm-possum-escooter.html">HTML result</a>.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/css">css</a>, <a href="https://simonwillison.net/tags/svg">svg</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/glm">glm</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Anthropic's Project Glasswing - restricting Claude Mythos to security researchers - sounds necessary to me]]></title>
-        <id>https://simonwillison.net/2026/Apr/7/project-glasswing/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/7/project-glasswing/#atom-everything"/>
-        <updated>2026-04-07T20:52:54.000Z</updated>
-        <summary type="html"><![CDATA[<p>Anthropic <em>didn't</em> release their latest model, Claude Mythos (<a href="https://www-cdn.anthropic.com/53566bf5440a10affd749724787c8913a2ae0841.pdf">system card PDF</a>), today. They have instead made it available to a very restricted set of preview partners under their newly announced <a href="https://www.anthropic.com/glasswing">Project Glasswing</a>.</p>
-<p>The model is a general purpose model, similar to Claude Opus 4.6, but Anthropic claim that its cyber-security research abilities are strong enough that they need to give the software industry as a whole time to prepare.</p>
-<blockquote>
-<p>Mythos Preview has already found thousands of high-severity vulnerabilities, including some in <em>every major operating system and web browser</em>. Given the rate of AI progress, it will not be long before such capabilities proliferate, potentially beyond actors who are committed to deploying them safely.</p>
-<p>[...]</p>
-<p>Project Glasswing partners will receive access to Claude Mythos Preview to find and fix vulnerabilities or weaknesses in their foundational systems—systems that represent a very large portion of the world’s shared cyberattack surface. We anticipate this work will focus on tasks like local vulnerability detection, black box testing of binaries, securing endpoints, and penetration testing of systems.</p>
-</blockquote>
-
-<p>There's a great deal more technical detail in <a href="https://red.anthropic.com/2026/mythos-preview/"> Assessing Claude Mythos Preview’s cybersecurity capabilities</a> on the Anthropic Red Team blog:</p>
-
-<blockquote><p>In one case, Mythos Preview wrote a web browser exploit that chained together four vulnerabilities, writing a complex <a href="https://en.wikipedia.org/wiki/JIT_spraying ">JIT heap spray</a> that escaped both renderer and OS sandboxes. It autonomously obtained local privilege escalation exploits on Linux and other operating systems by exploiting subtle race conditions and KASLR-bypasses. And it autonomously wrote a remote code execution exploit on FreeBSD's NFS server that granted full root access to unauthenticated users by splitting a 20-gadget ROP chain over multiple packets.</p></blockquote>
-<p>Plus this comparison with Claude 4.6 Opus:</p>
-<blockquote><p>Our internal evaluations showed that Opus 4.6 generally had a near-0% success rate at autonomous exploit development. But Mythos Preview is in a different league. For example, Opus 4.6 turned the vulnerabilities it had found in Mozilla’s Firefox 147 JavaScript engine—all patched in Firefox 148—into JavaScript shell exploits only two times out of several hundred attempts. We re-ran this experiment as a benchmark for Mythos Preview, which developed working exploits 181 times, and achieved register control on 29 more.</p>
-</blockquote>
-
-<p>Saying "our model is too dangerous to release" is a great way to build buzz around a new model, but in this case I expect their caution is warranted.</p>
-<p>Just a few days (<a href="https://simonwillison.net/2026/Apr/3/">last Friday</a>) ago I started a new <a href="https://simonwillison.net/tags/ai-security-research/">ai-security-research</a> tag on this blog to acknowledge an uptick in credible security professionals pulling the alarm on how good modern LLMs have got at vulnerability research.</p>
-<p><a href="https://www.theregister.com/2026/03/26/greg_kroahhartman_ai_kernel/">Greg Kroah-Hartman</a> of the Linux kernel:</p>
-<blockquote>
-<p>Months ago, we were getting what we called 'AI slop,' AI-generated security reports that were obviously wrong or low quality. It was kind of funny. It didn't really worry us.</p>
-<p>Something happened a month ago, and the world switched. Now we have real reports. All open source projects have real reports that are made with AI, but they're good, and they're real.</p>
-</blockquote>
-<p><a href="https://mastodon.social/@bagder/116336957584445742">Daniel Stenberg</a> of <code>curl</code>:</p>
-<blockquote>
-<p>The challenge with AI in open source security has transitioned from an AI slop tsunami into more of a ... plain security report tsunami. Less slop but lots of reports. Many of them really good.</p>
-<p>I'm spending hours per day on this now. It's intense.</p>
-</blockquote>
-<p>And Thomas Ptacek published <a href="https://sockpuppet.org/blog/2026/03/30/vulnerability-research-is-cooked/">Vulnerability Research Is Cooked</a>, a post inspired by his <a href="https://securitycryptographywhatever.com/2026/03/25/ai-bug-finding/">podcast conversation</a> with Anthropic's Nicholas Carlini.</p>
-<p>Anthropic have a 5 minute <a href="https://www.youtube.com/watch?v=INGOC6-LLv0">talking heads video</a> describing the Glasswing project. Nicholas Carlini appears as one of those talking heads, where he said (highlights mine):</p>
-<blockquote>
-<p>It has the ability to chain together vulnerabilities. So what this means is you find two vulnerabilities, either of which doesn't really get you very much independently. But this model is able to create exploits out of three, four, or sometimes five vulnerabilities that in sequence give you some kind of very sophisticated end outcome. [...]</p>
-<p><strong>I've found more bugs in the last couple of weeks than I found in the rest of my life combined</strong>. We've used the model to scan a bunch of open source code, and the thing that we went for first was operating systems, because this is the code that underlies the entire internet infrastructure. <strong>For OpenBSD, we found a bug that's been present for 27 years, where I can send a couple of pieces of data to any OpenBSD server and crash it</strong>. On Linux, we found a number of vulnerabilities where as a user with no permissions, I can elevate myself to the administrator by just running some binary on my machine. For each of these bugs, we told the maintainers who actually run the software about them, and they went and fixed them and have deployed the patches  patches so that anyone who runs the software is no longer vulnerable to these attacks.</p>
-</blockquote>
-<p>I found this on the <a href="https://www.openbsd.org/errata78.html">OpenBSD 7.8 errata page</a>:</p>
-<blockquote>
-<p><strong>025: RELIABILITY FIX: March 25, 2026</strong>  <em>All architectures</em></p>
-<p>TCP packets with invalid SACK options could crash the kernel.</p>
-<p><a href="https://ftp.openbsd.org/pub/OpenBSD/patches/7.8/common/025_sack.patch.sig">A source code patch exists which remedies this problem.</a></p>
-</blockquote>
-<p>I tracked that change down in the <a href="https://github.com/openbsd/src">GitHub mirror</a> of the OpenBSD CVS repo (apparently they still use CVS!) and found it <a href="https://github.com/openbsd/src/blame/master/sys/netinet/tcp_input.c#L2461">using git blame</a>:</p>
-<p><img src="https://static.simonwillison.net/static/2026/openbsd-27-years.jpg" alt="Screenshot of a Git blame view of C source code around line 2455 showing TCP SACK hole validation logic. Code includes checks using SEQ_GT, SEQ_LT macros on fields like th-&gt;th_ack, tp-&gt;snd_una, sack.start, sack.end, tp-&gt;snd_max, and tp-&gt;snd_holes. Most commits are from 25–27 years ago with messages like &quot;more SACK hole validity testin...&quot; and &quot;knf&quot;, while one recent commit from 3 weeks ago (&quot;Ignore TCP SACK packets wit...&quot;) is highlighted with an orange left border, adding a new guard &quot;if (SEQ_LT(sack.start, tp-&gt;snd_una)) continue;&quot;" style="max-width: 100%;" /></p>
-<p>Sure enough, the surrounding code is from 27 years ago.</p>
-<p>I'm not sure which Linux vulnerability Nicholas was describing, but it may have been <a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=5133b61aaf437e5f25b1b396b14242a6bb0508e2">this NFS one</a> recently covered <a href="https://mtlynch.io/claude-code-found-linux-vulnerability/">by Michael Lynch
-</a>.</p>
-<p>There's enough smoke here that I believe there's a fire. It's not surprising to find vulnerabilities in decades-old software, especially given that they're mostly written in C, but what's new is that coding agents run by the latest frontier LLMs are proving tirelessly capable at digging up these issues.</p>
-<p>I actually thought to myself on Friday that this sounded like an industry-wide reckoning in the making, and that it might warrant a huge investment of time and money to get ahead of the inevitable barrage of vulnerabilities. Project Glasswing incorporates "$100M in usage credits ... as well as $4M in direct donations to open-source security organizations". Partners include AWS, Apple, Microsoft, Google, and the Linux Foundation. It would be great to see OpenAI involved as well - GPT-5.4 already has a strong reputation for finding security vulnerabilities and they have stronger models on the near horizon.</p>
-<p>The bad news for those of us who are <em>not</em> trusted partners is this:</p>
-<blockquote>
-<p>We do not plan to make Claude Mythos Preview generally available, but our eventual goal is to enable our users to safely deploy Mythos-class models at scale—for cybersecurity purposes, but also for the myriad other benefits that such highly capable models will bring. To do so, we need to make progress in developing cybersecurity (and other) safeguards that detect and block the model’s most dangerous outputs. We plan to launch new safeguards with an upcoming Claude Opus model, allowing us to improve and refine them with a model that does not pose the same level of risk as Mythos Preview.</p>
-</blockquote>
-<p>I can live with that. I think the security risks really are credible here, and having extra time for trusted teams to get ahead of them is a reasonable trade-off.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/thomas-ptacek">thomas-ptacek</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/nicholas-carlini">nicholas-carlini</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[WTF Is OpenAI Doing??]]></title>
         <id>https://www.youtube.com/shorts/QymmGOKO5sk</id>
         <link href="https://www.youtube.com/shorts/QymmGOKO5sk"/>
         <updated>2026-04-07T14:01:35.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude's Source Code Got Leaked Across The Whole Internet]]></title>
-        <id>https://www.youtube.com/shorts/4-XNvaV2KPk</id>
-        <link href="https://www.youtube.com/shorts/4-XNvaV2KPk"/>
-        <updated>2026-04-06T21:55:19.000Z</updated>
         <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
         <author>
             <name>Matt Wolfe</name>
@@ -1819,6 +1897,15 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[Learn how STADLER uses ChatGPT to transform knowledge work, saving time and accelerating productivity across 650 employees.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?]]></title>
+        <id>https://www.youtube.com/watch?v=s4tptozUJ8Y</id>
+        <link href="https://www.youtube.com/watch?v=s4tptozUJ8Y"/>
+        <updated>2026-03-26T20:15:12.000Z</updated>
+        <author>
+            <name>AI Explained</name>
         </author>
     </entry>
     <entry>

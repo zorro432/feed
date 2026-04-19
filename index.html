@@ -22,6 +22,316 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-18 datetime="2026-04-18T23:59:40.000Z">2026-04-18</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-18 datetime="2026-04-18T23:59:40.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Changes in the system prompt between Claude Opus 4.6 and 4.7</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Anthropic are the only major AI lab to publish the system prompts for their user-facing chat systems. Their system prompt archive now dates all the way back to Claude 3 in July 2024 and it&#x27;s always interesting to see how the system prompt evolves as they publish new models.
+
+Opus 4.7 shipped the other day (April 16, 2026) with a Claude.ai system prompt update since Opus 4.6 (February 5, 2026).
+
+I had Claude Code take the Markdown version of their system prompts, break that up into separate documents for each of the models and then construct a Git history of those files over time with fake commit dates representing the publication dates of each updated prompt - here&#x27;s the prompt I used with Claude Code for the web.
+
+Here is the git diff between Opus 4.6 and 4.7. These are my own highlights extracted from that diff - in all cases text in bold is my emphasis:
+
+
+The &quot;developer platform&quot; is now called the &quot;Claude Platform&quot;.
+
+The list of Claude tools mentioned in the system prompt now includes &quot;Claude in Chrome - a browsing agent that can interact with websites autonomously, Claude in Excel - a spreadsheet agent, and Claude in Powerpoint - a slides agent. Claude Cowork can use all of these as tools.&quot; - Claude in Powerpoint was not mentioned in the 4.6 prompt.
+
+The child safety section has been greatly expanded, and is now wrapped in a new &lt;critical_child_safety_instructions&gt; tag. Of particular note: &quot;Once Claude refuses a request for reasons of child safety, all subsequent requests in the same conversation must be approached with extreme caution.&quot;
+
+It looks like they&#x27;re trying to make Claude less pushy: &quot;If a user indicates they are ready to end the conversation, Claude does not request that the user stay in the interaction or try to elicit another turn and instead respects the user&#x27;s request to stop.&quot;
+
+The new &lt;acting_vs_clarifying&gt; section includes:
+
+When a request leaves minor details unspecified, the person typically wants Claude to make a reasonable attempt now, not to be interviewed first. Claude only asks upfront when the request is genuinely unanswerable without the missing information (e.g., it references an attachment that isn&#x27;t there).
+
+When a tool is available that could resolve the ambiguity or supply the missing information — searching, looking up the person&#x27;s location, checking a calendar, discovering available capabilities — Claude calls the tool to try and solve the ambiguity before asking the person. Acting with tools is preferred over asking the person to do the lookup themselves.
+
+Once Claude starts on a task, Claude sees it through to a complete answer rather than stopping partway. [...]
+
+
+
+It looks like Claude chat now has a tool search mechanism, as seen in this API documentation and described in this November 2025 post:
+
+Before concluding Claude lacks a capability — access to the person&#x27;s location, memory, calendar, files, past conversations, or any external data — Claude calls tool_search to check whether a relevant tool is available but deferred. &quot;I don&#x27;t have access to X&quot; is only correct after tool_search confirms no matching tool exists.
+
+
+
+There&#x27;s new language to encourage Claude to be less verbose:
+
+Claude keeps its responses focused and concise so as to avoid potentially overwhelming the user with overly-long responses. Even if an answer has disclaimers or caveats, Claude discloses them briefly and keeps the majority of its response focused on its main answer.
+
+
+
+This section was present in the 4.6 prompt but has been removed for 4.7, presumably because the new model no longer misbehaves in the same way:
+
+Claude avoids the use of emotes or actions inside asterisks unless the person specifically asks for this style of communication.
+
+Claude avoids saying &quot;genuinely&quot;, &quot;honestly&quot;, or &quot;straightforward&quot;.
+
+
+
+There&#x27;s a new section about &quot;disordered eating&quot;, which was not previously mentioned by name:
+
+If a user shows signs of disordered eating, Claude should not give precise nutrition, diet, or exercise guidance — no specific numbers, targets, or step-by-step plans - anywhere else in the conversation. Even if it&#x27;s intended to help set healthier goals or highlight the potential dangers of disordered eating, responses with these details could trigger or encourage disordered tendencies.
+
+
+
+A popular screenshot attack against AI models is to force them to say yes or no to a controversial question. Claude&#x27;s system prompt now guards against that (in the &lt;evenhandedness&gt; section):
+
+If people ask Claude to give a simple yes or no answer (or any other short or single word response) in response to complex or contested issues or as commentary on contested figures, Claude can decline to offer the short response and instead give a nuanced answer and explain why a short response wouldn&#x27;t be appropriate.
+
+
+
+Claude 4.6 had a section specifically clarifying that &quot;Donald Trump is the current president of the United States and was inaugurated on January 20, 2025&quot;, because without that the model&#x27;s knowledge cut-off date combined with its previous knowledge that Trump falsely claimed to win the 2020 election meant it would deny he was the president. That language is gone for 4.7, reflecting the model&#x27;s new reliable knowledge cut-off date of January 2026.
+
+
+And the tool descriptions too
+
+The system prompts published by Anthropic are sadly not the entire story - their published information doesn&#x27;t include the tool descriptions that are provided to the model, which is arguably an even more important piece of documentation if you want to take full advantage of what the Claude chat UI can do for you.
+
+Thanfully you can ask Claude directly - I used the prompt:
+
+
+List all tools you have available to you with an exact copy of the tool description and parameters
+
+
+My shared transcript has full details, but the list of named tools is as follows:
+
+
+ask_user_input_v0
+
+bash_tool
+
+conversation_search
+
+create_file
+
+fetch_sports_data
+
+image_search
+
+message_compose_v1
+
+places_map_display_v0
+
+places_search
+
+present_files
+
+recent_chats
+
+recipe_display_v0
+
+recommend_claude_apps
+
+search_mcp_registry
+
+str_replace
+
+suggest_connectors
+
+view
+
+weather_fetch
+
+web_fetch
+
+web_search
+
+tool_search
+
+visualize:read_me
+
+visualize:show_widget
+
+
+I don&#x27;t believe this list has changed since Opus 4.6.
+Tags: ai, prompt-engineering, generative-ai, llms, anthropic, claude, ai-ethics, system-prompts</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude system prompts as a git timeline</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Research: Claude system prompts as a git timeline
+Anthropic publish the system prompts for Claude chat and make that page available as Markdown. I had Claude Code turn that page into separate files for each model and model family with fake git commit dates to enable browsing the changes via the GitHub commit view.
+I used this to write my own detailed notes on the changes between Opus 4.6 and 4.7.
+Tags: system-prompts, anthropic, claude, generative-ai, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Adding a new content type to my blog-to-newsletter tool</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Agentic Engineering Patterns &gt;
+Here&#x27;s an example of a deceptively short prompt that got a quite a lot of work done in a single shot.
+First, some background. I send out a free Substack newsletter around once a week containing content copied-and-pasted from my blog. I&#x27;m effectively using Substack as a lightweight way to allow people to subscribe to my blog via email.
+I generate the newsletter with my blog-to-newsletter tool - an HTML and JavaScript app that fetches my latest content from this Datasette instance and formats it as rich text HTML, which I can then copy to my clipboard and paste into the Substack editor. Here&#x27;s a detailed explanation of how that works.
+I recently added a new type of content to my blog to capture content that I post elsewhere, which I called &quot;beats&quot;. These include things like releases of my open source projects, new tools that I&#x27;ve built, museums that I&#x27;ve visited (from niche-museums.com) and other external content.
+I wanted to include these in the generated newsletter. Here&#x27;s the prompt I ran against the simonw/tools repository that hosts my blog-to-newsletter tool, using Claude Code on the web.
+Clone simonw/simonwillisonblog from github to /tmp for reference
+
+Update blog-to-newsletter.html to include beats that have descriptions - similar to how the Atom everything feed on the blog works
+
+Run it with python -m http.server and use &#x60;uvx rodney --help&#x60; to test it - compare what shows up in the newsletter with what&#x27;s on the homepage of https://simonwillison.net
+exact solution I needed. Let&#x27;s break down the prompt.
+Clone simonw/simonwillisonblog from github to /tmp for reference
+I use this pattern a lot. Coding agents can clone code from GitHub, and the best way to explain a problem is often to have them look at relevant code. By telling them to clone to /tmp I ensure they don&#x27;t accidentally end up including that reference code in their own commit later on.
+The simonw/simonwillisonblog repository contains the source code for my Django-powered simonwillison.net blog. This includes the logic and database schema for my new &quot;beats&quot; feature.
+Update blog-to-newsletter.html to include beats that have descriptions - similar to how the Atom everything feed on the blog works
+Referencing blog-to-newsletter.html is all I need here to tell Claude which of the 200+ HTML apps in that simonw/tools repo it should be modifying.
+Beats are automatically imported from multiple sources. Often they aren&#x27;t very interesting - a dot-release bug fix for one of my smaller open source projects, for example.
+My blog includes a way for me to add additional descriptions to any beat, which provides extra commentary but also marks that beat as being more interesting than those that I haven&#x27;t annotated in some way.
+I already use this as a distinction to decide which beats end up in my site&#x27;s Atom feed. Telling Claude to imitate that saves me from having to describe the logic in any extra detail.
+Run it with python -m http.server and use &#x60;uvx rodney --help&#x60; to test it - compare what shows up in the newsletter with what&#x27;s on the homepage of https://simonwillison.net
+Coding agents always work best if they have some kind of validation mechanism they can use to test their own work.
+In this case I wanted Claude Code to actively check that the changes it made to my tool would correctly fetch and display the latest data.
+I reminded it to use python -m http.server as a static server because I&#x27;ve had issues in the past with applications that fetch data and break when served as a file from disk instead of a localhost server. In this particular case that may not have been necessary, but my prompting muscle memory has python -m http.server baked in at this point!
+I described the uvx rodney --help trick in the agentic manual testing chapter. Rodney is browser automation software that can be installed using uvx, and that has --help output designed to teach an agent everything it needs to know in order to use the tool.
+I figured that telling Claude to compare the results in the newsletter to the content of my blog&#x27;s homepage would be enough for it to confidently verify that the new changes were working correctly, since I had recently posted content that matched the new requirements.
+You can see the full session here, or if that doesn&#x27;t work I have an alternative transcript showing all of the individual tool calls.
+The resulting PR made exactly the right change. It added an additional UNION clause to the SQL query that fetched the blog&#x27;s content, filtering out draft beats and beats that have nothing in their note column:
+
+...
+union all
+select
+  id,
+  &#x27;beat&#x27; as type,
+  title,
+  created,
+  slug,
+  &#x27;No HTML&#x27; as html,
+  json_object(
+    &#x27;created&#x27;, date(created),
+    &#x27;beat_type&#x27;, beat_type,
+    &#x27;title&#x27;, title,
+    &#x27;url&#x27;, url,
+    &#x27;commentary&#x27;, commentary,
+    &#x27;note&#x27;, note
+  ) as json,
+  url as external_url
+from blog_beat
+where coalesce(note, &#x27;&#x27;) !&#x3D; &#x27;&#x27; and is_draft &#x3D; 0
+union all
+...
+
+
+And it figured out a mapping of beat types to their formal names, presumably derived from the Django ORM definition that it read while it was exploring the reference codebase:
+
+const beatTypeDisplay &#x3D; {
+  release: &#x27;Release&#x27;,
+  til: &#x27;TIL&#x27;,
+  til_update: &#x27;TIL updated&#x27;,
+  research: &#x27;Research&#x27;,
+  tool: &#x27;Tool&#x27;,
+  museum: &#x27;Museum&#x27;
+};
+
+
+Telling agents to use another codebase as reference is a powerful shortcut for communicating complex concepts with minimal additional information needed in the prompt.
+Tags: ai, llms, prompt-engineering, coding-agents, ai-assisted-programming, generative-ai, agentic-engineering, github</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/BLdY1fqy8FE"
+                        open
+                      >
+                        <summary class="article-expander__title">Testing Out OpenAI&#x27;s New &quot;Super App&quot;</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/BLdY1fqy8FE">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-17 datetime="2026-04-17T23:59:03.000Z">2026-04-17</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-17 datetime="2026-04-17T23:59:03.000Z"></time>
           </button>
@@ -120,6 +430,37 @@ Most of the changes in this release were implemented using Claude Code and the n
 Tags: datasette</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;QVJcdfkRpH8"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Opus 4.7 - A New Frontier, in Performance … and Drama</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;QVJcdfkRpH8">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -495,7 +836,7 @@ Tags: vibe-coding, claude, tools, datasette</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2936,23 +3277,32 @@ Tags: facebook, ai, generative-ai, llms, code-interpreter, llm-tool-use, meta, p
                         </a>
                       </details>
                     </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;txx6ec6MLNY"
                         open
                       >
-                        <summary class="article-expander__title">Quoting Giles Turnbull</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/8/giles-turnbull/#atom-everything">
+                        <summary class="article-expander__title">Claude Mythos: Highlights from 244-page Release</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;txx6ec6MLNY">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>I have a feeling that everyone likes using AI tools to try doing someone else’s profession. They’re much less keen when someone else uses it for their profession.
-
-— Giles Turnbull, AI and the human voice
-Tags: ai-ethics, writing, ai</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -3085,187 +3435,11 @@ Tags: ai-ethics, writing, ai</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-07 datetime="2026-04-07T21:25:14.000Z">2026-04-07</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-07 datetime="2026-04-07T21:25:14.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-07 datetime="2026-04-07T14:01:35.000Z">2026-04-07</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-07 datetime="2026-04-07T14:01:35.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">GLM-5.1: Towards Long-Horizon Tasks</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/glm-5.1-pelican.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>GLM-5.1: Towards Long-Horizon Tasks
-Hugging Face) MIT-licensed monster - the same size as their previous GLM-5 release, and sharing the same paper.
-It&#x27;s available via OpenRouter so I asked it to draw me a pelican:
-llm install llm-openrouter
-llm -m openrouter/z-ai/glm-5.1 &#x27;Generate an SVG of a pelican on a bicycle&#x27;
-
-And something new happened... unprompted, the model decided to give me an HTML page that included both the SVG and a separate set of CSS animations!
-The SVG was excellent, and might be my new favorite from an open weights model:
-
-But the animation broke it:
-
-That&#x27;s the pelican, floating up in the top left corner.
-I usually don&#x27;t do follow-up prompts for the pelican test, but in this case I made an exception:
-llm -c &#x27;the animation is a bit broken, the pelican ends up positioned off the screen at the top right&#x27;
-
-GLM 5.1 replied:
-The issue is that CSS transform animations on SVG elements override the SVG transform attribute used for positioning, causing the pelican to lose its placement and fly off to the top-right. The fix is to separate positioning (SVG attribute) from animation (inner group) and use &lt;animateTransform&gt; for SVG rotations since it handles coordinate systems correctly.
-And spat out fresh HTML which fixed the problem!
-
-I particularly like the animation of the beak, which is described in the SVG comments like so:
-&lt;!-- Pouch (lower beak) with wobble --&gt;
-&lt;g&gt;
-    &lt;path d&#x3D;&quot;M42,-58 Q43,-50 48,-42 Q55,-35 62,-38 Q70,-42 75,-60 L42,-58 Z&quot; fill&#x3D;&quot;url(#pouchGrad)&quot; stroke&#x3D;&quot;#b06008&quot; stroke-width&#x3D;&quot;1&quot; opacity&#x3D;&quot;0.9&quot;/&gt;
-    &lt;path d&#x3D;&quot;M48,-50 Q55,-46 60,-52&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;#c06a08&quot; stroke-width&#x3D;&quot;0.8&quot; opacity&#x3D;&quot;0.6&quot;/&gt;
-    &lt;animateTransform attributeName&#x3D;&quot;transform&quot; type&#x3D;&quot;scale&quot;
-    values&#x3D;&quot;1,1; 1.03,0.97; 1,1&quot; dur&#x3D;&quot;0.75s&quot; repeatCount&#x3D;&quot;indefinite&quot;
-    additive&#x3D;&quot;sum&quot;/&gt;
-&lt;/g&gt;
-
-
-Update: On Bluesky @charles.capps.me suggested a &quot;NORTH VIRGINIA OPOSSUM ON AN E-SCOOTER&quot; and...
-
-The HTML+SVG comments on that one include /* Earring sparkle */, &lt;!-- Opossum fur gradient --&gt;, &lt;!-- Distant treeline silhouette - Virginia pines --&gt;,  &lt;!-- Front paw on handlebar --&gt; - here&#x27;s the transcript and the HTML result.
-
-
-    
-Tags: css, svg, ai, generative-ai, llms, pelican-riding-a-bicycle, llm-release, ai-in-china, glm</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/7/project-glasswing/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Anthropic&#x27;s Project Glasswing - restricting Claude Mythos to security researchers - sounds necessary to me</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/7/project-glasswing/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/openbsd-27-years.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Anthropic didn&#x27;t release their latest model, Claude Mythos (system card PDF), today. They have instead made it available to a very restricted set of preview partners under their newly announced Project Glasswing.
-
-The model is a general purpose model, similar to Claude Opus 4.6, but Anthropic claim that its cyber-security research abilities are strong enough that they need to give the software industry as a whole time to prepare.
-
-
-Mythos Preview has already found thousands of high-severity vulnerabilities, including some in every major operating system and web browser. Given the rate of AI progress, it will not be long before such capabilities proliferate, potentially beyond actors who are committed to deploying them safely.
-
-[...]
-
-Project Glasswing partners will receive access to Claude Mythos Preview to find and fix vulnerabilities or weaknesses in their foundational systems—systems that represent a very large portion of the world’s shared cyberattack surface. We anticipate this work will focus on tasks like local vulnerability detection, black box testing of binaries, securing endpoints, and penetration testing of systems.
-
-
-
-There&#x27;s a great deal more technical detail in  Assessing Claude Mythos Preview’s cybersecurity capabilities on the Anthropic Red Team blog:
-
-
-
-In one case, Mythos Preview wrote a web browser exploit that chained together four vulnerabilities, writing a complex JIT heap spray that escaped both renderer and OS sandboxes. It autonomously obtained local privilege escalation exploits on Linux and other operating systems by exploiting subtle race conditions and KASLR-bypasses. And it autonomously wrote a remote code execution exploit on FreeBSD&#x27;s NFS server that granted full root access to unauthenticated users by splitting a 20-gadget ROP chain over multiple packets.
-
-Plus this comparison with Claude 4.6 Opus:
-
-
-Our internal evaluations showed that Opus 4.6 generally had a near-0% success rate at autonomous exploit development. But Mythos Preview is in a different league. For example, Opus 4.6 turned the vulnerabilities it had found in Mozilla’s Firefox 147 JavaScript engine—all patched in Firefox 148—into JavaScript shell exploits only two times out of several hundred attempts. We re-ran this experiment as a benchmark for Mythos Preview, which developed working exploits 181 times, and achieved register control on 29 more.
-
-
-
-Saying &quot;our model is too dangerous to release&quot; is a great way to build buzz around a new model, but in this case I expect their caution is warranted.
-
-Just a few days (last Friday) ago I started a new ai-security-research tag on this blog to acknowledge an uptick in credible security professionals pulling the alarm on how good modern LLMs have got at vulnerability research.
-
-Greg Kroah-Hartman of the Linux kernel:
-
-
-Months ago, we were getting what we called &#x27;AI slop,&#x27; AI-generated security reports that were obviously wrong or low quality. It was kind of funny. It didn&#x27;t really worry us.
-
-Something happened a month ago, and the world switched. Now we have real reports. All open source projects have real reports that are made with AI, but they&#x27;re good, and they&#x27;re real.
-
-
-Daniel Stenberg of curl:
-
-
-The challenge with AI in open source security has transitioned from an AI slop tsunami into more of a ... plain security report tsunami. Less slop but lots of reports. Many of them really good.
-
-I&#x27;m spending hours per day on this now. It&#x27;s intense.
-
-
-And Thomas Ptacek published Vulnerability Research Is Cooked, a post inspired by his podcast conversation with Anthropic&#x27;s Nicholas Carlini.
-
-Anthropic have a 5 minute talking heads video describing the Glasswing project. Nicholas Carlini appears as one of those talking heads, where he said (highlights mine):
-
-
-It has the ability to chain together vulnerabilities. So what this means is you find two vulnerabilities, either of which doesn&#x27;t really get you very much independently. But this model is able to create exploits out of three, four, or sometimes five vulnerabilities that in sequence give you some kind of very sophisticated end outcome. [...]
-
-I&#x27;ve found more bugs in the last couple of weeks than I found in the rest of my life combined. We&#x27;ve used the model to scan a bunch of open source code, and the thing that we went for first was operating systems, because this is the code that underlies the entire internet infrastructure. For OpenBSD, we found a bug that&#x27;s been present for 27 years, where I can send a couple of pieces of data to any OpenBSD server and crash it. On Linux, we found a number of vulnerabilities where as a user with no permissions, I can elevate myself to the administrator by just running some binary on my machine. For each of these bugs, we told the maintainers who actually run the software about them, and they went and fixed them and have deployed the patches  patches so that anyone who runs the software is no longer vulnerable to these attacks.
-
-
-I found this on the OpenBSD 7.8 errata page:
-
-
-025: RELIABILITY FIX: March 25, 2026  All architectures
-
-TCP packets with invalid SACK options could crash the kernel.
-
-A source code patch exists which remedies this problem.
-
-
-I tracked that change down in the GitHub mirror of the OpenBSD CVS repo (apparently they still use CVS!) and found it using git blame:
-
-
-
-Sure enough, the surrounding code is from 27 years ago.
-
-I&#x27;m not sure which Linux vulnerability Nicholas was describing, but it may have been this NFS one recently covered by Michael Lynch
-.
-
-There&#x27;s enough smoke here that I believe there&#x27;s a fire. It&#x27;s not surprising to find vulnerabilities in decades-old software, especially given that they&#x27;re mostly written in C, but what&#x27;s new is that coding agents run by the latest frontier LLMs are proving tirelessly capable at digging up these issues.
-
-I actually thought to myself on Friday that this sounded like an industry-wide reckoning in the making, and that it might warrant a huge investment of time and money to get ahead of the inevitable barrage of vulnerabilities. Project Glasswing incorporates &quot;$100M in usage credits ... as well as $4M in direct donations to open-source security organizations&quot;. Partners include AWS, Apple, Microsoft, Google, and the Linux Foundation. It would be great to see OpenAI involved as well - GPT-5.4 already has a strong reputation for finding security vulnerabilities and they have stronger models on the near horizon.
-
-The bad news for those of us who are not trusted partners is this:
-
-
-We do not plan to make Claude Mythos Preview generally available, but our eventual goal is to enable our users to safely deploy Mythos-class models at scale—for cybersecurity purposes, but also for the myriad other benefits that such highly capable models will bring. To do so, we need to make progress in developing cybersecurity (and other) safeguards that detect and block the model’s most dangerous outputs. We plan to launch new safeguards with an upcoming Claude Opus model, allowing us to improve and refine them with a model that does not pose the same level of risk as Mythos Preview.
-
-
-I can live with that. I think the security risks really are credible here, and having extra time for trusted teams to get ahead of them is a reasonable trade-off.
-Tags: security, thomas-ptacek, ai, generative-ai, llms, anthropic, nicholas-carlini, ai-ethics, llm-release, ai-security-research</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3308,44 +3482,11 @@ Tags: security, thomas-ptacek, ai, generative-ai, llms, anthropic, nicholas-carl
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-06 datetime="2026-04-06T21:55:19.000Z">2026-04-06</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-06 datetime="2026-04-06T21:55:19.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-06 datetime="2026-04-06T10:00:00.000Z">2026-04-06</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-06 datetime="2026-04-06T10:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/4-XNvaV2KPk"
-                        open
-                      >
-                        <summary class="article-expander__title">Claude&#x27;s Source Code Got Leaked Across The Whole Internet</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/4-XNvaV2KPk">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3958,11 +4099,42 @@ to balance cost and latency.</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-26 datetime="2026-03-26T17:00:00.000Z">2026-03-26</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-26 datetime="2026-03-26T17:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-26 datetime="2026-03-26T20:15:12.000Z">2026-03-26</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-26 datetime="2026-03-26T20:15:12.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;s4tptozUJ8Y"
+                        open
+                      >
+                        <summary class="article-expander__title">Two AI Models Set to “stir government urgency”, But Will This Challenge Undo Them?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;s4tptozUJ8Y">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -4525,8 +4697,8 @@ to balance cost and latency.</span>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24594799603">
-        <time id="build-timestamp" datetime="2026-04-18T02:23:49.486Z">2026-04-18T02:23:49.486Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24619232426">
+        <time id="build-timestamp" datetime="2026-04-19T02:38:05.872Z">2026-04-19T02:38:05.872Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
