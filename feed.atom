@@ -1,18 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-21T02:33:56.612Z</id>
+    <id>urn:2026-04-22T02:32:11.964Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-21T02:33:56.612Z</updated>
+    <updated>2026-04-22T02:32:11.964Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
     <entry>
-        <title type="html"><![CDATA[Is Claude's New Model Any Good?]]></title>
-        <id>https://www.youtube.com/shorts/0L-OsXGIJnc</id>
-        <link href="https://www.youtube.com/shorts/0L-OsXGIJnc"/>
-        <updated>2026-04-20T14:14:51.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <title type="html"><![CDATA[Is Claude Code going to cost $100/month? Probably not - it's all very confusing]]></title>
+        <id>https://simonwillison.net/2026/Apr/22/claude-code-confusion/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/22/claude-code-confusion/#atom-everything"/>
+        <updated>2026-04-22T02:07:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>Anthropic today quietly (as in <em>silently</em>, no announcement anywhere at all) updated their <a href="https://claude.com/pricing">claude.com/pricing</a> page (but not their <a href="https://support.claude.com/en/articles/11049762-choosing-a-claude-plan">Choosing a Claude plan page</a>, which shows up first for me on Google) to add this tiny but significant detail (arrow is mine, <a href="https://simonwillison.net/2026/Apr/22/claude-code-confusion/#they-reversed-it">and it's already reverted</a>):</p>
+<p><img src="https://static.simonwillison.net/static/2026/anthropic-x.jpg" alt="Screenshot of the Claude pricing grid - Compare features across plans. Free, Pro, Max 5x and Max 20x all have the same features, with the exception of Claude Code which is on Max only and Claude Cowork which is on Pro and Max only. An arrow highlights the Claude Code for Pro cross." style="max-width: 100%;" /></p>
+<p>The <a href="https://web.archive.org/web/20260421040656/claude.com/pricing">Internet Archive copy</a> from yesterday shows a checkbox there. Claude Code used to be a feature of the $20/month Pro plan, but according to the new pricing page it is now exclusive to the $100/month or $200/month Max plans.</p>
+<p><em><strong>Update</strong>: don't miss <a href="https://simonwillison.net/2026/Apr/22/claude-code-confusion/#they-reversed-it">the update to this post</a>, they've already changed course a few hours after this change went live.</em></p>
+<p>So what the heck is going on? Unsurprisingly, <a href="https://www.reddit.com/r/ClaudeAI/comments/1srzhd7/psa_claude_pro_no_longer_lists_claude_code_as_an/">Reddit</a> and <a href="https://news.ycombinator.com/item?id=47854477">Hacker News</a> and <a href="https://twitter.com/i/trending/2046718768634589239">Twitter</a> all caught fire.</p>
+<p>I didn't believe the screenshots myself when I first saw them - aside from the pricing grid I could find no announcement from Anthropic anywhere. Then Amol Avasare, Anthropic's Head of Growth, <a href="https://twitter.com/TheAmolAvasare/status/2046724659039932830">tweeted</a>:</p>
+<blockquote>
+<p>For clarity, we're running a small test on ~2% of new prosumer signups. Existing Pro and Max subscribers aren't affected.</p>
+</blockquote>
+<p>And that appears to be the closest we have had to official messaging from Anthropic.</p>
+<p>I don't buy the "~2% of new prosumer signups" thing, since everyone I've talked to is seeing the new pricing grid and the Internet Archive has already <a href="https://web.archive.org/web/20260422001250/https://claude.com/pricing">snapped a copy</a>. Maybe he means that they'll only be running this version of the pricing grid for a limited time which somehow adds up to "2%" of signups?</p>
+<p>I'm also amused to see Claude Cowork remain available on the $20/month plan, because Claude Cowork is effectively a rebranded version of Claude Code wearing a less threatening hat!</p>
+<p>There are a whole bunch of things that are bad about this.</p>
+<p>If we assume this is indeed a test, and that test comes up negative and they decide not to go ahead with it, the damage has still been extensive:</p>
+<ol>
+<li>A whole lot of people got scared or angry or both that a service they relied on was about to be rug-pulled. There really is a significant difference between $20/month and $100/month for most people, especially outside of higher salary countries.</li>
+<li>The uncertainty is really bad! A tweet from an employee is <em>not</em> the way to make an announcement like this. I wasted a solid hour of my afternoon trying to figure out what had happened here. My trust in Anthropic's transparency around pricing - a <em>crucial factor</em> in how I understand their products - has been shaken.</li>
+<li>Strategically, should I be taking a bet on Claude Code if I know that they might 5x the minimum price of the product?</li>
+<li>More of a personal issue, but one I care deeply about myself: I invest a <a href="https://simonwillison.net/tags/claude-code/">great deal of effort</a> (that's 105 posts and counting) in teaching people how to use Claude Code. I don't want to invest that effort in a product that most people cannot afford to use.</li>
+</ol>
+<p>Last month I ran <a href="https://simonw.github.io/nicar-2026-coding-agents/">a tutorial for journalists</a> on "Coding agents for data analysis" at the annual NICAR data journalism conference. I'm not going to be teaching that audience a course that depends on a $100/month subscription!</p>
+<p>This also doesn't make sense to me as a strategy for Anthropic. Claude Code <em>defined the category</em> of coding agents. It's responsible for billions of dollars in annual revenue for Anthropic already. It has a stellar reputation, but I'm not convinced that reputation is strong enough for it to lose the $20/month trial and jump people directly to a $100/month subscription.</p>
+<p>OpenAI have been investing heavily in catching up to Claude Code with their Codex products. Anthropic just handed them this marketing opportunity on a plate - here's Codex engineering lead <a href="https://twitter.com/thsottiaux/status/2046740759056162816">Thibault Sottiaux</a>:</p>
+<blockquote>
+<p>I don't know what they are doing over there, but Codex will continue to be available both in the FREE and PLUS ($20) plans. We have the compute and efficient models to support it. For important changes, we will engage with the community well ahead of making them.</p>
+<p>Transparency and trust are two principles we will not break, even if it means momentarily earning less. A reminder that you vote with your subscription for the values you want to see in this world.</p>
+</blockquote>
+<p>I should note that I pay $200/month for Claude Max and I consider it well worth the money. I've had periods of free access in the past courtesy of Anthropic but I'm currently paying full price, and happy to do so.</p>
+<p>But I care about the accessibility of the tools that I work with and teach. If Codex has a free tier while Claude Code starts at $100/month I should obviously switch to Codex, because that way I can use the same tool as the people I want to teach how to use coding agents.</p>
+<p>Here's what I think happened. I think Anthropic are trying to optimize revenue growth - obviously - and someone pitched making Claude Code only available for Max and higher. That's clearly a bad idea, but "testing" culture says that it's worth putting even bad ideas out to test just in case they surprise you.</p>
+<p>So they started a test, without taking into account the wailing and gnashing of teeth that would result when their test was noticed - or accounting for the longer-term brand damage that would be caused.</p>
+<p>Or maybe they <em>did</em> account for that, and decided it was worth the risk.</p>
+<p>I don't think that calculation was worthwhile. They're going to have to make a <em>very</em> firm commitment along the lines of "we heard your feedback and we commit to keeping Claude Code available on our $20/month plan going forward" to regain my trust.</p>
+<p>As it stands, Codex is looking like a much safer bet for me to invest my time in learning and building educational materials around.</p>
+<h4 id="they-reversed-it">Update: they've reversed it already</h4>
+<p>In the time I was <em>typing this blog entry</em> Anthropic appear to have reversed course - the <a href="https://claude.com/pricing">claude.com/pricing page</a> now has a checkbox back in the Pro column for Claude Code. I can't find any official communication about it though.</p>
+<p>Let's see if they can come up with an explanation/apology that's convincing enough to offset the trust bonfire from this afternoon!</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/llm-pricing">llm-pricing</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
         <author>
-            <name>Matt Wolfe</name>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Where's the raccoon with the ham radio? (ChatGPT Images 2.0)]]></title>
+        <id>https://simonwillison.net/2026/Apr/21/gpt-image-2/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/21/gpt-image-2/#atom-everything"/>
+        <updated>2026-04-21T20:32:24.000Z</updated>
+        <summary type="html"><![CDATA[<p>OpenAI <a href="https://openai.com/index/introducing-chatgpt-images-2-0/">released ChatGPT Images 2.0 today</a>, their latest image generation model. On <a href="https://www.youtube.com/watch?v=sWkGomJ3TLI">the livestream</a> Sam Altman said that the leap from gpt-image-1 to gpt-image-2 was equivalent to jumping from GPT-3 to GPT-5. Here's how I put it to the test.</p>
+<p>My prompt:</p>
+<blockquote>
+<p><code>Do a where's Waldo style image but it's where is the raccoon holding a ham radio</code></p>
+</blockquote>
+<h4 id="gpt-image-1">gpt-image-1</h4>
+<p>First as a baseline here's what I got from the older gpt-image-1 using ChatGPT directly:</p>
+<p><a href="https://static.simonwillison.net/static/2026/chatgpt-image-1-ham-radio.png"><img loading="lazy" src="https://static.simonwillison.net/static/2026/image_crop_1402x1122_w1402_q0.3.jpg" alt="There's a lot going on, but I couldn't find a raccoon." style="max-width: 100%;" /></a></p>
+<p>I wasn't able to spot the raccoon - I quickly realized that testing image generation models on Where's Waldo style images (Where's Wally in the UK) can be pretty frustrating!</p>
+<p>I tried <a href="https://claude.ai/share/bd6e9b88-29a9-420b-8ac1-3ac5cebac215">getting Claude Opus 4.7</a> with its new higher resolution inputs to solve it but it was convinced there was a raccoon it couldn't find thanks to the instruction card at the top left of the image:</p>
+<blockquote>
+<p><strong>Yes — there's at least one raccoon in the picture, but it's very well hidden</strong>. In my careful sweep through zoomed-in sections, honestly, I couldn't definitively spot a raccoon holding a ham radio. [...]</p>
+</blockquote>
+<h4 id="nano-banana-2-and-pro">Nano Banana 2 and Pro</h4>
+<p>Next I tried Google's Nano Banana 2, <a href="https://gemini.google.com/share/3775db96c576">via Gemini</a>:</p>
+<p><a href="https://static.simonwillison.net/static/2026/nano-banana-2-ham-radio.jpg"><img loading="lazy" src="https://static.simonwillison.net/static/2026/gemini-ham-radio-small.jpg" alt="Busy Where's Waldo-style illustration of a park festival with crowds of people, tents labeled &quot;FOOD &amp; DRINK&quot;, &quot;CRAFT FAIR&quot;, &quot;BOOK NOOK&quot;, &quot;MUSIC FEST&quot;, and &quot;AMATEUR RADIO CLUB - W6HAM&quot; (featuring a raccoon in a red hat at the radio table), plus a Ferris wheel, carousel, gazebo with band, pond with boats, fountain, food trucks, and striped circus tents" style="max-width: 100%;" /></a></p>
+<p>That one was pretty obvious, the raccoon is in the "Amateur Radio Club" booth in the center of the image!</p>
+<p>Claude said:</p>
+<blockquote>
+<p>Honestly, this one wasn't really hiding — he's the star of the booth. Feels like the illustrator took pity on us after that last impossible scene. The little "W6HAM" callsign pun on the booth sign is a nice touch too.</p>
+</blockquote>
+<p>I also tried Nano Banana Pro <a href="https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221sGU5A7mrngkfLfSEU84xaV1DhtOTnS--%22%5D,%22action%22:%22open%22,%22userId%22:%22106366615678321494423%22,%22resourceKeys%22:%7B%7D%7D&amp;usp=sharing">in AI Studio</a> and got this, by far the worst result from any model. Not sure what went wrong here!</p>
+<p><a href="https://static.simonwillison.net/static/2026/nano-banana-pro-ham-radio.jpg"><img loading="lazy" src="https://static.simonwillison.net/static/2026/nano-banana-pro-ham-radio-small.jpg" alt="The raccoon is larger than everyone else, right in the middle of the image with an ugly white border around it." style="max-width: 100%;" /></a></p>
+<h4 id="gpt-image-2">gpt-image-2</h4>
+<p>With the baseline established, let's try out the new model.</p>
+<p>I used an updated version of my <a href="https://github.com/simonw/tools/blob/main/python/openai_image.py">openai_image.py</a> script, which is a thin wrapper around the <a href="https://github.com/openai/openai-python">OpenAI Python</a> client library. Their client library hasn't yet been updated to include <code>gpt-image-2</code> but thankfully it doesn't validate the model ID so you can use it anyway.</p>
+<p>Here's how I ran that:</p>
+<div class="highlight highlight-source-shell"><pre>OPENAI_API_KEY=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>llm keys get openai<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span> \
+  uv run https://tools.simonwillison.net/python/openai_image.py \
+  -m gpt-image-2 \
+  <span class="pl-s"><span class="pl-pds">"</span>Do a where's Waldo style image but it's where is the raccoon holding a ham radio<span class="pl-pds">"</span></span></pre></div>
+<p>Here's what I got back. I don't <em>think</em> there's a raccoon in there - I couldn't spot one, and neither could Claude.</p>
+<p><a href="https://static.simonwillison.net/static/2026/gpt-image-2-default.png"><img loading="lazy" src="https://static.simonwillison.net/static/2026/gpt-image-2-default.jpg" alt="Lots of stuff, a ham radio booth, many many people, a lake, but maybe no raccoon?" style="max-width: 100%;" /></a></p>
+<p>The <a href="https://github.com/openai/openai-cookbook/blob/main/examples/multimodal/image-gen-models-prompting-guide.ipynb">OpenAI image generation cookbook</a> has been updated with notes on <code>gpt-image-2</code>, including the <code>outputQuality</code> setting and available sizes.</p>
+<p>I tried setting <code>outputQuality</code> to <code>high</code> and the dimensions to <code>3840x2160</code> - I believe that's the maximum - and got this - a 17MB PNG which I converted to a 5MB WEBP:</p>
+<div class="highlight highlight-source-shell"><pre>OPENAI_API_KEY=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>llm keys get openai<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span> \
+  uv run <span class="pl-s"><span class="pl-pds">'</span>https://raw.githubusercontent.com/simonw/tools/refs/heads/main/python/openai_image.py<span class="pl-pds">'</span></span> \
+  -m gpt-image-2 <span class="pl-s"><span class="pl-pds">"</span>Do a where's Waldo style image but it's where is the raccoon holding a ham radio<span class="pl-pds">"</span></span> \
+  --quality high --size 3840x2160</pre></div>
+<p><a href="https://static.simonwillison.net/static/2026/image-fc93bd-q100.webp"><img loading="lazy" src="https://static.simonwillison.net/static/2026/image-fc93bd-q100.jpg" alt="Big complex image, lots of detail, good wording, there is indeed a raccoon with a ham radio." style="max-width: 100%;" /></a></p>
+<p>That's pretty great! There's a raccoon with a ham radio in there (bottom left, quite easy to spot).</p>
+<p>The image used 13,342 output tokens, which are charged at $30/million so a total cost of around <a href="https://www.llm-prices.com/#ot=13342&amp;ic=5&amp;cic=1.25&amp;oc=10&amp;sel=gpt-image-2-image">40 cents</a>.</p>
+<h4 id="takeaways">Takeaways</h4>
+<p>I think this new ChatGPT image generation model takes the crown from Gemini, at least for the moment.</p>
+<p>Where's Waldo style images are an infuriating and somewhat foolish way to test these models, but they do help illustrate how good they are getting at complex illustrations combining both text and details.</p>
+<h4 id="update-asking-models-to-solve-this-is-risky">Update: asking models to solve this is risky</h4>
+<p>rizaco <a href="https://news.ycombinator.com/item?id=47852835#47853561">on Hacker News</a> asked ChatGPT to draw a red circle around the raccoon in one of the images in which I had failed to find one. Here's an animated mix of their result and the original image:</p>
+<p><img loading="lazy" src="https://static.simonwillison.net/static/2026/ham-radio-cheat.gif" alt="The circle appears around a raccoon with a ham radio who is definitely not there in the original image!" style="max-width: 100%;" /></p>
+<p>Looks like we definitely can't trust these models to usefully solve their own puzzles!</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/text-to-image">text-to-image</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/nano-banana">nano-banana</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Andreas Påhlsson-Notini]]></title>
+        <id>https://simonwillison.net/2026/Apr/21/andreas-pahlsson-notini/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/21/andreas-pahlsson-notini/#atom-everything"/>
+        <updated>2026-04-21T16:39:33.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://nial.se/blog/less-human-ai-agents-please/"><p>AI agents are already too human. Not in the romantic sense, not because they love or fear or dream, but in the more banal and frustrating one. The current implementations keep showing their human origin again and again: lack of stringency, lack of patience, lack of focus. Faced with an awkward task, they drift towards the familiar. Faced with hard constraints, they start negotiating with reality.</p></blockquote>
+<p class="cite">&mdash; <a href="https://nial.se/blog/less-human-ai-agents-please/">Andreas Påhlsson-Notini</a>, Less human AI agents, please.</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai-agents">ai-agents</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ai">ai</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[scosman/pelicans_riding_bicycles]]></title>
+        <id>https://simonwillison.net/2026/Apr/21/scosman/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/21/scosman/#atom-everything"/>
+        <updated>2026-04-21T15:54:43.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/scosman/pelicans_riding_bicycles">scosman/pelicans_riding_bicycles</a></strong></p>
+I firmly approve of Steve Cosman's efforts to pollute the training set of pelicans riding bicycles.</p>
+<p><img alt="The heading says &quot;Pelican Riding a Bicycle #1 - the image is a bear on a snowboard" src="https://static.simonwillison.net/static/2026/pelican-poison-bear.jpg" /></p>
+<p>(To be fair, most of the examples <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/">I've published</a> count as poisoning too.)
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=47835735#47839493">Hacker News comment</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/training-data">training-data</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[3 new ways Ads Advisor is making Google Ads safer and faster]]></title>
+        <id>https://blog.google/products/ads-commerce/ads-advisor-google-ads/</id>
+        <link href="https://blog.google/products/ads-commerce/ads-advisor-google-ads/"/>
+        <updated>2026-04-21T14:30:00.000Z</updated>
+        <summary type="html"><![CDATA[Three new agentic safety and policy features integrated into Ads Advisor will help protect and streamline your Google Ads account.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Scaling Codex to enterprises worldwide]]></title>
+        <id>https://openai.com/index/scaling-codex-to-enterprises-worldwide</id>
+        <link href="https://openai.com/index/scaling-codex-to-enterprises-worldwide"/>
+        <updated>2026-04-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI launches Codex Labs, partners with with Accenture, PwC, Infosys, and others to help enterprises deploy and scale Codex across the software development lifecycle, and hits 4M Codex WAU.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Can Large Language Models Understand Context?]]></title>
+        <id>llm-context-understanding</id>
+        <link href="https://machinelearning.apple.com/research/llm-context-understanding"/>
+        <updated>2026-04-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Understanding context is key to understanding human language, an ability which Large Language Models (LLMs) have been increasingly seen to demonstrate to an impressive extent. However, though the evaluation of LLMs encompasses various domains within the realm of Natural Language Processing, limited attention has been paid to probing their linguistic capability of understanding contextual features. This paper introduces a context understanding benchmark by adapting existing datasets to suit the evaluation of generative models. This benchmark comprises of four distinct tasks and nine datasets…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[llm-openrouter 0.6]]></title>
+        <id>https://simonwillison.net/2026/Apr/20/llm-openrouter/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/20/llm-openrouter/#atom-everything"/>
+        <updated>2026-04-20T18:00:26.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-openrouter/releases/tag/0.6">llm-openrouter 0.6</a></p>
+    <blockquote>
+<ul>
+<li><code>llm openrouter refresh</code> command for refreshing the list of available models without waiting for the cache to expire.</li>
+</ul>
+</blockquote>
+<p>I added this feature so I could try <a href="https://www.kimi.com/blog/kimi-k2-6">Kimi 2.6</a> on OpenRouter as soon as it <a href="https://openrouter.ai/moonshotai/kimi-k2.6">became available there</a>.</p>
+<p>Here's <a href="https://gisthost.github.io/?ecaad98efe0f747e27bc0e0ebc669e94/pelican.html">its pelican</a> - this time as an HTML page because Kimi chose to include an HTML and JavaScript UI to control the animation. <a href="https://gist.github.com/simonw/ecaad98efe0f747e27bc0e0ebc669e94#2026-04-20t164936----conversation-01kpnwt8d2bt5qwkm60j9sbkbs-id-01kpnwra0prz6v822cct5b08kq">Transcript here</a>.</p>
+<p><img alt="The bicycle is about right. The pelican is OK. It is pedaling furiously and flapping its wings a bit. Controls below the animation provide a pause button and sliders for controlling the speed and the wing flap." src="https://static.simonwillison.net/static/2026/kimi-k2-pelican-64-colors.gif" /></p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/openrouter">openrouter</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/kimi">kimi</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -106,16 +285,6 @@ Matt Webb thinks <strong>headless</strong> services are about to become much mor
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This Is NOT Investment Advice, But...]]></title>
-        <id>https://www.youtube.com/shorts/ViJa2KJnO3M</id>
-        <link href="https://www.youtube.com/shorts/ViJa2KJnO3M"/>
-        <updated>2026-04-19T13:10:23.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Changes in the system prompt between Claude Opus 4.6 and 4.7]]></title>
         <id>https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/#atom-everything"/>
@@ -201,16 +370,6 @@ Matt Webb thinks <strong>headless</strong> services are about to become much mor
         <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/system-prompts">system-prompts</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Trying OpenAI's New "Super App"]]></title>
-        <id>https://www.youtube.com/shorts/BLdY1fqy8FE</id>
-        <link href="https://www.youtube.com/shorts/BLdY1fqy8FE"/>
-        <updated>2026-04-18T13:17:37.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -349,25 +508,6 @@ Telling agents to use another codebase as reference is a powerful shortcut for c
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: Huge Updates From Anthropic, OpenAI and Google]]></title>
-        <id>https://www.youtube.com/watch?v=bIrzOQtnp8w</id>
-        <link href="https://www.youtube.com/watch?v=bIrzOQtnp8w"/>
-        <updated>2026-04-17T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Easiest Way To Edit YouTube Videos]]></title>
-        <id>https://www.youtube.com/shorts/bRecJsl3dHQ</id>
-        <link href="https://www.youtube.com/shorts/bRecJsl3dHQ"/>
-        <updated>2026-04-17T14:26:11.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[7 ways to travel smarter this summer, with help from Google]]></title>
         <id>https://blog.google/products-and-platforms/products/search/summer-travel-tips-google-search-ai/</id>
         <link href="https://blog.google/products-and-platforms/products/search/summer-travel-tips-google-search-ai/"/>
@@ -492,16 +632,6 @@ Telling agents to use another codebase as reference is a powerful shortcut for c
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Can You Monetize AI Videos?]]></title>
-        <id>https://www.youtube.com/shorts/WRdCJ0aNXU0</id>
-        <link href="https://www.youtube.com/shorts/WRdCJ0aNXU0"/>
-        <updated>2026-04-16T12:45:30.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Codex for (almost) everything]]></title>
         <id>https://openai.com/index/codex-for-almost-everything</id>
         <link href="https://openai.com/index/codex-for-almost-everything"/>
@@ -509,16 +639,6 @@ Telling agents to use another codebase as reference is a powerful shortcut for c
         <summary type="html"><![CDATA[The updated Codex app for macOS and Windows adds computer use, in-app browsing, image generation, memory, and plugins to accelerate developer workflows.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Editing Trick Saves Me HOURS]]></title>
-        <id>https://www.youtube.com/shorts/7z8n8rUsHpQ</id>
-        <link href="https://www.youtube.com/shorts/7z8n8rUsHpQ"/>
-        <updated>2026-04-16T01:01:53.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -614,15 +734,6 @@ Principled domain reweighting can substantially improve sample efficiency and do
         <p>Tags: <a href="https://simonwillison.net/tags/annotated-release-notes">annotated-release-notes</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/python">python</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Truth About My Channel (And How Much $$ I Make)]]></title>
-        <id>https://www.youtube.com/watch?v=ncVQneK7FlE</id>
-        <link href="https://www.youtube.com/watch?v=ncVQneK7FlE"/>
-        <updated>2026-04-15T22:03:19.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -889,16 +1000,6 @@ The UK's AI Safety Institute recently published <a href="https://www.aisi.gov.uk
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Insane Open Source AI Model Just Dropped]]></title>
-        <id>https://www.youtube.com/shorts/0T3xgE_diIw</id>
-        <link href="https://www.youtube.com/shorts/0T3xgE_diIw"/>
-        <updated>2026-04-14T13:13:29.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Bringing people together at AI for the Economy Forum]]></title>
         <id>https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/</id>
         <link href="https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/"/>
@@ -937,6 +1038,11 @@ The UK's AI Safety Institute recently published <a href="https://www.aisi.gov.uk
 <blockquote>
 <p>Maybe tell your buddy to do some actual work and to stop spreading absolute nonsense. This post is completely false and just pure clickbait.</p>
 </blockquote>
+<p><strong>Update 20th April 2026</strong>: Steve <a href="https://twitter.com/Steve_Yegge/status/2046260541912707471">doubled down</a>:</p>
+<blockquote>
+<p>My tweet last week about Google's AI adoption drew a lot of pushback, to say the least.</p>
+<p>Since then, Googlers from multiple orgs have reached out to me independently and anonymously. They've expressed fear of being doxxed, concern about what they saw as bullying of me, and general corroboration of my original tweet. [...]</p>
+</blockquote>
 
     <p>Tags: <a href="https://simonwillison.net/tags/addy-osmani">addy-osmani</a>, <a href="https://simonwillison.net/tags/steve-yegge">steve-yegge</a>, <a href="https://simonwillison.net/tags/google">google</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
         <author>
@@ -974,16 +1080,6 @@ cargo build
         <p>Tags: <a href="https://simonwillison.net/tags/research">research</a>, <a href="https://simonwillison.net/tags/browsers">browsers</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a href="https://simonwillison.net/tags/servo">servo</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Seedance Just Got Nerfed]]></title>
-        <id>https://www.youtube.com/shorts/khIOqZIpbmg</id>
-        <link href="https://www.youtube.com/shorts/khIOqZIpbmg"/>
-        <updated>2026-04-13T12:13:39.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1042,177 +1138,11 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Gemma 4 audio with MLX]]></title>
-        <id>https://simonwillison.net/2026/Apr/12/mlx-audio/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/12/mlx-audio/#atom-everything"/>
-        <updated>2026-04-12T23:57:53.000Z</updated>
-        <summary type="html"><![CDATA[<p>Thanks to a <a href="https://twitter.com/RahimNathwani/status/2039961945613209852">tip from Rahim Nathwani</a>, here's a <code>uv run</code> recipe for transcribing an audio file on macOS using the 10.28 GB <a href="https://huggingface.co/google/gemma-4-E2B">Gemma 4 E2B model</a> with MLX and <a href="https://github.com/Blaizzy/mlx-vlm">mlx-vlm</a>:</p>
-<pre><code>uv run --python 3.13 --with mlx_vlm --with torchvision --with gradio \
-  mlx_vlm.generate \
-  --model google/gemma-4-e2b-it \
-  --audio file.wav \
-  --prompt "Transcribe this audio" \
-  --max-tokens 500 \
-  --temperature 1.0
-</code></pre>
-<p><audio controls style="width: 100%">
-  <source src="https://static.simonwillison.net/static/2026/demo-audio-for-gemma.wav" type="audio/wav">
-  Your browser does not support the audio element.
-</audio></p>
-<p>I tried it on <a href="https://static.simonwillison.net/static/2026/demo-audio-for-gemma.wav">this 14 second <code>.wav</code> file</a> and it output the following:</p>
-<blockquote>
-<p>This front here is a quick voice memo. I want to try it out with MLX VLM. Just going to see if it can be transcribed by Gemma and how that works.</p>
-</blockquote>
-<p>(That was supposed to be "This right here..." and "... how well that works" but I can hear why it misinterpreted that as "front" and "how that works".)</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/uv">uv</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/gemma">gemma</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/speech-to-text">speech-to-text</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ANOTHER Big AI Leak?!]]></title>
-        <id>https://www.youtube.com/shorts/ByZsafOOKoM</id>
-        <link href="https://www.youtube.com/shorts/ByZsafOOKoM"/>
-        <updated>2026-04-12T14:08:26.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SQLite 3.53.0]]></title>
-        <id>https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/11/sqlite/#atom-everything"/>
-        <updated>2026-04-11T19:56:53.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://sqlite.org/releaselog/3_53_0.html">SQLite 3.53.0</a></strong></p>
-SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of accumulated user-facing and internal improvements. Some that stood out to me:</p>
-<ul>
-<li><code>ALTER TABLE</code> can now add and remove <code>NOT NULL</code> and <code>CHECK</code> constraints - I've previously used my own <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#changing-not-null-status">sqlite-utils transform() method</a> for this.</li>
-<li>New <a href="https://sqlite.org/json1.html#jarrayins">json_array_insert() function</a> and its <code>jsonb</code> equivalent.</li>
-<li>Significant improvements to <a href="https://sqlite.org/climode.html">CLI mode</a>, including result formatting.</li>
-</ul>
-<p>The result formatting improvements come from a new library, the <a href="https://sqlite.org/src/file/ext/qrf">Query Results Formatter</a>. I <a href="https://github.com/simonw/tools/pull/266">had Claude Code</a> (on my phone) compile that to WebAssembly and build <a href="https://tools.simonwillison.net/sqlite-qrf">this playground interface</a> for trying that out.
-
-    <p><small></small>Via <a href="https://lobste.rs/s/sqsb24/sqlite_3_53_0">Lobste.rs</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/sql">sql</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SQLite Query Result Formatter Demo]]></title>
-        <id>https://simonwillison.net/2026/Apr/11/sqlite-qrf/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/11/sqlite-qrf/#atom-everything"/>
-        <updated>2026-04-11T19:35:31.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/sqlite-qrf">SQLite Query Result Formatter Demo</a></p>
-    <p>See my notes <a href="https://simonwillison.net/2026/Apr/11/sqlite/">on SQLite 3.53.0</a>. This playground provides a UI for trying out the various rendering options for SQL result tables from the new Query Result Formatter library, compiled to WebAssembly.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Is Claude Mythos A Marketing Ploy?]]></title>
-        <id>https://www.youtube.com/shorts/K_jquzUz5eA</id>
-        <link href="https://www.youtube.com/shorts/K_jquzUz5eA"/>
-        <updated>2026-04-11T13:06:37.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude Mythos Explained]]></title>
-        <id>https://www.youtube.com/shorts/pRoIjB5eNKo</id>
-        <link href="https://www.youtube.com/shorts/pRoIjB5eNKo"/>
-        <updated>2026-04-10T21:23:54.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Kākāpō parrots]]></title>
-        <id>https://simonwillison.net/2026/Apr/10/kakapo/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/10/kakapo/#atom-everything"/>
-        <updated>2026-04-10T19:07:02.000Z</updated>
-        <summary type="html"><![CDATA[<p>Lenny <a href="https://twitter.com/lennysan/status/2042615413494939943">posted</a> another snippet from <a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">our 1 hour 40 minute podcast recording</a> and it's about kākāpō parrots!</p>
-<p><video
-  src="https://static.simonwillison.net/static/2026/kakapo-lenny.mp4"
-  poster="https://static.simonwillison.net/static/2026/kakapo-lenny.jpg"
-  controls
-  preload="none"
-  playsinline
-  style="display:block; max-width:400px; width:100%; height:auto; margin:0 auto"
-><track src="https://static.simonwillison.net/static/cors-allow/2026/kakapo-lenny.vtt" kind="captions" srclang="en" label="English"></video>
-</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/kakapo">kakapo</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT voice mode is a weaker model]]></title>
-        <id>https://simonwillison.net/2026/Apr/10/voice-mode-is-weaker/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/10/voice-mode-is-weaker/#atom-everything"/>
-        <updated>2026-04-10T15:56:02.000Z</updated>
-        <summary type="html"><![CDATA[<p>I think it's non-obvious to many people that the OpenAI voice mode runs on a much older, much weaker model - it feels like the AI that you can talk to should be the smartest AI but it really isn't.</p>
-<p>If you ask ChatGPT voice mode for its knowledge cutoff date it tells you April 2024 - it's a GPT-4o era model.</p>
-<p>This thought inspired by <a href="https://twitter.com/karpathy/status/2042334451611693415">this Andrej Karpathy tweet</a> about the growing gap in understanding of AI capability based on the access points and domains people are using the models with:</p>
-<blockquote>
-<p>[...] It really is simultaneously the case that OpenAI's free and I think slightly orphaned (?) "Advanced Voice Mode" will fumble the dumbest questions in your Instagram's reels and <em>at the same time</em>, OpenAI's highest-tier and paid Codex model will go off for 1 hour to coherently restructure an entire code base, or find and exploit vulnerabilities in computer systems.</p>
-<p>This part really works and has made dramatic strides because 2 properties:</p>
-<ol>
-<li>these domains offer explicit reward functions that are verifiable meaning they are easily amenable to reinforcement learning training (e.g. unit tests passed yes or no, in contrast to writing, which is much harder to explicitly judge),  but also</li>
-<li>they are a lot more valuable in b2b settings, meaning that the biggest fraction of the team is focused on improving them.</li>
-</ol>
-</blockquote>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/andrej-karpathy">andrej-karpathy</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: The Model That Has Everyone Freaked Out!]]></title>
-        <id>https://www.youtube.com/watch?v=SguncMvE77I</id>
-        <link href="https://www.youtube.com/watch?v=SguncMvE77I"/>
-        <updated>2026-04-10T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Brainstorming with ChatGPT]]></title>
-        <id>https://openai.com/academy/brainstorming</id>
-        <link href="https://openai.com/academy/brainstorming"/>
+        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
+        <id>https://openai.com/academy/sales</id>
+        <link href="https://openai.com/academy/sales"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Prompting fundamentals]]></title>
-        <id>https://openai.com/academy/prompting</id>
-        <link href="https://openai.com/academy/prompting"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for research]]></title>
-        <id>https://openai.com/academy/research</id>
-        <link href="https://openai.com/academy/research"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
+        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1228,71 +1158,21 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Using skills]]></title>
-        <id>https://openai.com/academy/skills</id>
-        <link href="https://openai.com/academy/skills"/>
+        <title type="html"><![CDATA[Using projects in ChatGPT]]></title>
+        <id>https://openai.com/academy/projects</id>
+        <link href="https://openai.com/academy/projects"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT for finance teams]]></title>
-        <id>https://openai.com/academy/finance</id>
-        <link href="https://openai.com/academy/finance"/>
+        <title type="html"><![CDATA[ChatGPT for research]]></title>
+        <id>https://openai.com/academy/research</id>
+        <link href="https://openai.com/academy/research"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how finance teams use ChatGPT to streamline reporting, analyze data, improve forecasts, and communicate insights more clearly.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
-        <id>https://openai.com/academy/writing</id>
-        <link href="https://openai.com/academy/writing"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Personalizing ChatGPT]]></title>
-        <id>https://openai.com/academy/personalization</id>
-        <link href="https://openai.com/academy/personalization"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
-        <id>https://openai.com/academy/responsible-and-safe-use</id>
-        <link href="https://openai.com/academy/responsible-and-safe-use"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Research with ChatGPT]]></title>
-        <id>https://openai.com/academy/search-and-deep-research</id>
-        <link href="https://openai.com/academy/search-and-deep-research"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for customer success teams]]></title>
-        <id>https://openai.com/academy/customer-success</id>
-        <link href="https://openai.com/academy/customer-success"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1308,81 +1188,11 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT for managers]]></title>
-        <id>https://openai.com/academy/managers</id>
-        <link href="https://openai.com/academy/managers"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how managers use ChatGPT to prepare for conversations, write clear feedback, stay organized, and improve team effectiveness.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
         <id>https://openai.com/academy/data-analysis</id>
         <link href="https://openai.com/academy/data-analysis"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Financial services]]></title>
-        <id>https://openai.com/academy/financial-services</id>
-        <link href="https://openai.com/academy/financial-services"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using custom GPTs]]></title>
-        <id>https://openai.com/academy/custom-gpts</id>
-        <link href="https://openai.com/academy/custom-gpts"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to build and use custom GPTs to automate workflows, maintain consistent outputs, and create purpose-built AI assistants.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Working with files in ChatGPT]]></title>
-        <id>https://openai.com/academy/working-with-files</id>
-        <link href="https://openai.com/academy/working-with-files"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Applications of AI at OpenAI]]></title>
-        <id>https://openai.com/academy/applications-of-ai</id>
-        <link href="https://openai.com/academy/applications-of-ai"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Healthcare]]></title>
-        <id>https://openai.com/academy/healthcare</id>
-        <link href="https://openai.com/academy/healthcare"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
-        <id>https://openai.com/index/axios-developer-tool-compromise</id>
-        <link href="https://openai.com/index/axios-developer-tool-compromise"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1398,21 +1208,31 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
-        <id>https://openai.com/academy/sales</id>
-        <link href="https://openai.com/academy/sales"/>
+        <title type="html"><![CDATA[ChatGPT for customer success teams]]></title>
+        <id>https://openai.com/academy/customer-success</id>
+        <link href="https://openai.com/academy/customer-success"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
+        <summary type="html"><![CDATA[Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Using projects in ChatGPT]]></title>
-        <id>https://openai.com/academy/projects</id>
-        <link href="https://openai.com/academy/projects"/>
+        <title type="html"><![CDATA[ChatGPT for managers]]></title>
+        <id>https://openai.com/academy/managers</id>
+        <link href="https://openai.com/academy/managers"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.]]></summary>
+        <summary type="html"><![CDATA[Learn how managers use ChatGPT to prepare for conversations, write clear feedback, stay organized, and improve team effectiveness.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Brainstorming with ChatGPT]]></title>
+        <id>https://openai.com/academy/brainstorming</id>
+        <link href="https://openai.com/academy/brainstorming"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1428,11 +1248,141 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Financial services]]></title>
+        <id>https://openai.com/academy/financial-services</id>
+        <link href="https://openai.com/academy/financial-services"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Working with files in ChatGPT]]></title>
+        <id>https://openai.com/academy/working-with-files</id>
+        <link href="https://openai.com/academy/working-with-files"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using custom GPTs]]></title>
+        <id>https://openai.com/academy/custom-gpts</id>
+        <link href="https://openai.com/academy/custom-gpts"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to build and use custom GPTs to automate workflows, maintain consistent outputs, and create purpose-built AI assistants.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Personalizing ChatGPT]]></title>
+        <id>https://openai.com/academy/personalization</id>
+        <link href="https://openai.com/academy/personalization"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using skills]]></title>
+        <id>https://openai.com/academy/skills</id>
+        <link href="https://openai.com/academy/skills"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Research with ChatGPT]]></title>
+        <id>https://openai.com/academy/search-and-deep-research</id>
+        <link href="https://openai.com/academy/search-and-deep-research"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
+        <id>https://openai.com/academy/writing</id>
+        <link href="https://openai.com/academy/writing"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for finance teams]]></title>
+        <id>https://openai.com/academy/finance</id>
+        <link href="https://openai.com/academy/finance"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how finance teams use ChatGPT to streamline reporting, analyze data, improve forecasts, and communicate insights more clearly.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Healthcare]]></title>
+        <id>https://openai.com/academy/healthcare</id>
+        <link href="https://openai.com/academy/healthcare"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Prompting fundamentals]]></title>
+        <id>https://openai.com/academy/prompting</id>
+        <link href="https://openai.com/academy/prompting"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
+        <id>https://openai.com/academy/responsible-and-safe-use</id>
+        <link href="https://openai.com/academy/responsible-and-safe-use"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Applications of AI at OpenAI]]></title>
+        <id>https://openai.com/academy/applications-of-ai</id>
+        <link href="https://openai.com/academy/applications-of-ai"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Creating images with ChatGPT]]></title>
         <id>https://openai.com/academy/image-generation</id>
         <link href="https://openai.com/academy/image-generation"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
+        <id>https://openai.com/index/axios-developer-tool-compromise</id>
+        <link href="https://openai.com/index/axios-developer-tool-compromise"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1445,16 +1395,6 @@ SQLite 3.52.0 was withdrawn so this is a pretty big release with a whole lot of 
         <summary type="html"><![CDATA[Apple is presenting new research at the annual , which takes place in person in Barcelona, Spain, from April 13 to 17. We are proud to again sponsor the conference, which brings together the scientific and industrial research communities focused on human-computer interaction. Below is an overview of Apple’s participation at CHI 2026.ACM (Association of Computing Machinery) CHI Conference on Human Factors in Computing Systems]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Extremely Underrated Open Source AI]]></title>
-        <id>https://www.youtube.com/shorts/7IgfvURUUx4</id>
-        <link href="https://www.youtube.com/shorts/7IgfvURUUx4"/>
-        <updated>2026-04-09T14:51:45.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1617,16 +1557,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[Codex now includes pay-as-you-go pricing for ChatGPT Business and Enterprise, providing teams a more flexible option to start and scale adoption.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Personalized Group Relative Policy Optimization for Heterogenous Preference Alignment]]></title>
-        <id>personalized-group</id>
-        <link href="https://machinelearning.apple.com/research/personalized-group"/>
-        <updated>2026-04-02T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Despite their sophisticated general-purpose capabilities, Large Language Models (LLMs) often fail to align with diverse individual preferences because standard post-training methods, like Reinforcement Learning with Human Feedback (RLHF), optimize for a single, global objective. While Group Relative Policy Optimization (GRPO) is a widely adopted on-policy reinforcement learning framework, its group-based normalization implicitly assumes that all samples are exchangeable, inheriting this limitation in personalized settings. This assumption conflates distinct user reward distributions and…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1886,26 +1816,6 @@ to balance cost and latency.]]></summary>
         <summary type="html"><![CDATA[ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Creating with Sora Safely]]></title>
-        <id>https://openai.com/index/creating-with-sora-safely</id>
-        <link href="https://openai.com/index/creating-with-sora-safely"/>
-        <updated>2026-03-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[To address the novel safety challenges posed by a state-of-the-art video model as well as a new social creation platform, we’ve built Sora 2 and the Sora app with safety at the foundation. Our approach is anchored in concrete protections.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Fast regex search: indexing text for agent tools]]></title>
-        <id>https://cursor.com/blog/fast-regex-search</id>
-        <link href="https://cursor.com/blog/fast-regex-search"/>
-        <updated>2026-03-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Improving Composer through real-time RL]]></summary>
-        <author>
-            <name>Cursor Blog</name>
         </author>
     </entry>
 </feed>
