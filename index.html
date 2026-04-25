@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-24 datetime="2026-04-24T01:50:07.000Z">2026-04-24</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-24 datetime="2026-04-24T01:50:07.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-24 datetime="2026-04-24T23:35:07.000Z">2026-04-24</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-24 datetime="2026-04-24T23:35:07.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -38,6 +38,236 @@
                   <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
                 </h3>
                 <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/24/llm/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm 0.31</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/llm/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm 0.31
+New GPT-5.5 OpenAI model: llm -m gpt-5.5. #1418
+New option to set the text verbosity level for GPT-5+ OpenAI models: -o verbosity low. Values are low, medium, high.
+New option for setting the image detail level used for image attachments to OpenAI models: -o image_detail low - values are low, high and auto, and GPT-5.4 and 5.5 also accept original.
+Models listed in extra-openai-models.yaml are now also registered as asynchronous. #1395
+Tags: gpt, openai, llm</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/24/the-people-do-not-yearn-for-automation/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">The people do not yearn for automation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/the-people-do-not-yearn-for-automation/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The people do not yearn for automation
+It’s a superb piece of commentary, and something I expect I’ll be thinking about for a long time to come.
+Nilay’s core idea is that people afflicted with “software brain” - who see the world as something to be automated as much as possible, and attempt to model everything in terms of information flows and data - are becoming detached from everyone else.
+[…] software brain has ruled the business world for a long time. AI has just made it easier than ever for more people to make more software than ever before — for every kind of business to automate big chunks of itself with software. It’s everywhere: the absolute cutting edge of advertising and marketing is automation with AI. It’s not being a creative.
+But: not everything is a business. Not everything is a loop! The entire human experience cannot be captured in a database. That’s the limit of software brain. That’s why people hate AI. It flattens them.
+Regular people don’t see the opportunity to write code as an opportunity at all. The people do not yearn for automation. I’m a full-on smart home sicko; the lights and shades and climate controls of my house are automated in dozens of ways. But huge companies like Apple, Google and Amazon have struggled for over a decade now to make regular people care about smart home automation at all. And they just don’t.
+Via John Gruber
+Tags: ai, generative-ai, llms, nilay-patel, ai-ethics</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/24/deepseek-v4/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">DeepSeek V4 - almost on the frontier, a fraction of the price</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/deepseek-v4/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/deepseek-v4-card.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Chinese AI lab DeepSeek&#x27;s last model release was V3.2 (and V3.2 Speciale) last December. They just dropped the first of their hotly anticipated V4 series in the shape of two preview models, DeepSeek-V4-Pro and DeepSeek-V4-Flash.
+
+Both models are 1 million token context Mixture of Experts. Pro is 1.6T total parameters, 49B active. Flash is 284B total, 13B active. They&#x27;re using the standard MIT license.
+
+I think this makes DeepSeek-V4-Pro the new largest open weights model. It&#x27;s larger than Kimi K2.6 (1.1T) and GLM-5.1 (754B) and more than twice the size of DeepSeek V3.2 (685B).
+
+Pro is 865GB on Hugging Face, Flash is 160GB. I&#x27;m hoping that a lightly quantized Flash will run on my 128GB M5 MacBook Pro. It&#x27;s possible the Pro model may run on it if I can stream just the necessary active experts from disk.
+
+For the moment I tried the models out via OpenRouter, using llm-openrouter:
+
+llm install llm-openrouter
+llm openrouter refresh
+llm -m openrouter/deepseek/deepseek-v4-pro &#x27;Generate an SVG of a pelican riding a bicycle&#x27;
+
+
+Here&#x27;s the pelican for DeepSeek-V4-Flash:
+
+
+
+And for DeepSeek-V4-Pro:
+
+
+
+For comparison, take a look at the pelicans I got from DeepSeek V3.2 in December, V3.1 in August, and V3-0324 in March 2025.
+
+So the pelicans are pretty good, but what&#x27;s really notable here is the cost. DeepSeek V4 is a very, very inexpensive model.
+
+This is DeepSeek&#x27;s pricing page. They&#x27;re charging $0.14/million tokens input and $0.28/million tokens output for Flash, and $1.74/million input and $3.48/million output for Pro.
+
+Here&#x27;s a comparison table with the frontier models from Gemini, OpenAI and Anthropic:
+
+
+
+
+
+Model
+Input ($/M)
+Output ($/M)
+
+
+
+
+DeepSeek V4 Flash
+$0.14
+$0.28
+
+
+GPT-5.4 Nano
+$0.20
+$1.25
+
+
+Gemini 3.1 Flash-Lite
+$0.25
+$1.50
+
+
+Gemini 3 Flash Preview
+$0.50
+$3
+
+
+GPT-5.4 Mini
+$0.75
+$4.50
+
+
+Claude Haiku 4.5
+$1
+$5
+
+
+DeepSeek V4 Pro
+$1.74
+$3.48
+
+
+Gemini 3.1 Pro
+$2
+$12
+
+
+GPT-5.4
+$2.50
+$15
+
+
+Claude Sonnet 4.6
+$3
+$15
+
+
+Claude Opus 4.7
+$5
+$25
+
+
+GPT-5.5
+$5
+$30
+
+
+
+
+DeepSeek-V4-Flash is the cheapest of the small models, beating even OpenAI&#x27;s GPT-5.4 Nano. DeepSeek-V4-Pro is the cheapest of the larger frontier models.
+
+This note from the DeepSeek paper helps explain why they can price these models so low - they&#x27;ve focused a great deal on efficiency with this release, especially for longer context prompts:
+
+
+In the scenario of 1M-token context, even DeepSeek-V4-Pro, which has a larger number of activated parameters, attains only 27% of the single-token FLOPs (measured in equivalent FP8 FLOPs) and 10% of the KV cache size relative to DeepSeek-V3.2. Furthermore, DeepSeek-V4-Flash, with its smaller number of activated parameters, pushes efficiency even further: in the 1M-token context setting, it achieves only 10% of the single-token FLOPs and 7% of the KV cache size compared with DeepSeek-V3.2.
+
+
+DeepSeek&#x27;s self-reported benchmarks in their paper show their Pro model competitive with those other frontier models, albeit with this note:
+
+
+Through the expansion of reasoning tokens, DeepSeek-V4-Pro-Max demonstrates superior performance relative to GPT-5.2 and Gemini-3.0-Pro on standard reasoning benchmarks. Nevertheless, its performance falls marginally short of GPT-5.4 and Gemini-3.1-Pro, suggesting a developmental trajectory that trails state-of-the-art frontier models by approximately 3 to 6 months.
+
+
+I&#x27;m keeping an eye on huggingface.co/unsloth/models as I expect the Unsloth team will have a set of quantized versions out pretty soon. It&#x27;s going to be very interesting to see how well that Flash model runs on my own machine.
+Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deepseek, llm-release, openrouter, ai-in-china</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/24/milliseconds/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Millisecond Converter</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/milliseconds/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tool: Millisecond Converter
+LLM reports prompt durations in milliseconds and I got fed up of having to think about how to convert those to seconds and minutes.
+Tags: tools</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/24/weekly/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">It&#x27;s a big one</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/weekly/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>This week&#x27;s edition of my email newsletter (aka content from this blog delivered to your inbox) features 4 pelicans riding bicycles, 1 possum on an e-scooter, up to 5 raccoons with ham radios hiding in crowds, 5 blog posts, 8 links, 3 quotes and a new chapter of my Agentic Engineering Patterns guide.
+Tags: newsletter</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -140,6 +370,155 @@ Total cost is now $30/month: $20 in electricity, $7 in VPS and $3 for the two do
     
 Tags: go, scaling, sqlite, software-architecture, tailscale, bluesky</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/TR5A_sydR1Y"
+                        open
+                      >
+                        <summary class="article-expander__title">Rapid Fire Top AI News This Week</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/TR5A_sydR1Y">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;jsP-eRriC0k"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: The Biggest Leap We&#x27;ve Seen This Year!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;jsP-eRriC0k">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/products-and-platforms/products/gemini/gemini-spring-cleaning-tips/"
+                        open
+                      >
+                        <summary class="article-expander__title">8 Gemini tips for organizing your space (and life)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/gemini/gemini-spring-cleaning-tips/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Spring_Cleaning_ss.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Organize your home and digital space with Gemini. Use AI-powered tips for cleaning schedules, inbox decluttering, seasonal chores.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;16
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;jz0rNhfAKo8"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT 5.5 Arrives, DeepSeek V4 Drops, and the Compute War Intensifies</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;jz0rNhfAKo8">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="long-term-motion-embeddings"
+                        open
+                      >
+                        <summary class="article-expander__title">Learning Long-Term Motion Embeddings for Efficient Kinematics Generation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/long-term-motion-embeddings">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Understanding and predicting motion is a fundamental component of visual intelligence. Although modern video models exhibit strong comprehension of scene dynamics, exploring multiple possible futures through full video synthesis remains prohibitively inefficient. We model scene dynamics orders of magnitude more efficiently by directly operating on a long-term motion embedding that is learned from large-scale trajectories obtained from tracker models. This enables efficient generation of long, realistic motions that fulfill goals specified via text prompts or spatial pokes. To achieve this, we…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -457,6 +836,27 @@ GPT-5.4 will remain available. At half the price of 5.5 this feels like 5.4 is t
 Ethan Mollick has a detailed review of GPT-5.5 where he put it (and GPT-5.5 Pro) through an array of interesting challenges. His verdict: the jagged frontier continues to hold, with GPT-5.5 excellent at some things and challenged by others in a way that remains difficult to predict.
 Tags: ai, openai, generative-ai, chatgpt, llms, llm, llm-pricing, pelican-riding-a-bicycle, llm-reasoning, llm-release, codex-cli, gpt</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Apr/23/llm-openai-via-codex/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm-openai-via-codex 0.1a0</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/23/llm-openai-via-codex/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm-openai-via-codex 0.1a0
+Hijacks your Codex CLI credentials to make API calls with LLM, as described in my post about GPT-5.5.
+Tags: openai, llm, codex-cli</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1180,7 +1580,7 @@ Tags: ai, generative-ai, llms, anthropic, llm-pricing, ai-ethics, coding-agents,
                         data-accordion-key="https://www.youtube.com/shorts/Gl83QXGRfnk"
                         open
                       >
-                        <summary class="article-expander__title">How Much Does YouTube Pay Me? 💰</summary>
+                        <summary class="article-expander__title">How Much Money Do I Make On YouTube? 💰</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Gl83QXGRfnk">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
@@ -2682,39 +3082,6 @@ Tags: ai, generative-ai, local-llms, llms, anthropic, claude, qwen, pelican-ridi
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/16/datasette-io-preview/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette.io news preview</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/16/datasette-io-preview/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/datasette-io-preview.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Tool: datasette.io news preview
-The datasette.io website has a news section built from this news.yaml file in the underlying GitHub repository. The YAML format looks like this:
-- date: 2026-04-15
-  body: |-
-    [Datasette 1.0a27](https://docs.datasette.io/en/latest/changelog.html#a27-2026-04-15) changes how CSRF protection works in a way that simplifies form and API integration, and introduces a new &#x60;RenameTableEvent&#x60; for when a table is renamed by a SQL query.
-- date: 2026-03-18
-  body: |-
-    ...
-
-This format is a little hard to edit, so I finally had Claude build a custom preview UI to make checking for errors have slightly less friction.
-I built it using standard claude.ai and Claude Artifacts, taking advantage of Claude&#x27;s ability to clone GitHub repos and look at their content as part of a regular chat:
-Clone https://github.com/simonw/datasette.io and look at the news.yaml file and how it is rendered on the homepage. Build an artifact I can paste that YAML into which previews what it will look like, and highlights any markdown errors or YAML errors
-
-Tags: vibe-coding, claude, tools, datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2762,7 +3129,7 @@ Tags: vibe-coding, claude, tools, datasette</span>
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_post_header.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Nano Banana 2 now uses your personal context and Google Photos to create images that reflect your unique life.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;17
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2964,183 +3331,11 @@ Principled domain reweighting can substantially improve sample efficiency and do
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-15 datetime="2026-04-15T23:52:35.000Z">2026-04-15</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-15 datetime="2026-04-15T23:52:35.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-15 datetime="2026-04-15T22:03:19.000Z">2026-04-15</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-15 datetime="2026-04-15T22:03:19.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/15/datasette-export-database/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette-export-database 0.3a1</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/15/datasette-export-database/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette-export-database 0.3a1
-This plugin was using the ds_csrftoken cookie as part of a custom signed URL, which needed upgrading now that Datasette 1.0a27 no longer sets that cookie.
-Tags: datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/15/datasette/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette 1.0a27</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/15/datasette/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette 1.0a27
-Two major changes in this new Datasette alpha. I covered the first of those in detail yesterday - Datasette no longer uses Django-style CSRF form tokens, instead using modern browser headers as described by Filippo Valsorda.
-The second big change is that Datasette now fires a new RenameTableEvent any time a table is renamed during a SQLite transaction. This is useful because some plugins (like datasette-comments) attach additional data to table records by name, so a renamed table requires them to react in appropriate ways.
-Here are the rest of the changes in the alpha:
-New actor&#x3D; parameter for datasette.client methods, allowing internal requests to be made as a specific actor. This is particularly useful for writing automated tests. (#2688)
-New Database(is_temp_disk&#x3D;True) option, used internally for the internal database. This helps resolve intermittent database locked errors caused by the internal database being in-memory as opposed to on-disk. (#2683) (#2684)
-The /&lt;database&gt;/&lt;table&gt;/-/upsert API (docs) now rejects rows with null primary key values. (#1936)
-Improved example in the API explorer for the /-/upsert endpoint (docs). (#1936)
-The /&lt;database&gt;.json endpoint now includes an &quot;ok&quot;: true key, for consistency with other JSON API responses.
-call_with_supported_arguments() is now documented as a supported public API. (#2678)
-Tags: annotated-release-notes, datasette, python</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/15/john-gruber/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting John Gruber</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/15/john-gruber/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The real goldmine isn’t that Apple gets a cut of every App Store transaction. It’s that Apple’s platforms have the best apps, and users who are drawn to the best apps are thus drawn to the iPhone, Mac, and iPad. That edge is waning. Not because software on other platforms is getting better, but because third-party software on iPhone, Mac, and iPad is regressing to the mean, to some extent, because fewer developers feel motivated — artistically, financially, or both — to create well-crafted idiomatic native apps exclusively for Apple’s platforms.
-
-— John Gruber
-Tags: apple, john-gruber</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Gemini 3.1 Flash TTS</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/gemini-flash-tts-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Gemini 3.1 Flash TTS
-It&#x27;s presented via the standard Gemini API using gemini-3.1-flash-tts-preview as the model ID, but can only output audio files.
-The prompting guide is surprising, to say the least. Here&#x27;s their example prompt to generate just a few short sentences of audio:
-# AUDIO PROFILE: Jaz R.
-## &quot;The Morning Hype&quot;
-
-## THE SCENE: The London Studio
-It is 10:00 PM in a glass-walled studio overlooking the moonlit London skyline, but inside, it is blindingly bright. The red &quot;ON AIR&quot; tally light is blazing. Jaz is standing up, not sitting, bouncing on the balls of their heels to the rhythm of a thumping backing track. Their hands fly across the faders on a massive mixing desk. It is a chaotic, caffeine-fueled cockpit designed to wake up an entire nation.
-
-### DIRECTOR&#x27;S NOTES
-Style:
-* The &quot;Vocal Smile&quot;: You must hear the grin in the audio. The soft palate is always raised to keep the tone bright, sunny, and explicitly inviting.
-* Dynamics: High projection without shouting. Punchy consonants and elongated vowels on excitement words (e.g., &quot;Beauuutiful morning&quot;).
-
-Pace: Speaks at an energetic pace, keeping up with the fast music.  Speaks with A &quot;bouncing&quot; cadence. High-speed delivery with fluid transitions — no dead air, no gaps.
-
-Accent: Jaz is from Brixton, London
-
-### SAMPLE CONTEXT
-Jaz is the industry standard for Top 40 radio, high-octane event promos, or any script that requires a charismatic Estuary accent and 11/10 infectious energy.
-
-#### TRANSCRIPT
-[excitedly] Yes, massive vibes in the studio! You are locked in and it is absolutely popping off in London right now. If you&#x27;re stuck on the tube, or just sat there pretending to work... stop it. Seriously, I see you.
-[shouting] Turn this up! We&#x27;ve got the project roadmap landing in three, two... let&#x27;s go!
-
-Here&#x27;s what I got using that example prompt:
-
-  
-  Your browser does not support the audio element.
-
-Then I modified it to say &quot;Jaz is from Newcastle&quot; and &quot;... requires a charismatic Newcastle accent&quot; and got this result:
-
-  
-  Your browser does not support the audio element.
-
-Here&#x27;s Exeter, Devon for good measure:
-
-  
-  Your browser does not support the audio element.
-
-I had Gemini 3.1 Pro vibe code this UI for trying it out:
-
-
-
-    
-Tags: google, text-to-speech, tools, ai, prompt-engineering, generative-ai, llms, gemini, llm-release, vibe-coding</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/15/gemini-flash-tts/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Gemini 3.1 Flash TTS</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/15/gemini-flash-tts/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Tool: Gemini 3.1 Flash TTS
-See my notes on Google&#x27;s new Gemini 3.1 Flash TTS text-to-speech model.
-Tags: gemini, google</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3474,7 +3669,7 @@ Tags: gemini, google</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3530,15 +3725,16 @@ Tags: gemini, google</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="efficient-privacy-loss"
+                        data-accordion-key="cram-less"
                         open
                       >
-                        <summary class="article-expander__title">Efficient Privacy Loss Accounting for Subsampling and Random Allocation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/efficient-privacy-loss">
+                        <summary class="article-expander__title">Cram Less to Fit More: Training Data Pruning Improves Memorization of Facts</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/cram-less">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>We consider the privacy amplification properties of a sampling scheme in which a user’s data is used in k steps chosen randomly and uniformly from a sequence (or set) of t steps. This sampling scheme has been recently applied in the context of differentially private optimization (Chua et al., 2024a; Choquette-Choo et al., 2025) and communication-efficient high-dimensional private aggregation (Asi et al., 2025), where it was shown to have utility advantages over the standard Poisson sampling. Theoretical analyses of this sampling scheme (Feldman &amp; Shenfeld, 2025; Dong et al., 2025) lead to…</span>
+                              <span>This paper was accepted at the Workshop on Navigating and Addressing Data Problems for Foundation Models at ICLR 2026.
+Large language models (LLMs) can struggle to memorize factual knowledge in their parameters, often leading to hallucinations and poor performance on knowledge-intensive tasks. In this paper, we formalize fact memorization from an information-theoretic perspective and study how training data distributions affect fact accuracy. We show that fact accuracy is suboptimal (below the capacity limit) whenever the amount of information contained in the training data facts exceeds model…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -3550,16 +3746,15 @@ Tags: gemini, google</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="cram-less"
+                        data-accordion-key="efficient-privacy-loss"
                         open
                       >
-                        <summary class="article-expander__title">Cram Less to Fit More: Training Data Pruning Improves Memorization of Facts</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/cram-less">
+                        <summary class="article-expander__title">Efficient Privacy Loss Accounting for Subsampling and Random Allocation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/efficient-privacy-loss">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>This paper was accepted at the Workshop on Navigating and Addressing Data Problems for Foundation Models at ICLR 2026.
-Large language models (LLMs) can struggle to memorize factual knowledge in their parameters, often leading to hallucinations and poor performance on knowledge-intensive tasks. In this paper, we formalize fact memorization from an information-theoretic perspective and study how training data distributions affect fact accuracy. We show that fact accuracy is suboptimal (below the capacity limit) whenever the amount of information contained in the training data facts exceeds model…</span>
+                              <span>We consider the privacy amplification properties of a sampling scheme in which a user’s data is used in k steps chosen randomly and uniformly from a sequence (or set) of t steps. This sampling scheme has been recently applied in the context of differentially private optimization (Chua et al., 2024a; Choquette-Choo et al., 2025) and communication-efficient high-dimensional private aggregation (Asi et al., 2025), where it was shown to have utility advantages over the standard Poisson sampling. Theoretical analyses of this sampling scheme (Feldman &amp; Shenfeld, 2025; Dong et al., 2025) lead to…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -3594,7 +3789,7 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
                               <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/uploads/changelog-og.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This release introduces improvements to our Agents Window interface as part of Cursor 3.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;21
+                                &ensp;<span class="article-reading-time">(&hairsp;16
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3615,100 +3810,6 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
                             <span class="media-object__text">
                               <span>This release introduces improvements to our Agents Window interface as part of Cursor 3.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;8
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-12 datetime="2026-04-12T14:08:26.000Z">2026-04-12</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-12 datetime="2026-04-12T14:08:26.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/ByZsafOOKoM"
-                        open
-                      >
-                        <summary class="article-expander__title">ANOTHER Big AI Leak?!</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ByZsafOOKoM">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-11 datetime="2026-04-11T13:06:37.000Z">2026-04-11</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-11 datetime="2026-04-11T13:06:37.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/K_jquzUz5eA"
-                        open
-                      >
-                        <summary class="article-expander__title">Is Claude Mythos A Marketing Ploy?</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/K_jquzUz5eA">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4290,40 +4391,6 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Explore the official terms and conditions for the OpenAI Full Fan Mode Contest, including eligibility, entry steps, judging criteria, and prize details. Learn how to participate, submit your entry on Instagram, and win IPL match tickets.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="neighbor"
-                        open
-                      >
-                        <summary class="article-expander__title">A Theoretical Framework for Acoustic Neighbor Embeddings</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/neighbor">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>This paper provides a theoretical framework for interpreting acoustic neighbor embeddings, which are representations of the phonetic content of variable-width audio or text in a fixed-dimensional embedding space. A probabilistic interpretation of the distances between embeddings is proposed, based on a general quantitative definition of phonetic similarity between words. This provides us a framework for understanding and applying the embeddings in a principled manner. Theoretical and empirical evidence to support an approximation of uniform cluster-wise isotropy are shown, which allows us to…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -5299,148 +5366,12 @@ to balance cost and latency.</span>
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Blog</button>
-                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/real-time-rl-for-composer"
-                        open
-                      >
-                        <summary class="article-expander__title">Improving Composer through real-time RL</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/real-time-rl-for-composer">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/blog-improving-composer-online-rl-anim-20260324-064314-1200-optim.gif" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Run cloud agents in your own infrastructure</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-03-25 datetime="2026-03-25T16:46:20.000Z">2026-03-25</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-03-25 datetime="2026-03-25T16:46:20.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Google DeepMind News</button>
-                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/protecting-people-from-harmful-manipulation/"
-                        open
-                      >
-                        <summary class="article-expander__title">Protecting people from harmful manipulation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/protecting-people-from-harmful-manipulation/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://lh3.googleusercontent.com/IH7SOCSd4lrXu8YVkyRw45zg4Jc__pHM0SJlbDssVL3_5XjYGVYE1jt8DCiPgM9JGdwmdO_gYnQ4-QIo2l9Rz04l7KK4jAbsdAyWLriTV-iOC2_Y3bI&#x3D;w1200-h630-n-nu-rw" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Google DeepMind researches AI&#x27;s harmful manipulation risks across areas like finance and health, leading to new safety measures.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/"
-                        open
-                      >
-                        <summary class="article-expander__title">Lyria 3 Pro: Create longer tracks in more</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria-3-Pro_thumbnail.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI</button>
-                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/"
-                        open
-                      >
-                        <summary class="article-expander__title">Build with Lyria 3, our newest music generation model</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/BuildWithLyria3_social.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Lyria 3 is now available in paid preview through the Gemini API and for testing in Google AI Studio.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24869314246">
-        <time id="build-timestamp" datetime="2026-04-24T02:36:07.362Z">2026-04-24T02:36:07.362Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/24920391031">
+        <time id="build-timestamp" datetime="2026-04-25T02:26:13.131Z">2026-04-25T02:26:13.131Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
