@@ -1,10 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-04-27T02:43:38.771Z</id>
+    <id>urn:2026-04-28T02:51:18.579Z</id>
     <title>osmos::feed</title>
-    <updated>2026-04-27T02:43:38.771Z</updated>
+    <updated>2026-04-28T02:51:18.579Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[microsoft/VibeVoice]]></title>
+        <id>https://simonwillison.net/2026/Apr/27/vibevoice/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/27/vibevoice/#atom-everything"/>
+        <updated>2026-04-27T23:46:56.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/microsoft/VibeVoice">microsoft/VibeVoice</a></strong></p>
+VibeVoice is Microsoft's Whisper-style audio model for speech-to-text, MIT licensed and with speaker diarization built into the model.</p>
+<p>Microsoft released it on January 21st, 2026 but I hadn't tried it until today. Here's a one-liner to run it on a Mac with <code>uv</code>, <a href="https://github.com/Blaizzy/mlx-audio">mlx-audio</a> (by Prince Canuma) and the 5.71GB <a href="https://huggingface.co/mlx-community/VibeVoice-ASR-4bit">mlx-community/VibeVoice-ASR-4bit</a> MLX conversion of the <a href="https://huggingface.co/microsoft/VibeVoice-ASR/tree/main">17.3GB VibeVoice-ASR</a> model, in this case against a downloaded copy of my recent <a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">podcast appearance with Lenny Rachitsky</a>:</p>
+<pre><code>uv run --with mlx-audio mlx_audio.stt.generate \
+  --model mlx-community/VibeVoice-ASR-4bit \
+  --audio lenny.mp3 --output-path lenny \
+  --format json --verbose --max-tokens 32768
+</code></pre>
+<p><img alt="Screenshot of a macOS terminal running an mlx-audio speech-to-text command using the VibeVoice-ASR-4bit model on lenny.mp3, showing download progress, a warning that audio duration (99.8 min) exceeds the 59 min maximum so it's trimming, encoding/prefilling/generating progress bars, then a Transcription section with JSON segments of speakers discussing AI coding agents, followed by stats: Processing time 524.79 seconds, Prompt 26615 tokens at 50.718 tokens-per-sec, Generation 20248 tokens at 38.585 tokens-per-sec, Peak memory 30.44 GB." src="https://static.simonwillison.net/static/2026/vibevoice-terminal.jpg" /></p>
+<p>The tool reported back:</p>
+<pre><code>Processing time: 524.79 seconds
+Prompt: 26615 tokens, 50.718 tokens-per-sec
+Generation: 20248 tokens, 38.585 tokens-per-sec
+Peak memory: 30.44 GB
+</code></pre>
+<p>So that's 8 minutes 45 seconds for an hour of audio (running on a 128GB M5 Max MacBook Pro).</p>
+<p>I've tested it against <code>.wav</code> and <code>.mp3</code> files and they both worked fine.</p>
+<p>If you omit <code>--max-tokens</code> it defaults to 8192, which is enough for about 25 minutes of audio. I discovered that through trial-and-error and quadrupled it to guarantee I'd get the full hour.</p>
+<p>That command reported using 30.44GB of RAM at peak, but in Activity Monitor I observed 61.5GB of usage during the prefill stage and around 18GB during the generating phase.</p>
+<p>Here's <a href="https://gist.github.com/simonw/d2c716c008b3ba395785f865c6387b6f">the resulting JSON</a>. The key structure looks like this:</p>
+<pre><code>{
+  "text": "And an open question for me is how many other knowledge work fields are actually prone to these agent loops?",
+  "start": 13.85,
+  "end": 19.5,
+  "duration": 5.65,
+  "speaker_id": 0
+},
+{
+  "text": "Now that we have this power, people almost underestimate what they can do with it.",
+  "start": 19.5,
+  "end": 22.78,
+  "duration": 3.280000000000001,
+  "speaker_id": 1
+},
+{
+  "text": "Today, probably 95% of the code that I produce, I didn't type it myself. I write so much of my code on my phone. It's wild.",
+  "start": 22.78,
+  "end": 30.0,
+  "duration": 7.219999999999999,
+  "speaker_id": 0
+}
+</code></pre>
+<p>Since that's an array of objects we can <a href="https://lite.datasette.io/?json=https://gist.github.com/simonw/d2c716c008b3ba395785f865c6387b6f#/data/raw?_facet=speaker_id">open it in Datasette Lite</a>, making it easier to browse.</p>
+<p>Amusingly that Datasette Lite view shows three speakers - it identified Lenny and me for the conversation, and then a separate Lenny for the voice he used for the additional intro and the sponsor reads!</p>
+<p>VibeVoice can only handle up to an hour of audio, so running the above command transcribed just the first hour of the podcast. To transcribe more than that you'd need to split the audio, ideally with a minute or so of overlap so you can avoid errors from partially transcribed words at the split point. You'd also need to then line up the identified speaker IDs across the multiple segments.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/microsoft">microsoft</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/datasette-lite">datasette-lite</a>, <a href="https://simonwillison.net/tags/uv">uv</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a>, <a href="https://simonwillison.net/tags/prince-canuma">prince-canuma</a>, <a href="https://simonwillison.net/tags/speech-to-text">speech-to-text</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Tracking the history of the now-deceased OpenAI Microsoft AGI clause]]></title>
+        <id>https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/#atom-everything"/>
+        <updated>2026-04-27T18:38:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>For many years, Microsoft and OpenAI's relationship has included a weird clause saying that, should AGI be achieved, Microsoft's commercial IP rights to OpenAI's technology would be null and void. That clause appeared to end today. I decided to try and track its expression over time on <a href="https://openai.com/">openai.com</a>.</p>
+<p>OpenAI, July 22nd 2019 in <a href="https://openai.com/index/microsoft-invests-in-and-partners-with-openai/">Microsoft invests in and partners with OpenAI to support us building beneficial AGI</a> (emphasis mine):</p>
+<blockquote>
+<p>OpenAI is producing a sequence of increasingly powerful AI technologies, which requires a lot of capital for computational power. The most obvious way to cover costs is to build a product, but that would mean changing our focus. Instead, we intend to license <strong>some of our pre-AGI technologies</strong>, with Microsoft becoming our preferred partner for commercializing them.</p>
+</blockquote>
+<p>But what <em>is</em> AGI? The <a href="https://openai.com/charter/">OpenAI Charter</a> was first published in April 2018 and has remained unchanged at least since this <a href="https://web.archive.org/web/20190311213352/https://openai.com/charter/">March 11th 2019 archive.org capture</a>:</p>
+<blockquote>
+<p>OpenAI’s mission is to ensure that artificial general intelligence (AGI)—by which we mean highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity.</p>
+</blockquote>
+<p>Here's the problem: if you're going to sign an agreement with Microsoft that is dependent on knowing when "AGI" has been achieved, you need something a little more concrete.</p>
+<p>In December 2024 <a href="https://www.theinformation.com/articles/microsoft-and-openai-wrangle-over-terms-of-their-blockbuster-partnership">The Information reported the details</a> (summarized here outside of their paywall <a href="https://techcrunch.com/2024/12/26/microsoft-and-openai-have-a-financial-definition-of-agi-report/">by TechCrunch</a>):</p>
+<blockquote>
+<p>Last year’s agreement between Microsoft and OpenAI, which hasn’t been disclosed, said AGI would be achieved only when OpenAI has developed systems that have the ability to generate the maximum total profits to which its earliest investors, including Microsoft, are entitled, according to documents OpenAI distributed to investors. Those profits total about $100 billion, the documents showed.</p>
+</blockquote>
+<p>So AGI is now whenever OpenAI's systems are capable of generating $100 billion in profit?</p>
+<p>In October 2025 the process changed to being judged by an "independent expert panel". In <a href="https://openai.com/index/next-chapter-of-microsoft-openai-partnership/">The next chapter of the Microsoft–OpenAI partnership</a>:</p>
+<blockquote>
+<p>The agreement preserves key elements that have fueled this successful partnership—meaning OpenAI remains Microsoft’s frontier model partner and Microsoft continues to have exclusive IP rights and Azure API exclusivity until Artificial General Intelligence (AGI). [...]</p>
+<p>Once AGI is declared by OpenAI, that declaration will now be verified by an independent expert panel. [...]</p>
+<p>Microsoft’s IP rights to research, defined as the confidential methods used in the development of models and systems, will remain until either the expert panel verifies AGI or through 2030, whichever is first.</p>
+</blockquote>
+<p>OpenAI on February 27th, 2026 in <a href="https://openai.com/index/continuing-microsoft-partnership/">Joint Statement from OpenAI and Microsoft</a>:</p>
+<blockquote>
+<p><strong>AGI definition and processes are unchanged</strong>. The contractual definition of AGI and the process for determining if it has been achieved remains the same.</p>
+</blockquote>
+<p>OpenAI today, April 27th 2026 in <a href="https://openai.com/index/next-phase-of-microsoft-partnership/">The next phase of the Microsoft OpenAI partnership</a> (emphasis mine):</p>
+<blockquote>
+<ul>
+<li>Microsoft will continue to have a license to OpenAI IP for models and products through 2032.  Microsoft’s license will now be non-exclusive.</li>
+<li>Microsoft will no longer pay a revenue share to OpenAI.</li>
+<li>Revenue share payments from OpenAI to Microsoft continue through 2030, <strong>independent of OpenAI’s technology progress</strong>, at the same percentage but subject to a total cap.</li>
+</ul>
+</blockquote>
+<p>As far as I can tell "independent of OpenAI’s technology progress" is a declaration that the AGI clause is now dead. Here's The Verge coming to the same conclusion: <a href="https://www.theverge.com/ai-artificial-intelligence/918981/openai-microsoft-renegotiate-contract">The AGI clause is dead</a>.</p>
+<p>My all-time favorite commentary on OpenAI's approach to AGI remains this 2023 hypothetical <a href="https://www.bloomberg.com/opinion/articles/2023-11-20/who-controls-openai">by Matt Levine</a>:</p>
+<blockquote>
+<p>And the investors wailed and gnashed their teeth but it’s true, that is what they agreed to, and they had no legal recourse. And OpenAI’s new CEO, and its nonprofit board, cut them a check for their capped return and said “bye” and went back to running OpenAI for the benefit of humanity. It turned out that a benign, carefully governed artificial superintelligence is really good for humanity, and OpenAI quickly solved all of humanity’s problems and ushered in an age of peace and abundance in which nobody wanted for anything or needed any Microsoft products. And capitalism came to an end.</p>
+</blockquote>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/computer-history">computer-history</a>, <a href="https://simonwillison.net/tags/microsoft">microsoft</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Speech translation in Google Meet is now rolling out to mobile devices]]></title>
+        <id>https://simonwillison.net/2026/Apr/27/speech-translation-in-google-meet-is-now-rolling-out-to-mobile-d/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Apr/27/speech-translation-in-google-meet-is-now-rolling-out-to-mobile-d/#atom-everything"/>
+        <updated>2026-04-27T17:37:47.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://workspaceupdates.googleblog.com/2026/04/speech-translation-in-google-meet-is-now-rolling-out-to-mobile-devices.html">Speech translation in Google Meet is now rolling out to mobile devices</a></strong></p>
+I just encountered this feature via a "try this out now" prompt in a Google Meet meeting. It kind-of worked!</p>
+<p>This is Google's implementation of the ultimate sci-fi translation app, where two people can talk to each other in two separate languages and Meet translates from one to the other and - with a short delay - repeats the text in your preferred language, with a rough imitation of the original speaker's voice.</p>
+<p>It can only handle English, Spanish, French, German, Portuguese, and Italian at the moment. It's also still very alpha - I ran it successfully between two laptops running web browsers, but then when I tried between an iPhone and an iPad it didn't seem to work.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/google">google</a>, <a href="https://simonwillison.net/tags/translation">translation</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI available at FedRAMP Moderate]]></title>
+        <id>https://openai.com/index/openai-available-at-fedramp-moderate</id>
+        <link href="https://openai.com/index/openai-available-at-fedramp-moderate"/>
+        <updated>2026-04-27T14:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI is available at FedRAMP Moderate authorization for ChatGPT Enterprise and the OpenAI API, enabling secure AI adoption for U.S. federal agencies.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Join the new AI Agents Vibe Coding Course from Google and Kaggle]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-genai-intensive-course-vibe-coding-june-2026/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-genai-intensive-course-vibe-coding-june-2026/"/>
+        <updated>2026-04-27T13:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Google is bringing back its 5-Day AI Agents Intensive Course with Kaggle and registration is open.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT Images 2.0 Is Actually Crazy]]></title>
+        <id>https://www.youtube.com/shorts/5TiuGoLzAwE</id>
+        <link href="https://www.youtube.com/shorts/5TiuGoLzAwE"/>
+        <updated>2026-04-27T12:03:28.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Announcing our partnership with the Republic of Korea]]></title>
+        <id>https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/</id>
+        <link href="https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/"/>
+        <updated>2026-04-27T07:00:06.000Z</updated>
+        <summary type="html"><![CDATA[Google DeepMind and Korea partner to accelerate scientific breakthroughs using frontier AI models]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The next phase of the Microsoft OpenAI partnership]]></title>
+        <id>https://openai.com/index/next-phase-of-microsoft-partnership</id>
+        <link href="https://openai.com/index/next-phase-of-microsoft-partnership"/>
+        <updated>2026-04-27T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI and Microsoft announce an amended agreement that simplifies the partnership, adds long-term clarity, and supports continued AI innovation at scale.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[An open-source spec for orchestration: Symphony]]></title>
+        <id>https://openai.com/index/open-source-codex-orchestration-symphony</id>
+        <link href="https://openai.com/index/open-source-codex-orchestration-symphony"/>
+        <updated>2026-04-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how Symphony, an open-source spec for Codex orchestration, turns issue trackers into always-on agent systems—boosting engineering output and reducing context switching.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Choco automates food distribution with AI agents]]></title>
+        <id>https://openai.com/index/choco</id>
+        <link href="https://openai.com/index/choco"/>
+        <updated>2026-04-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How Choco used OpenAI APIs to streamline food distribution, boost productivity, and unlock growth—an in-depth customer story on real-world AI impact.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Our principles]]></title>
         <id>https://openai.com/index/our-principles</id>
@@ -16,7 +208,7 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The Most Slept On Claude Feature]]></title>
+        <title type="html"><![CDATA[The Most Underrated Claude Feature Right Now]]></title>
         <id>https://www.youtube.com/shorts/TRvGr1x7h5w</id>
         <link href="https://www.youtube.com/shorts/TRvGr1x7h5w"/>
         <updated>2026-04-26T13:56:30.000Z</updated>
@@ -655,31 +847,11 @@ llm -m openai-codex/gpt-5.5 <span class="pl-s"><span class="pl-pds">'</span>Gene
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Top 10 uses for Codex at work]]></title>
-        <id>https://openai.com/academy/top-10-use-cases-codex-for-work</id>
-        <link href="https://openai.com/academy/top-10-use-cases-codex-for-work"/>
+        <title type="html"><![CDATA[Working with Codex]]></title>
+        <id>https://openai.com/academy/working-with-codex</id>
+        <link href="https://openai.com/academy/working-with-codex"/>
         <updated>2026-04-23T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore 10 practical Codex use cases to automate tasks, create deliverables, and turn real inputs into outputs across tools, files, and workflows.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How to get started with Codex]]></title>
-        <id>https://openai.com/academy/codex-how-to-start</id>
-        <link href="https://openai.com/academy/codex-how-to-start"/>
-        <updated>2026-04-23T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to get started with Codex by setting up projects, creating threads, and completing your first tasks with step-by-step guidance.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[What is Codex?]]></title>
-        <id>https://openai.com/academy/what-is-codex</id>
-        <link href="https://openai.com/academy/what-is-codex"/>
-        <updated>2026-04-23T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how Codex helps you go beyond chat by automating tasks, connecting tools, and producing real outputs like docs and dashboards.]]></summary>
+        <summary type="html"><![CDATA[Learn how to set up your Codex workspace, create threads and projects, manage files, and start completing tasks with step-by-step guidance.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -695,21 +867,11 @@ llm -m openai-codex/gpt-5.5 <span class="pl-s"><span class="pl-pds">'</span>Gene
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Codex settings]]></title>
-        <id>https://openai.com/academy/codex-settings</id>
-        <link href="https://openai.com/academy/codex-settings"/>
+        <title type="html"><![CDATA[How to get started with Codex]]></title>
+        <id>https://openai.com/academy/codex-how-to-start</id>
+        <link href="https://openai.com/academy/codex-how-to-start"/>
         <updated>2026-04-23T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to configure Codex settings, including personalization, detail level, and permissions, to run tasks smoothly and customize your workflow.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Working with Codex]]></title>
-        <id>https://openai.com/academy/working-with-codex</id>
-        <link href="https://openai.com/academy/working-with-codex"/>
-        <updated>2026-04-23T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to set up your Codex workspace, create threads and projects, manage files, and start completing tasks with step-by-step guidance.]]></summary>
+        <summary type="html"><![CDATA[Learn how to get started with Codex by setting up projects, creating threads, and completing your first tasks with step-by-step guidance.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -720,6 +882,36 @@ llm -m openai-codex/gpt-5.5 <span class="pl-s"><span class="pl-pds">'</span>Gene
         <link href="https://openai.com/academy/codex-plugins-and-skills"/>
         <updated>2026-04-23T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn how to use Codex plugins and skills to connect tools, access data, and follow repeatable workflows to automate tasks and improve results.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Codex settings]]></title>
+        <id>https://openai.com/academy/codex-settings</id>
+        <link href="https://openai.com/academy/codex-settings"/>
+        <updated>2026-04-23T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to configure Codex settings, including personalization, detail level, and permissions, to run tasks smoothly and customize your workflow.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Top 10 uses for Codex at work]]></title>
+        <id>https://openai.com/academy/top-10-use-cases-codex-for-work</id>
+        <link href="https://openai.com/academy/top-10-use-cases-codex-for-work"/>
+        <updated>2026-04-23T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore 10 practical Codex use cases to automate tasks, create deliverables, and turn real inputs into outputs across tools, files, and workflows.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[What is Codex?]]></title>
+        <id>https://openai.com/academy/what-is-codex</id>
+        <link href="https://openai.com/academy/what-is-codex"/>
+        <updated>2026-04-23T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how Codex helps you go beyond chat by automating tasks, connecting tools, and producing real outputs like docs and dashboards.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -845,6 +1037,16 @@ Big claims from Qwen about their latest open weight model:</p>
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Introducing workspace agents in ChatGPT]]></title>
+        <id>https://openai.com/index/introducing-workspace-agents-in-chatgpt</id>
+        <link href="https://openai.com/index/introducing-workspace-agents-in-chatgpt"/>
+        <updated>2026-04-22T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Workspace agents in ChatGPT are Codex-powered agents that automate complex workflows, run in the cloud, and help teams scale work across tools securely.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Speeding up agentic workflows with WebSockets in the Responses API]]></title>
         <id>https://openai.com/index/speeding-up-agentic-workflows-with-websockets</id>
         <link href="https://openai.com/index/speeding-up-agentic-workflows-with-websockets"/>
@@ -860,16 +1062,6 @@ Big claims from Qwen about their latest open weight model:</p>
         <link href="https://openai.com/academy/workspace-agents"/>
         <updated>2026-04-22T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn how to build, use, and scale workspace agents in ChatGPT to automate repeatable workflows, connect tools, and streamline team operations.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing workspace agents in ChatGPT]]></title>
-        <id>https://openai.com/index/introducing-workspace-agents-in-chatgpt</id>
-        <link href="https://openai.com/index/introducing-workspace-agents-in-chatgpt"/>
-        <updated>2026-04-22T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Workspace agents in ChatGPT are Codex-powered agents that automate complex workflows, run in the cloud, and help teams scale work across tools securely.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1111,7 +1303,7 @@ I firmly approve of Steve Cosman's efforts to pollute the training set of pelica
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Canva's AI Features Got A MAJOR Upgrade]]></title>
+        <title type="html"><![CDATA[Canva AI Changes Everything]]></title>
         <id>https://www.youtube.com/shorts/z5sL3nXPsss</id>
         <link href="https://www.youtube.com/shorts/z5sL3nXPsss"/>
         <updated>2026-04-21T12:51:48.000Z</updated>
@@ -1171,7 +1363,7 @@ I firmly approve of Steve Cosman's efforts to pollute the training set of pelica
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Claude's Opus 4.7 Review]]></title>
+        <title type="html"><![CDATA[Claude's Opus 4.7: My Honest Review]]></title>
         <id>https://www.youtube.com/shorts/0L-OsXGIJnc</id>
         <link href="https://www.youtube.com/shorts/0L-OsXGIJnc"/>
         <updated>2026-04-20T14:14:51.000Z</updated>
@@ -1379,132 +1571,6 @@ Matt Webb thinks <strong>headless</strong> services are about to become much mor
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Claude system prompts as a git timeline]]></title>
-        <id>https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything"/>
-        <updated>2026-04-18T12:25:00.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/extract-system-prompts#readme">Claude system prompts as a git timeline</a></p>
-    <p>Anthropic <a href="https://platform.claude.com/docs/en/release-notes/system-prompts">publish the system prompts</a> for Claude chat and make that page <a href="https://platform.claude.com/docs/en/release-notes/system-prompts.md">available as Markdown</a>. I had Claude Code turn that page into separate files for each model and model family with fake git commit dates to enable browsing the changes via the GitHub commit view.</p>
-<p>I used this to write my own <a href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/">detailed notes on the changes between Opus 4.6 and 4.7</a>.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/system-prompts">system-prompts</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Adding a new content type to my blog-to-newsletter tool]]></title>
-        <id>https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything</id>
-        <link href="https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything"/>
-        <updated>2026-04-18T03:15:36.000Z</updated>
-        <summary type="html"><![CDATA[<p><em><a href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic Engineering Patterns</a> &gt;</em></p>
-    <p>Here's an example of a deceptively short prompt that got a quite a lot of work done in a single shot.</p>
-<p>First, some background. I send out a <a href="https://simonw.substack.com/">free Substack newsletter</a> around once a week containing content copied-and-pasted from my blog. I'm effectively using Substack as a lightweight way to allow people to subscribe to my blog via email.</p>
-<p>I generate the newsletter with my <a href="https://tools.simonwillison.net/blog-to-newsletter">blog-to-newsletter</a> tool - an HTML and JavaScript app that fetches my latest content from <a href="https://datasette.simonwillison.net/">this Datasette instance</a> and formats it as rich text HTML, which I can then copy to my clipboard and paste into the Substack editor. Here's a <a href="https://simonwillison.net/2023/Apr/4/substack-observable/">detailed explanation of how that works</a>.</p>
-<p>I recently <a href="https://simonwillison.net/2026/Feb/20/beats/">added a new type of content</a> to my blog to capture content that I post elsewhere, which I called "beats". These include things like releases of my open source projects, new tools that I've built, museums that I've visited (from <a href="https://www.niche-museums.com/">niche-museums.com</a>) and other external content.</p>
-<p>I wanted to include these in the generated newsletter. Here's the prompt I ran against the <a href="https://github.com/simonw/tools">simonw/tools</a> repository that hosts my <code>blog-to-newsletter</code> tool, using <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>.</p>
-<p><pre>Clone simonw/simonwillisonblog from github to /tmp for reference
-
-Update blog-to-newsletter.html to include beats that have descriptions - similar to how the Atom everything feed on the blog works
-
-Run it with python -m http.server and use `uvx rodney --help` to test it - compare what shows up in the newsletter with what&#x27;s on the homepage of https://simonwillison.net</pre>
-This got me the <a href="https://github.com/simonw/tools/pull/268">exact solution</a> I needed. Let's break down the prompt.</p>
-<blockquote>
-<p><code>Clone simonw/simonwillisonblog from github to /tmp for reference</code></p>
-</blockquote>
-<p>I use this pattern a lot. Coding agents can clone code from GitHub, and the best way to explain a problem is often to have them look at relevant code. By telling them to clone to <code>/tmp</code> I ensure they don't accidentally end up including that reference code in their own commit later on.</p>
-<p>The <a href="https://github.com/simonw/simonwillisonblog">simonw/simonwillisonblog</a> repository contains the source code for my Django-powered <a href="https://simonwillison.net/">simonwillison.net</a> blog. This includes the logic and database schema for my new "beats" feature.</p>
-<blockquote>
-<p><code>Update blog-to-newsletter.html to include beats that have descriptions - similar to how the Atom everything feed on the blog works</code></p>
-</blockquote>
-<p>Referencing <code>blog-to-newsletter.html</code> is all I need here to tell Claude which of the 200+ HTML apps in that <code>simonw/tools</code> repo it should be modifying.</p>
-<p>Beats are automatically imported from multiple sources. Often they aren't very interesting - a dot-release bug fix for one of my smaller open source projects, for example.</p>
-<p>My blog includes a way for me to add additional descriptions to any beat, which provides extra commentary but also marks that beat as being more interesting than those that I haven't annotated in some way.</p>
-<p>I already use this as a distinction to decide which beats end up in my site's <a href="https://simonwillison.net/about/#atom">Atom feed</a>. Telling Claude to imitate that saves me from having to describe the logic in any extra detail.</p>
-<blockquote>
-<p><code>Run it with python -m http.server and use `uvx rodney --help` to test it - compare what shows up in the newsletter with what's on the homepage of https://simonwillison.net</code></p>
-</blockquote>
-<p>Coding agents always work best if they have some kind of validation mechanism they can use to test their own work.</p>
-<p>In this case I wanted Claude Code to actively check that the changes it made to my tool would correctly fetch and display the latest data.</p>
-<p>I reminded it to use <code>python -m http.server</code> as a static server because I've had issues in the past with applications that fetch data and break when served as a file from disk instead of a localhost server. In this particular case that may not have been necessary, but my prompting muscle memory has <code>python -m http.server</code> baked in at this point!</p>
-<p>I described the <code>uvx rodney --help</code> trick in <a href="https://simonwillison.net/guides/agentic-engineering-patterns/agentic-manual-testing/#using-browser-automation-for-web-uis">the agentic manual testing chapter</a>. Rodney is browser automation software that can be installed using <code>uvx</code>, and that has <code>--help</code> output designed to teach an agent everything it needs to know in order to use the tool.</p>
-<p>I figured that telling Claude to compare the results in the newsletter to the content of my blog's homepage would be enough for it to confidently verify that the new changes were working correctly, since I had recently posted content that matched the new requirements.</p>
-<p>You can see <a href="https://claude.ai/code/session_01BibYBuvJi2qNUyCYGaY3Ss">the full session here</a>, or if that doesn't work I have an <a href="https://gisthost.github.io/?e906e938100ab42f4d6a932505219324/page-001.html#msg-2026-04-18T00-13-57-081Z">alternative transcript</a> showing all of the individual tool calls.</p>
-<p>The <a href="https://github.com/simonw/tools/pull/268">resulting PR</a> made exactly the right change. It added an additional UNION clause to the SQL query that fetched the blog's content, filtering out draft beats and beats that have nothing in their <code>note</code> column:</p>
-<p><div class="codehilite"><pre><span></span><code><span class="p">...</span>
-<span class="k">union</span><span class="w"> </span><span class="k">all</span>
-<span class="k">select</span>
-<span class="w">  </span><span class="n">id</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;beat&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">type</span><span class="p">,</span>
-<span class="w">  </span><span class="n">title</span><span class="p">,</span>
-<span class="w">  </span><span class="n">created</span><span class="p">,</span>
-<span class="w">  </span><span class="n">slug</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;No HTML&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">html</span><span class="p">,</span>
-<span class="w">  </span><span class="n">json_object</span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="n">created</span><span class="p">),</span>
-<span class="w">    </span><span class="s1">&#39;beat_type&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">beat_type</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;url&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">url</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;commentary&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">commentary</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;note&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">note</span>
-<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">json</span><span class="p">,</span>
-<span class="w">  </span><span class="n">url</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">external_url</span>
-<span class="k">from</span><span class="w"> </span><span class="n">blog_beat</span>
-<span class="k">where</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">note</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">is_draft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-<span class="k">union</span><span class="w"> </span><span class="k">all</span>
-<span class="p">...</span>
-</code></pre></div>
-And it figured out a mapping of beat types to their formal names, presumably derived from the <a href="https://github.com/simonw/simonwillisonblog/blob/2e9d7ebe64da799b3927e61b4f85d98f7e9bc9aa/blog/models.py#L545-L551">Django ORM definition</a> that it read while it was exploring the reference codebase:
-<div class="codehilite"><pre><span></span><code>const beatTypeDisplay = {
-  release: &#39;Release&#39;,
-  til: &#39;TIL&#39;,
-  til_update: &#39;TIL updated&#39;,
-  research: &#39;Research&#39;,
-  tool: &#39;Tool&#39;,
-  museum: &#39;Museum&#39;
-};
-</code></pre></div>
-Telling agents to use another codebase as reference is a powerful shortcut for communicating complex concepts with minimal additional information needed in the prompt.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/github">github</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Join us at PyCon US 2026 in Long Beach - we have new AI and security tracks this year]]></title>
-        <id>https://simonwillison.net/2026/Apr/17/pycon-us-2026/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/17/pycon-us-2026/#atom-everything"/>
-        <updated>2026-04-17T23:59:03.000Z</updated>
-        <summary type="html"><![CDATA[<p>This year's <a href="https://us.pycon.org/2026/">PyCon US</a> is coming up next month from May 13th to May 19th, with the core conference talks from Friday 15th to Sunday 17th and tutorial and sprint days either side. It's in Long Beach, California this year, the first time PyCon US has come to the West Coast since Portland, Oregon in 2017 and the first time in California since Santa Clara in 2013.</p>
-<p>If you're based in California this is a great opportunity to catch up with the Python community, meet a whole lot of interesting people and learn a ton of interesting things.</p>
-<p>In addition to regular PyCon programming we have two new dedicated tracks at the conference this year: an <a href="https://us.pycon.org/2026/tracks/ai/">AI track</a> on Friday and a <a href="https://us.pycon.org/2026/tracks/security/">Security track</a> on Saturday.</p>
-<p>The AI program was put together by track chairs Silona Bonewald (CitableAI) and Zac Hatfield-Dodds (Anthropic). I'll be an in-the-room chair this year, introducing speakers and helping everything run as smoothly as possible.</p>
-<p>Here's <a href="https://us.pycon.org/2026/schedule/talks/#May15">the AI track schedule</a> in full:</p>
-<ul>
-<li>11:00: <a href="https://us.pycon.org/2026/schedule/presentation/105/">AI-Assisted Contributions and Maintainer Load</a> - Paolo Melchiorre</li>
-<li>11:45: <a href="https://us.pycon.org/2026/schedule/presentation/66/">AI-Powered Python Education : Towards Adaptive and Inclusive Learning</a> - Sonny Mupfuni</li>
-<li>12:30: <a href="https://us.pycon.org/2026/schedule/presentation/23/">Making African Languages Visible: A Python-Based Guide to Low-Resource Language ID</a> - Gift Ojeabulu</li>
-<li>2:00: <a href="https://us.pycon.org/2026/schedule/presentation/138/">Running Large Language Models on Laptops: Practical Quantization Techniques in Python</a> - Aayush Kumar JVS</li>
-<li>2:45: <a href="https://us.pycon.org/2026/schedule/presentation/126/">Distributing AI with Python in the Browser: Edge Inference and Flexibility Without Infrastructure</a> - Fabio Pliger</li>
-<li>3:30: <a href="https://us.pycon.org/2026/schedule/presentation/110/">Don't Block the Loop: Python Async Patterns for AI Agents</a> - Aditya Mehra</li>
-<li>4:30: <a href="https://us.pycon.org/2026/schedule/presentation/81/">What Python Developers Need to Know About Hardware: A Practical Guide to GPU Memory, Kernel Scheduling, and Execution Models</a> - Santosh Appachu Devanira Poovaiah</li>
-<li>5:15: <a href="https://us.pycon.org/2026/schedule/presentation/101/">How to Build Your First Real-Time Voice Agent in Python (Without Losing Your Mind)</a> - Camila Hinojosa Añez, Elizabeth Fuentes</li>
-</ul>
-<p>(And here's <a href="https://gisthost.github.io/?dab27f61d85eb98f60db5991aa21ec89">how I scraped that as a Markdown list</a> from the schedule page using Claude Code and <a href="https://github.com/simonw/rodney">Rodney</a>.)</p>
-<h4 id="you-should-come-to-pycon-">You should come to PyCon US!</h4>
-<p>I've been going to PyCon for over twenty years now - I first went <a href="https://simonwillison.net/2005/Mar/28/pycon/">back in 2005</a>. It's one of my all-time favourite conference series. Even as it's grown to more than 2,000 attendees PyCon US has remained a heavily community-focused conference - it's the least <em>corporate</em> feeling large event I've ever attended.</p>
-<p>The talks are always great, but it's the add-ons around the talks that really make it work for me. The <a href="https://us.pycon.org/2026/events/lightning-talks/">lightning talks</a> slots are some of the most heavily attended sessions. The PyLadies auction is always deeply entertaining. The sprints are an incredible opportunity to contribute directly to projects that you use, coached by their maintainers.</p>
-<p>In addition to scheduled talks, the event has <strong>open spaces</strong>, where anyone can reserve space for a conversation about a topic - effectively PyCon's version of an <a href="https://en.wikipedia.org/wiki/Unconference">unconference</a>. I plan to spend a lot of my time in the open spaces this year - I'm hoping to join or instigate sessions about both <a href="https://datasette.io/">Datasette</a> and <a href="https://simonwillison.net/guides/agentic-engineering-patterns/">agentic engineering</a>.</p>
-<p>I'm on the board of the Python Software Foundation, and PyCon US remains one of our most important responsibilities - in the past it's been a key source of funding for the organization, but it's also core to our mission to "promote, protect, and advance the Python programming language, and to support and facilitate the growth of a diverse and international community of Python programmers".</p>
-<p><small>If you do come to Long Beach, we'd really appreciate it if you could book accommodation in the official hotel block, for reasons <a href="https://pyfound.blogspot.com/2026/04/pycon-us-2026-hotels.html">outlined in this post on the PSF blog</a>.</small></p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/conferences">conferences</a>, <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/pycon">pycon</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/psf">psf</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Claude Opus 4.7 - A New Frontier, in Performance … and Drama]]></title>
         <id>https://www.youtube.com/watch?v=QVJcdfkRpH8</id>
         <link href="https://www.youtube.com/watch?v=QVJcdfkRpH8"/>
@@ -1643,15 +1709,6 @@ Principled domain reweighting can substantially improve sample efficiency and do
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The Truth About My Channel (And How Much $$ I Make)]]></title>
-        <id>https://www.youtube.com/watch?v=ncVQneK7FlE</id>
-        <link href="https://www.youtube.com/watch?v=ncVQneK7FlE"/>
-        <updated>2026-04-15T22:03:19.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Gemini 3.1 Flash TTS: the next generation of expressive AI speech]]></title>
         <id>https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/</id>
         <link href="https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/"/>
@@ -1782,11 +1839,71 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Research with ChatGPT]]></title>
-        <id>https://openai.com/academy/search-and-deep-research</id>
-        <link href="https://openai.com/academy/search-and-deep-research"/>
+        <title type="html"><![CDATA[Financial services]]></title>
+        <id>https://openai.com/academy/financial-services</id>
+        <link href="https://openai.com/academy/financial-services"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.]]></summary>
+        <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for research]]></title>
+        <id>https://openai.com/academy/research</id>
+        <link href="https://openai.com/academy/research"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for finance teams]]></title>
+        <id>https://openai.com/academy/finance</id>
+        <link href="https://openai.com/academy/finance"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how finance teams use ChatGPT to streamline reporting, analyze data, improve forecasts, and communicate insights more clearly.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Creating images with ChatGPT]]></title>
+        <id>https://openai.com/academy/image-generation</id>
+        <link href="https://openai.com/academy/image-generation"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
+        <id>https://openai.com/academy/sales</id>
+        <link href="https://openai.com/academy/sales"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Applications of AI at OpenAI]]></title>
+        <id>https://openai.com/academy/applications-of-ai</id>
+        <link href="https://openai.com/academy/applications-of-ai"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using skills]]></title>
+        <id>https://openai.com/academy/skills</id>
+        <link href="https://openai.com/academy/skills"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1812,41 +1929,11 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT for research]]></title>
-        <id>https://openai.com/academy/research</id>
-        <link href="https://openai.com/academy/research"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Working with files in ChatGPT]]></title>
         <id>https://openai.com/academy/working-with-files</id>
         <link href="https://openai.com/academy/working-with-files"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using skills]]></title>
-        <id>https://openai.com/academy/skills</id>
-        <link href="https://openai.com/academy/skills"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Prompting fundamentals]]></title>
-        <id>https://openai.com/academy/prompting</id>
-        <link href="https://openai.com/academy/prompting"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1862,11 +1949,11 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Brainstorming with ChatGPT]]></title>
-        <id>https://openai.com/academy/brainstorming</id>
-        <link href="https://openai.com/academy/brainstorming"/>
+        <title type="html"><![CDATA[Prompting fundamentals]]></title>
+        <id>https://openai.com/academy/prompting</id>
+        <link href="https://openai.com/academy/prompting"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.]]></summary>
+        <summary type="html"><![CDATA[Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1882,81 +1969,11 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Getting started with ChatGPT]]></title>
-        <id>https://openai.com/academy/getting-started</id>
-        <link href="https://openai.com/academy/getting-started"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
-        <id>https://openai.com/academy/writing</id>
-        <link href="https://openai.com/academy/writing"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our response to the Axios developer tool compromise]]></title>
         <id>https://openai.com/index/axios-developer-tool-compromise</id>
         <link href="https://openai.com/index/axios-developer-tool-compromise"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for finance teams]]></title>
-        <id>https://openai.com/academy/finance</id>
-        <link href="https://openai.com/academy/finance"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how finance teams use ChatGPT to streamline reporting, analyze data, improve forecasts, and communicate insights more clearly.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
-        <id>https://openai.com/academy/responsible-and-safe-use</id>
-        <link href="https://openai.com/academy/responsible-and-safe-use"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using projects in ChatGPT]]></title>
-        <id>https://openai.com/academy/projects</id>
-        <link href="https://openai.com/academy/projects"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Applications of AI at OpenAI]]></title>
-        <id>https://openai.com/academy/applications-of-ai</id>
-        <link href="https://openai.com/academy/applications-of-ai"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for customer success teams]]></title>
-        <id>https://openai.com/academy/customer-success</id>
-        <link href="https://openai.com/academy/customer-success"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1972,51 +1989,11 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Creating images with ChatGPT]]></title>
-        <id>https://openai.com/academy/image-generation</id>
-        <link href="https://openai.com/academy/image-generation"/>
+        <title type="html"><![CDATA[Using projects in ChatGPT]]></title>
+        <id>https://openai.com/academy/projects</id>
+        <link href="https://openai.com/academy/projects"/>
         <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for operations teams]]></title>
-        <id>https://openai.com/academy/operations</id>
-        <link href="https://openai.com/academy/operations"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
-        <id>https://openai.com/academy/data-analysis</id>
-        <link href="https://openai.com/academy/data-analysis"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Financial services]]></title>
-        <id>https://openai.com/academy/financial-services</id>
-        <link href="https://openai.com/academy/financial-services"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT for sales teams]]></title>
-        <id>https://openai.com/academy/sales</id>
-        <link href="https://openai.com/academy/sales"/>
-        <updated>2026-04-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Learn how sales teams use ChatGPT to research accounts, personalize outreach, manage deals, and improve pipeline and conversion.]]></summary>
+        <summary type="html"><![CDATA[Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -2032,6 +2009,86 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[ChatGPT for customer success teams]]></title>
+        <id>https://openai.com/academy/customer-success</id>
+        <link href="https://openai.com/academy/customer-success"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Research with ChatGPT]]></title>
+        <id>https://openai.com/academy/search-and-deep-research</id>
+        <link href="https://openai.com/academy/search-and-deep-research"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Responsible and safe use of AI]]></title>
+        <id>https://openai.com/academy/responsible-and-safe-use</id>
+        <link href="https://openai.com/academy/responsible-and-safe-use"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Writing with ChatGPT]]></title>
+        <id>https://openai.com/academy/writing</id>
+        <link href="https://openai.com/academy/writing"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Analyzing data with ChatGPT]]></title>
+        <id>https://openai.com/academy/data-analysis</id>
+        <link href="https://openai.com/academy/data-analysis"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT for operations teams]]></title>
+        <id>https://openai.com/academy/operations</id>
+        <link href="https://openai.com/academy/operations"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Brainstorming with ChatGPT]]></title>
+        <id>https://openai.com/academy/brainstorming</id>
+        <link href="https://openai.com/academy/brainstorming"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT to brainstorm ideas, organize thinking, and turn rough concepts into structured, actionable plans.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Getting started with ChatGPT]]></title>
+        <id>https://openai.com/academy/getting-started</id>
+        <link href="https://openai.com/academy/getting-started"/>
+        <updated>2026-04-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[ACM Human-Computer Interaction Conference (CHI) 2026]]></title>
         <id>apple-at-chi-2026</id>
         <link href="https://machinelearning.apple.com/updates/apple-at-chi-2026"/>
@@ -2042,21 +2099,21 @@ Large language models (LLMs) can struggle to memorize factual knowledge in their
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[OpenAI Full Fan Mode Contest: Terms & Conditions]]></title>
-        <id>https://openai.com/index/full-fan-mode-contest-terms-conditions</id>
-        <link href="https://openai.com/index/full-fan-mode-contest-terms-conditions"/>
-        <updated>2026-04-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore the official terms and conditions for the OpenAI Full Fan Mode Contest, including eligibility, entry steps, judging criteria, and prize details. Learn how to participate, submit your entry on Instagram, and win IPL match tickets.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[CyberAgent moves faster with ChatGPT Enterprise and Codex]]></title>
         <id>https://openai.com/index/cyberagent</id>
         <link href="https://openai.com/index/cyberagent"/>
         <updated>2026-04-09T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[CyberAgent uses ChatGPT Enterprise and Codex to securely scale AI adoption, improve quality, and accelerate decisions across advertising, media, and gaming.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI Full Fan Mode Contest: Terms & Conditions]]></title>
+        <id>https://openai.com/index/full-fan-mode-contest-terms-conditions</id>
+        <link href="https://openai.com/index/full-fan-mode-contest-terms-conditions"/>
+        <updated>2026-04-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore the official terms and conditions for the OpenAI Full Fan Mode Contest, including eligibility, entry steps, judging criteria, and prize details. Learn how to participate, submit your entry on Instagram, and win IPL match tickets.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
