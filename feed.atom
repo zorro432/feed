@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-05-02T02:39:27.721Z</id>
+    <id>urn:2026-05-03T02:51:12.731Z</id>
     <title>osmos::feed</title>
-    <updated>2026-05-02T02:39:27.721Z</updated>
+    <updated>2026-05-03T02:51:12.731Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Sightings]]></title>
+        <id>https://simonwillison.net/2026/May/2/sightings/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/May/2/sightings/#atom-everything"/>
+        <updated>2026-05-02T17:26:40.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://simonwillison.net/elsewhere/sighting/">/elsewhere/sightings/</a></strong></p>
+I have a new camera (a Canon R6 Mark II) so I'm taking a lot more photos of birds. I share my best wildlife photos on <a href="https://www.inaturalist.org/">iNaturalist</a>, and based on yesterday's <a href="https://simonwillison.net/2026/May/1/inat-sightings/">successful prototype</a>  I decided to add those to my blog.</p>
+<p><img class="blogmark-image" src="https://static.simonwillison.net/static/2026/beats-sightings.jpeg" alt="Screenshot of a &quot;Sightings&quot; webpage with a search bar and RSS icon, showing &quot;Filters: Sorted by date&quot; and &quot;208 results page 1 / 7 next » last »»&quot;. First entry: SIGHTING 7:51 PM — Acorn Woodpecker, with two photos labeled &quot;Acorn Woodpecker&quot; of black and white woodpeckers with red caps on tree branches, dated 2nd May 2026. Second entry: SIGHTING 10:08 AM – 11:17 AM — Acorn Woodpecker, Western Fence Lizard, Osprey, with three photos labeled &quot;Acorn Woodpecker&quot; (bird on bare branches against blue sky), &quot;Wester...&quot; (lizard on tree bark), and &quot;Osprey&quot; (nest on a utility pole), dated 1st May 2026. Third entry: SIGHTING 11:11 AM — White-crowned Sparrow, with a photo labeled &quot;White-crowned Sparrow&quot; of a sparrow with black and white striped head singing with open beak, dated 30th Apr 2026."></p>
+<p>I built this feature on my phone using Claude Code for web, as an extension of my <a href="https://simonwillison.net/2026/Feb/20/beats/">beats system</a> for syndicating external content. Here's <a href="https://github.com/simonw/simonwillisonblog/pull/668">the PR</a> and prompt.</p>
+<p>As with my other forms of incoming syndicated content sightings show up on the homepage, the date archive pages, and in site search results.</p>
+<p>I back-populated over a decade of iNaturalist sightings, which means you that if you <a href="https://simonwillison.net/search/?q=lemur">search for lemur</a> you'll see my lemur photos from Madagascar in 2019!
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/blogging">blogging</a>, <a href="https://simonwillison.net/tags/photography">photography</a>, <a href="https://simonwillison.net/tags/wildlife">wildlife</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/inaturalist">inaturalist</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Deepseek V4 May Disrupt The Entire AI Economy]]></title>
+        <id>https://www.youtube.com/shorts/1P3h36Lz5bI</id>
+        <link href="https://www.youtube.com/shorts/1P3h36Lz5bI"/>
+        <updated>2026-05-02T12:53:01.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Elon vs. OpenAI Trial Explained]]></title>
         <id>https://www.youtube.com/shorts/D0XouckgAt8</id>
@@ -21,7 +49,7 @@
         <link href="https://simonwillison.net/2026/May/1/inat-sightings/#atom-everything"/>
         <updated>2026-05-01T19:35:41.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/inat-sightings">iNaturalist Sightings</a></p>
-    <p>I wanted to see my <a href="https://www.inaturalist.org">iNaturalist</a> observations - across two separate accounts - grouped by when they occurred. I'm camping this weekend so I built this entirely on my phone using Claude Code for web.</p>
+        <p>I wanted to see my <a href="https://www.inaturalist.org">iNaturalist</a> observations - across two separate accounts - grouped by when they occurred. I'm camping this weekend so I built this entirely on my phone using Claude Code for web.</p>
 <p>I started by building an <a href="https://github.com/simonw/inaturalist-clumper">inaturalist-clumper</a> Python CLI for fetching and "clumping" observations - by default clumps use observations within 2 hours and 5km of each other.</p>
 <p>Then I setup <a href="https://github.com/simonw/inaturalist-clumps">simonw/inaturalist-clumps</a> as a <a href="https://simonwillison.net/series/git-scraping/">Git scraping</a> repository to run that tool and record the result to <a href="https://github.com/simonw/inaturalist-clumps/blob/main/clumps.json">clumps.json</a>.</p>
 <p>That JSON file is hosted on GitHub, which means it can be fetched by JavaScript using CORS.</p>
@@ -29,6 +57,7 @@
 <blockquote>
 <p><code>Build inat-sightings.html - an app that does a fetch() against https://raw.githubusercontent.com/simonw/inaturalist-clumps/refs/heads/main/clumps.json and then displays all of the observations on one page using the https://static.inaturalist.org/photos/538073008/small.jpg small.jpg URLs for the thumbnails - with loading=lazy - but when a thumbnail is clicked showing the large.jpg in an HTML modal. Both small and large should include the common species names if available</code></p>
 </blockquote>
+    
     
         <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a href="https://simonwillison.net/tags/inaturalist">inaturalist</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
         <author>
@@ -228,11 +257,12 @@ Matt Webb:</p>
         <link href="https://simonwillison.net/2026/Apr/29/llm-3/#atom-everything"/>
         <updated>2026-04-29T23:52:50.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.32a1">llm 0.32a1</a></p>
-    <blockquote>
+        <blockquote>
 <ul>
 <li>Fixed a bug in 0.32a0 where tool-calling conversations were not correctly reinflated from SQLite. <a href="https://github.com/simonw/llm/issues/1426">#1426</a></li>
 </ul>
 </blockquote>
+    
     
         <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
         <author>
@@ -440,7 +470,8 @@ assistant:
         <link href="https://simonwillison.net/2026/Apr/29/llm-2/#atom-everything"/>
         <updated>2026-04-29T18:57:47.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.32a0">llm 0.32a0</a></p>
-    <p>See <a href="https://simonwillison.net/2026/Apr/29/llm/">the annotated release notes</a>.</p>
+        <p>See <a href="https://simonwillison.net/2026/Apr/29/llm/">the annotated release notes</a>.</p>
+    
     
         <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
         <author>
@@ -977,7 +1008,7 @@ Now that GPT-5.5 is <a href="https://developers.openai.com/api/docs/models/gpt-5
         <link href="https://simonwillison.net/2026/Apr/24/llm/#atom-everything"/>
         <updated>2026-04-24T23:35:07.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.31">llm 0.31</a></p>
-    <blockquote>
+        <blockquote>
 <ul>
 <li>New GPT-5.5 OpenAI model: <code>llm -m gpt-5.5</code>. <a href="https://github.com/simonw/llm/issues/1418">#1418</a></li>
 <li>New option to set the <a href="https://developers.openai.com/cookbook/examples/gpt-5/gpt-5_new_params_and_tools#1-verbosity-parameter">text verbosity level</a> for GPT-5+ OpenAI models: <code>-o verbosity low</code>. Values are <code>low</code>, <code>medium</code>, <code>high</code>.</li>
@@ -985,6 +1016,7 @@ Now that GPT-5.5 is <a href="https://developers.openai.com/api/docs/models/gpt-5
 <li>Models listed in <code>extra-openai-models.yaml</code> are now also registered as asynchronous. <a href="https://github.com/simonw/llm/issues/1395">#1395</a></li>
 </ul>
 </blockquote>
+    
     
         <p>Tags: <a href="https://simonwillison.net/tags/gpt">gpt</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
         <author>
@@ -1169,7 +1201,8 @@ llm -m openrouter/deepseek/deepseek-v4-pro 'Generate an SVG of a pelican riding 
         <link href="https://simonwillison.net/2026/Apr/24/milliseconds/#atom-everything"/>
         <updated>2026-04-24T04:23:11.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/milliseconds">Millisecond Converter</a></p>
-    <p><a href="https://llm.datasette.io/">LLM</a> reports prompt durations in milliseconds and I got fed up of having to think about how to convert those to seconds and minutes.</p>
+        <p><a href="https://llm.datasette.io/">LLM</a> reports prompt durations in milliseconds and I got fed up of having to think about how to convert those to seconds and minutes.</p>
+    
     
         <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a></p>]]></summary>
         <author>
@@ -1454,19 +1487,6 @@ llm -m openai-codex/gpt-5.5 <span class="pl-s"><span class="pl-pds">'</span>Gene
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[llm-openai-via-codex 0.1a0]]></title>
-        <id>https://simonwillison.net/2026/Apr/23/llm-openai-via-codex/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Apr/23/llm-openai-via-codex/#atom-everything"/>
-        <updated>2026-04-23T19:22:29.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-openai-via-codex/releases/tag/0.1a0">llm-openai-via-codex 0.1a0</a></p>
-    <p>Hijacks your Codex CLI credentials to make API calls with LLM, as described <a href="https://simonwillison.net/2026/Apr/23/gpt-5-5/#llm-openai-via-codex">in my post about GPT-5.5</a>.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/codex-cli">codex-cli</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[I finally found a use case for OpenClaw…]]></title>
         <id>https://www.youtube.com/watch?v=FM5-R4VPArw</id>
         <link href="https://www.youtube.com/watch?v=FM5-R4VPArw"/>
@@ -1711,16 +1731,6 @@ llm -m openai-codex/gpt-5.5 <span class="pl-s"><span class="pl-pds">'</span>Gene
         <summary type="html"><![CDATA[Three new agentic safety and policy features integrated into Ads Advisor will help protect and streamline your Google Ads account.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Canva AI Changes Everything]]></title>
-        <id>https://www.youtube.com/shorts/z5sL3nXPsss</id>
-        <link href="https://www.youtube.com/shorts/z5sL3nXPsss"/>
-        <updated>2026-04-21T12:51:48.000Z</updated>
-        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -2275,46 +2285,6 @@ llm -m openai-codex/gpt-5.5 <span class="pl-s"><span class="pl-pds">'</span>Gene
         <summary type="html"><![CDATA[Explore our ambitious, people-first industrial policy ideas for the AI era—focused on expanding opportunity, sharing prosperity, and building resilient institutions as advanced intelligence evolves.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[He just crawled through hell to fix the browser…]]></title>
-        <id>https://www.youtube.com/watch?v=vd14EElCRvs</id>
-        <link href="https://www.youtube.com/watch?v=vd14EElCRvs"/>
-        <updated>2026-04-02T19:18:38.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Gemma 4: Byte for byte, the most capable open models]]></title>
-        <id>https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/</id>
-        <link href="https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/"/>
-        <updated>2026-04-02T16:00:49.000Z</updated>
-        <summary type="html"><![CDATA[Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[New ways to balance cost and reliability in the Gemini API]]></title>
-        <id>https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/</id>
-        <link href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/"/>
-        <updated>2026-04-02T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Google is introducing two new inference tiers to the Gemini API, Flex and Priority,
-to balance cost and latency.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Create, edit and share videos at no cost in Google Vids]]></title>
-        <id>https://blog.google/products-and-platforms/products/workspace/google-vids-updates-lyria-veo/</id>
-        <link href="https://blog.google/products-and-platforms/products/workspace/google-vids-updates-lyria-veo/"/>
-        <updated>2026-04-02T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[New AI capabilities are coming to Google Vids, powered by Lyria 3 and Veo 3.1, like high-quality video generation at no cost and more.]]></summary>
-        <author>
-            <name>AI</name>
         </author>
     </entry>
 </feed>
