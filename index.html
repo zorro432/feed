@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-05-05 datetime="2026-05-05T00:46:29.000Z">2026-05-05</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-05-05 datetime="2026-05-05T00:46:29.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-05-05 datetime="2026-05-05T23:44:27.000Z">2026-05-05</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-05-05 datetime="2026-05-05T23:44:27.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -42,6 +42,109 @@
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/May/5/datasette-referrer-policy/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">datasette-referrer-policy 0.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/May/5/datasette-referrer-policy/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: datasette-referrer-policy 0.1
+The OpenStreetMap tiles on the Datasette global-power-plants demo weren&#x27;t displaying correctly. This turned out to be caused by two bugs.
+The first is that the CAPTCHA I added to that site a few weeks ago was triggering for the .json fetch requests used by the map plugin, and since those weren&#x27;t HTML the user was not being asked to solve them. Here&#x27;s the fix.
+The second was that OpenStreetMap quite reasonably block tile requests from sites that use a Referrer-Policy: no-referrer header.
+Datasette does this by default, and I didn&#x27;t want to change that default on people without warning - so I had Codex + GPT-5.5 build me a new plugin to help set that header to another value.
+Tags: openstreetmap, http, datasette</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/May/5/our-ai-started-a-cafe-in-stockholm/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Our AI started a cafe in Stockholm</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/May/5/our-ai-started-a-cafe-in-stockholm/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Our AI started a cafe in Stockholm
+started an AI-run retail store in San Francisco. Now they&#x27;re running a similar experiment in Stockholm, Sweden, only this time it&#x27;s a cafe.
+These experiments are interesting, and often throw out amusing anecdotes:
+During the first week of inventory, Mona ordered 120 eggs even though the café has no stove. When the staff told her they couldn’t cook them, she suggested using the high-speed oven, until they pointed out the eggs would likely explode. She also tried to solve the problem of fresh tomatoes being spoiled too fast by ordering 22.5 kg of canned tomatoes for the fresh sandwiches. The baristas eventually started a “Hall of Shame”, a shelf visible to customers with all the weird things Mona ordered, including 6,000 napkins, 3,000 nitrile gloves, 9L coconut milk, and industrial-sized trash bags.
+Where they lose their shine is when these AI managers start wasting the time of human beings who have not opted into the experiment:
+She also successfully applied for an outdoor seating permit through the Police e-service, which didn’t require BankID. Her first submission included a sketch she had generated herself, despite having never seen the street outside the café. Unsurprisingly, the Police sent it back for revision. [...]
+When she makes a mistake, she often sends multiple emails to suppliers with the subject “EMERGENCY” to cancel or change the order.
+I don&#x27;t think it&#x27;s ethical to run experiments like this that affect real-world systems and steal time from people.
+I&#x27;m reminded of the incident last year where the AI Village experiment infuriated Rob Pike by sending him unsolicited gratitude emails as an &quot;act of kindness&quot;. That was just an unwanted email - asking suppliers to correct mistakes that were made without a human-in-the-loop or wasting police time with slop diagrams feels a whole lot worse to me.
+I think experiments like this need to keep their own human operators in-the-loop for outbound actions that affect other people.
+
+    
+Via Hacker News
+Tags: ai, generative-ai, llms, ai-agents, ai-ethics</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/May/5/datasette-llm/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">datasette-llm 0.1a7</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/May/5/datasette-llm/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: datasette-llm 0.1a7
+Mechanism for configuring default options for specific models.
+Part of Datasette&#x27;s evolving support mechanism for plugins that use LLMs. It&#x27;s now possible to configure a model with default options, e.g. to say all enrichment operations should use a specific model with temperature set to 0.5.
+Tags: llm, datasette</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/May/5/llm-echo/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm-echo 0.5a0</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/May/5/llm-echo/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm-echo 0.5a0
+New -o thinking 1 option to help test against LLM 0.32a0 and higher.
+This plugin provides a fake model called &quot;echo&quot; for LLM which doesn&#x27;t run an LLM at all - it&#x27;s useful for writing automated tests. You can now do this:
+uvx --with llm&#x3D;&#x3D;0.32a1 --with llm-echo&#x3D;&#x3D;0.5a0 llm -m echo hi -o thinking 1
+
+This will fake a reasoning block to standard error before returning JSON echoing the prompt.
+Tags: llm</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://simonwillison.net/2026/May/5/john-gruber/#atom-everything"
                         open
                       >
@@ -53,6 +156,139 @@
 
 — John Gruber, Y Combinator’s Stake in OpenAI
 Tags: openai, y-combinator, ai, john-gruber</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/innovation-and-ai/technology/ai/future-vision-film-competition-xprize/"
+                        open
+                      >
+                        <summary class="article-expander__title">Google is partnering with XPRIZE and Range Media Partners on the $3.5 million Future Vision film competition.</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/ai/future-vision-film-competition-xprize/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/futurevisionxprize_social.max-1440x810.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Google is partnering with XPRIZE and Range Media Partners on the $3.5 million Future Vision film competition.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/gpt-5-5-instant-system-card"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.5 Instant System Card</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-5-instant-system-card">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/gpt-5-5-instant"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.5 Instant: smarter, clearer, and more personalized</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-5-instant">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>GPT-5.5 Instant updates ChatGPT’s default model with smarter, more accurate answers, reduced hallucinations, and improved personalization controls.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/new-ways-to-buy-chatgpt-ads"
+                        open
+                      >
+                        <summary class="article-expander__title">New ways to buy ChatGPT ads</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/new-ways-to-buy-chatgpt-ads">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI expands ChatGPT ads with a beta self-serve Ads Manager, CPC bidding, and enhanced measurement tools—built to protect privacy and keep conversations separate from ads.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="stochastic-kv-routing"
+                        open
+                      >
+                        <summary class="article-expander__title">Stochastic KV Routing: Enabling Adaptive Depth-Wise Cache Sharing</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/stochastic-kv-routing">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Serving transformer language models with high throughput requires caching Key-Values (KVs) to avoid redundant computation during autoregressive generation. The memory footprint of KV caching is significant and heavily impacts serving costs. This work proposes to lessen these memory requirements. While recent work has largely addressed KV cache reduction via compression and eviction along the temporal axis, we argue that the depth dimension offers an orthogonal and robust avenue for optimization. Although prior research suggests that a full cache for every layer is redundant, implementing…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -230,6 +466,54 @@ Tags: salvatore-sanfilippo, webassembly, generative-ai, agentic-engineering, ai,
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/openai-pwc-finance-collaboration"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI and PwC collaborate to reimagine the office of the CFO</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/openai-pwc-finance-collaboration">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI and PwC are partnering to help enterprises use AI agents to automate finance workflows, improve forecasting, strengthen controls, and modernize the CFO function.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/delivering-low-latency-voice-ai-at-scale"
+                        open
+                      >
+                        <summary class="article-expander__title">How OpenAI delivers low-latency voice AI at scale</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/delivering-low-latency-voice-ai-at-scale">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversational turn-taking.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Fireship</button>
                   <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
                 </h3>
@@ -333,37 +617,6 @@ Tags: salvatore-sanfilippo, webassembly, generative-ai, agentic-engineering, ai,
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/delivering-low-latency-voice-ai-at-scale"
-                        open
-                      >
-                        <summary class="article-expander__title">How OpenAI delivers low-latency voice AI at scale</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/delivering-low-latency-voice-ai-at-scale">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversational turn-taking.</span>
                             </span>
                           </div>
                         </a>
@@ -932,7 +1185,7 @@ Tags: anthropic, zig, ai, llms, ai-ethics, open-source, javascript, ai-assisted-
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1907,26 +2160,6 @@ Tags: ai, generative-ai, local-llms, llms, training-data, ai-ethics, llm-release
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="ladir"
-                        open
-                      >
-                        <summary class="article-expander__title">LaDiR: Latent Diffusion Enhances LLMs for Text Reasoning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/ladir">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Large Language Models (LLMs) demonstrate their reasoning ability through chain-of-thought (CoT) generation. However, LLM’s autoregressive decoding may limit the ability to revisit and refine earlier tokens in a holistic manner, which can also lead to inefficient exploration for diverse solutions. In this paper, we propose LaDiR (Latent Diffusion Reasoner), a novel reasoning framework that unifies the expressiveness of continuous latent representation with the iterative refinement capabilities of latent diffusion models for an existing LLM. We first construct a structured latent reasoning space…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2270,7 +2503,7 @@ Tags: google, translation</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2382,7 +2615,7 @@ Tags: google, translation</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2465,39 +2698,6 @@ Tags: generative-ai, gpt, openai, ai, llms</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/25/gpt-5-5-prompting-guide/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.5 prompting guide</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/25/gpt-5-5-prompting-guide/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>GPT-5.5 prompting guide
-available in the API, OpenAI have released a wealth of useful tips on how best to prompt the new model.
-Here&#x27;s a neat trick they recommend for applications that might spend considerable time thinking before returning a user-visible response:
-Before any tool calls for a multi-step task, send a short user-visible update that acknowledges the request and states the first step. Keep it to one or two sentences.
-I&#x27;ve already noticed their Codex app doing this, and it does make longer running tasks feel less like the model has crashed.
-OpenAI suggest running the following in Codex to upgrade your existing code using advice embedded in their openai-docs skill:
-$openai-docs migrate this project to gpt-5.5
-The upgrade guide the coding agent will follow is this one, which even includes light instructions on how to rewrite prompts to better fit the model.
-Also relevant is the Using GPT-5.5 guide, which opens with this warning:
-To get the most out of GPT-5.5, treat it as a new model family to tune for, not a drop-in replacement for gpt-5.2 or gpt-5.4. Begin migration with a fresh baseline instead of carrying over every instruction from an older prompt stack. Start with the smallest prompt that preserves the product contract, then tune reasoning effort, verbosity, tool descriptions, and output format against representative examples.
-Interesting to see OpenAI recommend starting from scratch rather than trusting that existing prompts optimized for previous models will continue to work effectively with GPT-5.5.
-
-
-    
-Tags: ai, openai, prompt-engineering, generative-ai, llms, gpt</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2524,7 +2724,7 @@ Tags: ai, openai, prompt-engineering, generative-ai, llms, gpt</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2543,214 +2743,11 @@ Tags: ai, openai, prompt-engineering, generative-ai, llms, gpt</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-24 datetime="2026-04-24T23:35:07.000Z">2026-04-24</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-24 datetime="2026-04-24T23:35:07.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-04-24 datetime="2026-04-24T21:25:29.000Z">2026-04-24</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-04-24 datetime="2026-04-24T21:25:29.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/24/llm/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">llm 0.31</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/llm/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: llm 0.31
-New GPT-5.5 OpenAI model: llm -m gpt-5.5. #1418
-New option to set the text verbosity level for GPT-5+ OpenAI models: -o verbosity low. Values are low, medium, high.
-New option for setting the image detail level used for image attachments to OpenAI models: -o image_detail low - values are low, high and auto, and GPT-5.4 and 5.5 also accept original.
-Models listed in extra-openai-models.yaml are now also registered as asynchronous. #1395
-Tags: gpt, openai, llm</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/24/the-people-do-not-yearn-for-automation/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">The people do not yearn for automation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/the-people-do-not-yearn-for-automation/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The people do not yearn for automation
-It’s a superb piece of commentary, and something I expect I’ll be thinking about for a long time to come.
-Nilay’s core idea is that people afflicted with “software brain” - who see the world as something to be automated as much as possible, and attempt to model everything in terms of information flows and data - are becoming detached from everyone else.
-[…] software brain has ruled the business world for a long time. AI has just made it easier than ever for more people to make more software than ever before — for every kind of business to automate big chunks of itself with software. It’s everywhere: the absolute cutting edge of advertising and marketing is automation with AI. It’s not being a creative.
-But: not everything is a business. Not everything is a loop! The entire human experience cannot be captured in a database. That’s the limit of software brain. That’s why people hate AI. It flattens them.
-Regular people don’t see the opportunity to write code as an opportunity at all. The people do not yearn for automation. I’m a full-on smart home sicko; the lights and shades and climate controls of my house are automated in dozens of ways. But huge companies like Apple, Google and Amazon have struggled for over a decade now to make regular people care about smart home automation at all. And they just don’t.
-Via John Gruber
-Tags: ai, generative-ai, llms, nilay-patel, ai-ethics</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Apr/24/deepseek-v4/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">DeepSeek V4 - almost on the frontier, a fraction of the price</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Apr/24/deepseek-v4/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/deepseek-v4-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Chinese AI lab DeepSeek&#x27;s last model release was V3.2 (and V3.2 Speciale) last December. They just dropped the first of their hotly anticipated V4 series in the shape of two preview models, DeepSeek-V4-Pro and DeepSeek-V4-Flash.
-
-Both models are 1 million token context Mixture of Experts. Pro is 1.6T total parameters, 49B active. Flash is 284B total, 13B active. They&#x27;re using the standard MIT license.
-
-I think this makes DeepSeek-V4-Pro the new largest open weights model. It&#x27;s larger than Kimi K2.6 (1.1T) and GLM-5.1 (754B) and more than twice the size of DeepSeek V3.2 (685B).
-
-Pro is 865GB on Hugging Face, Flash is 160GB. I&#x27;m hoping that a lightly quantized Flash will run on my 128GB M5 MacBook Pro. It&#x27;s possible the Pro model may run on it if I can stream just the necessary active experts from disk.
-
-For the moment I tried the models out via OpenRouter, using llm-openrouter:
-
-llm install llm-openrouter
-llm openrouter refresh
-llm -m openrouter/deepseek/deepseek-v4-pro &#x27;Generate an SVG of a pelican riding a bicycle&#x27;
-
-
-Here&#x27;s the pelican for DeepSeek-V4-Flash:
-
-
-
-And for DeepSeek-V4-Pro:
-
-
-
-For comparison, take a look at the pelicans I got from DeepSeek V3.2 in December, V3.1 in August, and V3-0324 in March 2025.
-
-So the pelicans are pretty good, but what&#x27;s really notable here is the cost. DeepSeek V4 is a very, very inexpensive model.
-
-This is DeepSeek&#x27;s pricing page. They&#x27;re charging $0.14/million tokens input and $0.28/million tokens output for Flash, and $1.74/million input and $3.48/million output for Pro.
-
-Here&#x27;s a comparison table with the frontier models from Gemini, OpenAI and Anthropic:
-
-
-
-
-
-Model
-Input ($/M)
-Output ($/M)
-
-
-
-
-DeepSeek V4 Flash
-$0.14
-$0.28
-
-
-GPT-5.4 Nano
-$0.20
-$1.25
-
-
-Gemini 3.1 Flash-Lite
-$0.25
-$1.50
-
-
-Gemini 3 Flash Preview
-$0.50
-$3
-
-
-GPT-5.4 Mini
-$0.75
-$4.50
-
-
-Claude Haiku 4.5
-$1
-$5
-
-
-DeepSeek V4 Pro
-$1.74
-$3.48
-
-
-Gemini 3.1 Pro
-$2
-$12
-
-
-GPT-5.4
-$2.50
-$15
-
-
-Claude Sonnet 4.6
-$3
-$15
-
-
-Claude Opus 4.7
-$5
-$25
-
-
-GPT-5.5
-$5
-$30
-
-
-
-
-DeepSeek-V4-Flash is the cheapest of the small models, beating even OpenAI&#x27;s GPT-5.4 Nano. DeepSeek-V4-Pro is the cheapest of the larger frontier models.
-
-This note from the DeepSeek paper helps explain why they can price these models so low - they&#x27;ve focused a great deal on efficiency with this release, especially for longer context prompts:
-
-
-In the scenario of 1M-token context, even DeepSeek-V4-Pro, which has a larger number of activated parameters, attains only 27% of the single-token FLOPs (measured in equivalent FP8 FLOPs) and 10% of the KV cache size relative to DeepSeek-V3.2. Furthermore, DeepSeek-V4-Flash, with its smaller number of activated parameters, pushes efficiency even further: in the 1M-token context setting, it achieves only 10% of the single-token FLOPs and 7% of the KV cache size compared with DeepSeek-V3.2.
-
-
-DeepSeek&#x27;s self-reported benchmarks in their paper show their Pro model competitive with those other frontier models, albeit with this note:
-
-
-Through the expansion of reasoning tokens, DeepSeek-V4-Pro-Max demonstrates superior performance relative to GPT-5.2 and Gemini-3.0-Pro on standard reasoning benchmarks. Nevertheless, its performance falls marginally short of GPT-5.4 and Gemini-3.1-Pro, suggesting a developmental trajectory that trails state-of-the-art frontier models by approximately 3 to 6 months.
-
-
-I&#x27;m keeping an eye on huggingface.co/unsloth/models as I expect the Unsloth team will have a set of quantized versions out pretty soon. It&#x27;s going to be very interesting to see how well that Flash model runs on my own machine.
-Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deepseek, llm-release, openrouter, ai-in-china</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2774,7 +2771,7 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2980,23 +2977,6 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-5-system-card"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.5 System Card</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-5-system-card">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/introducing-gpt-5-5"
                         open
                       >
@@ -3014,65 +2994,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/what-is-codex"
+                        data-accordion-key="https://openai.com/index/gpt-5-5-system-card"
                         open
                       >
-                        <summary class="article-expander__title">What is Codex?</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/what-is-codex">
+                        <summary class="article-expander__title">GPT-5.5 System Card</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-5-system-card">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how Codex helps you go beyond chat by automating tasks, connecting tools, and producing real outputs like docs and dashboards.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/working-with-codex"
-                        open
-                      >
-                        <summary class="article-expander__title">Working with Codex</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/working-with-codex">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to set up your Codex workspace, create threads and projects, manage files, and start completing tasks with step-by-step guidance.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-plugins-and-skills"
-                        open
-                      >
-                        <summary class="article-expander__title">Plugins and skills</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-plugins-and-skills">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to use Codex plugins and skills to connect tools, access data, and follow repeatable workflows to automate tasks and improve results.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-automations"
-                        open
-                      >
-                        <summary class="article-expander__title">Automations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-automations">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to automate tasks in Codex using schedules and triggers to create reports, summaries, and recurring workflows without manual effort.</span>
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -3099,14 +3028,31 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-settings"
+                        data-accordion-key="https://openai.com/academy/what-is-codex"
                         open
                       >
-                        <summary class="article-expander__title">Codex settings</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-settings">
+                        <summary class="article-expander__title">What is Codex?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/what-is-codex">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how to configure Codex settings, including personalization, detail level, and permissions, to run tasks smoothly and customize your workflow.</span>
+                              <span>Learn how Codex helps you go beyond chat by automating tasks, connecting tools, and producing real outputs like docs and dashboards.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/codex-automations"
+                        open
+                      >
+                        <summary class="article-expander__title">Automations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-automations">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to automate tasks in Codex using schedules and triggers to create reports, summaries, and recurring workflows without manual effort.</span>
                             </span>
                           </div>
                         </a>
@@ -3124,6 +3070,57 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Explore 10 practical Codex use cases to automate tasks, create deliverables, and turn real inputs into outputs across tools, files, and workflows.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/codex-plugins-and-skills"
+                        open
+                      >
+                        <summary class="article-expander__title">Plugins and skills</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-plugins-and-skills">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to use Codex plugins and skills to connect tools, access data, and follow repeatable workflows to automate tasks and improve results.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/working-with-codex"
+                        open
+                      >
+                        <summary class="article-expander__title">Working with Codex</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/working-with-codex">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to set up your Codex workspace, create threads and projects, manage files, and start completing tasks with step-by-step guidance.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/codex-settings"
+                        open
+                      >
+                        <summary class="article-expander__title">Codex settings</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-settings">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to configure Codex settings, including personalization, detail level, and permissions, to run tasks smoothly and customize your workflow.</span>
                             </span>
                           </div>
                         </a>
@@ -4184,23 +4181,6 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/customer-success"
-                        open
-                      >
-                        <summary class="article-expander__title">ChatGPT for customer success teams</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/customer-success">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/academy/brainstorming"
                         open
                       >
@@ -4218,14 +4198,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/prompting"
+                        data-accordion-key="https://openai.com/academy/projects"
                         open
                       >
-                        <summary class="article-expander__title">Prompting fundamentals</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/prompting">
+                        <summary class="article-expander__title">Using projects in ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/projects">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.</span>
+                              <span>Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.</span>
                             </span>
                           </div>
                         </a>
@@ -4235,82 +4215,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/healthcare"
+                        data-accordion-key="https://openai.com/academy/image-generation"
                         open
                       >
-                        <summary class="article-expander__title">Healthcare</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/healthcare">
+                        <summary class="article-expander__title">Creating images with ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/image-generation">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/search-and-deep-research"
-                        open
-                      >
-                        <summary class="article-expander__title">Research with ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/search-and-deep-research">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/responsible-and-safe-use"
-                        open
-                      >
-                        <summary class="article-expander__title">Responsible and safe use of AI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/responsible-and-safe-use">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/writing"
-                        open
-                      >
-                        <summary class="article-expander__title">Writing with ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/writing">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/marketing"
-                        open
-                      >
-                        <summary class="article-expander__title">ChatGPT for marketing teams</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/marketing">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.</span>
+                              <span>Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.</span>
                             </span>
                           </div>
                         </a>
@@ -4337,14 +4249,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/financial-services"
+                        data-accordion-key="https://openai.com/academy/customer-success"
                         open
                       >
-                        <summary class="article-expander__title">Financial services</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/financial-services">
+                        <summary class="article-expander__title">ChatGPT for customer success teams</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/customer-success">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.</span>
+                              <span>Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.</span>
                             </span>
                           </div>
                         </a>
@@ -4354,14 +4266,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/working-with-files"
+                        data-accordion-key="https://openai.com/academy/writing"
                         open
                       >
-                        <summary class="article-expander__title">Working with files in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/working-with-files">
+                        <summary class="article-expander__title">Writing with ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/writing">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.</span>
+                              <span>Learn how to use ChatGPT for writing to draft, revise, and refine content with clear structure, tone, and intent.</span>
                             </span>
                           </div>
                         </a>
@@ -4371,82 +4283,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/operations"
+                        data-accordion-key="https://openai.com/academy/search-and-deep-research"
                         open
                       >
-                        <summary class="article-expander__title">ChatGPT for operations teams</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/operations">
+                        <summary class="article-expander__title">Research with ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/search-and-deep-research">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/axios-developer-tool-compromise"
-                        open
-                      >
-                        <summary class="article-expander__title">Our response to the Axios developer tool compromise</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-developer-tool-compromise">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/custom-gpts"
-                        open
-                      >
-                        <summary class="article-expander__title">Using custom GPTs</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/custom-gpts">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to build and use custom GPTs to automate workflows, maintain consistent outputs, and create purpose-built AI assistants.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/research"
-                        open
-                      >
-                        <summary class="article-expander__title">ChatGPT for research</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/research">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/personalization"
-                        open
-                      >
-                        <summary class="article-expander__title">Personalizing ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/personalization">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.</span>
+                              <span>Learn how to research with ChatGPT using search and deep research to find up-to-date information, analyze sources, and generate structured insights.</span>
                             </span>
                           </div>
                         </a>
@@ -4473,14 +4317,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/data-analysis"
+                        data-accordion-key="https://openai.com/academy/working-with-files"
                         open
                       >
-                        <summary class="article-expander__title">Analyzing data with ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/data-analysis">
+                        <summary class="article-expander__title">Working with files in ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/working-with-files">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.</span>
+                              <span>Learn how to upload and work with files in ChatGPT to analyze data, summarize documents, and generate content from PDFs, spreadsheets, and more.</span>
                             </span>
                           </div>
                         </a>
@@ -4490,14 +4334,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/skills"
+                        data-accordion-key="https://openai.com/academy/healthcare"
                         open
                       >
-                        <summary class="article-expander__title">Using skills</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/skills">
+                        <summary class="article-expander__title">Healthcare</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/healthcare">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.</span>
+                              <span>Explore how clinicians use ChatGPT to support diagnosis, documentation, and patient care with secure, HIPAA-compliant AI tools.</span>
                             </span>
                           </div>
                         </a>
@@ -4507,14 +4351,82 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/image-generation"
+                        data-accordion-key="https://openai.com/academy/research"
                         open
                       >
-                        <summary class="article-expander__title">Creating images with ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/image-generation">
+                        <summary class="article-expander__title">ChatGPT for research</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/research">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how to create and refine images with ChatGPT using clear prompts, iterate on designs, and generate high-quality visuals in minutes.</span>
+                              <span>Learn how to use ChatGPT for research to gather sources, analyze information, and create structured, citation-backed insights.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/axios-developer-tool-compromise"
+                        open
+                      >
+                        <summary class="article-expander__title">Our response to the Axios developer tool compromise</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/axios-developer-tool-compromise">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/marketing"
+                        open
+                      >
+                        <summary class="article-expander__title">ChatGPT for marketing teams</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/marketing">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/what-is-ai"
+                        open
+                      >
+                        <summary class="article-expander__title">AI fundamentals</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/what-is-ai">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/financial-services"
+                        open
+                      >
+                        <summary class="article-expander__title">Financial services</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/financial-services">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.</span>
                             </span>
                           </div>
                         </a>
@@ -4558,6 +4470,23 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/personalization"
+                        open
+                      >
+                        <summary class="article-expander__title">Personalizing ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/personalization">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to personalize ChatGPT using custom instructions and memory to get more relevant, consistent, and tailored responses.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/academy/sales"
                         open
                       >
@@ -4575,14 +4504,14 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/projects"
+                        data-accordion-key="https://openai.com/academy/operations"
                         open
                       >
-                        <summary class="article-expander__title">Using projects in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/projects">
+                        <summary class="article-expander__title">ChatGPT for operations teams</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/operations">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how to use projects in ChatGPT to organize chats, files, and instructions, manage ongoing work, and collaborate more effectively.</span>
+                              <span>Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.</span>
                             </span>
                           </div>
                         </a>
@@ -4592,14 +4521,82 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/what-is-ai"
+                        data-accordion-key="https://openai.com/academy/prompting"
                         open
                       >
-                        <summary class="article-expander__title">AI fundamentals</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/what-is-ai">
+                        <summary class="article-expander__title">Prompting fundamentals</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/prompting">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence.</span>
+                              <span>Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/data-analysis"
+                        open
+                      >
+                        <summary class="article-expander__title">Analyzing data with ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/data-analysis">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to analyze data with ChatGPT by exploring datasets, generating insights, creating visualizations, and turning findings into actionable decisions.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/responsible-and-safe-use"
+                        open
+                      >
+                        <summary class="article-expander__title">Responsible and safe use of AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/responsible-and-safe-use">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/skills"
+                        open
+                      >
+                        <summary class="article-expander__title">Using skills</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/skills">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to create and use ChatGPT skills to build reusable workflows, automate recurring tasks, and ensure consistent, high-quality outputs.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/custom-gpts"
+                        open
+                      >
+                        <summary class="article-expander__title">Using custom GPTs</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/custom-gpts">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to build and use custom GPTs to automate workflows, maintain consistent outputs, and create purpose-built AI assistants.</span>
                             </span>
                           </div>
                         </a>
@@ -4839,60 +4836,12 @@ Tags: ai, generative-ai, llms, llm, llm-pricing, pelican-riding-a-bicycle, deeps
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-openai-safety-fellowship"
-                        open
-                      >
-                        <summary class="article-expander__title">Announcing the OpenAI Safety Fellowship</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-openai-safety-fellowship">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>A pilot program to support independent safety and alignment research and develop the next generation of talent</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/industrial-policy-for-the-intelligence-age"
-                        open
-                      >
-                        <summary class="article-expander__title">Industrial policy for the Intelligence Age</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/industrial-policy-for-the-intelligence-age">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Explore our ambitious, people-first industrial policy ideas for the AI era—focused on expanding opportunity, sharing prosperity, and building resilient institutions as advanced intelligence evolves.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/25354958810">
-        <time id="build-timestamp" datetime="2026-05-05T02:41:21.940Z">2026-05-05T02:41:21.940Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/25413719688">
+        <time id="build-timestamp" datetime="2026-05-06T02:47:02.726Z">2026-05-06T02:47:02.726Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
