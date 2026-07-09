@@ -22,11 +22,120 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-08 datetime="2026-07-08T00:09:25.000Z">2026-07-08</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-08 datetime="2026-07-08T00:09:25.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-08 datetime="2026-07-08T23:57:21.000Z">2026-07-08</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-08 datetime="2026-07-08T23:57:21.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Rewriting Bun in Rust</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Rewriting Bun in Rust
+since May 9th) about his Zig to Rust rewrite of Bun for significantly longer than it took him to finish the rewrite.
+Honestly, it was worth the wait. This is a detailed description of an extremely sophisticated piece of agentic engineering, featuring dynamic workflows, trial runs, adversarial review and all sorts of other interesting tricks.
+Jarred spends the first half of the post praising Zig for getting Bun this far. Then we get to a core idea in the piece, emphasis mine:
+Our bugfix list felt bad and I was tired of going to sleep worrying about crashes in Bun. I don&#x27;t blame Zig for that - other users of Zig don&#x27;t have the bugs we had, and mixing GC with manually-managed memory is an uncommon enough thing for software to need that no language really designs for it. We wouldn&#x27;t have gotten this far if not for Zig, and I&#x27;ll always be grateful. Until very recently, programming language choice was a one-way decision for a project like Bun.
+Everyone knows you should never stop the world and rewrite a large piece of software from the ground up. Joel Spolsky highlighted that in Things You Should Never Do, Part I back in April 2000!
+Coding agents powered by today&#x27;s frontier models change that equation.
+Why pick Rust? It all came down to those challenges with memory management:
+A large percentage of bugs from that list are use-after-free, double-free, and &quot;forgot to free&quot; in an error path. In safe Rust, these are compiler errors and RAII-like automatic cleanup with Drop.
+A crucial enabling factor for the rewrite was that the Bun test suite was written in TypeScript, which meant it could act as a conformance suite. This allowed an agent harness to automate much of the initial port from Bun to Rust, initially as an experiment to try out an earlier version of the model we now have access to as Mythos/Fable.
+At first, I didn&#x27;t expect it to work. A few days in, a high % of the test suite started passing and I saw how much the new Rust code matched up with the original Zig codebase. My opinion went from &quot;this is worth trying&quot; to &quot;I&#x27;m going to merge this&quot;. [...]
+For most of those 11 days (and after), I monitored workflows - manually reading the outputs to check for issues and bugs, and prompting Claude to edit the loop to fix things.
+How do you review a PR with +1 million lines added? How do you start to build the confidence needed to responsibly merge large quantities of LLM-authored code?
+A language-independent test suite with a million assertions, adversarial code review and when something does go wrong, fixing the process that generates the code instead of hand-fixing the code.
+The new implementation of Bun has been live in Claude Code for nearly a month now:
+Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.
+A perk of working at Anthropic is that you don&#x27;t have to pay for your tokens - handy when the estimated cost is $165,000!
+Pre-merge, this took 5.9 billion uncached input tokens, 690 million output tokens, and 72 billion cached input token reads — around $165,000 at API pricing.
+This whole thing is a fascinating case study in taking on wildly ambitious projects with the help of coordinated parallel agents.
+
+    
+Via Hacker News
+Tags: ai, rust, zig, generative-ai, llms, ai-assisted-programming, anthropic, bun, conformance-suites, agentic-engineering, claude-mythos-fable</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/8/introducing-gptlive/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing GPT‑Live</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/8/introducing-gptlive/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Introducing GPT‑Live
+finally upgraded the model used by ChatGPT voice mode!
+I&#x27;ve had preview access for a few weeks in the iPhone app, and the new model is very impressive. It also has the ability to spin off harder tasks to GPT-5.5:
+For questions that require web search, deeper reasoning, or more complex work, it delegates to our latest frontier model behind the scenes and brings the result back into the conversation when it’s ready. While it works, GPT‑Live can keep talking with you and maintain the flow of conversation. At launch, GPT‑Live will use GPT‑5.5 in the background. As we release new frontier models, we’ll continuously update the model used by GPT‑Live.
+The previous voice mode in the ChatGPT app was based on a GPT-4o era model, with a knowledge cut-off some time in 2024. I had mostly stopped using voice mode because the age and relative weakness of the model greatly limited how useful it was as a brainstorming partner.
+During the preview period I encountered a pretty obscure bug: the model was interrupting me to laugh at things I said, which weren&#x27;t even intended as jokes! It felt rude and condescending - I reported it to OpenAI and as far as I can tell they made some tweaks and it&#x27;s now less likely to happen.
+From looking back at my transcripts I think it was this bit that triggered the interrupting laugh:
+so where are the owls when they&#x27;re not, like before dusk? The owls exist, right? Are they hiding in holes? Where are they hiding?
+My longest conversation with the new model has been a full hour while walking the dog (and taking photos of pelicans). I have not yet managed to take a photo of an owl.
+
+    
+Via Hacker News
+Tags: text-to-speech, ai, openai, generative-ai, llms, multi-modal-output, llm-release, speech-to-text</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Kenton Varda</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>I just declared a moratorium against AI-written change descriptions (e.g. PR and commit messages, also issues/tickets) from my team.
+AI was writing change descriptions that were worse than useless to me as I tried to review PRs: outlining details of the code that could easily be seen by looking at the code, but omitting the higher-level framing needed to understand broadly what the code is doing.
+
+— Kenton Varda
+Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -42,6 +151,42 @@
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;Zq5Yj8yCiqY"
+                        open
+                      >
+                        <summary class="article-expander__title">Anyone Can Make Insane Visual Effects Now!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;Zq5Yj8yCiqY">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/ptlZzbtzdfE"
+                        open
+                      >
+                        <summary class="article-expander__title">How I Track Crazy Tech IPOs</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ptlZzbtzdfE">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://www.youtube.com/shorts/bxdsBsbtoSg"
                         open
                       >
@@ -50,8 +195,121 @@
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;9
                                   min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;KGtko3y2RXQ"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude is definitely not conscious…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;KGtko3y2RXQ">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/government-national-security-partnerships"
+                        open
+                      >
+                        <summary class="article-expander__title">Our approach to government and national security partnerships</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/government-national-security-partnerships">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how OpenAI approaches government and national security partnerships, with principles for responsible AI use, democratic accountability, and public safety.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/separating-signal-from-noise-coding-evaluations"
+                        open
+                      >
+                        <summary class="article-expander__title">Separating signal from noise in coding evaluations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/separating-signal-from-noise-coding-evaluations">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>A new analysis from OpenAI reveals issues in SWE-Bench Pro, a popular coding benchmark, raising concerns about reliability and accuracy in evaluating AI models.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/k-12-educators-practical-skills"
+                        open
+                      >
+                        <summary class="article-expander__title">Helping K–12 educators build practical AI skills</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/k-12-educators-practical-skills">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI Academy and the Walton Family Foundation are bringing hands-on AI Skills Jams to help K–12 educators build practical AI skills for the classroom.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/introducing-gpt-live"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing GPT-Live</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-gpt-live">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>A new generation of voice models for natural human-AI interaction, now powering ChatGPT Voice.</span>
                             </span>
                           </div>
                         </a>
@@ -472,7 +730,7 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -819,7 +1077,7 @@ Tags: projects, sqlite, sqlite-utils, annotated-release-notes, gpt, claude-mytho
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1760,7 +2018,7 @@ Tags: geoffrey-litt, coding-agents, cognitive-debt, generative-ai, ai, llms</spa
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2262,7 +2520,7 @@ Tags: shot-scraper</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2338,23 +2596,6 @@ Tags: shot-scraper</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
-                        open
-                      >
-                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/introducing-genebench-pro"
                         open
                       >
@@ -2380,6 +2621,23 @@ Tags: shot-scraper</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
+                        open
+                      >
+                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
                             </span>
                           </div>
                         </a>
@@ -2588,7 +2846,7 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2638,77 +2896,11 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-28 datetime="2026-06-28T21:57:41.000Z">2026-06-28</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-28 datetime="2026-06-28T21:57:41.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-28 datetime="2026-06-28T17:00:00.000Z">2026-06-28</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-28 datetime="2026-06-28T17:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Jon Udell</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Human Agent in the loop
-I dislike the phrase “human in the loop” because it cedes authority to the machines. Let’s flip the narrative. It’s our loop, we work the same way we always have, now we recruit agents to join the team. An agent-assisted process need not be a black box that takes in prompts and emits features. [...]
-Let’s do agentic software development like that. Not as a loop we’ve been excluded from, instead as one we invite agents into.
-
-— Jon Udell, “Doctor, it hurts when agents create unreviewable PRs.” “Don’t do that.”
-Tags: jon-udell, coding-agents, generative-ai, agentic-engineering, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/28/hack-your-summer/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Hack Your Summer</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/28/hack-your-summer/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Hack Your Summer
-It’s a 4-week, high-velocity production sprint for undergraduate students, graduate students, and recent graduates who want to build something real this summer.
-You’ll learn how to identify a project, make steady progress, get support from mentors and peers, and create tangible, public-facing work you can actually show future employers.
-Hack Your Summer is partly a reaction to the internship crisis facing US college students this year. There are way fewer available internships than usual, as companies have reduced their hiring ambitions and teams have less capacity to coach interns.
-Hack Your Summer provides an alternative path for the many students who didn&#x27;t catch one of those rare internships.
-A second (free) cohort starts on July 13th, and the deadline for students to apply is July 8th. They&#x27;re also accepting volunteers to help mentor the students.
-
-
-    
-Tags: careers</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2749,49 +2941,11 @@ Tags: careers</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-26 datetime="2026-06-26T22:25:46.000Z">2026-06-26</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-26 datetime="2026-06-26T22:25:46.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-26 datetime="2026-06-26T17:30:05.000Z">2026-06-26</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-26 datetime="2026-06-26T17:30:05.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/26/dean-w-ball/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Dean W. Ball</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/26/dean-w-ball/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>This is a bad state of affairs. Consider, in particular, some industry dynamics:
-Frontier models are trained at an enormous cost, and a significant fraction of that cost is recouped in the few post-release months that they are broadly available. After that period elapses, the models become sub-frontier, competition emerges, and margins compress. Every week of delay is eating into the narrow window that labs have to make their accounting work.
-The ongoing AI infrastructure buildout—the one that is, according to former US AI Czar David Sacks, essential to the US economy, assumes a functionally global total addressable market for US AI services. No one is building $100 billion dollar data centers to serve frontier models to whatever 100 companies the US government will allow access. [...]
-
-— Dean W. Ball, 35 thoughts on what has happened and what America should do
-Tags: anthropic, generative-ai, openai, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3008,25 +3162,6 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/2a3nXQjR1nM"
-                        open
-                      >
-                        <summary class="article-expander__title">The Wildest Things People Vibe Coded With Fable 5</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/2a3nXQjR1nM">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -3197,39 +3332,6 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/qv-KPydJhXs"
-                        open
-                      >
-                        <summary class="article-expander__title">Codex Can Now &quot;Copy&quot; Your Tasks</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/qv-KPydJhXs">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -4023,23 +4125,6 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/openai-to-acquire-ona"
-                        open
-                      >
-                        <summary class="article-expander__title">OpenAI to acquire Ona</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/openai-to-acquire-ona">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/using-codex-to-simulate-black-holes"
                         open
                       >
@@ -4057,14 +4142,14 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bbva"
+                        data-accordion-key="https://openai.com/index/openai-to-acquire-ona"
                         open
                       >
-                        <summary class="article-expander__title">BBVA puts AI at the core of banking with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bbva">
+                        <summary class="article-expander__title">OpenAI to acquire Ona</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/openai-to-acquire-ona">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide.</span>
+                              <span>OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.</span>
                             </span>
                           </div>
                         </a>
@@ -4082,6 +4167,23 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI supports the EU Code of Practice on AI content transparency, advancing provenance standards and tools to help people understand AI-generated content.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/bbva"
+                        open
+                      >
+                        <summary class="article-expander__title">BBVA puts AI at the core of banking with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bbva">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide.</span>
                             </span>
                           </div>
                         </a>
@@ -4330,111 +4432,6 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing Gemma 4 12B: a unified, encoder-free multimodal model</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Social_Image_G4_12B.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>An overview of Gemma 4 12B, a model designed to bring high-performance multimodal intelligence directly to your laptop.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/"
-                        open
-                      >
-                        <summary class="article-expander__title">Powering the future of robotics in Europe</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/130.width-1300.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Google DeepMind Accelerator selects 15 robotics companies from across Europe to join the program. Providing 3 months of intensive mentorship and technical support, enabl…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/nextdoor"
-                        open
-                      >
-                        <summary class="article-expander__title">How engineers at Nextdoor use Codex to build without limits</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/nextdoor">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>How engineers at Nextdoor use Codex with GPT-5.5 to investigate hard-to-reproduce issues, build across platforms, and focus on product outcomes.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/notion"
-                        open
-                      >
-                        <summary class="article-expander__title">What Codex unlocks for Notion</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/notion">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>How Notion uses Codex to one-shot specs, build AI Voice Input for the web, and multiply engineering power across small teams.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/industrial-policy-for-the-intelligence-age"
-                        open
-                      >
-                        <summary class="article-expander__title">Industrial policy for the Intelligence Age</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/industrial-policy-for-the-intelligence-age">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Explore our ambitious, people-first industrial policy ideas for the AI era—focused on expanding opportunity, sharing prosperity, and building resilient institutions as advanced intelligence evolves.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -4442,8 +4439,8 @@ Tags: anthropic, generative-ai, openai, ai, llms</span>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/28913343225">
-        <time id="build-timestamp" datetime="2026-07-08T02:35:39.946Z">2026-07-08T02:35:39.946Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/28990704141">
+        <time id="build-timestamp" datetime="2026-07-09T02:54:35.766Z">2026-07-09T02:54:35.766Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
