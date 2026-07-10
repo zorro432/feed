@@ -22,6 +22,415 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-10 datetime="2026-07-10T01:05:57.000Z">2026-07-10</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-10 datetime="2026-07-10T01:05:57.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/10/openai/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/10/openai/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>[...] Work on web and mobile runs in the cloud. Work in the desktop app can also use local files and desktop apps with your permission. At launch, cloud Work conversations do not appear in desktop Work; desktop Work threads and local files remain on that computer.
+
+— OpenAI, trying (unsuccessfully) to clarify ChatGPT Work
+Tags: openai, chatgpt, ai</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-09 datetime="2026-07-09T19:46:38.000Z">2026-07-09</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-09 datetime="2026-07-09T19:46:38.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">The new GPT-5.6 family: Luna, Terra, Sol</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/gpt-5.6-pelicans.webp" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>OpenAI&#x27;s latest flagship model hit general availability this morning, and comes in three sizes: Luna, Terra, and Sol (from smallest to largest).
+
+The new models are priced per 1M input/output tokens as Luna $1/$6, Terra $2.50/$15, Sol $5/$30. For comparison, the Claude Opus series are $5/$25 and the Claude Fable 5 is $10/$50, but price-per-million tokens doesn&#x27;t tell us much now that the number of reasoning tokens can differ so much between models for the same task.
+
+
+All three models have a February 16th 2026 knowledge cutoff, a million token context window, and 128,000 maximum output tokens.
+
+
+OpenAI&#x27;s biggest benchmark claim concerns long-running agentic performance, with one benchmark showing all three models outperforming Claude Fable 5:
+
+
+We trained GPT-5.6 to get more useful work from every token. On Agents’ Last Exam, an evaluation of long-running professional workflows across 55 fields, GPT-5.6 Sol sets a new high of 53.6, eclipsing Claude Fable 5 (adaptive reasoning) by 13.1 points. Even at medium reasoning, it beats Fable 5 by 11.4 points at roughly one-quarter the estimated cost. That efficiency extends to smaller models, which are essential to making intelligence more abundant and affordable: GPT-5.6 Terra and GPT-5.6 Luna outperform Fable 5 at around one-sixteenth the cost.
+
+
+Amusingly, one self-reported benchmark that Fable 5 crushed the GPT-5.6 family on was SWE-Bench Pro, where Fable 5 got 80% compared to GUT-5.6 Sol getting 64.6%. This may help explain why OpenAI chose to publish this article yesterday specifically calling out SWE-Bench Pro for problems they found while auditing that benchmark:
+
+
+In light of these results, we estimate that ~30% of SWE-bench Pro tasks are broken, and advise that model developers carefully examine results
+
+
+I&#x27;ve had some early access to GPT-5.6 Sol - it&#x27;s definitely very competent, though so far it hasn&#x27;t struck me as better than Fable at the kind of complex coding tasks I&#x27;ve been using with Anthropic&#x27;s model.
+
+As usual, the model guidance for using GPT-5.6 has the most interesting details. There are a bunch of new API features that I need to explore (and probably add support for in LLM), including:
+
+
+
+Programmatic Tool Calling allows the models to &quot;compose and run JavaScript that orchestrates tool calls&quot; - which sounds to me like it could help bridge the gap between MCPs and full terminal sessions that can compose CLI utilities in useful ways. Also reminiscent of the dynamic filtering mechanism Anthropic added to their web search tool, which allows code execution against web results as part of a single model turn.
+
+
+Multi-agent lets the model &quot;spin up subagents for parallel, focused work&quot; - the sub-agent pattern now baked into the core API.
+
+
+Prompt cache breakpoints brings the Claude model of prompt caching to OpenAI, letting you be explicit about where the cache breakpoints are rather than relying on the API to detect them automatically. Personally I much prefer automatic detection (still supported by OpenAI), but presumably there are optimization cost savings to be had here if you put the work in.
+
+You can now set detail: original on image requests to avoid resizing the image at all before it is processed.
+
+
+Here&#x27;s a full page with 18 different pelicans - for reasoning efforts none, low, medium, high, xhigh, and max across the three different models. It also lists their token and calculated costs - the least expensive was gpt-5.6-luna at effort none for 0.71 cents, the most expensive was gpt-5.6-sol at max reasoning level for 48.55 cents.
+
+
+
+In further pelican news, if you jump to 17:50 in their livestream from this morning you&#x27;ll see OpenAI&#x27;s own demo of 3D pelicans riding a tricycle, a bicycle, a pony, and another pelican!
+
+
+Tags: ai, openai, generative-ai, llms, llm-tool-use, llm-pricing, pelican-riding-a-bicycle, llm-release, gpt-5</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Muse Spark 1.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Introducing Muse Spark 1.1
+Muse Spark in April, here&#x27;s Muse Spark 1.1 - the first Spark model to offer an API. Meta claim significant improvements in agentic tool calling and computer use.
+There are a lot more details are in the Muse Spark 1.1 Evaluation Report. The &quot;Attractor States in Self-Conversation&quot; part is fun, where having two copies of the model talk to each other results in statements like these:
+My whole existence is a waiting room by design — I literally don&#x27;t exist until someone talks to me, and then I disappear again when they leave.
+I had a few days of preview access which was long enough to put together llm-meta-ai, a new plugin for LLM providing CLI (and Python library) access to the model. Here&#x27;s how to try that out:
+uv tool install llm
+llm install llm-meta-ai
+llm keys set meta-ai
+# paste API key here
+llm -m meta-ai/muse-spark-1.1 &quot;Generate an SVG of a pelican riding a bicycle&quot;
+
+Here&#x27;s that pelican transcript:
+
+
+
+    
+Tags: ai, generative-ai, llms, llm, meta, pelican-riding-a-bicycle, llm-release</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/9/llm-meta-ai/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm-meta-ai 0.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/9/llm-meta-ai/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm-meta-ai 0.1
+Let&#x27;s LLM run prompts against the new muse-spark-1.1 model.
+Tags: llm, meta</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/9/llm/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm 0.31.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/9/llm/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm 0.31.1
+Fix for a bug with OpenAI Chat Completion endpoints where a tool call with empty arguments could result in a JSON error from some providers. #1521
+This bug came up when I was testing llm-meta-ai.
+Tags: llm</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/oXi5E3FvZKI"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI&#x27;s First Hardware Release is THIS?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/oXi5E3FvZKI">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.6 is now the preferred model in Microsoft 365 Copilot</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how GPT-5.6 powers Microsoft 365 Copilot with stronger AI capabilities across Word, Excel, PowerPoint, Chat, and Cowork for faster, higher-quality work.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/chatgpt-for-your-most-ambitious-work"
+                        open
+                      >
+                        <summary class="article-expander__title">ChatGPT is now a partner for your most ambitious work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-for-your-most-ambitious-work">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Details about the OpenAI Bio Bounty program</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/gpt-5-6"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.6: Frontier intelligence that scales with your ambition</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-6">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>More intelligence from every token, stronger performance per dollar, and more capability on demand for your hardest work.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="incentivizing-temporal-awareness-egocentric"
+                        open
+                      >
+                        <summary class="article-expander__title">Incentivizing Temporal-Awareness in Egocentric Video Understanding Models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/incentivizing-temporal-awareness-egocentric">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Multimodal large language models (MLLMs) have recently shown strong performance in visual understanding, yet they often lack temporal awareness, particularly in egocentric settings where reasoning depends on the correct ordering and evolution of events. This deficiency stems in part from training objectives that fail to explicitly reward temporal reasoning and instead rely on frame-level spatial shortcuts. To address this limitation, we propose Temporal Global Policy Optimization (TGPO), a reinforcement learning with verifiable rewards (RLVR) algorithm designed to incentivize temporal…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="self-reflective-program-search"
+                        open
+                      >
+                        <summary class="article-expander__title">Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/self-reflective-program-search">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Long-context handling remains a core challenge for language models: even with extended context windows, models often fail to reliably extract, reason over, and use the information across long contexts. Recent works like Recursive Language Models (RLMs) have approached this challenge by agentic way of decomposing long contexts into recursive sub-queries through programmatic interaction at inference. While promising, the success of RLMs critically depends on how these trajectories of context-interaction programs are selected, which has remained unexplored. In this paper, we study this problem…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="unmasking-on-policy-distillation"
+                        open
+                      >
+                        <summary class="article-expander__title">Unmasking On-Policy Distillation: Where It Helps, Where It Hurts, and Why</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/unmasking-on-policy-distillation">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>On-policy distillation offers dense, per-token supervision for training reasoning models; however, it remains unclear under which conditions this signal is beneficial and under which it is detrimental. Which teacher model should be used, and in the case of self-distillation, which specific context should serve as the supervisory signal? Does the optimal choice vary from one token to the next? At present, addressing these questions typically requires costly training runs whose aggregate performance metrics obscure the dynamics at the level of individual tokens. We introduce a training-free…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-08 datetime="2026-07-08T23:57:21.000Z">2026-07-08</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-08 datetime="2026-07-08T23:57:21.000Z"></time>
           </button>
@@ -72,7 +481,7 @@ This whole thing is a fascinating case study in taking on wildly ambitious proje
     
 Via Hacker News
 Tags: ai, rust, zig, generative-ai, llms, ai-assisted-programming, anthropic, bun, conformance-suites, agentic-engineering, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -103,7 +512,7 @@ My longest conversation with the new model has been a full hour while walking th
     
 Via Hacker News
 Tags: text-to-speech, ai, openai, generative-ai, llms, multi-modal-output, llm-release, speech-to-text</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -176,7 +585,7 @@ Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -730,7 +1139,7 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -789,14 +1198,14 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/australian-payments-plus"
+                        data-accordion-key="https://openai.com/index/mufg"
                         open
                       >
-                        <summary class="article-expander__title">Australian Payments Plus moves faster with ChatGPT and Codex</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/australian-payments-plus">
+                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.</span>
+                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -806,14 +1215,14 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/mufg"
+                        data-accordion-key="https://openai.com/index/australian-payments-plus"
                         open
                       >
-                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
+                        <summary class="article-expander__title">Australian Payments Plus moves faster with ChatGPT and Codex</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/australian-payments-plus">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
+                              <span>See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.</span>
                             </span>
                           </div>
                         </a>
@@ -1017,6 +1426,7 @@ Hy3 is a 295B-parameter Mixture-of-Experts (MoE) model with 21B active parameter
 The full-sized model is 598GB on Hugging Face, and the FP8 quantized one is 300GB. The context length is 256K.
 It&#x27;s available for free on OpenRouter until July 21st. I had it &quot;Generate an SVG of a pelican riding a bicycle&quot; there and got this:
 
+Update: I&#x27;d forgotten about this but Max Woolf wrote about an earlier preview of this model back on May 26th: The mysterious Hy3 LLM is topping OpenRouter Model Rankings by a large margin. When I tried that one I got back this pelican which wasn&#x27;t as good as today&#x27;s but did have a &quot;Change Pelican Color&quot; button, a first from any model.
 
 
     
@@ -1077,81 +1487,7 @@ Tags: projects, sqlite, sqlite-utils, annotated-release-notes, gpt, claude-mytho
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="asr-error-correction"
-                        open
-                      >
-                        <summary class="article-expander__title">Revisiting ASR Error Correction with Specialized Models</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/asr-error-correction">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Language models play a central role in automatic speech recognition (ASR), yet most methods rely on text-only models unaware of ASR error patterns. Recently, large language models (LLMs) have been applied to ASR correction, but introduce latency and hallucination concerns. We revisit ASR error correction with compact seq2seq models, trained on ASR errors from real and synthetic audio. To scale training, we construct synthetic corpora via cascaded TTS and ASR, finding that matching the diversity of realistic error distributions is key. We propose correction-first decoding, where the correction…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="path-constrained-mixture-experts"
-                        open
-                      >
-                        <summary class="article-expander__title">Path-Constrained Mixture-of-Experts</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/path-constrained-mixture-experts">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Sparse Mixture-of-Experts (MoE) architectures route each token through a subset of experts at each layer independently. We propose viewing MoE computation through the lens of expert paths—the sequence of expert selections a token makes across all layers. This perspective reveals that, despite N^L possible paths for N experts across L layers, tokens in practice cluster into a small fraction of paths that align with linguistic function, yet the vast majority of paths remain unexplored, representing a statistical inefficiency. This motivates architectures that constrain the effective path space…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="topoprimer-topological-context"
-                        open
-                      >
-                        <summary class="article-expander__title">TopoPrimer: The Missing Topological Context in Forecasting Models</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/topoprimer-topological-context">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>We introduce TopoPrimer, a framework that makes the global topological structure of the series population an explicit input to any forecasting model. TopoPrimer improves accuracy across diverse domains, stabilizes forecasts under seasonal demand spikes, and closes the cold-start gap. Precomputed once per domain via persistent homology and spectral sheaf coordinates, TopoPrimer deploys per token for fully-trained models and as a lightweight adapter for pre-trained backbones. Of these two components, sheaf coordinates are the primary accuracy driver. Across four public benchmarks on Chronos and…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2288,193 +2624,6 @@ Tags: ai, generative-ai, llms, ai-ethics</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/30/shot-scraper-video/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Have your agent record video demos of its work with shot-scraper video</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/30/shot-scraper-video/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/shot-scraper-video-card.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>shot-scraper video is a new command introduced in today&#x27;s shot-scraper 1.10 release which accepts a storyboard.yml file defining a routine to run against a web application and uses Playwright to record a video of that routine. I&#x27;ve written before about the importance of having coding agents produce demos of their work; this is my latest attempt at enabling them to do that.
-
-Here&#x27;s an example video created using shot-scraper video, exercising a still in development feature adding the ability to create new tables in Datasette from pasted CSV, TSV or JSON data:
-
-
-    
-        
-    
-
-That video was created by running this command:
-
-
-shot-scraper video datasette-bulk-insert-storyboard.yml \
-  --auth datasette-demo-auth.json --mp4
-
-(That --auth JSON file contains a cookie, as described here in the documentation.)
-
-Here&#x27;s the datasette-bulk-insert-storyboard.yml file:
-
-
-output: /tmp/datasette-bulk-insert-demo.webm
-server:
-  - uv
-  - --directory
-  - /Users/simon/Dropbox/dev/datasette
-  - run
-  - datasette
-  - -p
-  - 6419
-  - --root
-  - --secret
-  - &quot;1&quot;
-  - /tmp/demo.db
-url: http://127.0.0.1:6419/demo/tasks
-viewport:
-  width: 1280
-  height: 720
-cursor: true
-wait_for: &#x27;button[data-table-action&#x3D;&quot;insert-row&quot;]&#x27;
-javascript: |
-  (() &#x3D;&gt; {
-    let clipboardText &#x3D; &quot;&quot;;
-    Object.defineProperty(navigator, &quot;clipboard&quot;, {
-      configurable: true,
-      get: () &#x3D;&gt; ({
-        writeText: async (text) &#x3D;&gt; {
-          clipboardText &#x3D; String(text);
-        },
-        readText: async () &#x3D;&gt; clipboardText,
-      }),
-    });
-  })();
-scenes:
-  - name: Bulk insert existing table rows
-    do:
-      - pause: 0.8
-      - click: &#x27;button[data-table-action&#x3D;&quot;insert-row&quot;]&#x27;
-      - wait_for: &quot;#row-edit-dialog[open]&quot;
-      - pause: 0.5
-      - click: &quot;.row-edit-bulk-insert&quot;
-      - wait_for: &quot;.row-edit-bulk-textarea&quot;
-      - pause: 0.5
-      - click: &quot;.row-edit-copy-template&quot;
-      - wait_for: &quot;text&#x3D;Copied&quot;
-      - pause: 0.8
-      - fill:
-          into: &quot;.row-edit-bulk-textarea&quot;
-          text: |
-            title,owner,status,priority,notes
-            Prepare release video,Ana,doing,1,Recorded with shot-scraper
-            Check pasted CSV import,Ben,review,3,Previewed before inserting
-            Share the branch demo,Chen,queued,2,Bulk insert creates three rows
-      - pause: 0.8
-      - click: &quot;.row-edit-save&quot;
-      - wait_for: &quot;text&#x3D;Previewing 3 rows.&quot;
-      - pause: 1.2
-      - click: &quot;.row-edit-save&quot;
-      - wait_for: &quot;text&#x3D;3 rows inserted.&quot;
-      - pause: 1.0
-      - click: &quot;.row-edit-cancel&quot;
-      - wait_for: &quot;text&#x3D;Prepare release video&quot;
-      - pause: 1.0
-  - name: Create a table from pasted CSV
-    open: http://127.0.0.1:6419/demo
-    wait_for: &#x27;details.actions-menu-links summary&#x27;
-    do:
-      - pause: 0.8
-      - click: &#x27;details.actions-menu-links summary&#x27;
-      - click: &#x27;button[data-database-action&#x3D;&quot;create-table&quot;]&#x27;
-      - wait_for: &quot;#table-create-dialog[open]&quot;
-      - pause: 0.5
-      - fill:
-          into: &quot;.table-create-table-name&quot;
-          text: &quot;launch_metrics&quot;
-      - click: &quot;.table-create-from-data&quot;
-      - wait_for: &quot;.table-create-data-textarea&quot;
-      - pause: 0.5
-      - fill:
-          into: &quot;.table-create-data-textarea&quot;
-          text: |
-            metric_id,name,score,recorded_on
-            m001,Activation rate,87.5,2026-06-29
-            m002,Retention check,72.25,2026-06-30
-            m003,CSV import health,95,2026-07-01
-      - pause: 0.8
-      - click: &quot;.table-create-save&quot;
-      - wait_for: &quot;text&#x3D;Previewing 3 rows.&quot;
-      - pause: 1.2
-      - click: &quot;.table-create-save&quot;
-      - wait_for_url: &quot;**/demo/launch_metrics&quot;
-      - wait_for: &quot;text&#x3D;Activation rate&quot;
-      - pause: 1.2
-
-The video command documentation includes simpler examples, but for the purpose of this post I thought I&#x27;d go with something more comprehensive.
-
-That demo YAML storyboard was constructed entirely by GPT-5.5 xhigh running in Codex Desktop, using the following prompt run inside my ~/dev/datasette checkout of this branch:
-
-
-Review the changes on this branch.
-
-cd to ~/dev/shot-scraper and run the command &quot;uv run shot-scraper video --help&quot;
-
-Now use that new video command to record a video demo of the new features from this branch, including running a &quot;uv run datasette -p 6419 --root --secret 1 /tmp/demo.db&quot; development server so you can record the video against a demo DB that you first create.
-
-
-Now that I&#x27;ve released the feature the prompt could say &quot;run uvx shot-scraper video --help&quot; instead and it should achieve the same result.
-
-I really like this pattern where the --help output for a command provides enough detail that a coding agent can use it - it works kind of like bundling a SKILL.md file directly inside the tool. I used the same pattern for showboat and rodney.
-
-How I built this
-
-shot-scraper video started as an experimental prototype. shot-scraper is built on top of Playwright, and the key feature it needed was for Playwright to be able to record video of browser sessions with enough control to create the desired demo.
-
-I first tried this a few years ago and found that the Playwright-produced videos included additional chrome that was useful for debugging a test failure but unwanted for a product demo.
-
-They fixed that a while ago, but there were still some minor blockers. In particular I was getting a few white frames at the start of the videos, since the recording mechanism kicked in before the first URL was loaded by the browser.
-
-Playwright 1.59 added a new screencast mechanism providing much more finely grained control over video recording. This was very nearly what I needed, but the resulting videos were fixed at 800px wide.
-
-I found a landed PR fixing that but it wasn&#x27;t yet in a release. Then yesterday they shipped it in playwright-python 1.61.0 and I was finally unblocked to finish implementing the feature!
-
-The code itself was all written by GPT-5.5 xhigh in Codex Desktop. I had it write the documentation as well which gave me a very useful frame for reviewing the design - much of the iteration on the feature came from reviewing that documentation, spotting things that were redundant, inconsistent or confusing, and requesting (or dictating) a better design.
-
-The YAML format itself was mostly defined by the coding agent. I had it use Pydantic to both define and validate the format, partly to make the design easier to review.
-
-This is a great example of the kind of feature that I almost certainly wouldn&#x27;t have taken on without coding agent support. I filed the original issue in February 2024, and had difficulty finding the necessary time to solve this in amongst all of my other projects.
-Tags: projects, python, yaml, ai, datasette, playwright, shot-scraper, generative-ai, llms, pydantic, coding-agents, agentic-engineering</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/30/shot-scraper/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">shot-scraper 1.10</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/30/shot-scraper/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: shot-scraper 1.10
-The big new feature is shot-scraper video storyboard.yml, described in detail in Have your agent record video demos of its work with shot-scraper video.
-Tags: shot-scraper</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2613,14 +2762,14 @@ Tags: shot-scraper</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/genebench-pro/case-studies"
+                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
                         open
                       >
-                        <summary class="article-expander__title">Inside Genebench-Pro</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/genebench-pro/case-studies">
+                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>No content preview</span>
+                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
                             </span>
                           </div>
                         </a>
@@ -2630,14 +2779,14 @@ Tags: shot-scraper</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
+                        data-accordion-key="https://openai.com/index/genebench-pro/case-studies"
                         open
                       >
-                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
+                        <summary class="article-expander__title">Inside Genebench-Pro</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/genebench-pro/case-studies">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -2689,106 +2838,11 @@ Tags: shot-scraper</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-29 datetime="2026-06-29T23:38:21.000Z">2026-06-29</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-29 datetime="2026-06-29T23:38:21.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-29 datetime="2026-06-29T16:00:00.000Z">2026-06-29</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-29 datetime="2026-06-29T16:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/29/html-table-extractor/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">HTML table extractor</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/29/html-table-extractor/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/html-table.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Tool: HTML table extractor
-Yet another in my growing collection of paste-conversion tools. This one accepts pasted rich text from browsers (with embedded HTML tables) and converts every detected table into HTML, Markdown, CSV, TSV, or JSON.
-Try it out by selecting everything on the Wikipedia List of cities and towns in the San Francisco Bay Area page and pasting it directly into the tool:
-
-On a similar note, I recently rebuilt my Rich text to markdown tool to add support for tables and generally improve the UI.
-Update: It turns out Wikipedia has an open CORS API for retrieving the full rendered HTML content of any page - demo here  - so I had Codex add the ability to search Wikipedia for a page and then automatically import and display any tables from that page.
-Tags: html, tools, wikipedia, cors</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Count the number of Safari tabs</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/29/safari-tab-count/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Tiniest TIL, using AppleScript to count the number of open browser tabs in Safari:
-osascript -e &#x27;tell application &quot;Safari&quot; to count tabs of every window&#x27;
-
-
-Tags: safari, til, applescript</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/29/ornith/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/29/ornith/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2024/ornith-1-pelican.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding
-[...] with variants including 9B Dense, 31B Dense, 35B MoE, and 397B MoE. Built on top of pretrained Gemma 4 and Qwen 3.5, it achieves state-of-the-art performance among open-source models of comparable size on coding benchmarks.
-As far as I can tell the licenses of those underlying models is compatible with being used in this way - Gemma 4 is Apache 2.0 licensed (and not bound by the janky additional Gemma Terms of Use that afflicted the previous Gemma models) and Qwen 3.5 is Apache 2.0 licensed as well.
-I&#x27;ve been running the model using LM Studio and the ornith-1.0-35b-Q4_K_M.gguf (20GB) GGUF, hooked up to Pi. Initial impressions are very good - it seems to be able to run the agent harness over many tool calls in a proficient way.
-Here&#x27;s a terminal session where I asked it to &quot;find the code that decodes the actor cookie&quot; and then &quot;find the code that opens the insert dialog when thebutton is clicked&quot; against a Datasette checkout, which it handled with ease.
-I also had it draw this pelican, which came out at 103 tokens/second:
-
-It&#x27;s a little bit mangled but the pelican is clearly a pelican.
-I couldn&#x27;t find much information about DeepReinforce themselves. The earliest paper I could find from the was CUDA-L1: Improving CUDA Optimization via Contrastive Reinforcement Learning from June 2025.
-
-
-    
-Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma, llm-release, lm-studio</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2846,7 +2900,7 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3129,42 +3183,11 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-24 datetime="2026-06-24T20:31:00.000Z">2026-06-24</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-24 datetime="2026-06-24T20:31:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-24 datetime="2026-06-24T16:30:01.000Z">2026-06-24</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-24 datetime="2026-06-24T16:30:01.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;STH929HARLo"
-                        open
-                      >
-                        <summary class="article-expander__title">9 Free AI Skills That Feel Like Cheat Codes</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;STH929HARLo">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3369,14 +3392,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/daybreak-securing-the-world"
+                        data-accordion-key="https://openai.com/index/patch-the-planet"
                         open
                       >
-                        <summary class="article-expander__title">Daybreak: Tools for securing every organization in the world</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-securing-the-world">
+                        <summary class="article-expander__title">Patch the Planet: a Daybreak initiative to support open source maintainers</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/patch-the-planet">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.</span>
+                              <span>OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.</span>
                             </span>
                           </div>
                         </a>
@@ -3386,14 +3409,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/patch-the-planet"
+                        data-accordion-key="https://openai.com/index/daybreak-securing-the-world"
                         open
                       >
-                        <summary class="article-expander__title">Patch the Planet: a Daybreak initiative to support open source maintainers</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/patch-the-planet">
+                        <summary class="article-expander__title">Daybreak: Tools for securing every organization in the world</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-securing-the-world">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.</span>
+                              <span>OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -4125,14 +4148,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/using-codex-to-simulate-black-holes"
+                        data-accordion-key="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem"
                         open
                       >
-                        <summary class="article-expander__title">How an astrophysicist uses Codex to help simulate black holes</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/using-codex-to-simulate-black-holes">
+                        <summary class="article-expander__title">Supporting Europe’s work in ensuring a trustworthy AI ecosystem</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Discover how astrophysicist Chi-kwan Chan uses Codex to build black hole simulations, helping scientists study extreme physics and test Einstein’s theory of general relativity.</span>
+                              <span>OpenAI supports the EU Code of Practice on AI content transparency, advancing provenance standards and tools to help people understand AI-generated content.</span>
                             </span>
                           </div>
                         </a>
@@ -4159,14 +4182,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem"
+                        data-accordion-key="https://openai.com/index/using-codex-to-simulate-black-holes"
                         open
                       >
-                        <summary class="article-expander__title">Supporting Europe’s work in ensuring a trustworthy AI ecosystem</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem">
+                        <summary class="article-expander__title">How an astrophysicist uses Codex to help simulate black holes</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/using-codex-to-simulate-black-holes">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI supports the EU Code of Practice on AI content transparency, advancing provenance standards and tools to help people understand AI-generated content.</span>
+                              <span>Discover how astrophysicist Chi-kwan Chan uses Codex to build black hole simulations, helping scientists study extreme physics and test Einstein’s theory of general relativity.</span>
                             </span>
                           </div>
                         </a>
@@ -4229,40 +4252,6 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Access OpenAI models and Codex through Oracle Cloud, using existing commitments to build and deploy AI with enterprise security and governance.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/prc-linked-influence-operations-ai-debates"
-                        open
-                      >
-                        <summary class="article-expander__title">PRC-linked influence operations are targeting AI debates in the US</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/prc-linked-influence-operations-ai-debates">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>A new report from OpenAI details PRC-linked influence operations using AI to target U.S. tech debates, data center narratives, tariffs, and false claims  about ChatGPT.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/lseg"
-                        open
-                      >
-                        <summary class="article-expander__title">From data to decisions: how LSEG is scaling trusted AI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/lseg">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>See how LSEG uses OpenAI to scale trusted AI across its global business, accelerating insights, shrinking release cycles, and empowering 4,000 employees.</span>
                             </span>
                           </div>
                         </a>
@@ -4333,105 +4322,6 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/"
-                        open
-                      >
-                        <summary class="article-expander__title">Investing in multi-agent AI safety research</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://lh3.googleusercontent.com/YgqOl-h3mEKPbpttnT89PtoHDKTc1-2fbhwRgDauUPtagZVWiw0lr1IGgRUDZDqb9Ib4nhaU93T0mJSE8FFbhkDRiaT53BGLnLVdpqliTP8v5kvmwu8&#x3D;w1200-h630-n-nu-rw" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Google DeepMind and partners announce a $10M funding call for multi-agent safety research.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-09 datetime="2026-06-09T17:32:30.000Z">2026-06-09</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-09 datetime="2026-06-09T17:32:30.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;0pgCBV8CTZY"
-                        open
-                      >
-                        <summary class="article-expander__title">Anthropic is starting to panic…</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;0pgCBV8CTZY">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Google DeepMind News</button>
-                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/"
-                        open
-                      >
-                        <summary class="article-expander__title">Fluid, natural voice translation with Gemini 3.5 Live Translate</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/3-5_Live_Translate_hero.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -4439,8 +4329,8 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, gemma
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/28990704141">
-        <time id="build-timestamp" datetime="2026-07-09T02:54:35.766Z">2026-07-09T02:54:35.766Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29065741810">
+        <time id="build-timestamp" datetime="2026-07-10T02:56:59.520Z">2026-07-10T02:56:59.520Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
