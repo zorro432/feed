@@ -22,6 +22,114 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-11 datetime="2026-07-11T23:50:20.000Z">2026-07-11</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-11 datetime="2026-07-11T23:50:20.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">sqlite-utils 4.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: sqlite-utils 4.1
+The first dot-release since 4.0 a few days ago, introducing a number of minor new features.
+sqlite-utils insert and sqlite-utils upsert now accept a --code option for providing a block of Python code (or a path to a .py file) that defines a rows() function or rows iterable of rows to insert, as an alternative to importing from a file. (#684)
+sqlite-utils already had features that allow you to pass blocks of Python code as CLI arguments, for example this one for the sqlite-utils convert command:
+sqlite-utils convert content.db articles headline &#x27;
+def convert(value):
+    return value.upper()&#x27;
+Allowing blocks of code to generate new rows directly was on obvious extension of that pattern:
+sqlite-utils insert data.db creatures --code &#x27;
+def rows():
+    yield {&quot;id&quot;: 1, &quot;name&quot;: &quot;Cleo&quot;}
+    yield {&quot;id&quot;: 2, &quot;name&quot;: &quot;Suna&quot;}
+&#x27; --pk id
+sqlite-utils insert and sqlite-utils upsert now accept --type column-name type to override the type automatically chosen when the table is created. This is useful for CSV or TSV columns such as ZIP codes that look like integers but should be stored as TEXT to preserve leading zeros. (#131)
+A long-standing feature request which turned out to be a simple implementation.
+New table.drop_index(name) method and sqlite-utils drop-index command for dropping an index by name. Both accept ignore&#x3D;True/--ignore to ignore a missing index. (#626)
+sqlite-utils query can now read the SQL query from standard input by passing - in place of the query, for example echo &quot;select * from dogs&quot; | sqlite-utils query dogs.db -. (#765)
+Two more small features. I had Codex review all open issues and highlight the easiest ones!
+sqlite-utils upsert can now infer the primary key of an existing table, so --pk can be omitted when upserting into a table that already has a primary key.
+Another Codex suggestion, an obvious missing CLI feature from a Python library improvement that shipped in the 4.0 release.
+table.transform() and table.transform_sql() now accept strict&#x3D;True or strict&#x3D;False to change a table’s SQLite strict mode. Omitting the option preserves the existing mode. (#787)
+The sqlite-utils transform command now accepts --strict and --no-strict to change a table’s strict mode. (#787)
+These two were inspired by Prefer STRICT tables in SQLite by Evan Hahn, which did the rounds on Hacker News today. Evan pointed out that:
+Unfortunately, I don’t think there’s a way to ALTER a table to make it strict. I think you have to copy the data out of the non-strict table into the strict one.
+That&#x27;s exactly what the sqlite-utils transform mechanism does, so I extended it to add the ability to switch tables from strict to non-strict and vice-versa.
+Here&#x27;s the GPT-5.6 Sol xhigh Codex transcript I used to implement those new strict table features. One of the most useful prompts I ran was this one:
+use uv run python -c and manually exercise the new .transform(strict&#x3D;) option, see if you can find any edge-cases or bugs
+Effectively telling the model to manually test its work, outside of the automated tests it had already written. This turned up two minor issues that we then fixed.
+Tags: projects, python, sqlite, sqlite-utils, annotated-release-notes, ai-assisted-programming</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/Iir8dmNoNTg"
+                        open
+                      >
+                        <summary class="article-expander__title">ChatGPT’s Latest Update Is MASSIVE</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Iir8dmNoNTg">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-10 datetime="2026-07-10T17:25:44.000Z">2026-07-10</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-10 datetime="2026-07-10T17:25:44.000Z"></time>
           </button>
@@ -1324,7 +1432,7 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2059,7 +2167,7 @@ Tags: armin-ronacher, ai, openai, generative-ai, llms, anthropic, llm-tool-use, 
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2520,7 +2628,7 @@ Tags: geoffrey-litt, coding-agents, cognitive-debt, generative-ai, ai, llms</spa
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2692,77 +2800,6 @@ Tags: google, ai, generative-ai, llms, gemini, text-to-image, llm-release, nano-
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jun/30/claude-sonnet-5/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">What&#x27;s new in Claude Sonnet 5</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jun/30/claude-sonnet-5/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/sonnet-5-pelican.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>What&#x27;s new in Claude Sonnet 5
-this morning. I always head straight for the &quot;what&#x27;s new&quot; developer docs because they tend to have more actionable information than the official announcement post.
-Anthropic say of Sonnet 5 that &quot;its performance is close to that of Opus 4.8, but at lower prices&quot;. The system card helps explain how they were able to release the model without being blocked by the US government:
-Sonnet 5 is significantly less capable at cyber tasks than Mythos 5: its safeguards are thus similar to those we apply to Opus 4.7 and Opus 4.8 (models that are more capable than Sonnet 5 but much less capable than Mythos 5).
-Of note from the &quot;what&#x27;s new&quot; API changes:
-Sampling parameters temperature, top_p, top_k are no longer supported.
-It has a 1 million token context window and 128,000 maximum output tokens.
-It features &quot;the same set of tools and platform features as Claude Sonnet 4.6&quot;
-Adaptive thinking is on by default, unless you specify &quot;thinking&quot;: {type: &quot;disabled&quot;}.
-The pricing is the same as Sonnet 4.6: $3/million input, $15/million input, with an introductory discount to $2/$10 until 31st August. But...
-The model has a new tokenizer, where &quot;The same input text produces approximately 30% more tokens than on Claude Sonnet 4.6.&quot; - effectively a 30% price increase.
-I used my Claude Token Counter tool to try out the new tokenizer. Here are my results for several larger documents:
-Document
-      Sonnet 4.6
-      Opus 4.7
-      Sonnet 5
-    
-Universal Declaration of Human Rights (English)
-      2,356
-      3,347
-1.42x
-      3,341
-1.42x
-    
-Universal Declaration of Human Rights (Spanish)
-      3,572
-      4,753
-1.33x
-      4,747
-1.33x
-    
-Universal Declaration of Human Rights (Chinese, Mandarin Simplified)
-      3,334
-      3,366
-1.01x
-      3,360
-1.01x
-    
-sqlite_utils/db.py (4,279 lines of Python)
-      44,014
-      56,118
-1.28x
-      56,113
-1.27x
-    
-So the new token is roughly 1.4x times more expensive for English, 1.33x for Spanish, 1.28x for Python code and effectively the same cost for Simplified Mandarin.
-Here&#x27;s the pelican. It&#x27;s nothing to write home about. Sonnet 5 thinks it looks like a goose.
-
-
-    
-Via Hacker News
-Tags: ai, generative-ai, llms, anthropic, claude, llm-pricing, pelican-riding-a-bicycle, llm-release</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2808,7 +2845,7 @@ Tags: ai, generative-ai, llms, anthropic, claude, llm-pricing, pelican-riding-a-
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3039,7 +3076,7 @@ Tags: ai, generative-ai, llms, anthropic, claude, llm-pricing, pelican-riding-a-
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3134,42 +3171,11 @@ Tags: ai, generative-ai, llms, anthropic, claude, llm-pricing, pelican-riding-a-
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-26 datetime="2026-06-26T17:30:05.000Z">2026-06-26</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-26 datetime="2026-06-26T17:30:05.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-26 datetime="2026-06-26T10:00:00.000Z">2026-06-26</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-26 datetime="2026-06-26T10:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;zMVZvgCOr40"
-                        open
-                      >
-                        <summary class="article-expander__title">AI News: The New Model That&#x27;s As Good As Fable</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;zMVZvgCOr40">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -4100,151 +4106,10 @@ Tags: ai, generative-ai, llms, anthropic, claude, llm-pricing, pelican-riding-a-
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-12 datetime="2026-06-12T10:00:00.000Z">2026-06-12</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-12 datetime="2026-06-12T10:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/academy-courses-applying-ai-at-work"
-                        open
-                      >
-                        <summary class="article-expander__title">New OpenAI Academy courses for the next era of work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/academy-courses-applying-ai-at-work">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI introduces three Academy courses that help people build practical AI skills, create repeatable workflows, and apply agents in everyday work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/preply"
-                        open
-                      >
-                        <summary class="article-expander__title">How Preply combines AI and human tutors to personalize learning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/preply">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Preply uses OpenAI to launch AI-generated lesson summaries, providing personalised feedback and language learning exercises.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-11 datetime="2026-06-11T20:00:00.000Z">2026-06-11</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-11 datetime="2026-06-11T20:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI</button>
-                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/"
-                        open
-                      >
-                        <summary class="article-expander__title">Our new community investments in Virginia support local jobs and expand energy affordability.</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/VirginiaSocial.max-1440x810.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>We’re helping build the state’s next-generation workforce and investing in energy programs.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;1PBRhm5ZnjU"
-                        open
-                      >
-                        <summary class="article-expander__title">Anthropic begged the world to stop AI… then shipped this</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;1PBRhm5ZnjU">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29136533110">
-        <time id="build-timestamp" datetime="2026-07-11T02:33:37.831Z">2026-07-11T02:33:37.831Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29177094656">
+        <time id="build-timestamp" datetime="2026-07-12T02:40:19.081Z">2026-07-12T02:40:19.081Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>

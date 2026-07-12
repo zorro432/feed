@@ -84,16 +84,6 @@
           "wordCount": 4347,
           "title": "We’re strengthening our presence in Alabama through new investments and community support.",
           "imageUrl": "https://blog.google/static/blogv2/images/google-200x200.png?version=pr20260624-1707"
-        },
-        {
-          "id": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
-          "author": null,
-          "description": "We’re helping build the state’s next-generation workforce and investing in energy programs.",
-          "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
-          "publishedOn": "2026-06-11T20:00:00.000Z",
-          "wordCount": 4284,
-          "title": "Our new community investments in Virginia support local jobs and expand energy affordability.",
-          "imageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/VirginiaSocial.max-1440x810.png"
         }
       ]
     },
@@ -498,26 +488,6 @@
           "wordCount": null,
           "title": "Introducing the OpenAI Partner Network",
           "imageUrl": null
-        },
-        {
-          "id": "https://openai.com/index/academy-courses-applying-ai-at-work",
-          "author": null,
-          "description": "OpenAI introduces three Academy courses that help people build practical AI skills, create repeatable workflows, and apply agents in everyday work.",
-          "link": "https://openai.com/index/academy-courses-applying-ai-at-work",
-          "publishedOn": "2026-06-12T10:00:00.000Z",
-          "wordCount": null,
-          "title": "New OpenAI Academy courses for the next era of work",
-          "imageUrl": null
-        },
-        {
-          "id": "https://openai.com/index/preply",
-          "author": null,
-          "description": "Preply uses OpenAI to launch AI-generated lesson summaries, providing personalised feedback and language learning exercises.",
-          "link": "https://openai.com/index/preply",
-          "publishedOn": "2026-06-12T00:00:00.000Z",
-          "wordCount": null,
-          "title": "How Preply combines AI and human tutors to personalize learning",
-          "imageUrl": null
         }
       ]
     },
@@ -633,6 +603,16 @@
       "feedUrl": "https://simonwillison.net/atom/everything/",
       "siteUrl": "http://simonwillison.net/",
       "articles": [
+        {
+          "id": "https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything",
+          "author": null,
+          "description": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/sqlite-utils/releases/tag/4.1\">sqlite-utils 4.1</a></p>\n        <p>The first dot-release since <a href=\"https://simonwillison.net/2026/Jul/7/sqlite-utils-4/\">4.0 a few days ago</a>, introducing a number of minor new features.</p>\n<blockquote>\n<ul>\n<li><code>sqlite-utils insert</code> and <code>sqlite-utils upsert</code> now accept a <code>--code</code> option for <a href=\"https://sqlite-utils.datasette.io/en/stable/cli.html#cli-insert-code\">providing a block of Python code</a> (or a path to a <code>.py</code> file) that defines a <code>rows()</code> function or <code>rows</code> iterable of rows to insert, as an alternative to importing from a file. (<a href=\"https://github.com/simonw/sqlite-utils/issues/684\">#684</a>)</li>\n</ul>\n</blockquote>\n<p><code>sqlite-utils</code> already had features that allow you to pass blocks of Python code as CLI arguments, for example <a href=\"https://sqlite-utils.datasette.io/en/stable/cli.html#converting-data-in-columns\">this one</a> for the <code>sqlite-utils convert</code> command:</p>\n<pre><span class=\"pl-s1\">sqlite</span><span class=\"pl-c1\">-</span><span class=\"pl-s1\">utils</span> <span class=\"pl-s1\">convert</span> <span class=\"pl-s1\">content</span>.<span class=\"pl-c1\">db</span> <span class=\"pl-s1\">articles</span> <span class=\"pl-s1\">headline</span> '\n<span class=\"pl-s1\">def</span> <span class=\"pl-en\">convert</span>(<span class=\"pl-s1\">value</span>):\n    <span class=\"pl-k\">return</span> <span class=\"pl-s1\">value</span>.<span class=\"pl-c1\">upper</span>()'</pre>\n<p>Allowing blocks of code to <a href=\"https://sqlite-utils.datasette.io/en/stable/cli.html#inserting-rows-generated-by-python-code\">generate new rows directly</a> was on obvious extension of that pattern:</p>\n<pre><span class=\"pl-s1\">sqlite</span><span class=\"pl-c1\">-</span><span class=\"pl-s1\">utils</span> <span class=\"pl-s1\">insert</span> <span class=\"pl-s1\">data</span>.<span class=\"pl-c1\">db</span> <span class=\"pl-s1\">creatures</span> <span class=\"pl-c1\">-</span><span class=\"pl-c1\">-</span><span class=\"pl-s1\">code</span> '\n<span class=\"pl-s1\">def</span> <span class=\"pl-en\">rows</span>():\n    <span class=\"pl-k\">yield</span> {<span class=\"pl-s\">\"id\"</span>: <span class=\"pl-c1\">1</span>, <span class=\"pl-s\">\"name\"</span>: <span class=\"pl-s\">\"Cleo\"</span>}\n    <span class=\"pl-k\">yield</span> {<span class=\"pl-s\">\"id\"</span>: <span class=\"pl-c1\">2</span>, <span class=\"pl-s\">\"name\"</span>: <span class=\"pl-s\">\"Suna\"</span>}\n' <span class=\"pl-c1\">-</span><span class=\"pl-c1\">-</span><span class=\"pl-s1\">pk</span> <span class=\"pl-s1\">id</span></pre>\n\n<blockquote>\n<ul>\n<li><code>sqlite-utils insert</code> and <code>sqlite-utils upsert</code> now accept <code>--type column-name type</code> to <a href=\"https://sqlite-utils.datasette.io/en/stable/cli.html#cli-insert-csv-tsv-column-types\">override the type automatically chosen when the table is created</a>. This is useful for CSV or TSV columns such as ZIP codes that look like integers but should be stored as <code>TEXT</code> to preserve leading zeros. (<a href=\"https://github.com/simonw/sqlite-utils/issues/131\">#131</a>)</li>\n</ul>\n</blockquote>\n<p>A long-standing feature request which turned out to be a <a href=\"https://github.com/SAY-5/sqlite-utils/commit/d2ac3765ed9f0516bb0cbc2508a5c3907fb6a71a\">simple implementation</a>.</p>\n<blockquote>\n<ul>\n<li>New <code>table.drop_index(name)</code> method and <code>sqlite-utils drop-index</code> command for dropping an index by name. Both accept <code>ignore=True</code>/<code>--ignore</code> to ignore a missing index. (<a href=\"https://github.com/simonw/sqlite-utils/issues/626\">#626</a>)</li>\n<li><code>sqlite-utils query</code> can now read the SQL query from standard input by passing <code>-</code> in place of the query, for example <code>echo \"select * from dogs\" | sqlite-utils query dogs.db -</code>. (<a href=\"https://github.com/simonw/sqlite-utils/issues/765\">#765</a>)</li>\n</ul>\n</blockquote>\n<p>Two more small features. I had Codex review all open issues and highlight the easiest ones!</p>\n<blockquote>\n<ul>\n<li><code>sqlite-utils upsert</code> can now infer the primary key of an existing table, so <code>--pk</code> can be omitted when upserting into a table that already has a primary key.</li>\n</ul>\n</blockquote>\n<p>Another Codex suggestion, an obvious missing CLI feature from a Python library improvement that shipped in the 4.0 release.</p>\n<blockquote>\n<ul>\n<li><code>table.transform()</code> and <code>table.transform_sql()</code> now accept <code>strict=True</code> or <code>strict=False</code> to change a table’s <a href=\"https://www.sqlite.org/stricttables.html\">SQLite strict mode</a>. Omitting the option preserves the existing mode. (<a href=\"https://github.com/simonw/sqlite-utils/issues/787\">#787</a>)</li>\n<li>The <code>sqlite-utils transform</code> command now accepts <code>--strict</code> and <code>--no-strict</code> to change a table’s strict mode. (<a href=\"https://github.com/simonw/sqlite-utils/issues/787\">#787</a>)</li>\n</ul>\n</blockquote>\n<p>These two were inspired by <a href=\"https://evanhahn.com/prefer-strict-tables-in-sqlite/\">Prefer STRICT tables in SQLite</a> by Evan Hahn, which did the rounds <a href=\"https://news.ycombinator.com/item?id=48873940\">on Hacker News</a> today. Evan pointed out that:</p>\n<blockquote>\n<p>Unfortunately, I don’t think there’s a way to ALTER a table to make it strict. I think you have to copy the data out of the non-strict table into the strict one.</p>\n</blockquote>\n<p>That's exactly what the <a href=\"https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table\">sqlite-utils transform mechanism</a> does, so I extended it to add the ability to switch tables from strict to non-strict and vice-versa.</p>\n<p>Here's <a href=\"https://gist.github.com/simonw/ab8256b81646ad967a601975e206de64\">the GPT-5.6 Sol xhigh Codex transcript</a> I used to implement those new strict table features. One of the most useful prompts I ran was this one:</p>\n<blockquote>\n<p><code>use uv run python -c and manually exercise the new .transform(strict=) option, see if you can find any edge-cases or bugs</code></p>\n</blockquote>\n<p>Effectively telling the model to manually test its work, outside of the automated tests it had already written. This turned up two minor issues that we then fixed.</p>\n    \n    \n        <p>Tags: <a href=\"https://simonwillison.net/tags/projects\">projects</a>, <a href=\"https://simonwillison.net/tags/python\">python</a>, <a href=\"https://simonwillison.net/tags/sqlite\">sqlite</a>, <a href=\"https://simonwillison.net/tags/sqlite-utils\">sqlite-utils</a>, <a href=\"https://simonwillison.net/tags/annotated-release-notes\">annotated-release-notes</a>, <a href=\"https://simonwillison.net/tags/ai-assisted-programming\">ai-assisted-programming</a></p>",
+          "link": "https://simonwillison.net/2026/Jul/11/sqlite-utils/#atom-everything",
+          "publishedOn": "2026-07-11T23:50:20.000Z",
+          "wordCount": 1266,
+          "title": "sqlite-utils 4.1",
+          "imageUrl": null
+        },
         {
           "id": "https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything",
           "author": null,
@@ -922,16 +902,6 @@
           "wordCount": 843,
           "title": "Nano Banana 2 Lite",
           "imageUrl": "https://static.simonwillison.net/static/2026/nano-banana-2-lite-raccoon.jpg"
-        },
-        {
-          "id": "https://simonwillison.net/2026/Jun/30/claude-sonnet-5/#atom-everything",
-          "author": null,
-          "description": "<p><strong><a href=\"https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5\">What&#x27;s new in Claude Sonnet 5</a></strong></p>\nClaude Sonnet 5 came out <a href=\"https://www.anthropic.com/news/claude-sonnet-5\">this morning</a>. I always head straight for the \"what's new\" developer docs because they tend to have more actionable information than the official announcement post.</p>\n<p>Anthropic say of Sonnet 5 that \"its performance is close to that of Opus 4.8, but at lower prices\". The <a href=\"https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf\">system card</a> helps explain how they were able to release the model without being blocked by the US government:</p>\n<blockquote>\n<p>Sonnet 5 is significantly less capable at cyber tasks than Mythos 5: its safeguards are thus similar to those we apply to Opus 4.7 and Opus 4.8 (models that are more capable than Sonnet 5 but much less capable than Mythos 5).</p>\n</blockquote>\n<p>Of note from the \"what's new\" API changes:</p>\n<ul>\n<li>Sampling parameters <code>temperature</code>, <code>top_p</code>, <code>top_k</code> are no longer supported.</li>\n<li>It has a 1 million token context window and 128,000 maximum output tokens.</li>\n<li>It features \"the same set of tools and platform features as Claude Sonnet 4.6\"</li>\n<li>Adaptive thinking is on by default, unless you specify <code>\"thinking\": {type: \"disabled\"}</code>.</li>\n<li>The pricing is the same as Sonnet 4.6: $3/million input, $15/million input, with an introductory discount to $2/$10 until 31st August. But...</li>\n<li>The model has a new tokenizer, where \"The same input text produces approximately 30% more tokens than on Claude Sonnet 4.6.\" - effectively a 30% price increase.</li>\n</ul>\n<p>I used my <a href=\"https://tools.simonwillison.net/claude-token-counter\">Claude Token Counter</a> tool to try out the new tokenizer. Here are my results for several larger documents:</p>\n<table>\n  <thead>\n    <tr>\n      <th>Document</th>\n      <th>Sonnet 4.6</th>\n      <th>Opus 4.7</th>\n      <th>Sonnet 5</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><a href=\"https://github.com/simonw/udhr-markdown/blob/main/declarations/eng.md\">Universal Declaration of Human Rights (English)</a></td>\n      <td><b>2,356</b></td>\n      <td><b>3,347</b><br>1.42x</td>\n      <td><b>3,341</b><br>1.42x</td>\n    </tr>\n    <tr>\n      <td><a href=\"https://github.com/simonw/udhr-markdown/blob/main/declarations/spa.md\">Universal Declaration of Human Rights (Spanish)</a></td>\n      <td><b>3,572</b></td>\n      <td><b>4,753</b><br>1.33x</td>\n      <td><b>4,747</b><br>1.33x</td>\n    </tr>\n    <tr>\n      <td><a href=\"https://github.com/simonw/udhr-markdown/blob/main/declarations/cmn_hans.md\">Universal Declaration of Human Rights (Chinese, Mandarin Simplified)</a></td>\n      <td><b>3,334</b></td>\n      <td><b>3,366</b><br>1.01x</td>\n      <td><b>3,360</b><br>1.01x</td>\n    </tr>\n    <tr>\n      <td><a href=\"https://github.com/simonw/sqlite-utils/blob/79117b9d110d72f46dab5fe2cda412ff4789ab55/sqlite_utils/db.py\">sqlite_utils/db.py</a> (4,279 lines of Python)</td>\n      <td><b>44,014</b></td>\n      <td><b>56,118</b><br>1.28x</td>\n      <td><b>56,113</b><br>1.27x</td>\n    </tr>\n  </tbody>\n</table>\n\n<p>So the new token is roughly 1.4x times more expensive for English, 1.33x for Spanish, 1.28x for Python code and effectively the same cost for Simplified Mandarin.</p>\n<p>Here's <a href=\"https://gist.github.com/simonw/a89e756b621a31e8ffc210e3428efa77\">the pelican</a>. It's nothing to write home about. Sonnet 5 thinks it looks like a goose.</p>\n<p><img alt=\"Illustration of a white goose riding a bicycle, with one wing extended forward to grip the handlebar, set against a plain white background with a brown ground line.\" src=\"https://static.simonwillison.net/static/2026/sonnet-5-pelican.png\" />\n\n    <p><small></small>Via <a href=\"https://news.ycombinator.com/item?id=48736605\">Hacker News</a></small></p>\n\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/ai\">ai</a>, <a href=\"https://simonwillison.net/tags/generative-ai\">generative-ai</a>, <a href=\"https://simonwillison.net/tags/llms\">llms</a>, <a href=\"https://simonwillison.net/tags/anthropic\">anthropic</a>, <a href=\"https://simonwillison.net/tags/claude\">claude</a>, <a href=\"https://simonwillison.net/tags/llm-pricing\">llm-pricing</a>, <a href=\"https://simonwillison.net/tags/pelican-riding-a-bicycle\">pelican-riding-a-bicycle</a>, <a href=\"https://simonwillison.net/tags/llm-release\">llm-release</a></p>",
-          "link": "https://simonwillison.net/2026/Jun/30/claude-sonnet-5/#atom-everything",
-          "publishedOn": "2026-06-30T21:23:02.000Z",
-          "wordCount": 1089,
-          "title": "What's new in Claude Sonnet 5",
-          "imageUrl": "https://static.simonwillison.net/static/2026/sonnet-5-pelican.png"
         }
       ]
     },
@@ -953,6 +923,16 @@
       "siteUrl": "https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g",
       "articles": [
         {
+          "id": "https://www.youtube.com/shorts/Iir8dmNoNTg",
+          "author": null,
+          "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
+          "link": "https://www.youtube.com/shorts/Iir8dmNoNTg",
+          "publishedOn": "2026-07-11T15:37:50.000Z",
+          "wordCount": 2265,
+          "title": "ChatGPT’s Latest Update Is MASSIVE",
+          "imageUrl": null
+        },
+        {
           "id": "https://www.youtube.com/watch?v=EOCRtSnvNNE",
           "author": null,
           "description": "",
@@ -968,7 +948,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/oXi5E3FvZKI",
           "publishedOn": "2026-07-09T17:14:13.000Z",
-          "wordCount": 3307,
+          "wordCount": 3424,
           "title": "OpenAI is FINALLY Releasing Hardware",
           "imageUrl": null
         },
@@ -988,7 +968,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/ptlZzbtzdfE",
           "publishedOn": "2026-07-08T13:00:29.000Z",
-          "wordCount": 2125,
+          "wordCount": 2146,
           "title": "How I Track Crazy Tech IPOs",
           "imageUrl": null
         },
@@ -998,7 +978,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/bxdsBsbtoSg",
           "publishedOn": "2026-07-08T00:09:25.000Z",
-          "wordCount": 2143,
+          "wordCount": 2160,
           "title": "AI Can FINALLY Edit Videos For You",
           "imageUrl": null
         },
@@ -1008,7 +988,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/mCu3mVcvpLE",
           "publishedOn": "2026-07-07T13:01:10.000Z",
-          "wordCount": 2067,
+          "wordCount": 3323,
           "title": "How to \"Vibe Direct\" Short Films",
           "imageUrl": null
         },
@@ -1018,7 +998,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/1CAy_mB6E-g",
           "publishedOn": "2026-07-06T17:48:05.000Z",
-          "wordCount": 2283,
+          "wordCount": 2280,
           "title": "I Automated Shorts With Fable",
           "imageUrl": null
         },
@@ -1028,7 +1008,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/hUH4HD6Ah9c",
           "publishedOn": "2026-07-04T03:21:50.000Z",
-          "wordCount": 2050,
+          "wordCount": 3285,
           "title": "The Benchmark No One Asked For!",
           "imageUrl": null
         },
@@ -1058,7 +1038,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/Qt0oRFQm_3U",
           "publishedOn": "2026-07-01T12:42:32.000Z",
-          "wordCount": 2205,
+          "wordCount": 2270,
           "title": "The Truth About Anthropic's Valuation",
           "imageUrl": null
         },
@@ -1068,7 +1048,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/VUh3HDSsS5g",
           "publishedOn": "2026-06-30T18:43:44.000Z",
-          "wordCount": 2139,
+          "wordCount": 2146,
           "title": "WTF is China building now 😂",
           "imageUrl": null
         },
@@ -1078,7 +1058,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/BF7ohr7OJcE",
           "publishedOn": "2026-06-30T13:00:09.000Z",
-          "wordCount": 2226,
+          "wordCount": 2351,
           "title": "Don't Fall For This AI Trap",
           "imageUrl": null
         },
@@ -1088,18 +1068,8 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/sNzsGC2zf6c",
           "publishedOn": "2026-06-29T12:52:49.000Z",
-          "wordCount": 2218,
+          "wordCount": 2290,
           "title": "Generate The BEST Animations With AI",
-          "imageUrl": null
-        },
-        {
-          "id": "https://www.youtube.com/watch?v=zMVZvgCOr40",
-          "author": null,
-          "description": "",
-          "link": "https://www.youtube.com/watch?v=zMVZvgCOr40",
-          "publishedOn": "2026-06-26T17:30:05.000Z",
-          "wordCount": null,
-          "title": "AI News: The New Model That's As Good As Fable",
           "imageUrl": null
         }
       ]
@@ -1177,16 +1147,6 @@
           "publishedOn": "2026-06-15T18:35:58.000Z",
           "wordCount": null,
           "title": "One man just liberated Fable... and now it’s illegal",
-          "imageUrl": null
-        },
-        {
-          "id": "https://www.youtube.com/watch?v=1PBRhm5ZnjU",
-          "author": null,
-          "description": "",
-          "link": "https://www.youtube.com/watch?v=1PBRhm5ZnjU",
-          "publishedOn": "2026-06-11T17:17:48.000Z",
-          "wordCount": null,
-          "title": "Anthropic begged the world to stop AI… then shipped this",
           "imageUrl": null
         }
       ]
