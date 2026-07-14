@@ -22,6 +22,192 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-14 datetime="2026-07-14T00:56:20.000Z">2026-07-14</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-14 datetime="2026-07-14T00:56:20.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Using uvx in GitHub Actions in a cache-friendly way</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/14/uvx-github-actions-cache/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>TIL: Using uvx in GitHub Actions in a cache-friendly way
+I finally found a cache-friendly recipe for using uvx tool-name in GitHub Actions workflows that I like.
+The trick is setting a UV_EXCLUDE_NEWER: &quot;2026-07-12&quot; environment variable at the start of the workflow and then using that as part of the GitHub Actions cache key. This means any uvx tool-name commands will resolve to the most recent version as-of that date, and you can bust the cache and upgrade the tools by bumping the date in the future.
+My goal here is to use Python tools in GitHub Actions without every run of the workflow hitting PyPI to download a fresh copy of the tool and its dependencies.
+Tags: packaging, pypi, python, github-actions, uv</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-13 datetime="2026-07-13T22:34:41.000Z">2026-07-13</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-13 datetime="2026-07-13T22:34:41.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/13/doomql/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">DOOMQL</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/13/doomql/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/doomql-datasette-app.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>DOOMQL
+lot of fun: 
+DOOMQL started with a deliberately unreasonable question: what if SQLite were the game engine, not merely the place where a game stores data?
+The result is a small, original Doom-like game in which SQL owns movement, collision, enemies, combat, progression and every RGB pixel on screen.
+It&#x27;s implemented as a Python terminal script - I tried it out like this:
+cd /tmp
+git clone https://github.com/petergpt/doomql
+cd doomql
+uv run host/doomql.py
+
+
+Here&#x27;s the huge SQL query that implements a full ray tracer in SQLite using a recursive CTE.
+Running the above script creates a /tmp/doomql/.doomql/doomql.sqlite SQLite database, which you can explore using Datasette like this:
+uvx --prerelease&#x3D;allow  --with datasette-apps datasette \
+  /tmp/doomql/.doomql/doomql.sqlite \
+  -p 4444 --root --secret 1 --internal internal.db
+
+The --with datasette-apps option installs the new Datasette Apps plugin, which supports creating custom HTML+JavaScript apps that can run SQL queries directly within the Datasette interface.
+I created a new app, pasted the copy-paste prompt into Claude chat (Fable 5) and told it:
+Build an app that displays the current state of the screen using the frame_pixels view with its x, y, r, g, b columns. have it refresh once a second.
+This got me a working HTML+JavaScript app inside Datasette that could reflect the current state while I played the game in my terminal. Then I added:
+add a minimap
+And now my Datasette App looks like this:
+
+Here&#x27;s the HTML app code - paste that into your own Datasette instance (using the uvx --with datasette-apps recipe from above) to try it yourself.
+
+    
+Via @petergostev
+Tags: games, sql, sqlite, ai, datasette, generative-ai, llms, ai-assisted-programming, gpt, datasette-apps</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/13/datasette-code-frequency/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">datasette code-frequency chart on GitHub</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/13/datasette-code-frequency/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>datasette code-frequency chart on GitHub
+Datasette open source project:
+
+The big spike in activity at the end aligns with Opus 4.8, GPT-5.5, Fable 5 and GPT-5.6 Sol.
+
+
+    
+Tags: github, ai, datasette, generative-ai, llms, ai-assisted-programming, coding-agents</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/BDWdp_fIOHk"
+                        open
+                      >
+                        <summary class="article-expander__title">Build A Custom Browser Extension [SUPER Easy!]</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/BDWdp_fIOHk">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-12 datetime="2026-07-12T23:57:14.000Z">2026-07-12</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-12 datetime="2026-07-12T23:57:14.000Z"></time>
           </button>
@@ -166,7 +352,7 @@ Tags: sqlite, sqlite-utils</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -274,7 +460,7 @@ Tags: projects, python, sqlite, sqlite-utils, annotated-release-notes, ai-assist
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -476,6 +662,23 @@ Tags: openai, chatgpt, ai</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>How Deutsche Telekom is becoming an AI-native telco with OpenAI-transforming customer service, employee workflows, network operations, and the future of voice.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/academy/getting-started"
+                        open
+                      >
+                        <summary class="article-expander__title">Getting started with ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/getting-started">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI.</span>
                             </span>
                           </div>
                         </a>
@@ -712,7 +915,7 @@ Tags: llm</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -754,6 +957,23 @@ Tags: llm</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Details about the OpenAI Bio Bounty program</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/gpt-5-6"
                         open
                       >
@@ -779,23 +999,6 @@ Tags: llm</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Details about the OpenAI Bio Bounty program</span>
                             </span>
                           </div>
                         </a>
@@ -1041,7 +1244,7 @@ Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1060,7 +1263,7 @@ Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1595,7 +1798,7 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1923,7 +2126,7 @@ Tags: projects, sqlite, sqlite-utils, annotated-release-notes, gpt, claude-mytho
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2420,81 +2623,6 @@ Tags: ai-ethics, llms, ai, generative-ai, careers, josh-comeau</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/3/judgement/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Fable&#x27;s judgement</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/3/judgement/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>One of the most interesting tips I got from the Fireside Chat I hosted with Cat Wu and Thariq Shihipar from the Claude Code team at AIE on Wednesday was to let Fable (and to a certain extent Opus) use their own judgement rather than dictating how they should work.
-The example they gave was testing. You can tell Fable &quot;only use automated testing for larger features, don&#x27;t update and run tests for small copy or design changes&quot; - but it&#x27;s better to just tell Fable to use its own judgement when deciding to write tests instead.
-Jesse Vincent just gave me a related tip to help avoid burning too many of those valuable Fable tokens in the few days we have left before the prices go up. Tell Fable to use other models for smaller tasks, applying its own judgement about which model to use.
-I prompted Claude Code just now with:
-For all coding tasks use your judgement to decide an appropriate lower power model and run that in a subagent
-Claude saved this memory file in ~/.claude/projects/name-of-project/memory/delegate-coding-to-subagents.md:
----
-name: delegate-coding-to-subagents
-description: Simon wants coding tasks delegated to subagents running an appropriately lower-power model
-metadata: 
-  node_type: memory
-  type: feedback
-  originSessionId: 30068d78-43a9-4fb1-bb29-9799e18c526a
----
-
-Stated by Simon on 2026-07-03: &quot;For all coding tasks use your judgement to
-decide an appropriate lower power model and run that in a subagent.&quot;
-Why: cost/efficiency — implementation work rarely needs the top-tier
-model; judgment, review, and synthesis stay with the main loop.
-How to apply: when a task in this project is primarily writing/editing
-code, spawn an Agent with a model override (sonnet for substantive
-implementation, haiku for trivial/mechanical edits) and a self-contained
-prompt; review the result in the main loop before committing. Design,
-auditing, data synthesis, and anything judgment-heavy stays in the main
-model. See also [[project-goals]].
-So far it seems to be working well. I&#x27;m getting a ton of work done and my Fable allowance is shrinking less quickly than before.
-Tags: claude, ai, claude-code, llms, prompt-engineering, coding-agents, generative-ai, claude-mythos-fable, anthropic</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">June 2026 newsletter</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/3/june-newsletter/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The June edition of my sponsors-only monthly newsletter is out. If you are a sponsor (or if you start a sponsorship now) you can access it here.
-This month:
-Claude Fable 5, GPT-5.6, and US export restrictions
-GLM-5.2 is the new best open weights model
-Tokenmaxxing is so over
-Datasette Apps
-sqlite-utils and shot-scraper and Datasette
-Miscellaneous WASM projects
-Other model releases
-What I&#x27;m using
-Here&#x27;s a copy of the May newsletter as a preview of what you&#x27;ll get. Pay $10/month to stay a month ahead of the free copy!
-Tags: newsletter</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2572,88 +2700,11 @@ Tags: newsletter</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-02 datetime="2026-07-02T19:33:12.000Z">2026-07-02</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-02 datetime="2026-07-02T19:33:12.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-02 datetime="2026-07-02T16:27:26.000Z">2026-07-02</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-02 datetime="2026-07-02T16:27:26.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">llm-coding-agent 0.1a0</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: llm-coding-agent 0.1a0
-Another Fable 5 experiment. Now that my LLM library has evolved into more of an agent framework it&#x27;s time to see what a simple coding agent would look like built on it.
-I started a new Python library using my python-lib-template-repository GitHub template repository, then ran these two prompts (here&#x27;s the Claude Code for web transcript):
-Write a spec.md for this project - it will depend on the latest “llm” alpha from PyPI and implement a Claude code style coding agent complete with tools for reading and editing files and executing commands
-Then:
-Commit the spec, then build it using red/green TDD in a series of sensible commits (each with passing tests and updated docs) - occasionally manually test it using the OpenAI API key in your environment
-Here&#x27;s the spec, the resulting README file, and the sequence of commits.
-I&#x27;ve shipped a slop-alpha to PyPI, so you can run the new agent like this:
-uvx --prerelease&#x3D;allow --with llm-coding-agent llm code
-
-It&#x27;s pretty good for a first attempt! Here&#x27;s the (Fable-authored) README, which lists recipes like llm code --yolo and llm code --allow &quot;pytest*&quot; --allow &quot;git diff*&quot;.
-It also presents a Python API based around a CodingAgent(model&#x3D;&quot;gpt-5.5&quot;, root&#x3D;&quot;/path&quot;, approve&#x3D;True).run(&quot;Fix the failing test in tests/test_parser.py&quot;) class which I didn&#x27;t ask for but I&#x27;m delighted to see implemented.
-Here&#x27;s the suite of tools it implemented, listed using uvx ... llm tools:
-CodingTools_edit_file(path: str, old_string: str, new_string: str, replace_all: bool &#x3D; False) -&gt; str
-Replace an exact string in a file.
-old_string must match the file contents exactly (including
-whitespace) and must identify a unique location unless replace_all
-is true. Returns a diff of the change so it can be verified.
-CodingTools_execute_command(command: str, timeout: int &#x3D; 120) -&gt; str
-Run a shell command in the session root directory.
-Returns combined stdout and stderr followed by an Exit code line.
-timeout is in seconds (maximum 600); on timeout the whole process
-tree is killed.
-CodingTools_list_files(pattern: str &#x3D; &#x27;**/*&#x27;, path: str &#x3D; &#x27;.&#x27;) -&gt; str
-List files matching a glob pattern, newest first.
-Skips hidden directories, node_modules, __pycache__ and (in a git
-repository) anything covered by .gitignore. Returns at most 200
-paths relative to the searched directory.
-CodingTools_read_file(path: str, offset: int &#x3D; 0, limit: int &#x3D; 2000) -&gt; str
-Read a text file, returning numbered lines like cat -n.
-Paths are relative to the session root. Use offset (0-based first
-line) and limit (max lines) to page through files too large to read
-in one call.
-CodingTools_search_files(pattern: str, path: str &#x3D; &#x27;.&#x27;, glob: str &#x3D; None, max_results: int &#x3D; 100) -&gt; str
-Search file contents for a regular expression.
-Returns matches as path:line_number:line, capped at max_results.
-Use glob (e.g. &quot;*.py&quot;) to restrict which files are searched.
-CodingTools_write_file(path: str, content: str) -&gt; str
-Create or overwrite a file with the given content.
-Parent directories are created as needed. Prefer edit_file for
-modifying existing files.
-I tried it out by running llm code --yolo and then prompting:
-mkdir /tmp/demo and then in that folder create a simple swiftui CLI app for telling the time in ascii art
-Here&#x27;s the transcript, in which GPT-5.5 reasoning notes that &quot;SwiftUI isn&#x27;t suitable for a true CLI&quot; and then builds an app that outputs this on swift run AsciiTime:
-Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2871,25 +2922,6 @@ Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/BF7ohr7OJcE"
-                        open
-                      >
-                        <summary class="article-expander__title">Don&#x27;t Fall For This AI Trap</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/BF7ohr7OJcE">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
@@ -2966,23 +2998,6 @@ Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
-                        open
-                      >
-                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/introducing-genebench-pro"
                         open
                       >
@@ -3008,6 +3023,23 @@ Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
+                        open
+                      >
+                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
                             </span>
                           </div>
                         </a>
@@ -3516,14 +3548,14 @@ Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/daybreak-securing-the-world"
+                        data-accordion-key="https://openai.com/index/patch-the-planet"
                         open
                       >
-                        <summary class="article-expander__title">Daybreak: Tools for securing every organization in the world</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-securing-the-world">
+                        <summary class="article-expander__title">Patch the Planet: a Daybreak initiative to support open source maintainers</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/patch-the-planet">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.</span>
+                              <span>OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.</span>
                             </span>
                           </div>
                         </a>
@@ -3533,14 +3565,14 @@ Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/patch-the-planet"
+                        data-accordion-key="https://openai.com/index/daybreak-securing-the-world"
                         open
                       >
-                        <summary class="article-expander__title">Patch the Planet: a Daybreak initiative to support open source maintainers</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/patch-the-planet">
+                        <summary class="article-expander__title">Daybreak: Tools for securing every organization in the world</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-securing-the-world">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.</span>
+                              <span>OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -4120,8 +4152,8 @@ Tags: projects, ai, generative-ai, llm, llm-tool-use, coding-agents, claude-code
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29220029910">
-        <time id="build-timestamp" datetime="2026-07-13T02:41:48.077Z">2026-07-13T02:41:48.077Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29301012259">
+        <time id="build-timestamp" datetime="2026-07-14T02:25:30.360Z">2026-07-14T02:25:30.360Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
