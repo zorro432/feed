@@ -1,10 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-07-16T02:31:08.776Z</id>
+    <id>urn:2026-07-17T02:33:32.773Z</id>
     <title>osmos::feed</title>
-    <updated>2026-07-16T02:31:08.776Z</updated>
+    <updated>2026-07-17T02:33:32.773Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Firefox in WebAssembly]]></title>
+        <id>https://simonwillison.net/2026/Jul/16/firefox-in-webassembly/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/16/firefox-in-webassembly/#atom-everything"/>
+        <updated>2026-07-16T23:34:16.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://developer.puter.com/labs/firefox-wasm/">Firefox in WebAssembly</a></strong></p>
+This is absurdly cool: Puter compiled Firefox to WebAssembly such that the whole browser runs in another browser.</p>
+<p>Here's my blog, running in Firefox, running in WebAssembly, running in Chrome:</p>
+<p><img alt="A Chrome window. The tab has the Firefox UI and has loaded my blog. On the right is the Chrome network panel showing that it loaded resources that include a 233MB gecko.wasm and an 18MB chrome-assets.tar.zst" src="https://static.simonwillison.net/static/2026/firefox-wasm.webp" /></p>
+<p>They chose Firefox/Gecko because it has strong single-process support. The project used an estimated $25,000 worth of Claude Opus and Fable tokens, but took advantage of a Claude Max subscription plan so cost much less in actual dollars.</p>
+<p>The demo funnels all traffic over a WebSocket protocol (using the <a href="https://github.com/MercuryWorkshop/wisp-protocol">Wisp protocol</a>) through Puter's server - a requirement to get this kind of thing to work because code running in browsers can't open arbitrary network connections.</p>
+<p>(That proxying sounds expensive! The team <a href="https://news.ycombinator.com/item?id=48926939#48936563">had to scale the servers up</a> to handle the traffic during the Hacker News conversation about the project.)</p>
+<p>Puter claim this supports end-to-end encryption and that looks to be true - I inspected the WebSocket messages and traffic to my own HTTPS site was encrypted whereas requests and responses to <code>http://www.example.com/</code> were in cleartext.</p>
+<p><a href="https://github.com/HeyPuter/firefox-wasm">Here's the repo</a> for <code>firefox-wasm</code>. <a href="https://github.com/theogbob/WebkitWasm">theogbob/WebkitWasm</a> is a similar project that compiles WebKit to WASM, but that one doesn't currently have an accessible online demo.
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=48926939">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/browsers">browsers</a>, <a href="https://simonwillison.net/tags/firefox">firefox</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Kimi K3, and what we can still learn from the pelican benchmark]]></title>
+        <id>https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything"/>
+        <updated>2026-07-16T20:19:30.000Z</updated>
+        <summary type="html"><![CDATA[<p>Chinese AI lab Moonshot AI <a href="https://www.kimi.com/blog/kimi-k3">announced Kimi K3</a> this morning, describing it as their "most capable model to date, with 2.8 trillion parameters". It's currently available via their website and API, but an open weight release is promised "by July 27, 2026".</p>
+<p>Moonshot are calling this the first "open 3T-class model" (I guess they're rounding 2.8 trillion up to 3 trillion), taking the crown from <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro">DeepSeek's 1.6T v4 Pro</a>. Their <a href="https://www.kimi.com/blog/kimi-k3#full-benchmark-table">self-reported benchmarks</a> have K3 mostly beating Claude Opus 4.8 max and GPT-5.5 high, while losing out to Claude Fable 5 and GPT-5.6 Sol.</p>
+<p>A few highlights from the <a href="https://twitter.com/ArtificialAnlys/status/2077832874183860404">Artificial Analysis report</a> on the model:</p>
+<ul>
+<li>"On our private long-horizon knowledge work evaluation, Kimi K3 reaches an overall Elo of 1547, +732 points from Kimi K2.6 and behind only Claude Fable 5."</li>
+<li>"Cost per task ($0.94) is similar to GPT-5.6 Sol ($1.04), ~1/2 the price of Opus 4.8 ($1.80) and higher than open weights peers"</li>
+<li>"Kimi K3’s token usage on the Artificial Analysis Intelligence Index decreased significantly, using 21% fewer output tokens than K2.6."</li>
+</ul>
+<p>The model is also now the <a href="https://twitter.com/arena/status/2077824029126504525">leading model on Arena.ai's Frontend Code arena</a>, surpassing even Claude Fable 5.</p>
+<p>The new model is notable for the pricing: $3/million input tokens and $15/million output tokens, putting it at the same level as Anthropic's Claude Sonnet series and making it the most expensive model released by a Chinese AI lab to date. This is a significant increase on their earlier models <a href="https://platform.kimi.ai/docs/pricing/chat-k26">such as Kimi K2.6</a> at $0.95/$4. 2.8 trillion parameters is also more than twice the size of that 1T model.</p>
+<h4 id="but-how-does-it-pelican-">But how does it pelican?</h4>
+<p>I used OpenRouter (to avoid signing up for a Moonshot API key) with the <a href="https://github.com/simonw/llm-openrouter">llm-openrouter plugin</a> to generate an SVG of a pelican riding a bicycle:</p>
+<pre><code>llm -m openrouter/moonshotai/kimi-k3 'Generate an SVG of a pelican riding a bicycle'
+</code></pre>
+<p>Here's <a href="https://gist.github.com/simonw/66a2699eb1594258904c7b5102840dd6">the transcript</a>. It looks like this:</p>
+<p><img src="https://static.simonwillison.net/static/2026/kimi-3-pelican.jpg" alt="See description below" style="max-width: 100%;" /></p>
+<p>That pelican took 95 input tokens and 16,658 output tokens (13,241 were reasoning tokens), for a total cost of <a href="https://www.llm-prices.com/#it=95&amp;ot=16658&amp;ic=3&amp;oc=15">25 cents</a>!</p>
+<p>Since K3 accepts image input I ran it against that rendered SVG above (with my <a href="https://simonwillison.net/guides/agentic-engineering-patterns/prompts/#alt-text">alt text prompt</a>) and <a href="https://gist.github.com/simonw/665dbf840701b421745f2cb891acdfd6">got back</a> (for <a href="https://www.llm-prices.com/#it=822&amp;ot=243&amp;ic=3&amp;oc=15">0.6 cents</a>):</p>
+<blockquote>
+<p>Cartoon illustration of a white pelican wearing a red scarf, riding a red bicycle along a gray road with white dashed lines; the pelican has a large orange beak and webbed orange feet pedaling, with white motion lines behind it; the background shows a light blue sky with white clouds, a yellow sun, two small black birds in flight, and green grass with tiny white flowers in the foreground</p>
+</blockquote>
+<h4 id="what-can-we-learn-from-the-pelican-">What can we learn from the pelican?</h4>
+<p>My <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/">Generate an SVG of a pelican riding a bicycle</a> test is 21 months old now. It was never a particularly great benchmark. It started out as a joke on how absurdly difficult it is to compare these models, but then for the first year it turned out to have a <a href="https://simonwillison.net/2025/Jun/6/six-months-in-llms/">surprising correlation</a> to how good the models actually were.</p>
+<p>That connection has been mostly severed now. The <a href="https://simonwillison.net/2026/Jul/9/gpt-5-6/">GPT-5.6</a> and <a href="https://simonwillison.net/2026/Jun/9/claude-fable-5/">Claude Fable 5</a>  pelicans are outclassed <a href="https://simonwillison.net/2026/Jun/17/glm-52/">by GLM-5.2</a>, and much as I love GLM I don't think that's a Fable-class model.</p>
+<p>(I'm still not convinced that labs are <a href="https://simonwillison.net/2025/Nov/13/training-for-pelicans-riding-bicycles/">training for the benchmark</a> - if they were, I'd expect much better results. There's a chance that Gemini has optimized for <a href="https://simonwillison.net/2026/Feb/19/gemini-31-pro/#jeff-dean">any combination of an animal on a vehicle</a> though!)</p>
+<p>The biggest limitation of the pelican is that it doesn't touch at all on the thing that matters most for today's model: agentic tool calling and the ability to operate tools reliably as conversations grow in length.</p>
+<p>So don't go using pelicans to compare models!</p>
+
+<p>All of that said, I still get a decent amount of value out of running the benchmark myself.</p>
+<p>Firstly, it's a forcing function for actually trying the model. If I show you a pelican, that means I've managed to run a prompt through it. If the model has an official API I'll use that, if it's open weight (and small enough to fit a 128GB M5 MacBook Pro) I'll try running it on my own machine, usually via <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> or <a href="https://lmstudio.ai">LM Studio</a> or <a href="https://ollama.com">Ollama</a>. I'll frequently use <a href="https://openrouter.ai">OpenRouter</a> since that usually provides a proxy to an official API without me needing a new API key.</p>
+<p>Most of my pelicans are generated using <a href="https://llm.datasette.io/">my LLM CLI tool</a>, which helps encourage me to ensure the latest models are supported by that (via one of its plugins).</p>
+<p>More importantly though, even the act of a single prompt to "Generate an SVG of a pelican riding a bicycle" can reveal interesting model characteristics.</p>
+<p>Consider <a href="https://gist.github.com/simonw/66a2699eb1594258904c7b5102840dd6">the result</a> for Kimi K3 today. Running those simple prompts helped emphasize several points about the model.</p>
+<ol>
+<li>It only has one reasoning effort right now, "max" - and it shows. The model consumed 13,241 reasoning tokens to output 3,417 tokens of response. This is expensive - the pelican cost 25 cents!</li>
+<li>How does the prompt "Generate an SVG of a pelican riding a bicycle" add up to 95 input tokens?  OpenAI's <a href="https://platform.openai.com/tokenizer">tokenizer</a>  counts 10, <a href="https://tools.simonwillison.net/claude-token-counter">Anthropic's</a> counts 10 for Opus 4.6, 30 for Opus 4.7 and 25 for Sonnet 5/Fable 5. Prompting "hi" <a href="https://news.ycombinator.com/item?id=48935342#48936461">to Kimi K3</a> counted 86 tokens, suggesting there may be an 85 token hidden system prompt. It <a href="https://news.ycombinator.com/item?id=48935342#48936515">refused to leak it</a> though.</li>
+<li>Vision works well: the alt text it generated is very good.</li>
+</ol>
+<p>K3 currently only has one thinking effort level, but I've been deriving quite a bit of value recently from running the same pelican prompt through different effort levels to get a quick idea for what impact those have. Here's my matrix <a href="https://static.simonwillison.net/static/2026/gpt-5.6-pelicans.html">for the GPT-5.6 model family</a>, for example.</p>
+<p>Really though the main things I gain from the pelican test are:</p>
+<ol>
+<li>It's a "hello world" exercise for prompting a model</li>
+<li>A rough cost and reasoning estimate for a simple task</li>
+<li>Confirmation that the model can output valid SVG and has a basic idea of geometry and spatial awareness. This is a much bigger deal for the smaller models that run on my laptop.</li>
+<li>It's still interesting to compare pelicans between releases in the same model family. K3's pelican is a notable improvement from <a href="https://simonwillison.net/2026/Jan/27/kimi-k25/">Kimi 2.5</a>.</li>
+<li>It's something I can share that demonstrates I've tried it. Plus a comment with a pelican in it is kind of a tradition on Hacker News at this point, any time I'm late I get comments asking where it is!</li>
+</ol>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm-pricing">llm-pricing</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/artificial-analysis">artificial-analysis</a>, <a href="https://simonwillison.net/tags/moonshot">moonshot</a>, <a href="https://simonwillison.net/tags/kimi">kimi</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Thibault Sottiaux]]></title>
+        <id>https://simonwillison.net/2026/Jul/16/bad-codex-bug/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/16/bad-codex-bug/#atom-everything"/>
+        <updated>2026-07-16T17:45:59.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/thsottiaux/status/2077630111499882637"><p>On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. </p>
+<p>What we have  found is that this most commonly occurs when:</p>
+<ul>
+<li>Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled</li>
+<li>The model attempts  to override the $HOME env var to define a temporary directory.</li>
+<li>The model makes an honest mistake and mistakenly deletes $HOME instead.</li>
+</ul></blockquote>
+<p class="cite">&mdash; <a href="https://twitter.com/thsottiaux/status/2077630111499882637">Thibault Sottiaux</a>, describing a pretty gnarly Codex bug</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/codex">codex</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Connect more of your apps to Search]]></title>
+        <id>https://blog.google/products-and-platforms/products/search/connected-apps/</id>
+        <link href="https://blog.google/products-and-platforms/products/search/connected-apps/"/>
+        <updated>2026-07-16T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[You’ll be able to securely link and interact with your go-to services directly in AI Mode.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Create, edit and star in videos with two Google Vids updates]]></title>
+        <id>https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/</id>
+        <link href="https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/"/>
+        <updated>2026-07-16T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Gemini Omni and personal avatars in Google Vids make video creation easier than ever.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Why teens deserve access to safe AI]]></title>
+        <id>https://openai.com/index/why-teens-deserve-access-safe-ai</id>
+        <link href="https://openai.com/index/why-teens-deserve-access-safe-ai"/>
+        <updated>2026-07-16T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how OpenAI is making ChatGPT safer for teens with age-appropriate protections, learning tools, parental controls, and expert partnerships.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Inkling: Our open-weights model]]></title>
+        <id>https://simonwillison.net/2026/Jul/16/inkling/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/16/inkling/#atom-everything"/>
+        <updated>2026-07-16T15:35:25.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://thinkingmachines.ai/news/introducing-inkling/">Inkling: Our open-weights model</a></strong></p>
+Mira Murati's Thinking Machines Lab just released their first open-weights model. Inkling is "a Mixture-of-Experts transformer with 975B total parameters, 41B active" - an Apache-2.0 licensed multimodal model trained on 45 trillion tokens of text, images, audio and video.</p>
+<p>They're also promising Inkling-Small, a 276B (12B active) model, but that's still being tested and the weights will be released "once that work is complete".</p>
+<p>The <a href="https://thinkingmachines.ai/model-card/inkling/">model card</a> is much shorter than I've come to expect from US AI labs. It links to even shorter <a href="https://thinkingmachines.ai/training-data-documentation/">Training Data Documentation</a> with almost nothing of interest in it - it's best summarized by these two paragraphs:</p>
+<blockquote>
+<p>The datasets Thinking Machines Lab uses to develop its AI services includes content that is in the public domain as well as content that may be subject to intellectual property protection.</p>
+<p>Thinking Machines Lab’s services were developed using publicly available content obtained from the open internet and publicly accessible data repositories. Certain datasets were also obtained from third parties.</p>
+</blockquote>
+<p>By Thinking Machines' own admission, this is not a frontier model. It's instead intended as a strong base model for fine-tuning using their own <a href="https://thinkingmachines.ai/tinker/">Tinker training platform</a>:</p>
+<blockquote>
+<p>Inkling is not the strongest overall model available today, open or closed. Instead, a combination of qualities makes it a good open-weights base for customization: multimodal capabilities, efficient thinking, and availability on Tinker for fine-tuning.</p>
+</blockquote>
+<p>There's a lot to like about this release. It's Apache-2.0 licensed, and looks competitive with the open weight models coming out of China - it's good to see the US open weights ecosystem gain a new viable contender to join NVIDIA Nemotron and Gemma 4.</p>
+<p>Here's its attempt at an SVG pelican riding a bicycle, which I generated using this <code>curl</code> command against the Thinking Machines API:</p>
+<div class="highlight highlight-source-shell"><pre>curl <span class="pl-s"><span class="pl-pds">"</span>https://tinker.thinkingmachines.dev/services/tinker-prod/oai/api/v1/chat/completions<span class="pl-pds">"</span></span> \
+  -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer <span class="pl-smi">$TINKER_API_KEY</span><span class="pl-pds">"</span></span> \
+  -H <span class="pl-s"><span class="pl-pds">"</span>Content-Type: application/json<span class="pl-pds">"</span></span> \
+  -d <span class="pl-s"><span class="pl-pds">'</span>{</span>
+<span class="pl-s">    "model": "thinkingmachines/Inkling",</span>
+<span class="pl-s">    "messages": [</span>
+<span class="pl-s">      {"role": "user", "content": "Generate an SVG of a pelican riding a bicycle"}</span>
+<span class="pl-s">    ],</span>
+<span class="pl-s">    "stream": false</span>
+<span class="pl-s">  }<span class="pl-pds">'</span></span></pre></div>
+
+<p>Full <a href="https://gist.github.com/simonw/8117ac4376371dd3fc2b5dbce27e0855">response here</a>.</p>
+<p><img alt="See image description below" src="https://static.simonwillison.net/static/2026/inkling-pelican.jpg" /></p>
+<p>Since it's a multi-modal model I had it describe its own image (after I rendered it to a JPEG) by sending this JSON:</p>
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-ent">"model"</span>: <span class="pl-s"><span class="pl-pds">"</span>thinkingmachines/Inkling<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"messages"</span>: [{
+    <span class="pl-ent">"role"</span>: <span class="pl-s"><span class="pl-pds">"</span>user<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"content"</span>: [
+      {<span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>image_url<span class="pl-pds">"</span></span>, <span class="pl-ent">"image_url"</span>: {<span class="pl-ent">"url"</span>: <span class="pl-s"><span class="pl-pds">"</span>data:image/jpeg;base64,$BASE_64_JPEG<span class="pl-pds">"</span></span>}},
+      {<span class="pl-ent">"type"</span>: <span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>, <span class="pl-ent">"text"</span>: <span class="pl-s"><span class="pl-pds">"</span>Describe this image in detail<span class="pl-pds">"</span></span>},
+    ],
+  }],
+  <span class="pl-ent">"stream"</span>: <span class="pl-c1">false</span>
+}</pre></div>
+
+<p>Here's <a href="https://gist.github.com/simonw/dccebd0581f5c4056c5b0ca5bdc38cd9#reasoning_content">the full response</a>. It thought it had drawn a "stork or seagull":</p>
+<blockquote>
+<p>This is a cheerful, flat-vector cartoon illustration featuring a white bird riding a bicycle across a green landscape.</p>
+<p><strong>The Bird:</strong> The central figure is a stylized white bird—resembling a stork or seagull—with a plump, rounded body. It has a long, prominent orange beak that is slightly open, revealing a black line for the mouth. Its eye is small and black with a tiny white highlight. The bird has black wing and tail feathers with white edges, and thin orange legs ending in black feet that rest on the bicycle's orange pedals.</p>
+<p><strong>The Bicycle:</strong> The bike has a simple black frame with two large wheels featuring black tires, gray inner rims, and black spokes arranged in a cross pattern. The handlebars are black, and there are bright orange pedals attached to a black crank. A white seat is visible behind the bird's body.</p>
+<p><strong>The Setting:</strong> The scene is set against a clear, light blue sky. There are two fluffy white clouds—one on the left side and a smaller one near the bird's head on the right. A bright, solid yellow sun shines in the upper right corner. At the bottom, there are rolling green hills with a smooth, curved top edge where the bicycle rests.</p>
+<p>The overall style is playful, simple, and colorful, with clean lines and a bright, sunny atmosphere.</p>
+</blockquote>
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=48924912">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/training-data">training-data</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mermaid to ASCII art (mermaid-ascii)]]></title>
+        <id>https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything"/>
+        <updated>2026-07-16T14:57:39.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/mermaid-ascii">Mermaid to ASCII art (mermaid-ascii)</a></p>
+        <p>After building the <a href="https://simonwillison.net/2026/Jul/16/grok-mermaid/">Mermaid to ASCII tool based on Grok Build's Rust code</a> I learned that there's an older, more fully-featured Go library called <a href="https://github.com/AlexanderGrooff/mermaid-ascii">AlexanderGrooff/mermaid-ascii</a> that implements a similar pattern, so I had Claude Fable 5 compile that one to WebAssembly as well so I could compare the two.</p>
+<p>This one includes support for colors!</p>
+<p><img alt="Screenshot of a Mermaid diagram editor web app. A row of tab buttons reads: Flowchart, Multiple links, Subgraphs, Multi-line labels, Colors (selected, highlighted blue), Sequence, Alt fragment, Loop + note, Parallel. Below is a text input area containing: &quot;graph LR / Build:::good --&gt; Test:::good / Test --&gt; Deploy:::warn / Deploy --&gt; Rollback:::bad / classDef good color:#3fb950 / classDef warn color:#e3b341 / classDef bad color:#ff7b72&quot;. A control row shows an unchecked &quot;ASCII only&quot; checkbox, &quot;Padding X: 5&quot;, &quot;Padding Y: 5&quot;, &quot;Box padding: 1&quot;, and buttons &quot;Copy as text&quot; and &quot;Copy link to this diagram&quot;. At the bottom on a black background is the rendered left-to-right flowchart with four connected boxes: &quot;Build&quot; (green text), &quot;Test&quot; (green text), &quot;Deploy&quot; (yellow text), &quot;Rollback&quot; (red text), each linked by arrows." src="https://static.simonwillison.net/static/2026/mermaid-ascii.webp" /></p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/go">go</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/mermaid">mermaid</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Testing the 2 BIGGEST AI Website Builders]]></title>
+        <id>https://www.youtube.com/shorts/FO5zsDIY6Yc</id>
+        <link href="https://www.youtube.com/shorts/FO5zsDIY6Yc"/>
+        <updated>2026-07-16T14:40:45.000Z</updated>
+        <summary type="html"><![CDATA[Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Linus Torvalds]]></title>
+        <id>https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything"/>
+        <updated>2026-07-16T13:26:10.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/"><p>I realize that some people really dislike AI, but this is an area where I'm willing to absolutely put my foot down as the top-level maintainer.</p>
+<p>Linux is not one of those anti-AI projects, and if somebody has issues with that, they can do the open-source thing and fork it.</p>
+<p>Or just walk away.</p>
+<p>AI is a tool, just like other tools we use.  And it's clearly a useful one.</p>
+<p>It may not have been that "clearly" even just a year ago, but it's no longer in question today.</p>
+<p>There are other questions around AI (like what the economy of it will actually look like in the end), but "is it useful" is no longer one of those questions. Anybody who doubts that clearly hasn't actually used it.</p></blockquote>
+<p class="cite">&mdash; <a href="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/">Linus Torvalds</a>, Linux Media Mailing List</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/linus-torvalds">linus-torvalds</a>, <a href="https://simonwillison.net/tags/linux">linux</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Our approach to bioresilience]]></title>
+        <id>https://deepmind.google/blog/our-approach-to-bioresilience/</id>
+        <link href="https://deepmind.google/blog/our-approach-to-bioresilience/"/>
+        <updated>2026-07-16T09:30:42.000Z</updated>
+        <summary type="html"><![CDATA[Google DeepMind and Isomorphic Labs are sharing our joint approach to bioresilience and AI models.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mermaid to Unicode box art (grok-mermaid)]]></title>
         <id>https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything</id>
@@ -19,6 +265,66 @@
         <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/mermaid">mermaid</a>, <a href="https://simonwillison.net/tags/grok">grok</a>, <a href="https://simonwillison.net/tags/xai">xai</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How Cars24 scales conversations and builds faster with OpenAI]]></title>
+        <id>https://openai.com/index/cars24</id>
+        <link href="https://openai.com/index/cars24"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Cars24 uses OpenAI-powered voice and chat agents to handle 1M+ monthly conversation minutes, recover 12% of lost leads, and bring agentic workflows to teams across the company.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Location-Invariant Properties of Functions Versus Properties of Distributions: United in Testing but Separated in Verification]]></title>
+        <id>location-invariant-functions</id>
+        <link href="https://machinelearning.apple.com/research/location-invariant-functions"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A property of functions is called location-invariant (or symmetric) if it can be characterized in terms of the frequencies in which each value occurs in the function, regardless of the locations in which each value occurs. It is known that the (query) complexity of testing location-invariant properties of functions is closely related to the (sample) complexity of testing the (corresponding properties of the) corresponding distributions. The main message of the current work is that this close relationship is not maintained in the context of verification. This holds both when considering…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Interactive Proofs for General Distribution Properties]]></title>
+        <id>interactive-proofs-distribution-properties</id>
+        <link href="https://machinelearning.apple.com/research/interactive-proofs-distribution-properties"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Suppose Alice has collected a small number of samples from an unknown distribution, and would like to learn about the distribution. Bob, an untrusted data analyst, claims to have run a sophisticated data analysis on the distribution and makes assertions about its properties. When and how is it possible for Alice to efficiently verify Bob’s claims (using fewer resources than would be needed to run the analysis herself)? We construct interactive proof systems for general distribution properties that can be decided by bounded-depth circuits. Taking N to be an upper bound on the distribution’s…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Doubly Sub-linear Interactive Proofs of Proximity]]></title>
+        <id>doubly-sublinear-interactive-proofs</id>
+        <link href="https://machinelearning.apple.com/research/doubly-sublinear-interactive-proofs"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We study doubly sub-linear interactive proofs of proximity (dsIPPs): proofs that are ultra-fast to generate, and can be used to prove approximate assertions about a huge input. Proof generation is ultra-fast in the sense that it only requires reading a small (sub-linear) portion of the input. Approximate verification of the proof is even faster (reading an even smaller portion of the input). Similarly to the property testing literature, approximate verification means the sublinear-time honest prover can make the verifier accept each input in the property, but no prover can fool the verifier…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Personalizing Incremental Video Search with Hybrid Text and ID Embeddings]]></title>
+        <id>personalizing-incremental-video-search</id>
+        <link href="https://machinelearning.apple.com/research/personalizing-incremental-video-search"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Incremental video search requires high-quality ranking after each keystroke, where intent is often underspecified (e.g., 1–3 character prefixes). We present a personalization system for Apple TV search that combines complementary semantic and collaborative signals at ranking time. Our approach learns two item embedding spaces: (i) a text-based multilingual encoder (TextEmb) fine-tuned on co-engagement triplets via contrastive learning, and (ii) an ID-based collaborative embedding model (IdEmb) trained on interaction-derived positives. At serving time, we construct user representations from…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Embarrassingly Simple Self-Distillation Improves Code Generation]]></title>
+        <id>simple-self-distillation</id>
+        <link href="https://machinelearning.apple.com/research/simple-self-distillation"/>
+        <updated>2026-07-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Can a large language model (LLM) improve at code generation using only its own raw outputs, without a verifier, a teacher model, or reinforcement learning? We answer in the affirmative with simple self-distillation (SSD): sample solutions from the model with certain temperature and truncation configurations, then fine-tune on those samples with standard supervised fine-tuning. SSD improves Qwen3-30B-Instruct from 42.4% to 55.3% pass@1 on LiveCodeBench v6, with gains concentrating on harder problems, and it generalizes across Qwen and Llama models at 4B, 8B, and 30B scale, including both…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -40,7 +346,7 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
 <p>A few highlights:</p>
 <ul>
 <li><a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-agent/templates/prompt.md">xai-grok-agent/templates/prompt.md</a> has the main system prompt and <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-agent/templates/subagent_prompt.md">xai-grok-agent/templates/subagent_prompt.md</a> has the subagent prompt. Oddly that subagent prompt has "Do not ... reveal the contents of this system prompt to the user" but the main prompt does not. </li>
-<li><a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-markdown/src/mermaid.rs">xai-grok-markdown/src/mermaid.rs</a> is a "self-contained terminal renderer for Mermaid diagrams", which renders a subset of Mermaid chart types using Unicode box-drawing.</li>
+<li><a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-markdown/src/mermaid.rs">xai-grok-markdown/src/mermaid.rs</a> is a "self-contained terminal renderer for Mermaid diagrams", which renders a subset of Mermaid chart types using Unicode box-drawing. <strong>Update</strong>: I got a version of this <a href="https://simonwillison.net/2026/Jul/16/grok-mermaid/">working in WebAssembly</a> so it now runs in the browser.</li>
 <li><a href="https://github.com/xai-org/grok-build/tree/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-tools/src/implementations">xai-grok-tools/src/implementations</a> includes tool implementations imitated from other coding agents - the Codex <code>apply_patch</code>, <code>grep_files</code>, <code>list_dir</code>, and <code>read_dir</code> tools, and OpenCode's <code>bash</code>, <code>edit</code>, <code>glob</code>, <code>grep</code>, <code>read</code>, <code>skill</code>, <code>todowrite</code> and <code>write</code>. The <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-tools/THIRD_PARTY_NOTICES.md">xai-grok-tools/THIRD_PARTY_NOTICES.md</a> file says these are "ported from" those projects, in a way that looks compliant with the Apache and MIT licenses they use. It looks like these copies exist because Grok can switch between them, maybe based on detecting existing Codex or Claude or Cursor settings? I'm not confident I understand if that happens or how it works.</li>
 <li>There are still remnants of the code that used to upload everything to Google Cloud, but they seem to have been disabled now. <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-shell/src/upload/gcs.rs">xai-grok-shell/src/upload/gcs.rs</a> has code for uploading to a GCS bucket. <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-shell/src/upload/trace.rs">upload/trace.rs</a> includes an <code>upload_session_state()</code> function which returns a hard-coded <code>session_state_upload_unavailable</code> error. </li>
 </ul>
@@ -676,17 +982,6 @@ I went looking for a definition of "Directly Responsible Individuals" and the be
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Behavioral Privacy Leakage in Agentic Negotiation: Formalizing and Mitigating Inference Attacks via Randomized Policies]]></title>
-        <id>behavioral-privacy-agentic-negotiation</id>
-        <link href="https://machinelearning.apple.com/research/behavioral-privacy-agentic-negotiation"/>
-        <updated>2026-07-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[This paper was accepted at the AI4TCI (Workshop on AI for Secure and Trustworthy Critical Infrastructure Systems) Workshop at the International Conference on Availability, Reliability and Security (ARES) 2026.
-Autonomous negotiation agents are increasingly deployed in high-stakes settings such as insurance and procurement. While cryptographic techniques protect explicitly disclosed constraint values, they fail to address a subtler threat: behavioral privacy leakage, where an adversary infers private constraints from observable negotiation dynamics such as concession trajectories, timing, and…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[The new GPT-5.6 family: Luna, Terra, Sol]]></title>
         <id>https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything"/>
@@ -806,6 +1101,16 @@ llm -m meta-ai/muse-spark-1.1 "Generate an SVG of a pelican riding a bicycle"
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[GPT-5.5 Bio Bug Bounty]]></title>
+        <id>https://openai.com/index/bio-bug-bounty</id>
+        <link href="https://openai.com/index/bio-bug-bounty"/>
+        <updated>2026-07-09T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Details about the OpenAI Bio Bounty program]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[ChatGPT is now a partner for your most ambitious work]]></title>
         <id>https://openai.com/index/chatgpt-for-your-most-ambitious-work</id>
         <link href="https://openai.com/index/chatgpt-for-your-most-ambitious-work"/>
@@ -823,46 +1128,6 @@ llm -m meta-ai/muse-spark-1.1 "Generate an SVG of a pelican riding a bicycle"
         <summary type="html"><![CDATA[More intelligence from every token, stronger performance per dollar, and more capability on demand for your hardest work.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT-5.5 Bio Bug Bounty]]></title>
-        <id>https://openai.com/index/bio-bug-bounty</id>
-        <link href="https://openai.com/index/bio-bug-bounty"/>
-        <updated>2026-07-09T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Details about the OpenAI Bio Bounty program]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Incentivizing Temporal-Awareness in Egocentric Video Understanding Models]]></title>
-        <id>incentivizing-temporal-awareness-egocentric</id>
-        <link href="https://machinelearning.apple.com/research/incentivizing-temporal-awareness-egocentric"/>
-        <updated>2026-07-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Multimodal large language models (MLLMs) have recently shown strong performance in visual understanding, yet they often lack temporal awareness, particularly in egocentric settings where reasoning depends on the correct ordering and evolution of events. This deficiency stems in part from training objectives that fail to explicitly reward temporal reasoning and instead rely on frame-level spatial shortcuts. To address this limitation, we propose Temporal Global Policy Optimization (TGPO), a reinforcement learning with verifiable rewards (RLVR) algorithm designed to incentivize temporal…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context]]></title>
-        <id>self-reflective-program-search</id>
-        <link href="https://machinelearning.apple.com/research/self-reflective-program-search"/>
-        <updated>2026-07-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Long-context handling remains a core challenge for language models: even with extended context windows, models often fail to reliably extract, reason over, and use the information across long contexts. Recent works like Recursive Language Models (RLMs) have approached this challenge by agentic way of decomposing long contexts into recursive sub-queries through programmatic interaction at inference. While promising, the success of RLMs critically depends on how these trajectories of context-interaction programs are selected, which has remained unexplored. In this paper, we study this problem…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unmasking On-Policy Distillation: Where It Helps, Where It Hurts, and Why]]></title>
-        <id>unmasking-on-policy-distillation</id>
-        <link href="https://machinelearning.apple.com/research/unmasking-on-policy-distillation"/>
-        <updated>2026-07-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[On-policy distillation offers dense, per-token supervision for training reasoning models; however, it remains unclear under which conditions this signal is beneficial and under which it is detrimental. Which teacher model should be used, and in the case of self-distillation, which specific context should serve as the supervisory signal? Does the optimal choice vary from one token to the next? At present, addressing these questions typically requires costly training runs whose aggregate performance metrics obscure the dynamics at the level of individual tokens. We introduce a training-free…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -945,20 +1210,6 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Kenton Varda]]></title>
-        <id>https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything"/>
-        <updated>2026-07-08T20:03:34.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/kentonvarda/status/2074924213983740233"><p>I just declared a moratorium against AI-written change descriptions (e.g. PR and commit messages, also issues/tickets) from my team.</p>
-<p>AI was writing change descriptions that were worse than useless to me as I tried to review PRs: outlining details of the code that could easily be seen by looking at the code, but omitting the higher-level framing needed to understand broadly what the code is doing.</p></blockquote>
-<p class="cite">&mdash; <a href="https://twitter.com/kentonvarda/status/2074924213983740233">Kenton Varda</a></p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/kenton-varda">kenton-varda</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Claude is definitely not conscious…]]></title>
         <id>https://www.youtube.com/watch?v=KGtko3y2RXQ</id>
         <link href="https://www.youtube.com/watch?v=KGtko3y2RXQ"/>
@@ -1028,247 +1279,6 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sqlite-utils 4.0, now with database schema migrations]]></title>
-        <id>https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything"/>
-        <updated>2026-07-07T19:32:57.000Z</updated>
-        <summary type="html"><![CDATA[<p>This morning I released <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0">sqlite-utils 4.0</a>, the 124th release of that project and the first major version bump since <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v3-0">3.0</a> in November 2020. In addition to some small but significant breaking changes (described in <a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html">this upgrade guide</a>), this version introduces three major features: <strong>database migrations</strong>, <strong>nested transactions</strong> (via a new <code>db.atomic()</code> method), and support for <strong>compound foreign keys</strong>.</p>
-<h4 id="database-schema-migrations-using-sqlite-utils">Database schema migrations using sqlite-utils</h4>
-<p>Schema migrations define a sequence of changes to be made to a SQLite database, plus a mechanism for tracking which migrations have been applied and applying any that are found to be pending.</p>
-<p>Migrations are defined in Python files using the <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html">sqlite-utils Python library</a>, which includes a powerful <code>table.transform()</code> method providing <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table">enhanced alter table capabilities</a> that are not supported by SQLite's <code>ALTER TABLE</code> statement.</p>
-<p>(<code>table.transform()</code> implements the pattern <a href="https://www.sqlite.org/lang_altertable.html#otheralter">recommended by the SQLite documentation</a> - create a new temporary table with the new schema, copy across the data, then drop the old table and rename the temporary one in its place.)</p>
-<p>Here's an example migration file which creates a table called <code>creatures</code>, adds an additional column to it in a second step, then changes the types of two of the columns in a third:</p>
-<pre><span class="pl-k">from</span> <span class="pl-s1">sqlite_utils</span> <span class="pl-k">import</span> <span class="pl-v">Migrations</span>
-
-<span class="pl-s1">migrations</span> <span class="pl-c1">=</span> <span class="pl-en">Migrations</span>(<span class="pl-s">"creatures"</span>)
-
-<span class="pl-en">@<span class="pl-en">migrations</span>()</span>
-<span class="pl-k">def</span> <span class="pl-en">create_table</span>(<span class="pl-s1">db</span>):
-    <span class="pl-s1">db</span>[<span class="pl-s">"creatures"</span>].<span class="pl-c1">create</span>(
-        {<span class="pl-s">"id"</span>: <span class="pl-s1">int</span>, <span class="pl-s">"name"</span>: <span class="pl-s1">str</span>, <span class="pl-s">"species"</span>: <span class="pl-s1">str</span>},
-        <span class="pl-s1">pk</span><span class="pl-c1">=</span><span class="pl-s">"id"</span>,
-    )
-
-<span class="pl-en">@<span class="pl-en">migrations</span>()</span>
-<span class="pl-k">def</span> <span class="pl-en">add_weight</span>(<span class="pl-s1">db</span>):
-    <span class="pl-s1">db</span>[<span class="pl-s">"creatures"</span>].<span class="pl-c1">add_column</span>(<span class="pl-s">"weight"</span>, <span class="pl-s1">float</span>)
-
-<span class="pl-en">@<span class="pl-en">migrations</span>()</span>
-<span class="pl-k">def</span> <span class="pl-en">change_column_types</span>(<span class="pl-s1">db</span>):
-    <span class="pl-s1">db</span>[<span class="pl-s">"creatures"</span>].<span class="pl-c1">transform</span>(<span class="pl-s1">types</span><span class="pl-c1">=</span>{<span class="pl-s">"species"</span>: <span class="pl-s1">int</span>, <span class="pl-s">"weight"</span>: <span class="pl-s1">str</span>})</pre>
-<p>Save that as <code>migrations.py</code> and run it against a fresh database like this:</p>
-<div class="highlight highlight-source-shell"><pre>uvx sqlite-utils migrate data.db migrations.py</pre></div>
-<p>Then if you check the schema of that database:</p>
-<div class="highlight highlight-source-shell"><pre>uvx sqlite-utils schema data.db</pre></div>
-<p>You'll see this SQL:</p>
-<div class="highlight highlight-source-sql"><pre><span class="pl-k">CREATE</span> <span class="pl-k">TABLE</span> "<span class="pl-en">_sqlite_migrations</span>" (
-   <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span> <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
-   <span class="pl-s"><span class="pl-pds">"</span>migration_set<span class="pl-pds">"</span></span> <span class="pl-k">TEXT</span>,
-   <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> <span class="pl-k">TEXT</span>,
-   <span class="pl-s"><span class="pl-pds">"</span>applied_at<span class="pl-pds">"</span></span> <span class="pl-k">TEXT</span>
-);
-<span class="pl-k">CREATE</span> <span class="pl-k">UNIQUE INDEX</span> "<span class="pl-en">idx__sqlite_migrations_migration_set_name</span>"
-    <span class="pl-k">ON</span> <span class="pl-s"><span class="pl-pds">"</span>_sqlite_migrations<span class="pl-pds">"</span></span> (<span class="pl-s"><span class="pl-pds">"</span>migration_set<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>);
-<span class="pl-k">CREATE</span> <span class="pl-k">TABLE</span> "<span class="pl-en">creatures</span>" (
-   <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span> <span class="pl-k">INTEGER</span> <span class="pl-k">PRIMARY KEY</span>,
-   <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span> <span class="pl-k">TEXT</span>,
-   <span class="pl-s"><span class="pl-pds">"</span>species<span class="pl-pds">"</span></span> <span class="pl-k">INTEGER</span>,
-   <span class="pl-s"><span class="pl-pds">"</span>weight<span class="pl-pds">"</span></span> <span class="pl-k">TEXT</span>
-);</pre></div>
-<p>The <code>_sqlite_migrations</code> table is used to keep track of which migration functions have been run. The <code>creatures</code> table above is the schema after all three migrations have been applied.</p>
-<p>To see a list of migrations, both pending and applied, run this:</p>
-<div class="highlight highlight-source-shell"><pre>uvx sqlite-utils migrate data.db migrations.py --list</pre></div>
-<p>Output:</p>
-<pre><code>Migrations for: creatures
-
-  Applied:
-    create_table - 2026-07-07 17:58:41.360051+00:00
-    add_weight - 2026-07-07 17:58:41.360608+00:00
-    change_column_types - 2026-07-07 18:01:15.802000+00:00
-
-  Pending:
-    (none)
-</code></pre>
-<p>If you don't specify a migrations file, the <code>sqlite-utils migrate data.db</code> command will scan the current directory and its subdirectories for files called <code>migrations.py</code> and apply any <code>Migrations()</code> instances it finds in them.</p>
-<p>You can also execute migrations <a href="https://sqlite-utils.datasette.io/en/stable/migrations.html#applying-migrations-in-python">from Python code</a> using the <code>migrations.apply(db)</code> method, which is useful for building tools that manage their own database schemas over multiple versions. My own <a href="https://llm.datasette.io/">LLM tool</a> has been using a version of this pattern for several years now, as shown in <a href="https://github.com/simonw/llm/blob/0.31/llm/embeddings_migrations.py">llm/embeddings_migrations.py</a>.</p>
-<h4 id="prior-art">Prior art</h4>
-<p>My favorite implementation of this pattern remains <a href="https://docs.djangoproject.com/en/6.0/topics/migrations/">Django's Migrations</a>, developed by Andrew Godwin based on his earlier project <a href="https://github.com/andrewgodwin/south">South</a>. Fun fact: Andrew, Russ Keith-Magee, and I presented our competing approaches to schema migrations for Django on the <a href="https://www.youtube.com/watch?v=VSq8m00p1FM">Schema Evolution panel</a> at the very first DjangoCon back in 2008! My attempt was called <a href="https://simonwillison.net/2008/Sep/3/dmigrations/">dmigrations</a>, developed with a team at Global Radio in London.</p>
-<p>Django's migrations can be automatically generated from model definitions and include the ability to roll back to a previous version. The <code>sqlite-utils</code> approach is deliberately simpler: unlike Django, <code>sqlite-utils</code> encourages programmatic table creation rather than a model definition ORM, so there isn't anything we can use to automatically generate migrations.</p>
-<p>I decided to skip rollback, since in my experience it's a feature that is rarely used. With a SQLite project, an easy way to achieve rollback is to create a copy of your database file before you apply the migrations!</p>
-<h4 id="migrating-from-sqlite-migrate">Migrating from sqlite-migrate</h4>
-<p>The design of <code>sqlite-utils</code> migrations is three years old now - I had originally released it as a separate package called <a href="https://github.com/simonw/sqlite-migrate">sqlite-migrate</a>, which never quite graduated beyond a beta release.</p>
-<p>I've used that package in enough places now that I'm confident in the design, so I've decided to promote it to a feature of <code>sqlite-utils</code> to make it available by default to all of the other tools in the growing sqlite-utils/Datasette/LLM ecosystem.</p>
-<p>I made <a href="https://github.com/simonw/sqlite-migrate/releases/tag/0.2">one last release</a> of <code>sqlite-migrate</code>, which switches it to depend on <code>sqlite-utils&gt;=4</code> and replaces the <code>__init__.py</code> file with the following:</p>
-<pre><span class="pl-k">from</span> <span class="pl-s1">sqlite_utils</span> <span class="pl-k">import</span> <span class="pl-v">Migrations</span>
-
-<span class="pl-s1">__all__</span> <span class="pl-c1">=</span> [<span class="pl-s">"Migrations"</span>]</pre>
-<p>Any existing project that depends on <code>sqlite-migrate</code> should continue to work without alterations.</p>
-<h4 id="everything-else-in-sqlite-utils-4-0">Everything else in sqlite-utils 4.0</h4>
-<p>Here are the release notes for this version, with some inline annotations:</p>
-<blockquote>
-<p>The 4.0 release includes some minor backwards-incompatible fixes (hence the major version number bump) and introduces three major new features:</p>
-<ul>
-<li>
-<a href="https://sqlite-utils.datasette.io/en/stable/migrations.html#migrations">Database migrations</a>, providing a structured mechanism for evolving a project’s schema over time. (<a href="https://github.com/simonw/sqlite-utils/issues/752">#752</a>)</li>
-</ul>
-</blockquote>
-<p>I think of migrations as the signature new feature, hence this blog post.</p>
-<blockquote>
-<ul>
-<li>
-<a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-atomic">Nested transaction support</a> via <code>db.atomic()</code>, plus numerous improvements to how transactions work across the library. (<a href="https://github.com/simonw/sqlite-utils/issues/755">#755</a>)</li>
-</ul>
-</blockquote>
-<p><code>sqlite-utils</code> has long had a confused relationship with database transactions, partly because when I started designing the library back in 2018 I didn't yet have a great feel for how those worked in SQLite itself.</p>
-<p>Adding migrations to the core library made me determined to finally crack this nut, since transactions make migration systems a whole lot safer and easier to reason about.</p>
-<p>I ended up building this around a <code>db.atomic()</code> context manager which looks like this:</p>
-<pre><span class="pl-k">with</span> <span class="pl-s1">db</span>.<span class="pl-c1">atomic</span>():
-    <span class="pl-s1">db</span>.<span class="pl-c1">table</span>(<span class="pl-s">"dogs"</span>).<span class="pl-c1">insert</span>({<span class="pl-s">"id"</span>: <span class="pl-c1">1</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"Cleo"</span>}, <span class="pl-s1">pk</span><span class="pl-c1">=</span><span class="pl-s">"id"</span>)
-    <span class="pl-s1">db</span>.<span class="pl-c1">table</span>(<span class="pl-s">"dogs"</span>).<span class="pl-c1">insert</span>({<span class="pl-s">"id"</span>: <span class="pl-c1">2</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"Pancakes"</span>})</pre>
-<p>SQLite supports <a href="https://sqlite.org/lang_savepoint.html">Savepoints</a>, and as a result <code>db.atomic()</code> can be nested to carry out transactions inside of transactions. It's pretty neat!</p>
-<blockquote>
-<ul>
-<li>Support for <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-compound-foreign-keys">compound foreign keys</a>, including creation, transformation and introspection through <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-introspection-foreign-keys">table.foreign_keys</a>. (<a href="https://github.com/simonw/sqlite-utils/issues/594">#594</a>)</li>
-</ul>
-</blockquote>
-<p>This came about when I asked a coding agent to review all open issues and PRs for things that should be included in a 4.0 release since they would represent breaking changes if I added them later, and it correctly identified that compound foreign keys were exactly that kind of feature.</p>
-<p>I started with a breaking change to the <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#python-api-introspection-foreign-keys">table.foreign_keys</a> introspection method, and then decided to see if Claude Fable 5 could handle the more fiddly job of integrating compound foreign key <em>creation</em> into the library. The API design it helped create felt <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#compound-foreign-keys">exactly right to me</a> - consistent with how the rest of the library worked already.</p>
-<blockquote>
-<p>Other notable changes include:</p>
-<ul>
-<li>Upserts now use SQLite’s <code>INSERT ... ON CONFLICT ... DO UPDATE SET</code> syntax, detect existing table primary keys automatically and reject records that are missing required primary key values. (<a href="https://github.com/simonw/sqlite-utils/issues/652">#652</a>)</li>
-</ul>
-</blockquote>
-<p>This was the change that first pushed me to consider a breaking-change 4.0 version bump. I built this to help support <a href="https://github.com/simonw/sqlite-chronicle">sqlite-chronicle</a>, which uses triggers to keep track of rows in a table that have been inserted, updated or deleted.</p>
-<blockquote>
-<ul>
-<li>
-<code>db.query()</code> now executes immediately and rejects statements that do not return rows; use <code>db.execute()</code> for writes and DDL.</li>
-</ul>
-</blockquote>
-<p>Probably the <a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html#python-api-changes">most disruptive breaking change</a> - I've had to update a few places in my own code to switch from <code>db.query()</code> to <code>db.execute()</code> as a result.</p>
-<blockquote>
-<ul>
-<li>CSV and TSV imports now detect column types by default, while inserts into existing tables preserve those tables’ column types. (<a href="https://github.com/simonw/sqlite-utils/issues/679">#679</a>)</li>
-</ul>
-</blockquote>
-<p>The <code>sqlite-utils insert data.db creatures creatures.csv --detect-types</code> flag was a later addition to allow column types (text, integer, real) to be automatically detected based on the data in a CSV. It should be the default, and releasing a 4.0 means I can make it so.</p>
-<blockquote>
-<ul>
-<li>
-<code>table.extract()</code> and <code>extracts=</code> no longer create lookup table records for all-<code>null</code> values. (<a href="https://github.com/simonw/sqlite-utils/issues/186">#186</a>)</li>
-</ul>
-</blockquote>
-<p>The oldest issue addressed by this release - the underlying bug was opened (by me) in October 2020.</p>
-<blockquote>
-<p>See <a href="https://sqlite-utils.datasette.io/en/stable/upgrading.html#upgrading-3-to-4">Upgrading from 3.x to 4.0</a> for details on backwards-incompatible changes.</p>
-<p>The detailed release notes for the features and fixes shipped during the 4.0 pre-release cycle are available in <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0a0">4.0a0</a>, <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0a1">4.0a1</a>, <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc1">4.0rc1</a>, <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc2">4.0rc2</a>, <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc3">4.0rc3</a> and <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-0rc4">4.0rc4</a>.</p>
-</blockquote>
-<p>The upgrade guide was entirely written by Claude Fable 5, Claude Opus 4.8 and GPT-5.5. The same is true of the release notes.</p>
-<p>This is the kind of documentation I've slowly become comfortable outsourcing to the robots. It doesn't need to convince people of anything, or express any opinions - its job is to be as accurate and detailed as possible. I've reviewed the release notes closely and can confirm they are accurate and comprehensive.</p>
-<h4 id="claude-fable-5-helped-a-lot">Claude Fable 5 helped a lot</h4>
-<p>I released the first alpha of sqlite-utils 4.0 <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#a0-2025-05-08">over a year ago</a>. I've been dragging my heels on the stable release because of the amount of work it would take to track down and clean up the many other minor design flaws that a major version number allowed me to take on.</p>
-<p>Assistance from Claude Fable 5 (and to a lesser extent Opus 4.8 and GPT-5.5) gave me just the boost I needed to overcome inertia and make the most of the time I could afford to spend on this library.</p>
-<p>Fable has <em>really good taste</em> in API design, and is <a href="https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/">relentlessly proactive</a> if you give it a more open goal. My most successful prompt was a review task that I issued against what I thought was the last release candidate:</p>
-<blockquote>
-<p><code>review the changes on main since the last tagged 3.x release - I am about to ship them as sqlite-utils 4.0, a stable version that promises no backwards-incompatible fixes for a very long time.</code></p>
-<p><code>review the changelog and upgrade guide, and write yourself scratch scripts to try out all of the new features in v4 - save those scripts but don't commit them</code></p>
-</blockquote>
-<p>I tried this with GPT-5.5 xhigh in Codex Desktop and Fable 5 in Claude Code.</p>
-<p>GPT-5.5 <a href="https://gist.github.com/simonw/823fdecc031371d56dce39537adc0096">wrote 5 Python scripts</a> and didn't turn up anything particularly interesting - its <a href="https://github.com/simonw/sqlite-utils/issues/769#issuecomment-4899982463">final report is here</a>.</p>
-<p>Fable 5 <a href="https://gist.github.com/simonw/95800bf584f8e437f1cf0d48d9ef81e6">wrote 12 scripts</a>, identified 4 release blockers and 10 additional issues <a href="https://github.com/simonw/sqlite-utils/issues/769#issuecomment-4900034150">in its report</a>, and built a neat <a href="https://gist.githubusercontent.com/simonw/95800bf584f8e437f1cf0d48d9ef81e6/raw/c43918b36a129bba1d2f2a129117aa11c85146c0/12_bug_repros.py">combined repro script</a>, which, when run, output the following:</p>
-<pre><code>=== 1. Failed db.execute() write leaves an implicit transaction open ===
-  in_transaction after failed write: True
-  BUG: table 'other' silently lost when connection closed
-
-=== 2. Leading ';' bypasses the query() first-token scanner ===
-  BUG: raised OperationalError: no such savepoint: sqlite_utils_query
-  BUG: row persisted despite rollback (count=1)
-
-=== 3. Rejected write PRAGMA via query() still takes effect ===
-  BUG: user_version=5 after 'rejected' statement (docs say no effect)
-
-=== 4. Implicit compound FK resolves pk columns in table order, not PK order ===
-  BUG: other_columns reported as ('b', 'a'), should be ('a', 'b')
-  BUG: transform of valid data raised IntegrityError: FOREIGN KEY constraint failed
-
-=== 5. ForeignKey (now a dataclass) is no longer hashable ===
-  BUG: cannot use 'sqlite_utils.db.ForeignKey' as a set element (unhashable type: 'ForeignKey')
-
-=== 6. Mixed ForeignKey objects and tuples in foreign_keys= rejected ===
-  BUG: foreign_keys= should be a list of tuples
-
-=== 7. insert --csv into an EXISTING table transforms its column types ===
-  BUG: existing zip '01234' is now 1234 (column type: int)
-
-=== 8. insert(pk=, alter=True) regression: InvalidColumns before alter runs ===
-  BUG: InvalidColumns: Invalid primary key column ['id'] for table t with columns ['a']
-
-=== 9. migrate --stop-before an already-applied migration applies everything ===
-  BUG: m2 was applied despite --stop-before m1 (m1 already applied)
-
-=== 10. ensure_autocommit_on() silently commits an open transaction ===
-  BUG: row survived rollback (count=1) - transaction was committed
-</code></pre>
-<p>I found myself agreeing with almost all of them. Here's <a href="https://github.com/simonw/sqlite-utils/pull/779">the PR with 16 commits</a> where we worked through them in turn.</p>
-<p>There's no doubt in my mind that sqlite-utils 4.0 is a significantly higher-quality release than if I had built it without the assistance of the latest frontier models.</p>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/schema-migrations">schema-migrations</a>, <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a>, <a href="https://simonwillison.net/tags/annotated-release-notes">annotated-release-notes</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sqlite-migrate 0.2]]></title>
-        <id>https://simonwillison.net/2026/Jul/7/sqlite-migrate/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/7/sqlite-migrate/#atom-everything"/>
-        <updated>2026-07-07T16:33:55.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-migrate/releases/tag/0.2">sqlite-migrate 0.2</a></p>
-        <p>The version that retires the library, instead implementing a compatibility shim against the new sqlite-utils 4.0 dependency.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[github-code Web Component]]></title>
-        <id>https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything"/>
-        <updated>2026-07-07T16:18:16.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/github-code-component">github-code Web Component</a></p>
-        <p>An experimental Web Component built using GPT-5.5 and <a href="https://gist.github.com/simonw/0e3db21947b5ae7e29e8a4f69a0b0617">the following prompt</a>:</p>
-<blockquote>
-<p><code>let's build a Web Component for embedding code from GitHub</code></p>
-<p><code>&lt;github-code href="https://github.com/simonw/sqlite-ast/blob/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py#L9-L18"&gt;&lt;/github-code&gt;</code></p>
-<p><code>It takes URLs like that, converts them to https://raw.githubusercontent.com/simonw/sqlite-ast/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py, then uses fetch() to fetch them and displays the specified range of lines - with line numbers, no syntax highlighting though</code></p>
-<p><code>Show me a preview web browser so I can see your work</code></p>
-</blockquote>
-<p>Here's what it looks like embedded on this page:</p>
-<p><github-code href="https://github.com/simonw/sqlite-ast/blob/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py#L9-L18"></github-code></p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/github">github</a>, <a href="https://simonwillison.net/tags/web-components">web-components</a>, <a href="https://simonwillison.net/tags/gpt">gpt</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sqlite-utils 4.0]]></title>
-        <id>https://simonwillison.net/2026/Jul/7/sqlite-utils/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/7/sqlite-utils/#atom-everything"/>
-        <updated>2026-07-07T15:42:43.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-utils/releases/tag/4.0">sqlite-utils 4.0</a></p>
-        <p>See <a href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/">sqlite-utils 4.0, now with database schema migrations</a> for details.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How to "Vibe Direct" Short Films]]></title>
         <id>https://www.youtube.com/shorts/mCu3mVcvpLE</id>
         <link href="https://www.youtube.com/shorts/mCu3mVcvpLE"/>
@@ -1289,30 +1299,6 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sqlite-utils 4.0rc4]]></title>
-        <id>https://simonwillison.net/2026/Jul/7/sqlite-utils-2/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/7/sqlite-utils-2/#atom-everything"/>
-        <updated>2026-07-07T05:36:15.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-utils/releases/tag/4.0rc4">sqlite-utils 4.0rc4</a></p>
-        <p>The last RC before the 4.0 stable release. Mainly <a href="https://github.com/simonw/sqlite-utils/issues/769#issuecomment-4900034150">implements feedback</a> from a detailed review by Claude Fable 5.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[MUFG aims to become AI-native with OpenAI]]></title>
-        <id>https://openai.com/index/mufg</id>
-        <link href="https://openai.com/index/mufg"/>
-        <updated>2026-07-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Australian Payments Plus moves faster with ChatGPT and Codex]]></title>
         <id>https://openai.com/index/australian-payments-plus</id>
         <link href="https://openai.com/index/australian-payments-plus"/>
@@ -1323,13 +1309,13 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Taming Text-to-Sounding Video Generation via Advanced Modality Condition and Interaction]]></title>
-        <id>sounding-video-generation</id>
-        <link href="https://machinelearning.apple.com/research/sounding-video-generation"/>
+        <title type="html"><![CDATA[MUFG aims to become AI-native with OpenAI]]></title>
+        <id>https://openai.com/index/mufg</id>
+        <link href="https://openai.com/index/mufg"/>
         <updated>2026-07-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[This study focuses on Text-to-Sounding-Video (T2SV) generation, which aims to generate a video with synchronized audio from text, with both modalities aligned to the text conditions. Despite progress in joint audio-video training, two critical challenges remain: (1) text conditioning is a bottleneck—shared captions (TV=TA) trigger modal interference, while a gap persists between dense training captions and concise inference user prompts, and (2) the optimal fusion mechanism for cross-modal feature interaction remains unclear. To address the first challenge, we first propose the…]]></summary>
+        <summary type="html"><![CDATA[MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.]]></summary>
         <author>
-            <name>Apple Machine Learning Research</name>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1378,15 +1364,6 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         <updated>2026-07-02T16:27:26.000Z</updated>
         <author>
             <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GLM-5.2: The Complete Guide to the Best Open-Source Model]]></title>
-        <id>https://www.youtube.com/watch?v=XbHeJL45USQ</id>
-        <link href="https://www.youtube.com/watch?v=XbHeJL45USQ"/>
-        <updated>2026-07-01T18:30:22.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1449,16 +1426,6 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GeneBench-Pro]]></title>
-        <id>https://openai.com/index/introducing-genebench-pro</id>
-        <link href="https://openai.com/index/introducing-genebench-pro"/>
-        <updated>2026-06-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Inside Genebench-Pro]]></title>
         <id>https://openai.com/index/genebench-pro/case-studies</id>
         <link href="https://openai.com/index/genebench-pro/case-studies"/>
@@ -1473,6 +1440,16 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         <link href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"/>
         <updated>2026-06-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing GeneBench-Pro]]></title>
+        <id>https://openai.com/index/introducing-genebench-pro</id>
+        <link href="https://openai.com/index/introducing-genebench-pro"/>
+        <updated>2026-06-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1692,46 +1669,6 @@ OpenAI <em>finally</em> upgraded the model used by ChatGPT voice mode!</p>
         <summary type="html"><![CDATA[Research in “Nature” shows our conversational AI system matches primary care physicians in complex disease management.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[A near-autonomous AI chemist improves a challenging reaction in medicinal chemistry]]></title>
-        <id>https://openai.com/index/ai-chemist-improves-reaction</id>
-        <link href="https://openai.com/index/ai-chemist-improves-reaction"/>
-        <updated>2026-06-17T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and Molecule.one show how a near-autonomous AI chemist using GPT-5.4 improved a key drug-making reaction, advancing medicinal chemistry research.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing LifeSciBench]]></title>
-        <id>https://openai.com/index/introducing-life-sci-bench</id>
-        <link href="https://openai.com/index/introducing-life-sci-bench"/>
-        <updated>2026-06-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Introducing LifeSciBench, an expert-authored, expert-reviewed benchmark for evaluating how AI systems handle real-world life science research tasks and decisions.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Unlocking UK house-building with AI-accelerated planning]]></title>
-        <id>https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/</id>
-        <link href="https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/"/>
-        <updated>2026-06-16T21:29:50.000Z</updated>
-        <summary type="html"><![CDATA[UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Securing the future of AI agents]]></title>
-        <id>https://deepmind.google/blog/securing-the-future-of-ai-agents/</id>
-        <link href="https://deepmind.google/blog/securing-the-future-of-ai-agents/"/>
-        <updated>2026-06-16T15:46:31.000Z</updated>
-        <summary type="html"><![CDATA[Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
         </author>
     </entry>
 </feed>

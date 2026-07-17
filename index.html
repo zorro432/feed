@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-16 datetime="2026-07-16T00:33:18.000Z">2026-07-16</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-16 datetime="2026-07-16T00:33:18.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-16 datetime="2026-07-16T23:34:16.000Z">2026-07-16</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-16 datetime="2026-07-16T23:34:16.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -42,6 +42,283 @@
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/16/firefox-in-webassembly/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Firefox in WebAssembly</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/16/firefox-in-webassembly/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/firefox-wasm.webp" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Firefox in WebAssembly
+Here&#x27;s my blog, running in Firefox, running in WebAssembly, running in Chrome:
+
+They chose Firefox/Gecko because it has strong single-process support. The project used an estimated $25,000 worth of Claude Opus and Fable tokens, but took advantage of a Claude Max subscription plan so cost much less in actual dollars.
+The demo funnels all traffic over a WebSocket protocol (using the Wisp protocol) through Puter&#x27;s server - a requirement to get this kind of thing to work because code running in browsers can&#x27;t open arbitrary network connections.
+(That proxying sounds expensive! The team had to scale the servers up to handle the traffic during the Hacker News conversation about the project.)
+Puter claim this supports end-to-end encryption and that looks to be true - I inspected the WebSocket messages and traffic to my own HTTPS site was encrypted whereas requests and responses to http://www.example.com/ were in cleartext.
+Here&#x27;s the repo for firefox-wasm. theogbob/WebkitWasm is a similar project that compiles WebKit to WASM, but that one doesn&#x27;t currently have an accessible online demo.
+
+    
+Via Hacker News
+Tags: browsers, firefox, ai, webassembly, generative-ai, llms, ai-assisted-programming, claude, claude-mythos-fable</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Kimi K3, and what we can still learn from the pelican benchmark</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/16/kimi-k3/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/kimi-3-pelican.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Chinese AI lab Moonshot AI announced Kimi K3 this morning, describing it as their &quot;most capable model to date, with 2.8 trillion parameters&quot;. It&#x27;s currently available via their website and API, but an open weight release is promised &quot;by July 27, 2026&quot;.
+
+Moonshot are calling this the first &quot;open 3T-class model&quot; (I guess they&#x27;re rounding 2.8 trillion up to 3 trillion), taking the crown from DeepSeek&#x27;s 1.6T v4 Pro. Their self-reported benchmarks have K3 mostly beating Claude Opus 4.8 max and GPT-5.5 high, while losing out to Claude Fable 5 and GPT-5.6 Sol.
+
+A few highlights from the Artificial Analysis report on the model:
+
+
+&quot;On our private long-horizon knowledge work evaluation, Kimi K3 reaches an overall Elo of 1547, +732 points from Kimi K2.6 and behind only Claude Fable 5.&quot;
+
+&quot;Cost per task ($0.94) is similar to GPT-5.6 Sol ($1.04), ~1/2 the price of Opus 4.8 ($1.80) and higher than open weights peers&quot;
+
+&quot;Kimi K3’s token usage on the Artificial Analysis Intelligence Index decreased significantly, using 21% fewer output tokens than K2.6.&quot;
+
+
+The model is also now the leading model on Arena.ai&#x27;s Frontend Code arena, surpassing even Claude Fable 5.
+
+The new model is notable for the pricing: $3/million input tokens and $15/million output tokens, putting it at the same level as Anthropic&#x27;s Claude Sonnet series and making it the most expensive model released by a Chinese AI lab to date. This is a significant increase on their earlier models such as Kimi K2.6 at $0.95/$4. 2.8 trillion parameters is also more than twice the size of that 1T model.
+
+But how does it pelican?
+
+I used OpenRouter (to avoid signing up for a Moonshot API key) with the llm-openrouter plugin to generate an SVG of a pelican riding a bicycle:
+
+llm -m openrouter/moonshotai/kimi-k3 &#x27;Generate an SVG of a pelican riding a bicycle&#x27;
+
+
+Here&#x27;s the transcript. It looks like this:
+
+
+
+That pelican took 95 input tokens and 16,658 output tokens (13,241 were reasoning tokens), for a total cost of 25 cents!
+
+Since K3 accepts image input I ran it against that rendered SVG above (with my alt text prompt) and got back (for 0.6 cents):
+
+
+Cartoon illustration of a white pelican wearing a red scarf, riding a red bicycle along a gray road with white dashed lines; the pelican has a large orange beak and webbed orange feet pedaling, with white motion lines behind it; the background shows a light blue sky with white clouds, a yellow sun, two small black birds in flight, and green grass with tiny white flowers in the foreground
+
+
+What can we learn from the pelican?
+
+My Generate an SVG of a pelican riding a bicycle test is 21 months old now. It was never a particularly great benchmark. It started out as a joke on how absurdly difficult it is to compare these models, but then for the first year it turned out to have a surprising correlation to how good the models actually were.
+
+That connection has been mostly severed now. The GPT-5.6 and Claude Fable 5  pelicans are outclassed by GLM-5.2, and much as I love GLM I don&#x27;t think that&#x27;s a Fable-class model.
+
+(I&#x27;m still not convinced that labs are training for the benchmark - if they were, I&#x27;d expect much better results. There&#x27;s a chance that Gemini has optimized for any combination of an animal on a vehicle though!)
+
+The biggest limitation of the pelican is that it doesn&#x27;t touch at all on the thing that matters most for today&#x27;s model: agentic tool calling and the ability to operate tools reliably as conversations grow in length.
+
+So don&#x27;t go using pelicans to compare models!
+
+
+All of that said, I still get a decent amount of value out of running the benchmark myself.
+
+Firstly, it&#x27;s a forcing function for actually trying the model. If I show you a pelican, that means I&#x27;ve managed to run a prompt through it. If the model has an official API I&#x27;ll use that, if it&#x27;s open weight (and small enough to fit a 128GB M5 MacBook Pro) I&#x27;ll try running it on my own machine, usually via llama.cpp or LM Studio or Ollama. I&#x27;ll frequently use OpenRouter since that usually provides a proxy to an official API without me needing a new API key.
+
+Most of my pelicans are generated using my LLM CLI tool, which helps encourage me to ensure the latest models are supported by that (via one of its plugins).
+
+More importantly though, even the act of a single prompt to &quot;Generate an SVG of a pelican riding a bicycle&quot; can reveal interesting model characteristics.
+
+Consider the result for Kimi K3 today. Running those simple prompts helped emphasize several points about the model.
+
+
+It only has one reasoning effort right now, &quot;max&quot; - and it shows. The model consumed 13,241 reasoning tokens to output 3,417 tokens of response. This is expensive - the pelican cost 25 cents!
+
+How does the prompt &quot;Generate an SVG of a pelican riding a bicycle&quot; add up to 95 input tokens?  OpenAI&#x27;s tokenizer  counts 10, Anthropic&#x27;s counts 10 for Opus 4.6, 30 for Opus 4.7 and 25 for Sonnet 5/Fable 5. Prompting &quot;hi&quot; to Kimi K3 counted 86 tokens, suggesting there may be an 85 token hidden system prompt. It refused to leak it though.
+
+Vision works well: the alt text it generated is very good.
+
+
+K3 currently only has one thinking effort level, but I&#x27;ve been deriving quite a bit of value recently from running the same pelican prompt through different effort levels to get a quick idea for what impact those have. Here&#x27;s my matrix for the GPT-5.6 model family, for example.
+
+Really though the main things I gain from the pelican test are:
+
+
+It&#x27;s a &quot;hello world&quot; exercise for prompting a model
+
+A rough cost and reasoning estimate for a simple task
+
+Confirmation that the model can output valid SVG and has a basic idea of geometry and spatial awareness. This is a much bigger deal for the smaller models that run on my laptop.
+
+It&#x27;s still interesting to compare pelicans between releases in the same model family. K3&#x27;s pelican is a notable improvement from Kimi 2.5.
+
+It&#x27;s something I can share that demonstrates I&#x27;ve tried it. Plus a comment with a pelican in it is kind of a tradition on Hacker News at this point, any time I&#x27;m late I get comments asking where it is!
+
+
+    
+        
+Tags: ai, generative-ai, llms, llm-pricing, pelican-riding-a-bicycle, llm-release, ai-in-china, artificial-analysis, moonshot, kimi</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/16/bad-codex-bug/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Thibault Sottiaux</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/16/bad-codex-bug/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+What we have  found is that this most commonly occurs when:
+Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled
+The model attempts  to override the $HOME env var to define a temporary directory.
+The model makes an honest mistake and mistakenly deletes $HOME instead.
+
+— Thibault Sottiaux, describing a pretty gnarly Codex bug
+Tags: codex, coding-agents, generative-ai, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/16/inkling/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Inkling: Our open-weights model</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/16/inkling/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/inkling-pelican.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Inkling: Our open-weights model
+They&#x27;re also promising Inkling-Small, a 276B (12B active) model, but that&#x27;s still being tested and the weights will be released &quot;once that work is complete&quot;.
+The model card is much shorter than I&#x27;ve come to expect from US AI labs. It links to even shorter Training Data Documentation with almost nothing of interest in it - it&#x27;s best summarized by these two paragraphs:
+The datasets Thinking Machines Lab uses to develop its AI services includes content that is in the public domain as well as content that may be subject to intellectual property protection.
+Thinking Machines Lab’s services were developed using publicly available content obtained from the open internet and publicly accessible data repositories. Certain datasets were also obtained from third parties.
+By Thinking Machines&#x27; own admission, this is not a frontier model. It&#x27;s instead intended as a strong base model for fine-tuning using their own Tinker training platform:
+Inkling is not the strongest overall model available today, open or closed. Instead, a combination of qualities makes it a good open-weights base for customization: multimodal capabilities, efficient thinking, and availability on Tinker for fine-tuning.
+There&#x27;s a lot to like about this release. It&#x27;s Apache-2.0 licensed, and looks competitive with the open weight models coming out of China - it&#x27;s good to see the US open weights ecosystem gain a new viable contender to join NVIDIA Nemotron and Gemma 4.
+Here&#x27;s its attempt at an SVG pelican riding a bicycle, which I generated using this curl command against the Thinking Machines API:
+curl &quot;https://tinker.thinkingmachines.dev/services/tinker-prod/oai/api/v1/chat/completions&quot; \
+  -H &quot;Authorization: Bearer $TINKER_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{
+    &quot;model&quot;: &quot;thinkingmachines/Inkling&quot;,
+    &quot;messages&quot;: [
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Generate an SVG of a pelican riding a bicycle&quot;}
+    ],
+    &quot;stream&quot;: false
+  }&#x27;
+
+
+Full response here.
+
+Since it&#x27;s a multi-modal model I had it describe its own image (after I rendered it to a JPEG) by sending this JSON:
+{
+  &quot;model&quot;: &quot;thinkingmachines/Inkling&quot;,
+  &quot;messages&quot;: [{
+    &quot;role&quot;: &quot;user&quot;,
+    &quot;content&quot;: [
+      {&quot;type&quot;: &quot;image_url&quot;, &quot;image_url&quot;: {&quot;url&quot;: &quot;data:image/jpeg;base64,$BASE_64_JPEG&quot;}},
+      {&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Describe this image in detail&quot;},
+    ],
+  }],
+  &quot;stream&quot;: false
+}
+
+
+Here&#x27;s the full response. It thought it had drawn a &quot;stork or seagull&quot;:
+This is a cheerful, flat-vector cartoon illustration featuring a white bird riding a bicycle across a green landscape.
+The Bird: The central figure is a stylized white bird—resembling a stork or seagull—with a plump, rounded body. It has a long, prominent orange beak that is slightly open, revealing a black line for the mouth. Its eye is small and black with a tiny white highlight. The bird has black wing and tail feathers with white edges, and thin orange legs ending in black feet that rest on the bicycle&#x27;s orange pedals.
+The Bicycle: The bike has a simple black frame with two large wheels featuring black tires, gray inner rims, and black spokes arranged in a cross pattern. The handlebars are black, and there are bright orange pedals attached to a black crank. A white seat is visible behind the bird&#x27;s body.
+The Setting: The scene is set against a clear, light blue sky. There are two fluffy white clouds—one on the left side and a smaller one near the bird&#x27;s head on the right. A bright, solid yellow sun shines in the upper right corner. At the bottom, there are rolling green hills with a smooth, curved top edge where the bicycle rests.
+The overall style is playful, simple, and colorful, with clean lines and a bright, sunny atmosphere.
+Via Hacker News
+Tags: ai, generative-ai, llms, training-data, pelican-riding-a-bicycle, llm-release</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Mermaid to ASCII art (mermaid-ascii)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Tool: Mermaid to ASCII art (mermaid-ascii)
+After building the Mermaid to ASCII tool based on Grok Build&#x27;s Rust code I learned that there&#x27;s an older, more fully-featured Go library called AlexanderGrooff/mermaid-ascii that implements a similar pattern, so I had Claude Fable 5 compile that one to WebAssembly as well so I could compare the two.
+This one includes support for colors!
+
+Tags: go, tools, webassembly, mermaid</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Linus Torvalds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>I realize that some people really dislike AI, but this is an area where I&#x27;m willing to absolutely put my foot down as the top-level maintainer.
+Linux is not one of those anti-AI projects, and if somebody has issues with that, they can do the open-source thing and fork it.
+Or just walk away.
+AI is a tool, just like other tools we use.  And it&#x27;s clearly a useful one.
+It may not have been that &quot;clearly&quot; even just a year ago, but it&#x27;s no longer in question today.
+There are other questions around AI (like what the economy of it will actually look like in the end), but &quot;is it useful&quot; is no longer one of those questions. Anybody who doubts that clearly hasn&#x27;t actually used it.
+
+— Linus Torvalds, Linux Media Mailing List
+Tags: open-source, linus-torvalds, linux, generative-ai, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything"
                         open
                       >
@@ -55,6 +332,289 @@ While exploring the codebase for the newly open-sourced Grok CLI coding agent I 
 I figured it would be fun to try that out in a browser via WebAssembly. Here&#x27;s the prompt I ran in Claude Code for web (Fable 5), and this is what the resulting tool looks like:
 
 Tags: tools, rust, webassembly, mermaid, grok, xai</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/products-and-platforms/products/search/connected-apps/"
+                        open
+                      >
+                        <summary class="article-expander__title">Connect more of your apps to Search</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/search/connected-apps/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/ConnectedAppshero.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>You’ll be able to securely link and interact with your go-to services directly in AI Mode.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/"
+                        open
+                      >
+                        <summary class="article-expander__title">Create, edit and star in videos with two Google Vids updates</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/omni-blog-header_OarEe2t.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Gemini Omni and personal avatars in Google Vids make video creation easier than ever.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/why-teens-deserve-access-safe-ai"
+                        open
+                      >
+                        <summary class="article-expander__title">Why teens deserve access to safe AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/why-teens-deserve-access-safe-ai">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Learn how OpenAI is making ChatGPT safer for teens with age-appropriate protections, learning tools, parental controls, and expert partnerships.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/cars24"
+                        open
+                      >
+                        <summary class="article-expander__title">How Cars24 scales conversations and builds faster with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/cars24">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Cars24 uses OpenAI-powered voice and chat agents to handle 1M+ monthly conversation minutes, recover 12% of lost leads, and bring agentic workflows to teams across the company.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/FO5zsDIY6Yc"
+                        open
+                      >
+                        <summary class="article-expander__title">Testing the 2 BIGGEST AI Website Builders</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/FO5zsDIY6Yc">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Google DeepMind News</button>
+                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://deepmind.google/blog/our-approach-to-bioresilience/"
+                        open
+                      >
+                        <summary class="article-expander__title">Our approach to bioresilience</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/our-approach-to-bioresilience/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://lh3.googleusercontent.com/ZRyQg91pjea8kXXaGSlnZIJF90-VwnKHSBxo22e2RedCvCCszsurR8W9NHw80e1V6HtWXccbU1MI27Rtjjf963rD673XgkWK7cZe_1ekfruPgdHHVEc&#x3D;w1200-h630-n-nu-rw" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Google DeepMind and Isomorphic Labs are sharing our joint approach to bioresilience and AI models.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="location-invariant-functions"
+                        open
+                      >
+                        <summary class="article-expander__title">Location-Invariant Properties of Functions Versus Properties of Distributions: United in Testing but Separated in Verification</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/location-invariant-functions">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>A property of functions is called location-invariant (or symmetric) if it can be characterized in terms of the frequencies in which each value occurs in the function, regardless of the locations in which each value occurs. It is known that the (query) complexity of testing location-invariant properties of functions is closely related to the (sample) complexity of testing the (corresponding properties of the) corresponding distributions. The main message of the current work is that this close relationship is not maintained in the context of verification. This holds both when considering…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="interactive-proofs-distribution-properties"
+                        open
+                      >
+                        <summary class="article-expander__title">Interactive Proofs for General Distribution Properties</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/interactive-proofs-distribution-properties">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Suppose Alice has collected a small number of samples from an unknown distribution, and would like to learn about the distribution. Bob, an untrusted data analyst, claims to have run a sophisticated data analysis on the distribution and makes assertions about its properties. When and how is it possible for Alice to efficiently verify Bob’s claims (using fewer resources than would be needed to run the analysis herself)? We construct interactive proof systems for general distribution properties that can be decided by bounded-depth circuits. Taking N to be an upper bound on the distribution’s…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="doubly-sublinear-interactive-proofs"
+                        open
+                      >
+                        <summary class="article-expander__title">Doubly Sub-linear Interactive Proofs of Proximity</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/doubly-sublinear-interactive-proofs">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>We study doubly sub-linear interactive proofs of proximity (dsIPPs): proofs that are ultra-fast to generate, and can be used to prove approximate assertions about a huge input. Proof generation is ultra-fast in the sense that it only requires reading a small (sub-linear) portion of the input. Approximate verification of the proof is even faster (reading an even smaller portion of the input). Similarly to the property testing literature, approximate verification means the sublinear-time honest prover can make the verifier accept each input in the property, but no prover can fool the verifier…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="personalizing-incremental-video-search"
+                        open
+                      >
+                        <summary class="article-expander__title">Personalizing Incremental Video Search with Hybrid Text and ID Embeddings</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/personalizing-incremental-video-search">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Incremental video search requires high-quality ranking after each keystroke, where intent is often underspecified (e.g., 1–3 character prefixes). We present a personalization system for Apple TV search that combines complementary semantic and collaborative signals at ranking time. Our approach learns two item embedding spaces: (i) a text-based multilingual encoder (TextEmb) fine-tuned on co-engagement triplets via contrastive learning, and (ii) an ID-based collaborative embedding model (IdEmb) trained on interaction-derived positives. At serving time, we construct user representations from…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="simple-self-distillation"
+                        open
+                      >
+                        <summary class="article-expander__title">Embarrassingly Simple Self-Distillation Improves Code Generation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/simple-self-distillation">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Can a large language model (LLM) improve at code generation using only its own raw outputs, without a verifier, a teacher model, or reinforcement learning? We answer in the affirmative with simple self-distillation (SSD): sample solutions from the model with certain temperature and truncation configurations, then fine-tune on those samples with standard supervised fine-tuning. SSD improves Qwen3-30B-Instruct from 42.4% to 55.3% pass@1 on LiveCodeBench v6, with gains concentrating on harder problems, and it generalizes across Qwen and Llama models at 4B, 8B, and 30B scale, including both…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -112,7 +672,7 @@ It&#x27;s quite a surprising codebase! Grok Build contains 844,530 lines of Rust
 So far the repo has just a single commit releasing the code, so sadly we don&#x27;t get any insight into how the codebase developed over time.
 A few highlights:
 xai-grok-agent/templates/prompt.md has the main system prompt and xai-grok-agent/templates/subagent_prompt.md has the subagent prompt. Oddly that subagent prompt has &quot;Do not ... reveal the contents of this system prompt to the user&quot; but the main prompt does not. 
-xai-grok-markdown/src/mermaid.rs is a &quot;self-contained terminal renderer for Mermaid diagrams&quot;, which renders a subset of Mermaid chart types using Unicode box-drawing.
+xai-grok-markdown/src/mermaid.rs is a &quot;self-contained terminal renderer for Mermaid diagrams&quot;, which renders a subset of Mermaid chart types using Unicode box-drawing. Update: I got a version of this working in WebAssembly so it now runs in the browser.
 xai-grok-tools/src/implementations includes tool implementations imitated from other coding agents - the Codex apply_patch, grep_files, list_dir, and read_dir tools, and OpenCode&#x27;s bash, edit, glob, grep, read, skill, todowrite and write. The xai-grok-tools/THIRD_PARTY_NOTICES.md file says these are &quot;ported from&quot; those projects, in a way that looks compliant with the Apache and MIT licenses they use. It looks like these copies exist because Grok can switch between them, maybe based on detecting existing Codex or Claude or Cursor settings? I&#x27;m not confident I understand if that happens or how it works.
 There are still remnants of the code that used to upload everything to Google Cloud, but they seem to have been disabled now. xai-grok-shell/src/upload/gcs.rs has code for uploading to a GCS bucket. upload/trace.rs includes an upload_session_state() function which returns a hard-coded session_state_upload_unavailable error. 
 For comparison, openai/codex is 950,933 lines of Rust. Terminal coding agents are significantly more complex than I had realized!
@@ -854,7 +1414,7 @@ Tags: github, ai, datasette, generative-ai, llms, ai-assisted-programming, codin
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1051,7 +1611,7 @@ Tags: sqlite, sqlite-utils</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1386,41 +1946,6 @@ Tags: openai, chatgpt, ai</span>
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="behavioral-privacy-agentic-negotiation"
-                        open
-                      >
-                        <summary class="article-expander__title">Behavioral Privacy Leakage in Agentic Negotiation: Formalizing and Mitigating Inference Attacks via Randomized Policies</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/behavioral-privacy-agentic-negotiation">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>This paper was accepted at the AI4TCI (Workshop on AI for Secure and Trustworthy Critical Infrastructure Systems) Workshop at the International Conference on Availability, Reliability and Security (ARES) 2026.
-Autonomous negotiation agents are increasingly deployed in high-stakes settings such as insurance and procurement. While cryptographic techniques protect explicitly disclosed constraint values, they fail to address a subtler threat: behavioral privacy leakage, where an adversary infers private constraints from observable negotiation dynamics such as concession trajectories, timing, and…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -1614,7 +2139,7 @@ Tags: llm</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1656,6 +2181,23 @@ Tags: llm</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Details about the OpenAI Bio Bounty program</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/chatgpt-for-your-most-ambitious-work"
                         open
                       >
@@ -1681,97 +2223,6 @@ Tags: llm</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>More intelligence from every token, stronger performance per dollar, and more capability on demand for your hardest work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Details about the OpenAI Bio Bounty program</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="incentivizing-temporal-awareness-egocentric"
-                        open
-                      >
-                        <summary class="article-expander__title">Incentivizing Temporal-Awareness in Egocentric Video Understanding Models</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/incentivizing-temporal-awareness-egocentric">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Multimodal large language models (MLLMs) have recently shown strong performance in visual understanding, yet they often lack temporal awareness, particularly in egocentric settings where reasoning depends on the correct ordering and evolution of events. This deficiency stems in part from training objectives that fail to explicitly reward temporal reasoning and instead rely on frame-level spatial shortcuts. To address this limitation, we propose Temporal Global Policy Optimization (TGPO), a reinforcement learning with verifiable rewards (RLVR) algorithm designed to incentivize temporal…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="self-reflective-program-search"
-                        open
-                      >
-                        <summary class="article-expander__title">Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/self-reflective-program-search">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Long-context handling remains a core challenge for language models: even with extended context windows, models often fail to reliably extract, reason over, and use the information across long contexts. Recent works like Recursive Language Models (RLMs) have approached this challenge by agentic way of decomposing long contexts into recursive sub-queries through programmatic interaction at inference. While promising, the success of RLMs critically depends on how these trajectories of context-interaction programs are selected, which has remained unexplored. In this paper, we study this problem…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="unmasking-on-policy-distillation"
-                        open
-                      >
-                        <summary class="article-expander__title">Unmasking On-Policy Distillation: Where It Helps, Where It Hurts, and Why</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/unmasking-on-policy-distillation">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>On-policy distillation offers dense, per-token supervision for training reasoning models; however, it remains unclear under which conditions this signal is beneficial and under which it is detrimental. Which teacher model should be used, and in the case of self-distillation, which specific context should serve as the supervisory signal? Does the optimal choice vary from one token to the next? At present, addressing these questions typically requires costly training runs whose aggregate performance metrics obscure the dynamics at the level of individual tokens. We introduce a training-free…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -1877,29 +2328,6 @@ Tags: text-to-speech, ai, openai, generative-ai, llms, multi-modal-output, llm-r
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Kenton Varda</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/8/kenton-varda/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>I just declared a moratorium against AI-written change descriptions (e.g. PR and commit messages, also issues/tickets) from my team.
-AI was writing change descriptions that were worse than useless to me as I tried to review PRs: outlining details of the code that could easily be seen by looking at the code, but omitting the higher-level framing needed to understand broadly what the code is doing.
-
-— Kenton Varda
-Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -1943,7 +2371,7 @@ Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1962,7 +2390,7 @@ Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2094,386 +2522,11 @@ Tags: kenton-varda, ai-assisted-programming, generative-ai, ai, llms</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-07 datetime="2026-07-07T19:32:57.000Z">2026-07-07</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-07 datetime="2026-07-07T19:32:57.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-07 datetime="2026-07-07T13:01:10.000Z">2026-07-07</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-07 datetime="2026-07-07T13:01:10.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">sqlite-utils 4.0, now with database schema migrations</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>This morning I released sqlite-utils 4.0, the 124th release of that project and the first major version bump since 3.0 in November 2020. In addition to some small but significant breaking changes (described in this upgrade guide), this version introduces three major features: database migrations, nested transactions (via a new db.atomic() method), and support for compound foreign keys.
-
-Database schema migrations using sqlite-utils
-
-Schema migrations define a sequence of changes to be made to a SQLite database, plus a mechanism for tracking which migrations have been applied and applying any that are found to be pending.
-
-Migrations are defined in Python files using the sqlite-utils Python library, which includes a powerful table.transform() method providing enhanced alter table capabilities that are not supported by SQLite&#x27;s ALTER TABLE statement.
-
-(table.transform() implements the pattern recommended by the SQLite documentation - create a new temporary table with the new schema, copy across the data, then drop the old table and rename the temporary one in its place.)
-
-Here&#x27;s an example migration file which creates a table called creatures, adds an additional column to it in a second step, then changes the types of two of the columns in a third:
-
-from sqlite_utils import Migrations
-
-migrations &#x3D; Migrations(&quot;creatures&quot;)
-
-@migrations()
-def create_table(db):
-    db[&quot;creatures&quot;].create(
-        {&quot;id&quot;: int, &quot;name&quot;: str, &quot;species&quot;: str},
-        pk&#x3D;&quot;id&quot;,
-    )
-
-@migrations()
-def add_weight(db):
-    db[&quot;creatures&quot;].add_column(&quot;weight&quot;, float)
-
-@migrations()
-def change_column_types(db):
-    db[&quot;creatures&quot;].transform(types&#x3D;{&quot;species&quot;: int, &quot;weight&quot;: str})
-
-Save that as migrations.py and run it against a fresh database like this:
-
-
-uvx sqlite-utils migrate data.db migrations.py
-
-Then if you check the schema of that database:
-
-
-uvx sqlite-utils schema data.db
-
-You&#x27;ll see this SQL:
-
-
-CREATE TABLE &quot;_sqlite_migrations&quot; (
-   &quot;id&quot; INTEGER PRIMARY KEY,
-   &quot;migration_set&quot; TEXT,
-   &quot;name&quot; TEXT,
-   &quot;applied_at&quot; TEXT
-);
-CREATE UNIQUE INDEX &quot;idx__sqlite_migrations_migration_set_name&quot;
-    ON &quot;_sqlite_migrations&quot; (&quot;migration_set&quot;, &quot;name&quot;);
-CREATE TABLE &quot;creatures&quot; (
-   &quot;id&quot; INTEGER PRIMARY KEY,
-   &quot;name&quot; TEXT,
-   &quot;species&quot; INTEGER,
-   &quot;weight&quot; TEXT
-);
-
-The _sqlite_migrations table is used to keep track of which migration functions have been run. The creatures table above is the schema after all three migrations have been applied.
-
-To see a list of migrations, both pending and applied, run this:
-
-
-uvx sqlite-utils migrate data.db migrations.py --list
-
-Output:
-
-Migrations for: creatures
-
-  Applied:
-    create_table - 2026-07-07 17:58:41.360051+00:00
-    add_weight - 2026-07-07 17:58:41.360608+00:00
-    change_column_types - 2026-07-07 18:01:15.802000+00:00
-
-  Pending:
-    (none)
-
-
-If you don&#x27;t specify a migrations file, the sqlite-utils migrate data.db command will scan the current directory and its subdirectories for files called migrations.py and apply any Migrations() instances it finds in them.
-
-You can also execute migrations from Python code using the migrations.apply(db) method, which is useful for building tools that manage their own database schemas over multiple versions. My own LLM tool has been using a version of this pattern for several years now, as shown in llm/embeddings_migrations.py.
-
-Prior art
-
-My favorite implementation of this pattern remains Django&#x27;s Migrations, developed by Andrew Godwin based on his earlier project South. Fun fact: Andrew, Russ Keith-Magee, and I presented our competing approaches to schema migrations for Django on the Schema Evolution panel at the very first DjangoCon back in 2008! My attempt was called dmigrations, developed with a team at Global Radio in London.
-
-Django&#x27;s migrations can be automatically generated from model definitions and include the ability to roll back to a previous version. The sqlite-utils approach is deliberately simpler: unlike Django, sqlite-utils encourages programmatic table creation rather than a model definition ORM, so there isn&#x27;t anything we can use to automatically generate migrations.
-
-I decided to skip rollback, since in my experience it&#x27;s a feature that is rarely used. With a SQLite project, an easy way to achieve rollback is to create a copy of your database file before you apply the migrations!
-
-Migrating from sqlite-migrate
-
-The design of sqlite-utils migrations is three years old now - I had originally released it as a separate package called sqlite-migrate, which never quite graduated beyond a beta release.
-
-I&#x27;ve used that package in enough places now that I&#x27;m confident in the design, so I&#x27;ve decided to promote it to a feature of sqlite-utils to make it available by default to all of the other tools in the growing sqlite-utils/Datasette/LLM ecosystem.
-
-I made one last release of sqlite-migrate, which switches it to depend on sqlite-utils&gt;&#x3D;4 and replaces the __init__.py file with the following:
-
-from sqlite_utils import Migrations
-
-__all__ &#x3D; [&quot;Migrations&quot;]
-
-Any existing project that depends on sqlite-migrate should continue to work without alterations.
-
-Everything else in sqlite-utils 4.0
-
-Here are the release notes for this version, with some inline annotations:
-
-
-The 4.0 release includes some minor backwards-incompatible fixes (hence the major version number bump) and introduces three major new features:
-
-
-
-Database migrations, providing a structured mechanism for evolving a project’s schema over time. (#752)
-
-
-
-I think of migrations as the signature new feature, hence this blog post.
-
-
-
-
-Nested transaction support via db.atomic(), plus numerous improvements to how transactions work across the library. (#755)
-
-
-
-sqlite-utils has long had a confused relationship with database transactions, partly because when I started designing the library back in 2018 I didn&#x27;t yet have a great feel for how those worked in SQLite itself.
-
-Adding migrations to the core library made me determined to finally crack this nut, since transactions make migration systems a whole lot safer and easier to reason about.
-
-I ended up building this around a db.atomic() context manager which looks like this:
-
-with db.atomic():
-    db.table(&quot;dogs&quot;).insert({&quot;id&quot;: 1, &quot;name&quot;: &quot;Cleo&quot;}, pk&#x3D;&quot;id&quot;)
-    db.table(&quot;dogs&quot;).insert({&quot;id&quot;: 2, &quot;name&quot;: &quot;Pancakes&quot;})
-
-SQLite supports Savepoints, and as a result db.atomic() can be nested to carry out transactions inside of transactions. It&#x27;s pretty neat!
-
-
-
-Support for compound foreign keys, including creation, transformation and introspection through table.foreign_keys. (#594)
-
-
-
-This came about when I asked a coding agent to review all open issues and PRs for things that should be included in a 4.0 release since they would represent breaking changes if I added them later, and it correctly identified that compound foreign keys were exactly that kind of feature.
-
-I started with a breaking change to the table.foreign_keys introspection method, and then decided to see if Claude Fable 5 could handle the more fiddly job of integrating compound foreign key creation into the library. The API design it helped create felt exactly right to me - consistent with how the rest of the library worked already.
-
-
-Other notable changes include:
-
-
-Upserts now use SQLite’s INSERT ... ON CONFLICT ... DO UPDATE SET syntax, detect existing table primary keys automatically and reject records that are missing required primary key values. (#652)
-
-
-
-This was the change that first pushed me to consider a breaking-change 4.0 version bump. I built this to help support sqlite-chronicle, which uses triggers to keep track of rows in a table that have been inserted, updated or deleted.
-
-
-
-
-db.query() now executes immediately and rejects statements that do not return rows; use db.execute() for writes and DDL.
-
-
-
-Probably the most disruptive breaking change - I&#x27;ve had to update a few places in my own code to switch from db.query() to db.execute() as a result.
-
-
-
-CSV and TSV imports now detect column types by default, while inserts into existing tables preserve those tables’ column types. (#679)
-
-
-
-The sqlite-utils insert data.db creatures creatures.csv --detect-types flag was a later addition to allow column types (text, integer, real) to be automatically detected based on the data in a CSV. It should be the default, and releasing a 4.0 means I can make it so.
-
-
-
-
-table.extract() and extracts&#x3D; no longer create lookup table records for all-null values. (#186)
-
-
-
-The oldest issue addressed by this release - the underlying bug was opened (by me) in October 2020.
-
-
-See Upgrading from 3.x to 4.0 for details on backwards-incompatible changes.
-
-The detailed release notes for the features and fixes shipped during the 4.0 pre-release cycle are available in 4.0a0, 4.0a1, 4.0rc1, 4.0rc2, 4.0rc3 and 4.0rc4.
-
-
-The upgrade guide was entirely written by Claude Fable 5, Claude Opus 4.8 and GPT-5.5. The same is true of the release notes.
-
-This is the kind of documentation I&#x27;ve slowly become comfortable outsourcing to the robots. It doesn&#x27;t need to convince people of anything, or express any opinions - its job is to be as accurate and detailed as possible. I&#x27;ve reviewed the release notes closely and can confirm they are accurate and comprehensive.
-
-Claude Fable 5 helped a lot
-
-I released the first alpha of sqlite-utils 4.0 over a year ago. I&#x27;ve been dragging my heels on the stable release because of the amount of work it would take to track down and clean up the many other minor design flaws that a major version number allowed me to take on.
-
-Assistance from Claude Fable 5 (and to a lesser extent Opus 4.8 and GPT-5.5) gave me just the boost I needed to overcome inertia and make the most of the time I could afford to spend on this library.
-
-Fable has really good taste in API design, and is relentlessly proactive if you give it a more open goal. My most successful prompt was a review task that I issued against what I thought was the last release candidate:
-
-
-review the changes on main since the last tagged 3.x release - I am about to ship them as sqlite-utils 4.0, a stable version that promises no backwards-incompatible fixes for a very long time.
-
-review the changelog and upgrade guide, and write yourself scratch scripts to try out all of the new features in v4 - save those scripts but don&#x27;t commit them
-
-
-I tried this with GPT-5.5 xhigh in Codex Desktop and Fable 5 in Claude Code.
-
-GPT-5.5 wrote 5 Python scripts and didn&#x27;t turn up anything particularly interesting - its final report is here.
-
-Fable 5 wrote 12 scripts, identified 4 release blockers and 10 additional issues in its report, and built a neat combined repro script, which, when run, output the following:
-
-&#x3D;&#x3D;&#x3D; 1. Failed db.execute() write leaves an implicit transaction open &#x3D;&#x3D;&#x3D;
-  in_transaction after failed write: True
-  BUG: table &#x27;other&#x27; silently lost when connection closed
-
-&#x3D;&#x3D;&#x3D; 2. Leading &#x27;;&#x27; bypasses the query() first-token scanner &#x3D;&#x3D;&#x3D;
-  BUG: raised OperationalError: no such savepoint: sqlite_utils_query
-  BUG: row persisted despite rollback (count&#x3D;1)
-
-&#x3D;&#x3D;&#x3D; 3. Rejected write PRAGMA via query() still takes effect &#x3D;&#x3D;&#x3D;
-  BUG: user_version&#x3D;5 after &#x27;rejected&#x27; statement (docs say no effect)
-
-&#x3D;&#x3D;&#x3D; 4. Implicit compound FK resolves pk columns in table order, not PK order &#x3D;&#x3D;&#x3D;
-  BUG: other_columns reported as (&#x27;b&#x27;, &#x27;a&#x27;), should be (&#x27;a&#x27;, &#x27;b&#x27;)
-  BUG: transform of valid data raised IntegrityError: FOREIGN KEY constraint failed
-
-&#x3D;&#x3D;&#x3D; 5. ForeignKey (now a dataclass) is no longer hashable &#x3D;&#x3D;&#x3D;
-  BUG: cannot use &#x27;sqlite_utils.db.ForeignKey&#x27; as a set element (unhashable type: &#x27;ForeignKey&#x27;)
-
-&#x3D;&#x3D;&#x3D; 6. Mixed ForeignKey objects and tuples in foreign_keys&#x3D; rejected &#x3D;&#x3D;&#x3D;
-  BUG: foreign_keys&#x3D; should be a list of tuples
-
-&#x3D;&#x3D;&#x3D; 7. insert --csv into an EXISTING table transforms its column types &#x3D;&#x3D;&#x3D;
-  BUG: existing zip &#x27;01234&#x27; is now 1234 (column type: int)
-
-&#x3D;&#x3D;&#x3D; 8. insert(pk&#x3D;, alter&#x3D;True) regression: InvalidColumns before alter runs &#x3D;&#x3D;&#x3D;
-  BUG: InvalidColumns: Invalid primary key column [&#x27;id&#x27;] for table t with columns [&#x27;a&#x27;]
-
-&#x3D;&#x3D;&#x3D; 9. migrate --stop-before an already-applied migration applies everything &#x3D;&#x3D;&#x3D;
-  BUG: m2 was applied despite --stop-before m1 (m1 already applied)
-
-&#x3D;&#x3D;&#x3D; 10. ensure_autocommit_on() silently commits an open transaction &#x3D;&#x3D;&#x3D;
-  BUG: row survived rollback (count&#x3D;1) - transaction was committed
-
-
-I found myself agreeing with almost all of them. Here&#x27;s the PR with 16 commits where we worked through them in turn.
-
-There&#x27;s no doubt in my mind that sqlite-utils 4.0 is a significantly higher-quality release than if I had built it without the assistance of the latest frontier models.
-Tags: schema-migrations, projects, sqlite, ai, sqlite-utils, annotated-release-notes, generative-ai, llms, ai-assisted-programming, anthropic, claude, agentic-engineering, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;9
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/7/sqlite-migrate/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">sqlite-migrate 0.2</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/7/sqlite-migrate/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: sqlite-migrate 0.2
-The version that retires the library, instead implementing a compatibility shim against the new sqlite-utils 4.0 dependency.
-Tags: sqlite-utils</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">github-code Web Component</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/7/github-code-component/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Tool: github-code Web Component
-An experimental Web Component built using GPT-5.5 and the following prompt:
-let&#x27;s build a Web Component for embedding code from GitHub
-&lt;github-code href&#x3D;&quot;https://github.com/simonw/sqlite-ast/blob/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py#L9-L18&quot;&gt;&lt;/github-code&gt;
-It takes URLs like that, converts them to https://raw.githubusercontent.com/simonw/sqlite-ast/437c759129154f05296324a7f82aa1246340dd14/sqlite_ast/parser.py, then uses fetch() to fetch them and displays the specified range of lines - with line numbers, no syntax highlighting though
-Show me a preview web browser so I can see your work
-Here&#x27;s what it looks like embedded on this page:
-
-Tags: github, web-components, gpt</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/7/sqlite-utils/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">sqlite-utils 4.0</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/7/sqlite-utils/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: sqlite-utils 4.0
-See sqlite-utils 4.0, now with database schema migrations for details.
-Tags: sqlite-utils</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/7/sqlite-utils-2/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">sqlite-utils 4.0rc4</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/7/sqlite-utils-2/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: sqlite-utils 4.0rc4
-The last RC before the 4.0 stable release. Mainly implements feedback from a detailed review by Claude Fable 5.
-Tags: sqlite-utils, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2497,7 +2550,7 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2556,23 +2609,6 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/mufg"
-                        open
-                      >
-                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/australian-payments-plus"
                         open
                       >
@@ -2586,35 +2622,18 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                         </a>
                       </details>
                     </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="sounding-video-generation"
+                        data-accordion-key="https://openai.com/index/mufg"
                         open
                       >
-                        <summary class="article-expander__title">Taming Text-to-Sounding Video Generation via Advanced Modality Condition and Interaction</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/sounding-video-generation">
+                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>This study focuses on Text-to-Sounding-Video (T2SV) generation, which aims to generate a video with synchronized audio from text, with both modalities aligned to the text conditions. Despite progress in joint audio-video training, two critical challenges remain: (1) text conditioning is a bottleneck—shared captions (TV&#x3D;TA) trigger modal interference, while a gap persists between dense training captions and concise inference user prompts, and (2) the optimal fusion mechanism for cross-modal feature interaction remains unclear. To address the first challenge, we first propose the…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
-                                  min&hairsp;)</span>
+                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -2660,7 +2679,7 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2850,42 +2869,11 @@ Tags: sqlite-utils, claude-mythos-fable</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-01 datetime="2026-07-01T18:30:22.000Z">2026-07-01</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-01 datetime="2026-07-01T18:30:22.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-01 datetime="2026-07-01T18:15:00.000Z">2026-07-01</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-01 datetime="2026-07-01T18:15:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;XbHeJL45USQ"
-                        open
-                      >
-                        <summary class="article-expander__title">GLM-5.2: The Complete Guide to the Best Open-Source Model</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;XbHeJL45USQ">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3051,23 +3039,6 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-genebench-pro"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing GeneBench-Pro</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-genebench-pro">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/genebench-pro/case-studies"
                         open
                       >
@@ -3093,6 +3064,23 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/introducing-genebench-pro"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing GeneBench-Pro</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-genebench-pro">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.</span>
                             </span>
                           </div>
                         </a>
@@ -3899,128 +3887,12 @@ Tags: sqlite-utils, claude-mythos-fable</span>
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/ai-chemist-improves-reaction"
-                        open
-                      >
-                        <summary class="article-expander__title">A near-autonomous AI chemist improves a challenging reaction in medicinal chemistry</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/ai-chemist-improves-reaction">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI and Molecule.one show how a near-autonomous AI chemist using GPT-5.4 improved a key drug-making reaction, advancing medicinal chemistry research.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-life-sci-bench"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing LifeSciBench</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-life-sci-bench">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Introducing LifeSciBench, an expert-authored, expert-reviewed benchmark for evaluating how AI systems handle real-world life science research tasks and decisions.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-16 datetime="2026-06-16T21:29:50.000Z">2026-06-16</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-16 datetime="2026-06-16T21:29:50.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Google DeepMind News</button>
-                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/"
-                        open
-                      >
-                        <summary class="article-expander__title">Unlocking UK house-building with AI-accelerated planning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://lh3.googleusercontent.com/kc7RMwXGDfJAoCsgs6pUuONGMXePGbvF_q_i8i-bWBBakQ91O8VYPk8cyHfpOD1uF-lw8Mk6pd2JpXofi5n4qNoNziPol46lBMmZuxoG9NKl16CW&#x3D;w1200-h630-n-nu-rw" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/securing-the-future-of-ai-agents/"
-                        open
-                      >
-                        <summary class="article-expander__title">Securing the future of AI agents</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/securing-the-future-of-ai-agents/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://lh3.googleusercontent.com/X6w_t9eA7TLFiq3JMp1kXlon25qi9N6O0AxPyp7j0qOIu8oz-QDsaOP-oKz7FIuqlA3W1evDbeLYssDJM_fjkqeyscPO_fHJd0xeD0IoDlHkiUQW1w&#x3D;w1200-h630-n-nu-rw" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29466759153">
-        <time id="build-timestamp" datetime="2026-07-16T02:31:08.755Z">2026-07-16T02:31:08.755Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29550195125">
+        <time id="build-timestamp" datetime="2026-07-17T02:33:32.739Z">2026-07-17T02:33:32.739Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
