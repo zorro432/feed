@@ -634,6 +634,26 @@
       "siteUrl": "http://simonwillison.net/",
       "articles": [
         {
+          "id": "https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything",
+          "author": null,
+          "description": "<p><strong><a href=\"https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/\">AI Mania Is Eviscerating Global Decision-Making</a></strong></p>\nHere's an entertaining perspective from Nik Suresh on the AI mania that is overwhelming the large companies that he consults with. It's crammed with spicy anecdotes from anonymous sources.</p>\n<blockquote>\n<p>In one extreme case, I have seen an executive confess that they had never even used ChatGPT or any AI tool in their life, immediately after producing a technical strategy for an organisation with $2B+ in revenue which was entirely centered around AI.</p>\n</blockquote>\n<p>Here's a report from an engineer at a company with a token leaderboard:</p>\n<blockquote>\n<p>Checking out a parallel copy of our Go repository and telling the AI to rewrite the whole thing in Zig while I work on something else just so I can keep my job.</p>\n</blockquote>\n<p>I particularly enjoyed this conversation with a skeptical executive at an over-enthusiastic company:</p>\n<blockquote>\n<p>I asked <em>why</em> this was being repeated without opposition. Was it just sales fluff?</p>\n<p>The answer was a lot more interesting. It was <em>partially</em> ridiculous sales material being delivered to an easily excitable audience, but this was not the dominant factor constraining honesty. Executives at their <em>customers</em> were saying absurd things about achieving 100x productivity, and this meant that if any executive at the <em>vendor</em> said that these gains were not plausible, it would undermine the credibility of the customer’s executive, be perceived as an attack (or heresy), and possibly result in an enterprise contract cancellation. And getting enterprise contracts cancelled because you wanted to opine on something that doesn’t really matter to your organisation’s mission is a great way to get fired.</p>\n</blockquote>\n\n    <p><small></small>Via <a href=\"https://news.ycombinator.com/item?id=48964185\">Hacker News</a></small></p>\n\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/ai\">ai</a>, <a href=\"https://simonwillison.net/tags/ai-ethics\">ai-ethics</a>, <a href=\"https://simonwillison.net/tags/ai-misuse\">ai-misuse</a></p>",
+          "link": "https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything",
+          "publishedOn": "2026-07-19T05:06:21.000Z",
+          "wordCount": 1006,
+          "title": "AI Mania Is Eviscerating Global Decision-Making",
+          "imageUrl": null
+        },
+        {
+          "id": "https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything",
+          "author": null,
+          "description": "<p>In <a href=\"https://bun.com/blog/bun-in-rust\">Rewriting Bun in Rust</a> Jarred Sumner made the following claim:</p>\n<blockquote>\n<p>Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.</p>\n</blockquote>\n<p>I decided to have a poke at my own Claude Code installation to see if I could find evidence that it was using Bun written in Rust.</p>\n<p>I found these two commands convincing:</p>\n<pre><code>strings ~/.local/bin/claude | grep -m1 'Bun v1'\n</code></pre>\n<p>For me this outputs <code>Bun v1.4.0 (macOS arm64)</code>. The most recent release of <a href=\"https://github.com/oven-sh/bun/releases\">Bun on GitHub</a> is currently <a href=\"https://github.com/oven-sh/bun/releases/tag/bun-v1.3.14\">v1.3.14</a> from May 12th, so that v1.4.0 version number in Claude supports them shipping a preview of a not-yet-released Bun version.</p>\n<p>(<strong>Update</strong>: The Rust version <em>has</em> been released as <a href=\"https://bun.com/docs/installation#canary-builds\">Bun canary</a> - running <code>bun upgrade --canary</code> will install <a href=\"https://github.com/oven-sh/bun/releases/tag/canary\">this release</a>.)</p>\n<pre><code>strings ~/.local/bin/claude | grep -Eo 'src/[[:alnum:]_./-]+\\.rs'\n</code></pre>\n<p>This outputs a list of <a href=\"https://gist.github.com/simonw/c92fb0f67b114ac26e3b95a09ddccfdc\">563 filenames</a>, starting with these:</p>\n<pre><code>src/runtime/bake/dev_server/mod.rs\nsrc/runtime/bake/production.rs\nsrc/bundler/bundle_v2.rs\n</code></pre>\n<p>It looks like Bun in Rust is indeed being run in production across millions of different devices. Like Jarred said, \"Boring is good\".</p>\n<p><strong>Update</strong>: Here's a neat trick <a href=\"https://twitter.com/ajanraj25/status/2078825794701242697\">from Ajan Raj</a>:</p>\n<pre><code>cat &gt; /tmp/bun-version.ts &lt;&lt;'EOF'\nconsole.log(\"embedded bun:\", Bun.version);\nprocess.exit(0);\nEOF\nBUN_OPTIONS=\"--preload=/tmp/bun-version.ts\" claude --version\n</code></pre>\n<p>This outputs <code>1.4.0</code> for me.</p>\n<p>Here's <a href=\"https://github.com/oven-sh/bun/commit/b18bf6d1d0a92238f240bfd125f0e3b3461b9243#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519\">the commit from May 17th</a> that updated the version in <code>package.json</code> to 1.4.0. That version hasn't been changed since then, but also hasn't yet made it into a tagged release outside of <code>canary</code>.</p>\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/bun\">bun</a>, <a href=\"https://simonwillison.net/tags/rust\">rust</a>, <a href=\"https://simonwillison.net/tags/anthropic\">anthropic</a>, <a href=\"https://simonwillison.net/tags/claude-code\">claude-code</a>, <a href=\"https://simonwillison.net/tags/jarred-sumner\">jarred-sumner</a></p>",
+          "link": "https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything",
+          "publishedOn": "2026-07-19T03:54:09.000Z",
+          "wordCount": 985,
+          "title": "Claude Code uses Bun written in Rust now",
+          "imageUrl": null
+        },
+        {
           "id": "https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything",
           "author": null,
           "description": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/sqlite-query-explainer\">SQLite Query Explainer</a></p>\n        <p>Julia Evan's, in <a href=\"https://jvns.ca/blog/2026/07/17/learning-about-running-sqlite/\">Learning a few things about running SQLite</a>:</p>\n<blockquote>\n<p>Maybe one day I’ll learn to read a query plan.</p>\n</blockquote>\n<p>Big same.... which inspired me to <a href=\"https://github.com/simonw/tools/pull/299#issue-4919268017\">have Fable build</a> this interactive explain tool, which runs SQLite in Python in Pyodide in Web Assembly in the browser and adds a layer of explanation to the results of both EXPLAIN and EXPLAIN QUERY PLAN.</p>\n<p>Approach with caution, since I don't know enough about SQLite query plans to verify the results myself, but it seems cromulent enough to me.</p>\n    \n    \n        <p>Tags: <a href=\"https://simonwillison.net/tags/sql\">sql</a>, <a href=\"https://simonwillison.net/tags/sqlite\">sqlite</a>, <a href=\"https://simonwillison.net/tags/tools\">tools</a>, <a href=\"https://simonwillison.net/tags/julia-evans\">julia-evans</a>, <a href=\"https://simonwillison.net/tags/pyodide\">pyodide</a>, <a href=\"https://simonwillison.net/tags/claude-mythos-fable\">claude-mythos-fable</a></p>",
@@ -912,26 +932,6 @@
           "wordCount": 1264,
           "title": "sqlite-utils 4.1",
           "imageUrl": null
-        },
-        {
-          "id": "https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything",
-          "author": null,
-          "description": "<blockquote cite=\"https://youtu.be/v4vkwUf4AMw?t=2427\"><p>The reality is to make augmented reality glasses, you need to put a camera next to your eyes that is continuously recording everything you see and processing that to put information over it.</p>\n<p>There is not another way around it. And there's certainly not a chip that can fit in the stem of a glasses that is both powerful enough and power miserly enough to do that in real time.</p>\n<p>You have to send that data to a cloud. You gotta do it. [...] Or you can build something the size of a Vision Pro with a battery pack that lives somewhere else. Those are the current choices in this world.</p>\n<p>And it means if you want to build the product that everyone thinks is the next thing, you are going to have to invade people's privacy.</p>\n<p>And maybe you shouldn't. Like, there's an incredible argument for, nope, you shouldn't do that. Nope, the trade-offs required to make this product are so high at a societal level that we should stop it.</p></blockquote>\n<p class=\"cite\">&mdash; <a href=\"https://youtu.be/v4vkwUf4AMw?t=2427\">Nilay Patel</a>, The Vergecast</p>\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/ai-ethics\">ai-ethics</a>, <a href=\"https://simonwillison.net/tags/augmented-reality\">augmented-reality</a>, <a href=\"https://simonwillison.net/tags/nilay-patel\">nilay-patel</a>, <a href=\"https://simonwillison.net/tags/privacy\">privacy</a>, <a href=\"https://simonwillison.net/tags/ai\">ai</a></p>",
-          "link": "https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything",
-          "publishedOn": "2026-07-10T17:05:26.000Z",
-          "wordCount": 894,
-          "title": "Quoting Nilay Patel",
-          "imageUrl": null
-        },
-        {
-          "id": "https://simonwillison.net/2026/Jul/10/openai/#atom-everything",
-          "author": null,
-          "description": "<blockquote cite=\"https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\"><p>[...] Work on web and mobile runs in the cloud. Work in the desktop app can also use local files and desktop apps with your permission. At launch, cloud Work conversations do not appear in desktop Work; desktop Work threads and local files remain on that computer.</p></blockquote>\n<p class=\"cite\">&mdash; <a href=\"https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\">OpenAI</a>, trying (unsuccessfully) to clarify ChatGPT Work</p>\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/openai\">openai</a>, <a href=\"https://simonwillison.net/tags/chatgpt\">chatgpt</a>, <a href=\"https://simonwillison.net/tags/ai\">ai</a></p>",
-          "link": "https://simonwillison.net/2026/Jul/10/openai/#atom-everything",
-          "publishedOn": "2026-07-10T01:05:57.000Z",
-          "wordCount": 767,
-          "title": "Quoting OpenAI",
-          "imageUrl": null
         }
       ]
     },
@@ -968,7 +968,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/FO5zsDIY6Yc",
           "publishedOn": "2026-07-16T14:40:45.000Z",
-          "wordCount": 2090,
+          "wordCount": 2144,
           "title": "Which AI Is Better? 🖥️ WEBSITE EDITION",
           "imageUrl": null
         },
@@ -988,7 +988,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/KzJkS00Ztd8",
           "publishedOn": "2026-07-14T14:31:02.000Z",
-          "wordCount": 2527,
+          "wordCount": 3628,
           "title": "Try This Awesome AI Video Transition!",
           "imageUrl": null
         },
@@ -998,7 +998,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/BDWdp_fIOHk",
           "publishedOn": "2026-07-13T20:18:05.000Z",
-          "wordCount": 2223,
+          "wordCount": 3465,
           "title": "Build A Custom Browser Extension [SUPER Easy!]",
           "imageUrl": null
         },
@@ -1008,7 +1008,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/lIi2FjPgjkg",
           "publishedOn": "2026-07-12T23:05:51.000Z",
-          "wordCount": 2167,
+          "wordCount": 2161,
           "title": "This Tech CEO Is Building the “Linux of AI”",
           "imageUrl": null
         },
@@ -1018,7 +1018,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/Iir8dmNoNTg",
           "publishedOn": "2026-07-11T15:37:50.000Z",
-          "wordCount": 2233,
+          "wordCount": 2160,
           "title": "ChatGPT’s Latest Update Is MASSIVE",
           "imageUrl": null
         },
@@ -1038,7 +1038,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/oXi5E3FvZKI",
           "publishedOn": "2026-07-09T17:14:13.000Z",
-          "wordCount": 2153,
+          "wordCount": 2140,
           "title": "OpenAI is FINALLY Releasing Hardware",
           "imageUrl": null
         },
@@ -1058,7 +1058,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/ptlZzbtzdfE",
           "publishedOn": "2026-07-08T13:00:29.000Z",
-          "wordCount": 2504,
+          "wordCount": 3505,
           "title": "How I Track Crazy Tech IPOs",
           "imageUrl": null
         },
@@ -1068,7 +1068,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/bxdsBsbtoSg",
           "publishedOn": "2026-07-08T00:09:25.000Z",
-          "wordCount": 3411,
+          "wordCount": 2119,
           "title": "AI Can FINALLY Edit Videos For You",
           "imageUrl": null
         },
@@ -1078,7 +1078,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/mCu3mVcvpLE",
           "publishedOn": "2026-07-07T13:01:10.000Z",
-          "wordCount": 2122,
+          "wordCount": 2242,
           "title": "How to \"Vibe Direct\" Short Films",
           "imageUrl": null
         },
@@ -1088,7 +1088,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/1CAy_mB6E-g",
           "publishedOn": "2026-07-06T17:48:05.000Z",
-          "wordCount": 3455,
+          "wordCount": 2231,
           "title": "I Automated Shorts With Fable",
           "imageUrl": null
         },
@@ -1098,7 +1098,7 @@
           "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
           "link": "https://www.youtube.com/shorts/hUH4HD6Ah9c",
           "publishedOn": "2026-07-04T03:21:50.000Z",
-          "wordCount": 2102,
+          "wordCount": 2082,
           "title": "The Benchmark No One Asked For!",
           "imageUrl": null
         }
@@ -1167,16 +1167,6 @@
           "publishedOn": "2026-06-23T16:46:50.000Z",
           "wordCount": null,
           "title": "Midjourney has a new side quest... death",
-          "imageUrl": null
-        },
-        {
-          "id": "https://www.youtube.com/watch?v=Sntj4HmuykI",
-          "author": null,
-          "description": "",
-          "link": "https://www.youtube.com/watch?v=Sntj4HmuykI",
-          "publishedOn": "2026-06-19T17:24:47.000Z",
-          "wordCount": null,
-          "title": "The most trusted code on Earth is being rewritten in Rust",
           "imageUrl": null
         }
       ]

@@ -22,6 +22,105 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-19 datetime="2026-07-19T05:06:21.000Z">2026-07-19</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-19 datetime="2026-07-19T05:06:21.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">AI Mania Is Eviscerating Global Decision-Making</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>AI Mania Is Eviscerating Global Decision-Making
+In one extreme case, I have seen an executive confess that they had never even used ChatGPT or any AI tool in their life, immediately after producing a technical strategy for an organisation with $2B+ in revenue which was entirely centered around AI.
+Here&#x27;s a report from an engineer at a company with a token leaderboard:
+Checking out a parallel copy of our Go repository and telling the AI to rewrite the whole thing in Zig while I work on something else just so I can keep my job.
+I particularly enjoyed this conversation with a skeptical executive at an over-enthusiastic company:
+I asked why this was being repeated without opposition. Was it just sales fluff?
+The answer was a lot more interesting. It was partially ridiculous sales material being delivered to an easily excitable audience, but this was not the dominant factor constraining honesty. Executives at their customers were saying absurd things about achieving 100x productivity, and this meant that if any executive at the vendor said that these gains were not plausible, it would undermine the credibility of the customer’s executive, be perceived as an attack (or heresy), and possibly result in an enterprise contract cancellation. And getting enterprise contracts cancelled because you wanted to opine on something that doesn’t really matter to your organisation’s mission is a great way to get fired.
+Via Hacker News
+Tags: ai, ai-ethics, ai-misuse</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Code uses Bun written in Rust now</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>In Rewriting Bun in Rust Jarred Sumner made the following claim:
+Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.
+I decided to have a poke at my own Claude Code installation to see if I could find evidence that it was using Bun written in Rust.
+I found these two commands convincing:
+strings ~/.local/bin/claude | grep -m1 &#x27;Bun v1&#x27;
+
+For me this outputs Bun v1.4.0 (macOS arm64). The most recent release of Bun on GitHub is currently v1.3.14 from May 12th, so that v1.4.0 version number in Claude supports them shipping a preview of a not-yet-released Bun version.
+(Update: The Rust version has been released as Bun canary - running bun upgrade --canary will install this release.)
+strings ~/.local/bin/claude | grep -Eo &#x27;src/[[:alnum:]_./-]+\.rs&#x27;
+
+This outputs a list of 563 filenames, starting with these:
+src/runtime/bake/dev_server/mod.rs
+src/runtime/bake/production.rs
+src/bundler/bundle_v2.rs
+
+It looks like Bun in Rust is indeed being run in production across millions of different devices. Like Jarred said, &quot;Boring is good&quot;.
+Update: Here&#x27;s a neat trick from Ajan Raj:
+cat &gt; /tmp/bun-version.ts &lt;&lt;&#x27;EOF&#x27;
+console.log(&quot;embedded bun:&quot;, Bun.version);
+process.exit(0);
+EOF
+BUN_OPTIONS&#x3D;&quot;--preload&#x3D;/tmp/bun-version.ts&quot; claude --version
+
+This outputs 1.4.0 for me.
+Here&#x27;s the commit from May 17th that updated the version in package.json to 1.4.0. That version hasn&#x27;t been changed since then, but also hasn&#x27;t yet made it into a tagged release outside of canary.
+Tags: bun, rust, anthropic, claude-code, jarred-sumner</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-18 datetime="2026-07-18T17:19:10.000Z">2026-07-18</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-18 datetime="2026-07-18T17:19:10.000Z"></time>
           </button>
@@ -1511,7 +1610,7 @@ Tags: packaging, pypi, python, github-actions, uv</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1711,7 +1810,7 @@ Tags: github, ai, datasette, generative-ai, llms, ai-assisted-programming, codin
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2078,68 +2177,6 @@ Tags: projects, python, sqlite, sqlite-utils, annotated-release-notes, ai-assist
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Nilay Patel</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/10/nilay-patel/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The reality is to make augmented reality glasses, you need to put a camera next to your eyes that is continuously recording everything you see and processing that to put information over it.
-There is not another way around it. And there&#x27;s certainly not a chip that can fit in the stem of a glasses that is both powerful enough and power miserly enough to do that in real time.
-You have to send that data to a cloud. You gotta do it. [...] Or you can build something the size of a Vision Pro with a battery pack that lives somewhere else. Those are the current choices in this world.
-And it means if you want to build the product that everyone thinks is the next thing, you are going to have to invade people&#x27;s privacy.
-And maybe you shouldn&#x27;t. Like, there&#x27;s an incredible argument for, nope, you shouldn&#x27;t do that. Nope, the trade-offs required to make this product are so high at a societal level that we should stop it.
-
-— Nilay Patel, The Vergecast
-Tags: ai-ethics, augmented-reality, nilay-patel, privacy, ai</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/10/openai/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/10/openai/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>[...] Work on web and mobile runs in the cloud. Work in the desktop app can also use local files and desktop apps with your permission. At launch, cloud Work conversations do not appear in desktop Work; desktop Work threads and local files remain on that computer.
-
-— OpenAI, trying (unsuccessfully) to clarify ChatGPT Work
-Tags: openai, chatgpt, ai</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Matt Wolfe</button>
                   <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
@@ -2426,7 +2463,7 @@ Tags: openai, chatgpt, ai</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2445,7 +2482,7 @@ Tags: openai, chatgpt, ai</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2734,7 +2771,7 @@ Tags: openai, chatgpt, ai</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;7
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3710,55 +3747,10 @@ Tags: openai, chatgpt, ai</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-19 datetime="2026-06-19T17:24:47.000Z">2026-06-19</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-19 datetime="2026-06-19T17:24:47.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;Sntj4HmuykI"
-                        open
-                      >
-                        <summary class="article-expander__title">The most trusted code on Earth is being rewritten in Rust</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;Sntj4HmuykI">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29670466072">
-        <time id="build-timestamp" datetime="2026-07-19T02:37:15.167Z">2026-07-19T02:37:15.167Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/29713362364">
+        <time id="build-timestamp" datetime="2026-07-20T03:32:53.204Z">2026-07-20T03:32:53.204Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
