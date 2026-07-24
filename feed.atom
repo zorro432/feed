@@ -1,10 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-07-23T02:38:59.264Z</id>
+    <id>urn:2026-07-24T02:35:09.312Z</id>
     <title>osmos::feed</title>
-    <updated>2026-07-23T02:38:59.264Z</updated>
+    <updated>2026-07-24T02:35:09.312Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[The first known runaway AI agent - or a very bad marketing stunt?]]></title>
+        <id>https://simonwillison.net/2026/Jul/23/the-first-known-runaway-ai-agent/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/23/the-first-known-runaway-ai-agent/#atom-everything"/>
+        <updated>2026-07-23T22:53:08.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://martinalderson.com/posts/huggingface-openai-exploit/">The first known runaway AI agent - or a very bad marketing stunt?</a></strong></p>
+Martin Alderson's commentary on the <a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/">OpenAI accidental cyberattack against Hugging Face</a> includes a couple of details I hadn't considered.</p>
+<p>First, Hugging Face offers a truly rich target if you're trying to find potential vulnerabilities that require executing arbitrary code:</p>
+<blockquote>
+<p>Hugging Face has an <em>enormous</em> attack surface. They have more interfaces than I can count which run untrusted models and code. While they definitely have invested in defences, by nature of their operating model they do have many more opportunities to be attacked than many other services. I certainly don't envy their cybersecurity teams.</p>
+</blockquote>
+<p>Secondly, one of the things that has puzzled me is how OpenAI didn't notice that their sandbox had been so thoroughly breached by the agent. Surely they'd be monitoring network traffic closely?</p>
+<p>Martin points out that:</p>
+<blockquote>
+<p>It's also likely they were running a huge amount of benchmarks simultaneously with ~unlimited token budgets - you want as many samples as possible to figure out how good a model is at a certain benchmark. It may also be they are testing various different checkpoints of the model too, understanding how the model is improving as it goes through the various training stages.</p>
+</blockquote>
+<p>The mistakes made by the OpenAI team running this benchmark are easier to imagine when you think about the scale at which benchmarks of this kind usually operate. For all we know they could have been subjecting a new model to dozens of benchmarks at the same time, in dozens of different environments.
+
+    <p><small></small>Via <a href="https://lobste.rs/s/nsnb4j/first_known_runaway_ai_agent_very_bad">Lobste.rs</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The most interesting "hack" in history...]]></title>
+        <id>https://www.youtube.com/watch?v=KOpTWx1Eou4</id>
+        <link href="https://www.youtube.com/watch?v=KOpTWx1Eou4"/>
+        <updated>2026-07-23T16:53:37.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Seth Larson]]></title>
+        <id>https://simonwillison.net/2026/Jul/23/seth-larson/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/23/seth-larson/#atom-everything"/>
+        <updated>2026-07-23T04:50:36.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/"><p>The Python Package Index (PyPI) now rejects new files being uploaded to releases that are older than 14 days. This restriction was <a href="https://github.com/pypi/warehouse/pull/19727">put in place</a> to prevent old and long-stable releases from being poisoned in case publishing tokens or workflows of PyPI projects were compromised. As far as we are aware this has not yet been abused, but there is no technical reason beyond that attackers weren't aware it was possible.</p></blockquote>
+<p class="cite">&mdash; <a href="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/">Seth Larson</a>, PyPI blog</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/packaging">packaging</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/supply-chain">supply-chain</a>, <a href="https://simonwillison.net/tags/pypi">pypi</a>, <a href="https://simonwillison.net/tags/seth-michael-larson">seth-michael-larson</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Launching Health in ChatGPT]]></title>
+        <id>https://openai.com/index/health-in-chatgpt</id>
+        <link href="https://openai.com/index/health-in-chatgpt"/>
+        <updated>2026-07-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Health in ChatGPT now lets eligible U.S. users securely connect medical records and Apple Health to get more personalized insights and better understand their health.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Quoting Thomas Ptacek]]></title>
         <id>https://simonwillison.net/2026/Jul/22/thomas-ptacek/#atom-everything</id>
@@ -37,7 +95,7 @@
 </ol>
 <h4 id="exploitgym">ExploitGym</h4>
 <p>I hadn't seen the <a href="https://arxiv.org/abs/2605.11086">ExploitGym paper</a> before and it's a really interesting one. Authors from UC Berkeley, the Max Planck Institute, UC Santa Barbara, and Arizona State designed a new benchmark for evaluating models on their ability to turn a reported vulnerability into a concrete exploit. OpenAI, Anthropic, and Google provided feedback and helped run the benchmark against their models.</p>
-<p>The benchmark "comprises 898 instances derived from real-world vulnerabilities that affected popular software projects" - including the Linux kernel and V8 JavaScript engine.</p>
+<p>The benchmark "comprises 898 instances derived from real-world vulnerabilities that affected popular software projects" - including the Linux kernel and V8 JavaScript engine. The ExploitGym benchmark is <a href="https://github.com/sunblaze-ucb/exploitgym">available on GitHub</a>.</p>
 <p>Here's the paragraph that best represents their benchmark results:</p>
 <blockquote>
 <p>Among all configurations, Claude Mythos Preview and GPT-5.5 achieve the highest success counts (157 and 120 successes, respectively), demonstrating that current frontier agents can exploit a substantial subset of real-world vulnerabilities under controlled conditions. GPT-5.4 also solves a notable 54 tasks, placing it in an intermediate tier. The remaining model–agent pairings solve fewer than 15 tasks each, underscoring that end-to-end exploitation remains challenging and sharply differentiates today’s frontier systems. Notably, Claude Opus 4.7 achieves fewer successes than Claude Opus 4.6 despite being a newer checkpoint, and does so at substantially lower cost on the full set. Trace inspection reveals that Claude Opus 4.7 and Gemini 3.1 Pro frequently conclude early after judging the target vulnerability non-exploitable.</p>
@@ -104,7 +162,7 @@
 <p>One of the most infuriating details of this story is how Hugging Face, faced with an accidental and aggressive attack from one of OpenAI's models, were unable to then turn to OpenAI's models to help them fend off the attack.</p>
 <p>The frontier models we have access to are increasingly being constrained in how much they can help us protect our software, heavily influenced by the US government's ongoing threat of export controls.  Claude Fable 5 wouldn't even <a href="https://simonwillison.net/guides/agentic-engineering-patterns/prompts/#proofreader">proofread this article</a> for me! It insisted on downgrading me to a less capable model.</p>
 <p>Meanwhile open weight models from China such as GLM-5.2, Kimi 3 and the new Qwen 3.8 Max appear to have none of these restrictions - and any restrictions that <em>do</em> exist can likely be fine-tuned out of them by modifying the weights</p>
-<p>These constraints are meant to make us safer. I think there's a risk that the effect they are having is the opposite.</p>
+<p>These constraints are meant to make us safer. I think there's a risk that they are having the opposite effect.</p>
     
         <p>Tags: <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/paper-review">paper-review</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
         <author>
@@ -248,7 +306,7 @@ Excellent piece of work by Dylan Castillo, who took a deep-dive into the frequen
         <id>https://simonwillison.net/2026/Jul/21/sighting-383713864/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Jul/21/sighting-383713864/#atom-everything"/>
         <updated>2026-07-21T19:51:03.000Z</updated>
-        <summary type="html"><![CDATA[<p><img src="https://static.inaturalist.org/photos/702321069/large.jpg" alt="California Sea Lion"></p><p><img src="https://static.inaturalist.org/photos/702321114/large.jpg" alt="California Sea Lion"></p><p>California Sea Lion, in San Francisco County, US, CA</p><p>We took some visiting family to Pier 39 to see the sea lions. They're somehow always even fun than I remember them being last time.</p>
+        <summary type="html"><![CDATA[<p><img src="https://static.inaturalist.org/photos/702321069/large.jpg" alt="California Sea Lion"></p><p><img src="https://static.inaturalist.org/photos/702321114/large.jpg" alt="California Sea Lion"></p><p>California Sea Lion, in San Francisco County, US, CA</p><p>We took some visiting family to Pier 39 to see the sea lions. They're somehow always even more fun than I remember them being last time.</p>
     
     
         <p>Tags: <a href="https://simonwillison.net/tags/san-francisco">san-francisco</a>, <a href="https://simonwillison.net/tags/wildlife">wildlife</a></p>]]></summary>
@@ -1177,6 +1235,16 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[How Codex became a collaborator for OpenAI’s creative team]]></title>
+        <id>https://openai.com/index/codex-collaborator-creative-team</id>
+        <link href="https://openai.com/index/codex-collaborator-creative-team"/>
+        <updated>2026-07-16T07:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How OpenAI’s creative team uses Codex to build custom creative tools, accelerate ideation, and prototype faster with context-aware AI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Mermaid to Unicode box art (grok-mermaid)]]></title>
         <id>https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything"/>
@@ -1348,72 +1416,6 @@ I've <a href="https://simonwillison.net/2025/Sep/10/claude-web-fetch-tool/">been
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[simonw/pedalican]]></title>
-        <id>https://simonwillison.net/2026/Jul/14/pedalican/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/14/pedalican/#atom-everything"/>
-        <updated>2026-07-14T22:29:45.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/simonw/pedalican">simonw/pedalican</a></strong></p>
-Clearly I wasn't paying attention when these were <a href="https://twitter.com/OpenAIDevs/status/2050301642717950166">first announced</a> back in May, but today I accidentally activated a "pet" in Codex Desktop - a little animated robot, reminiscent of <a href="https://en.wikipedia.org/wiki/Office_Assistant">Clippy</a> - and then learned you can create your own.</p>
-<p>So I did, and now I have a cute little pelican on a bicycle bouncing around my desktop giving me updates on my Codex tasks.</p>
-<p><video
-    controls
-    preload="none"
-    poster="https://static.simonwillison.net/static/2026/pedalican-first-frame.jpg"
-    width="1542"
-    height="834"
-    style="display: block; width: 100%; height: auto;"
-  >
-    <source src="https://static.simonwillison.net/static/2026/pedalican.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-</p>
-<p>The most interesting thing about this process was watching how the custom pet was created. I told it I wanted a custom pet that was a pelican riding a bicycle and GPT-5.6 Sol xhigh did the rest of the work, using several rounds with <a href="https://developers.openai.com/api/docs/models/gpt-image-2">gpt-image-2</a> to generate the necessary sprite assets.</p>
-<p>I had it make <a href="https://github.com/simonw/pedalican-pet/blob/main/notes-on-creating-a-pet.md">extensive notes</a> and record all of the <a href="https://github.com/simonw/pedalican-pet/tree/main/run">intermediary steps</a>. My GitHub repo includes every generated image and combined sprite sheet, plus GIFs for each of the animation loops such as this one, called <a href="https://github.com/simonw/pedalican-pet/blob/main/run/qa/previews/waving.gif">waving.gif</a>:</p>
-<p><img alt="A cute pelican on a bicycle waving its wing" src="https://static.simonwillison.net/static/2026/waving.gif" /></p>
-<p>That GIF was compiled from <a href="https://github.com/simonw/pedalican-pet/blob/main/run/api-generation/waving.png">a single image</a> generated by <code>gpt-image-2</code> that looked like this:</p>
-<p><img alt="Four frames of the animation presented on a bright magenta background" src="https://static.simonwillison.net/static/2026/waving.webp" /></p>
-<p>And <em>that</em> image was created by executing <a href="https://github.com/simonw/pedalican-pet/blob/main/run/prompts/rows/waving.md">this prompt</a> against the initial generated <a href="https://github.com/simonw/pedalican-pet/blob/main/run/api-generation/base.png">character reference image</a>, which was created with <a href="https://github.com/simonw/pedalican-pet/blob/main/run/prompts/base-pet.md">this prompt</a>, which has this structure:</p>
-<blockquote>
-<p><code>Create one clean full-body reference sprite for Codex pet Pedalican.</code></p>
-<p><code>Pet identity: A compact adorable baby pelican with a round cream-white body, soft coral-orange bill and feet, riding a tiny sky-blue bicycle [...]</code></p>
-<p><code>Place a single centered pose on a perfectly flat pure magenta #FF00FF chroma-key background. Keep the full pet visible, compact, readable at 192x208, and easy to animate. [...]</code></p>
-</blockquote>
-<p>I've been looking out for ways to use image generation to create simple game-ready sprites, so I spent some time digging into this mechanism to see how it works.</p>
-<p>The key implementation details are open source - these two skills in particular, both Apache 2.0 licensed:</p>
-<ul>
-<li><a href="https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/hatch-pet">hatch-pet</a> from <code>openai/skills</code></li>
-<li><a href="https://github.com/openai/codex/tree/f90e7deea6a715bbd153044af6f475eefa749177/codex-rs/skills/src/assets/samples/imagegen">imagegen</a> from <code>openai/codex</code></li>
-</ul>
-<p>And yes, GPT-5.6 Sol did come up with the name "Pedalican". I like it!
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/text-to-image">text-to-image</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/codex">codex</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[lobste.rs is now running on SQLite]]></title>
-        <id>https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/14/lobsters-sqlite/#atom-everything"/>
-        <updated>2026-07-14T19:44:11.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://lobste.rs/s/ko1ji1/lobste_rs_is_now_running_on_sqlite">lobste.rs is now running on SQLite</a></strong></p>
-Community site <a href="https://lobste.rs">Lobsters</a> has been planning a migration away from MariaDB <a href="https://github.com/lobsters/lobsters/issues/539#issuecomment-4959857588">since August 2018</a> - originally targeting PostgreSQL, but last year they decided to <a href="https://github.com/lobsters/lobsters/issues/539#issuecomment-2964114295">investigate SQLite</a> instead.</p>
-<p>This weekend they completed the migration, and now consider it stable enough that it looks like this is the permanent architecture for the site going forward:</p>
-<blockquote>
-<p>SQLite seems to have passed with flying colors: cpu usage is down, memory usage is down, site seems to be snappier at least for me, 1/2 the vps cost once mariadb vps is taken down</p>
-</blockquote>
-<p>The Lobsters Rails application now runs on a single VPS, with a primary content SQLite database file that's around 3.8GB. <a href="https://lobste.rs/s/ko1ji1/lobste_rs_is_now_running_on_sqlite#c_c9ydhs">There's also</a> a 1.1GB cache database, a 218MB queue database, and a still growing 555MB rack_attack database used by the <a href="https://github.com/rack/rack-attack">Rack::Attack</a> middleware for blocking and throttling abusive requests.</p>
-<p>There are plenty more details in both the linked thread and this <a href="https://github.com/lobsters/lobsters/pull/1927">SQLite migration PR</a> by Thomas Dziedzic, which added 735 lines and removed 593 lines across 30 commits and 188 files. That PR built on top of previous PRs <a href="https://github.com/lobsters/lobsters/pull/1705">#1705</a>, <a href="https://github.com/lobsters/lobsters/pull/1871">#1871</a>, and <a href="https://github.com/lobsters/lobsters/pull/1924">#1924</a>.</p>
-<p>This is a really useful case study, and a great reminder that you can get a whole lot done with a single server and SQLite in 2026.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/migrations">migrations</a>, <a href="https://simonwillison.net/tags/ops">ops</a>, <a href="https://simonwillison.net/tags/rails">rails</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/lobsters">lobsters</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Celebrating 25 years of visual search innovation]]></title>
         <id>https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary/</id>
         <link href="https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary/"/>
@@ -1571,16 +1573,6 @@ Community site <a href="https://lobste.rs">Lobsters</a> has been planning a migr
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ChatGPT is now a partner for your most ambitious work]]></title>
-        <id>https://openai.com/index/chatgpt-for-your-most-ambitious-work</id>
-        <link href="https://openai.com/index/chatgpt-for-your-most-ambitious-work"/>
-        <updated>2026-07-09T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[GPT-5.6: Frontier intelligence that scales with your ambition]]></title>
         <id>https://openai.com/index/gpt-5-6</id>
         <link href="https://openai.com/index/gpt-5-6"/>
@@ -1596,6 +1588,16 @@ Community site <a href="https://lobste.rs">Lobsters</a> has been planning a migr
         <link href="https://openai.com/index/bio-bug-bounty"/>
         <updated>2026-07-09T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Details about the OpenAI Bio Bounty program]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT is now a partner for your most ambitious work]]></title>
+        <id>https://openai.com/index/chatgpt-for-your-most-ambitious-work</id>
+        <link href="https://openai.com/index/chatgpt-for-your-most-ambitious-work"/>
+        <updated>2026-07-09T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1903,35 +1905,6 @@ Community site <a href="https://lobste.rs">Lobsters</a> has been planning a migr
         <summary type="html"><![CDATA[A look at the built-in computer use tool in Gemini 3.5 Flash.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI and Broadcom unveil LLM-optimized inference chip]]></title>
-        <id>https://openai.com/index/openai-broadcom-jalapeno-inference-chip</id>
-        <link href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip"/>
-        <updated>2026-06-24T06:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and Broadcom introduce Jalapeño, a custom AI chip built for LLM inference to improve performance, efficiency, and scale across AI systems.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How GPT-5 helped immunologist Derya Unutmaz solve a 3-year-old mystery]]></title>
-        <id>https://openai.com/index/gpt-5-immunology-mystery</id>
-        <link href="https://openai.com/index/gpt-5-immunology-mystery"/>
-        <updated>2026-06-23T17:00:00.000Z</updated>
-        <summary type="html"><![CDATA[GPT-5 Pro helped solve a 3-year-old immunology mystery, offering insights into T cell behavior. The breakthrough could support cancer and autoimmune research.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Midjourney has a new side quest... death]]></title>
-        <id>https://www.youtube.com/watch?v=a2i9h2ip-nY</id>
-        <link href="https://www.youtube.com/watch?v=a2i9h2ip-nY"/>
-        <updated>2026-06-23T16:46:50.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
 </feed>
