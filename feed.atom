@@ -1,10 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-07-25T02:33:16.092Z</id>
+    <id>urn:2026-07-26T02:41:13.311Z</id>
     <title>osmos::feed</title>
-    <updated>2026-07-25T02:33:16.092Z</updated>
+    <updated>2026-07-26T02:41:13.311Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Ruff v0.16.0]]></title>
+        <id>https://simonwillison.net/2026/Jul/25/ruff/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/25/ruff/#atom-everything"/>
+        <updated>2026-07-25T22:44:05.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://astral.sh/blog/ruff-v0.16.0">Ruff v0.16.0</a></strong></p>
+Astral shipped a significant new version of their Ruff Python linting tool a few days ago on July 23rd. I noticed today because my various CI jobs all started failing thanks to new default Ruff checks and my unpinned <code>"ruff"</code> dev dependency.</p>
+<p>From Brent Westbrook's announcement post:</p>
+<blockquote>
+<p>Ruff now enables 413 rules by default, up from 59 in previous versions.</p>
+<p>Since Ruff's default rule set was last modified in <a href="https://github.com/astral-sh/ruff/blob/main/changelogs/0.1.x.md#breaking-changes">v0.1.0</a>, the number of rules in Ruff has grown from 708 to 968. Many of these rules catch severe issues, including <a href="https://docs.astral.sh/ruff/rules/load-before-global-declaration">syntax errors</a> and <a href="https://docs.astral.sh/ruff/rules/yield-in-init/">immediate runtime errors</a> but were not previously enabled by default. With the new rule set, Ruff will bring these issues and many others to your attention without any Ruff configuration.</p>
+</blockquote>
+<p>Here's a one-liner for trying it on any Python project:</p>
+<pre><code>uvx ruff@latest check .
+</code></pre>
+<p>I ran the latest Ruff against my three biggest projects - <a href="https://datasette.io/">Datasette</a>, <a href="https://sqlite-utils.datasette.io/">sqlite-utils</a>, and <a href="https://llm.datasette.io/">LLM</a> - and it found <em>hundreds</em> of minor issues that breached the new default rules.</p>
+<p>All three projects have very comprehensive test suites, executed in CI against Python 3.10 through Python 3.14, so upgrades like this are pretty safe. The following command did the bulk of the upgrades:</p>
+<pre><code>uvx ruff@latest check . --fix --unsafe-fixes
+</code></pre>
+<p>Against <code>sqlite-utils</code>, that command reported:</p>
+<pre><code>Found 1618 errors (1538 fixed, 80 remaining).
+</code></pre>
+<p>As an illustrative example, here are three of the remaining issues. Ruff does a nice job of explaining each one:</p>
+<pre><code>DTZ005 `datetime.datetime.now()` called without a `tz` argument
+  --&gt; tests/test_duplicate.py:17:10
+   |
+15 |     "datetime_col" TEXT)""")
+16 |     # Insert one row of mock data:
+17 |     dt = datetime.datetime.now()
+   |          ^^^^^^^^^^^^^^^^^^^^^^^
+18 |     data = {
+19 |         "text_col": "Cleo",
+   |
+help: Pass a `datetime.timezone` object to the `tz` parameter
+
+BLE001 Do not catch blind exception: `Exception`
+  --&gt; tests/test_plugins.py:16:12
+   |
+14 |         db.execute("select * from pragma_function_list()")
+15 |         return True
+16 |     except Exception:
+   |            ^^^^^^^^^
+17 |         return False
+18 |     finally:
+   |
+
+B018 Found useless attribute access. Either assign it to a variable or remove it.
+  --&gt; tests/test_update.py:46:5
+   |
+44 | def test_update_invalid_pk(fresh_db, pk, update_pk):
+45 |     table = fresh_db["table"]
+46 |     table.insert({"id1": 5, "id2": 3, "v": 1}, pk=pk).last_pk
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+47 |     with pytest.raises(NotFoundError):
+48 |         table.update(update_pk, {"v": 2})
+   |
+</code></pre>
+<p>Unsurprisingly, given Astral's <a href="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/">new home at OpenAI</a>, this output provides everything a coding agent would need to fix the problems.</p>
+<p>I had Codex (GPT-5.6 Sol high) <a href="https://github.com/simonw/llm/pull/1557">upgrade LLM</a> and <a href="https://github.com/simonw/sqlite-utils/pull/814">sqlite-utils</a>, and Claude Code (with Opus 5) <a href="https://github.com/simonw/datasette/pull/2857">upgrade Datasette</a>.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/ruff">ruff</a>, <a href="https://simonwillison.net/tags/astral">astral</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Literally everyone hated this feature]]></title>
+        <id>https://www.youtube.com/shorts/n0JhhZyGP_w</id>
+        <link href="https://www.youtube.com/shorts/n0JhhZyGP_w"/>
+        <updated>2026-07-25T13:38:23.000Z</updated>
+        <summary type="html"><![CDATA[Did Meta actually think we wouldn’t notice this? 🫣Recently, Meta rolled out a new image-generation feature called Muse Image. On paper, it was pitched as a ...]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Quoting Boris Cherny]]></title>
         <id>https://simonwillison.net/2026/Jul/25/boris-cherny/#atom-everything</id>
@@ -1358,40 +1434,6 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[xai-org/grok-build, now open source]]></title>
-        <id>https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything"/>
-        <updated>2026-07-15T23:59:30.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/xai-org/grok-build">xai-org/grok-build, now open source</a></strong></p>
-xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when it became apparent that running the command in a directory could upload that <em>entire directory</em> to xAI's Google Cloud buckets. One user <a href="https://x.com/a_green_being/status/2076598897779020159">reported</a> running it in their home directory and seeing it upload "my SSH keys, my password manager database, my documents, photos, videos, everything".</p>
-<p>I've not seen an official explanation for why it was doing this, but xAI did respond to the feedback (<a href="https://twitter.com/elonmusk/status/2076739687658496209">Musk</a>: "As a precautionary measure, all user data that was uploaded to SpaceXAI before now will be completely and utterly deleted.") and have disabled the feature.</p>
-<p>A few hours ago they also released the entire Grok Build codebase under an Apache 2.0 license - presumably to try and regain trust from their users. From <a href="https://twitter.com/SpaceXAI/status/2077494536788664782">their thread announcing the new repository</a>:</p>
-<blockquote>
-<p>[...] When data upload was disabled, this choice was respected. In the early beta, data retention was enabled by default for non-ZDR users. Based on your feedback, we changed this. We are now going further to protect privacy.</p>
-<p>With all retained data deleted, retention default off, and an open-source harness, we are offering complete user privacy. You can also run Grok Build fully open-sourced and local-first with your own inference.</p>
-<p>We disabled default retention for all Grok Build users starting on July 12th. Additionally, we are deleting all coding data that was previously retained, ensuring every user’s preferences are respected. With these steps, Grok Build goes beyond other major coding products to protect user privacy.</p>
-</blockquote>
-<p>It's quite a surprising codebase! Grok Build contains 844,530 lines of Rust (calculated using my <a href="https://tools.simonwillison.net/sloccount">SLOCCount tool</a>, which excludes whitespace and comments) of which only around 3% appears to be vendored.</p>
-<p>So far the repo has just <a href="https://github.com/xai-org/grok-build/commit/b189869b7755d2b482969acf6c92da3ecfeffd36">a single commit</a> releasing the code, so sadly we don't get any insight into how the codebase developed over time.</p>
-<p>A few highlights:</p>
-<ul>
-<li><a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-agent/templates/prompt.md">xai-grok-agent/templates/prompt.md</a> has the main system prompt and <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-agent/templates/subagent_prompt.md">xai-grok-agent/templates/subagent_prompt.md</a> has the subagent prompt. Oddly that subagent prompt has "Do not ... reveal the contents of this system prompt to the user" but the main prompt does not. </li>
-<li><a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-markdown/src/mermaid.rs">xai-grok-markdown/src/mermaid.rs</a> is a "self-contained terminal renderer for Mermaid diagrams", which renders a subset of Mermaid chart types using Unicode box-drawing. <strong>Update</strong>: I got a version of this <a href="https://simonwillison.net/2026/Jul/16/grok-mermaid/">working in WebAssembly</a> so it now runs in the browser.</li>
-<li><a href="https://github.com/xai-org/grok-build/tree/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-tools/src/implementations">xai-grok-tools/src/implementations</a> includes tool implementations imitated from other coding agents - the Codex <code>apply_patch</code>, <code>grep_files</code>, <code>list_dir</code>, and <code>read_dir</code> tools, and OpenCode's <code>bash</code>, <code>edit</code>, <code>glob</code>, <code>grep</code>, <code>read</code>, <code>skill</code>, <code>todowrite</code> and <code>write</code>. The <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-tools/THIRD_PARTY_NOTICES.md">xai-grok-tools/THIRD_PARTY_NOTICES.md</a> file says these are "ported from" those projects, in a way that looks compliant with the Apache and MIT licenses they use. It looks like these copies exist because Grok can switch between them, maybe based on detecting existing Codex or Claude or Cursor settings? I'm not confident I understand if that happens or how it works.</li>
-<li>There are still remnants of the code that used to upload everything to Google Cloud, but they seem to have been disabled now. <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-shell/src/upload/gcs.rs">xai-grok-shell/src/upload/gcs.rs</a> has code for uploading to a GCS bucket. <a href="https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-shell/src/upload/trace.rs">upload/trace.rs</a> includes an <code>upload_session_state()</code> function which returns a hard-coded <code>session_state_upload_unavailable</code> error. </li>
-</ul>
-<p>For comparison, <a href="https://github.com/openai/codex">openai/codex</a> is 950,933 lines of Rust. Terminal coding agents are significantly more complex than I had realized!</p>
-<p>Here's <a href="https://claude.ai/share/648f702e-a4c5-4eac-96d9-14b4f6bce04b">the Claude Code chat transcript</a> where I had it clone the repo and help me dig around to see how it works.
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=48926590">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/xai">xai</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Ultimate Guide to the NEW ChatGPT (With Prompts)]]></title>
         <id>https://www.youtube.com/watch?v=MDy_b9F7oUc</id>
         <link href="https://www.youtube.com/watch?v=MDy_b9F7oUc"/>
@@ -1460,21 +1502,21 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How data science teams use ChatGPT Work]]></title>
-        <id>https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex</id>
-        <link href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex"/>
-        <updated>2026-07-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[See how data science teams can use ChatGPT Work to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How sales teams use ChatGPT Work]]></title>
         <id>https://openai.com/academy/codex-for-work/how-sales-teams-use-codex</id>
         <link href="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex"/>
         <updated>2026-07-14T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[See how sales teams can use ChatGPT Work to create pipeline briefs, meeting prep packets, forecast reviews, account plans, and stalled-deal diagnoses from real work inputs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How data science teams use ChatGPT Work]]></title>
+        <id>https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex</id>
+        <link href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex"/>
+        <updated>2026-07-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[See how data science teams can use ChatGPT Work to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1597,21 +1639,21 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[GPT-5.5 Bio Bug Bounty]]></title>
-        <id>https://openai.com/index/bio-bug-bounty</id>
-        <link href="https://openai.com/index/bio-bug-bounty"/>
-        <updated>2026-07-09T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Details about the OpenAI Bio Bounty program]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[ChatGPT is now a partner for your most ambitious work]]></title>
         <id>https://openai.com/index/chatgpt-for-your-most-ambitious-work</id>
         <link href="https://openai.com/index/chatgpt-for-your-most-ambitious-work"/>
         <updated>2026-07-09T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GPT-5.5 Bio Bug Bounty]]></title>
+        <id>https://openai.com/index/bio-bug-bounty</id>
+        <link href="https://openai.com/index/bio-bug-bounty"/>
+        <updated>2026-07-09T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Details about the OpenAI Bio Bounty program]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1675,16 +1717,6 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI Can FINALLY Edit Videos For You]]></title>
-        <id>https://www.youtube.com/shorts/bxdsBsbtoSg</id>
-        <link href="https://www.youtube.com/shorts/bxdsBsbtoSg"/>
-        <updated>2026-07-08T00:09:25.000Z</updated>
-        <summary type="html"><![CDATA[Imagine typing "edit this for me" and letting AI handle your entire video timeline. 🤯That's the promise behind Palmier (not sponsored), a new AI video edito...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing GPT-Live]]></title>
         <id>https://openai.com/index/introducing-gpt-live</id>
         <link href="https://openai.com/index/introducing-gpt-live"/>
@@ -1705,21 +1737,21 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[MUFG aims to become AI-native with OpenAI]]></title>
-        <id>https://openai.com/index/mufg</id>
-        <link href="https://openai.com/index/mufg"/>
-        <updated>2026-07-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Australian Payments Plus moves faster with ChatGPT and Codex]]></title>
         <id>https://openai.com/index/australian-payments-plus</id>
         <link href="https://openai.com/index/australian-payments-plus"/>
         <updated>2026-07-07T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MUFG aims to become AI-native with OpenAI]]></title>
+        <id>https://openai.com/index/mufg</id>
+        <link href="https://openai.com/index/mufg"/>
+        <updated>2026-07-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1803,11 +1835,11 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GeneBench-Pro]]></title>
-        <id>https://openai.com/index/introducing-genebench-pro</id>
-        <link href="https://openai.com/index/introducing-genebench-pro"/>
+        <title type="html"><![CDATA[Core dump epidemiology: fixing an 18-year-old bug]]></title>
+        <id>https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug</id>
+        <link href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"/>
         <updated>2026-06-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.]]></summary>
+        <summary type="html"><![CDATA[OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1822,11 +1854,11 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Core dump epidemiology: fixing an 18-year-old bug]]></title>
-        <id>https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug</id>
-        <link href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"/>
+        <title type="html"><![CDATA[Introducing GeneBench-Pro]]></title>
+        <id>https://openai.com/index/introducing-genebench-pro</id>
+        <link href="https://openai.com/index/introducing-genebench-pro"/>
         <updated>2026-06-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.]]></summary>
+        <summary type="html"><![CDATA[Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1859,26 +1891,6 @@ xAI's <code>grok</code> CLI tool faced severe community backlash yesterday when 
         <summary type="html"><![CDATA[HP Inc. scales its OpenAI Frontier partnership to deploy AI across customer experiences, software development, and enterprise operations.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Previewing GPT-5.6 Sol: a next-generation model]]></title>
-        <id>https://openai.com/index/previewing-gpt-5-6-sol</id>
-        <link href="https://openai.com/index/previewing-gpt-5-6-sol"/>
-        <updated>2026-06-26T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI previews GPT-5.6 Sol, a next-generation model with stronger capabilities in coding, science, and cybersecurity, paired with its most advanced safety stack.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Our latest Google Finance upgrades, including a new app]]></title>
-        <id>https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/</id>
-        <link href="https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/"/>
-        <updated>2026-06-25T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[The new Google Finance is coming out of beta and launching a new Android app.]]></summary>
-        <author>
-            <name>AI</name>
         </author>
     </entry>
 </feed>

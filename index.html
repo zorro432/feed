@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-25 datetime="2026-07-25T00:42:59.000Z">2026-07-25</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-25 datetime="2026-07-25T00:42:59.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-25 datetime="2026-07-25T22:44:05.000Z">2026-07-25</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-25 datetime="2026-07-25T22:44:05.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -42,6 +42,80 @@
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/25/ruff/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Ruff v0.16.0</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/25/ruff/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Ruff v0.16.0
+&quot;ruff&quot; dev dependency.
+From Brent Westbrook&#x27;s announcement post:
+Ruff now enables 413 rules by default, up from 59 in previous versions.
+Since Ruff&#x27;s default rule set was last modified in v0.1.0, the number of rules in Ruff has grown from 708 to 968. Many of these rules catch severe issues, including syntax errors and immediate runtime errors but were not previously enabled by default. With the new rule set, Ruff will bring these issues and many others to your attention without any Ruff configuration.
+Here&#x27;s a one-liner for trying it on any Python project:
+uvx ruff@latest check .
+
+I ran the latest Ruff against my three biggest projects - Datasette, sqlite-utils, and LLM - and it found hundreds of minor issues that breached the new default rules.
+All three projects have very comprehensive test suites, executed in CI against Python 3.10 through Python 3.14, so upgrades like this are pretty safe. The following command did the bulk of the upgrades:
+uvx ruff@latest check . --fix --unsafe-fixes
+
+Against sqlite-utils, that command reported:
+Found 1618 errors (1538 fixed, 80 remaining).
+
+As an illustrative example, here are three of the remaining issues. Ruff does a nice job of explaining each one:
+DTZ005 &#x60;datetime.datetime.now()&#x60; called without a &#x60;tz&#x60; argument
+  --&gt; tests/test_duplicate.py:17:10
+   |
+15 |     &quot;datetime_col&quot; TEXT)&quot;&quot;&quot;)
+16 |     # Insert one row of mock data:
+17 |     dt &#x3D; datetime.datetime.now()
+   |          ^^^^^^^^^^^^^^^^^^^^^^^
+18 |     data &#x3D; {
+19 |         &quot;text_col&quot;: &quot;Cleo&quot;,
+   |
+help: Pass a &#x60;datetime.timezone&#x60; object to the &#x60;tz&#x60; parameter
+
+BLE001 Do not catch blind exception: &#x60;Exception&#x60;
+  --&gt; tests/test_plugins.py:16:12
+   |
+14 |         db.execute(&quot;select * from pragma_function_list()&quot;)
+15 |         return True
+16 |     except Exception:
+   |            ^^^^^^^^^
+17 |         return False
+18 |     finally:
+   |
+
+B018 Found useless attribute access. Either assign it to a variable or remove it.
+  --&gt; tests/test_update.py:46:5
+   |
+44 | def test_update_invalid_pk(fresh_db, pk, update_pk):
+45 |     table &#x3D; fresh_db[&quot;table&quot;]
+46 |     table.insert({&quot;id1&quot;: 5, &quot;id2&quot;: 3, &quot;v&quot;: 1}, pk&#x3D;pk).last_pk
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+47 |     with pytest.raises(NotFoundError):
+48 |         table.update(update_pk, {&quot;v&quot;: 2})
+   |
+
+Unsurprisingly, given Astral&#x27;s new home at OpenAI, this output provides everything a coding agent would need to fix the problems.
+I had Codex (GPT-5.6 Sol high) upgrade LLM and sqlite-utils, and Claude Code (with Opus 5) upgrade Datasette.
+
+
+    
+Tags: python, ruff, astral</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://simonwillison.net/2026/Jul/25/boris-cherny/#atom-everything"
                         open
                       >
@@ -54,6 +128,40 @@
 — Boris Cherny, here&#x27;s that System Card section, page 73
 Tags: prompt-injection, anthropic, claude, generative-ai, ai, llms, boris-cherny</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/n0JhhZyGP_w"
+                        open
+                      >
+                        <summary class="article-expander__title">Literally everyone hated this feature</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/n0JhhZyGP_w">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/n0JhhZyGP_w/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLCgFej5CGNhefWN8FkbJIvSbqXz7Q&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Did Meta actually think we wouldn’t notice this? 🫣Recently, Meta rolled out a new image-generation feature called Muse Image. On paper, it was pitched as a ...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -160,7 +268,7 @@ Tags: ai, generative-ai, llms, anthropic, claude, llm-release</span>
                         <summary class="article-expander__title">The Easiest AI Business Idea 💡💰</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/kURp6YM6O5Q">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/kURp6YM6O5Q/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLBel1VO6n2-VjgGJ9UcDTqOiekYig" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/kURp6YM6O5Q/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLDctd3rf6BgxLc-8_rk1YmVzSOkWA" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This might be one of the easiest AI business ideas I’ve seen.YouTuber Corey Ganim built a @Hyperagentapp skill that finds local businesses with outdated webs...</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;12
@@ -1648,7 +1756,7 @@ Tags: ai-ethics, sam-altman, generative-ai, openai, ai, llms</span>
                               <img src="https://i.ytimg.com/vi/Yoz0CeZYO8E/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLB0534tvEPg1cQu9PhWDfN-DkFo6w&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This RING Replaces Your Keyboard??Meet the OASIS 1, a titanium smart ring designed to change how you interact with your devices.Instead of typing, you simply...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2857,63 +2965,11 @@ Tags: tools, rust, webassembly, mermaid, grok, xai</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-15 datetime="2026-07-15T23:59:30.000Z">2026-07-15</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-15 datetime="2026-07-15T23:59:30.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-15 datetime="2026-07-15T22:17:52.000Z">2026-07-15</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-15 datetime="2026-07-15T22:17:52.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">xai-org/grok-build, now open source</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>xai-org/grok-build, now open source
-grok CLI tool faced severe community backlash yesterday when it became apparent that running the command in a directory could upload that entire directory to xAI&#x27;s Google Cloud buckets. One user reported running it in their home directory and seeing it upload &quot;my SSH keys, my password manager database, my documents, photos, videos, everything&quot;.
-I&#x27;ve not seen an official explanation for why it was doing this, but xAI did respond to the feedback (Musk: &quot;As a precautionary measure, all user data that was uploaded to SpaceXAI before now will be completely and utterly deleted.&quot;) and have disabled the feature.
-A few hours ago they also released the entire Grok Build codebase under an Apache 2.0 license - presumably to try and regain trust from their users. From their thread announcing the new repository:
-[...] When data upload was disabled, this choice was respected. In the early beta, data retention was enabled by default for non-ZDR users. Based on your feedback, we changed this. We are now going further to protect privacy.
-With all retained data deleted, retention default off, and an open-source harness, we are offering complete user privacy. You can also run Grok Build fully open-sourced and local-first with your own inference.
-We disabled default retention for all Grok Build users starting on July 12th. Additionally, we are deleting all coding data that was previously retained, ensuring every user’s preferences are respected. With these steps, Grok Build goes beyond other major coding products to protect user privacy.
-It&#x27;s quite a surprising codebase! Grok Build contains 844,530 lines of Rust (calculated using my SLOCCount tool, which excludes whitespace and comments) of which only around 3% appears to be vendored.
-So far the repo has just a single commit releasing the code, so sadly we don&#x27;t get any insight into how the codebase developed over time.
-A few highlights:
-xai-grok-agent/templates/prompt.md has the main system prompt and xai-grok-agent/templates/subagent_prompt.md has the subagent prompt. Oddly that subagent prompt has &quot;Do not ... reveal the contents of this system prompt to the user&quot; but the main prompt does not. 
-xai-grok-markdown/src/mermaid.rs is a &quot;self-contained terminal renderer for Mermaid diagrams&quot;, which renders a subset of Mermaid chart types using Unicode box-drawing. Update: I got a version of this working in WebAssembly so it now runs in the browser.
-xai-grok-tools/src/implementations includes tool implementations imitated from other coding agents - the Codex apply_patch, grep_files, list_dir, and read_dir tools, and OpenCode&#x27;s bash, edit, glob, grep, read, skill, todowrite and write. The xai-grok-tools/THIRD_PARTY_NOTICES.md file says these are &quot;ported from&quot; those projects, in a way that looks compliant with the Apache and MIT licenses they use. It looks like these copies exist because Grok can switch between them, maybe based on detecting existing Codex or Claude or Cursor settings? I&#x27;m not confident I understand if that happens or how it works.
-There are still remnants of the code that used to upload everything to Google Cloud, but they seem to have been disabled now. xai-grok-shell/src/upload/gcs.rs has code for uploading to a GCS bucket. upload/trace.rs includes an upload_session_state() function which returns a hard-coded session_state_upload_unavailable error. 
-For comparison, openai/codex is 950,933 lines of Rust. Terminal coding agents are significantly more complex than I had realized!
-Here&#x27;s the Claude Code chat transcript where I had it clone the repo and help me dig around to see how it works.
-
-    
-Via Hacker News
-Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3096,7 +3152,7 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                               <img src="https://i.ytimg.com/vi/KzJkS00Ztd8/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLBK8wzjOURyU4YaoGmR1SywVU2VpQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>How to &quot;Time Travel&quot; in your next video with this SUPER easy editing trick!You don&#x27;t need complex VFX software to create seamless, mind-bending transitions a...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3138,14 +3194,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex"
+                        data-accordion-key="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex"
                         open
                       >
-                        <summary class="article-expander__title">How data science teams use ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex">
+                        <summary class="article-expander__title">How sales teams use ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how data science teams can use ChatGPT Work to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.</span>
+                              <span>See how sales teams can use ChatGPT Work to create pipeline briefs, meeting prep packets, forecast reviews, account plans, and stalled-deal diagnoses from real work inputs.</span>
                             </span>
                           </div>
                         </a>
@@ -3155,14 +3211,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex"
+                        data-accordion-key="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex"
                         open
                       >
-                        <summary class="article-expander__title">How sales teams use ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex">
+                        <summary class="article-expander__title">How data science teams use ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how sales teams can use ChatGPT Work to create pipeline briefs, meeting prep packets, forecast reviews, account plans, and stalled-deal diagnoses from real work inputs.</span>
+                              <span>See how data science teams can use ChatGPT Work to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.</span>
                             </span>
                           </div>
                         </a>
@@ -3209,7 +3265,7 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                               <img src="https://i.ytimg.com/vi/BDWdp_fIOHk/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLCNkIMUDJ9078OOCNRRT2TagiKZsw" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>I built a fully functioning Chrome extension in about 10 minutes.I used the new GLM 5.2 model to build it. It&#x27;s open-weight, open-source and incredibly cost-...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3291,7 +3347,7 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                               <img src="https://i.ytimg.com/vi/lIi2FjPgjkg/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLB6xaxnM-Rm1GMsUceY3oObP5emgQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>The next big AI battle isn’t about who has the biggest model. It’s about where the AI actually runs.@qualcomm CEO Cristiano Amon told me the future of AI is ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3601,14 +3657,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
+                        data-accordion-key="https://openai.com/index/chatgpt-for-your-most-ambitious-work"
                         open
                       >
-                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
+                        <summary class="article-expander__title">ChatGPT is now a partner for your most ambitious work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-for-your-most-ambitious-work">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Details about the OpenAI Bio Bounty program</span>
+                              <span>ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.</span>
                             </span>
                           </div>
                         </a>
@@ -3618,14 +3674,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/chatgpt-for-your-most-ambitious-work"
+                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
                         open
                       >
-                        <summary class="article-expander__title">ChatGPT is now a partner for your most ambitious work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-for-your-most-ambitious-work">
+                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.</span>
+                              <span>Details about the OpenAI Bio Bounty program</span>
                             </span>
                           </div>
                         </a>
@@ -3689,26 +3745,6 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                               <img src="https://i.ytimg.com/vi/ptlZzbtzdfE/oardefault.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLD-WG6MqKXcsCT2EhYbqw7VFmY_6A&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Head to Hyperagent.com/matt to get $1,000 in free credits for Hyperagent!I’m building a new monetizable business every month with AI.First up: an AI Finance ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/bxdsBsbtoSg"
-                        open
-                      >
-                        <summary class="article-expander__title">AI Can FINALLY Edit Videos For You</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/bxdsBsbtoSg">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/bxdsBsbtoSg/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAA8fqNl5xhN5aix8wAMd3TCbBtHg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Imagine typing &quot;edit this for me&quot; and letting AI handle your entire video timeline. 🤯That&#x27;s the promise behind Palmier (not sponsored), a new AI video edito...</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
@@ -3895,14 +3931,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/mufg"
+                        data-accordion-key="https://openai.com/index/australian-payments-plus"
                         open
                       >
-                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
+                        <summary class="article-expander__title">Australian Payments Plus moves faster with ChatGPT and Codex</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/australian-payments-plus">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
+                              <span>See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.</span>
                             </span>
                           </div>
                         </a>
@@ -3912,14 +3948,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/australian-payments-plus"
+                        data-accordion-key="https://openai.com/index/mufg"
                         open
                       >
-                        <summary class="article-expander__title">Australian Payments Plus moves faster with ChatGPT and Codex</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/australian-payments-plus">
+                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.</span>
+                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -4200,14 +4236,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-genebench-pro"
+                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
                         open
                       >
-                        <summary class="article-expander__title">Introducing GeneBench-Pro</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-genebench-pro">
+                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.</span>
+                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
                             </span>
                           </div>
                         </a>
@@ -4234,14 +4270,14 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"
+                        data-accordion-key="https://openai.com/index/introducing-genebench-pro"
                         open
                       >
-                        <summary class="article-expander__title">Core dump epidemiology: fixing an 18-year-old bug</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug">
+                        <summary class="article-expander__title">Introducing GeneBench-Pro</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-genebench-pro">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.</span>
+                              <span>Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.</span>
                             </span>
                           </div>
                         </a>
@@ -4410,103 +4446,10 @@ Tags: open-source, ai, rust, generative-ai, llms, coding-agents, xai</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-26 datetime="2026-06-26T10:00:00.000Z">2026-06-26</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-26 datetime="2026-06-26T10:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/previewing-gpt-5-6-sol"
-                        open
-                      >
-                        <summary class="article-expander__title">Previewing GPT-5.6 Sol: a next-generation model</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/previewing-gpt-5-6-sol">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI previews GPT-5.6 Sol, a next-generation model with stronger capabilities in coding, science, and cybersecurity, paired with its most advanced safety stack.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-25 datetime="2026-06-25T16:00:00.000Z">2026-06-25</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-25 datetime="2026-06-25T16:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI</button>
-                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/"
-                        open
-                      >
-                        <summary class="article-expander__title">Our latest Google Finance upgrades, including a new app</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_Finance_blog_image_June_2026.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>The new Google Finance is coming out of beta and launching a new Android app.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/30140633539">
-        <time id="build-timestamp" datetime="2026-07-25T02:33:16.075Z">2026-07-25T02:33:16.075Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/30184943908">
+        <time id="build-timestamp" datetime="2026-07-26T02:41:13.279Z">2026-07-26T02:41:13.279Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
