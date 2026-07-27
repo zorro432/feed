@@ -664,6 +664,16 @@
       "siteUrl": "http://simonwillison.net/",
       "articles": [
         {
+          "id": "https://simonwillison.net/2026/Jul/26/relay-market/#atom-everything",
+          "author": null,
+          "description": "<p><strong><a href=\"https://vectoral.com/blog/token-relay-market\">An Inside Look at the Relay Market Powering Token Resellers and Fraud</a></strong></p>\nFascinating investigation by Matt Lenhard into the market that has grown up around reselling LLM tokens at a discount by pooling API keys from various sources.</p>\n<p>This looks to be mostly a thing in China. Resellers sell access to an LLM proxy that offers significant discounts on regular API pricing, which they achieve by abusing free trials, proxying through unprotected support bots, or sometimes through stolen credit cards or chargeback attacks.</p>\n<p>The software they are using for these proxies is open source - mostly <a href=\"https://github.com/songquanpeng/one-api\">one-api</a> and its more actively developed fork <a href=\"https://github.com/QuantumNous/new-api\">new-api</a>, both legitimate API proxy products which can be used to load. balance requests across a pool of API credentials.</p>\n<p>The buyers are seeking cheap tokens, avoiding geo-restrictions, and in some cases collecting data for model distillation.</p>\n<p>I've been cautious about exposing my own LLM-driven applications publicly out of fear of abuse leading to big token bills. The existence of this marketplace makes me even more cautious: there's now an entire ecosystem that can profit from finding a new unprotected endpoint to exploit.</p>\n<p>LLM vendors <em>really</em> need to get better at offering strict caps for their API keys. I want my LLM apps to stop working the moment they hit a dollar threshold I've set for a period of time.</p>\n<p>Here's <a href=\"https://www.v2ex.com/t/1196011\">the (Chinese language) forum thread</a> that served as the principal source for Matt's article.\n\n    <p><small></small>Via <a href=\"https://news.ycombinator.com/item?id=49058993\">Hacker News</a></small></p>\n\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/ai\">ai</a>, <a href=\"https://simonwillison.net/tags/generative-ai\">generative-ai</a>, <a href=\"https://simonwillison.net/tags/llms\">llms</a>, <a href=\"https://simonwillison.net/tags/llm-pricing\">llm-pricing</a>, <a href=\"https://simonwillison.net/tags/ai-ethics\">ai-ethics</a>, <a href=\"https://simonwillison.net/tags/ai-in-china\">ai-in-china</a></p>",
+          "link": "https://simonwillison.net/2026/Jul/26/relay-market/#atom-everything",
+          "publishedOn": "2026-07-26T19:30:54.000Z",
+          "wordCount": 995,
+          "title": "An Inside Look at the Relay Market Powering Token Resellers and Fraud",
+          "imageUrl": null
+        },
+        {
           "id": "https://simonwillison.net/2026/Jul/25/ruff/#atom-everything",
           "author": null,
           "description": "<p><strong><a href=\"https://astral.sh/blog/ruff-v0.16.0\">Ruff v0.16.0</a></strong></p>\nAstral shipped a significant new version of their Ruff Python linting tool a few days ago on July 23rd. I noticed today because my various CI jobs all started failing thanks to new default Ruff checks and my unpinned <code>\"ruff\"</code> dev dependency.</p>\n<p>From Brent Westbrook's announcement post:</p>\n<blockquote>\n<p>Ruff now enables 413 rules by default, up from 59 in previous versions.</p>\n<p>Since Ruff's default rule set was last modified in <a href=\"https://github.com/astral-sh/ruff/blob/main/changelogs/0.1.x.md#breaking-changes\">v0.1.0</a>, the number of rules in Ruff has grown from 708 to 968. Many of these rules catch severe issues, including <a href=\"https://docs.astral.sh/ruff/rules/load-before-global-declaration\">syntax errors</a> and <a href=\"https://docs.astral.sh/ruff/rules/yield-in-init/\">immediate runtime errors</a> but were not previously enabled by default. With the new rule set, Ruff will bring these issues and many others to your attention without any Ruff configuration.</p>\n</blockquote>\n<p>Here's a one-liner for trying it on any Python project:</p>\n<pre><code>uvx ruff@latest check .\n</code></pre>\n<p>I ran the latest Ruff against my three biggest projects - <a href=\"https://datasette.io/\">Datasette</a>, <a href=\"https://sqlite-utils.datasette.io/\">sqlite-utils</a>, and <a href=\"https://llm.datasette.io/\">LLM</a> - and it found <em>hundreds</em> of minor issues that breached the new default rules.</p>\n<p>All three projects have very comprehensive test suites, executed in CI against Python 3.10 through Python 3.14, so upgrades like this are pretty safe. The following command did the bulk of the upgrades:</p>\n<pre><code>uvx ruff@latest check . --fix --unsafe-fixes\n</code></pre>\n<p>Against <code>sqlite-utils</code>, that command reported:</p>\n<pre><code>Found 1618 errors (1538 fixed, 80 remaining).\n</code></pre>\n<p>As an illustrative example, here are three of the remaining issues. Ruff does a nice job of explaining each one:</p>\n<pre><code>DTZ005 `datetime.datetime.now()` called without a `tz` argument\n  --&gt; tests/test_duplicate.py:17:10\n   |\n15 |     \"datetime_col\" TEXT)\"\"\")\n16 |     # Insert one row of mock data:\n17 |     dt = datetime.datetime.now()\n   |          ^^^^^^^^^^^^^^^^^^^^^^^\n18 |     data = {\n19 |         \"text_col\": \"Cleo\",\n   |\nhelp: Pass a `datetime.timezone` object to the `tz` parameter\n\nBLE001 Do not catch blind exception: `Exception`\n  --&gt; tests/test_plugins.py:16:12\n   |\n14 |         db.execute(\"select * from pragma_function_list()\")\n15 |         return True\n16 |     except Exception:\n   |            ^^^^^^^^^\n17 |         return False\n18 |     finally:\n   |\n\nB018 Found useless attribute access. Either assign it to a variable or remove it.\n  --&gt; tests/test_update.py:46:5\n   |\n44 | def test_update_invalid_pk(fresh_db, pk, update_pk):\n45 |     table = fresh_db[\"table\"]\n46 |     table.insert({\"id1\": 5, \"id2\": 3, \"v\": 1}, pk=pk).last_pk\n   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n47 |     with pytest.raises(NotFoundError):\n48 |         table.update(update_pk, {\"v\": 2})\n   |\n</code></pre>\n<p>Unsurprisingly, given Astral's <a href=\"https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/\">new home at OpenAI</a>, this output provides everything a coding agent would need to fix the problems.</p>\n<p>I had Codex (GPT-5.6 Sol high) <a href=\"https://github.com/simonw/llm/pull/1557\">upgrade LLM</a> and <a href=\"https://github.com/simonw/sqlite-utils/pull/814\">sqlite-utils</a>, and Claude Code (with Opus 5) <a href=\"https://github.com/simonw/datasette/pull/2857\">upgrade Datasette</a>.\n\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/python\">python</a>, <a href=\"https://simonwillison.net/tags/ruff\">ruff</a>, <a href=\"https://simonwillison.net/tags/astral\">astral</a></p>",
@@ -952,16 +962,6 @@
           "wordCount": 853,
           "title": "Quoting Linus Torvalds",
           "imageUrl": null
-        },
-        {
-          "id": "https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything",
-          "author": null,
-          "description": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/grok-mermaid\">Mermaid to Unicode box art (grok-mermaid)</a></p>\n        <p>While <a href=\"https://simonwillison.net/2026/Jul/15/grok-build/\">exploring the codebase</a> for the newly open-sourced Grok CLI coding agent I came across <a href=\"https://github.com/xai-org/grok-build/blob/b189869b7755d2b482969acf6c92da3ecfeffd36/crates/codegen/xai-grok-markdown/src/mermaid.rs\">xai-grok-markdown/src/mermaid.rs</a>, a \"self-contained terminal renderer for Mermaid diagrams\" written in Rust.</p>\n<p>I figured it would be fun to try that out in a browser via WebAssembly. Here's <a href=\"https://github.com/simonw/tools/pull/293#issue-4897479396\">the prompt</a> I ran in Claude Code for web (Fable 5), and this is what the resulting tool looks like:</p>\n<p><img alt=\"Screenshot of a Mermaid diagram editor showing source code and rendered flowchart. The code reads: graph TD Start[Request received] --&gt; Auth{Authenticated?} Auth --&gt;|yes| Rate{Rate limit OK?} Auth --&gt;|no| R401[401 Unauthorized] Rate --&gt;|yes| H(Handle request) Rate --&gt;|no| R429[429 Too Many Requests] H -.-&gt; Log[Audit log] H ==&gt; Resp[200 OK]. Below the code are controls labeled Max width: Fit output panel, Copy as text, and Copy link to this diagram. The rendered flowchart on a dark background flows top-down: Request received leads to Authenticated?, which branches yes to Rate limit OK? and no to 401 Unauthorized. Rate limit OK? branches yes to Handle request and no to 429 Too Many Requests. Handle request connects with a dotted arrow to Audit log and a thick arrow to 200 OK.\" src=\"https://static.simonwillison.net/static/2026/grok-mermaid-wasm.png\" /></p>\n    \n    \n        <p>Tags: <a href=\"https://simonwillison.net/tags/tools\">tools</a>, <a href=\"https://simonwillison.net/tags/rust\">rust</a>, <a href=\"https://simonwillison.net/tags/webassembly\">webassembly</a>, <a href=\"https://simonwillison.net/tags/mermaid\">mermaid</a>, <a href=\"https://simonwillison.net/tags/grok\">grok</a>, <a href=\"https://simonwillison.net/tags/xai\">xai</a></p>",
-          "link": "https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything",
-          "publishedOn": "2026-07-16T00:33:18.000Z",
-          "wordCount": 874,
-          "title": "Mermaid to Unicode box art (grok-mermaid)",
-          "imageUrl": "https://static.simonwillison.net/static/2026/grok-mermaid-card.jpg"
         }
       ]
     },
@@ -988,7 +988,7 @@
           "description": "Did Meta actually think we wouldn’t notice this? 🫣Recently, Meta rolled out a new image-generation feature called Muse Image. On paper, it was pitched as a ...",
           "link": "https://www.youtube.com/shorts/n0JhhZyGP_w",
           "publishedOn": "2026-07-25T13:38:23.000Z",
-          "wordCount": 3714,
+          "wordCount": 3563,
           "title": "Literally everyone hated this feature",
           "imageUrl": "https://i.ytimg.com/vi/n0JhhZyGP_w/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLCgFej5CGNhefWN8FkbJIvSbqXz7Q&usqp=CCk"
         },
@@ -1008,7 +1008,7 @@
           "description": "This might be one of the easiest AI business ideas I’ve seen.YouTuber Corey Ganim built a @Hyperagentapp skill that finds local businesses with outdated webs...",
           "link": "https://www.youtube.com/shorts/kURp6YM6O5Q",
           "publishedOn": "2026-07-24T16:03:56.000Z",
-          "wordCount": 3549,
+          "wordCount": 3688,
           "title": "The Easiest AI Business Idea 💡💰",
           "imageUrl": "https://i.ytimg.com/vi/kURp6YM6O5Q/hq720.jpg?sqp=-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA==&rs=AOn4CLDctd3rf6BgxLc-8_rk1YmVzSOkWA"
         },
@@ -1018,7 +1018,7 @@
           "description": "This RING Replaces Your Keyboard??Meet the OASIS 1, a titanium smart ring designed to change how you interact with your devices.Instead of typing, you simply...",
           "link": "https://www.youtube.com/shorts/Yoz0CeZYO8E",
           "publishedOn": "2026-07-20T18:59:51.000Z",
-          "wordCount": 3357,
+          "wordCount": 3420,
           "title": "This ring replaces your keyboard?",
           "imageUrl": "https://i.ytimg.com/vi/Yoz0CeZYO8E/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLB0534tvEPg1cQu9PhWDfN-DkFo6w&usqp=CCk"
         },
@@ -1038,7 +1038,7 @@
           "description": "I gave two of the most popular AI website builders the exact same prompt:Build a landing page for Midjourney's crazy new full-body scanner product.Both gener...",
           "link": "https://www.youtube.com/shorts/FO5zsDIY6Yc",
           "publishedOn": "2026-07-16T14:40:45.000Z",
-          "wordCount": 3450,
+          "wordCount": 3467,
           "title": "Which AI Is Better? 🖥️ WEBSITE EDITION",
           "imageUrl": "https://i.ytimg.com/vi/FO5zsDIY6Yc/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLDKx6zzGTku2BSKVoG48eH_eLs3Yg"
         },
@@ -1058,7 +1058,7 @@
           "description": "How to \"Time Travel\" in your next video with this SUPER easy editing trick!You don't need complex VFX software to create seamless, mind-bending transitions a...",
           "link": "https://www.youtube.com/shorts/KzJkS00Ztd8",
           "publishedOn": "2026-07-14T14:31:02.000Z",
-          "wordCount": 3964,
+          "wordCount": 3866,
           "title": "Try This Awesome AI Video Transition!",
           "imageUrl": "https://i.ytimg.com/vi/KzJkS00Ztd8/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLBK8wzjOURyU4YaoGmR1SywVU2VpQ"
         },
@@ -1068,7 +1068,7 @@
           "description": "I built a fully functioning Chrome extension in about 10 minutes.I used the new GLM 5.2 model to build it. It's open-weight, open-source and incredibly cost-...",
           "link": "https://www.youtube.com/shorts/BDWdp_fIOHk",
           "publishedOn": "2026-07-13T20:18:05.000Z",
-          "wordCount": 3742,
+          "wordCount": 3798,
           "title": "Build A Custom Browser Extension [SUPER Easy!]",
           "imageUrl": "https://i.ytimg.com/vi/BDWdp_fIOHk/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLCNkIMUDJ9078OOCNRRT2TagiKZsw"
         },
@@ -1078,7 +1078,7 @@
           "description": "The next big AI battle isn’t about who has the biggest model. It’s about where the AI actually runs.@qualcomm CEO Cristiano Amon told me the future of AI is ...",
           "link": "https://www.youtube.com/shorts/lIi2FjPgjkg",
           "publishedOn": "2026-07-12T23:05:51.000Z",
-          "wordCount": 4236,
+          "wordCount": 3685,
           "title": "This Tech CEO Is Building the “Linux of AI”",
           "imageUrl": "https://i.ytimg.com/vi/lIi2FjPgjkg/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLB6xaxnM-Rm1GMsUceY3oObP5emgQ"
         },
@@ -1088,7 +1088,7 @@
           "description": "OpenAI just dropped not one but SIX huge new upgrades. Here's the breakdown of them all: - GPT-5.6: The new flagship model is faster, cheaper, and capable of...",
           "link": "https://www.youtube.com/shorts/Iir8dmNoNTg",
           "publishedOn": "2026-07-11T15:37:50.000Z",
-          "wordCount": 3671,
+          "wordCount": 3698,
           "title": "ChatGPT’s Latest Update Is MASSIVE",
           "imageUrl": "https://i.ytimg.com/vi/Iir8dmNoNTg/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLDd2MgZVA9-zL-HyiVzRWhV1YZP6A"
         },
@@ -1108,7 +1108,7 @@
           "description": "Mark your calendars for July 15th! OpenAI is officially releasing its first-ever hardware product this month. It’s a physical, programmable macro pad built s...",
           "link": "https://www.youtube.com/shorts/oXi5E3FvZKI",
           "publishedOn": "2026-07-09T17:14:13.000Z",
-          "wordCount": 3652,
+          "wordCount": 3801,
           "title": "OpenAI is FINALLY Releasing Hardware",
           "imageUrl": "https://i.ytimg.com/vi/oXi5E3FvZKI/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLBQVuEB2LsAeNqfHTABKrys2Qyp0g&usqp=CCk"
         },
@@ -1128,7 +1128,7 @@
           "description": "Head to Hyperagent.com/matt to get $1,000 in free credits for Hyperagent!I’m building a new monetizable business every month with AI.First up: an AI Finance ...",
           "link": "https://www.youtube.com/shorts/ptlZzbtzdfE",
           "publishedOn": "2026-07-08T13:00:29.000Z",
-          "wordCount": 3598,
+          "wordCount": 3571,
           "title": "How I Track Crazy Tech IPOs",
           "imageUrl": "https://i.ytimg.com/vi/ptlZzbtzdfE/oardefault.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLD-WG6MqKXcsCT2EhYbqw7VFmY_6A&usqp=CCk"
         }
