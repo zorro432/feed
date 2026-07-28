@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-07-27T02:49:59.369Z</id>
+    <id>urn:2026-07-28T02:27:46.858Z</id>
     <title>osmos::feed</title>
-    <updated>2026-07-27T02:49:59.369Z</updated>
+    <updated>2026-07-28T02:27:46.858Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[moonshotai/Kimi-K3]]></title>
+        <id>https://simonwillison.net/2026/Jul/27/kimi-k3/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/27/kimi-k3/#atom-everything"/>
+        <updated>2026-07-27T23:39:04.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://huggingface.co/moonshotai/Kimi-K3">moonshotai/Kimi-K3</a></strong></p>
+As promised <a href="https://simonwillison.net/2026/Jul/16/kimi-k3/">earlier this month</a>, Moonshot have released the weights for their excellent 2.8 trillion parameter Kimi K3. They're a hefty 1.56TB on Hugging Face.</p>
+<p>Kimi introduced their own janky <a href="https://huggingface.co/moonshotai/Kimi-K2-Instruct/blob/main/LICENSE">modified version of the MIT license</a> with K2 back in July 2025. That license just added this paragraph requiring attribution beyond a certain size of commercial entity:</p>
+<blockquote>
+<p>Our only modification part is that, if the Software (or any derivative works thereof) is used for any of your commercial products or services that have more than 100 million monthly active users, or more than 20 million US dollars (or equivalent in other currencies) in monthly revenue, you shall prominently display "Kimi K2" on the user interface of such product or service.</p>
+</blockquote>
+<p>The <a href="https://huggingface.co/moonshotai/Kimi-K3/blob/main/LICENSE">K3 license</a> no longer calls itself "modified MIT" and goes further, requiring a separate agreement with Moonshot for large "Model as a Service" businesses:</p>
+<blockquote>
+<p>If the Licensee or any of its affiliates operates a Model as a Service business, and the aggregate revenue of the Licensee and its affiliates exceeds 20 million US dollars (or the equivalent in other currencies) in total over any consecutive 12 months, the Licensee must enter into a separate agreement with Moonshot AI before using the Software or its derivative works for any commercial purpose.</p>
+</blockquote>
+<p>To Kimi's credit, they make no attempt to describe this as an "open source" license in their own materials, consistently using the term "open weight" in its place.</p>
+<p>OpenRouter is already offering K3 <a href="https://openrouter.ai/moonshotai/kimi-k3">from 7 providers</a>, most of which are at the same $3/million input and $15/million output as Moonshot AI themselves.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm-pricing">llm-pricing</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/moonshot">moonshot</a>, <a href="https://simonwillison.net/tags/kimi">kimi</a>, <a href="https://simonwillison.net/tags/janky-licenses">janky-licenses</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[An opinionated guide to which AI to use to do stuff]]></title>
+        <id>https://simonwillison.net/2026/Jul/27/an-opinionated-guide-to-which-ai-to-use-to-do-stuff/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/27/an-opinionated-guide-to-which-ai-to-use-to-do-stuff/#atom-everything"/>
+        <updated>2026-07-27T21:55:53.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://www.oneusefulthing.org/p/an-opinionated-guide-to-which-ai-b22">An opinionated guide to which AI to use to do stuff</a></strong></p>
+It's interesting watching the evolution of Ethan Mollick's guide over time. </p>
+<p><a href="https://www.oneusefulthing.org/p/using-ai-right-now-a-quick-guide">A year ago</a> it was still all about chat - ChatGPT, Claude, Gemini - with o3, Claude 4 Opus, and Gemini 2.5 Pro as the models and Deep Research as a useful alternative mode.</p>
+<p>Today it's much more about agentic systems - "where the AI is capable of doing the equivalent of many hours of real human work in one go".</p>
+<p>Gemini has fallen off Ethan's list, since Google still doesn’t have an established entry in the Codex/ChatGPT Work/Cowork category. <a href="https://gemini.google/overview/agent/spark/">Gemini Spark</a> has yet to prove itself!</p>
+<p>Ethan offers a useful explanation of the ways you can give ChatGPT or Claude a computer to use:</p>
+<blockquote>
+<p>To use the computers provided by the AI companies, the mode you want is called ChatGPT Work in ChatGPT, and Cowork in Claude (the naming will not get less confusing, I am sorry to say). [...]</p>
+<p>The most powerful way to use AI is to give it access to your computer. You do that by downloading the ChatGPT or Claude apps and picking a mode to use. ChatGPT's two agent modes are Work and Codex; Claude's are Cowork and Code. The names do not map onto each other in any way that will help you remember them. And yes, these use the same names as the Work and Cowork modes we discussed above, but operate differently, and have more features and capabilities because they can access your computer.</p>
+</blockquote>
+<p>I think the difference between ChatGPT Work on a mobile device and ChatGPT Work inside the desktop app (where it's effectively a less intimidating skin on top of Codex) is spectacularly unintuitive.</p>
+<p>Short version: if you flip ChatGPT mobile from "Chat" to "Work" mode you get a version where its Code Interpreter container is no longer restricted from accessing the internet!
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ethan-mollick">ethan-mollick</a>, <a href="https://simonwillison.net/tags/code-interpreter">code-interpreter</a>, <a href="https://simonwillison.net/tags/general-agents">general-agents</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How AI is expanding what people do at work]]></title>
+        <id>https://openai.com/index/how-ai-is-expanding-what-people-do-at-work</id>
+        <link href="https://openai.com/index/how-ai-is-expanding-what-people-do-at-work"/>
+        <updated>2026-07-27T03:30:00.000Z</updated>
+        <summary type="html"><![CDATA[New OpenAI research shows how AI is expanding what workers do, with ChatGPT users taking on tasks across roles and reshaping job boundaries.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GH-ESD: Grounded Hypothesis-Driven Error Slice Discovery for Instance-Level Vision Tasks]]></title>
+        <id>gh-esd</id>
+        <link href="https://machinelearning.apple.com/research/gh-esd"/>
+        <updated>2026-07-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Systematic failures of vision models on semantically coherent subsets, known as error slices, reveal limitations in robustness and evaluation. Existing slice discovery approaches largely model slices as clusters in representation space or combinations of predefined attributes. While effective for image-level classification, such formulations are insufficient for instance-level tasks such as object detection and segmentation, where failures often arise from contextual relational and spatially grounded visual patterns. We propose GH-ESD (Grounded Hypothesis-Driven Error Slice Discovery), a…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[An Inside Look at the Relay Market Powering Token Resellers and Fraud]]></title>
         <id>https://simonwillison.net/2026/Jul/26/relay-market/#atom-everything</id>
@@ -491,8 +559,8 @@ Excellent piece of work by Dylan Castillo, who took a deep-dive into the frequen
     </entry>
     <entry>
         <title type="html"><![CDATA[Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber]]></title>
-        <id>https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/</id>
-        <link href="https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/"/>
+        <id>https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/</id>
+        <link href="https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/"/>
         <updated>2026-07-21T15:16:30.000Z</updated>
         <summary type="html"><![CDATA[We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.]]></summary>
         <author>
@@ -1346,22 +1414,6 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Mermaid to ASCII art (mermaid-ascii)]]></title>
-        <id>https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/16/mermaid-ascii/#atom-everything"/>
-        <updated>2026-07-16T14:57:39.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/mermaid-ascii">Mermaid to ASCII art (mermaid-ascii)</a></p>
-        <p>After building the <a href="https://simonwillison.net/2026/Jul/16/grok-mermaid/">Mermaid to ASCII tool based on Grok Build's Rust code</a> I learned that there's an older, more fully-featured Go library called <a href="https://github.com/AlexanderGrooff/mermaid-ascii">AlexanderGrooff/mermaid-ascii</a> that implements a similar pattern, so I had Claude Fable 5 compile that one to WebAssembly as well so I could compare the two.</p>
-<p>This one includes support for colors!</p>
-<p><img alt="Screenshot of a Mermaid diagram editor web app. A row of tab buttons reads: Flowchart, Multiple links, Subgraphs, Multi-line labels, Colors (selected, highlighted blue), Sequence, Alt fragment, Loop + note, Parallel. Below is a text input area containing: &quot;graph LR / Build:::good --&gt; Test:::good / Test --&gt; Deploy:::warn / Deploy --&gt; Rollback:::bad / classDef good color:#3fb950 / classDef warn color:#e3b341 / classDef bad color:#ff7b72&quot;. A control row shows an unchecked &quot;ASCII only&quot; checkbox, &quot;Padding X: 5&quot;, &quot;Padding Y: 5&quot;, &quot;Box padding: 1&quot;, and buttons &quot;Copy as text&quot; and &quot;Copy link to this diagram&quot;. At the bottom on a black background is the rendered left-to-right flowchart with four connected boxes: &quot;Build&quot; (green text), &quot;Test&quot; (green text), &quot;Deploy&quot; (yellow text), &quot;Rollback&quot; (red text), each linked by arrows." src="https://static.simonwillison.net/static/2026/mermaid-ascii.webp" /></p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/go">go</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/mermaid">mermaid</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Which AI Is Better? 🖥️ WEBSITE EDITION]]></title>
         <id>https://www.youtube.com/shorts/FO5zsDIY6Yc</id>
         <link href="https://www.youtube.com/shorts/FO5zsDIY6Yc"/>
@@ -1369,24 +1421,6 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         <summary type="html"><![CDATA[I gave two of the most popular AI website builders the exact same prompt:Build a landing page for Midjourney's crazy new full-body scanner product.Both gener...]]></summary>
         <author>
             <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Linus Torvalds]]></title>
-        <id>https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/16/linus-torvalds/#atom-everything"/>
-        <updated>2026-07-16T13:26:10.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/"><p>I realize that some people really dislike AI, but this is an area where I'm willing to absolutely put my foot down as the top-level maintainer.</p>
-<p>Linux is not one of those anti-AI projects, and if somebody has issues with that, they can do the open-source thing and fork it.</p>
-<p>Or just walk away.</p>
-<p>AI is a tool, just like other tools we use.  And it's clearly a useful one.</p>
-<p>It may not have been that "clearly" even just a year ago, but it's no longer in question today.</p>
-<p>There are other questions around AI (like what the economy of it will actually look like in the end), but "is it useful" is no longer one of those questions. Anybody who doubts that clearly hasn't actually used it.</p></blockquote>
-<p class="cite">&mdash; <a href="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/">Linus Torvalds</a>, Linux Media Mailing List</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/linus-torvalds">linus-torvalds</a>, <a href="https://simonwillison.net/tags/linux">linux</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1425,16 +1459,6 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         <link href="https://machinelearning.apple.com/research/location-invariant-functions"/>
         <updated>2026-07-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A property of functions is called location-invariant (or symmetric) if it can be characterized in terms of the frequencies in which each value occurs in the function, regardless of the locations in which each value occurs. It is known that the (query) complexity of testing location-invariant properties of functions is closely related to the (sample) complexity of testing the (corresponding properties of the) corresponding distributions. The main message of the current work is that this close relationship is not maintained in the context of verification. This holds both when considering…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Interactive Proofs for General Distribution Properties]]></title>
-        <id>interactive-proofs-distribution-properties</id>
-        <link href="https://machinelearning.apple.com/research/interactive-proofs-distribution-properties"/>
-        <updated>2026-07-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Suppose Alice has collected a small number of samples from an unknown distribution, and would like to learn about the distribution. Bob, an untrusted data analyst, claims to have run a sophisticated data analysis on the distribution and makes assertions about its properties. When and how is it possible for Alice to efficiently verify Bob’s claims (using fewer resources than would be needed to run the analysis herself)? We construct interactive proof systems for general distribution properties that can be decided by bounded-depth circuits. Taking N to be an upper bound on the distribution’s…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
         </author>
@@ -1841,16 +1865,6 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Core dump epidemiology: fixing an 18-year-old bug]]></title>
-        <id>https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug</id>
-        <link href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"/>
-        <updated>2026-06-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Inside Genebench-Pro]]></title>
         <id>https://openai.com/index/genebench-pro/case-studies</id>
         <link href="https://openai.com/index/genebench-pro/case-studies"/>
@@ -1865,6 +1879,16 @@ Mira Murati's Thinking Machines Lab just released their first open-weights model
         <link href="https://openai.com/index/introducing-genebench-pro"/>
         <updated>2026-06-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Core dump epidemiology: fixing an 18-year-old bug]]></title>
+        <id>https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug</id>
+        <link href="https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug"/>
+        <updated>2026-06-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
