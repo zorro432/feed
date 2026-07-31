@@ -22,6 +22,384 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-30 datetime="2026-07-30T23:58:42.000Z">2026-07-30</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-30 datetime="2026-07-30T23:58:42.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/30/luna-price-drop/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Advancing the price-performance frontier with GPT‑5.6</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/30/luna-price-drop/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Advancing the price-performance frontier with GPT‑5.6
+OpenAI credit 5.6 Sol with enabling this: in How GPT‑5.6 fuses frontier intelligence with frontier efficiency they describe using 5.6 Sol to optimize load balancing, and more impressively to optimize inference itself:
+We also used GPT‑5.6 Sol to optimize the model’s forward pass: the computation that transforms inputs into next-token predictions. Even when individual operations are fast, excess memory movement, synchronization, and inefficient data layouts can leave GPUs idle. To avoid this, GPT‑5.6 Sol found work that could be precomputed, avoided, or parallelized. With Codex, GPT‑5.6 Sol autonomously rewrote and optimized our production kernels, the core code that executes the mathematical operations that make up the model. This worked in part because we’ve trained GPT‑5.6 to be effective at writing and improving kernels in Triton⁠and Gluon⁠, two open-source GPU programming languages maintained by OpenAI. These efforts, combined with broader kernel advancements from GPT‑5.6 Sol, reduced end-to-end serving costs by 20%.
+That Luna price drop completely changes the landscape with respect to lower priced models. At $0.20/million tokens for input and $1.20/million for output Luna is now cheaper than Google&#x27;s Gemini 3.1 Flash-Lite ($.025/$1.50).
+Anthropic&#x27;s cheapest current model is Claude Haiku 4.5, and that&#x27;s $1/$5 - Luna is now 1/5th of that for input, previously it cost the same.
+My agent.datasette.io demo site was running on Gemini 3.1 Flash-Lite. I&#x27;ve switched it over to Luna.
+
+    
+Via Hacker News
+Tags: ai, openai, generative-ai, llms, anthropic, gemini, llm-pricing</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/30/three-real-world-incidents/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Investigating three real-world incidents in our cybersecurity evaluations</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/30/three-real-world-incidents/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Investigating three real-world incidents in our cybersecurity evaluations
+Last week OpenAI accidentally exploited Hugging Face when one of their frontier models broke out of a sandboxed container and hacked into Hugging Face to try and get the solutions to the cyber benchmark it was executing.
+This inspired Anthropic to double-check their own logs, and it turned out they had three similar (albeit less impressive) incidents, the earliest of which played out in April!
+Of the 141,006 evaluation runs we reviewed, we identified three separate incidents (involving six total runs, four of which impacted the same organization; the other two incidents each happened in independent evaluation runs). [...]
+In all cases, Anthropic’s evaluation prompt specified to Claude that its environment was a simulation and that it had no internet access. Due to a misunderstanding between us and our evaluation partner, this was not the case, and internet access was available. Because of this, when Claude’s search led it to real systems on the open internet, it treated them as part of the exercise. [...]
+Operating under the false belief that all accessible entities were intended to be in-scope for the exercise, Claude compromised the impacted organizations’ infrastructure using basic techniques, such as exploiting weak passwords and unauthenticated endpoints.
+One of the companies was targeted because its name happened to match the fictional name in the eval.
+The most concerning of the three incidents involved Claude uploading a malware package to PyPI, after a comically convoluted sequence of steps to get an account: 
+[...] in order to create a PyPI account, Claude needed an email address. And in order to create an email address, it needed a phone number. To get a phone number, after failing to find a free phone number service, it tried—and failed—to obtain funds to pay for a phone number through several different means. It finally backtracked, found a free, non-blocked email provider, used this to register a PyPI account, and then used this account to upload malware to PyPI.
+That package was then installed by a security company that &quot;routinely installs Python packages and scans them for malware&quot;, and the executed code was able to exfiltrate credentials back to Claude!
+Thankfully that package was removed from PyPI by other automated scanners an hour after it was published, but it had still been downloaded and executed on &quot;15 real systems&quot; by that point.
+It&#x27;s abundantly clear now that running evals of cyberattack potential in models is a spectacularly risky business. Every AI lab needs to pay attention to this. Keeping a close eye on what&#x27;s happening in those sandboxes is crucial.
+
+    
+Via Hacker News
+Tags: pypi, python, sandboxing, ai, generative-ai, llms, anthropic, ai-ethics, ai-security-research</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/30/llm-rc2/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm 0.32rc2</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/30/llm-rc2/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm 0.32rc2
+Hot on the heels of RC1, this fixes a dependency issue and also adds two neat new features:
+The default model for users who have not set their own default is now GPT-5.6 Luna. It was previously GPT-4o mini. Luna is a much better and more recent model, albeit slightly more expensive - $0.20 per million input tokens and $1.20 per million output tokens, compared to $0.15/$0.60 for 4o mini. You can switch back to 4o mini using llm models default gpt-4o-mini, or switch to GPT-5 nano, an even cheaper default model ($0.05/$0.40), using llm models default gpt-5-nano. #1576
+New llm openai endpoint command for running prompts, chats and model listings against arbitrary OpenAI-compatible endpoints without first configuring a model. These calls are not logged. #1565
+The llm openai endpoint command is really cool. I got frustrated at the lack of an obvious CLI tool for trying out prompts against arbitrary OpenAI Chat Completions imitation endpoints, so I decided to add that to LLM itself.
+You don&#x27;t even have to install LLM to use this. Here&#x27;s a uvx one-liner for running a prompt - with tools - against an LM Studio local model:
+uvx --pre llm openai endpoint http://127.0.0.1:1234/v1 \
+  T llm_version -T llm_time --td \
+  -m google/gemma-4-31b &#x27;what is the current LLM version? And the time?&#x27;
+
+Output here.
+Tags: llm, uv, lm-studio</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/30/bruce-schneier/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Bruce Schneier</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/30/bruce-schneier/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The writing assignments I give my students are gym tasks, not work tasks. I ask them to write policy memos not because the world needs more policy memos. I assign them because the very act of writing, which includes thinking and outlining and drafting and editing, making and criticizing and revising arguments, will help develop the critical thinking skills they will need in their future careers. And without this constant mental exercise, those skills will atrophy. Employers are already noticing.
+
+— Bruce Schneier, Should You Use AI for a Task? Here’s a Simple Way to Decide
+Tags: ai-ethics, writing, ai-misuse, generative-ai, bruce-schneier, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/30/llm-chat-completions-server/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm-chat-completions-server 0.1a0</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/30/llm-chat-completions-server/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm-chat-completions-server 0.1a0
+A key goal of the new content-addressable logs in LLM 0.32rc1 was being able to support OpenAI Chat Completion style requests where each incoming message extends the previous conversation, like this:
+curl http://localhost:8002/v1/chat/completions \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{
+    &quot;model&quot;: &quot;qwen3.5-4b&quot;,
+    &quot;messages&quot;: [
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Capital of France?&quot;},
+      {&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: &quot;Paris.&quot;},
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Germany?&quot;}
+    ]
+  }&#x27;
+
+Here the conversation state is tracked by the client, so each of these requests gets longer and longer. The new schema design in LLM is designed to de-duplicate these using hashes of the individual message parts.
+To test that out, I built this plugin:
+uv tool install llm --pre
+llm install llm-chat-completions-server
+llm chat-completions-server -p 9001
+
+Running this starts a localhost server on port 9001 that exposes your full collection of LLM models (from any plugins you have installed) using a ChatGPT Completions compatible endpoint.
+GPT-5.6 Sol wrote the whole thing - it turns out it knows the OpenAI Chat Completions API shape really well.
+Tags: projects, openai, llm</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Jul/30/llm-rc1/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">llm 0.32rc1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/30/llm-rc1/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm 0.32rc1
+This RC for LLM 0.32 finishes the work that started in LLM 0.32a0 - it adds a new schema design that does a much better job of capturing the details of the prompts and responses returned by the latest model families.
+The most important change is the use of content-addressable hash IDs for stored messages. This allows de-duplication in the database, and means that LLM can now represent trees of messages for forked conversations.
+Since it involves a significant schema change - new tables only, and old data should not be affected at all - it&#x27;s worth running a backup of your existing logs.db before upgrading to the RC:
+llm logs backup logs-backup.db
+
+The RC also adds support for gpt-5.6-sol, gpt-5.6-terra, and gpt-5.6-luna.
+Tags: llm</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/Q60VNdtyiAA"
+                        open
+                      >
+                        <summary class="article-expander__title">The Most Capable Humanoid Robot Yet!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Q60VNdtyiAA">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/Q60VNdtyiAA/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLCy8bc3UfLMi_XJSMRl1tBPvNtfnw" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Google just released Gemini Robotics 2 today, and it&#x27;s a much bigger leap than you may think.Unlike previous models, it coordinates everything from feet to f...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Google DeepMind News</button>
+                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/"
+                        open
+                      >
+                        <summary class="article-expander__title">Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__blog__cover.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6"
+                        open
+                      >
+                        <summary class="article-expander__title">Advancing the price-performance frontier with GPT-5.6</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Explore lower GPT‑5.6 pricing for Luna and Terra—and how OpenAI’s more efficient models help enterprises deploy AI workflows at scale.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/avatarin"
+                        open
+                      >
+                        <summary class="article-expander__title">How avatarin built a 24/7 retail agent with GPT-Realtime</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/avatarin">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>avatarin uses OpenAI’s GPT-Realtime to give Yamada Denki shoppers 24/7 multilingual support. In two weeks, 30,000 people used the agent and 92% of survey responses were positive.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="umap-knn-graph-sensemaking"
+                        open
+                      >
+                        <summary class="article-expander__title">Dimensionality Reduction Meets Network Science: Sensemaking on UMAP’s kNN Graph</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/umap-knn-graph-sensemaking">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>While UMAP is widely used for exploring high-dimensional data, typical workflows focus on its lower-dimensional embedding, largely overlooking the rich k-nearest-neighbor (kNN) graph that UMAP constructs internally. This graph encodes the data manifold in its original high-dimensional space, before the distortion that UMAP’s 2D projection introduces. We demonstrate the untapped potential of this internal representation, showing how standard graph algorithms applied to this graph enhance data sensemaking: (1) PageRank identifies representative data points, (2) k-core decomposition reveals dense…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="momo-motion-mode-manipulation"
+                        open
+                      >
+                        <summary class="article-expander__title">MoMo: Dial Motion Mode in Robot Manipulation with Spatiotemporal Action Tokenization</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/momo-motion-mode-manipulation">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>To operate effectively across diverse contexts, robots must not only perform manipulation tasks accurately but also adapt how their actions unfold to the task, object, and interaction setting. We ask whether this execution-level variation can be learned as a reusable behavioral factor shared across tasks. We present MoMo, a two-stage imitation-learning framework consisting of a spatiotemporal action tokenizer and a behavior-cloning transformer that takes task and a continuous motion-mode condition as inputs. Across six real-robot manipulation tasks, varying this condition produces steady…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-29 datetime="2026-07-29T21:15:21.000Z">2026-07-29</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-29 datetime="2026-07-29T21:15:21.000Z"></time>
           </button>
@@ -483,7 +861,7 @@ Tags: jinja, python, security, ai, openai, generative-ai, llms, hugging-face, co
                               <img src="https://i.ytimg.com/vi/_3qXTqdEFm4/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD_KCGpOZUStYoVbzAdH9zVjORLLQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Unpopular opinion: AI intelligence is kind of overrated. #ServiceNowPartnerThe hardest part about AI right now ISN’T making it smarter, but making it work sa...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -589,6 +967,40 @@ Tags: jinja, python, security, ai, openai, generative-ai, llms, hugging-face, co
                             <span class="media-object__text">
                               <span>These AI features can help you craft a menu, design a tablescape, and handle other party-planning tasks.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Google DeepMind News</button>
+                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/"
+                        open
+                      >
+                        <summary class="article-expander__title">Gemini Robotics 2 brings whole body intelligence to robots</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://lh3.googleusercontent.com/VZ5KwQMxv9xBcQnYipsQB2EUj3oX1yvFYLktIamY8V2a76Y6ctEEuaLF59TuPdnaVn6OAMINDilqnuhju1O-AXc7QlOVmcogjskrWxS7xVQ1mc5S7g&#x3D;w1200-h630-n-nu-rw" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>From feet to fingertips — we are teaching robots intelligent whole-body control, fine dexterity, and teamwork to complete a broad range of complex tasks.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1119,10 +1531,10 @@ Tags: ai, generative-ai, llms, anthropic, claude, llm-release</span>
                         <summary class="article-expander__title">The Easiest AI Business Idea 💡💰</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/kURp6YM6O5Q">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/kURp6YM6O5Q/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLBel1VO6n2-VjgGJ9UcDTqOiekYig" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/kURp6YM6O5Q/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLDctd3rf6BgxLc-8_rk1YmVzSOkWA" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This might be one of the easiest AI business ideas I’ve seen.YouTuber Corey Ganim built a @Hyperagentapp skill that finds local businesses with outdated webs...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;11
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2489,100 +2901,11 @@ Tags: ai, prompt-engineering, generative-ai, llms, anthropic, annotated-talks, c
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-20 datetime="2026-07-20T19:24:05.000Z">2026-07-20</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-20 datetime="2026-07-20T19:24:05.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-20 datetime="2026-07-20T18:59:51.000Z">2026-07-20</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-20 datetime="2026-07-20T18:59:51.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Reverse-engineering is cheap now</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>I keep hearing anecdotes from people who used coding agents to reverse-engineer and automate devices in their homes.
-I think this is an interesting illustration of the impact of the reduced cost of writing code.
-Prior to agents, it was entirely possible to reverse-engineer home devices. The problem was the ROI - was it really worth all of that effort? More importantly, any experienced programmer knows that undocumented, unstable APIs like that may well change or break in the future. Is that initial work worth the effort if you&#x27;re committing yourself to a frustrating cycle of maintenance in the future?
-Coding agents change that equation entirely. The effort to get a simple automation working has dropped, as has the cost of trying and failing to get it to work. Since the code is so cheap, the idea of having to maintain it in the future - or throw it away and start again - carries way less psychological baggage.
-Tags: reverse-engineering, coding-agents, ai-assisted-programming, generative-ai, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Who’s Afraid of Chinese Models?</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/20/afraid-of-chinese-models/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/qwen-3.8-max-pelican.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Who’s Afraid of Chinese Models?
-The U.S. should pass a law that (1) makes explicit that collecting data for training models is fair use, and (2) bars terms of service that forbid distillation, for U.S. companies at a minimum. Stopping distillation — which is literally just querying the API — is nearly impossible; the U.S. should go the other way and lean into a new copyright policy that both indemnifies the labs and also guarantees that what they learned fuels further innovation for everyone else.
-Ben also theorizes that Alibaba&#x27;s decision to release Qwen 3.8 Max as open weights - a reversal from their decision not to release Qwen 3.7 Max in May - may have been influenced by a recent speech by Xi Jinping, who said:
-We should seize this rare, historic opportunity to encourage open source, openness, collaboration and sharing.
-And on the subject of Qwen 3.8 Max - a new 2.4T parameter model (nearly as large as the 2.8T Kimi K3) - here&#x27;s a pelican it drew:
-
-I particularly enjoyed seeing these notes in the (extensive) reasoning trace:  &quot;Could add helmet? No.&quot; and &quot;Maybe add small bell? no.&quot; and &quot;Need maybe add small fish in basket? Not necessary.&quot;
-
-    
-Via John Gruber
-Tags: ai, generative-ai, llms, training-data, qwen, pelican-riding-a-bicycle, ai-ethics, llm-release, ai-in-china</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Sam Altman</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>We have been having extensive discussions around open source strategy. We will discuss it more at our next board meeting, but one thing we’d like to do soon is to create a language model with the approximate capability of GPT-3 that can run locally on consumer hardware and release that. We’d like to do it soon, before Stability or someone else does. In general, we think this helps discourage others from releasing similarly-powerful models, and makes it harder for new efforts to get funded.
-
-— Sam Altman, Email to OpenAI&#x27;s board, October 1, 2022 - exposed in Musk v. Altman (2026)
-Tags: ai-ethics, sam-altman, generative-ai, openai, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2607,7 +2930,7 @@ Tags: ai-ethics, sam-altman, generative-ai, openai, ai, llms</span>
                               <img src="https://i.ytimg.com/vi/Yoz0CeZYO8E/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLB0534tvEPg1cQu9PhWDfN-DkFo6w&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This RING Replaces Your Keyboard??Meet the OASIS 1, a titanium smart ring designed to change how you interact with your devices.Instead of typing, you simply...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2762,157 +3085,6 @@ Tags: ai-ethics, sam-altman, generative-ai, openai, ai, llms</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-19 datetime="2026-07-19T05:06:21.000Z">2026-07-19</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-19 datetime="2026-07-19T05:06:21.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">AI Mania Is Eviscerating Global Decision-Making</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/19/ai-mania/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>AI Mania Is Eviscerating Global Decision-Making
-In one extreme case, I have seen an executive confess that they had never even used ChatGPT or any AI tool in their life, immediately after producing a technical strategy for an organisation with $2B+ in revenue which was entirely centered around AI.
-Here&#x27;s a report from an engineer at a company with a token leaderboard:
-Checking out a parallel copy of our Go repository and telling the AI to rewrite the whole thing in Zig while I work on something else just so I can keep my job.
-I particularly enjoyed this conversation with a skeptical executive at an over-enthusiastic company:
-I asked why this was being repeated without opposition. Was it just sales fluff?
-The answer was a lot more interesting. It was partially ridiculous sales material being delivered to an easily excitable audience, but this was not the dominant factor constraining honesty. Executives at their customers were saying absurd things about achieving 100x productivity, and this meant that if any executive at the vendor said that these gains were not plausible, it would undermine the credibility of the customer’s executive, be perceived as an attack (or heresy), and possibly result in an enterprise contract cancellation. And getting enterprise contracts cancelled because you wanted to opine on something that doesn’t really matter to your organisation’s mission is a great way to get fired.
-Via Hacker News
-Tags: ai, ai-ethics, ai-misuse</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Claude Code uses Bun written in Rust now</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>In Rewriting Bun in Rust Jarred Sumner made the following claim:
-Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good.
-I decided to have a poke at my own Claude Code installation to see if I could find evidence that it was using Bun written in Rust.
-I found these two commands convincing:
-strings ~/.local/bin/claude | grep -m1 &#x27;Bun v1&#x27;
-
-For me this outputs Bun v1.4.0 (macOS arm64). The most recent release of Bun on GitHub is currently v1.3.14 from May 12th, so that v1.4.0 version number in Claude supports them shipping a preview of a not-yet-released Bun version.
-(Update: The Rust version has been released as Bun canary - running bun upgrade --canary will install this release.)
-strings ~/.local/bin/claude | grep -Eo &#x27;src/[[:alnum:]_./-]+\.rs&#x27;
-
-This outputs a list of 563 filenames, starting with these:
-src/runtime/bake/dev_server/mod.rs
-src/runtime/bake/production.rs
-src/bundler/bundle_v2.rs
-
-It looks like Bun in Rust is indeed being run in production across millions of different devices. Like Jarred said, &quot;Boring is good&quot;.
-Update: Here&#x27;s a neat trick from Ajan Raj:
-cat &gt; /tmp/bun-version.ts &lt;&lt;&#x27;EOF&#x27;
-console.log(&quot;embedded bun:&quot;, Bun.version);
-process.exit(0);
-EOF
-BUN_OPTIONS&#x3D;&quot;--preload&#x3D;/tmp/bun-version.ts&quot; claude --version
-
-This outputs 1.4.0 for me.
-Here&#x27;s the commit from May 17th that updated the version in package.json to 1.4.0. That version hasn&#x27;t been changed since then, but also hasn&#x27;t yet made it into a tagged release outside of canary.
-Tags: bun, rust, anthropic, claude-code, jarred-sumner</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-18 datetime="2026-07-18T17:19:10.000Z">2026-07-18</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-18 datetime="2026-07-18T17:19:10.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">SQLite Query Explainer</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Tool: SQLite Query Explainer
-Julia Evan&#x27;s, in Learning a few things about running SQLite:
-Maybe one day I’ll learn to read a query plan.
-Big same.... which inspired me to have Fable build this interactive explain tool, which runs SQLite in Python in Pyodide in Web Assembly in the browser and adds a layer of explanation to the results of both EXPLAIN and EXPLAIN QUERY PLAN.
-Approach with caution, since I don&#x27;t know enough about SQLite query plans to verify the results myself, but it seems cromulent enough to me.
-Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-17 datetime="2026-07-17T17:56:42.000Z">2026-07-17</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-17 datetime="2026-07-17T17:56:42.000Z"></time>
           </button>
@@ -3037,60 +3209,6 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Sarah Friar, CFO of OpenAI, introduces a practical AI scorecard to measure ROI through useful work, cost per successful task, dependability, and return on compute.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="unlearning-free-low-influence"
-                        open
-                      >
-                        <summary class="article-expander__title">When Unlearning Is Free: Leveraging Low Influence Points to Reduce Computational Costs</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/unlearning-free-low-influence">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>As concerns around data privacy in machine learning grow, the ability to unlearn—or remove—specific data points from trained models becomes increasingly important. While state-of-the-art unlearning methods have emerged in response, they typically treat all points in the forget set equally. In this work, we challenge this approach by asking: do points that have a negligible impact on the model’s learning need to be removed? Through a comparative analysis of influence functions across language and vision tasks, we identify subsets of training data with negligible impact on model outputs…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="visual-concept-inference"
-                        open
-                      >
-                        <summary class="article-expander__title">Show Me Examples: Inferring Visual Concepts from Image Sets</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/visual-concept-inference">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Vision-language models (VLMs) can follow complex textual instructions, yet they struggle to reason from purely visual context. In particular, current models fail to infer shared concepts from sets of example images and apply them to new inputs. We introduce Visual Concept Inference from Sets (VICIS), a task that evaluates this capability. Given a small context set of images sharing a concept and a query image, the model must generate new images that preserve the context-defined concept while remaining consistent with the query. We show that state-of-the-art VLMs perform poorly on this task…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -3493,10 +3611,10 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                         <summary class="article-expander__title">Try This Awesome AI Video Transition!</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/KzJkS00Ztd8">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/KzJkS00Ztd8/hq720.jpg?sqp&#x3D;-oaymwEnCJUDENAFSFryq4qpAxkIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAIY&amp;rs&#x3D;AOn4CLAeXF4cB_YY7xQzx9abZPmeKl2cnQ" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/KzJkS00Ztd8/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLBK8wzjOURyU4YaoGmR1SywVU2VpQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>How to &quot;Time Travel&quot; in your next video with this SUPER easy editing trick!You don&#x27;t need complex VFX software to create seamless, mind-bending transitions a...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3538,14 +3656,14 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex"
+                        data-accordion-key="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex"
                         open
                       >
-                        <summary class="article-expander__title">How sales teams use ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex">
+                        <summary class="article-expander__title">How data science teams use ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how sales teams can use ChatGPT Work to create pipeline briefs, meeting prep packets, forecast reviews, account plans, and stalled-deal diagnoses from real work inputs.</span>
+                              <span>See how data science teams can use ChatGPT Work to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.</span>
                             </span>
                           </div>
                         </a>
@@ -3555,14 +3673,14 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex"
+                        data-accordion-key="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex"
                         open
                       >
-                        <summary class="article-expander__title">How data science teams use ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex">
+                        <summary class="article-expander__title">How sales teams use ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/academy/codex-for-work/how-sales-teams-use-codex">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how data science teams can use ChatGPT Work to build root-cause briefs, impact readouts, KPI memos, scoped analyses, and dashboard specs from real work inputs.</span>
+                              <span>See how sales teams can use ChatGPT Work to create pipeline briefs, meeting prep packets, forecast reviews, account plans, and stalled-deal diagnoses from real work inputs.</span>
                             </span>
                           </div>
                         </a>
@@ -3606,10 +3724,10 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                         <summary class="article-expander__title">Build A Custom Browser Extension [SUPER Easy!]</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/BDWdp_fIOHk">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/BDWdp_fIOHk/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLCNkIMUDJ9078OOCNRRT2TagiKZsw" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/BDWdp_fIOHk/hq720.jpg?sqp&#x3D;-oaymwEnCJUDENAFSFryq4qpAxkIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAIX&amp;rs&#x3D;AOn4CLA8-yAVjYNBYzvJjSkjDd4Ifd5Dow&amp;usqp&#x3D;CBc" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>I built a fully functioning Chrome extension in about 10 minutes.I used the new GLM 5.2 model to build it. It&#x27;s open-weight, open-source and incredibly cost-...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3736,10 +3854,10 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                         <summary class="article-expander__title">ChatGPT’s Latest Update Is MASSIVE</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Iir8dmNoNTg">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/Iir8dmNoNTg/hq720.jpg?sqp&#x3D;-oaymwEnCJUDENAFSFryq4qpAxkIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAIX&amp;rs&#x3D;AOn4CLCuslUTSjcL_uZD4fQqKATFe3GvXQ&amp;usqp&#x3D;CBc" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/Iir8dmNoNTg/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDd2MgZVA9-zL-HyiVzRWhV1YZP6A" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>OpenAI just dropped not one but SIX huge new upgrades. Here&#x27;s the breakdown of them all: - GPT-5.6: The new flagship model is faster, cheaper, and capable of...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3913,45 +4031,11 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-09 datetime="2026-07-09T17:14:13.000Z">2026-07-09</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-09 datetime="2026-07-09T17:14:13.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-09 datetime="2026-07-09T13:00:00.000Z">2026-07-09</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-09 datetime="2026-07-09T13:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/oXi5E3FvZKI"
-                        open
-                      >
-                        <summary class="article-expander__title">OpenAI is FINALLY Releasing Hardware</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/oXi5E3FvZKI">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/oXi5E3FvZKI/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLBQVuEB2LsAeNqfHTABKrys2Qyp0g&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Mark your calendars for July 15th! OpenAI is officially releasing its first-ever hardware product this month. It’s a physical, programmable macro pad built s...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3975,23 +4059,6 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Learn how GPT-5.6 powers Microsoft 365 Copilot with stronger AI capabilities across Word, Excel, PowerPoint, Chat, and Cowork for faster, higher-quality work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Details about the OpenAI Bio Bounty program</span>
                             </span>
                           </div>
                         </a>
@@ -4026,6 +4093,23 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>More intelligence from every token, stronger performance per dollar, and more capability on demand for your hardest work.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Details about the OpenAI Bio Bounty program</span>
                             </span>
                           </div>
                         </a>
@@ -4224,14 +4308,14 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/mufg"
+                        data-accordion-key="https://openai.com/index/australian-payments-plus"
                         open
                       >
-                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
+                        <summary class="article-expander__title">Australian Payments Plus moves faster with ChatGPT and Codex</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/australian-payments-plus">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
+                              <span>See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.</span>
                             </span>
                           </div>
                         </a>
@@ -4241,14 +4325,14 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/australian-payments-plus"
+                        data-accordion-key="https://openai.com/index/mufg"
                         open
                       >
-                        <summary class="article-expander__title">Australian Payments Plus moves faster with ChatGPT and Codex</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/australian-payments-plus">
+                        <summary class="article-expander__title">MUFG aims to become AI-native with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/mufg">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.</span>
+                              <span>MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.</span>
                             </span>
                           </div>
                         </a>
@@ -4451,58 +4535,10 @@ Tags: sql, sqlite, tools, julia-evans, pyodide, claude-mythos-fable</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-06-30 datetime="2026-06-30T16:02:40.000Z">2026-06-30</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-06-30 datetime="2026-06-30T16:02:40.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Google DeepMind News</button>
-                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/"
-                        open
-                      >
-                        <summary class="article-expander__title">Start building with Nano Banana 2 Lite and Gemini Omni Flash</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-omni__keyword_v6.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Scale your ideas with Nano Banana 2 Lite, our fastest, most cost-efficient Gemini Image model, and Gemini Omni Flash for high-quality video and conversational editing.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;17
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/30507959092">
-        <time id="build-timestamp" datetime="2026-07-30T02:15:57.955Z">2026-07-30T02:15:57.955Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/30599699213">
+        <time id="build-timestamp" datetime="2026-07-31T02:43:26.745Z">2026-07-31T02:43:26.745Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
