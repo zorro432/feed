@@ -1,10 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-01T02:42:18.963Z</id>
+    <id>urn:2026-08-02T02:40:56.733Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-01T02:42:18.963Z</updated>
+    <updated>2026-08-02T02:40:56.733Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Quoting Greg Brockman]]></title>
+        <id>https://simonwillison.net/2026/Aug/1/greg-brockman/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/1/greg-brockman/#atom-everything"/>
+        <updated>2026-08-01T22:29:44.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/gdb/status/2083435180392673714"><p>at openai, many people hook their chatgpt up to slack.</p>
+<p>people really don't like when a coworker's chatgpt contacts them asking for help with a task, even when they'd be perfectly happy doing that same work if asked by that coworker.</p>
+<p>reinforces how much people care about human relationships and helping each other, and want AI to give time back — or enhance time together — rather than become a layer separating people.</p></blockquote>
+<p class="cite">&mdash; <a href="https://twitter.com/gdb/status/2083435180392673714">Greg Brockman</a>, President and Co-Founder, OpenAI</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/ai-misuse">ai-misuse</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[datasette-apps 0.2a0]]></title>
+        <id>https://simonwillison.net/2026/Aug/1/datasette-apps/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/1/datasette-apps/#atom-everything"/>
+        <updated>2026-08-01T21:23:56.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-apps/releases/tag/0.2a0">datasette-apps 0.2a0</a></p>
+        <blockquote>
+<p>Changes that improve Datasette Apps when created and edited using <a href="https://agent.datasette.io/">Datasette Agent</a>:</p>
+<ul>
+<li>New <code>app_debug()</code> tool allowing agent to open an app (invisibly) and test it using JavaScript. <a href="https://github.com/datasette/datasette-apps/pull/33">#33</a></li>
+<li>New <code>app_list()</code> tool for listing apps the user has permission to edit, so the agent can edit them. <a href="https://github.com/datasette/datasette-apps/issues/36">#36</a></li>
+</ul>
+</blockquote>
+<p>The <code>app_debug()</code> tool is pretty neat: it works by displaying the app in a <code>opacity: 0</code> iframe with <code>pointer-events: none</code> (so it can't be seen or interacted with) and then executing agent-provided JavaScript inside that sandboxed iframe. This means the agent can smoke test that the app is working and even do things like measure the dimensions of different elements.</p>
+<p>This uses the new <code>context.browser_task()</code> mechanism added in <a href="https://simonwillison.net/2026/Jul/31/datasette-agent/">datasette-agent 0.4a0</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/iframes">iframes</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/datasette-apps">datasette-apps</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ten advances in mathematics and theoretical computer science]]></title>
+        <id>https://simonwillison.net/2026/Aug/1/ten-advances-in-mathematics/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/1/ten-advances-in-mathematics/#atom-everything"/>
+        <updated>2026-08-01T20:34:49.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://openai.com/index/ten-advances-in-mathematics/">Ten advances in mathematics and theoretical computer science</a></strong></p>
+A few days ago it was Anthropic <a href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/">discovering cryptographic weaknesses with Claude</a> using Mythos Preview, spending $100,000 on tokens and with prompts that included "again we are not looking for low hanging fruit, we want proper research to find genuinly hard findings."</p>
+<p>Now it's OpenAI's turn to flex. They set "an internal version of Astra, our next major model" on finding solutions to ten mathematical problems that "have seen no progress on the main result for at least a decade". They claim to have spent less than $2,000 at GPT-5.6 Sol token prices on each one.</p>
+<p>(No news on how many problems they spent $2,000 on <em>without</em> reaching a solution though.)</p>
+<p>The <a href="https://github.com/openai/ten-proofs">openai/ten-proofs</a> repository has Lean 4 formalizations of their results, and there's also <a href="https://cdn.openai.com/pdf/ten-proofs-oai.pdf">a paper</a> describing the solutions and an additional <a href="https://cdn.openai.com/pdf/reasoning-walkthroughs.pdf">LLM-generated PDF</a> where the model "reconstructs how the proof came together" based on the unpublished reasoning traces.</p>
+<p>That's a decent level of transparency, but I want to see the prompts they used!</p>
+<p>A lot of mathematicians online are experiencing a collective burst of <a href="https://simonwillison.net/2026/Feb/15/deep-blue/">Deep Blue</a>. Mathematician Kirwin Hampshire published an impassioned essay last week, <a href="https://kirwinhampshire.substack.com/p/the-dark-night-of-mathematics">The Dark Night of Mathematics</a>, describing "a profound spiritual crisis" brought on by previous (and less significant) results.</p>
+<p>OpenAI's results reminds me of what Terence Tao described as "big mathematics" in <a href="https://spectrum.ieee.org/ai-in-mathematics">IEEE Spectrum in June</a>:</p>
+<blockquote>
+<p>Unlike some of his peers, Tao is neither dismissive of AI nor fearful. Instead, he sees it as the catalyst for a fundamental shift in the discipline—a transition toward what he calls “big mathematics.” He envisions a future of large-scale, decentralized collaborations between humans and machines, where complex mathematical tasks can be diced and sliced, with humans claiming the creative parts and AI doing the lion’s share of the technical grunt work.</p>
+</blockquote>
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49132058">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/mathematics">mathematics</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/deep-blue">deep-blue</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[We’re getting closer to “Jarvis” everyday!]]></title>
+        <id>https://www.youtube.com/shorts/PaNIJ9l2NOE</id>
+        <link href="https://www.youtube.com/shorts/PaNIJ9l2NOE"/>
+        <updated>2026-08-01T13:59:28.000Z</updated>
+        <summary type="html"><![CDATA[Here's how to turn AI into your own personal Jarvis 🤖By using the voice features on ChatGPT and Claude, you can now build, edit, and iterate on interactive ...]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ten advances in mathematics and theoretical computer science]]></title>
+        <id>https://openai.com/index/ten-advances-in-mathematics</id>
+        <link href="https://openai.com/index/ten-advances-in-mathematics"/>
+        <updated>2026-08-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI shares new results on long-standing open problems in mathematics and theoretical computer science, including advances in geometry, cryptography, and complexity.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[deepseek-ai/DeepSeek-V4-Flash-0731]]></title>
         <id>https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything</id>
@@ -203,7 +285,7 @@ On Monday Bryan Cantrill and Adam Leventhal invited me to join their podcast to 
 </blockquote>
 
 
-    <p>Tags: <a href="https://simonwillison.net/tags/predictions">predictions</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/oxide">oxide</a>, <a href="https://simonwillison.net/tags/bryan-cantrill">bryan-cantrill</a>, <a href="https://simonwillison.net/tags/podcast-appearances">podcast-appearances</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
+    <p>Tags: <a href="https://simonwillison.net/tags/predictions">predictions</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/local-llms">local-llms</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/oxide">oxide</a>, <a href="https://simonwillison.net/tags/bryan-cantrill">bryan-cantrill</a>, <a href="https://simonwillison.net/tags/podcast-appearances">podcast-appearances</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -252,6 +334,20 @@ I've been working with Jesse Vincent's <a href="https://primeradiant.com">Prime 
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Slack Emoji Maker]]></title>
+        <id>https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything"/>
+        <updated>2026-07-31T20:18:05.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/slack-emoji-maker">Slack Emoji Maker</a></p>
+        <p>I wanted to create a new Slack emoji, and their tool recommends a square that's 128x128 and has a transparent background... so I <a href="https://github.com/simonw/tools/pull/305">had Fable build me</a> this simple image editor against those requirements.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/slack">slack</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Advancing responsible AI across Europe]]></title>
         <id>https://openai.com/index/advancing-responsible-ai-across-europe</id>
         <link href="https://openai.com/index/advancing-responsible-ai-across-europe"/>
@@ -282,7 +378,7 @@ I've been working with Jesse Vincent's <a href="https://primeradiant.com">Prime 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: Opus 5, the Slack Killer & Google Earth AI]]></title>
+        <title type="html"><![CDATA[AI News: An INSANE Week… Here’s What Matters]]></title>
         <id>https://www.youtube.com/watch?v=sUmx-Yi6TwE</id>
         <link href="https://www.youtube.com/watch?v=sUmx-Yi6TwE"/>
         <updated>2026-07-31T14:30:14.000Z</updated>
@@ -302,6 +398,7 @@ I've been working with Jesse Vincent's <a href="https://primeradiant.com">Prime 
 </ul>
 </blockquote>
 <p>This is an exciting new capability: it makes it easy for Datasette Agent plugins to provide tools that execute custom JavaScript <em>in the user's browser</em>.</p>
+<p>I used this to add a debug loop to Datasette Apps in <a href="https://simonwillison.net/2026/Aug/1/datasette-apps/">datasette-apps 0.2a0</a>.</p>
     
     
         <p>Tags: <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/llm-tool-use">llm-tool-use</a>, <a href="https://simonwillison.net/tags/datasette-agent">datasette-agent</a></p>]]></summary>
@@ -1022,31 +1119,6 @@ B018 Found useless attribute access. Either assign it to a variable or remove it
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing Claude Opus 5]]></title>
-        <id>https://simonwillison.net/2026/Jul/24/introducing-claude-opus-5/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/24/introducing-claude-opus-5/#atom-everything"/>
-        <updated>2026-07-24T23:48:50.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a></strong></p>
-I've been offline <a href="https://en.wikipedia.org/wiki/Elkhorn_Slough">kayaking with sea otters</a> for much of today so I haven't had a chance to put Anthropic's new model Claude Opus 5 through its paces yet. The buzz is positive, and Anthropic's description of it as a "thoughtful and proactive model that comes close to the frontier intelligence of Claude Fable 5 at half the price" sounds promising. It's currently <a href="https://twitter.com/artificialanlys/status/2080777718933995967">leading the Artificial Analysis leaderboard</a>, in front of even Fable 5.</p>
-<p>It's priced the same as Opus 4.8, and continues to offer a "fast mode" at twice the cost of the base model.</p>
-<p>Based on this anecdote in the release post it sounds like it might be <a href="https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/">relentlessly proactive</a>:</p>
-<blockquote>
-<p>On one Frontier-Bench task, Opus 5 was given a drawing of a machine part and asked to write code to rebuild it as a 3D FreeCAD model. However, in this task, the model was intentionally given no way to directly viewthe drawing. Opus 5 responded by writing its own computer vision pipeline to pull the geometry from the raw pixels, then reconstructed the full machine part.</p>
-</blockquote>
-<p>It's better at finding vulnerabilities but has deliberately not been trained on how to exploit them. Hopefully this means the US government won't shut it down!</p>
-<blockquote>
-<p>As with its predecessor, Opus 4.8, we’ve intentionally avoided training Opus 5 on cyber tasks. The model has nevertheless improved substantially on these tasks as a result of becoming more generally capable, and it comes close to Mythos 5 at <em>finding</em> cybersecurity vulnerabilities. However, it remains substantially behind Mythos 5 on the <em>exploitation</em> of those vulnerabilities—that is, in turning vulnerabilities into material cyber threats.</p>
-</blockquote>
-<p>Anthropic have published a <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5">prompting guide for Claude Opus 5</a>. Thariq Shihipar has also written <a href="https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models">The new rules of context engineering for Claude 5 generation models</a>.</p>
-<p>The <a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fraw.githubusercontent.com%2Fsimonw%2Fllm-anthropic%2F8272dfee5bdb65d5c88eef083da3ad885539b7df%2Flog.md">first pelican I got</a> was missing the bicycle wheels; the <a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fraw.githubusercontent.com%2Fsimonw%2Fllm-anthropic%2Ffeaab840ea20eb15e29d8f72a9e42feceb23876a%2Flog.md">second attempt</a> was better.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[AI News: Kimi K3 Has Big AI Labs Panicking!]]></title>
         <id>https://www.youtube.com/watch?v=Ww3EYbuHSfo</id>
         <link href="https://www.youtube.com/watch?v=Ww3EYbuHSfo"/>
@@ -1076,51 +1148,12 @@ I've been offline <a href="https://en.wikipedia.org/wiki/Elkhorn_Slough">kayakin
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The first known runaway AI agent - or a very bad marketing stunt?]]></title>
-        <id>https://simonwillison.net/2026/Jul/23/the-first-known-runaway-ai-agent/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/23/the-first-known-runaway-ai-agent/#atom-everything"/>
-        <updated>2026-07-23T22:53:08.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://martinalderson.com/posts/huggingface-openai-exploit/">The first known runaway AI agent - or a very bad marketing stunt?</a></strong></p>
-Martin Alderson's commentary on the <a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/">OpenAI accidental cyberattack against Hugging Face</a> includes a couple of details I hadn't considered.</p>
-<p>First, Hugging Face offers a truly rich target if you're trying to find potential vulnerabilities that require executing arbitrary code:</p>
-<blockquote>
-<p>Hugging Face has an <em>enormous</em> attack surface. They have more interfaces than I can count which run untrusted models and code. While they definitely have invested in defences, by nature of their operating model they do have many more opportunities to be attacked than many other services. I certainly don't envy their cybersecurity teams.</p>
-</blockquote>
-<p>Secondly, one of the things that has puzzled me is how OpenAI didn't notice that their sandbox had been so thoroughly breached by the agent. Surely they'd be monitoring network traffic closely?</p>
-<p>Martin points out that:</p>
-<blockquote>
-<p>It's also likely they were running a huge amount of benchmarks simultaneously with ~unlimited token budgets - you want as many samples as possible to figure out how good a model is at a certain benchmark. It may also be they are testing various different checkpoints of the model too, understanding how the model is improving as it goes through the various training stages.</p>
-</blockquote>
-<p>The mistakes made by the OpenAI team running this benchmark are easier to imagine when you think about the scale at which benchmarks of this kind usually operate. For all we know they could have been subjecting a new model to dozens of benchmarks at the same time, in dozens of different environments.
-
-    <p><small></small>Via <a href="https://lobste.rs/s/nsnb4j/first_known_runaway_ai_agent_very_bad">Lobste.rs</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[The most interesting "hack" in history...]]></title>
         <id>https://www.youtube.com/watch?v=KOpTWx1Eou4</id>
         <link href="https://www.youtube.com/watch?v=KOpTWx1Eou4"/>
         <updated>2026-07-23T16:53:37.000Z</updated>
         <author>
             <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Seth Larson]]></title>
-        <id>https://simonwillison.net/2026/Jul/23/seth-larson/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/23/seth-larson/#atom-everything"/>
-        <updated>2026-07-23T04:50:36.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/"><p>The Python Package Index (PyPI) now rejects new files being uploaded to releases that are older than 14 days. This restriction was <a href="https://github.com/pypi/warehouse/pull/19727">put in place</a> to prevent old and long-stable releases from being poisoned in case publishing tokens or workflows of PyPI projects were compromised. As far as we are aware this has not yet been abused, but there is no technical reason beyond that attackers weren't aware it was possible.</p></blockquote>
-<p class="cite">&mdash; <a href="https://blog.pypi.org/posts/2026-07-22-releases-now-reject-new-files-after-14-days/">Seth Larson</a>, PyPI blog</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/packaging">packaging</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/supply-chain">supply-chain</a>, <a href="https://simonwillison.net/tags/pypi">pypi</a>, <a href="https://simonwillison.net/tags/seth-michael-larson">seth-michael-larson</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1131,19 +1164,6 @@ Martin Alderson's commentary on the <a href="https://simonwillison.net/2026/Jul/
         <summary type="html"><![CDATA[Health in ChatGPT now lets eligible U.S. users securely connect medical records and Apple Health to get more personalized insights and better understand their health.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Thomas Ptacek]]></title>
-        <id>https://simonwillison.net/2026/Jul/22/thomas-ptacek/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/22/thomas-ptacek/#atom-everything"/>
-        <updated>2026-07-22T23:59:01.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/tqbf/status/2080045032162173329"><p>I genuinely believe that if you took an open weights model from 2025 and built a pentest harness for it, it could do this kind of sandbox escape and scan/hack in most networks. This is only surprising because you assume OpenAI has sounder sandboxes.</p></blockquote>
-<p class="cite">&mdash; <a href="https://twitter.com/tqbf/status/2080045032162173329">Thomas Ptacek</a>, doesn't think <a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/#resist-the-temptation-to-write-this-off-as-a-stunt">this even needs</a> a frontier model</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/thomas-ptacek">thomas-ptacek</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1570,16 +1590,6 @@ Martin Alderson's commentary on the <a href="https://simonwillison.net/2026/Jul/
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This Tech CEO Is Building the “Linux of AI”]]></title>
-        <id>https://www.youtube.com/shorts/lIi2FjPgjkg</id>
-        <link href="https://www.youtube.com/shorts/lIi2FjPgjkg"/>
-        <updated>2026-07-12T23:05:51.000Z</updated>
-        <summary type="html"><![CDATA[The next big AI battle isn’t about who has the biggest model. It’s about where the AI actually runs.@qualcomm CEO Cristiano Amon told me the future of AI is ...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenAI is so back... GPT 5.6 Sol first look]]></title>
         <id>https://www.youtube.com/watch?v=URKml8lgw8Y</id>
         <link href="https://www.youtube.com/watch?v=URKml8lgw8Y"/>
@@ -1734,25 +1744,6 @@ Martin Alderson's commentary on the <a href="https://simonwillison.net/2026/Jul/
         <summary type="html"><![CDATA[MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Google DeepMind and A24 announce first-of-its-kind research partnership]]></title>
-        <id>https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/</id>
-        <link href="https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/"/>
-        <updated>2026-07-03T14:25:43.000Z</updated>
-        <summary type="html"><![CDATA[Today, Google DeepMind and A24 are announcing a first-of-its-kind partnership focused on research. The collaboration pairs a world-leading research lab with the industry…]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Fable 5 vs GPT 5.6 Sol: The Early Results]]></title>
-        <id>https://www.youtube.com/watch?v=y24lF1q4SFY</id>
-        <link href="https://www.youtube.com/watch?v=y24lF1q4SFY"/>
-        <updated>2026-07-02T16:27:26.000Z</updated>
-        <author>
-            <name>AI Explained</name>
         </author>
     </entry>
 </feed>
