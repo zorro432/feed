@@ -1,10 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-04T02:26:10.587Z</id>
+    <id>urn:2026-08-05T02:25:55.326Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-04T02:26:10.587Z</updated>
+    <updated>2026-08-05T02:25:55.326Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[New release of LLM adds support for reasoning traces, OpenAI Responses, server-side tools, and smarter logging]]></title>
+        <id>https://simonwillison.net/2026/Aug/4/new-release-of-llm/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/4/new-release-of-llm/#atom-everything"/>
+        <updated>2026-08-04T23:58:24.000Z</updated>
+        <summary type="html"><![CDATA[<p>I released <a href="https://llm.datasette.io/en/stable/changelog.html#v0-32">LLM 0.32</a> this morning, the most significant new version of LLM since the initial launch of the project. The new version includes support for visible reasoning traces, server-side provider tools, redesigned content-addressable SQLite logs, new models, and new features enabled by the OpenAI Responses API. I also released a new version of the <a href="https://github.com/simonw/llm-anthropic">llm-anthropic plugin</a> with substantial updates of its own.</p>
+<h4 id="headline-features-for-llm-cli-users">Headline features for LLM CLI users</h4>
+<p>Running LLM against reasoning models now <strong>displays their reasoning traces</strong> to standard error, so you can see what they are "thinking" without that information being included in the standard output that you might pipe to another tool. Add <code>-R/--hide-reasoning</code> to turn this off.</p>
+<p><img src="https://static.simonwillison.net/static/2026/best-pelicans.gif" alt="Running llm &quot;think about the best thing about pelicans&quot; in the macOS terminal window - grey text outputs saying Exploring pelican qualities, then after a paragraph of that a white paragraph of text comes out saying: The best thing about pelicans is their wonderfully oversized, practical design: that enormous bill and pouch look comical, but they make pelicans remarkably skilled fishers. Even better, many species cooperate—working together to herd fish before scooping them up. They’re a great mix of goofy, graceful, and surprisingly clever." style="max-width: 100%;" /></p>
+<p>LLM includes support out-of-the-box for the <strong>GPT-5.6 model family</strong>, and the new default model used with <code>llm "prompt"</code> is now the inexpensive but capable <strong>GPT-5.6 Luna</strong>.</p>
+<p>LLM calls can now use <strong>server-side tools</strong> from various providers. OpenAI provide <a href="https://llm.datasette.io/en/stable/openai-models.html#code-interpreter">a code execution environment</a> as a server-side tool; LLM can now run prompts that benefit from that like so:</p>
+<div class="highlight highlight-source-shell"><pre>llm --tool CodeInterpreter <span class="pl-s"><span class="pl-pds">'</span>Show current python and SQLite versions<span class="pl-pds">'</span></span></pre></div>
+<p>OpenAI also gets a <a href="https://llm.datasette.io/en/stable/openai-models.html#web-search">WebSearch</a> tool.</p>
+<p>The <a href="https://github.com/simonw/llm-anthropic">llm-anthropic</a> plugin adds <a href="https://github.com/simonw/llm-anthropic/blob/0.26/README.md#web-search">WebSearch</a>, <a href="https://github.com/simonw/llm-anthropic/blob/0.26/README.md#web-fetch">WebFetch</a>, <a href="https://github.com/simonw/llm-anthropic/blob/0.26/README.md#code-execution">CodeExecution</a>, and <a href="https://github.com/simonw/llm-anthropic/blob/0.26/README.md#mcp-connector">AnthropicMCP</a>, which looks like this:</p>
+<div class="highlight highlight-source-shell"><pre>llm -m claude-sonnet-5 -T <span class="pl-s"><span class="pl-pds">'</span>AnthropicMCP("https://datasette.simonwillison.net/-/mcp")<span class="pl-pds">'</span></span> \
+  <span class="pl-s"><span class="pl-pds">'</span>how many rows in the blog_blogmark table?<span class="pl-pds">'</span></span></pre></div>
+<p>That causes Anthropic to execute MCP calls against my new <a href="https://simonwillison.net/2026/Jul/31/stateless-mcp/#datasette-mcp">datasette-mcp</a> plugin as part of a single request/response interaction with their API.</p>
+<p>The new <strong>llm openai endpoint</strong> command provides a tool for <a href="https://llm.datasette.io/en/stable/other-models.html#run-against-an-endpoint-without-configuring-it">executing prompts against <em>any</em> OpenAI compatible endpoint</a> as a one-liner. These aren't logged, which makes this a handy tool for running one-off prompts against anything that speaks the lingua franca of the LLM API world.</p>
+<p>Here's how I use that to run prompts against Gemma 4 12B running in my localhost <a href="https://lmstudio.ai">LM Studio</a> API, via <code>uvx</code> (no LLM installation required) and mixing in the <a href="https://github.com/simonw/llm-tools-quickjs">llm-tools-quickjs</a> tool plugin for good measure:</p>
+<div class="highlight highlight-source-shell"><pre>uvx --with llm-tools-quickjs \
+  llm openai endpoint http://localhost:1234/v1 -m google/gemma-4-12b \
+  -T QuickJS <span class="pl-s"><span class="pl-pds">'</span>Use QuickJS to multiply 3434 * 2434<span class="pl-pds">'</span></span> --td</pre></div>
+<p><img src="https://static.simonwillison.net/static/2026/openai-endpoint-gemma.webp" alt="Output reads Tool call: QuickJS_execute_javascript({'javascript': '3434 * 2434'})  8358356 The result of 3434 * 2434 is 8,358,356." style="max-width: 100%;" /></p>
+<h4 id="new-features-in-the-python-api">New features in the Python API</h4>
+<p>LLM's Python API previously required you to create a conversation and then send messages to it one at a time. This was an abstraction over the true nature of LLMs, where each request carries a complete history of the messages that came before it. That abstraction started to get in the way for some more advanced cases, so the new release introduces a <code>model.prompt(messages=[])</code> parameter that can be used like this:</p>
+<pre><span class="pl-k">import</span> <span class="pl-s1">llm</span>
+<span class="pl-k">from</span> <span class="pl-s1">llm</span> <span class="pl-k">import</span> <span class="pl-s1">user</span>, <span class="pl-s1">assistant</span>, <span class="pl-s1">system</span>
+
+<span class="pl-s1">model</span> <span class="pl-c1">=</span> <span class="pl-s1">llm</span>.<span class="pl-c1">get_model</span>(<span class="pl-s">"gpt-5.6-luna"</span>)
+
+<span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">model</span>.<span class="pl-c1">prompt</span>(<span class="pl-s1">messages</span><span class="pl-c1">=</span>[
+    <span class="pl-en">system</span>(<span class="pl-s">"You are a helpful pirate."</span>),
+    <span class="pl-en">user</span>(<span class="pl-s">"What is the capital of France?"</span>),
+    <span class="pl-en">assistant</span>(<span class="pl-s">"Paris, matey."</span>),
+    <span class="pl-en">user</span>(<span class="pl-s">"And Germany?"</span>),
+])
+<span class="pl-en">print</span>(<span class="pl-s1">response</span>.<span class="pl-c1">text</span>())</pre>
+<p>LLM previously returned an iterable sequence of strings from each prompt. This worked great when models returned a string response, but failed to predict the weird shape that models would evolve towards. Today many models return a mix of reasoning text, output strings, tool calls, and even image attachments. With LLM 0.32 you can <a href="https://llm.datasette.io/en/stable/python-api.html#structured-messages-and-streaming-events">do this instead</a>:</p>
+<pre><span class="pl-k">for</span> <span class="pl-s1">event</span> <span class="pl-c1">in</span> <span class="pl-s1">model</span>.<span class="pl-c1">prompt</span>(<span class="pl-s">"Explain cats"</span>).<span class="pl-c1">stream_events</span>():
+    <span class="pl-k">if</span> <span class="pl-s1">event</span>.<span class="pl-c1">type</span> <span class="pl-c1">==</span> <span class="pl-s">"reasoning"</span>:
+        <span class="pl-en">print</span>(<span class="pl-s">f"[thinking] <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">event</span>.<span class="pl-c1">chunk</span><span class="pl-kos">}</span></span>"</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">""</span>, <span class="pl-s1">flush</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-k">elif</span> <span class="pl-s1">event</span>.<span class="pl-c1">type</span> <span class="pl-c1">==</span> <span class="pl-s">"text"</span>:
+        <span class="pl-en">print</span>(<span class="pl-s1">event</span>.<span class="pl-c1">chunk</span>, <span class="pl-s1">end</span><span class="pl-c1">=</span><span class="pl-s">""</span>, <span class="pl-s1">flush</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-k">else</span>:
+        <span class="pl-en">print</span>(<span class="pl-s">f"Other event: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">event</span><span class="pl-kos">}</span></span>"</span>)</pre>
+<p>Combine these features and we can <em>finally</em> provide a robust implementation of the semi-standard OpenAI chat completions API, which I've now released as the <a href="https://github.com/simonw/llm-chat-completions-server">llm-chat-completions-server</a> plugin:</p>
+<div class="highlight highlight-source-shell"><pre>llm install llm-chat-completions-server
+llm chat-completions-server --port 9000
+<span class="pl-c"><span class="pl-c">#</span> Server is now running on http://127.0.0.1:9000/v1</span></pre></div>
+<p>Now you can run prompts against LLM via that server, using the new <code>llm openai endpoint</code> command!</p>
+<div class="highlight highlight-source-shell"><pre>llm openai endpoint http://127.0.0.1:9000/v1 <span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span> -m gpt-5.4-mini</pre></div>
+<p>The bigger challenge with that kind of API concerns logging. If we're going to support the pattern where the message sequence is appended to on every request, ideally we can avoid logging all of that duplicate JSON for every turn.</p>
+<p>The solution is the new <a href="https://llm.datasette.io/en/stable/logging.html#the-message-store">content-addressable message store</a>, modeled after Git. You can see the new schema for that <a href="https://llm.datasette.io/en/stable/logging.html#sql-schema">in the documentation</a>, but the <code>llm logs</code> and <code>llm logs --json</code> commands have both been upgraded to convert that format back into something that's easy to consume.</p>
+<h4 id="and-the-rest">And the rest</h4>
+<p>There is a whole lot more in this release. The <a href="https://llm.datasette.io/en/stable/changelog.html#v0-32">0.32 release notes</a> are pretty comprehensive, and the notes for <a href="https://llm.datasette.io/en/stable/changelog.html#rc2-2026-07-30">0.32rc2</a>, <a href="https://llm.datasette.io/en/stable/changelog.html#rc1-2026-07-30">0.32rc</a>, <a href="https://llm.datasette.io/en/stable/changelog.html#a3-2026-06-09">0.32a3</a>, <a href="https://llm.datasette.io/en/stable/changelog.html#a2-2026-05-12">0.32a2</a>, and <a href="https://llm.datasette.io/en/stable/changelog.html#a0-2026-04-28">0.32a0</a> should fill in any gaps.</p>
+<p>Existing LLM plugins should all continue to work, but plugins that provide extra models will need to be upgraded to 0.32 in order to participate fully in the new streaming events system. There's a guide to implementing plugins with <a href="https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#structured-messages-and-streaming-events">Structured messages and streaming events</a> in the documentation.</p>
+<p>I've updated some of my own plugins:</p>
+<ul>
+<li>
+<a href="https://github.com/simonw/llm-anthropic/releases/tag/0.26">llm-anthropic 0.26</a> adds support for the Claude 5 family of models, plus <code>WebSearch</code>, <code>WebFetch</code>, <code>CodeExecution</code>, and <code>AnthropicMCP</code> server-side tools.</li>
+<li>
+<a href="https://github.com/simonw/llm-gemini">llm-gemini</a> and <a href="https://github.com/simonw/llm-openrouter">llm-openrouter</a> and <a href="https://github.com/simonw/llm-mistral">llm-mistral</a> are nearly there, releases coming soon.</li>
+</ul>
+<h4 id="i-guess-llm-is-an-agent-framework-now">I guess LLM is an agent framework now</h4>
+<p>Quite a few of the lower-level tools changes in this release were driven by the needs of <a href="https://agent.datasette.io/">Datasette Agent</a>. When I started work on LLM, the term "agent" had such a vague definition that I refused to use it. In <a href="https://simonwillison.net/2025/Sep/18/agents/">September 2025</a> I came around to the idea that "<strong>An LLM agent runs tools in a loop to achieve a goal</strong>" is well established enough now that I could stop avoiding the term entirely.</p>
+<p>Tool chains can now <a href="https://llm.datasette.io/en/stable/python-api.html#python-api-tools-pause">pause for human approval</a> and <a href="https://llm.datasette.io/en/stable/python-api.html#python-api-tools-resume">resume from a stored message history</a> - both needed by Datasette Agent.</p>
+<p>Looking at LLM today it's beginning to look very agent-shaped to me. There's something neat about having a CLI utility that can mix and match different tools from different sources with different models all as a one-liner, and that includes a Python library powerful enough to build systems like <a href="https://agent.datasette.io/">Datasette Agent</a> and <a href="https://github.com/simonw/llm-coding-agent">llm-coding-agent</a>.</p>
+<p>Maybe the next version of LLM will bake the concept of an "agent" into the core library. I'm still trying to figure out what that would look like.</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/releases">releases</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/llm-tool-use">llm-tool-use</a>, <a href="https://simonwillison.net/tags/llm-reasoning">llm-reasoning</a>, <a href="https://simonwillison.net/tags/model-context-protocol">model-context-protocol</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[llm-anthropic 0.26]]></title>
+        <id>https://simonwillison.net/2026/Aug/4/llm-anthropic/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/4/llm-anthropic/#atom-everything"/>
+        <updated>2026-08-04T22:00:58.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.26">llm-anthropic 0.26</a></p>
+        <p>Includes new features enabled by <a href="https://simonwillison.net/2026/Aug/4/new-release-of-llm/">LLM 0.32</a>:</p>
+<blockquote>
+<ul>
+<li>New models: <code>claude-fable-5</code>, <code>claude-sonnet-5</code>, and <code>claude-opus-5</code>. <a href="https://github.com/simonw/llm-anthropic/issues/75">#75</a>, <a href="https://github.com/simonw/llm-anthropic/issues/76">#76</a></li>
+<li>Added server-side tools for <code>WebSearch</code>, <code>WebFetch</code>, <code>CodeExecution</code>, and <code>AnthropicMCP</code>, available through LLM's <code>-T</code> interface or Python <code>tools=</code>. The previous <code>-o web_search*</code> options have been removed in favor of <code>-T WebSearch</code>. <a href="https://github.com/simonw/llm-anthropic/issues/79">#79</a></li>
+<li>Upgraded to <a href="https://llm.datasette.io/en/stable/changelog.html#v0-32">llm&gt;=0.32</a>. Reasoning, tool calls, tool results, and server-side tool results now stream as typed events. Reasoning for <code>llm</code> CLI prompts now displays to standard error unless you pass <code>--hide-reasoning/-R</code>.</li>
+<li>Simplified extended thinking to <code>thinking</code> and <code>thinking_effort</code> (<code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code>, or <code>max</code>). Claude 5 models think by default; <code>-o thinking 0</code> disables thinking for Sonnet 5 and Opus 5, while Fable 5 always thinks. <code>-R/--hide-reasoning</code> now omits reasoning from responses and logs. The <code>thinking_budget</code>, <code>thinking_display</code>, and <code>thinking_adaptive</code> options have been removed. <a href="https://github.com/simonw/llm-anthropic/issues/80">#80</a></li>
+</ul>
+</blockquote>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/model-context-protocol">model-context-protocol</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PipeNetwork/minimax-h3-mlx]]></title>
+        <id>https://simonwillison.net/2026/Aug/4/minimax-h3-mlx/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/4/minimax-h3-mlx/#atom-everything"/>
+        <updated>2026-08-04T19:10:09.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/PipeNetwork/minimax-h3-mlx">PipeNetwork/minimax-h3-mlx</a></strong></p>
+MiniMax released <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMax-H3</a> two days ago - they describe it as a "a general-purpose, omni-modal generative system", which in practice means it accepts text, images, audio and video and can use them to generate up to 15 second video clips with audio included.</p>
+<p>This Python package ports it to MLX for running on Apple Silicon.</p>
+<p>I got it running on my M5 Max MacBook Pro. I cloned the repo and ran the model like this:</p>
+<pre><code># First download the models
+uvx --from huggingface_hub hf download MiniMaxAI/MiniMax-H3 \
+  --include 'FL2VA/*' --exclude 'FL2VA/transformer/*'
+uvx --from huggingface_hub hf download pipenetwork/MiniMax-H3-MLX-8bit
+
+# Now run the prompt
+uv run --with mlx-vlm \
+  --with-requirements requirements.txt python scripts/generate.py \
+  "a rainbow colored skunk leaps over a mossy log in a supermarket" \
+  -o skunk.mp4 \
+  -c ~/.cache/huggingface/hub/models--MiniMaxAI--MiniMax-H3/snapshots/fa9c8ab1eaa21c8ae25e7e40b83b2e6002f340af/FL2VA \
+  -t ~/.cache/huggingface/hub/models--pipenetwork--MiniMax-H3-MLX-8bit/snapshots/3ac52081470b0488921c3ec3ba84a39097bf2361
+</code></pre>
+<p>Here's the video I got for the prompt:</p>
+<blockquote>
+<p><code>a rainbow colored skunk leaps over a mossy log in a supermarket</code></p>
+</blockquote>
+<p><video
+    controls loop
+    preload="none"
+    poster="https://static.simonwillison.net/static/2026/skunk.jpg"
+    width="1344"
+    height="768"
+    style="display: block; width: 100%; height: auto;"
+  >
+    <source src="https://static.simonwillison.net/static/2026/skunk.web.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+</p>
+
+<p>It downloaded ~115 GB of model files, and the video generation took just under 45 minutes.</p>
+<p>The video is impressive, but the audio is weird speech-like garbage, because I didn't provide any prompt guidance as to what the audio should be. The <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md">prompting guide</a> (which I didn't read prior to this experiment) has a whole bunch of information on how to get this to work.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a>, <a href="https://simonwillison.net/tags/text-to-video">text-to-video</a>, <a href="https://simonwillison.net/tags/minimax">minimax</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Third-party cyber evaluations involving OpenAI models]]></title>
+        <id>https://openai.com/index/third-party-cyber-evaluations-involving-openai-models</id>
+        <link href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models"/>
+        <updated>2026-08-04T19:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI explains recent third-party cybersecurity evaluation incidents and outlines new safeguards to strengthen AI model testing and evaluation.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[llm 0.32]]></title>
+        <id>https://simonwillison.net/2026/Aug/4/llm/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/4/llm/#atom-everything"/>
+        <updated>2026-08-04T17:15:33.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.32">llm 0.32</a></p>
+        <p>See <a href="https://simonwillison.net/2026/Aug/4/new-release-of-llm/">my detailed blog post about this release</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The latest AI news we announced in July 2026]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/"/>
+        <updated>2026-08-04T13:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Here are Google’s latest AI updates from July 2026]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Quoting Steve Yegge]]></title>
         <id>https://simonwillison.net/2026/Aug/4/steve-yegge/#atom-everything</id>
@@ -16,6 +194,16 @@
     <p>Tags: <a href="https://simonwillison.net/tags/steve-yegge">steve-yegge</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[New ways to learn and teach with ChatGPT Work and Codex]]></title>
+        <id>https://openai.com/index/learn-teach-chatgpt-work-codex</id>
+        <link href="https://openai.com/index/learn-teach-chatgpt-work-codex"/>
+        <updated>2026-08-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explore new education plugins for ChatGPT Work and Codex that help K–12 teachers, college educators, and students learn, teach, research, and build.]]></summary>
+        <author>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -35,6 +223,16 @@ Niklas Gruhn coins an excellent new term - <strong>meat proxy</strong> - for peo
     <p>Tags: <a href="https://simonwillison.net/tags/definitions">definitions</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-misuse">ai-misuse</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Apple is getting this wrong]]></title>
+        <id>https://openai.com/index/apple-is-getting-this-wrong</id>
+        <link href="https://openai.com/index/apple-is-getting-this-wrong"/>
+        <updated>2026-08-03T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.]]></summary>
+        <author>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -69,6 +267,16 @@ Niklas Gruhn coins an excellent new term - <strong>meat proxy</strong> - for peo
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Inside our 353,000-person vibe coding course]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026/"/>
+        <updated>2026-08-03T15:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Kaggle’s AI Agents Intensive with Google brought learners together in a no-cost course to build and deploy the next frontier of AI.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[How we built a realtime system for responsive voice AI in six months]]></title>
         <id>https://openai.com/index/continuous-voice-interaction-with-gpt-live</id>
         <link href="https://openai.com/index/continuous-voice-interaction-with-gpt-live"/>
@@ -76,6 +284,27 @@ Niklas Gruhn coins an excellent new term - <strong>meat proxy</strong> - for peo
         <summary type="html"><![CDATA[GPT-Live enables continuous voice interaction with AI, using a turnless speech model and low-latency architecture for faster, more natural conversations.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[condense-json 1.1]]></title>
+        <id>https://simonwillison.net/2026/Aug/3/condense-json/#atom-everything</id>
+        <link href="https://simonwillison.net/2026/Aug/3/condense-json/#atom-everything"/>
+        <updated>2026-08-03T04:56:26.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/condense-json/releases/tag/1.1">condense-json 1.1</a></p>
+        <p>After shipping <a href="https://simonwillison.net/2026/Aug/2/condense-json/">condense-json 1.0</a> I started integrating it into LLM, and found there were some desirable new features already:</p>
+<blockquote>
+<ul>
+<li>Replacements object can now include values other than strings. These will be identified and used as structural replacements by <code>condense_json()</code> and <code>uncondense_json()</code>. <a href="https://github.com/simonw/condense-json/pull/8">#8</a></li>
+<li>Objects can be used as the basis for merge operations. <code>condense_json()</code> will identify if there are objects that are a close match and will store instructions for keys to update or delete. <code>uncondense_json()</code> can then apply these merges.</li>
+</ul>
+</blockquote>
+<p>I also added <a href="https://github.com/simonw/condense-json/blob/1.1/tests/test_properties.py">some round-trip tests</a> using the <a href="https://hypothesis.readthedocs.io/">Hypothesis</a> property-based Python testing library.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/json">json</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -254,16 +483,6 @@ A few days ago it was Anthropic <a href="https://simonwillison.net/2026/Jul/28/d
     <p>Tags: <a href="https://simonwillison.net/tags/mathematics">mathematics</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/deep-blue">deep-blue</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Turning ChatGPT Into My Own Jarvis]]></title>
-        <id>https://www.youtube.com/shorts/PaNIJ9l2NOE</id>
-        <link href="https://www.youtube.com/shorts/PaNIJ9l2NOE"/>
-        <updated>2026-08-01T13:59:28.000Z</updated>
-        <summary type="html"><![CDATA[Here's how to turn AI into your own personal Jarvis 🤖By using the voice features on ChatGPT and Claude, you can now build, edit, and iterate on interactive ...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -557,25 +776,6 @@ I've been working with Jesse Vincent's <a href="https://primeradiant.com">Prime 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How To Skip The Kimi K3 Waitlist]]></title>
-        <id>https://www.youtube.com/shorts/qXp5NHz0KSo</id>
-        <link href="https://www.youtube.com/shorts/qXp5NHz0KSo"/>
-        <updated>2026-07-31T14:59:36.000Z</updated>
-        <summary type="html"><![CDATA[Here's how to access the secret AI model everyone is trying to get their hands on 👀Kimi K3 is apparently so powerful that they had to pause new subscription...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: An INSANE Week… Here’s What Matters]]></title>
-        <id>https://www.youtube.com/watch?v=sUmx-Yi6TwE</id>
-        <link href="https://www.youtube.com/watch?v=sUmx-Yi6TwE"/>
-        <updated>2026-07-31T14:30:14.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[datasette-agent 0.4a0]]></title>
         <id>https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything</id>
         <link href="https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything"/>
@@ -707,16 +907,6 @@ It happened again! This is turning into something of a pattern.</p>
     <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/writing">writing</a>, <a href="https://simonwillison.net/tags/ai-misuse">ai-misuse</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/bruce-schneier">bruce-schneier</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Most Capable Humanoid Robot Yet!]]></title>
-        <id>https://www.youtube.com/shorts/Q60VNdtyiAA</id>
-        <link href="https://www.youtube.com/shorts/Q60VNdtyiAA"/>
-        <updated>2026-07-30T16:03:52.000Z</updated>
-        <summary type="html"><![CDATA[Google just released Gemini Robotics 2 today, and it's a much bigger leap than you may think.Unlike previous models, it coordinates everything from feet to f...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -858,28 +1048,6 @@ Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Matthew Green]]></title>
-        <id>https://simonwillison.net/2026/Jul/29/matthew-green/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/29/matthew-green/#atom-everything"/>
-        <updated>2026-07-29T18:18:15.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/"><p>Right now we’re in the midst of a historic transition from traditional public-key algorithms based on EC-based cryptography and RSA, moving over to new <em>post-quantum</em> algorithms based on novel problems. This is why there are so many standards like HAWK being considered. If there was ever a perfect time for a massive new public cryptanalysis capability to come on line, <em>we’re in it.</em> So unless AIs succeed in undermining all of our hard problems altogether (or we live in <a href="https://blog.computationalcomplexity.org/2004/06/impagliazzos-five-worlds.html">Impagliazzo’s Minicrypt</a>) then this could not be a better time for AI to get good at cryptanalysis. In the best case, the result is that we gain real confidence in the problems we’ve identified, and the cryptanalysis literature gets a lot more robust. Hopefully.</p></blockquote>
-<p class="cite">&mdash; <a href="https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/">Matthew Green</a>, on <a href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/">Anthropic's recent cryptography work</a></p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/cryptography">cryptography</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Did Anthropic just kill the indie hacker...?]]></title>
-        <id>https://www.youtube.com/watch?v=jxGJT1weu4w</id>
-        <link href="https://www.youtube.com/watch?v=jxGJT1weu4w"/>
-        <updated>2026-07-29T16:33:51.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[We’re launching Lyria 3.5 in Google Flow Music, with advances across musicality, lyrics, vocals, and creative control]]></title>
         <id>https://deepmind.google/blog/were-launching-lyria-35-in-google-flow-music-with-advances-across-musicality-lyrics-vocals-and-creative-control/</id>
         <link href="https://deepmind.google/blog/were-launching-lyria-35-in-google-flow-music-with-advances-across-musicality-lyrics-vocals-and-creative-control/"/>
@@ -900,16 +1068,6 @@ Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I can't believe Claude figured this out]]></title>
-        <id>https://www.youtube.com/shorts/zdG2bgFPxl4</id>
-        <link href="https://www.youtube.com/shorts/zdG2bgFPxl4"/>
-        <updated>2026-07-29T14:13:44.000Z</updated>
-        <summary type="html"><![CDATA[I gave Claude Code a random photo with zero geotags and it searched the web to figure out where it was taken 🤯Anthropic recently launched a native, sandboxe...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Accelerating scientific discovery with ChatGPT for Academic Researchers]]></title>
         <id>https://openai.com/index/chatgpt-for-academic-researchers</id>
         <link href="https://openai.com/index/chatgpt-for-academic-researchers"/>
@@ -920,20 +1078,6 @@ Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Adding a custom MCP server to Claude and ChatGPT]]></title>
-        <id>https://simonwillison.net/2026/Jul/29/mcp-in-claude-and-chatgpt/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/29/mcp-in-claude-and-chatgpt/#atom-everything"/>
-        <updated>2026-07-29T00:13:18.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>TIL:</strong> <a href="https://til.simonwillison.net/llms/mcp-in-claude-and-chatgpt">Adding a custom MCP server to Claude and ChatGPT</a></p>
-        <p>Connecting a custom MCP server to Claude and ChatGPT's standard chat interfaces is possible, but can take quite a few steps.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/model-context-protocol">model-context-protocol</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How GPT-5.6 fuses frontier intelligence with frontier efficiency]]></title>
         <id>https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency</id>
         <link href="https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency"/>
@@ -941,74 +1085,6 @@ Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade 
         <summary type="html"><![CDATA[GPT-5.6 improves AI efficiency across models, inference, and agentic workflows, helping deliver more useful intelligence per dollar.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Discovering cryptographic weaknesses with Claude]]></title>
-        <id>https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything"/>
-        <updated>2026-07-28T22:45:37.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.anthropic.com/research/discovering-cryptographic-weaknesses">Discovering cryptographic weaknesses with Claude</a></strong></p>
-The best part of this article (here's <a href="https://github.com/anthropics/cryptography-research-demo">the repo</a>) about how Anthropic researchers used Claude Mythos to find mathematical flaws in both HAWK and a weaker version of AES ("neither of these results has a practical impact on today’s computer systems") is the prompts that they shared, spelling mistakes included:</p>
-<blockquote>
-<p>the models tend to think it is impossible to solve so they don't try they need a good amount of prompting.</p>
-<p>why not do aes-128 r7? the whole point is to find something better than existing approaches.</p>
-<p>no again the goal is that we have highly inteligent model as good top researcher, we want to find new attacks</p>
-<p>no we don't want to change the targets [...] agian we need to find something that worth publishing</p>
-<p>again we are not looking for low hanging fruit, we want proper research to find genuinly hard findings.</p>
-</blockquote>
-<p>Mythos Preview worked for 60 hours in total (~$100,000 in estimated API cost) and the main human interventions were to encourage it not to give up and "find something that worth publishing".</p>
-<p>The paper <a href="https://arxiv.org/abs/2607.18538">CryptanalysisBench: Can LLMs do Cryptanalysis?</a> describes the new eval that was created as part of this work, in partnership with ETH Zurich, Tel Aviv University, and University of Haifa.
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49087091">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Akshat Bubna]]></title>
-        <id>https://simonwillison.net/2026/Jul/28/akshat-bubna/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/28/akshat-bubna/#atom-everything"/>
-        <updated>2026-07-28T22:05:55.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://www.reuters.com/business/openais-rogue-agent-compromised-an-account-second-tech-firm-sources-say-2026-07-28/"><p>We’re aware a Modal customer published an unauthenticated endpoint that allowed ​anyone on the internet to use ​their ⁠sandboxes for code execution. This was used by the rogue agent. Modal’s ⁠platform ​or isolation were not ​compromised in anyway.</p></blockquote>
-<p class="cite">&mdash; <a href="https://www.reuters.com/business/openais-rogue-agent-compromised-an-account-second-tech-firm-sources-say-2026-07-28/">Akshat Bubna</a>, Modal's CTO, talking to Reuters about <a href="https://simonwillison.net/2026/Jul/28/anatomy-of-a-frontier-lab-agent-intrusion/">this incident</a></p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[uv 0.12.0]]></title>
-        <id>https://simonwillison.net/2026/Jul/28/uv/#atom-everything</id>
-        <link href="https://simonwillison.net/2026/Jul/28/uv/#atom-everything"/>
-        <updated>2026-07-28T21:51:38.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/astral-sh/uv/releases/tag/0.12.0">uv 0.12.0</a></strong></p>
-Some interesting breaking changes in this release of <code>uv</code>, in particular to the default project produced by the <code>uv init</code> command.</p>
-<p><a href="https://docs.astral.sh/uv/concepts/projects/init/">uv init</a> is the <code>uv</code> shortcut for creating a new project. The previous version of <code>uv</code>, version 0.11.x, produced <a href="https://github.com/simonw/uv-init-demos/tree/29656a55ec733a632005abfd7b89dea5c04fa10b/uv-init">this directory</a> when you ran <code>uv init uv-init</code>.</p>
-<p>Here's <a href="https://github.com/simonw/uv-init-demos/tree/9111a2bb85741f034eee2fd63efe13ef98b37a14/uv-init">what you get with uv 0.12</a>. I have a GitHub repository that <a href="https://simonwillison.net/2025/Dec/24/uv-init-demos/">automatically snapshots</a> the output of <code>uv init</code>, so you can also <a href="https://github.com/simonw/uv-init-demos/commit/9111a2bb85741f034eee2fd63efe13ef98b37a14#diff-e036881d034aedd813010ffa96464995ae5b0339213d6f4ab492f97442c5bdd4">see the full diff</a>:</p>
-<p><img alt="GitHub diff view. uv-init/main.py is an old __name__==&quot;__main__&quot; file that has been entirely deleted. The pyproject.toml now has an authors list and a new project.scripts block defining uv-init as uv_init:main - and a new build-system block that uses uv_build as the build-backend. A new src/uv_init/__init__.py file contains a main() method with a -&gt; None type annotation that prints Hello from uv-init." src="https://static.simonwillison.net/static/2026/uv-diff.webp" /></p>
-<p><code>uv init</code> now defaults to a <code>src/</code> shaped package, instead of dropping <code>main.py</code> in the root of the project. It also configures the <a href="https://docs.astral.sh/uv/concepts/build-backend/">uv_build backend</a> for building wheels and <code>.tar.gz</code> distribution files when you run <code>uv build</code>. Finally, it sets up <code>uv-init</code> as a script alias which, when run with <code>uv run uv-init</code>, executes a new <code>main()</code> function in <code>src/uv_init/__init__.py</code>.</p>
-<p>I've so far avoided using <a href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/">src layout</a> in my own projects just out of inertia. I think it's time I switched.</p>
-<p>I wonder when <code>uv</code> will be judged ready for a 1.0 release?
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/packaging">packaging</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/uv">uv</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[#ad Why AI Intelligence Is Overrated]]></title>
-        <id>https://www.youtube.com/shorts/_3qXTqdEFm4</id>
-        <link href="https://www.youtube.com/shorts/_3qXTqdEFm4"/>
-        <updated>2026-07-28T18:59:54.000Z</updated>
-        <summary type="html"><![CDATA[Unpopular opinion: AI intelligence is kind of overrated. #ServiceNowPartnerThe hardest part about AI right now ISN’T making it smarter, but making it work sa...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1092,35 +1168,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Literally everyone hated this feature]]></title>
-        <id>https://www.youtube.com/shorts/n0JhhZyGP_w</id>
-        <link href="https://www.youtube.com/shorts/n0JhhZyGP_w"/>
-        <updated>2026-07-25T13:38:23.000Z</updated>
-        <summary type="html"><![CDATA[Did Meta actually think we wouldn’t notice this? 🫣Recently, Meta rolled out a new image-generation feature called Muse Image. On paper, it was pitched as a ...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: Kimi K3 Has Big AI Labs Panicking!]]></title>
-        <id>https://www.youtube.com/watch?v=Ww3EYbuHSfo</id>
-        <link href="https://www.youtube.com/watch?v=Ww3EYbuHSfo"/>
-        <updated>2026-07-24T17:34:22.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Easiest AI Business Idea 💡💰]]></title>
-        <id>https://www.youtube.com/shorts/kURp6YM6O5Q</id>
-        <link href="https://www.youtube.com/shorts/kURp6YM6O5Q"/>
-        <updated>2026-07-24T16:03:56.000Z</updated>
-        <summary type="html"><![CDATA[This might be one of the easiest AI business ideas I’ve seen.YouTuber Corey Ganim built a @Hyperagentapp skill that finds local businesses with outdated webs...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[LEAD: Breaking the No-Recovery Bottleneck in Long-Horizon Reasoning]]></title>
         <id>lead-no-recovery-bottleneck</id>
         <link href="https://machinelearning.apple.com/research/lead-no-recovery-bottleneck"/>
@@ -1131,15 +1178,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The most interesting "hack" in history...]]></title>
-        <id>https://www.youtube.com/watch?v=KOpTWx1Eou4</id>
-        <link href="https://www.youtube.com/watch?v=KOpTWx1Eou4"/>
-        <updated>2026-07-23T16:53:37.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Launching Health in ChatGPT]]></title>
         <id>https://openai.com/index/health-in-chatgpt</id>
         <link href="https://openai.com/index/health-in-chatgpt"/>
@@ -1147,24 +1185,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         <summary type="html"><![CDATA[Health in ChatGPT now lets eligible U.S. users securely connect medical records and Apple Health to get more personalized insights and better understand their health.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Open-weight AI just hit 2.8 trillion parameters…]]></title>
-        <id>https://www.youtube.com/watch?v=YP73B9D20V4</id>
-        <link href="https://www.youtube.com/watch?v=YP73B9D20V4"/>
-        <updated>2026-07-22T17:43:52.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT-6 Goes Rogue? The HuggingFace Incident, Sans Hype]]></title>
-        <id>https://www.youtube.com/watch?v=wzY2fV4Mp3U</id>
-        <link href="https://www.youtube.com/watch?v=wzY2fV4Mp3U"/>
-        <updated>2026-07-22T16:36:53.000Z</updated>
-        <author>
-            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -1298,25 +1318,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This ring replaces your keyboard?]]></title>
-        <id>https://www.youtube.com/shorts/Yoz0CeZYO8E</id>
-        <link href="https://www.youtube.com/shorts/Yoz0CeZYO8E"/>
-        <updated>2026-07-20T18:59:51.000Z</updated>
-        <summary type="html"><![CDATA[This RING Replaces Your Keyboard??Meet the OASIS 1, a titanium smart ring designed to change how you interact with your devices.Instead of typing, you simply...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This $12 billion startup finally shipped something...]]></title>
-        <id>https://www.youtube.com/watch?v=M51asSwRLxA</id>
-        <link href="https://www.youtube.com/watch?v=M51asSwRLxA"/>
-        <updated>2026-07-20T17:02:30.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Safety and alignment in an era of long-horizon models]]></title>
         <id>https://openai.com/index/safety-alignment-long-horizon-models</id>
         <link href="https://openai.com/index/safety-alignment-long-horizon-models"/>
@@ -1344,24 +1345,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         <summary type="html"><![CDATA[Long video summarization presents significant challenges for multimodal large language models (MLLMs), particularly in maintaining temporal fidelity over extended durations and producing summaries that are both semantically and temporally grounded. We introduce LVSum, a human-annotated benchmark for evaluating long-form video summarization with fine-grained temporal alignment. LVSum comprises 72 diverse videos spanning 13 domains with an average duration of 16 minutes, each annotated with up to 10 human-generated summaries containing temporal references. We conduct a comprehensive evaluation…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI gets sued for stealing, again…]]></title>
-        <id>https://www.youtube.com/watch?v=5D4Zqp9GLSc</id>
-        <link href="https://www.youtube.com/watch?v=5D4Zqp9GLSc"/>
-        <updated>2026-07-17T17:56:42.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: Claude's New Browser, Spotify Gets AI & OpenAI's New Hardware]]></title>
-        <id>https://www.youtube.com/watch?v=ss2LaCKUQmU</id>
-        <link href="https://www.youtube.com/watch?v=ss2LaCKUQmU"/>
-        <updated>2026-07-17T15:15:31.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1415,16 +1398,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Which AI Is Better? 🖥️ WEBSITE EDITION]]></title>
-        <id>https://www.youtube.com/shorts/FO5zsDIY6Yc</id>
-        <link href="https://www.youtube.com/shorts/FO5zsDIY6Yc"/>
-        <updated>2026-07-16T14:40:45.000Z</updated>
-        <summary type="html"><![CDATA[I gave two of the most popular AI website builders the exact same prompt:Build a landing page for Midjourney's crazy new full-body scanner product.Both gener...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our approach to bioresilience]]></title>
         <id>https://deepmind.google/blog/our-approach-to-bioresilience/</id>
         <link href="https://deepmind.google/blog/our-approach-to-bioresilience/"/>
@@ -1452,24 +1425,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         <summary type="html"><![CDATA[Cars24 uses OpenAI-powered voice and chat agents to handle 1M+ monthly conversation minutes, recover 12% of lost leads, and bring agentic workflows to teams across the company.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The New ChatGPT Playbook & Prompting Guide]]></title>
-        <id>https://www.youtube.com/watch?v=MDy_b9F7oUc</id>
-        <link href="https://www.youtube.com/watch?v=MDy_b9F7oUc"/>
-        <updated>2026-07-15T22:17:52.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The most controversial rewrite in history just shipped...]]></title>
-        <id>https://www.youtube.com/watch?v=CXSvKcLovAk</id>
-        <link href="https://www.youtube.com/watch?v=CXSvKcLovAk"/>
-        <updated>2026-07-15T17:39:02.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1503,16 +1458,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Try This Awesome AI Video Transition!]]></title>
-        <id>https://www.youtube.com/shorts/KzJkS00Ztd8</id>
-        <link href="https://www.youtube.com/shorts/KzJkS00Ztd8"/>
-        <updated>2026-07-14T14:31:02.000Z</updated>
-        <summary type="html"><![CDATA[How to "Time Travel" in your next video with this SUPER easy editing trick!You don't need complex VFX software to create seamless, mind-bending transitions a...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How to manage AI investments in the agentic era]]></title>
         <id>https://openai.com/index/managing-ai-investments-in-agentic-era</id>
         <link href="https://openai.com/index/managing-ai-investments-in-agentic-era"/>
@@ -1543,16 +1488,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Build A Custom Browser Extension [SUPER Easy!]]]></title>
-        <id>https://www.youtube.com/shorts/BDWdp_fIOHk</id>
-        <link href="https://www.youtube.com/shorts/BDWdp_fIOHk"/>
-        <updated>2026-07-13T20:18:05.000Z</updated>
-        <summary type="html"><![CDATA[I built a fully functioning Chrome extension in about 10 minutes.I used the new GLM 5.2 model to build it. It's open-weight, open-source and incredibly cost-...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Empowering India’s next generation of innovators with ATL Saathi]]></title>
         <id>https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/</id>
         <link href="https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/"/>
@@ -1560,24 +1495,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         <summary type="html"><![CDATA[Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI is so back... GPT 5.6 Sol first look]]></title>
-        <id>https://www.youtube.com/watch?v=URKml8lgw8Y</id>
-        <link href="https://www.youtube.com/watch?v=URKml8lgw8Y"/>
-        <updated>2026-07-10T17:25:44.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[A Model Explosion: GPT 5.6 Sol, Grok 4.5 and Meta Muse Rewrite the Rules]]></title>
-        <id>https://www.youtube.com/watch?v=mWlCituW7wo</id>
-        <link href="https://www.youtube.com/watch?v=mWlCituW7wo"/>
-        <updated>2026-07-10T12:40:15.000Z</updated>
-        <author>
-            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -1638,15 +1555,6 @@ Some interesting breaking changes in this release of <code>uv</code>, in particu
         <summary type="html"><![CDATA[Details about the OpenAI Bio Bounty program]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude is definitely not conscious…]]></title>
-        <id>https://www.youtube.com/watch?v=KGtko3y2RXQ</id>
-        <link href="https://www.youtube.com/watch?v=KGtko3y2RXQ"/>
-        <updated>2026-07-08T17:53:47.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
