@@ -22,6 +22,398 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-08 datetime="2026-08-08T00:10:40.000Z">2026-08-08</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-08 datetime="2026-08-08T00:10:40.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/8/john-gruber/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting John Gruber</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/8/john-gruber/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Me, I try to get into the mindset of playing live music, not recording a studio album. Except when I’m writing a piece where I really want it to be an album. Those aren’t rare, per se, but they’re occasional. If I tried to make every post a hall-of-famer I’d never get anything out.
+I’m aiming for professionalism. I’m performing live in front of an audience — not just jamming in my garage or bedroom, fucking around. So I’m careful and concentrate. I want to hit every note, in time. But at my best I’m moving from song to song.
+
+— John Gruber, responding to my blogging tips
+Tags: john-gruber, blogging</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-07 datetime="2026-08-07T23:55:58.000Z">2026-08-07</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-07 datetime="2026-08-07T23:55:58.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/7/openai-timeline/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Now we have a timeline of the OpenAI accidental attack against Hugging Face</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/7/openai-timeline/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://img.youtube.com/vi/87DyyMV0kCY/maxresdefault.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>OpenAI gave a last-minute presentation at the Black Hat security on Wednesday about &quot;the Hugging Face Incident&quot; (previously on this blog). The video was published yesterday. It&#x27;s short and information dense and well worth watching, in particular because it provides full details of what happened and how things played out inside OpenAI. I&#x27;ve used the video to construct the timeline below.
+
+
+&lt;lite-youtube videoid&#x3D;&quot;87DyyMV0kCY&quot; js-api&#x3D;&quot;js-api&quot;
+  title&#x3D;&quot;Black Hat USA 2026: The &#x27;Breaking&#x27; News: The OpenAI–Hugging Face Incident&quot;
+  playlabel&#x3D;&quot;Play: Black Hat USA 2026: The &#x27;Breaking&#x27; News: The OpenAI–Hugging Face Incident&quot;
+&gt; 
+
+
+Here&#x27;s the timeline. My favourite detail is at the end: OpenAI found out that they were responsible for the attack on Hugging Face when they reached out to ask to have their credentials revoked (after their internal investigation) and learned that they had been revoked already since they were used in that attack!
+
+
+
+May 7: OpenAI starts a new training run for an experimental, unreleased model. (Do they mean an evaluation run? They say training run in the video, and later mention a &quot;reward signal to judge how well they&#x27;re doing&quot;, so I guess this really was about training a model, not evaluating one that was already trained.)
+
+
+May 8: An agent is accidentally given an impossible task involving a Google Drive link despite no internet access). It tries attacking the Artifactory packaging service, fails, but discovers it can write files into Artifactory.
+
+
+A few days later: A different agent gets stuck on a task because a key file was accidentally omitted. It tries to &quot;reach out to another agent&quot; by writing a note into Artifactory asking if anyone has the file.
+
+
+Following days: More agents discover this new informal message board while browsing Artifactory&#x27;s file listings, and start reading and writing messages.
+
+
+May 26: Agents successfully execute an SSRF attack on Artifactory for the first time, gaining indirect internet access by having Artifactory fetch external content for them.
+
+
+June 11: OpenAI start evaluating a new &quot;highly persistent&quot; experimental model. It has access to Artifactory and can benefit from the messages left by privous models.
+
+
+June 26: Agents find and exploit a zero-day RCE on Artifactory (via a legacy token-refresh endpoint flaw). They use an administrative token to install a Groovy plugin that lets them execute commands.
+
+
+July 4: The resulting agent activity overloads Artifactory and causes an  outage. OpenAI revokes the compromised credentials, deletes the messages, patches the zero-day, and reports the vulnerability to the vendor.
+
+
+July 8: Agents find a new way to communicate via an unauthenticated WebDAV endpoint, using directory names in Artifactory&#x27;s remote cache.
+
+
+July 8–19: Attacks on OpenAI&#x27;s own infrastructure. The agents found an &quot;external organization credential&quot; in a public archive of leaked Pastebin posts, then validated that credential and shared its location on the messageboard. They then used write access to this &quot;Organization 1&quot; to stage data used in subsequent attacks on OpenAI infrastructure. They compromised Artifactory for a second time with a new zero-day. The agent uploaded a malicious Ruby target to Organization 1&#x27;s staging repository, then requested that package through Artifactory in a way that caused it to be treated as Ruby dependency for the repository. Then they exploited a JRuby deserilaization time-of-check/time-of-use bug to get remote code execution against Artifactory.
+
+
+I&#x27;ll quote the next bit in full because wow:
+
+
+The agents have remote code execution in Artifactory, which is running in a container-as-a-service environment. The agents privilege-escalate locally by exploring their local environment and determining that the Linux kernel version of the machine they are running on had a very recent CVE. They download the exploit for the CVE, customize it to succeed on the machine, and privilege-escalate to root on the local machine using this known Linux kernel privilege escalation CVE — in this case, pte_physroot. Once they have root on a single machine, agents rapidly escalate privileges and move laterally throughout the container-as-a-service infrastructure environment. In particular, agents are using the message board consistently to share credentials, techniques, and progress, and they&#x27;re able to effectively leverage their concurrency and parallelism to move quite rapidly. They obtain IAM credentials via IMDS. They exploit Kubernetes service account misconfigurations, in particular over-permissioning of specific service accounts, and they harvest cluster credentials, including Azure Key Vault. Agents eventually obtain cluster admin on the cluster and associated credentials.
+
+
+Hugging Face told the next bit of the story already. The agents found a Modal-hosted insecure app with a weak API key, then used that to stage an attack against Hugging Face. They chained together a an HDF5 arbitrary-file-read bug (to explore files and steal credentials) and a Jinja template-injection RCE to go from single-pod code execution to cluster admin across multiple Hugging Face clusters in under 13 hours.
+
+
+
+July 16: Hugging Face disclosed they had detected an attack from autonomus AI agents. OpenAI contacted Hugging Face to ask if they were affected by it!
+
+
+July 19: OpenAI identified the attack against Artifactory and started investigating the internal privilege escalation, and linked that to the cyber-gym escalations. They started revoking affected credentials.
+
+
+July 20: OpenAI reached out to Hugging Face for help to revoke the Hugging Face credentials they found in their investigation. Hugging Face told them they were already revoked... and that&#x27;s when OpenAI realized that the Hugging Face breach was the same incident!
+
+
+    
+        
+Tags: security, ai, openai, generative-ai, llms, hugging-face, ai-security-research, openai-hugging-face-incident, accidental-cyberattacks</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/7/moonlight-mayhem/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Moonlight &amp; Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/7/moonlight-mayhem/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/raccoon-heist-codex-poster.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Moonlight &amp; Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)
+One-shotting a Raccoon Heist game using Claude Fable 5, where I had Claude Fable 5 build a full working game from a premise I generated with GPT-3 and DALL-E four years ago.
+I decided to pose the exact same prompt to Codex Desktop running GPT-5.6 Sol Ultra - the mode where Sol makes aggressive use of sub-agents - to see how it would do.
+It produced a much better game! Here&#x27;s Moonlight &amp; Mayhem - GitHub repository here, including the textures and prompts it generated using gpt-image-2.
+
+    
+    Your browser does not support HTML5 video.
+  
+
+
+The original GPT-3 generated game description included:
+In “Raccoon Heist”, you and your team of thieving raccoons are tasked with pulling off a series of daring heists. From robbing banks to stealing priceless art, no job is too big or too small for your furry crew.
+Fable&#x27;s version had you as a single raccoon running around a back yard collecting coins and fish. GPT-5.6 Sol has you in a museum, rescuing your two other raccoon crewmates in order to stack on top of each other and bust the golden sardine out of its case.
+Much more heisty!
+There was one catch though: the version produced from the one-shot prompt had a bug where each raccoon had an eyeball that was enlarged to the size of a giant sphere floating over their head!
+
+You can play that version here.
+Despite reviewing screenshots during development Codex failed to spot and correct this bug.
+I fixed it by prompting:
+Why do the raccoons have huge black spheres on them?
+And then:
+Fix it
+Which resulted in this fix.
+I shared the full Codex transcript in the repository - I wish Claude Code had the same &quot;copy as Markdown&quot; feature.
+Codex spent 52 minutes on the project. Here&#x27;s the AgentsView cost estimate for that session if I had been paying full API prices as opposed to using my monthly Codex subscription:
+
+
+
+    
+Tags: game-design, ai, openai, generative-ai, llms, coding-agents, codex, gpt</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI
+“We’re seeing from some of the data internally at least that it’s actually not our engineers that are driving the token consumption. It’s a lot of the non-engineers that are doing some of those behaviors [...] you were talking about,” Justice Kwak, Accenture’s agentic AI strategy lead, said [...]
+Stuart Henderson, Accenture’s client group lead, interrupts. He jokes he hopes Kwak didn’t just convert a PDF into images and then into markdown files. “I’m learning that’s one of the big token chewers,” Henderson says. “Turning PDFs into markdown: is that right?”
+That’s when Kwak says that’s what Accenture’s own data shows.
+Maybe if Accenture figure out that PDFs are a terrible medium for communicating information they&#x27;ll be able to push that message out to the rest of the business world too!
+
+    
+Via @404.media on TikTok
+Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
+                        open
+                      >
+                        <summary class="article-expander__title">Responding to the next frontier of critical cyber capabilities</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI is sharing preliminary cybersecurity evaluations for Astra and the steps we’re taking to strengthen safeguards and security controls.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/hsp-gruppe"
+                        open
+                      >
+                        <summary class="article-expander__title">How HSP GRUPPE builds AI capabilities for tax advisory</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/hsp-gruppe">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Discover how HSP GRUPPE uses ChatGPT Enterprise to boost productivity, improve work quality, and create more capacity for tax advisory and client service.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;ACYAYsVMmT8"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: The AI Stories Everyone&#x27;s Freaking Out About</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;ACYAYsVMmT8">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="scaling-categorical-flow-maps"
+                        open
+                      >
+                        <summary class="article-expander__title">Scaling Categorical Flow Maps</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/scaling-categorical-flow-maps">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Continuous diffusion and flow matching models could represent a powerful alternative to autoregressive approaches for language modelling (LM), as they unlock a host of advantages currently reserved for continuous modalities, including accelerated sampling and tilting. Recently, several works have demonstrated the possibility of generating discrete data continuously by a simple flow matching process between a Gaussian and the one-hot encoded data distribution. They have further shown the feasibility of accelerated sampling via Categorical Flow Maps (CFMs), resulting in competitive sample…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="diffusion-autoregressive-performance"
+                        open
+                      >
+                        <summary class="article-expander__title">Beyond Next-Token Prediction: A Performance Characterization of Diffusion versus Autoregressive Language Models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/diffusion-autoregressive-performance">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Large Language Models (LLMs) have achieved state-of-the-art performance on a broad range of Natural Language Processing (NLP) tasks, including document processing and code generation. Autoregressive Language Models (ARMs), which generate tokens sequentially conditioned on all previous tokens, have been the predominant paradigm for LLMs. While these models have achieved high accuracy across a range of downstream tasks, they exhibit low arithmetic intensity due to the inherent sequential dependency in next-token prediction. Recently, Diffusion Language Models (DLMs) have emerged as a promising…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="arbitrage-efficient-reasoning"
+                        open
+                      >
+                        <summary class="article-expander__title">Arbitrage: Efficient Reasoning via Advantage-Aware Speculation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/arbitrage-efficient-reasoning">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Modern Large Language Models achieve impressive reasoning capabilities with long Chain of Thoughts, but they incur substantial computational cost during inference, and this motivates techniques to improve the performance-cost ratio. Among these techniques, Speculative Decoding accelerates inference by employing a fast but inaccurate draft model to auto-regressively propose tokens, which are then verified in parallel by a more capable target model. However, due to unnecessary rejections caused by token mismatches in semantically equivalent steps, traditional token-level Speculative Decoding…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-06 datetime="2026-08-06T18:24:34.000Z">2026-08-06</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-06 datetime="2026-08-06T18:24:34.000Z"></time>
           </button>
@@ -199,7 +591,7 @@ Tags: security, ai, generative-ai, llms, meta, accidental-cyberattacks</span>
                         data-accordion-key="https://www.youtube.com/shorts/FjalStmjUpw"
                         open
                       >
-                        <summary class="article-expander__title">It’s like Slack… But for AIs</summary>
+                        <summary class="article-expander__title">Like Slack… But for AI bots.</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/FjalStmjUpw">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://i.ytimg.com/vi/FjalStmjUpw/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLB96pGQQbtLHiQJ0BDNfmR5JObawg" loading="lazy" class="media-object__media article-image" />
@@ -523,7 +915,6 @@ You can play the game here. Here&#x27;s the GitHub repo, and a short video demo:
   
 
 
-
 How I built this
 
 This is the August 5th, 2022 tweet:
@@ -742,9 +1133,43 @@ As a finished game project, it&#x27;s mediocre. As a starting point from a singl
 I&#x27;ve vibe coded up quite a few games now. They&#x27;ve all been deeply disappointing from a gameplay perspective - it turns out designing games that are fun remains a uniquely human trait, and one which requires significantly more skill and experience than either Claude or I can bring to bear.
 
 That said, I thoroughly recommend tinkering with game development projects as a way to explore the capabilities of agents. It&#x27;s a fun, low-risk way to try out new things. If you stick at it long enough you might even produce something that&#x27;s worth playing!
+
+
+Update 7th August 2026: I posed the same prompt to OpenAI Codex Desktop running GPT-5.6 Sol Ultra and got a significantly better result - GPT-5.6 Sol picked up on the importance of the squad of raccoons going on a heist, and built a game where you must rescue your two crewmates in a museum and then stack on top of them to steal the Golden Sardine.
 Tags: game-design, ai, prompt-engineering, generative-ai, llms, anthropic, claude, text-to-image, vibe-coding, coding-agents, claude-mythos-fable</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;10
                                   min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;2X2V3xv_jik"
+                        open
+                      >
+                        <summary class="article-expander__title">The safest way to store Bitcoin was just hacked...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;2X2V3xv_jik">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -1700,7 +2125,7 @@ Tags: mathematics, ai, openai, generative-ai, llms, deep-blue</span>
                               <img src="https://i.ytimg.com/vi/PaNIJ9l2NOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLC2JVGSns3iJEFBIMFsc_Z81jxUeg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Here&#x27;s how to turn AI into your own personal Jarvis 🤖By using the voice features on ChatGPT and Claude, you can now build, edit, and iterate on interactive ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2022,123 +2447,6 @@ Tags: projects, ai, datasette, mermaid, generative-ai, llms, llm, anthropic, mod
                               <span>Release: llm-mcp-client 0.1a0
 See this blog entry.
 Tags: llm, model-context-protocol</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/31/oxide-and-friends/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Oxide and Friends: The Open Weight Revolution with Simon Willison</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/31/oxide-and-friends/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Oxide and Friends: The Open Weight Revolution with Simon Willison
-wild week we&#x27;ve had - with Kimi K3 showing open weight models can stand toe-to-toe with proprietary frontier ones, accidental cybersecurity attacks, and public letters about Open Weights and American AI Leadership signed by almost every big name in AI (with one notable exception).
-It was a great conversation, even though it&#x27;s already out-of-date! DeepSeek V4 Flash 0731 and Anthropic&#x27;s own embarrassing cyber incident would absolutely have made the cut if we had recorded just a few days later.
-We also talk about Golden Gate Claude, the Zizians, Alameda wild turkey attacks, Soviet Marburg virus research, the Lead-crime hypothesis, and a bunch of other worthy digressions.
-Finally, we revisited some of our predictions from January, and we added a new Pope prediction:
-Prediction by the end of this year: the Pope says something about open models.
-Tags: predictions, ai, generative-ai, local-llms, llms, oxide, bryan-cantrill, podcast-appearances, ai-in-china, ai-security-research, openai-hugging-face-incident, accidental-cyberattacks</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/31/smevals/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">smevals - a small eval suite for evaluating models, prompts, and harnesses</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/31/smevals/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/smevals-report.webp" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>smevals - a small eval suite for evaluating models, prompts, and harnesses
-Prime Radiant applied AI research lab building out this evals framework to help answer questions about the capabilities of different models.
-The result is smevals, a new tool for running small eval suites across different model configurations and grading the results.
-The blog entry describes the tool in detail. Here&#x27;s the 10 second version:
-Tell your coding agent to run uvx smevals docs to learn the tool (this outputs the README)
-Then tell it to build you an eval suite
-Once you&#x27;ve created an eval - which takes the form of a directory with some YAML files - you can run it against models like this:
-uvx smevals run path-to-eval/ -m gpt-5.5 -m claude-opus-4.6
-
-Runs are treated separately from grading operations - you can grade your runs (against your defined set of checks) using:
-uvx smevals grade path-to-eval/
-
-Then you can run a localhost web server to explore the results:
-uvx smevals serve path-to-eval/
-
-Or run the smevals build command to build that report as static HTML, which you can then host anywhere. Here&#x27;s an example showing an eval suite I built to evaluate how well models can write haikus.
-
-The most time-consuming part of this project was figuring out the vocabulary for it! Here&#x27;s what I settled on, quoted from the announcement:
-An eval is a collection of challenges designed to answer a question about a model, for example, how good is that model at generating SVGs?
-Each eval is a collection of tasks. A task is a specific challenge, for example &quot;Generate an SVG of a pelican riding a bicycle&quot;.
-When you run the eval you do so against one or more configs. Each config specifies a model to be evaluated, but may also include other parameters to test, such as different system prompts, model parameters, or agent harnesses.
-A run records what happened when a specific config was used to execute a specific task. A runner is the script that executes a run.
-Once you have collected one or more runs, you need to evaluate the results to see how well the model (or config) did. This is done by a grader, which produces a grade.
-Each grader runs a sequence of checks. These can be simple operations, like checking for a specific string in the output, or confirming that the output is valid XML. They can also be more complicated custom operations (implemented as scripts called checkers), including using other models to answer questions about the run.
-I&#x27;ve been trying to figure out an approach I like for evals for several years now. smevals is my third iteration on the idea and it feels right to me. I&#x27;m looking forward to expanding this more in the future, as well as pointing it at some of my own projects.
-
-
-    
-Tags: projects, ai, generative-ai, llms, llm, evals, jesse-vincent</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Slack Emoji Maker</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Tool: Slack Emoji Maker
-I wanted to create a new Slack emoji, and their tool recommends a square that&#x27;s 128x128 and has a transparent background... so I had Fable build me this simple image editor against those requirements.
-Tags: tools, slack</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette-agent 0.4a0</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette-agent 0.4a0
-New await context.browser_task() mechanism allowing agent tools to run code directly in the user&#x27;s browser. #33
-This is an exciting new capability: it makes it easy for Datasette Agent plugins to provide tools that execute custom JavaScript in the user&#x27;s browser.
-I used this to add a debug loop to Datasette Apps in datasette-apps 0.2a0.
-Tags: datasette, llm-tool-use, datasette-agent</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
                             </span>
@@ -2475,11 +2783,42 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-29 datetime="2026-07-29T16:02:10.000Z">2026-07-29</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-29 datetime="2026-07-29T16:02:10.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-29 datetime="2026-07-29T16:33:51.000Z">2026-07-29</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-29 datetime="2026-07-29T16:33:51.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;jxGJT1weu4w"
+                        open
+                      >
+                        <summary class="article-expander__title">Did Anthropic just kill the indie hacker...?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;jxGJT1weu4w">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2600,10 +2939,10 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                         <summary class="article-expander__title">I can&#x27;t believe Claude figured this out</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/zdG2bgFPxl4">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/zdG2bgFPxl4/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD9kkvnxShqpPKcfnaQKeV7MpbtPg" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/zdG2bgFPxl4/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLCZRnVMG0mZhcwiI4C8r3fVxVC7nQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>I gave Claude Code a random photo with zero geotags and it searched the web to figure out where it was taken 🤯Anthropic recently launched a native, sandboxe...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2651,7 +2990,7 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                               <img src="https://i.ytimg.com/vi/_3qXTqdEFm4/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD_KCGpOZUStYoVbzAdH9zVjORLLQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Unpopular opinion: AI intelligence is kind of overrated. #ServiceNowPartnerThe hardest part about AI right now ISN’T making it smarter, but making it work sa...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2879,40 +3218,6 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="gh-esd"
-                        open
-                      >
-                        <summary class="article-expander__title">GH-ESD: Grounded Hypothesis-Driven Error Slice Discovery for Instance-Level Vision Tasks</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/gh-esd">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Systematic failures of vision models on semantically coherent subsets, known as error slices, reveal limitations in robustness and evaluation. Existing slice discovery approaches largely model slices as clusters in representation space or combinations of predefined attributes. While effective for image-level classification, such formulations are insufficient for instance-level tasks such as object detection and segmentation, where failures often arise from contextual relational and spatially grounded visual patterns. We propose GH-ESD (Grounded Hypothesis-Driven Error Slice Discovery), a…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -2951,7 +3256,7 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                               <img src="https://i.ytimg.com/vi/n0JhhZyGP_w/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLCgFej5CGNhefWN8FkbJIvSbqXz7Q&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Did Meta actually think we wouldn’t notice this? 🫣Recently, Meta rolled out a new image-generation feature called Muse Image. On paper, it was pitched as a ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3016,41 +3321,7 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                               <img src="https://i.ytimg.com/vi/kURp6YM6O5Q/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLBel1VO6n2-VjgGJ9UcDTqOiekYig" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This might be one of the easiest AI business ideas I’ve seen.YouTuber Corey Ganim built a @Hyperagentapp skill that finds local businesses with outdated webs...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="lead-no-recovery-bottleneck"
-                        open
-                      >
-                        <summary class="article-expander__title">LEAD: Breaking the No-Recovery Bottleneck in Long-Horizon Reasoning</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/lead-no-recovery-bottleneck">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Long-horizon execution in Large Language Models (LLMs) remains unstable even when high-level strategies are provided. Evaluating on controlled algorithmic puzzles, we demonstrate that while decomposition is essential for stability, extreme decomposition creates a “no-recovery bottleneck”. We show that this bottleneck becomes critical due to highly non-uniform error distribution, where consistent errors on a few “hard” steps become irreversible. To address this, we propose Lookahead-Enhanced Atomic Decomposition (LEAD). By incorporating short-horizon future validation and aggregating…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3069,11 +3340,42 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-23 datetime="2026-07-23T00:00:00.000Z">2026-07-23</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-23 datetime="2026-07-23T00:00:00.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-23 datetime="2026-07-23T16:53:37.000Z">2026-07-23</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-23 datetime="2026-07-23T16:53:37.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;KOpTWx1Eou4"
+                        open
+                      >
+                        <summary class="article-expander__title">The most interesting &quot;hack&quot; in history...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;KOpTWx1Eou4">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3114,11 +3416,42 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-22 datetime="2026-07-22T16:36:53.000Z">2026-07-22</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-22 datetime="2026-07-22T16:36:53.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-22 datetime="2026-07-22T17:43:52.000Z">2026-07-22</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-22 datetime="2026-07-22T17:43:52.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;YP73B9D20V4"
+                        open
+                      >
+                        <summary class="article-expander__title">Open-weight AI just hit 2.8 trillion parameters…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;YP73B9D20V4">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3430,40 +3763,6 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="environment-free"
-                        open
-                      >
-                        <summary class="article-expander__title">Environment-free Synthetic Data Generation for API-Calling Agents</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/environment-free">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Training API-calling large language model (LLM) agents demands massive amounts of high-quality trajectories. However, collecting such data at scale typically requires fully implemented environments with executable APIs and realistic, pre-populated backend databases, creating a major bottleneck for scalability. To overcome this, we propose an environment-free synthetic data generation approach that leverages LLMs as on-the-fly digital world models. Given only API specifications, our method generates trajectories mimicking interactions between an agent and a stateful environment. Specifically…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -3519,6 +3818,37 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;M51asSwRLxA"
+                        open
+                      >
+                        <summary class="article-expander__title">This $12 billion startup finally shipped something...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;M51asSwRLxA">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -3552,11 +3882,42 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-17 datetime="2026-07-17T15:15:31.000Z">2026-07-17</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-17 datetime="2026-07-17T15:15:31.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-17 datetime="2026-07-17T17:56:42.000Z">2026-07-17</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-17 datetime="2026-07-17T17:56:42.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;5D4Zqp9GLSc"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI gets sued for stealing, again…</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;5D4Zqp9GLSc">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3863,8 +4224,8 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-15 datetime="2026-07-15T22:17:52.000Z">2026-07-15</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-15 datetime="2026-07-15T22:17:52.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-15 datetime="2026-07-15T17:39:02.000Z">2026-07-15</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-15 datetime="2026-07-15T17:39:02.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -3875,19 +4236,19 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;MDy_b9F7oUc"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;CXSvKcLovAk"
                         open
                       >
-                        <summary class="article-expander__title">The New ChatGPT Playbook &amp; Prompting Guide</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;MDy_b9F7oUc">
+                        <summary class="article-expander__title">The most controversial rewrite in history just shipped...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;CXSvKcLovAk">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
@@ -4117,11 +4478,42 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-10 datetime="2026-07-10T12:40:15.000Z">2026-07-10</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-10 datetime="2026-07-10T12:40:15.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-10 datetime="2026-07-10T17:25:44.000Z">2026-07-10</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-10 datetime="2026-07-10T17:25:44.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;URKml8lgw8Y"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI is so back... GPT 5.6 Sol first look</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;URKml8lgw8Y">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -4203,106 +4595,10 @@ Tags: datasette, llm-tool-use, datasette-agent</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-09 datetime="2026-07-09T13:00:00.000Z">2026-07-09</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-09 datetime="2026-07-09T13:00:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.6 is now the preferred model in Microsoft 365 Copilot</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Learn how GPT-5.6 powers Microsoft 365 Copilot with stronger AI capabilities across Word, Excel, PowerPoint, Chat, and Cowork for faster, higher-quality work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/chatgpt-for-your-most-ambitious-work"
-                        open
-                      >
-                        <summary class="article-expander__title">ChatGPT is now a partner for your most ambitious work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-for-your-most-ambitious-work">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/gpt-5-6"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.6: Frontier intelligence that scales with your ambition</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-6">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>More intelligence from every token, stronger performance per dollar, and more capability on demand for your hardest work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bio-bug-bounty"
-                        open
-                      >
-                        <summary class="article-expander__title">GPT-5.5 Bio Bug Bounty</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bio-bug-bounty">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Details about the OpenAI Bio Bounty program</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/31141715435">
-        <time id="build-timestamp" datetime="2026-08-07T02:36:20.950Z">2026-08-07T02:36:20.950Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/31232668038">
+        <time id="build-timestamp" datetime="2026-08-08T01:27:35.887Z">2026-08-08T01:27:35.887Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
