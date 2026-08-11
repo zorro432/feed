@@ -22,6 +22,280 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-10 datetime="2026-08-10T23:56:03.000Z">2026-08-10</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-10 datetime="2026-08-10T23:56:03.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/10/introducing-muse-glimmer/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Muse Glimmer</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/10/introducing-muse-glimmer/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/glimmer-pelican.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Introducing Muse Glimmer
+They claim to have optimized it for exactly the kind of things I&#x27;m looking for in a local model:
+End-to-end Agentic Task Completion. Muse Glimmer achieves strong success rates on full-task benchmarks including DeepSearch QA, MCP-Atlas, 𝛕-Bench and SWE-Bench, which measure its ability to work within scaffolds, write and debug code, and resolve multi-turn requests from start to finish.
+Reliable Tool Use. The model handles a wide range of function calls, invoking tools with precise schemas throughout extended workflows.
+Multi-Step Reasoning. Muse Glimmer chains reasoning over long horizons, sustaining coherent plans across complex, extended workflows. [...]
+Here&#x27;s a pelican which I generated using LM Studio&#x27;s 18.16 GB version of the model:
+
+I also tried it out with my llm-coding-agent plugin, running against a fresh checkout of Datasette with the prompt:
+how does auth work?
+Here&#x27;s the response, at the end of a long transcript showing all of the tool calls it made to explore the codebase. I ran this using llm-lmstudio with this patch applied to upgrade it for compatibility with LLM 0.32.
+I really like this size of model, because if a machine has 32 GB of RAM or more (mine has 128GB) it leaves plenty of space for running other applications at the same time.
+Glimmer is a vision model, so I asked it to describe this image:
+llm -m lmstudio/meta/muse-glimmer -a https://static.inaturalist.org/photos/714731804/large.jpg &#x27;describe image&#x27;
+
+Here&#x27;s what I got back:
+The photograph shows a rocky, breakwater-style shoreline on an overcast day with a smooth, gray body of water and a faint dock/pier line in the soft-focused background.
+In the foreground two large brown pelicans, Pelecanus occidentalis, are perched on the jumbled gray-white stones. They have the species’ characteristic long, down-curved yellow-orange bills with a large throat pouch, long slender necks and mottled brown-gray plumage on the back and wings. The pelican on the left is turned slightly toward the camera and appears to be preening or resting its bill against its chest; a pale, whitish patch is visible on the crown and nape and a small crest of feathers is raised. The pelican on the right faces mostly forward/right, its head up, bill pointing down and to the right, with the same pale head markings and the barred, darker wing feathers clearly visible.
+Scattered among the rocks around the two pelicans are several much smaller dark birds — gulls/tern-like birds in muted brown-gray plumage. One dark bird sits on the far left on a rock, another brownish bird stands to the right of the right-hand pelican, a grayish bird with a reddish bill is in the lower right foreground, and a further small dark bird is at the extreme right edge of the frame. 
+The overall light is flat and diffused, giving the water and sky a muted, almost monochromatic palette that contrasts with the textured rock and the detailed feathering of the pelicans. The composition places the two big birds as the dominant subjects, framed against the calm water and the low, rocky perch.
+Via Hacker News
+Tags: ai, generative-ai, llama, local-llms, llms, llm, vision-llms, meta, pelican-riding-a-bicycle, llm-release</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/10/openclaw/#atom-everything"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting OpenClaw</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/10/openclaw/#atom-everything">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The API has zero authorisations checks on cancelling other people&#x27;s reservations … I tested this with the person in waitlist position #1 — and it actually went through. So you&#x27;ve moved from #4 to #3 already.
+
+— OpenClaw, hacking an Australian gym-booking website
+Tags: ai-ethics, generative-ai, openclaw, ai, ai-security-research, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/building-an-ai-native-finance-function"
+                        open
+                      >
+                        <summary class="article-expander__title">What building an AI-native finance function taught me</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/building-an-ai-native-finance-function">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI CFO Sarah Friar shares five lessons for building an AI-native finance function, from automated forecasting to stronger controls and AI ROI.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/responsible-ai-infrastructure-texas"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI’s letter to Governor Abbott on responsible AI infrastructure in Texas</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/responsible-ai-infrastructure-texas">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI sent Governor Greg Abbott a letter outlining its commitment to responsible AI infrastructure in Texas. The letter supports reliable, transparent growth that benefits Texans.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/model-ml"
+                        open
+                      >
+                        <summary class="article-expander__title">Model ML completes finance work more efficiently with GPT-5.6 Sol</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/model-ml">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Model ML uses GPT-5.6 Sol to carry finance work from research and analysis through editable, traceable PowerPoint decks and Excel workbooks.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows"
+                        open
+                      >
+                        <summary class="article-expander__title">Expanding Daybreak as the Cyber Defense Window Narrows</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands"
+                        open
+                      >
+                        <summary class="article-expander__title">Putting frontier cyber models in more trusted hands</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Approved Daybreak partners can use OpenAI’s frontier cyber models to deliver authorized, governed cybersecurity services to customers.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/premium-seats-chatgpt-business"
+                        open
+                      >
+                        <summary class="article-expander__title">Premium seats are coming to ChatGPT Business</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/premium-seats-chatgpt-business">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Premium seats are coming to ChatGPT Business. Sign up by August 20 to get $100 in workspace credits and unlock higher usage for your team&#x27;s most demanding work.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/zapier"
+                        open
+                      >
+                        <summary class="article-expander__title">How Zapier transformed core marketing processes with ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/zapier">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/virgin-atlantic/chatgpt-work"
+                        open
+                      >
+                        <summary class="article-expander__title">Virgin Atlantic sharpens customer journeys with ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/virgin-atlantic/chatgpt-work">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/products/ads-commerce/google-ads-analytics-ai-updates/"
+                        open
+                      >
+                        <summary class="article-expander__title">Evolve your marketing with new AI tools</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products/ads-commerce/google-ads-analytics-ai-updates/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Advisor_Header.width-1300.jpg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Learn how new AI and agentic experiences across Google Ads and Google Analytics can simplify your marketing workflow.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-09 datetime="2026-08-09T23:31:39.000Z">2026-08-09</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-09 datetime="2026-08-09T23:31:39.000Z"></time>
           </button>
@@ -802,7 +1076,7 @@ Tags: security, ai, generative-ai, llms, meta, accidental-cyberattacks</span>
                               <img src="https://i.ytimg.com/vi/FjalStmjUpw/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLB96pGQQbtLHiQJ0BDNfmR5JObawg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Jack Dorsey’s company, Block, recently launched Buzz. It&#x27;s basically a Slack workspace but for AI agents, and it&#x27;s currently free, decentralized and open-sou...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2135,68 +2409,6 @@ Tags: json, projects, python, llm</span>
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">Open letters about AI development</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Open letters about AI development
-I wrote this summary of the past few weeks of open letters as a section of my sponsors-only newsletter but I&#x27;ve decided to share it here as well.
-Open Weights and American AI Leadership was shepherded by Microsoft, dated July 24th, and signed by 235 AI-adjacent companies including NVIDIA (see Jensen&#x27;s first ever tweet), Amazon, Y Combinator, The Linux Foundation, and (a later signer) OpenAI.
-It&#x27;s clearly an argument designed to counter any instincts by the current US government to ban or limit open weight models over &quot;safety&quot; concerns - a reasonable consideration given what happened to Claude Fable 5!
-Relying solely on closed models is not inherently safe: they can be breached, misused, or fail in ways that outsiders cannot detect. And concentrating advanced AI capabilities behind a small number of closed models compounds that risk. It results in a small number of single points of failure, weakens competition, and leaves critical technology in the hands of a few providers. Open weight models, on the other hand, allow a broad community of researchers and developers to examine their behavior, identify vulnerabilities, develop safeguards, and improve them over time.
-The one surprising note in the letter is that it comes out in support of distillation, where models train on output from other models:
-In shaping this ecosystem, policymakers should be careful not to conflate legitimate model-development techniques with misappropriation. Distillation, or the practice of using one model’s outputs to help train or improve another, is a widely used technique for model improvement, evaluation, and validation. It reflects a long tradition of learning from, building upon, and improving existing technologies, a tradition that has helped drive innovation since the rise of the open-source software movement.
-Notably absent from the signatures: Anthropic, who published their own response Our position on open-weights models three days later. CEO Dario Amodei doubled down on the risk of authoritarian governments building &quot;AI models that are more powerful than those built by the US&quot;, and models being &quot;misused to carry out cyberattacks or biological attacks&quot;, and called for &quot;a crack down on industrial-scale distillation operations&quot;, while also stating that &quot;Anthropic has never advocated for a ban on open-weights models&quot;.
-Then on July 28th Pacing the Frontier was published, featuring signatures from &quot;1,324 employees of frontier AI companies&quot; - with names like Jakub Pachocki (Chief Scientist, OpenAI), Ilya Sutskever (Safe Superintelligence Inc, previously OpenAI), Dario Amodei (Anthropic), Jack Clark (Anthropic) and more. Their core message:
-We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development.
-Their concern is intense competitive pressure combined with accelerated AI progress caused by automated AI research - and given that Anthropic produce 80% of their code with Claude Code, OpenAI had Sol reduce their end-to-end serving costs by 20%, and Kimi K3 designed a chip to serve a nano model built on its own architecture, you can see why people are taking that risk more seriously right now.
-Tags: anthropic, generative-ai, openai, ai, llms, ai-ethics</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/2/july-newsletter/#atom-everything"
-                        open
-                      >
-                        <summary class="article-expander__title">July 2026 newsletter</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/2/july-newsletter/#atom-everything">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The July edition of my sponsors-only monthly newsletter is out. If you are a sponsor (or if you start a sponsorship now) you can access it here.
-This month:
-Accidental cyberattacks by OpenAl and Anthropic models under test
-GPT-5.6 Sol, Terra, and Luna
-Claude Opus 5
-Kimi K3 and DeepSeek-V4-Flash-0731
-Open letters about Al development
-A fireside chat and a podcast
-Reigniting my interest in MCP
-Other model releases
-My projects
-What I&#x27;m using at the moment
-Here&#x27;s a copy of the June newsletter as a preview of what you&#x27;ll get. Pay $10/month to stay a month ahead of the free copy!
-Tags: newsletter</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -2238,7 +2450,7 @@ Tags: newsletter</span>
                               <img src="https://i.ytimg.com/vi/PaNIJ9l2NOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLC2JVGSns3iJEFBIMFsc_Z81jxUeg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Here&#x27;s how to turn AI into your own personal Jarvis 🤖By using the voice features on ChatGPT and Claude, you can now build, edit, and iterate on interactive ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2399,7 +2611,7 @@ Tags: newsletter</span>
                               <img src="https://i.ytimg.com/vi/qXp5NHz0KSo/hqdefault.jpg?sqp&#x3D;-oaymwEkCMoBEOgCSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLCzjSp88CCsi6TE7TAQmx4ZU-5Zog" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Here&#x27;s how to access the secret AI model everyone is trying to get their hands on 👀Kimi K3 is apparently so powerful that they had to pause new subscription...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2461,7 +2673,7 @@ Tags: newsletter</span>
                         <summary class="article-expander__title">The Most Capable Humanoid Robot Yet!</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Q60VNdtyiAA">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/Q60VNdtyiAA/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLCxBgXTu_v9iQOtWNVmAvF7vs-dZA" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/Q60VNdtyiAA/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLCy8bc3UfLMi_XJSMRl1tBPvNtfnw" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Google just released Gemini Robotics 2 today, and it&#x27;s a much bigger leap than you may think.Unlike previous models, it coordinates everything from feet to f...</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;12
@@ -2823,7 +3035,7 @@ Tags: newsletter</span>
                         <summary class="article-expander__title">#ad Why AI Intelligence Is Overrated</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/_3qXTqdEFm4">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/_3qXTqdEFm4/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLDtCBxForMk5-kerD26lxGFOOAcBQ" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/_3qXTqdEFm4/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD_KCGpOZUStYoVbzAdH9zVjORLLQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Unpopular opinion: AI intelligence is kind of overrated. #ServiceNowPartnerThe hardest part about AI right now ISN’T making it smarter, but making it work sa...</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;12
@@ -3092,7 +3304,7 @@ Tags: newsletter</span>
                               <img src="https://i.ytimg.com/vi/n0JhhZyGP_w/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLCgFej5CGNhefWN8FkbJIvSbqXz7Q&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Did Meta actually think we wouldn’t notice this? 🫣Recently, Meta rolled out a new image-generation feature called Muse Image. On paper, it was pitched as a ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3634,10 +3846,10 @@ Tags: newsletter</span>
                         <summary class="article-expander__title">This ring replaces your keyboard?</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Yoz0CeZYO8E">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/Yoz0CeZYO8E/oar2.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAAAAJQAAyEI9AICiQ3gBuAL3GA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLCjl9e31ZsUXkI_BGKsNkgWB85LYw&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/Yoz0CeZYO8E/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLB0534tvEPg1cQu9PhWDfN-DkFo6w&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This RING Replaces Your Keyboard??Meet the OASIS 1, a titanium smart ring designed to change how you interact with your devices.Instead of typing, you simply...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4309,8 +4521,8 @@ Tags: newsletter</span>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/31347784891">
-        <time id="build-timestamp" datetime="2026-08-10T01:42:33.125Z">2026-08-10T01:42:33.125Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/31449945727">
+        <time id="build-timestamp" datetime="2026-08-11T01:39:23.279Z">2026-08-11T01:39:23.279Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
