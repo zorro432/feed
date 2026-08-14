@@ -1,10 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-13T01:52:32.942Z</id>
+    <id>urn:2026-08-14T01:50:51.724Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-13T01:52:32.942Z</updated>
+    <updated>2026-08-14T01:50:51.724Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[sqlite-utils 4.2.1]]></title>
+        <id>https://simonwillison.net/2026/Aug/13/sqlite-utils-2/</id>
+        <link href="https://simonwillison.net/2026/Aug/13/sqlite-utils-2/"/>
+        <updated>2026-08-13T23:53:47.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-utils/releases/tag/4.2.1">sqlite-utils 4.2.1</a></p>
+        <p>Fixes a crashing bug in <a href="https://simonwillison.net/2026/Aug/13/sqlite-utils/">sqlite-utils 4.2</a>. I'd introduced code that looks like this:</p>
+<pre><code>from typing_extensions import Self
+</code></pre>
+<p>It turned out the <a href="https://pypi.org/project/typing-extensions/">typing-extensions</a> package was not listed as a dependency for <code>sqlite-utils</code> - it was installed by one of the other dependencies in the <a href="https://github.com/simonw/sqlite-utils/blob/56dd09702fdb9e899f577ffd51693c1f2176cb08/pyproject.toml#L34-L55">dev dependency group</a>, but when you <code>uvx sqlite-utils</code> directly you don't get those dependencies.</p>
+<p>As part of fixing this I figured out how to run a smoke test to ensure the CLI tool still works even without those dev dependencies, which can be run from the project checkout:</p>
+<pre><code>uv run --isolated --no-default-groups sqlite-utils --help
+</code></pre>
+<p>The <code>--no-default-groups</code> argument prevents it from installing that default <code>dev</code> group, and <code>--isolated</code> means that even if there is a <code>.venv/</code> folder containing extra dependencies they will be ignored for the duration of that <code>uv run</code> command.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/packaging">packaging</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a>, <a href="https://simonwillison.net/tags/uv">uv</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sqlite-utils 4.2]]></title>
+        <id>https://simonwillison.net/2026/Aug/13/sqlite-utils/</id>
+        <link href="https://simonwillison.net/2026/Aug/13/sqlite-utils/"/>
+        <updated>2026-08-13T20:11:29.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/sqlite-utils/releases/tag/4.2">sqlite-utils 4.2</a></p>
+        <p>Lots of improvements in this one relating to the <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table">table.transform() feature</a>, which adds support for complex alter table operations by creating a fresh table, copying across the data and then dropping and replacing the old one.</p>
+<p><code>transform()</code> now preserves a much larger array of edge-case schema definitions, including check constraints, unique constraints and even comments describing the columns.</p>
+<p>There are also <a href="https://sqlite-utils.datasette.io/en/stable/python-api.html#checks">new introspection properties</a> for check constraints, and a whole lot of other smaller changes.</p>
+<p>Includes contributions from <a href="https://github.com/bunlongheng">Bunlong Heng</a>, <a href="https://github.com/ethanhawkes-gif">ethanhawkes-gif</a>, <a href="https://github.com/RamiNoodle733">Rami Abdelrazzaq</a>, <a href="https://github.com/nyxst4ck">nyxst4ck</a>, and <a href="https://github.com/ikatyal2110">ikatyal2110</a>.</p>
+<p>(It later turned out 4.2 had <a href="https://github.com/simonw/sqlite-utils/issues/842">a crashing bug</a>, fixed in <a href="https://sqlite-utils.datasette.io/en/stable/changelog.html#v4-2-1">4.2.1</a>.)</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/releases">releases</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing Gemini 3.7 Flash]]></title>
+        <id>https://deepmind.google/blog/introducing-gemini-3-7-flash/</id>
+        <link href="https://deepmind.google/blog/introducing-gemini-3-7-flash/"/>
+        <updated>2026-08-13T17:04:18.000Z</updated>
+        <summary type="html"><![CDATA[Gemini 3.7 Flash is our most intelligent workhorse model yet for coding and agents.]]></summary>
+        <author>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bring your spreadsheet data to life with Sheets canvas]]></title>
+        <id>https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/</id>
+        <link href="https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/"/>
+        <updated>2026-08-13T16:45:00.000Z</updated>
+        <summary type="html"><![CDATA[Sheets canvas turns data into interactive dashboards, custom study trackers, seating charts, and more, all with a simple prompt.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The builder’s guide to GPT‑5.6]]></title>
+        <id>https://openai.com/index/builders-guide-to-gpt-5-6</id>
+        <link href="https://openai.com/index/builders-guide-to-gpt-5-6"/>
+        <updated>2026-08-13T11:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how startups use GPT-5.6 to build faster, more cost-efficient AI agents with smarter model selection and new Responses API capabilities.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Previewing Ultrafast mode: GPT-5.6 Sol at up to 14X the speed]]></title>
+        <id>https://openai.com/index/previewing-ultrafast</id>
+        <link href="https://openai.com/index/previewing-ultrafast"/>
+        <updated>2026-08-13T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Preview Ultrafast, a new OpenAI API service tier that runs GPT-5.6 Sol up to 14× faster. Powered by Cerebras, it delivers up to 750 output tokens per second.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI appoints Dali Rajic as Chief Revenue Officer]]></title>
+        <id>https://openai.com/index/dali-rajic-chief-revenue-officer</id>
+        <link href="https://openai.com/index/dali-rajic-chief-revenue-officer"/>
+        <updated>2026-08-13T09:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI appoints Dali Rajic as Chief Revenue Officer to lead its global revenue organization and help businesses realize the full value of AI.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[alchemy-utils 0.1a1]]></title>
+        <id>https://simonwillison.net/2026/Aug/13/alchemy-utils/</id>
+        <link href="https://simonwillison.net/2026/Aug/13/alchemy-utils/"/>
+        <updated>2026-08-13T03:03:17.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/alchemy-utils/releases/tag/0.1a1">alchemy-utils 0.1a1</a></p>
+        <p>Performance boost for DuckDB exports and CSV imports, <a href="https://simonwillison.net/2026/Aug/12/alchemy-utils/">see here</a>.</p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Making An Actually Fun 3D Game with AI]]></title>
+        <id>https://www.youtube.com/watch?v=qK4nV_LnXxQ</id>
+        <link href="https://www.youtube.com/watch?v=qK4nV_LnXxQ"/>
+        <updated>2026-08-13T01:53:16.000Z</updated>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[When Unlearning Is Free: Leveraging Low Influence Points to Reduce Computational Costs]]></title>
+        <id>unlearning-low-influence-points</id>
+        <link href="https://machinelearning.apple.com/research/unlearning-low-influence-points"/>
+        <updated>2026-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[As concerns around data privacy in machine learning grow, the ability to unlearn, or remove, specific data points from trained models becomes increasingly important. While state of the art unlearning methods have emerged in response, they typically treat all points in the forget set equally. In this work, we challenge this approach by asking whether points that have a negligible impact on the model’s learning need to be removed. Through a comparative analysis of influence functions across language and vision tasks, we identify subsets of training data with negligible impact on model outputs…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[DeepSeek V4 Pro 0813 (on OpenRouter)]]></title>
         <id>https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/</id>
@@ -12,7 +131,7 @@
         <updated>2026-08-12T23:59:23.000Z</updated>
         <summary type="html"><![CDATA[<p><strong><a href="https://openrouter.ai/deepseek/deepseek-v4-pro-0813">DeepSeek V4 Pro 0813 (on OpenRouter)</a></strong></p>
 The latest DeepSeek Pro model is now available, via API only. I had to link to OpenRouter because DeepSeek don't have any obvious announcement page for their new model.</p>
-<p>I haven't been able to confirm if they plan to release the open weights, but given the weights are available for both April's <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro">deepseek-ai/DeepSeek-V4-Pro</a> and July's <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731">deepseek-ai/DeepSeek-V4-Flash-0731</a> it seems likely.</p>
+<p>I haven't been able to confirm if they plan to release the open weights, but given the weights are available for both April's <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro">deepseek-ai/DeepSeek-V4-Pro</a> and July's <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731">deepseek-ai/DeepSeek-V4-Flash-0731</a> it seems likely. <strong>Update</strong>: the weights <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813">are now available</a> on Hugging Face, 1.7T parameters, 893 GB.</p>
 <p>Interestingly I got <a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fc1108a380593547c2def5863bca63160"><em>very</em> different looking pelicans</a> for the three different reasoning levels of low, medium, and high. I've not noticed this kind of difference from any other model:</p>
 <p>Low:</p>
 <p><img alt="Flat vector illustration of a white pelican with a large orange beak, wearing a straw hat with an orange band, riding a teal road bicycle in profile, set against a pale cream circle with a dashed outline and small motion marks trailing behind." src="https://static.simonwillison.net/static/2026/deepseek-pro-low.png" /></p>
@@ -24,6 +143,49 @@ The latest DeepSeek Pro model is now available, via API only. I had to link to O
 
 
     <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/deepseek">deepseek</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[alchemy-utils 0.1a0]]></title>
+        <id>https://simonwillison.net/2026/Aug/12/alchemy-utils/</id>
+        <link href="https://simonwillison.net/2026/Aug/12/alchemy-utils/"/>
+        <updated>2026-08-12T19:51:30.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/alchemy-utils/releases/tag/0.1a0">alchemy-utils 0.1a0</a></p>
+        <p>I've long pondered what a database agnostic version of my <a href="https://sqlite-utils.datasette.io/">sqlite-utils</a> Python library and CLI utility might look like. This morning (literally a shower project) I tasked Codex and GPT-5.6 Sol Ultra with building a prototype:</p>
+<blockquote>
+<p><code>Do a research spike to see what it would take to build a library with the same core API as SQLite-utils - in particular the insert and upsert and insert_all and upsert_all and create and update methods, and the table introspection stuff - but backed by SQLalchemy so it works for multiple database engines</code></p>
+<p><code>Test against PostgreSQL and SQLite and duckdb</code></p>
+<p><code>Use ~/dev/sqlite-utils for reference</code></p>
+<p><code>Create a git repo for this and commit and early and often - use uv init to start the project - use red/green TDD and pytest, see ~/dev/django-sql-dashboard for one idea as to how the PostgreSQL tests could work</code></p>
+</blockquote>
+<p>It took <a href="https://gist.github.com/simonw/bd10e4886688e0fd1b833e4afaabf19e">very few follow-up prompts</a> to produce this project in a state good enough to release as an alpha.</p>
+<p>Here's a one-liner I can use to list the rows in a table in my local PostgreSQL copy of my blog's database:</p>
+<p><code>uvx --with 'alchemy-utils[postgresql]' alchemy-utils rows 'postgresql+psycopg://simon@localhost:5432/simonwillisonblog'  redirects_redirect</code></p>
+<p>The output from that starts like this:</p>
+<pre><code>[
+  {
+    "id": 2328,
+    "domain": "simonwillison.net",
+    "path": "2020/May/21/apple-photos-sqlite/",
+    "target": "/2020/May/21/dogsheep-photos/",
+    "created": "2020-05-21T13:03:46.591692-07:00"
+  },
+  {
+    "id": 3,
+    "domain": "feeds.simonwillison.net",
+    "path": "swn-links",
+    "target": "https://simonwillison.net/atom/links/",
+    "created": "2017-10-01T14:12:54.820729-07:00"
+  }
+</code></pre>
+<p>Or if you'd like a DuckDB database with <a href="https://github.com/simonw/sf-tree-history/blob/main/Street_Tree_List.csv">every tree in San Francisco</a>, schema created automatically to match the file:</p>
+<p><code>curl 'https://raw.githubusercontent.com/simonw/sf-tree-history/refs/heads/main/Street_Tree_List.csv' | uvx --with 'alchemy-utils[duckdb]' alchemy-utils insert 'duckdb:////tmp/trees.db' trees - --csv</code></p>
+<p>(That one took nearly an hour the first time I ran it, so I <a href="https://github.com/simonw/alchemy-utils/commit/e3b8d03e040867b256aeff7db322a0b0eb1f8b06">had Codex optimize it</a> and got it down to around 35 seconds.)</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/databases">databases</a>, <a href="https://simonwillison.net/tags/postgresql">postgresql</a>, <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/sql">sql</a>, <a href="https://simonwillison.net/tags/sqlalchemy">sqlalchemy</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a>, <a href="https://simonwillison.net/tags/duckdb">duckdb</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/codex">codex</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -342,6 +504,16 @@ Meta are back in the open weights game! Muse Glimmer is a brand new 30B model un
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Premium seats are coming to ChatGPT Business]]></title>
+        <id>https://openai.com/index/premium-seats-chatgpt-business</id>
+        <link href="https://openai.com/index/premium-seats-chatgpt-business"/>
+        <updated>2026-08-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Premium seats are coming to ChatGPT Business. Sign up by August 20 to get $100 in workspace credits and unlock higher usage for your team's most demanding work.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Virgin Atlantic sharpens customer journeys with ChatGPT Work]]></title>
         <id>https://openai.com/index/virgin-atlantic/chatgpt-work</id>
         <link href="https://openai.com/index/virgin-atlantic/chatgpt-work"/>
@@ -357,16 +529,6 @@ Meta are back in the open weights game! Muse Glimmer is a brand new 30B model un
         <link href="https://openai.com/index/zapier"/>
         <updated>2026-08-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Premium seats are coming to ChatGPT Business]]></title>
-        <id>https://openai.com/index/premium-seats-chatgpt-business</id>
-        <link href="https://openai.com/index/premium-seats-chatgpt-business"/>
-        <updated>2026-08-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Premium seats are coming to ChatGPT Business. Sign up by August 20 to get $100 in workspace credits and unlock higher usage for your team's most demanding work.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1238,76 +1400,6 @@ llm chat-completions-server --port 9000
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[llm-anthropic 0.26]]></title>
-        <id>https://simonwillison.net/2026/Aug/4/llm-anthropic/</id>
-        <link href="https://simonwillison.net/2026/Aug/4/llm-anthropic/"/>
-        <updated>2026-08-04T22:00:58.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.26">llm-anthropic 0.26</a></p>
-        <p>Includes new features enabled by <a href="https://simonwillison.net/2026/Aug/4/new-release-of-llm/">LLM 0.32</a>:</p>
-<blockquote>
-<ul>
-<li>New models: <code>claude-fable-5</code>, <code>claude-sonnet-5</code>, and <code>claude-opus-5</code>. <a href="https://github.com/simonw/llm-anthropic/issues/75">#75</a>, <a href="https://github.com/simonw/llm-anthropic/issues/76">#76</a></li>
-<li>Added server-side tools for <code>WebSearch</code>, <code>WebFetch</code>, <code>CodeExecution</code>, and <code>AnthropicMCP</code>, available through LLM's <code>-T</code> interface or Python <code>tools=</code>. The previous <code>-o web_search*</code> options have been removed in favor of <code>-T WebSearch</code>. <a href="https://github.com/simonw/llm-anthropic/issues/79">#79</a></li>
-<li>Upgraded to <a href="https://llm.datasette.io/en/stable/changelog.html#v0-32">llm&gt;=0.32</a>. Reasoning, tool calls, tool results, and server-side tool results now stream as typed events. Reasoning for <code>llm</code> CLI prompts now displays to standard error unless you pass <code>--hide-reasoning/-R</code>.</li>
-<li>Simplified extended thinking to <code>thinking</code> and <code>thinking_effort</code> (<code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code>, or <code>max</code>). Claude 5 models think by default; <code>-o thinking 0</code> disables thinking for Sonnet 5 and Opus 5, while Fable 5 always thinks. <code>-R/--hide-reasoning</code> now omits reasoning from responses and logs. The <code>thinking_budget</code>, <code>thinking_display</code>, and <code>thinking_adaptive</code> options have been removed. <a href="https://github.com/simonw/llm-anthropic/issues/80">#80</a></li>
-</ul>
-</blockquote>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/model-context-protocol">model-context-protocol</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PipeNetwork/minimax-h3-mlx]]></title>
-        <id>https://simonwillison.net/2026/Aug/4/minimax-h3-mlx/</id>
-        <link href="https://simonwillison.net/2026/Aug/4/minimax-h3-mlx/"/>
-        <updated>2026-08-04T19:10:09.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://github.com/PipeNetwork/minimax-h3-mlx">PipeNetwork/minimax-h3-mlx</a></strong></p>
-MiniMax released <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMax-H3</a> two days ago - they describe it as a "a general-purpose, omni-modal generative system", which in practice means it accepts text, images, audio and video and can use them to generate up to 15 second video clips with audio included.</p>
-<p>This Python package ports it to MLX for running on Apple Silicon.</p>
-<p>I got it running on my M5 Max MacBook Pro. I cloned the repo and ran the model like this:</p>
-<pre><code># First download the models
-uvx --from huggingface_hub hf download MiniMaxAI/MiniMax-H3 \
-  --include 'FL2VA/*' --exclude 'FL2VA/transformer/*'
-uvx --from huggingface_hub hf download pipenetwork/MiniMax-H3-MLX-8bit
-
-# Now run the prompt
-uv run --with mlx-vlm \
-  --with-requirements requirements.txt python scripts/generate.py \
-  "a rainbow colored skunk leaps over a mossy log in a supermarket" \
-  -o skunk.mp4 \
-  -c ~/.cache/huggingface/hub/models--MiniMaxAI--MiniMax-H3/snapshots/fa9c8ab1eaa21c8ae25e7e40b83b2e6002f340af/FL2VA \
-  -t ~/.cache/huggingface/hub/models--pipenetwork--MiniMax-H3-MLX-8bit/snapshots/3ac52081470b0488921c3ec3ba84a39097bf2361
-</code></pre>
-<p>Here's the video I got for the prompt:</p>
-<blockquote>
-<p><code>a rainbow colored skunk leaps over a mossy log in a supermarket</code></p>
-</blockquote>
-<p><video
-    controls loop
-    preload="none"
-    poster="https://static.simonwillison.net/static/2026/skunk.jpg"
-    width="1344"
-    height="768"
-    style="display: block; width: 100%; height: auto;"
-  >
-    <source src="https://static.simonwillison.net/static/2026/skunk.web.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-</p>
-
-<p>It downloaded ~115 GB of model files, and the video generation took just under 45 minutes.</p>
-<p>The video is impressive, but the audio is weird speech-like garbage, because I didn't provide any prompt guidance as to what the audio should be. The <a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md">prompting guide</a> (which I didn't read prior to this experiment) has a whole bunch of information on how to get this to work.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/mlx">mlx</a>, <a href="https://simonwillison.net/tags/text-to-video">text-to-video</a>, <a href="https://simonwillison.net/tags/minimax">minimax</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Third-party cyber evaluations involving OpenAI models]]></title>
         <id>https://openai.com/index/third-party-cyber-evaluations-involving-openai-models</id>
         <link href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models"/>
@@ -1315,20 +1407,6 @@ uv run --with mlx-vlm \
         <summary type="html"><![CDATA[OpenAI explains recent third-party cybersecurity evaluation incidents and outlines new safeguards to strengthen AI model testing and evaluation.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[llm 0.32]]></title>
-        <id>https://simonwillison.net/2026/Aug/4/llm/</id>
-        <link href="https://simonwillison.net/2026/Aug/4/llm/"/>
-        <updated>2026-08-04T17:15:33.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.32">llm 0.32</a></p>
-        <p>See <a href="https://simonwillison.net/2026/Aug/4/new-release-of-llm/">my detailed blog post about this release</a>.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1349,19 +1427,6 @@ uv run --with mlx-vlm \
         <summary type="html"><![CDATA[Here are Google’s latest AI updates from July 2026]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Steve Yegge]]></title>
-        <id>https://simonwillison.net/2026/Aug/4/steve-yegge/</id>
-        <link href="https://simonwillison.net/2026/Aug/4/steve-yegge/"/>
-        <updated>2026-08-04T00:42:45.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://yegge.ai/essays/the-shape-of-things-to-come/"><p><a href="https://yegge.ai/gastown.html">Gas Town</a> was intended to be reusable, but I only ever wound up using it to build itself. Gas Town fell apart at the seams with Opus 4.7. Up through 4.6 it was working brilliantly. With 4.7 we saw the introduction of the "just two more things" tic, which prevented Opus from ever converging on being ready to do real work—it always wanted to fiddle with Gas Town itself. The Opus tic never went away, so Gas Town effectively burned down. It had other problems, too, but 4.7 was the final straw.</p></blockquote>
-<p class="cite">&mdash; <a href="https://yegge.ai/essays/the-shape-of-things-to-come/">Steve Yegge</a>, The Shape of Things to Come</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/steve-yegge">steve-yegge</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1683,16 +1748,6 @@ uv run --with mlx-vlm \
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Memory Efficient Audio Synthesis with Decoupled Temporal Depth Diffusion Transformers]]></title>
-        <id>audio-synthesis-diffusion-transformers</id>
-        <link href="https://machinelearning.apple.com/research/audio-synthesis-diffusion-transformers"/>
-        <updated>2026-07-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Siri Expressive Voices synthesize rich, configurable speech in real time and entirely on device, powered by AFM 3 Core Advanced, Apple’s most powerful on-device foundation model. This work presents the memory-efficient audio synthesis architecture behind that capability: a detokenizer that converts the semantic audio tokens emitted by the foundation model into high-fidelity audio within the tight compute and memory budget of the Apple Matrix Coprocessor (AMX). We convert semantic audio tokens to a residual vector quantization (RVQ) representation with a three-component design—a streaming…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How AI is expanding what people do at work]]></title>
         <id>https://openai.com/index/how-ai-is-expanding-what-people-do-at-work</id>
         <link href="https://openai.com/index/how-ai-is-expanding-what-people-do-at-work"/>
@@ -1976,16 +2031,6 @@ uv run --with mlx-vlm \
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Which AI Is Better? 🖥️ WEBSITE EDITION]]></title>
-        <id>https://www.youtube.com/shorts/FO5zsDIY6Yc</id>
-        <link href="https://www.youtube.com/shorts/FO5zsDIY6Yc"/>
-        <updated>2026-07-16T14:40:45.000Z</updated>
-        <summary type="html"><![CDATA[I gave two of the most popular AI website builders the exact same prompt:Build a landing page for Midjourney's crazy new full-body scanner product.Both gener...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our approach to bioresilience]]></title>
         <id>https://deepmind.google/blog/our-approach-to-bioresilience/</id>
         <link href="https://deepmind.google/blog/our-approach-to-bioresilience/"/>
@@ -2022,36 +2067,6 @@ uv run --with mlx-vlm \
         <updated>2026-07-15T17:39:02.000Z</updated>
         <author>
             <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The US is advancing AI safety through state and federal action]]></title>
-        <id>https://openai.com/index/advancing-ai-safety-through-state-and-federal-action</id>
-        <link href="https://openai.com/index/advancing-ai-safety-through-state-and-federal-action"/>
-        <updated>2026-07-15T12:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI outlines a “reverse federalism” approach to AI governance, where state laws help build a national framework for safe, democratic AI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT-Red: Unlocking Self-Improvement for Robustness]]></title>
-        <id>https://openai.com/index/unlocking-self-improvement-gpt-red</id>
-        <link href="https://openai.com/index/unlocking-self-improvement-gpt-red"/>
-        <updated>2026-07-15T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explore GPT-Red, OpenAI’s automated red teaming system that uses self-play to improve AI safety, alignment, and prompt injection robustness.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Celebrating 25 years of visual search innovation]]></title>
-        <id>https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary/</id>
-        <link href="https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary/"/>
-        <updated>2026-07-14T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Google Images is turning 25. Here’s a look back at some major milestones — and new ways to explore and create visual content.]]></summary>
-        <author>
-            <name>AI</name>
         </author>
     </entry>
 </feed>
