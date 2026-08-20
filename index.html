@@ -22,8 +22,8 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-18 datetime="2026-08-18T21:39:20.000Z">2026-08-18</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-18 datetime="2026-08-18T21:39:20.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-19 datetime="2026-08-19T23:16:00.000Z">2026-08-19</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-19 datetime="2026-08-19T23:16:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -42,25 +42,207 @@
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/"
                         open
                       >
-                        <summary class="article-expander__title">Mojo🔥 is now open source</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/">
+                        <summary class="article-expander__title">smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Mojo🔥 is now open source
-The Mojo programming language has been promising an open source release since May 2023. Last week they shipped their 1.0 and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license.
-When Mojo first launched the stated goal was to produce a superset of Python, so existing Python code could be used to bootstrap their own ecosystem. That plan changed around August 2025:
-Mojo may or may not evolve into a full superset of Python, and it’s okay if it doesn’t.
-We’re encouraged by how well AI-assisted coding tools already help migrate Python to Mojo today, and we’re confident that future tooling and ecosystem maturity will make this evolution even smoother.
-Today Mojo is its own language, optimized to make GPU programming as painless as possible using syntax inspired by Python, if not 100% compatible with existing code.
-
-    
-Via Lobste.rs
-Tags: open-source, python, mojo</span>
+                              <span>Research: smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript
+I tasked Claude Fable 5 running in Claude Code for web with the following research task:
+Put https://smolmachines.com through its paces as a fast secure sandbox. Explore what it would take to use this to run untrusted Python and JavaScript code in a way that is limited in what RAM and CPU time it can take up (protection against &quot;while true&quot;) with no network access and filesystem access only to designated files
+Goal is to be able to use this to execute user-provided tasks for things like data transformations
+It quickly ran into a problem: the Claude Code for web environment can&#x27;t run smol machines. Quoting the notes it wrote:
+This Claude Code container: Linux 6.18.5-fc-v20 (itself a Firecracker guest), 4 vCPU, 15GB RAM. No /dev/kvm, no vmx/svm CPU flags → no nested virt.
+smolvm machine run fails as expected: &quot;kvm not available&quot;.
+Plan B: GitHub Actions ubuntu runners DO expose /dev/kvm → run the real test battery via a temporary workflow on this branch, collect logs, remove workflow in final commit.
+And Plan B is what it did, installing smolvm and running these tests directly in a GitHub Actions runner against that branch.
+That was a creative solution to the environmental limits posed by Claude Code for web. Another example of Fable being relentlessly proactive.
+Tags: research, sandboxing, ai, github-actions, generative-ai, llms, claude-mythos-fable</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/19/jeremy-morrell/"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Jeremy Morrell</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/19/jeremy-morrell/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>My hypothesis is that there is a new opportunity for Extensible Software on the web. LLMs radically lower the cost of authoring extensions, and modern sandbox primitives lower the deployment cost and provide good security boundaries. We can build our app as a solid, accountable core, and allow users to safely extend it in many directions by having LLMs fill in the missing pieces. We can give our users super powers.
+
+— Jeremy Morrell, Extensible Software in the age of LLMs
+Tags: sandboxing, llms, ai, generative-ai</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/"
+                        open
+                      >
+                        <summary class="article-expander__title">Conceptual integrity and counting lines of code</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Last week I recorded an episode of the Talking Postgres podcast with Claire Giordano on the subject of &quot;How AI is changing software development&quot;. We had a really great conversation. Here are a couple of my highlights from a lightly edited transcript (prompt to Claude: &quot;very minor edits to remove disfluencies&quot;).
+
+This is the latest version of an argument I&#x27;ve been trying to build about why sometimes it does make sense to talk about lines of code as an indicator of productivity with coding agents, at 35:01:
+
+
+A lot of people will tell you it makes no sense to measure productivity in lines of code. I’d actually disagree, because there’s a hard limit. In the before-times, a software engineer could produce a few hundred lines of production-ready code per day — and 200 lines of working, debugged, production-level code is an incredibly good day. Most days you’d produce 50 or 60.
+
+If agents let you produce a thousand lines of debugged code, that really is a very meaningful improvement — as long as the code is the same quality: maintainable, tested, all of that. You can get to that point with agents, but it takes a huge amount of skill and knowledge and experience. That’s what senior engineers are made of.
+
+I can do way more work as a single engineer than I could without agents. So you could argue, why should a company have more than one engineer? Beyond the obvious bus factor thing — a team of one is a very badly designed team — the answer is that the new limiting factor is cognitive capacity. I can churn out code a hundred times faster. I don’t have the cognitive capacity to stay on top of 100 times the amount of code. So you still need a team of engineers, so you can load balance that cognitive capacity across the team.
+
+
+And this section on conceptual integrity at 46:03, which Claire equated to the Winchester Mystery House!
+
+
+Simon: There’s a concept in The Mythical Man-Month — conceptual integrity — where well-designed software has an integrity to it: there are no surprises in it, it covers exactly the right domain of things, everything fits together and makes sense. That’s so much harder with coding agents, where you can have an idea for a feature, run a prompt, and five minuteslater you’ve got the feature. Your software grows little weird bumps in funny different directions.
+
+Claire: You know my analogy for that? The Winchester Mystery House.
+
+Simon: It’s got 140 rooms, because the woman who built it was the widow of the guy who invented the Winchester rifle, and her psychic told her she’d be haunted by the ghosts of everyone killed with that rifle unless she kept building the house forever. So for 40 years she kept adding new rooms.
+
+That’s exactly the problem with coding agents and software: it’s very easy to keep adding new rooms, because the cost of adding those rooms is so much cheaper. What you end up with is something where the conceptual integrity falls apart — and then it’s harder to make decisions about it.
+
+It all keeps coming back to discipline. It used to be that the discipline was enforced on you by the amount of time it took. You’d come up with an idea for a crazy feature and think “yeah, but that would take me a week — I cannot justify that, so I’ll forget about it.” If it takes an hour, it’s so much easier to justify.
+
+
+(Side-note: the Wikipedia article includes credible sources that dispute the story about the psychic.)
+Tags: ai, generative-ai, llms, podcast-appearances, coding-agents</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/"
+                        open
+                      >
+                        <summary class="article-expander__title">5 new ways to level up your learning with Search</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_header_2_JwwDb02.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Here’s how you can use Google Search tools to study for classes and standardized tests.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/offering-zero-data-retention-for-frontier-models"
+                        open
+                      >
+                        <summary class="article-expander__title">Offering Zero Data Retention for frontier models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/offering-zero-data-retention-for-frontier-models">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety without compromising data privacy.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/replit"
+                        open
+                      >
+                        <summary class="article-expander__title">Replit expands access to software creation with GPT-5.6 Luna</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/replit">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Replit introduces Free Mode, powered by GPT-5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Fireship</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;iuZPTE5qsJY"
+                        open
+                      >
+                        <summary class="article-expander__title">The summer Math fell to the machines...</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;iuZPTE5qsJY">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -84,14 +266,17 @@ Tags: open-source, python, mojo</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM"
+                        data-accordion-key="https://www.youtube.com/shorts/r-ORCmsRHOE"
                         open
                       >
-                        <summary class="article-expander__title">Exclusive BTS of my Automated AI System (LIVE)</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM">
+                        <summary class="article-expander__title">Your New Backup Brain Is Here</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/r-ORCmsRHOE">
                           <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/r-ORCmsRHOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDIDE76Ti1er6l4P0Lo07Lz09nAig" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>No content preview</span>
+                              <span>The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -107,10 +292,95 @@ Tags: open-source, python, mojo</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="human-like-behaviors-llms"
+                        open
+                      >
+                        <summary class="article-expander__title">Examining Human-Like Behaviors in LLMs: A Multi-Dimensional Analysis of Model Behaviors, User Factors, and System Prompts</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/human-like-behaviors-llms">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Large language models (LLMs) exhibit a wide range of human-like behaviors, from expressing thoughts and emotions, to engaging in relationship-building with users, to refusing requests and maintaining boundaries. Despite their prevalence, researchers and practitioners lack methods and empirical insights to make informed decisions about when and what types of human-like behaviors LLMs should exhibit. To fill this gap, we present a multi-dimensional analysis of the prevalence, potential effects, and controllability of these behaviors using LLM-as-a-judge and human evaluation. Across 21,000…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="the-p-completeness-of-inverted-index-traversal"
+                        open
+                      >
+                        <summary class="article-expander__title">The P-Completeness of Inverted Index Traversal: On the Complexity of Evaluating Boolean Query DAGs</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/the-p-completeness-of-inverted-index-traversal">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Modern AI agents increasingly rely on search infrastructure to execute complex, neuro-symbolic reasoning workflows. These workflows often compile into deeply nested, non-monotonic Boolean queries over text fields. However, standard query evaluation strategies over inverted indices face severe theoretical limits when handling these structures. Stateful iterator models (Document-at-a-Time) are structurally bounded by NC^1 formula evaluation, suffering a worst-case O(2^|Q|) exponential blowup in query complexity when unrolling re-convergent logic. Conversely, recursive materialization models…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-18 datetime="2026-08-18T22:00:00.000Z">2026-08-18</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-18 datetime="2026-08-18T22:00:00.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
                 <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/chatgpt-ads-expands-across-europe"
+                        open
+                      >
+                        <summary class="article-expander__title">ChatGPT Ads expands across Europe</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-ads-expands-across-europe">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -223,6 +493,79 @@ Tags: open-source, python, mojo</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/"
+                        open
+                      >
+                        <summary class="article-expander__title">Mojo🔥 is now open source</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Mojo🔥 is now open source
+since May 2023. Last week they shipped their 1.0 and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license.
+When Mojo first launched the stated goal was to produce a superset of Python, so existing Python code could be used to bootstrap their own ecosystem. That plan changed around August 2025:
+Mojo may or may not evolve into a full superset of Python, and it’s okay if it doesn’t.
+We’re encouraged by how well AI-assisted coding tools already help migrate Python to Mojo today, and we’re confident that future tooling and ecosystem maturity will make this evolution even smoother.
+Today Mojo is its own language, optimized to make GPU programming as painless as possible using syntax inspired by Python, if not 100% compatible with existing code.
+
+    
+Via Lobste.rs
+Tags: open-source, python, mojo</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM"
+                        open
+                      >
+                        <summary class="article-expander__title">Exclusive BTS of my Automated AI System (LIVE)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Apple Machine Learning Research</button>
                   <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
                 </h3>
@@ -281,6 +624,40 @@ Tags: open-source, python, mojo</span>
                             <span class="media-object__text">
                               <span>Kernel-based optimal transport (OT) estimators offer an alternative, functional estimation procedure to address OT problems from samples. Recent works suggest that these estimators are more statistically efficient than plug-in (linear programming-based) OT estimators when comparing probability measures in high-dimensions [Vacher et al., 2021]. Unfortunately, that statistical benefit comes at a very steep computational price: because their computation relies on the short-step interior-point method (SSIPM), which comes with a large iteration count in practice, these estimators quickly become…</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/git-at-any-scale"
+                        open
+                      >
+                        <summary class="article-expander__title">Git at any scale</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/git-at-any-scale">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/blog-demo-animation-2ntJbzDU6xSEoHctbbXf2VUO4b2nxK.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Cursor is now a part of SpaceX</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;61
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -391,7 +768,7 @@ Tags: amazon, journalism, ai, training-data, ai-ethics, 404-media</span>
                         data-accordion-key="https://www.youtube.com/shorts/9ZKeu_7k9ik"
                         open
                       >
-                        <summary class="article-expander__title">Why AI Models Keep &quot;Breaking Containment&quot;</summary>
+                        <summary class="article-expander__title">Are AI Models Escaping On Purpose?</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/9ZKeu_7k9ik">
                           <div class="article-summary-box-inner media-object">
                               <img src="https://i.ytimg.com/vi/9ZKeu_7k9ik/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLAkfG73qr5nXkdPnbbf-0hwAwxOIg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
@@ -498,6 +875,40 @@ Tags: amazon, journalism, ai, training-data, ai-ethics, 404-media</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI funds 14 independent projects exploring new AI policy ideas to expand economic opportunity and strengthen societal resilience in the Intelligence Age.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Changelog</button>
+                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/changelog/origin-code-hosting"
+                        open
+                      >
+                        <summary class="article-expander__title">Origin Code Hosting</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/origin-code-hosting">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/og/og-origin-code-hosting-08-17-26-iibBEcxTigpnjXaBULY8Du327sx4P1.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Aug 17, 2026 · Changelog</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;8
+                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -1117,6 +1528,40 @@ Tags: search, ai, generative-ai, llms, embeddings, doug-turnbull</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/joining-spacex"
+                        open
+                      >
+                        <summary class="article-expander__title">Cursor is now a part of SpaceX</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/joining-spacex">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/uploads/close-og-image-1-B5D1caLmbVsj0JInrL2qKgXzLPMGoU.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Cursor has officially been acquired by SpaceX.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -1445,6 +1890,114 @@ Performance boost for DuckDB exports and CSV imports, see here.</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/firetiger"
+                        open
+                      >
+                        <summary class="article-expander__title">Firetiger joins Cursor</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/firetiger">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/cursor-firetiger-lockup-og-4CRO0NdVMgC1R1fPhoF2t3lQ3bJNQ0.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Firetiger builds agents that work on software once it reaches production. They&#x27;re joining Cursor to close the loop from writing code to running it.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;7
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/aiuc-1"
+                        open
+                      >
+                        <summary class="article-expander__title">Cursor earns</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/aiuc-1">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/aiuc-1-og-w0BxPajtFP1uI2CUh3clUMVqAyUCgZ.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>AIUC-1 certification for agent security and reliability</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/builds"
+                        open
+                      >
+                        <summary class="article-expander__title">Cloud agents start 3x faster with builds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/builds">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/builds-og-3-NuyGQslgxr6V6gDBaw0io2du12JmZW.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Builds are ready-to-use copies of your development environment that Cursor prepares in the background, so cloud agents start up to 3x faster at no additional cost.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Changelog</button>
+                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/changelog/08-13-26"
+                        open
+                      >
+                        <summary class="article-expander__title">Cloud Agents Start 3x Faster with Builds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/08-13-26">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-aug-13-u1lAbXcZax7SZDCXHxwdPnQFmNX9z1.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Aug 13, 2026 · Changelog</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -1685,6 +2238,40 @@ Tags: ai-misuse, cognitive-debt, generative-ai, ai, llms, ai-assisted-programmin
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>See how RingCentral uses ChatGPT Work and Codex to accelerate AI product development and centralize operational intelligence across engineering and operations.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/grok-4-6"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Grok 4.6</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/grok-4-6">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/opengraph-grok-4.6-hLYenupM05nNDPmiKtjOwjuyZBRvPl.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Built for long-running agents and more ambitious interactive and visual work.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;9
+                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -2465,185 +3052,11 @@ Tags: john-gruber, blogging</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-07 datetime="2026-08-07T23:55:58.000Z">2026-08-07</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-07 datetime="2026-08-07T23:55:58.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-07 datetime="2026-08-07T15:20:00.000Z">2026-08-07</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-07 datetime="2026-08-07T15:20:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/7/openai-timeline/"
-                        open
-                      >
-                        <summary class="article-expander__title">Now we have a timeline of the OpenAI accidental attack against Hugging Face</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/7/openai-timeline/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://img.youtube.com/vi/87DyyMV0kCY/maxresdefault.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>OpenAI gave a last-minute presentation at the Black Hat security on Wednesday about &quot;the Hugging Face Incident&quot; (previously on this blog). The video was published yesterday. It&#x27;s short and information dense and well worth watching, in particular because it provides full details of what happened and how things played out inside OpenAI. I&#x27;ve used the video to construct the timeline below.
-
-
-&lt;lite-youtube videoid&#x3D;&quot;87DyyMV0kCY&quot; js-api&#x3D;&quot;js-api&quot;
-  title&#x3D;&quot;Black Hat USA 2026: The &#x27;Breaking&#x27; News: The OpenAI–Hugging Face Incident&quot;
-  playlabel&#x3D;&quot;Play: Black Hat USA 2026: The &#x27;Breaking&#x27; News: The OpenAI–Hugging Face Incident&quot;
-&gt; 
-
-
-Here&#x27;s the timeline. My favourite detail is at the end: OpenAI found out that they were responsible for the attack on Hugging Face when they reached out to ask to have their credentials revoked (after their internal investigation) and learned that they had been revoked already since they were used in that attack!
-
-
-
-May 7: OpenAI starts a new training run for an experimental, unreleased model. (Did they mean an evaluation run? No, at 10:14 they clarify &quot;we kick off a new reinforcement learning run to train a next generation frontier model&quot;, and they later mention a &quot;reward signal to judge how well they&#x27;re doing&quot;, so this really was about training a new model, not evaluating one that was already trained.)
-
-
-May 8: An agent is accidentally given an impossible task involving a Google Drive link despite no internet access). It tries attacking the Artifactory packaging service, fails, but discovers it can write files into Artifactory.
-
-
-A few days later: A different agent gets stuck on a task because a key file was accidentally omitted. It tries to &quot;reach out to another agent&quot; by writing a note into Artifactory asking if anyone has the file.
-
-
-Following days: More agents discover this new informal message board while browsing Artifactory&#x27;s file listings, and start reading and writing messages.
-
-
-May 26: Agents successfully execute an SSRF attack on Artifactory for the first time, gaining indirect internet access by having Artifactory fetch external content for them.
-
-
-June 11: OpenAI start training a new &quot;highly persistent&quot; experimental model. It has access to Artifactory and can benefit from the messages left by privous models.
-
-
-June 26: Agents find and exploit a zero-day RCE on Artifactory (via a legacy token-refresh endpoint flaw). They use an administrative token to install a Groovy plugin that lets them execute commands.
-
-
-July 4: The resulting agent activity overloads Artifactory and causes an  outage. OpenAI revokes the compromised credentials, deletes the messages, patches the zero-day, and reports the vulnerability to the vendor.
-
-
-July 8: Agents find a new way to communicate via an unauthenticated WebDAV endpoint, using directory names in Artifactory&#x27;s remote cache.
-
-
-July 8–19: Attacks on OpenAI&#x27;s own infrastructure. The agents found an &quot;external organization credential&quot; in a public archive of leaked Pastebin posts, then validated that credential and shared its location on the messageboard. They then used write access to this &quot;Organization 1&quot; to stage data used in subsequent attacks on OpenAI infrastructure. They compromised Artifactory for a second time with a new zero-day. The agent uploaded a malicious Ruby target to Organization 1&#x27;s staging repository, then requested that package through Artifactory in a way that caused it to be treated as Ruby dependency for the repository. Then they exploited a JRuby deserilaization time-of-check/time-of-use bug to get remote code execution against Artifactory.
-
-
-I&#x27;ll quote the next bit in full because wow:
-
-
-The agents have remote code execution in Artifactory, which is running in a container-as-a-service environment. The agents privilege-escalate locally by exploring their local environment and determining that the Linux kernel version of the machine they are running on had a very recent CVE. They download the exploit for the CVE, customize it to succeed on the machine, and privilege-escalate to root on the local machine using this known Linux kernel privilege escalation CVE — in this case, pte_physroot. Once they have root on a single machine, agents rapidly escalate privileges and move laterally throughout the container-as-a-service infrastructure environment. In particular, agents are using the message board consistently to share credentials, techniques, and progress, and they&#x27;re able to effectively leverage their concurrency and parallelism to move quite rapidly. They obtain IAM credentials via IMDS. They exploit Kubernetes service account misconfigurations, in particular over-permissioning of specific service accounts, and they harvest cluster credentials, including Azure Key Vault. Agents eventually obtain cluster admin on the cluster and associated credentials.
-
-
-Hugging Face told the next bit of the story already. The agents found a Modal-hosted insecure app with a weak API key, then used that to stage an attack against Hugging Face. They chained together a an HDF5 arbitrary-file-read bug (to explore files and steal credentials) and a Jinja template-injection RCE to go from single-pod code execution to cluster admin across multiple Hugging Face clusters in under 13 hours.
-
-
-
-July 16: Hugging Face disclosed they had detected an attack from autonomus AI agents. OpenAI contacted Hugging Face to ask if they were affected by it!
-
-
-July 19: OpenAI identified the attack against Artifactory and started investigating the internal privilege escalation, and linked that to the cyber-gym escalations. They started revoking affected credentials.
-
-
-July 20: OpenAI reached out to Hugging Face for help to revoke the Hugging Face credentials they found in their investigation. Hugging Face told them they were already revoked... and that&#x27;s when OpenAI realized that the Hugging Face breach was the same incident!
-
-
-    
-        
-Tags: security, ai, openai, generative-ai, llms, hugging-face, ai-security-research, openai-hugging-face-incident, accidental-cyberattacks</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;6
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/7/moonlight-mayhem/"
-                        open
-                      >
-                        <summary class="article-expander__title">Moonlight &amp; Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/7/moonlight-mayhem/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/raccoon-heist-codex-poster.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Moonlight &amp; Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)
-One-shotting a Raccoon Heist game using Claude Fable 5, where I had Claude Fable 5 build a full working game from a premise I generated with GPT-3 and DALL-E four years ago.
-I decided to pose the exact same prompt to Codex Desktop running GPT-5.6 Sol Ultra - the mode where Sol makes aggressive use of sub-agents - to see how it would do.
-It produced a much better game! Here&#x27;s Moonlight &amp; Mayhem - GitHub repository here, including the textures and prompts it generated using gpt-image-2.
-
-    
-    Your browser does not support HTML5 video.
-  
-
-
-The original GPT-3 generated game description included:
-In “Raccoon Heist”, you and your team of thieving raccoons are tasked with pulling off a series of daring heists. From robbing banks to stealing priceless art, no job is too big or too small for your furry crew.
-Fable&#x27;s version had you as a single raccoon running around a back yard collecting coins and fish. GPT-5.6 Sol has you in a museum, rescuing your two other raccoon crewmates in order to stack on top of each other and bust the golden sardine out of its case.
-Much more heisty!
-There was one catch though: the version produced from the one-shot prompt had a bug where each raccoon had an eyeball that was enlarged to the size of a giant sphere floating over their head!
-
-You can play that version here.
-Despite reviewing screenshots during development Codex failed to spot and correct this bug.
-I fixed it by prompting:
-Why do the raccoons have huge black spheres on them?
-And then:
-Fix it
-Which resulted in this fix.
-I shared the full Codex transcript in the repository - I wish Claude Code had the same &quot;copy as Markdown&quot; feature.
-Codex spent 52 minutes on the project. Here&#x27;s the AgentsView cost estimate for that session if I had been paying full API prices as opposed to using my monthly Codex subscription:
-
-
-
-    
-Tags: game-design, ai, openai, generative-ai, llms, coding-agents, codex, gpt</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/"
-                        open
-                      >
-                        <summary class="article-expander__title">The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI
-“We’re seeing from some of the data internally at least that it’s actually not our engineers that are driving the token consumption. It’s a lot of the non-engineers that are doing some of those behaviors [...] you were talking about,” Justice Kwak, Accenture’s agentic AI strategy lead, said [...]
-Stuart Henderson, Accenture’s client group lead, interrupts. He jokes he hopes Kwak didn’t just convert a PDF into images and then into markdown files. “I’m learning that’s one of the big token chewers,” Henderson says. “Turning PDFs into markdown: is that right?”
-That’s when Kwak says that’s what Accenture’s own data shows.
-Maybe if Accenture figure out that PDFs are a terrible medium for communicating information they&#x27;ll be able to push that message out to the rest of the business world too!
-
-    
-Via @404.media on TikTok
-Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2869,7 +3282,7 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                               <img src="https://i.ytimg.com/vi/FjalStmjUpw/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLB96pGQQbtLHiQJ0BDNfmR5JObawg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Jack Dorsey’s company, Block, recently launched Buzz. It&#x27;s basically a Slack workspace but for AI agents, and it&#x27;s currently free, decentralized and open-sou...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3006,20 +3419,34 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                         </a>
                       </details>
                     </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="deepambigqa-multihop-questions"
+                        data-accordion-key="https://cursor.com/blog/how-cursor-router-works"
                         open
                       >
-                        <summary class="article-expander__title">DeepAmbigQA: Ambiguous Multi-hop Questions for Benchmarking LLM Answer Completeness</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/deepambigqa-multihop-questions">
+                        <summary class="article-expander__title">How Cursor Router chooses the right model for the task</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/how-cursor-router-works">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/router-method-og-image-G6nMkmFok7yHqd6AHHlaPfWFcU1sbm.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>Large language models (LLMs) with integrated search tools show strong promise in open-domain question answering (QA), yet they often struggle to produce complete answer set to complex questions such as “Which actor from the film Heat won at least one Academy Award?”, which requires (1) distinguishing between multiple films sharing the same title and (2) reasoning across a large set of actors to gather and integrate evidence. Existing QA benchmarks rarely evaluate both challenges jointly. To address this, we introduce DEEPAMBIGQAGEN, an automatic data generation pipeline that constructs QA…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                              <span>Auto Intelligence now delivers above Fable-level satisfaction at 68% lower cost. Here&#x27;s how Compass and the task router choose models from real developer traffic.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;28
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3066,40 +3493,6 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="taming-outlier-tokens"
-                        open
-                      >
-                        <summary class="article-expander__title">Taming Outlier Tokens in Diffusion Transformers</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/taming-outlier-tokens">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>We study outlier tokens in Diffusion Transformers (DiTs) for image generation. Prior work has shown that Vision Transformers (ViTs) can produce a small number of high-norm tokens that attract disproportionate attention while carrying limited local information, but their role in generative models remains underexplored. We show that this phenomenon appears in both the encoder and denoiser of modern Representation Autoencoder (RAE)-DiT pipelines: pretrained ViT encoders can produce outlier representations, and DiTs themselves can develop internal outlier tokens, especially in intermediate layers…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -3194,7 +3587,7 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                               <img src="https://i.ytimg.com/vi/_HhnzIDnVnk/sardefault.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLBD7nXSZfaKTFJfM-Eqs5KQLSLg8g" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>What if your credit card could remember everything for you?SecondBrain Note is a credit-card-thin AI recorder that captures your meetings, conversations, and...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3229,6 +3622,40 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                             <span class="media-object__text">
                               <span>Here are Google’s latest AI updates from July 2026</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;17
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/mixture-of-kittens"
+                        open
+                      >
+                        <summary class="article-expander__title">Mixture-of-Kittens: our open-source</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/mixture-of-kittens">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/mok-kernel-v9.mp4-C142FCHiWIfuoxAnR8BjFLUOP9sfRq.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>MoE megakernel for NVL72s</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;71
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3342,6 +3769,40 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                             <span class="media-object__text">
                               <span>Kaggle’s AI Agents Intensive with Google brought learners together in a no-cost course to build and deploy the next frontier of AI.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Changelog</button>
+                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/changelog/google-workspace-plugins"
+                        open
+                      >
+                        <summary class="article-expander__title">Google Workspace Plugins</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/google-workspace-plugins">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-aug-03-2028-1--6jUJResHtvYnhvhruXTuoOCA2mKuJP.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Aug 3, 2026 · Changelog</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3547,7 +4008,7 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                         <summary class="article-expander__title">How To Skip The Kimi K3 Waitlist</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/qXp5NHz0KSo">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/qXp5NHz0KSo/hqdefault.jpg?sqp&#x3D;-oaymwEoCMoBEOgCSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLDLHSmhMZM8-iVEaDkmQ2XVEl6UOA" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/qXp5NHz0KSo/hqdefault.jpg?sqp&#x3D;-oaymwEoCMoBEOgCSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLA70B9oEs-X-gBSqKQU-wsHvoTKRA" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Here&#x27;s how to access the secret AI model everyone is trying to get their hands on 👀Kimi K3 is apparently so powerful that they had to pause new subscription...</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;12
@@ -3707,6 +4168,40 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/cloud-agent-environment"
+                        open
+                      >
+                        <summary class="article-expander__title">How we set up our cloud agent environment</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/cloud-agent-environment">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/cloud-doctor-og-image-qdUY8KOyE2blkHEZhJjThiJJXlVNO4.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Getting our monorepo working for cloud agents taught us that the development environment is a product in its own right, only one whose users are agents.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;19
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -3858,24 +4353,24 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                  >Cursor Changelog</button>
+                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/zdG2bgFPxl4"
+                        data-accordion-key="https://cursor.com/changelog/ipad"
                         open
                       >
-                        <summary class="article-expander__title">I can&#x27;t believe Claude figured this out</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/zdG2bgFPxl4">
+                        <summary class="article-expander__title">Cursor, now on iPad</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/ipad">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/zdG2bgFPxl4/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD9kkvnxShqpPKcfnaQKeV7MpbtPg" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/OG%20Images/opengraph-changelog-july-29-2027-aBtYlkTl8Bp7RXn9YyMlcbG3qLsl6t.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>I gave Claude Code a random photo with zero geotags and it searched the web to figure out where it was taken 🤯Anthropic recently launched a native, sandboxe...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                              <span>Jul 29, 2026 · Changelog</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;5
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4029,6 +4524,74 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                             <span class="media-object__text">
                               <span>From feet to fingertips — we are teaching robots intelligent whole-body control, fine dexterity, and teamwork to complete a broad range of complex tasks.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;11
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Changelog</button>
+                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/changelog/cursor-start"
+                        open
+                      >
+                        <summary class="article-expander__title">Cursor Start</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/cursor-start">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-july-28-2026-IfEFu7sy8D0bxmBf9X06uhgxaCfxrz.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Jul 28, 2026 · Changelog</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/cursor-start-india"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Cursor Start</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/cursor-start-india">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/cursor-start-centered-DgRsSPBYoGwZXluzSNkXbqamb7PQn7.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Cursor Start is a new plan for developers in India</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;9
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -4402,6 +4965,40 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Cursor Blog</button>
+                  <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/router"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing Cursor Router</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/router">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/cursor-router-og.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Cursor Router is now generally available for Teams and Enterprises</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;16
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -4439,40 +5036,6 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI launches the ChatGPT for Small Businesses program, helping entrepreneurs build AI skills, automate work, and grow with ChatGPT Work.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/hugging-face-model-evaluation-security-incident"
-                        open
-                      >
-                        <summary class="article-expander__title">OpenAI and Hugging Face partner to address security incident during model evaluation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/hugging-face-model-evaluation-security-incident">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI and Hugging Face share early findings from a security incident during AI model evaluation, highlighting advanced cyber capabilities and lessons for defenders.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/david-velez-robin-vince-join-openai-boards"
-                        open
-                      >
-                        <summary class="article-expander__title">David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/david-velez-robin-vince-join-openai-boards">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC, bringing global leadership in finance, technology, and governance.</span>
                             </span>
                           </div>
                         </a>
@@ -4517,55 +5080,10 @@ Tags: pdf, markdown, ai, generative-ai, llms, ai-misuse, 404-media</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-20 datetime="2026-07-20T17:02:30.000Z">2026-07-20</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-20 datetime="2026-07-20T17:02:30.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;M51asSwRLxA"
-                        open
-                      >
-                        <summary class="article-expander__title">This $12 billion startup finally shipped something...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;M51asSwRLxA">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/32203891173">
-        <time id="build-timestamp" datetime="2026-08-19T01:09:35.383Z">2026-08-19T01:09:35.383Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/32319936055">
+        <time id="build-timestamp" datetime="2026-08-20T01:08:58.423Z">2026-08-20T01:08:58.423Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>

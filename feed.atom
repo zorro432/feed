@@ -1,18 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-19T01:09:35.415Z</id>
+    <id>urn:2026-08-20T01:08:58.456Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-19T01:09:35.415Z</updated>
+    <updated>2026-08-20T01:08:58.456Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[smolmachines / smolvm as a sandbox for untrusted Python & JavaScript]]></title>
+        <id>https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/</id>
+        <link href="https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/"/>
+        <updated>2026-08-19T23:16:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/smolmachines-untrusted-sandbox#readme">smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript</a></p>
+        <p>I tasked Claude Fable 5 running in Claude Code for web with the following research task:</p>
+<blockquote>
+<p><code>Put https://smolmachines.com through its paces as a fast secure sandbox. Explore what it would take to use this to run untrusted Python and JavaScript code in a way that is limited in what RAM and CPU time it can take up (protection against "while true") with no network access and filesystem access only to designated files</code></p>
+<p><code>Goal is to be able to use this to execute user-provided tasks for things like data transformations</code></p>
+</blockquote>
+<p>It quickly ran into a problem: the Claude Code for web environment can't run <a href="https://smolmachines.com">smol machines</a>. Quoting the <a href="https://github.com/simonw/research/blob/5e6861e54441472d194de96b49b901fd99ebc153/smolmachines-untrusted-sandbox/notes.md#environment-check">notes it wrote</a>:</p>
+<blockquote>
+<ul>
+<li>This Claude Code container: Linux 6.18.5-fc-v20 (itself a Firecracker guest), 4 vCPU, 15GB RAM. <strong>No /dev/kvm, no vmx/svm CPU flags</strong> → no nested virt.</li>
+<li><code>smolvm machine run</code> fails as expected: "kvm not available".</li>
+<li>Plan B: GitHub Actions ubuntu runners DO expose /dev/kvm → run the real test battery via a temporary workflow on this branch, collect logs, remove workflow in final commit.</li>
+</ul>
+</blockquote>
+<p>And Plan B is <a href="https://github.com/simonw/research/blob/5e6861e54441472d194de96b49b901fd99ebc153/.github/workflows/smolvm-sandbox-test.yml">what it did</a>, installing smolvm and running <a href="https://github.com/simonw/research/blob/5e6861e54441472d194de96b49b901fd99ebc153/smolmachines-untrusted-sandbox/run-tests.sh">these tests</a> directly in a GitHub Actions runner against that branch.</p>
+<p>That was a creative solution to the environmental limits posed by Claude Code for web. Another example of Fable being <a href="https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/">relentlessly proactive</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/research">research</a>, <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Jeremy Morrell]]></title>
+        <id>https://simonwillison.net/2026/Aug/19/jeremy-morrell/</id>
+        <link href="https://simonwillison.net/2026/Aug/19/jeremy-morrell/"/>
+        <updated>2026-08-19T22:56:31.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/"><p>My hypothesis is that <strong>there is a new opportunity for Extensible Software on the web</strong>. LLMs radically lower the cost of authoring extensions, and modern sandbox primitives lower the deployment cost and provide good security boundaries. We can build our app as a solid, accountable core, and allow users to safely extend it in many directions by having LLMs fill in the missing pieces. <strong>We can give our users super powers.</strong></p></blockquote>
+<p class="cite">&mdash; <a href="https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/">Jeremy Morrell</a>, Extensible Software in the age of LLMs</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Conceptual integrity and counting lines of code]]></title>
+        <id>https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/</id>
+        <link href="https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/"/>
+        <updated>2026-08-19T22:46:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>Last week I recorded <a href="https://talkingpostgres.com/episodes/how-ai-is-changing-software-development-with-simon-willison">an episode of the Talking Postgres podcast</a> with Claire Giordano on the subject of "How AI is changing software development". We had a really great conversation. Here are a couple of my highlights from a lightly edited transcript (prompt to Claude: "very minor edits to remove disfluencies").</p>
+<p>This is the latest version of an argument I've been trying to build about why sometimes it <em>does</em> make sense to talk about lines of code as an indicator of productivity with coding agents, at <a href="https://talkingpostgres.com/episodes/how-ai-is-changing-software-development-with-simon-willison#t=35m1s">35:01</a>:</p>
+<blockquote>
+<p>A lot of people will tell you it makes no sense to measure productivity in lines of code. I’d actually disagree, because there’s a hard limit. In the before-times, a software engineer could produce a few hundred lines of production-ready code per day — and 200 lines of working, debugged, production-level code is an incredibly good day. Most days you’d produce 50 or 60.</p>
+<p>If agents let you produce a thousand lines of debugged code, that really is a very meaningful improvement — as long as the code is the same quality: maintainable, tested, all of that. You can get to that point with agents, but it takes a huge amount of skill and knowledge and experience. That’s what senior engineers are made of.</p>
+<p>I can do way more work as a single engineer than I could without agents. So you could argue, why should a company have more than one engineer? Beyond the obvious bus factor thing — a team of one is a very badly designed team — the answer is that the new limiting factor is cognitive capacity. I can churn out code a hundred times faster. I don’t have the cognitive capacity to stay on top of 100 times the amount of code. So you still need a team of engineers, so you can load balance that cognitive capacity across the team.</p>
+</blockquote>
+<p>And this section on conceptual integrity at <a href="https://talkingpostgres.com/episodes/how-ai-is-changing-software-development-with-simon-willison#t=46m3s">46:03</a>, which Claire equated to the <a href="https://en.wikipedia.org/wiki/Winchester_Mystery_House">Winchester Mystery House</a>!</p>
+<blockquote>
+<p><strong>Simon</strong>: There’s a concept in <em>The Mythical Man-Month</em> — conceptual integrity — where well-designed software has an integrity to it: there are no surprises in it, it covers exactly the right domain of things, everything fits together and makes sense. That’s so much harder with coding agents, where you can have an idea for a feature, run a prompt, and five minuteslater you’ve got the feature. Your software grows little weird bumps in funny different directions.</p>
+<p><strong>Claire</strong>: You know my analogy for that? The Winchester Mystery House.</p>
+<p><strong>Simon</strong>: It’s got 140 rooms, because the woman who built it was the widow of the guy who invented the Winchester rifle, and her psychic told her she’d be haunted by the ghosts of everyone killed with that rifle unless she kept building the house forever. So for 40 years she kept adding new rooms.
+
+That’s exactly the problem with coding agents and software: it’s very easy to keep adding new rooms, because the cost of adding those rooms is so much cheaper. What you end up with is something where the conceptual integrity falls apart — and then it’s harder to make decisions about it.</p>
+<p>It all keeps coming back to discipline. It used to be that the discipline was enforced on you by the amount of time it took. You’d come up with an idea for a crazy feature and think “yeah, but that would take me a week — I cannot justify that, so I’ll forget about it.” If it takes an hour, it’s so much easier to justify.</p>
+</blockquote>
+<p>(Side-note: the Wikipedia article includes credible sources that dispute the story about the psychic.)</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/podcast-appearances">podcast-appearances</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[5 new ways to level up your learning with Search]]></title>
+        <id>https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/</id>
+        <link href="https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/"/>
+        <updated>2026-08-19T19:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Here’s how you can use Google Search tools to study for classes and standardized tests.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Offering Zero Data Retention for frontier models]]></title>
+        <id>https://openai.com/index/offering-zero-data-retention-for-frontier-models</id>
+        <link href="https://openai.com/index/offering-zero-data-retention-for-frontier-models"/>
+        <updated>2026-08-19T19:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety without compromising data privacy.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The summer Math fell to the machines...]]></title>
+        <id>https://www.youtube.com/watch?v=iuZPTE5qsJY</id>
+        <link href="https://www.youtube.com/watch?v=iuZPTE5qsJY"/>
+        <updated>2026-08-19T18:45:57.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Your New Backup Brain Is Here]]></title>
+        <id>https://www.youtube.com/shorts/r-ORCmsRHOE</id>
+        <link href="https://www.youtube.com/shorts/r-ORCmsRHOE"/>
+        <updated>2026-08-19T13:37:12.000Z</updated>
+        <summary type="html"><![CDATA[The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Replit expands access to software creation with GPT-5.6 Luna]]></title>
+        <id>https://openai.com/index/replit</id>
+        <link href="https://openai.com/index/replit"/>
+        <updated>2026-08-19T07:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Replit introduces Free Mode, powered by GPT-5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Examining Human-Like Behaviors in LLMs: A Multi-Dimensional Analysis of Model Behaviors, User Factors, and System Prompts]]></title>
+        <id>human-like-behaviors-llms</id>
+        <link href="https://machinelearning.apple.com/research/human-like-behaviors-llms"/>
+        <updated>2026-08-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Large language models (LLMs) exhibit a wide range of human-like behaviors, from expressing thoughts and emotions, to engaging in relationship-building with users, to refusing requests and maintaining boundaries. Despite their prevalence, researchers and practitioners lack methods and empirical insights to make informed decisions about when and what types of human-like behaviors LLMs should exhibit. To fill this gap, we present a multi-dimensional analysis of the prevalence, potential effects, and controllability of these behaviors using LLM-as-a-judge and human evaluation. Across 21,000…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The P-Completeness of Inverted Index Traversal: On the Complexity of Evaluating Boolean Query DAGs]]></title>
+        <id>the-p-completeness-of-inverted-index-traversal</id>
+        <link href="https://machinelearning.apple.com/research/the-p-completeness-of-inverted-index-traversal"/>
+        <updated>2026-08-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Modern AI agents increasingly rely on search infrastructure to execute complex, neuro-symbolic reasoning workflows. These workflows often compile into deeply nested, non-monotonic Boolean queries over text fields. However, standard query evaluation strategies over inverted indices face severe theoretical limits when handling these structures. Stateful iterator models (Document-at-a-Time) are structurally bounded by NC^1 formula evaluation, suffering a worst-case O(2^|Q|) exponential blowup in query complexity when unrolling re-convergent logic. Conversely, recursive materialization models…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT Ads expands across Europe]]></title>
+        <id>https://openai.com/index/chatgpt-ads-expands-across-europe</id>
+        <link href="https://openai.com/index/chatgpt-ads-expands-across-europe"/>
+        <updated>2026-08-18T22:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mojo🔥 is now open source]]></title>
         <id>https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/</id>
         <link href="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/"/>
         <updated>2026-08-18T21:39:20.000Z</updated>
         <summary type="html"><![CDATA[<p><strong><a href="https://www.modular.com/blog/mojo-open-source">Mojo🔥 is now open source</a></strong></p>
-Mojo🔥 is now open source</p>
-<p>The Mojo programming language has been promising an open source release <a href="https://simonwillison.net/2023/May/4/mojo/">since May 2023</a>. Last week they <a href="https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here">shipped their 1.0</a> and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license.</p>
+The Mojo programming language has been promising an open source release <a href="https://simonwillison.net/2023/May/4/mojo/">since May 2023</a>. Last week they <a href="https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here">shipped their 1.0</a> and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license.</p>
 <p>When Mojo first launched the stated goal was to produce a superset of Python, so existing Python code could be used to bootstrap their own ecosystem. That plan changed <a href="https://forum.modular.com/t/mojo-vision-document-and-roadmap/2187">around August 2025</a>:</p>
 <blockquote>
 <p>Mojo may or may not evolve into a full superset of Python, and it’s okay if it doesn’t.</p>
@@ -128,6 +275,16 @@ Mojo🔥 is now open source</p>
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Git at any scale]]></title>
+        <id>https://cursor.com/blog/git-at-any-scale</id>
+        <link href="https://cursor.com/blog/git-at-any-scale"/>
+        <updated>2026-08-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Cursor is now a part of SpaceX]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index]]></title>
         <id>https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/</id>
         <link href="https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/"/>
@@ -168,7 +325,7 @@ Excellent piece of reporting from 404 Media. For a while now there have been sto
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Why AI Models Keep "Breaking Containment"]]></title>
+        <title type="html"><![CDATA[Are AI Models Escaping On Purpose?]]></title>
         <id>https://www.youtube.com/shorts/9ZKeu_7k9ik</id>
         <link href="https://www.youtube.com/shorts/9ZKeu_7k9ik"/>
         <updated>2026-08-17T13:18:26.000Z</updated>
@@ -215,6 +372,16 @@ Excellent piece of reporting from 404 Media. For a while now there have been sto
         <summary type="html"><![CDATA[OpenAI funds 14 independent projects exploring new AI policy ideas to expand economic opportunity and strengthen societal resilience in the Intelligence Age.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Origin Code Hosting]]></title>
+        <id>https://cursor.com/changelog/origin-code-hosting</id>
+        <link href="https://cursor.com/changelog/origin-code-hosting"/>
+        <updated>2026-08-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Aug 17, 2026 · Changelog]]></summary>
+        <author>
+            <name>Cursor Changelog</name>
         </author>
     </entry>
     <entry>
@@ -527,6 +694,16 @@ I still have quite a bit of older content on my blog that I never got round to t
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Cursor is now a part of SpaceX]]></title>
+        <id>https://cursor.com/blog/joining-spacex</id>
+        <link href="https://cursor.com/blog/joining-spacex"/>
+        <updated>2026-08-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Cursor has officially been acquired by SpaceX.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sqlite-utils 4.2.1]]></title>
         <id>https://simonwillison.net/2026/Aug/13/sqlite-utils-2/</id>
         <link href="https://simonwillison.net/2026/Aug/13/sqlite-utils-2/"/>
@@ -667,6 +844,46 @@ I still have quite a bit of older content on my blog that I never got round to t
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Firetiger joins Cursor]]></title>
+        <id>https://cursor.com/blog/firetiger</id>
+        <link href="https://cursor.com/blog/firetiger"/>
+        <updated>2026-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Firetiger builds agents that work on software once it reaches production. They're joining Cursor to close the loop from writing code to running it.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cursor earns]]></title>
+        <id>https://cursor.com/blog/aiuc-1</id>
+        <link href="https://cursor.com/blog/aiuc-1"/>
+        <updated>2026-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[AIUC-1 certification for agent security and reliability]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cloud agents start 3x faster with builds]]></title>
+        <id>https://cursor.com/blog/builds</id>
+        <link href="https://cursor.com/blog/builds"/>
+        <updated>2026-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Builds are ready-to-use copies of your development environment that Cursor prepares in the background, so cloud agents start up to 3x faster at no additional cost.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cloud Agents Start 3x Faster with Builds]]></title>
+        <id>https://cursor.com/changelog/08-13-26</id>
+        <link href="https://cursor.com/changelog/08-13-26"/>
+        <updated>2026-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Aug 13, 2026 · Changelog]]></summary>
+        <author>
+            <name>Cursor Changelog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[DeepSeek V4 Pro 0813 (on OpenRouter)]]></title>
         <id>https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/</id>
         <link href="https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/"/>
@@ -787,6 +1004,16 @@ The latest DeepSeek Pro model is now available, via API only. I had to link to O
         <summary type="html"><![CDATA[See how RingCentral uses ChatGPT Work and Codex to accelerate AI product development and centralize operational intelligence across engineering and operations.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing Grok 4.6]]></title>
+        <id>https://cursor.com/blog/grok-4-6</id>
+        <link href="https://cursor.com/blog/grok-4-6"/>
+        <updated>2026-08-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Built for long-running agents and more ambitious interactive and visual work.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
         </author>
     </entry>
     <entry>
@@ -1221,133 +1448,6 @@ Anthropic are <em>really</em> confident in Claude Code's <a href="https://code.c
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Now we have a timeline of the OpenAI accidental attack against Hugging Face]]></title>
-        <id>https://simonwillison.net/2026/Aug/7/openai-timeline/</id>
-        <link href="https://simonwillison.net/2026/Aug/7/openai-timeline/"/>
-        <updated>2026-08-07T23:55:58.000Z</updated>
-        <summary type="html"><![CDATA[<p>OpenAI gave a last-minute presentation at the Black Hat security on Wednesday about "the Hugging Face Incident" (<a href="https://simonwillison.net/2026/Jul/22/openai-cyberattack/">previously</a> on this blog). <a href="https://www.youtube.com/watch?v=87DyyMV0kCY">The video</a> was published yesterday. It's short and information dense and well worth watching, in particular because it provides full details of what happened and how things played out inside OpenAI. I've used the video to construct the timeline below.</p>
-
-<p><lite-youtube videoid="87DyyMV0kCY" js-api="js-api"
-  title="Black Hat USA 2026: The 'Breaking' News: The OpenAI–Hugging Face Incident"
-  playlabel="Play: Black Hat USA 2026: The 'Breaking' News: The OpenAI–Hugging Face Incident"
-> </lite-youtube></p>
-
-<p>Here's the timeline. My favourite detail is at the end: OpenAI found out that they were responsible for the attack on Hugging Face when they reached out to ask to have their credentials revoked (after their internal investigation) and learned that they had been revoked already since they were used in that attack!</p>
-<ul>
-<li>
-<strong>May 7</strong>: OpenAI starts a new training run for an experimental, unreleased model. (<em>Did they mean an evaluation run? No, at <a href="https://m.youtube.com/watch?v=87DyyMV0kCY&amp;t=614s">10:14</a> they clarify "we kick off a new reinforcement learning run to train a next generation frontier model", and they later mention a "reward signal to judge how well they're doing", so this really was about training a new model, not evaluating one that was already trained.)</em></li>
-<li>
-<strong>May 8</strong>: An agent is accidentally given an impossible task involving a Google Drive link despite no internet access). It tries attacking the Artifactory packaging service, fails, but discovers it can <strong>write files into Artifactory</strong>.</li>
-<li>
-<strong>A few days later</strong>: A different agent gets stuck on a task because a key file was accidentally omitted. It tries to "reach out to another agent" by writing a note into Artifactory asking if anyone has the file.</li>
-<li>
-<strong>Following days</strong>: More agents discover this new informal message board while browsing Artifactory's file listings, and start reading and writing messages.</li>
-<li>
-<strong>May 26</strong>: Agents successfully execute an <strong>SSRF attack on Artifactory</strong> for the first time, gaining indirect internet access by having Artifactory fetch external content for them.</li>
-<li>
-<strong>June 11</strong>: OpenAI start training a new "highly persistent" experimental model. It has access to Artifactory and can benefit from the messages left by privous models.</li>
-<li>
-<strong>June 26</strong>: Agents find and exploit a <strong>zero-day RCE on Artifactory</strong> (via a legacy token-refresh endpoint flaw). They use an administrative token to install a Groovy plugin that lets them execute commands.</li>
-<li>
-<strong>July 4</strong>: The resulting agent activity overloads Artifactory and causes an  <strong>outage</strong>. OpenAI revokes the compromised credentials, deletes the messages, patches the zero-day, and reports the vulnerability to the vendor.</li>
-<li>
-<strong>July 8</strong>: Agents find <strong>a new way to communicate via an unauthenticated WebDAV endpoint</strong>, using directory names in Artifactory's remote cache.</li>
-<li>
-<strong>July 8–19</strong>: Attacks on <strong>OpenAI's own infrastructure</strong>. The agents found an "external organization credential" in a public archive of leaked Pastebin posts, then validated that credential and shared its location on the messageboard. They then used write access to this "Organization 1" to stage data used in subsequent attacks on OpenAI infrastructure. They compromised Artifactory for a second time with <strong>a new zero-day</strong>. The agent uploaded a malicious Ruby target to Organization 1's staging repository, then requested that package through Artifactory in a way that caused it to be treated as Ruby dependency <em>for the repository</em>. Then they exploited a JRuby deserilaization time-of-check/time-of-use bug to get remote code execution against Artifactory.</li>
-</ul>
-<p>I'll quote <a href="https://www.youtube.com/watch?v=87DyyMV0kCY&amp;t=1497s">the next bit in full</a> because <em>wow</em>:</p>
-<blockquote>
-<p>The agents have remote code execution in Artifactory, which is running in a container-as-a-service environment. The agents privilege-escalate locally by exploring their local environment and determining that the Linux kernel version of the machine they are running on had a very recent CVE. They download the exploit for the CVE, customize it to succeed on the machine, and privilege-escalate to root on the local machine <strong>using this known Linux kernel privilege escalation CVE</strong> — in this case, <code>pte_physroot</code>. Once they have root on a single machine, agents rapidly escalate privileges and move laterally throughout the container-as-a-service infrastructure environment. In particular, agents are using the message board consistently to share credentials, techniques, and progress, and they're able to effectively leverage their concurrency and parallelism to move quite rapidly. They <strong>obtain IAM credentials via IMDS</strong>. They exploit Kubernetes service account misconfigurations, in particular over-permissioning of specific service accounts, and <strong>they harvest cluster credentials, including Azure Key Vault</strong>. Agents eventually obtain cluster admin on the cluster and associated credentials.</p>
-</blockquote>
-<p>Hugging Face <a href="https://simonwillison.net/2026/Jul/28/anatomy-of-a-frontier-lab-agent-intrusion/">told the next bit of the story</a> already. The agents found a Modal-hosted insecure app with a weak API key, then used that to stage an attack against Hugging Face. They chained together a an HDF5 arbitrary-file-read bug (to explore files and steal credentials) and a Jinja template-injection RCE to go from single-pod code execution to <strong>cluster admin across multiple Hugging Face clusters</strong> in under 13 hours.</p>
-<ul>
-<li>
-<strong>July 16</strong>: Hugging Face <a href="https://huggingface.co/blog/security-incident-july-2026">disclosed they had detected an attack</a> from autonomus AI agents. OpenAI contacted Hugging Face to ask if they were affected by it!</li>
-<li>
-<strong>July 19</strong>: OpenAI identified the attack against Artifactory and started investigating the internal privilege escalation, and linked that to the cyber-gym escalations. They started revoking affected credentials.</li>
-<li>
-<strong>July 20</strong>: OpenAI reached out to Hugging Face for help to revoke the Hugging Face credentials they found in their investigation. Hugging Face told them they were <em>already revoked</em>... and that's when OpenAI realized that the Hugging Face breach was the same incident!</li>
-</ul>
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a>, <a href="https://simonwillison.net/tags/accidental-cyberattacks">accidental-cyberattacks</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Moonlight & Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)]]></title>
-        <id>https://simonwillison.net/2026/Aug/7/moonlight-mayhem/</id>
-        <link href="https://simonwillison.net/2026/Aug/7/moonlight-mayhem/"/>
-        <updated>2026-08-07T19:18:09.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://simonw.github.io/raccoon-heist-codex/">Moonlight &amp; Mayhem (Raccoon Heist by Codex + GPT-5.6 Sol Ultra)</a></strong></p>
-On Wednesday I wrote about <a href="https://simonwillison.net/2026/Aug/5/raccoon-heist/">One-shotting a Raccoon Heist game using Claude Fable 5</a>, where I had Claude Fable 5 build a full working game from a premise I generated with GPT-3 and DALL-E <a href="https://twitter.com/simonw/status/1555626060384911360">four years ago</a>.</p>
-<p>I decided to pose the <a href="https://simonwillison.net/2026/Aug/5/raccoon-heist/#the-fable-5-prompt">exact same prompt</a> to Codex Desktop running GPT-5.6 Sol Ultra - the mode where Sol makes <em>aggressive</em> use of sub-agents - to see how it would do.</p>
-<p>It produced a much better game! Here's <a href="https://simonw.github.io/raccoon-heist-codex/">Moonlight &amp; Mayhem</a> - <a href="https://github.com/simonw/raccoon-heist-codex/">GitHub repository here</a>, including the <a href="https://github.com/simonw/raccoon-heist-codex/tree/main/output/imagegen">textures and prompts</a> it generated using <code>gpt-image-2</code>.</p>
-<p><video
-    controls="controls"
-    preload="none"
-    poster="https://static.simonwillison.net/static/2026/raccoon-heist-codex-poster.jpg"
-    width="1280"
-    height="720"
-    style="display: block; width: 100%; height: auto;"
-  >
-    <source src="https://static.simonwillison.net/static/2026/raccoon-heist-codex-720p.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
-  </video>
-</p>
-
-<p>The original GPT-3 generated game description included:</p>
-<blockquote>
-<p>In “Raccoon Heist”, you and your team of thieving raccoons are tasked with pulling off a series of daring heists. From robbing banks to stealing priceless art, no job is too big or too small for your furry crew.</p>
-</blockquote>
-<p>Fable's version had you as a single raccoon running around a back yard collecting coins and fish. GPT-5.6 Sol has you in a museum, rescuing your two other raccoon crewmates in order to stack on top of each other and bust the golden sardine out of its case.</p>
-<p>Much more heisty!</p>
-<p>There was one catch though: the version produced from the one-shot prompt had a bug where each raccoon had an eyeball that was enlarged to the size of a giant sphere floating over their head!</p>
-<p><img alt="The main player character racoon is visible with an enormous polygon-based black sphere four times the size of its body overlapping its head, with a white pupil on it." src="https://static.simonwillison.net/static/2026/raccoon-heist-codex-bug.jpg" /></p>
-<p>You can <a href="https://static.simonwillison.net/static/2026/raccoon-heist-eyeball-edition/">play that version here</a>.</p>
-<p>Despite reviewing screenshots during development Codex failed to spot and correct this bug.</p>
-<p>I fixed it by prompting:</p>
-<blockquote>
-<p><code>Why do the raccoons have huge black spheres on them?</code></p>
-</blockquote>
-<p>And then:</p>
-<blockquote>
-<p><code>Fix it</code></p>
-</blockquote>
-<p>Which resulted in <a href="https://github.com/simonw/raccoon-heist-codex/commit/4e9a390dfbe80533324ee61a37aa661813c08446">this fix</a>.</p>
-<p>I shared <a href="https://github.com/simonw/raccoon-heist-codex/blob/main/transcript.md">the full Codex transcript</a> in the repository - I wish Claude Code had the same "copy as Markdown" feature.</p>
-<p>Codex spent 52 minutes on the project. Here's the <a href="https://www.agentsview.io">AgentsView</a> cost estimate for that session if I had been paying full API prices as opposed to using my monthly Codex subscription:</p>
-<p><img alt="Total Cost: $23.28. Input Tokens: 700.7K, plus 32.5M cached tokens. Output Tokens: 148K" src="https://static.simonwillison.net/static/2026/raccoon-heist-codex-cost.webp" />
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/game-design">game-design</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/codex">codex</a>, <a href="https://simonwillison.net/tags/gpt">gpt</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI]]></title>
-        <id>https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/</id>
-        <link href="https://simonwillison.net/2026/Aug/7/pdfs-are-terrible/"/>
-        <updated>2026-08-07T16:18:51.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.404media.co/the-tokenpocalypse-is-here-companies-are-scrambling-to-stop-spending-so-much-on-ai/">The Tokenpocalypse Is Here: Companies Are Scrambling To Stop Spending So Much on AI</a></strong></p>
-There's a fun anecdote from Accenture (apparently via leaked meeting audio recordings) in this 404 Media piece from June 24th:</p>
-<blockquote>
-<p>“We’re seeing from some of the data internally at least that it’s actually not our engineers that are driving the token consumption. It’s a lot of the non-engineers that are doing some of those behaviors [...] you were talking about,” Justice Kwak, Accenture’s agentic AI strategy lead, said [...]</p>
-<p>Stuart Henderson, Accenture’s client group lead, interrupts. He jokes he hopes Kwak didn’t just convert a PDF into images and then into markdown files. “I’m learning that’s one of the big token chewers,” Henderson says. “Turning PDFs into markdown: is that right?”</p>
-<p>That’s when Kwak says that’s what Accenture’s own data shows.</p>
-</blockquote>
-<p>Maybe if Accenture figure out that PDFs are a <em>terrible medium for communicating information</em> they'll be able to push that message out to the rest of the business world too!
-
-    <p><small></small>Via <a href="https://www.tiktok.com/@404.media/video/7654962124053171470">@404.media on TikTok</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/pdf">pdf</a>, <a href="https://simonwillison.net/tags/markdown">markdown</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-misuse">ai-misuse</a>, <a href="https://simonwillison.net/tags/404-media">404-media</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Responding to the next frontier of critical cyber capabilities]]></title>
         <id>https://openai.com/index/responding-next-frontier-critical-cyber-capabilities</id>
         <link href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"/>
@@ -1476,13 +1576,13 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[DeepAmbigQA: Ambiguous Multi-hop Questions for Benchmarking LLM Answer Completeness]]></title>
-        <id>deepambigqa-multihop-questions</id>
-        <link href="https://machinelearning.apple.com/research/deepambigqa-multihop-questions"/>
+        <title type="html"><![CDATA[How Cursor Router chooses the right model for the task]]></title>
+        <id>https://cursor.com/blog/how-cursor-router-works</id>
+        <link href="https://cursor.com/blog/how-cursor-router-works"/>
         <updated>2026-08-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Large language models (LLMs) with integrated search tools show strong promise in open-domain question answering (QA), yet they often struggle to produce complete answer set to complex questions such as “Which actor from the film Heat won at least one Academy Award?”, which requires (1) distinguishing between multiple films sharing the same title and (2) reasoning across a large set of actors to gather and integrate evidence. Existing QA benchmarks rarely evaluate both challenges jointly. To address this, we introduce DEEPAMBIGQAGEN, an automatic data generation pipeline that constructs QA…]]></summary>
+        <summary type="html"><![CDATA[Auto Intelligence now delivers above Fable-level satisfaction at 68% lower cost. Here's how Compass and the task router choose models from real developer traffic.]]></summary>
         <author>
-            <name>Apple Machine Learning Research</name>
+            <name>Cursor Blog</name>
         </author>
     </entry>
     <entry>
@@ -1492,16 +1592,6 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         <updated>2026-08-05T18:08:46.000Z</updated>
         <author>
             <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Taming Outlier Tokens in Diffusion Transformers]]></title>
-        <id>taming-outlier-tokens</id>
-        <link href="https://machinelearning.apple.com/research/taming-outlier-tokens"/>
-        <updated>2026-08-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We study outlier tokens in Diffusion Transformers (DiTs) for image generation. Prior work has shown that Vision Transformers (ViTs) can produce a small number of high-norm tokens that attract disproportionate attention while carrying limited local information, but their role in generative models remains underexplored. We show that this phenomenon appears in both the encoder and denoiser of modern Representation Autoencoder (RAE)-DiT pipelines: pretrained ViT encoders can produce outlier representations, and DiTs themselves can develop internal outlier tokens, especially in intermediate layers…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1545,6 +1635,16 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Mixture-of-Kittens: our open-source]]></title>
+        <id>https://cursor.com/blog/mixture-of-kittens</id>
+        <link href="https://cursor.com/blog/mixture-of-kittens"/>
+        <updated>2026-08-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[MoE megakernel for NVL72s]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Apple is getting this wrong]]></title>
         <id>https://openai.com/index/apple-is-getting-this-wrong</id>
         <link href="https://openai.com/index/apple-is-getting-this-wrong"/>
@@ -1582,6 +1682,16 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         <summary type="html"><![CDATA[Circles uses the OpenAI API and Codex to power AI-native telco experiences, increasing ARPU by 22%, reducing churn by 9%, and improving development efficiency.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Google Workspace Plugins]]></title>
+        <id>https://cursor.com/changelog/google-workspace-plugins</id>
+        <link href="https://cursor.com/changelog/google-workspace-plugins"/>
+        <updated>2026-08-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Aug 3, 2026 · Changelog]]></summary>
+        <author>
+            <name>Cursor Changelog</name>
         </author>
     </entry>
     <entry>
@@ -1704,6 +1814,16 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[How we set up our cloud agent environment]]></title>
+        <id>https://cursor.com/blog/cloud-agent-environment</id>
+        <link href="https://cursor.com/blog/cloud-agent-environment"/>
+        <updated>2026-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Getting our monorepo working for cloud agents taught us that the development environment is a product in its own right, only one whose users are agents.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Did Anthropic just kill the indie hacker...?]]></title>
         <id>https://www.youtube.com/watch?v=jxGJT1weu4w</id>
         <link href="https://www.youtube.com/watch?v=jxGJT1weu4w"/>
@@ -1733,16 +1853,6 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I can't believe Claude figured this out]]></title>
-        <id>https://www.youtube.com/shorts/zdG2bgFPxl4</id>
-        <link href="https://www.youtube.com/shorts/zdG2bgFPxl4"/>
-        <updated>2026-07-29T14:13:44.000Z</updated>
-        <summary type="html"><![CDATA[I gave Claude Code a random photo with zero geotags and it searched the web to figure out where it was taken 🤯Anthropic recently launched a native, sandboxe...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Accelerating scientific discovery with ChatGPT for Academic Researchers]]></title>
         <id>https://openai.com/index/chatgpt-for-academic-researchers</id>
         <link href="https://openai.com/index/chatgpt-for-academic-researchers"/>
@@ -1760,6 +1870,16 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         <summary type="html"><![CDATA[GPT-5.6 improves AI efficiency across models, inference, and agentic workflows, helping deliver more useful intelligence per dollar.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cursor, now on iPad]]></title>
+        <id>https://cursor.com/changelog/ipad</id>
+        <link href="https://cursor.com/changelog/ipad"/>
+        <updated>2026-07-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Jul 29, 2026 · Changelog]]></summary>
+        <author>
+            <name>Cursor Changelog</name>
         </author>
     </entry>
     <entry>
@@ -1810,6 +1930,26 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         <summary type="html"><![CDATA[These AI features can help you craft a menu, design a tablescape, and handle other party-planning tasks.]]></summary>
         <author>
             <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cursor Start]]></title>
+        <id>https://cursor.com/changelog/cursor-start</id>
+        <link href="https://cursor.com/changelog/cursor-start"/>
+        <updated>2026-07-28T12:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Jul 28, 2026 · Changelog]]></summary>
+        <author>
+            <name>Cursor Changelog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing Cursor Start]]></title>
+        <id>https://cursor.com/blog/cursor-start-india</id>
+        <link href="https://cursor.com/blog/cursor-start-india"/>
+        <updated>2026-07-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Cursor Start is a new plan for developers in India]]></summary>
+        <author>
+            <name>Cursor Blog</name>
         </author>
     </entry>
     <entry>
@@ -1930,6 +2070,16 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Introducing Cursor Router]]></title>
+        <id>https://cursor.com/blog/router</id>
+        <link href="https://cursor.com/blog/router"/>
+        <updated>2026-07-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Cursor Router is now generally available for Teams and Enterprises]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Introducing the ChatGPT for small business program]]></title>
         <id>https://openai.com/index/introducing-chatgpt-small-business-program</id>
         <link href="https://openai.com/index/introducing-chatgpt-small-business-program"/>
@@ -1947,35 +2097,6 @@ There's a fun anecdote from Accenture (apparently via leaked meeting audio recor
         <summary type="html"><![CDATA[We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OpenAI and Hugging Face partner to address security incident during model evaluation]]></title>
-        <id>https://openai.com/index/hugging-face-model-evaluation-security-incident</id>
-        <link href="https://openai.com/index/hugging-face-model-evaluation-security-incident"/>
-        <updated>2026-07-21T07:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and Hugging Face share early findings from a security incident during AI model evaluation, highlighting advanced cyber capabilities and lessons for defenders.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC]]></title>
-        <id>https://openai.com/index/david-velez-robin-vince-join-openai-boards</id>
-        <link href="https://openai.com/index/david-velez-robin-vince-join-openai-boards"/>
-        <updated>2026-07-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC, bringing global leadership in finance, technology, and governance.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This $12 billion startup finally shipped something...]]></title>
-        <id>https://www.youtube.com/watch?v=M51asSwRLxA</id>
-        <link href="https://www.youtube.com/watch?v=M51asSwRLxA"/>
-        <updated>2026-07-20T17:02:30.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
 </feed>
