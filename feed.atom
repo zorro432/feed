@@ -1,10 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-20T01:08:58.456Z</id>
+    <id>urn:2026-08-21T01:13:14.955Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-20T01:08:58.456Z</updated>
+    <updated>2026-08-21T01:13:14.955Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[ChatGPT search now uses the site:operator at scale]]></title>
+        <id>https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/</id>
+        <link href="https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/"/>
+        <updated>2026-08-20T23:57:32.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://promptwatch.com/data/chatgpt-site-operator-fanouts">ChatGPT search now uses the site:operator at scale</a></strong></p>
+Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT.</p>
+<p>The Promptwatch product uses automation to track responses to prompts across end-user chat products like ChatGPT, Claude, and Gemini. They publish aggregate reports on this as part of their own content marketing strategy, which do seem to provide credible hints as to otherwise invisible design changes to those products.</p>
+<p>Their own tracking shows a notable change aligned with the GPT-5.6 rollout earlier this month:</p>
+<blockquote>
+<p>The percentage of all ChatGPT Search fanout queries that contain the site:operator, per day. The share hovered between 0.3% and 0.5% for weeks, dipped briefly to 0.15% on August 3 to 5 (consistent with a staged rollout or pre-launch experiment), then jumped to 16-17% on August 8.</p>
+</blockquote>
+<p>It's important to note that these figures only reflect the prompts for which they have automated tracking enabled.</p>
+<p>This corresponds to OpenAI's somewhat vague <a href="https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/">August 6th announcement</a>:</p>
+<blockquote>
+<p>For Plus and Pro users, we’re updating GPT‑5.6 Sol in Chat to be more reliable with facts and provide more focused answers.</p>
+</blockquote>
+<p>Once again I am hampered by OpenAI's decision to actively obscure their system prompts, but from poking at ChatGPT I believe their latest search tool has a shape like <code>search(query, recency, domains)</code> rather than encouraging a <code>site:</code> operator directly.</p>
+<p>In <a href="https://promptwatch.com/data/reddit-citations-are-dropping-in-chatgpt">a follow-up</a> on August 18th Promptwatch reported that ChatGPT appeared to have greatly reduced the likelihood of Reddit being used in those searches. My own attempts to ascertain if the system prompt has been updated to discourage Reddit sourcing have been unsuccessful - the <a href="https://github.com/asgeirtj/system_prompts_leaks/commits/main/OpenAI">most thorough leaked system prompt</a> collection I know of doesn't yet show any relevant changes.
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/reddit">reddit</a>, <a href="https://simonwillison.net/tags/seo">seo</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/ai-assisted-search">ai-assisted-search</a>, <a href="https://simonwillison.net/tags/system-prompts">system-prompts</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DeepSeek is back... and Silicon Valley is terrified]]></title>
+        <id>https://www.youtube.com/watch?v=xBByvFrqmWU</id>
+        <link href="https://www.youtube.com/watch?v=xBByvFrqmWU"/>
+        <updated>2026-08-20T17:53:37.000Z</updated>
+        <author>
+            <name>Fireship</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView]]></title>
+        <id>https://simonwillison.net/2026/Aug/20/bun-webview-json-api/</id>
+        <link href="https://simonwillison.net/2026/Aug/20/bun-webview-json-api/"/>
+        <updated>2026-08-20T15:37:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/bun-webview-json-api#readme">A shot-scraper-style JSON API on Bun 1.4&#x27;s new Bun.WebView</a></p>
+        <p>Today saw the long awaited <a href="https://bun.com/blog/bun-v1.4">release of Bun 1.4</a>, the first stable version since the infamous Rust rewrite <a href="https://simonwillison.net/2026/Jul/8/rewriting-bun-in-rust/">a few months ago</a>.</p>
+<p>Interestingly, the Rust rewrite was downplayed in the release notes, which introduced a bewildering array of new features and claimed 2,900 additional bug fixes:</p>
+<blockquote>
+<p>Bun 1.4 adds +1,517 tests from the Node.js test suite - our biggest jump in Node.js compatibility since Bun 1.0. Bun v1.4 also fixes over 2,900 issues. It reduces idle CPU usage by 5x, reduces memory usage by up to 35%, and starts 50% faster on Linux. It adds <a href="https://bun.com/blog/bun-v1.4#bun-image"><code>Bun.Image</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-webview"><code>Bun.WebView</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-markdown"><code>Bun.markdown</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-cron"><code>Bun.cron()</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-terminal"><code>Bun.Terminal</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-run-parallel"><code>bun run --parallel</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-test-parallel"><code>bun test --parallel</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-audit-fix"><code>bun audit fix</code></a>, <a href="https://bun.com/blog/bun-v1.4#bun-dedupe"><code>bun dedupe</code></a>, and <a href="https://bun.com/blog/bun-v1.4#bun-prune"><code>bun prune</code></a>. And it rewrites Bun from Zig to Rust.</p>
+</blockquote>
+<p>Of these the one that most caught my eye was <code>Bun.WebView</code>, which adds first class support for browser automation to Bun core using either macOS WebKit or control of a local Chromium process via the Chrome DevTools Protocol (CDP).</p>
+<p>I had Claude Code for web build a prototype of a web API providing the ability to load a web page and then execute JavaScript against it, inspired by my <a href="https://shot-scraper.datasette.io/en/stable/javascript.html">shot-scraper javascript</a> CLI tool - partly to see how much RAM would be needed by such a service.</p>
+<p>Here's <a href="https://github.com/simonw/research/blob/main/bun-webview-json-api/server.ts">that TypeScript server implementation</a>, which appears to need a 192MB-256MB container to run a full Chrome against complex web pages - tested using cgroups.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/browsers">browsers</a>, <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/typescript">typescript</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/bun">bun</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claude’s Text Watermark Could Follow It Everywhere]]></title>
+        <id>https://www.youtube.com/shorts/O-8TbMFOAfg</id>
+        <link href="https://www.youtube.com/shorts/O-8TbMFOAfg"/>
+        <updated>2026-08-20T12:41:43.000Z</updated>
+        <summary type="html"><![CDATA[Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven't revealed exact...]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Introducing AI Futures]]></title>
+        <id>https://openai.com/index/introducing-ai-futures</id>
+        <link href="https://openai.com/index/introducing-ai-futures"/>
+        <updated>2026-08-20T07:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Introducing AI Futures, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Stampli cuts launch hours by 68% using ChatGPT Work]]></title>
+        <id>https://openai.com/index/stampli</id>
+        <link href="https://openai.com/index/stampli"/>
+        <updated>2026-08-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[With a fixed deadline and design resources committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Multilingual Knowledge Transfer under Data Constraints via Lexical Interventions]]></title>
+        <id>multilingual-knowledge-transfer-lexical-interventions</id>
+        <link href="https://machinelearning.apple.com/research/multilingual-knowledge-transfer-lexical-interventions"/>
+        <updated>2026-08-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Cross-lingual knowledge transfer is critical for building high-performing multilingual language models for languages with insufficient training data. When target language data is scarce, the knowledge required for many downstream tasks involving scientific reasoning, commonsense inference, and world knowledge must be acquired primarily from the high-resource language, making effective knowledge transfer essential. Existing methods for improving such cross-lingual knowledge transfer require large amounts of parallel data, translation systems, auxiliary models, or additional training stages that…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Scaling Laws for Mixture Pretraining Under Data Constraints]]></title>
+        <id>scaling-laws-mixture-pretraining</id>
+        <link href="https://machinelearning.apple.com/research/scaling-laws-mixture-pretraining"/>
+        <updated>2026-08-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[As language models scale, the amount of data they require grows – yet many target data sources, such as low-resource languages or specialized domains, are inherently limited in size. A common strategy is to mix this scarce but valuable target data with abundant generic data, which presents a fundamental trade-off: too little target data in the mixture underexposes the model to the target domain, while too much target data repeats the same examples excessively, yielding diminishing returns and eventual overfitting. We study this trade-off across more than 2,000 language-model training runs…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Progressive Refinement: An Iterative Pseudo-Labeling Approach for Mandarin-English Code-Switching ASR]]></title>
+        <id>progressive-refinement-pseudo-labeling</id>
+        <link href="https://machinelearning.apple.com/research/progressive-refinement-pseudo-labeling"/>
+        <updated>2026-08-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Code-switching (CS), alternating languages within the same utterance, poses significant challenges for automatic speech recognition (ASR) due to limited CS training data. This paper applies an iterative pseudo-labeling training approach to CS-ASR for the first time, demonstrating its effectiveness in leveraging unlabeled data to improve CS-ASR performance. The approach comprises three phases: pseudo-label generation, two-stage bilingual model training, and iterative improvements. It begins by generating pseudo-labels from a large unlabeled corpus, creating a semi-supervised dataset. This…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[smolmachines / smolvm as a sandbox for untrusted Python & JavaScript]]></title>
         <id>https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/</id>
@@ -28,7 +144,7 @@
 <p>That was a creative solution to the environmental limits posed by Claude Code for web. Another example of Fable being <a href="https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/">relentlessly proactive</a>.</p>
     
     
-        <p>Tags: <a href="https://simonwillison.net/tags/research">research</a>, <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
+        <p>Tags: <a href="https://simonwillison.net/tags/research">research</a>, <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -1410,44 +1526,6 @@ Anthropic are <em>really</em> confident in Claude Code's <a href="https://code.c
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Now we have a timeline of the OpenAI accidental attack against Hugging Face]]></title>
-        <id>https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/</id>
-        <link href="https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/"/>
-        <updated>2026-08-08T14:06:41.000Z</updated>
-        <summary type="html"><![CDATA[<p><a href="https://news.ycombinator.com/item?id=49220609#49221745">My comment</a> on <a href="https://news.ycombinator.com/item?id=49220609">Now we have a timeline of the OpenAI accidental attack against Hugging Face</a> &mdash; Hacker News.</p><p>I think one of the most interesting details here might be tucked away in that first bullet point:</p>
-<blockquote>
-<p>May 7: OpenAI starts a new training run for an experimental, unreleased model. <em>(Do they mean an evaluation run? They say training run in the video, and later mention a “reward signal to judge how well they’re doing”, so I guess this really was about training a model, not evaluating one that was already trained.)</em></p>
-</blockquote>
-<p>The more I think about this the more I suspect that the fact this happened while <em>training</em> a new model is key to understanding what went wrong.</p>
-<p>In RLVR - Reinforcement Learning with Verifiable Rewards - you set the model a goal and have it take <em>any steps necessary</em> to achieve that goal.</p>
-<p>Clearly one aspect of OpenAI's training here is to RLVR their models for cybersecurity tasks. Just like pre-training benefits from dumping in vast sources of knowledge, the more tasks you can feed into RLVR the more of a general purpose capable model you get at the end.</p>
-<p>This also helps explain why the models had nothing to cause them to hold back. Those safety behaviors are added much later in the process.</p>
-<p>AND it explains (but does not excuse) why monitoring was so lax. If you're training a new model like this you presumably set it thousands of tasks like this in parallel. I can see how you might miss that a tiny subset of your training agents have started leaving each other messages in filenames on your packaging server.</p>
-<p>Someone once told me that you can't just leave the racist materials out of your training data if you want a non-racist model: it has to have seen examples of racism in order to later be taught that racism is bad.</p>
-<p>I can see echoes of that here. If your model doesn't know how to aggressively hack things how do you later teach it not to?</p>
-<p>(I have little knowledge of how RLVR works in practice so I'm looking forward to hearing from people who can help me understand if I'm on the right track here.)</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting John Gruber]]></title>
-        <id>https://simonwillison.net/2026/Aug/8/john-gruber/</id>
-        <link href="https://simonwillison.net/2026/Aug/8/john-gruber/"/>
-        <updated>2026-08-08T00:10:40.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://daringfireball.net/linked/2026/08/07/simon-willison-on-blogging"><p>Me, I try to get into the mindset of playing live music, not recording a studio album. Except when I’m writing a piece where I really want it to be an album. Those aren’t <em>rare</em>, per se, but they’re <em>occasional</em>. If I tried to make every post a hall-of-famer I’d never get anything out.</p>
-<p>I’m aiming for professionalism. I’m performing live in front of an audience — not just jamming in my garage or bedroom, fucking around. So I’m careful and concentrate. I want to hit every note, in time. But at my best I’m moving from song to song.</p></blockquote>
-<p class="cite">&mdash; <a href="https://daringfireball.net/linked/2026/08/07/simon-willison-on-blogging">John Gruber</a>, responding to my <a href="https://simonwillison.net/2026/Aug/6/simon-willison-on-technical-blogging/">blogging tips</a></p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/john-gruber">john-gruber</a>, <a href="https://simonwillison.net/tags/blogging">blogging</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Responding to the next frontier of critical cyber capabilities]]></title>
         <id>https://openai.com/index/responding-next-frontier-critical-cyber-capabilities</id>
         <link href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"/>
@@ -1482,26 +1560,6 @@ Anthropic are <em>really</em> confident in Claude Code's <a href="https://code.c
         <link href="https://machinelearning.apple.com/research/scaling-categorical-flow-maps"/>
         <updated>2026-08-07T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Continuous diffusion and flow matching models could represent a powerful alternative to autoregressive approaches for language modelling (LM), as they unlock a host of advantages currently reserved for continuous modalities, including accelerated sampling and tilting. Recently, several works have demonstrated the possibility of generating discrete data continuously by a simple flow matching process between a Gaussian and the one-hot encoded data distribution. They have further shown the feasibility of accelerated sampling via Categorical Flow Maps (CFMs), resulting in competitive sample…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Beyond Next-Token Prediction: A Performance Characterization of Diffusion versus Autoregressive Language Models]]></title>
-        <id>diffusion-autoregressive-performance</id>
-        <link href="https://machinelearning.apple.com/research/diffusion-autoregressive-performance"/>
-        <updated>2026-08-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Large Language Models (LLMs) have achieved state-of-the-art performance on a broad range of Natural Language Processing (NLP) tasks, including document processing and code generation. Autoregressive Language Models (ARMs), which generate tokens sequentially conditioned on all previous tokens, have been the predominant paradigm for LLMs. While these models have achieved high accuracy across a range of downstream tasks, they exhibit low arithmetic intensity due to the inherent sequential dependency in next-token prediction. Recently, Diffusion Language Models (DLMs) have emerged as a promising…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Arbitrage: Efficient Reasoning via Advantage-Aware Speculation]]></title>
-        <id>arbitrage-efficient-reasoning</id>
-        <link href="https://machinelearning.apple.com/research/arbitrage-efficient-reasoning"/>
-        <updated>2026-08-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Modern Large Language Models achieve impressive reasoning capabilities with long Chain of Thoughts, but they incur substantial computational cost during inference, and this motivates techniques to improve the performance-cost ratio. Among these techniques, Speculative Decoding accelerates inference by employing a fast but inaccurate draft model to auto-regressively propose tokens, which are then verified in parallel by a more capable target model. However, due to unnecessary rejections caused by token mismatches in semantically equivalent steps, traditional token-level Speculative Decoding…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
         </author>
@@ -1563,16 +1621,6 @@ Anthropic are <em>really</em> confident in Claude Code's <a href="https://code.c
         <summary type="html"><![CDATA[New OpenAI Signals data shows how people use ChatGPT worldwide, with country-level insights on adoption, usage trends, and evolving behavior.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Locking Pretrained Weights via Deep Low-Rank Residual Distillation]]></title>
-        <id>locking-pretrained-weights</id>
-        <link href="https://machinelearning.apple.com/research/locking-pretrained-weights"/>
-        <updated>2026-08-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[The quality of open-weight language models has dramatically improved in recent years. Sharing weights greatly facilitates model adoption by enabling their use across diverse hardware and software platforms. They also allow for more open research and testing, to the extent that users can use them as checkpoints, fine-tune them according to their needs, and potentially redistribute them. In some cases, however, concerns on modifying these weights towards unauthorized uses may outweigh the pros of giving users such a freedom. Defending against such adaptation is non-trivial: since an adaptive…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
         </author>
     </entry>
     <entry>
@@ -1771,16 +1819,6 @@ Anthropic are <em>really</em> confident in Claude Code's <a href="https://code.c
         <summary type="html"><![CDATA[OpenAI disrupted a Cambodia-based scam operation using ChatGPT to support investment, romance, gambling, and impersonation schemes.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Most Capable Humanoid Robot Yet!]]></title>
-        <id>https://www.youtube.com/shorts/Q60VNdtyiAA</id>
-        <link href="https://www.youtube.com/shorts/Q60VNdtyiAA"/>
-        <updated>2026-07-30T16:03:52.000Z</updated>
-        <summary type="html"><![CDATA[Google just released Gemini Robotics 2 today, and it's a much bigger leap than you may think.Unlike previous models, it coordinates everything from feet to f...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -2005,96 +2043,6 @@ Anthropic are <em>really</em> confident in Claude Code's <a href="https://code.c
         <link href="https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/"/>
         <updated>2026-07-22T13:38:54.000Z</updated>
         <summary type="html"><![CDATA[Google commits $40M in AI tokens and credits for the Genesis Mission]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[3 Google updates from Galaxy Unpacked 2026]]></title>
-        <id>https://blog.google/products-and-platforms/platforms/android/galaxy-unpacked-2026/</id>
-        <link href="https://blog.google/products-and-platforms/platforms/android/galaxy-unpacked-2026/"/>
-        <updated>2026-07-22T13:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We shared how Samsung users can boost productivity and get time back on new foldables, watches, and glasses coming soon.]]></summary>
-        <author>
-            <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Building AI infrastructure with the Effingham County community]]></title>
-        <id>https://openai.com/index/building-ai-infrastructure-with-the-effingham-county-community</id>
-        <link href="https://openai.com/index/building-ai-infrastructure-with-the-effingham-county-community"/>
-        <updated>2026-07-22T13:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI announces Project Camellia in Effingham County, Georgia, with commitments to responsible energy, community investment, jobs, and access to Codex.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How news organizations are using AI to advance their vital missions]]></title>
-        <id>https://openai.com/index/how-news-organizations-are-using-ai</id>
-        <link href="https://openai.com/index/how-news-organizations-are-using-ai"/>
-        <updated>2026-07-22T13:00:00.000Z</updated>
-        <summary type="html"><![CDATA[News organizations are using AI to strengthen reporting, grow audiences, and improve business operations, with OpenAI tools supporting journalists and publishers worldwide.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Advancing the next era of national science]]></title>
-        <id>https://openai.com/index/advancing-the-next-era-of-national-science</id>
-        <link href="https://openai.com/index/advancing-the-next-era-of-national-science"/>
-        <updated>2026-07-22T12:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI outlines its commitment to advancing American science working with the U.S. Department of Energy and national labs to use frontier AI to accelerate discovery.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing OpenAI Presence]]></title>
-        <id>https://openai.com/index/introducing-openai-presence</id>
-        <link href="https://openai.com/index/introducing-openai-presence"/>
-        <updated>2026-07-22T05:30:00.000Z</updated>
-        <summary type="html"><![CDATA[Introducing OpenAI Presence, a proven enterprise AI agent platform that helps organizations deploy trusted voice and chat agents for customer and internal workflows.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[NTT DATA Group cuts incident analysis to 30 minutes with Codex]]></title>
-        <id>https://openai.com/index/ntt-data</id>
-        <link href="https://openai.com/index/ntt-data"/>
-        <updated>2026-07-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[NTT DATA Group uses ChatGPT Enterprise and Codex to help 9,000 employees automate work, cut incident analysis to 30 minutes, and scale secure AI adoption.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing Cursor Router]]></title>
-        <id>https://cursor.com/blog/router</id>
-        <link href="https://cursor.com/blog/router"/>
-        <updated>2026-07-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Cursor Router is now generally available for Teams and Enterprises]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing the ChatGPT for small business program]]></title>
-        <id>https://openai.com/index/introducing-chatgpt-small-business-program</id>
-        <link href="https://openai.com/index/introducing-chatgpt-small-business-program"/>
-        <updated>2026-07-21T17:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI launches the ChatGPT for Small Businesses program, helping entrepreneurs build AI skills, automate work, and grow with ChatGPT Work.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber]]></title>
-        <id>https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/</id>
-        <link href="https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/"/>
-        <updated>2026-07-21T15:16:30.000Z</updated>
-        <summary type="html"><![CDATA[We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.]]></summary>
         <author>
             <name>Google DeepMind News</name>
         </author>
