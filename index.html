@@ -22,6 +22,148 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-22 datetime="2026-08-22T21:04:26.000Z">2026-08-22</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-22 datetime="2026-08-22T21:04:26.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/22/linus-torvalds/"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Linus Torvalds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/22/linus-torvalds/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work.
+I&#x27;d like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it.
+I suspect those things have been trained by people who may not be quite as stubborn as I am.
+But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above.
+
+— Linus Torvalds, drm/xe: Don&#x27;t hand out the flat CCS storage as usable VRAM
+Tags: linus-torvalds, linux, generative-ai, ai-assisted-programming, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/22/llm/"
+                        open
+                      >
+                        <summary class="article-expander__title">llm 0.33</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/22/llm/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm 0.33
+My highlights from this release:
+Upgraded to the OpenAI Python library 3.x and switched the HTTP client dependency from httpx to httpx2. #1608, #1631
+I shipped a quick 0.32.1 fix for this yesterday, but this is the more comprehensive fix.
+llm embed and llm embed-multi now accept --key. The Python EmbeddingModel.embed(), EmbeddingModel.embed_multi(), Collection.embed() and Collection.embed_multi() methods accept key&#x3D; too, passing the resolved per-call key to embedding plugins without changing shared model state. Existing plugins that read self.key continue to work through a compatibility fallback. Thanks, ChrisJr404. #757, #1620
+The embedding models now use the same pattern for keys that regular LLM models do.
+llm prompt -t/--template can now be repeated to combine templates in order. This allows model configuration and options from one template to be used with a prompt from another.
+This unlocks a neat pattern where you can create templates that package a model with a set of default options:
+llm -m gpt-5.6-luna -o reasoning_effort high --save lhigh
+llm &quot;Generate an SVG of a pelican riding a bicycle&quot; --save pelican
+# Combine and run the templates
+llm -t lhigh -t pelican
+
+Reasoning-capable Responses API models now support a reasoning_summary option with auto, concise, and detailed values. This can be used with llm openai endpoint --responses. #1600
+This is particularly useful for exercising different models that provide their own imitation of the OpenAI Responses API.
+Tags: annotated-release-notes, llm</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/22/more-than-just-code-review/"
+                        open
+                      >
+                        <summary class="article-expander__title">More than just code review</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/22/more-than-just-code-review/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The key skill required to make productive use of coding agents is being able to confidently instruct them on how to make changes and then confidently verify that those changes have been applied in the correct way.
+Sometimes this involves reviewing every line of code they have written, but there are other ways to achieve that goal. Eyeballing every line of code has never been the most effective way to validate a chance to a piece of software.
+Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/aOzaO5AAGjk"
+                        open
+                      >
+                        <summary class="article-expander__title">The Wildest Smartphone I’ve Ever Seen 🤯</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/aOzaO5AAGjk">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAhHWwHqQZUo2sZ2miYGX12NXMb4w" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>This is the wildest smartphone camera I’ve seen yet. 🤯HONOR&#x27;s new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-21 datetime="2026-08-21T22:09:39.000Z">2026-08-21</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-21 datetime="2026-08-21T22:09:39.000Z"></time>
           </button>
@@ -51,7 +193,7 @@
                               <img src="https://i.ytimg.com/vi/1m5Ee9QbLF0/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLAEEojLE1PzlnbSa1MxmSp7B6Ngjg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -123,7 +265,7 @@ Tags: httpx, openai, llm</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Release: llm-openrouter 0.7
-Now that this plugin is compatible with LLM 0.32 it works much better with reasoning LLMs available through OpenRouter.
+Now that this plugin is compatible with LLM 0.32 it can display the reasoning traces for LLMs available through OpenRouter.
 Updated for compatibility with LLM 0.32.
 Models now use OpenRouter&#x27;s implementation of the Responses API.
 Three new server-side tools: Shell, WebFetch, and WebSearch. Enable these with options like -T WebSearch.
@@ -753,7 +895,7 @@ Tags: ai, generative-ai, llms, podcast-appearances, coding-agents</span>
                               <img src="https://i.ytimg.com/vi/r-ORCmsRHOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDIDE76Ti1er6l4P0Lo07Lz09nAig" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;11
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1830,10 +1972,10 @@ Tags: photography, wildlife, half-moon-bay</span>
                         <summary class="article-expander__title">The Hank Green Situation</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ZePfpQ7lbcs">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/ZePfpQ7lbcs/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLA1czAAd7PqNaNAspB735yfq0Pj2w" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/ZePfpQ7lbcs/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDZsTIyFXStEOIVY3GFPthz_gA6vg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Hank Green got “caught” using AI… and I genuinely don’t think he did anything wrong.The whole controversy started because Hank said “I appreciate the pushbac...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1993,10 +2135,10 @@ Tags: search, ai, generative-ai, llms, embeddings, doug-turnbull</span>
                         <summary class="article-expander__title">Did This AI Company Go Too Far...?</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/MVOWGGrVTOs">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/MVOWGGrVTOs/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLAWwBWXL-mpopLWrbJ4sS5noQEe_Q" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/MVOWGGrVTOs/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLCK_eKRgySdgPPasJkU0dCU17sBwA" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Friend 2.0 might be the weirdest AI product launch I’ve seen all year 😭The AI necklace can now talk back to you, and somehow the ad they made for it raises ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2865,37 +3007,6 @@ Tags: jailbreaking, ai, openai, prompt-injection, generative-ai, llms, anthropic
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/11/datasette-upload-dbs/"
-                        open
-                      >
-                        <summary class="article-expander__title">datasette-upload-dbs 0.5a0</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/11/datasette-upload-dbs/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: datasette-upload-dbs 0.5a0
-This plugin has been around for a while - it lets users upload a brand new SQLite database to a hosted Datasette instance, at which point that database will start being served by that instance.
-It can also be used to atomically swap a database with a more recent version. The uploaded database is saved to a file, verified, then swapped in so /name starts serving the new one.
-The new release adds a formalized API, so you can replace an existing database (or add a new one) like this:
-curl -X POST \
-  -H &quot;Authorization: Bearer $API_TOKEN&quot; \
-  -H &quot;Accept: application/json&quot; \
-  -F &quot;db&#x3D;@content.db&quot; \
-  -F &quot;db_name&#x3D;content&quot; \
-  https://your-instance.example.com/-/upload-dbs
-
-This means you can build fresh databases in an environment such as GitHub Actions and swap them in production as soon as that build has completed.
-Tags: datasette</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -3021,87 +3132,11 @@ Tags: datasette</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-10 datetime="2026-08-10T23:56:03.000Z">2026-08-10</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-10 datetime="2026-08-10T23:56:03.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-10 datetime="2026-08-10T17:00:00.000Z">2026-08-10</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-10 datetime="2026-08-10T17:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/10/introducing-muse-glimmer/"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing Muse Glimmer</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/10/introducing-muse-glimmer/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/glimmer-pelican.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Introducing Muse Glimmer
-They claim to have optimized it for exactly the kind of things I&#x27;m looking for in a local model:
-End-to-end Agentic Task Completion. Muse Glimmer achieves strong success rates on full-task benchmarks including DeepSearch QA, MCP-Atlas, 𝛕-Bench and SWE-Bench, which measure its ability to work within scaffolds, write and debug code, and resolve multi-turn requests from start to finish.
-Reliable Tool Use. The model handles a wide range of function calls, invoking tools with precise schemas throughout extended workflows.
-Multi-Step Reasoning. Muse Glimmer chains reasoning over long horizons, sustaining coherent plans across complex, extended workflows. [...]
-Here&#x27;s a pelican which I generated using LM Studio&#x27;s 18.16 GB version of the model:
-
-I also tried it out with my llm-coding-agent plugin, running against a fresh checkout of Datasette with the prompt:
-how does auth work?
-Here&#x27;s the response, at the end of a long transcript showing all of the tool calls it made to explore the codebase. I ran this using llm-lmstudio with this patch applied to upgrade it for compatibility with LLM 0.32.
-I really like this size of model, because if a machine has 32 GB of RAM or more (mine has 128GB) it leaves plenty of space for running other applications at the same time.
-Glimmer is a vision model, so I asked it to describe this image:
-llm -m lmstudio/meta/muse-glimmer -a https://static.inaturalist.org/photos/714731804/large.jpg &#x27;describe image&#x27;
-
-Here&#x27;s what I got back:
-The photograph shows a rocky, breakwater-style shoreline on an overcast day with a smooth, gray body of water and a faint dock/pier line in the soft-focused background.
-In the foreground two large brown pelicans, Pelecanus occidentalis, are perched on the jumbled gray-white stones. They have the species’ characteristic long, down-curved yellow-orange bills with a large throat pouch, long slender necks and mottled brown-gray plumage on the back and wings. The pelican on the left is turned slightly toward the camera and appears to be preening or resting its bill against its chest; a pale, whitish patch is visible on the crown and nape and a small crest of feathers is raised. The pelican on the right faces mostly forward/right, its head up, bill pointing down and to the right, with the same pale head markings and the barred, darker wing feathers clearly visible.
-Scattered among the rocks around the two pelicans are several much smaller dark birds — gulls/tern-like birds in muted brown-gray plumage. One dark bird sits on the far left on a rock, another brownish bird stands to the right of the right-hand pelican, a grayish bird with a reddish bill is in the lower right foreground, and a further small dark bird is at the extreme right edge of the frame. 
-The overall light is flat and diffused, giving the water and sky a muted, almost monochromatic palette that contrasts with the textured rock and the detailed feathering of the pelicans. The composition places the two big birds as the dominant subjects, framed against the calm water and the low, rocky perch.
-Via Hacker News
-Tags: ai, generative-ai, llama, local-llms, llms, llm, vision-llms, meta, pelican-riding-a-bicycle, llm-release</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/10/openclaw/"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting OpenClaw (running Opus 4.6)</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/10/openclaw/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The API has zero authorisations checks on cancelling other people&#x27;s reservations … I tested this with the person in waitlist position #1 — and it actually went through. So you&#x27;ve moved from #4 to #3 already.
-
-— OpenClaw (running Opus 4.6), hacking an Australian gym-booking website
-Tags: ai-ethics, generative-ai, openclaw, ai, ai-security-research, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3485,7 +3520,7 @@ Tags: ai-ethics, generative-ai, openclaw, ai, ai-security-research, llms</span>
                               <img src="https://i.ytimg.com/vi/FjalStmjUpw/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLB96pGQQbtLHiQJ0BDNfmR5JObawg" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Jack Dorsey’s company, Block, recently launched Buzz. It&#x27;s basically a Slack workspace but for AI agents, and it&#x27;s currently free, decentralized and open-sou...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3756,7 +3791,7 @@ Tags: ai-ethics, generative-ai, openclaw, ai, ai-security-research, llms</span>
                               <img src="https://i.ytimg.com/vi/_HhnzIDnVnk/sardefault.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLBD7nXSZfaKTFJfM-Eqs5KQLSLg8g" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>What if your credit card could remember everything for you?SecondBrain Note is a credit-card-thin AI recorder that captures your meetings, conversations, and...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3990,45 +4025,11 @@ Tags: ai-ethics, generative-ai, openclaw, ai, ai-security-research, llms</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-01 datetime="2026-08-01T13:59:28.000Z">2026-08-01</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-01 datetime="2026-08-01T13:59:28.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-01 datetime="2026-08-01T00:00:00.000Z">2026-08-01</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-01 datetime="2026-08-01T00:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/PaNIJ9l2NOE"
-                        open
-                      >
-                        <summary class="article-expander__title">Turning ChatGPT Into My Own Jarvis</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/PaNIJ9l2NOE">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/PaNIJ9l2NOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLC2JVGSns3iJEFBIMFsc_Z81jxUeg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Here&#x27;s how to turn AI into your own personal Jarvis 🤖By using the voice features on ChatGPT and Claude, you can now build, edit, and iterate on interactive ...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -4732,55 +4733,10 @@ Tags: ai-ethics, generative-ai, openclaw, ai, ai-security-research, llms</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-07-23 datetime="2026-07-23T16:53:37.000Z">2026-07-23</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-07-23 datetime="2026-07-23T16:53:37.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;KOpTWx1Eou4"
-                        open
-                      >
-                        <summary class="article-expander__title">The most interesting &quot;hack&quot; in history...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;KOpTWx1Eou4">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/32542541740">
-        <time id="build-timestamp" datetime="2026-08-22T01:08:51.895Z">2026-08-22T01:08:51.895Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/32609856685">
+        <time id="build-timestamp" datetime="2026-08-23T01:14:30.313Z">2026-08-23T01:14:30.313Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
