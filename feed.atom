@@ -1,10 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-24T01:12:26.659Z</id>
+    <id>urn:2026-08-25T01:10:44.650Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-24T01:12:26.659Z</updated>
+    <updated>2026-08-25T01:10:44.650Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[llm-anthropic 0.27]]></title>
+        <id>https://simonwillison.net/2026/Aug/24/llm-anthropic/</id>
+        <link href="https://simonwillison.net/2026/Aug/24/llm-anthropic/"/>
+        <updated>2026-08-24T16:27:04.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.27">llm-anthropic 0.27</a></p>
+        <p>This release of the Anthropic plugin for <a href="https://llm.datasette.io/">LLM</a> mainly provides compatibility with the recently released <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v1.0.0">anthropic v1.0.0</a> Python library, which switches from <code>httpx</code> to <a href="https://github.com/pydantic/httpx2">httpx2</a>. OpenAI made the same change in their <a href="https://github.com/openai/openai-python/releases/tag/v3.0.0">v3.0.0 release</a> two weeks ago.</p>
+<p>Anthropic provide this <a href="https://github.com/anthropics/anthropic-sdk-python/blob/v1.0.0/MIGRATION.md">migration guide</a> for upgrading to 1.0, so I prompted Fable 5 in Claude Code with:</p>
+<blockquote>
+<p><code>Upgrade to anthropic&gt;=1 - read https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/refs/heads/main/MIGRATION.md and get the tests passing</code></p>
+</blockquote>
+<p>Here's <a href="https://github.com/simonw/llm-anthropic/pull/84">the resulting PR</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/httpx">httpx</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[This AI Creates Insane 3D Worlds]]></title>
+        <id>https://www.youtube.com/shorts/ZY628bslSYY</id>
+        <link href="https://www.youtube.com/shorts/ZY628bslSYY"/>
+        <updated>2026-08-24T12:18:26.000Z</updated>
+        <summary type="html"><![CDATA[This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...]]></summary>
+        <author>
+            <name>Matt Wolfe</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Advancing price-performance for developers with GPT‑5.6 in Kiro]]></title>
+        <id>https://openai.com/index/gpt-5-6-in-kiro</id>
+        <link href="https://openai.com/index/gpt-5-6-in-kiro"/>
+        <updated>2026-08-24T12:00:00.000Z</updated>
+        <summary type="html"><![CDATA[GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Your executable is a SQLite database]]></title>
+        <id>https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/</id>
+        <link href="https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/"/>
+        <updated>2026-08-24T11:38:15.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database">Your executable is a SQLite database</a></strong></p>
+Farid Zakaria describes a neat Linux pattern for creating a SQLite database file that can be directly used as an executable binary.</p>
+<p>The trick sets the SQLite file format's 4-byte application ID (68 bytes into the file) to SELF, standing for Structured Executable &amp; Linkable Format.  The various components of the ELF executable format are then arranged into a number of different SQLite tables, using <a href="https://github.com/fzakaria/selfdb/blob/main/schema/self.sql">this schema</a>.</p>
+<p>Their <code>self-exec</code> interpreter (<a href="https://github.com/fzakaria/selfdb/blob/main/loader/self-exec.c">C code here</a>) can then extract and execute the necessary pieces.</p>
+<p>You can additionally use a Linux mechanism called <a href="https://docs.kernel.org/admin-guide/binfmt-misc.html">binfmt_misc</a> to teach the kernel to execute that any time it encounters an executable matching that binary pattern. Farid uses NixOS here, but without NixOS I think registration looks something like this:</p>
+<pre><code>printf '%s\n' ':self:M:68:SELF::/usr/local/bin/self-exec:' \
+  &gt; /proc/sys/fs/binfmt_misc/register
+</code></pre>
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49415271">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/c">c</a>, <a href="https://simonwillison.net/tags/linux">linux</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning]]></title>
+        <id>internalized-visual-thinking</id>
+        <link href="https://machinelearning.apple.com/research/internalized-visual-thinking"/>
+        <updated>2026-08-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Multimodal large language models increasingly use visual chain-of-thought (Visual CoT) to reason about spatial, temporal, and embodied environments. By generating intermediate reasoning images, Visual CoT provides an intuitive mechanism for visual foresight but introduces substantial inference overhead, which is particularly problematic for proactive video reasoning. We ask whether models can learn to think visually during training while reasoning directly at inference. We introduce Internalized Visual Thinking (IVT), a post-training framework that jointly optimizes textual prediction and…]]></summary>
+        <author>
+            <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Anthropic’s best AI model struggles to attract users as cheaper tools thrive]]></title>
         <id>https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/</id>
@@ -120,7 +191,7 @@ llm -t lhigh -t pelican
         <link href="https://simonwillison.net/2026/Aug/22/more-than-just-code-review/"/>
         <updated>2026-08-22T15:56:54.000Z</updated>
         <summary type="html"><![CDATA[<p>The key skill required to make productive use of coding agents is being able to confidently instruct them on how to make changes and then confidently verify that those changes have been applied in the correct way.</p>
-<p>Sometimes this involves reviewing every line of code they have written, but there are other ways to achieve that goal. Eyeballing every line of code has never been the most effective way to validate a chance to a piece of software.</p>
+<p>Sometimes this involves reviewing every line of code they have written, but there are other ways to achieve that goal. Eyeballing every line of code has never been the most effective way to validate a change to a piece of software.</p>
 
     <p>Tags: <a href="https://simonwillison.net/tags/code-review">code-review</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
         <author>
@@ -1254,73 +1325,12 @@ The latest DeepSeek Pro model is now available, via API only. I had to link to O
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[alchemy-utils 0.1a0]]></title>
-        <id>https://simonwillison.net/2026/Aug/12/alchemy-utils/</id>
-        <link href="https://simonwillison.net/2026/Aug/12/alchemy-utils/"/>
-        <updated>2026-08-12T19:51:30.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/alchemy-utils/releases/tag/0.1a0">alchemy-utils 0.1a0</a></p>
-        <p>I've long pondered what a database agnostic version of my <a href="https://sqlite-utils.datasette.io/">sqlite-utils</a> Python library and CLI utility might look like. This morning (literally a shower project) I tasked Codex and GPT-5.6 Sol Ultra with building a prototype:</p>
-<blockquote>
-<p><code>Do a research spike to see what it would take to build a library with the same core API as SQLite-utils - in particular the insert and upsert and insert_all and upsert_all and create and update methods, and the table introspection stuff - but backed by SQLalchemy so it works for multiple database engines</code></p>
-<p><code>Test against PostgreSQL and SQLite and duckdb</code></p>
-<p><code>Use ~/dev/sqlite-utils for reference</code></p>
-<p><code>Create a git repo for this and commit and early and often - use uv init to start the project - use red/green TDD and pytest, see ~/dev/django-sql-dashboard for one idea as to how the PostgreSQL tests could work</code></p>
-</blockquote>
-<p>It took <a href="https://gist.github.com/simonw/bd10e4886688e0fd1b833e4afaabf19e">very few follow-up prompts</a> to produce this project in a state good enough to release as an alpha.</p>
-<p>Here's a one-liner I can use to list the rows in a table in my local PostgreSQL copy of my blog's database:</p>
-<p><code>uvx --with 'alchemy-utils[postgresql]' alchemy-utils rows 'postgresql+psycopg://simon@localhost:5432/simonwillisonblog'  redirects_redirect</code></p>
-<p>The output from that starts like this:</p>
-<pre><code>[
-  {
-    "id": 2328,
-    "domain": "simonwillison.net",
-    "path": "2020/May/21/apple-photos-sqlite/",
-    "target": "/2020/May/21/dogsheep-photos/",
-    "created": "2020-05-21T13:03:46.591692-07:00"
-  },
-  {
-    "id": 3,
-    "domain": "feeds.simonwillison.net",
-    "path": "swn-links",
-    "target": "https://simonwillison.net/atom/links/",
-    "created": "2017-10-01T14:12:54.820729-07:00"
-  }
-</code></pre>
-<p>Or if you'd like a DuckDB database with <a href="https://github.com/simonw/sf-tree-history/blob/main/Street_Tree_List.csv">every tree in San Francisco</a>, schema created automatically to match the file:</p>
-<p><code>curl 'https://raw.githubusercontent.com/simonw/sf-tree-history/refs/heads/main/Street_Tree_List.csv' | uvx --with 'alchemy-utils[duckdb]' alchemy-utils insert 'duckdb:////tmp/trees.db' trees - --csv</code></p>
-<p>(That one took nearly an hour the first time I ran it, so I <a href="https://github.com/simonw/alchemy-utils/commit/e3b8d03e040867b256aeff7db322a0b0eb1f8b06">had Codex optimize it</a> and got it down to around 35 seconds.)</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/databases">databases</a>, <a href="https://simonwillison.net/tags/postgresql">postgresql</a>, <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/sql">sql</a>, <a href="https://simonwillison.net/tags/sqlalchemy">sqlalchemy</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/sqlite-utils">sqlite-utils</a>, <a href="https://simonwillison.net/tags/duckdb">duckdb</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/codex">codex</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Meta's new model wants "deep access" to your personal life...]]></title>
         <id>https://www.youtube.com/watch?v=G55HSGpuh1M</id>
         <link href="https://www.youtube.com/watch?v=G55HSGpuh1M"/>
         <updated>2026-08-12T18:29:41.000Z</updated>
         <author>
             <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Quoting Florian Herrengt]]></title>
-        <id>https://simonwillison.net/2026/Aug/12/florian-herrengt/</id>
-        <link href="https://simonwillison.net/2026/Aug/12/florian-herrengt/"/>
-        <updated>2026-08-12T15:08:47.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html"><p>But then users start to report a weird bug. It's the 4th time your team has been trying to fix it. I mean... asking AI to fix it. Unfortunately, it seems like not even Fable can figure it out.</p>
-<p>You go talk to the person who worked on this feature.</p>
-<p>"So where does the data come from?"</p>
-<p>"Hmm... actually I don't know. Let me ask Claude."</p>
-<p>You sit next to each other watching an endless wall of text appear on the screen. Neither of you has any idea whether any of it is true but Claude seems very confident. [...]</p>
-<p>This project has become so convoluted, with so many layers and services, that no one on your team could possibly start to understand what's going on.</p></blockquote>
-<p class="cite">&mdash; <a href="https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html">Florian Herrengt</a>, AI is removing the middle class of software engineering</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-misuse">ai-misuse</a>, <a href="https://simonwillison.net/tags/cognitive-debt">cognitive-debt</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1522,16 +1532,6 @@ The latest DeepSeek Pro model is now available, via API only. I had to link to O
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Scaling Categorical Flow Maps]]></title>
-        <id>scaling-categorical-flow-maps</id>
-        <link href="https://machinelearning.apple.com/research/scaling-categorical-flow-maps"/>
-        <updated>2026-08-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Continuous diffusion and flow matching models could represent a powerful alternative to autoregressive approaches for language modelling (LM), as they unlock a host of advantages currently reserved for continuous modalities, including accelerated sampling and tilting. Recently, several works have demonstrated the possibility of generating discrete data continuously by a simple flow matching process between a Gaussian and the one-hot encoded data distribution. They have further shown the feasibility of accelerated sampling via Categorical Flow Maps (CFMs), resulting in competitive sample…]]></summary>
-        <author>
-            <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[WeatherNext: AI model achieves breakthrough in forecasting cyclones]]></title>
         <id>https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/</id>
         <link href="https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/"/>
@@ -1617,16 +1617,6 @@ The latest DeepSeek Pro model is now available, via API only. I had to link to O
         <summary type="html"><![CDATA[OpenAI explains recent third-party cybersecurity evaluation incidents and outlines new safeguards to strengthen AI model testing and evaluation.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[You Can Now Search Your Own Memory]]></title>
-        <id>https://www.youtube.com/shorts/_HhnzIDnVnk</id>
-        <link href="https://www.youtube.com/shorts/_HhnzIDnVnk"/>
-        <updated>2026-08-04T13:15:35.000Z</updated>
-        <summary type="html"><![CDATA[What if your credit card could remember everything for you?SecondBrain Note is a credit-card-thin AI recorder that captures your meetings, conversations, and...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>

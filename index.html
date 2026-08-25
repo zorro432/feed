@@ -22,6 +22,184 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-24 datetime="2026-08-24T16:27:04.000Z">2026-08-24</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-24 datetime="2026-08-24T16:27:04.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/24/llm-anthropic/"
+                        open
+                      >
+                        <summary class="article-expander__title">llm-anthropic 0.27</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/24/llm-anthropic/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: llm-anthropic 0.27
+This release of the Anthropic plugin for LLM mainly provides compatibility with the recently released anthropic v1.0.0 Python library, which switches from httpx to httpx2. OpenAI made the same change in their v3.0.0 release two weeks ago.
+Anthropic provide this migration guide for upgrading to 1.0, so I prompted Fable 5 in Claude Code with:
+Upgrade to anthropic&gt;&#x3D;1 - read https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/refs/heads/main/MIGRATION.md and get the tests passing
+Here&#x27;s the resulting PR.
+Tags: python, httpx, llm, anthropic, claude</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/"
+                        open
+                      >
+                        <summary class="article-expander__title">Your executable is a SQLite database</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Your executable is a SQLite database
+The trick sets the SQLite file format&#x27;s 4-byte application ID (68 bytes into the file) to SELF, standing for Structured Executable &amp; Linkable Format.  The various components of the ELF executable format are then arranged into a number of different SQLite tables, using this schema.
+Their self-exec interpreter (C code here) can then extract and execute the necessary pieces.
+You can additionally use a Linux mechanism called binfmt_misc to teach the kernel to execute that any time it encounters an executable matching that binary pattern. Farid uses NixOS here, but without NixOS I think registration looks something like this:
+printf &#x27;%s\n&#x27; &#x27;:self:M:68:SELF::/usr/local/bin/self-exec:&#x27; \
+  &gt; /proc/sys/fs/binfmt_misc/register
+
+Via Hacker News
+Tags: c, linux, sqlite</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/ZY628bslSYY"
+                        open
+                      >
+                        <summary class="article-expander__title">This AI Creates Insane 3D Worlds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ZY628bslSYY">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/ZY628bslSYY/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAcxpzRviveTzIy-elL7Zzlx9GM_g" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/gpt-5-6-in-kiro"
+                        open
+                      >
+                        <summary class="article-expander__title">Advancing price-performance for developers with GPT‑5.6 in Kiro</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gpt-5-6-in-kiro">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Apple Machine Learning Research</button>
+                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="internalized-visual-thinking"
+                        open
+                      >
+                        <summary class="article-expander__title">Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/internalized-visual-thinking">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Multimodal large language models increasingly use visual chain-of-thought (Visual CoT) to reason about spatial, temporal, and embodied environments. By generating intermediate reasoning images, Visual CoT provides an intuitive mechanism for visual foresight but introduces substantial inference overhead, which is particularly problematic for proactive video reasoning. We ask whether models can learn to think visually during training while reasoning directly at inference. We introduce Internalized Visual Thinking (IVT), a post-training framework that jointly optimizes textual prediction and…</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-23 datetime="2026-08-23T20:24:52.000Z">2026-08-23</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-23 datetime="2026-08-23T20:24:52.000Z"></time>
           </button>
@@ -197,7 +375,7 @@ Tags: annotated-release-notes, llm</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>The key skill required to make productive use of coding agents is being able to confidently instruct them on how to make changes and then confidently verify that those changes have been applied in the correct way.
-Sometimes this involves reviewing every line of code they have written, but there are other ways to achieve that goal. Eyeballing every line of code has never been the most effective way to validate a chance to a piece of software.
+Sometimes this involves reviewing every line of code they have written, but there are other ways to achieve that goal. Eyeballing every line of code has never been the most effective way to validate a change to a piece of software.
 Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
@@ -233,7 +411,7 @@ Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</
                               <img src="https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAhHWwHqQZUo2sZ2miYGX12NXMb4w" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This is the wildest smartphone camera I’ve seen yet. 🤯HONOR&#x27;s new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -589,7 +767,7 @@ Tags: browsers, javascript, ai, rust, typescript, generative-ai, llms, coding-ag
                               <img src="https://i.ytimg.com/vi/O-8TbMFOAfg/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD4cD5u1Stblz9utL7NxylFCHCFMA" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven&#x27;t revealed exact...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2083,7 +2261,7 @@ Tags: photography, wildlife, half-moon-bay</span>
                               <img src="https://i.ytimg.com/vi/aszRSGI_Iwg/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLCgaZPctMfPB6abm8zaNPdib6-ctg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Most people are barely scratching the surface of what the new Codex app can do.It can now browse social media without an API, turn something you build into a...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2763,81 +2941,6 @@ Tags: ai, generative-ai, llms, pelican-riding-a-bicycle, deepseek, llm-release, 
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/12/alchemy-utils/"
-                        open
-                      >
-                        <summary class="article-expander__title">alchemy-utils 0.1a0</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/12/alchemy-utils/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: alchemy-utils 0.1a0
-I&#x27;ve long pondered what a database agnostic version of my sqlite-utils Python library and CLI utility might look like. This morning (literally a shower project) I tasked Codex and GPT-5.6 Sol Ultra with building a prototype:
-Do a research spike to see what it would take to build a library with the same core API as SQLite-utils - in particular the insert and upsert and insert_all and upsert_all and create and update methods, and the table introspection stuff - but backed by SQLalchemy so it works for multiple database engines
-Test against PostgreSQL and SQLite and duckdb
-Use ~/dev/sqlite-utils for reference
-Create a git repo for this and commit and early and often - use uv init to start the project - use red/green TDD and pytest, see ~/dev/django-sql-dashboard for one idea as to how the PostgreSQL tests could work
-It took very few follow-up prompts to produce this project in a state good enough to release as an alpha.
-Here&#x27;s a one-liner I can use to list the rows in a table in my local PostgreSQL copy of my blog&#x27;s database:
-uvx --with &#x27;alchemy-utils[postgresql]&#x27; alchemy-utils rows &#x27;postgresql+psycopg://simon@localhost:5432/simonwillisonblog&#x27;  redirects_redirect
-The output from that starts like this:
-[
-  {
-    &quot;id&quot;: 2328,
-    &quot;domain&quot;: &quot;simonwillison.net&quot;,
-    &quot;path&quot;: &quot;2020/May/21/apple-photos-sqlite/&quot;,
-    &quot;target&quot;: &quot;/2020/May/21/dogsheep-photos/&quot;,
-    &quot;created&quot;: &quot;2020-05-21T13:03:46.591692-07:00&quot;
-  },
-  {
-    &quot;id&quot;: 3,
-    &quot;domain&quot;: &quot;feeds.simonwillison.net&quot;,
-    &quot;path&quot;: &quot;swn-links&quot;,
-    &quot;target&quot;: &quot;https://simonwillison.net/atom/links/&quot;,
-    &quot;created&quot;: &quot;2017-10-01T14:12:54.820729-07:00&quot;
-  }
-
-Or if you&#x27;d like a DuckDB database with every tree in San Francisco, schema created automatically to match the file:
-curl &#x27;https://raw.githubusercontent.com/simonw/sf-tree-history/refs/heads/main/Street_Tree_List.csv&#x27; | uvx --with &#x27;alchemy-utils[duckdb]&#x27; alchemy-utils insert &#x27;duckdb:////tmp/trees.db&#x27; trees - --csv
-(That one took nearly an hour the first time I ran it, so I had Codex optimize it and got it down to around 35 seconds.)
-Tags: databases, postgresql, projects, python, sql, sqlalchemy, sqlite, sqlite-utils, duckdb, coding-agents, codex</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/12/florian-herrengt/"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Florian Herrengt</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/12/florian-herrengt/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>But then users start to report a weird bug. It&#x27;s the 4th time your team has been trying to fix it. I mean... asking AI to fix it. Unfortunately, it seems like not even Fable can figure it out.
-You go talk to the person who worked on this feature.
-&quot;So where does the data come from?&quot;
-&quot;Hmm... actually I don&#x27;t know. Let me ask Claude.&quot;
-You sit next to each other watching an endless wall of text appear on the screen. Neither of you has any idea whether any of it is true but Claude seems very confident. [...]
-This project has become so convoluted, with so many layers and services, that no one on your team could possibly start to understand what&#x27;s going on.
-
-— Florian Herrengt, AI is removing the middle class of software engineering
-Tags: ai-misuse, cognitive-debt, generative-ai, ai, llms, ai-assisted-programming</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -3406,40 +3509,6 @@ Tags: ai-misuse, cognitive-debt, generative-ai, ai, llms, ai-assisted-programmin
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Apple Machine Learning Research</button>
-                  <a class="source-heading__link" href="https://machinelearning.apple.com">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="scaling-categorical-flow-maps"
-                        open
-                      >
-                        <summary class="article-expander__title">Scaling Categorical Flow Maps</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://machinelearning.apple.com/research/scaling-categorical-flow-maps">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://mlr.cdn-apple.com/media/Home_1200x630_48225d82e9.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Continuous diffusion and flow matching models could represent a powerful alternative to autoregressive approaches for language modelling (LM), as they unlock a host of advantages currently reserved for continuous modalities, including accelerated sampling and tilting. Recently, several works have demonstrated the possibility of generating discrete data continuously by a simple flow matching process between a Gaussian and the one-hot encoded data distribution. They have further shown the feasibility of accelerated sampling via Categorical Flow Maps (CFMs), resulting in competitive sample…</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -3509,10 +3578,10 @@ Tags: ai-misuse, cognitive-debt, generative-ai, ai, llms, ai-assisted-programmin
                         <summary class="article-expander__title">Like Slack… But for AI bots.</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/FjalStmjUpw">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/FjalStmjUpw/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLB96pGQQbtLHiQJ0BDNfmR5JObawg" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/FjalStmjUpw/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLATtUaO2gcbOoGO9pWve5u29Id88w" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Jack Dorsey’s company, Block, recently launched Buzz. It&#x27;s basically a Slack workspace but for AI agents, and it&#x27;s currently free, decentralized and open-sou...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3751,40 +3820,6 @@ Tags: ai-misuse, cognitive-debt, generative-ai, ai, llms, ai-assisted-programmin
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Explore new education plugins for ChatGPT Work and Codex that help K–12 teachers, college educators, and students learn, teach, research, and build.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/_HhnzIDnVnk"
-                        open
-                      >
-                        <summary class="article-expander__title">You Can Now Search Your Own Memory</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/_HhnzIDnVnk">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/_HhnzIDnVnk/sardefault.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLBD7nXSZfaKTFJfM-Eqs5KQLSLg8g" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>What if your credit card could remember everything for you?SecondBrain Note is a credit-card-thin AI recorder that captures your meetings, conversations, and...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
                             </span>
                           </div>
                         </a>
@@ -4727,8 +4762,8 @@ Tags: ai-misuse, cognitive-debt, generative-ai, ai, llms, ai-assisted-programmin
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/32679026935">
-        <time id="build-timestamp" datetime="2026-08-24T01:12:26.623Z">2026-08-24T01:12:26.623Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/32796518400">
+        <time id="build-timestamp" datetime="2026-08-25T01:10:44.632Z">2026-08-25T01:10:44.632Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
