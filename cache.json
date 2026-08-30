@@ -718,46 +718,6 @@
           "wordCount": null,
           "title": "Ten advances in mathematics and theoretical computer science",
           "imageUrl": null
-        },
-        {
-          "id": "https://openai.com/index/advancing-responsible-ai-across-europe",
-          "author": null,
-          "description": "OpenAI shares how its safety, security, transparency, and provenance practices support responsible AI governance in Europe. The work will continue as the EU AI Act advances.",
-          "link": "https://openai.com/index/advancing-responsible-ai-across-europe",
-          "publishedOn": "2026-07-31T15:00:00.000Z",
-          "wordCount": null,
-          "title": "Advancing responsible AI across Europe",
-          "imageUrl": null
-        },
-        {
-          "id": "https://openai.com/index/building-abundant-intelligence",
-          "author": null,
-          "description": "A full-stack approach to making advanced AI more capable, more affordable, and more widely useful.",
-          "link": "https://openai.com/index/building-abundant-intelligence",
-          "publishedOn": "2026-07-31T15:00:00.000Z",
-          "wordCount": null,
-          "title": "Building abundant intelligence",
-          "imageUrl": null
-        },
-        {
-          "id": "https://openai.com/index/unive",
-          "author": null,
-          "description": "See how Univé built an AI-ready workforce with ChatGPT Enterprise by combining leadership, responsible governance, and employee-led innovation to transform work at scale.",
-          "link": "https://openai.com/index/unive",
-          "publishedOn": "2026-07-31T07:00:00.000Z",
-          "wordCount": null,
-          "title": "Univé builds an AI-ready workforce",
-          "imageUrl": null
-        },
-        {
-          "id": "https://openai.com/index/disrupting-malicious-uses-of-ai-criminal-scam-operation",
-          "author": null,
-          "description": "OpenAI disrupted a Cambodia-based scam operation using ChatGPT to support investment, romance, gambling, and impersonation schemes.",
-          "link": "https://openai.com/index/disrupting-malicious-uses-of-ai-criminal-scam-operation",
-          "publishedOn": "2026-07-31T00:00:00.000Z",
-          "wordCount": null,
-          "title": "Disrupting a Criminal Scam Operation",
-          "imageUrl": null
         }
       ]
     },
@@ -873,6 +833,16 @@
       "feedUrl": "https://simonwillison.net/atom/everything/",
       "siteUrl": "http://simonwillison.net/",
       "articles": [
+        {
+          "id": "https://simonwillison.net/2026/Aug/29/hy4/",
+          "author": null,
+          "description": "<p><strong><a href=\"https://hy.tencent.ai/research/hy4-preview\">Introducing Hy4 Preview</a></strong></p>\nNew open weight text input (no vision)  LLM from Chinese company Tencent today: 770B total parameters, 49B active parameters, 1M token context window, <a href=\"https://huggingface.co/tencent/Hy4-preview\">1.56TB on Hugging Face</a>.</p>\n<p>This is a big size increase from their previous <a href=\"https://huggingface.co/tencent/Hy3\">Hy3</a> in July, which was 295B, 21B active, 256,000 context, 598GB.</p>\n<p>I recently started using model chat templates to better understand their capabilities. Here's Hy4's  <a href=\"https://huggingface.co/tencent/Hy4-preview/blob/main/chat_template.jinja\">chat_template.jinja</a> on Hugging Face, which includes this section:</p>\n<div class=\"highlight highlight-text-html-django\"><pre><span class=\"pl-e\">{%</span>- <span class=\"pl-k\">if</span> <span class=\"pl-k\">not</span> <span class=\"pl-s\">reasoning_effort</span> <span class=\"pl-s\">is</span> <span class=\"pl-s\">defined</span> <span class=\"pl-e\">%}</span>\n    <span class=\"pl-e\">{%</span>- <span class=\"pl-s\">set</span> <span class=\"pl-s\">reasoning_effort</span> = <span class=\"pl-s\">'high'</span> <span class=\"pl-e\">%}</span>\n<span class=\"pl-e\">{%</span>- <span class=\"pl-s\">elif</span> <span class=\"pl-s\">reasoning_effort</span> <span class=\"pl-k\">not</span> <span class=\"pl-k\">in</span> [<span class=\"pl-s\">'high'</span>, <span class=\"pl-s\">'no_think'</span>] <span class=\"pl-e\">%}</span>\n    <span class=\"pl-e\">{%</span>- <span class=\"pl-k\">if</span> <span class=\"pl-s\">reasoning_effort</span> <span class=\"pl-s\">is</span> <span class=\"pl-s\">none</span> <span class=\"pl-e\">%}</span>\n        {{- raise_exception('reasoning_effort error : None, should be no_think/high') }}\n    <span class=\"pl-e\">{%</span>- <span class=\"pl-k\">else</span> <span class=\"pl-e\">%}</span>\n        {{- raise_exception('reasoning_effort error : ' + reasoning_effort + ', should be no_think/high') }}\n    <span class=\"pl-e\">{%</span>- <span class=\"pl-k\">endif</span> <span class=\"pl-e\">%}</span>\n<span class=\"pl-e\">{%</span>- <span class=\"pl-k\">endif</span> <span class=\"pl-e\">%}</span></pre></div>\n<p>So it looks like there are just two reasoning effort levels: \"high\" (the default) and \"no_think\" (reason by disabled).</p>\n<p>I tried my \"Generate an SVG of a pelican riding a bicycle\" prompt with the default high reasoning <a href=\"https://openrouter.ai/tencent/hy4-preview#apps\">via OpenRouter</a> and <a href=\"https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fcb69816b3fb940f2782569a82a523af1\">got this</a>:</p>\n<p><img alt=\"Flat vector cartoon illustration of a white pelican with a large orange bill riding a red bicycle to the right along a grey road with a dashed white centre line, its orange webbed feet on the pedals and grey tail feathers fanned out behind, against a pale blue sky with a yellow sun, white clouds and horizontal white motion lines suggesting speed\" src=\"https://static.simonwillison.net/static/2026-08-29/IMG_7725.jpeg\" /></p>\n<p>Quoting the reasoning trace:</p>\n<blockquote>\n<p>[...] Let's maybe add a helmet? It could improve riding theme, but may obscure head. Maybe a small cycling cap or helmet? The user didn't ask; can add red helmet? Might be cute. But pelican with big beak; a helmet might obscure. Better maybe no.</p>\n<p>Maybe add sunglasses? no.</p>\n<p>Maybe add water? no.</p>\n</blockquote>\n<p>It's interesting how the reasoning trace uses slightly truncated English, presumably because perfect grammar isn't useful or token efficient for hidden reasoning text.\n\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/ai\">ai</a>, <a href=\"https://simonwillison.net/tags/generative-ai\">generative-ai</a>, <a href=\"https://simonwillison.net/tags/llms\">llms</a>, <a href=\"https://simonwillison.net/tags/pelican-riding-a-bicycle\">pelican-riding-a-bicycle</a>, <a href=\"https://simonwillison.net/tags/llm-reasoning\">llm-reasoning</a>, <a href=\"https://simonwillison.net/tags/llm-release\">llm-release</a>, <a href=\"https://simonwillison.net/tags/ai-in-china\">ai-in-china</a></p>",
+          "link": "https://simonwillison.net/2026/Aug/29/hy4/",
+          "publishedOn": "2026-08-29T23:53:13.000Z",
+          "wordCount": 997,
+          "title": "Introducing Hy4 Preview",
+          "imageUrl": "https://static.simonwillison.net/static/2026-08-29/IMG_7725.jpeg"
+        },
         {
           "id": "https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/",
           "author": null,
@@ -1162,16 +1132,6 @@
           "wordCount": 736,
           "title": "Northern Gannet",
           "imageUrl": null
-        },
-        {
-          "id": "https://simonwillison.net/2026/Aug/14/dont-classify-hallucinate/",
-          "author": null,
-          "description": "<p><strong><a href=\"https://softwaredoug.com/blog/2026/08/10/hypothetical-classifications\">Don&#x27;t classify. Hallucinate!</a></strong></p>\nI still have quite a bit of older content on my blog that I never got round to tagging. My blog has <a href=\"https://simonwillison.net/\">1,856 tags</a> - likely too many to feed to an LLM in one go and say \"which of these tags match the following content\".</p>\n<p>Doug Turnbull has a neat solution. Tell the model to output tags without any details of the existing vocabulary, then use vector embeddings against the existing corpus to find the concrete tags that are closest to the ones the model imagined might fit!</p>\n<p>His example prompt suggests including an example of the shape of your tags to help the model make a more useful guess:</p>\n<blockquote>\n<p><code>Your task is to create novel, never seen before, furniture, home goods, or hardware classification that best fit a search query.</code></p>\n<p><code>Product classifications might look like:</code></p>\n<p><code>Furniture / Living Room Furniture / Coffee Tables &amp; End Tables / Coffee Tables</code><br>\n<code>Décor &amp; Pillows / Decorative Pillows &amp; Blankets / Throw Pillows</code><br>\n<code>Furniture / Bedroom Furniture / Dressers &amp; Chests</code><br>\n<code>Kitchen &amp; Tabletop / Kitchen Organization / Food Storage &amp; Canisters</code><br>\n<code>School Furniture and Supplies / School Furniture / School Chairs &amp; Seating / Stackable Chairs</code><br>\n<code>Baby &amp; Kids / Toddler &amp; Kids Bedroom Furniture / Kids Beds</code></p>\n<p><code>Here's the query to generate classifications for:</code></p>\n<p><code>brown coffee table</code></p>\n</blockquote>\n\n\n    <p>Tags: <a href=\"https://simonwillison.net/tags/search\">search</a>, <a href=\"https://simonwillison.net/tags/ai\">ai</a>, <a href=\"https://simonwillison.net/tags/generative-ai\">generative-ai</a>, <a href=\"https://simonwillison.net/tags/llms\">llms</a>, <a href=\"https://simonwillison.net/tags/embeddings\">embeddings</a>, <a href=\"https://simonwillison.net/tags/doug-turnbull\">doug-turnbull</a></p>",
-          "link": "https://simonwillison.net/2026/Aug/14/dont-classify-hallucinate/",
-          "publishedOn": "2026-08-14T21:54:35.000Z",
-          "wordCount": 964,
-          "title": "Don't classify. Hallucinate!",
-          "imageUrl": null
         }
       ]
     },
@@ -1305,16 +1265,6 @@
       "siteUrl": "https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g",
       "articles": [
         {
-          "id": "https://www.youtube.com/shorts/2_UcYzbYnAI",
-          "author": null,
-          "description": "Is this CREEPY or CRAZY?!This robot can run faster than the fastest man alive 😮Unitree’s new “Superman” robot can apparently hit speeds of around 28 mph and...",
-          "link": "https://www.youtube.com/shorts/2_UcYzbYnAI",
-          "publishedOn": "2026-08-28T15:10:41.000Z",
-          "wordCount": 3506,
-          "title": "This Robot Is Faster Than Usain Bolt?!",
-          "imageUrl": "https://i.ytimg.com/vi/2_UcYzbYnAI/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLCFy7eqEbY4px9Rclkp1WwjT4nDBw"
-        },
-        {
           "id": "https://www.youtube.com/watch?v=TInwQglNkzo",
           "author": null,
           "description": "",
@@ -1330,9 +1280,9 @@
           "description": "AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...",
           "link": "https://www.youtube.com/shorts/Z93MPi8ZO3A",
           "publishedOn": "2026-08-27T13:06:18.000Z",
-          "wordCount": 4068,
+          "wordCount": 3700,
           "title": "This Company Will Buy Your AI Training Data",
-          "imageUrl": "https://i.ytimg.com/vi/Z93MPi8ZO3A/hq720.jpg?sqp=-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA==&rs=AOn4CLB0keN_s0tUhOanFi32FX0kNTuasA"
+          "imageUrl": "https://i.ytimg.com/vi/Z93MPi8ZO3A/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLDhXMPYPDE7oIeKIIHBcr8zcO-RNw"
         },
         {
           "id": "https://www.youtube.com/watch?v=rKo9iLGjUbs",
@@ -1350,7 +1300,7 @@
           "description": "You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...",
           "link": "https://www.youtube.com/shorts/uS2gi-D8C0k",
           "publishedOn": "2026-08-26T13:22:25.000Z",
-          "wordCount": 3706,
+          "wordCount": 4596,
           "title": "How To EASILY Run Local AI Models",
           "imageUrl": "https://i.ytimg.com/vi/uS2gi-D8C0k/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLA2Qtjozc9DeKsGnr9lS4O3E24UEg"
         },
@@ -1360,7 +1310,7 @@
           "description": "I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...",
           "link": "https://www.youtube.com/shorts/f74JmwXm-sQ",
           "publishedOn": "2026-08-25T14:08:30.000Z",
-          "wordCount": 4258,
+          "wordCount": 3802,
           "title": "This AI Found Money I Was Wasting",
           "imageUrl": "https://i.ytimg.com/vi/f74JmwXm-sQ/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLClXnsDLHQ3T1orI8qucHhLem17dQ"
         },
@@ -1370,7 +1320,7 @@
           "description": "This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...",
           "link": "https://www.youtube.com/shorts/ZY628bslSYY",
           "publishedOn": "2026-08-24T12:18:26.000Z",
-          "wordCount": 3667,
+          "wordCount": 3983,
           "title": "This AI Creates Insane 3D Worlds",
           "imageUrl": "https://i.ytimg.com/vi/ZY628bslSYY/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLAcxpzRviveTzIy-elL7Zzlx9GM_g"
         },
@@ -1380,9 +1330,9 @@
           "description": "This is the wildest smartphone camera I’ve seen yet. 🤯HONOR's new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...",
           "link": "https://www.youtube.com/shorts/aOzaO5AAGjk",
           "publishedOn": "2026-08-22T13:05:27.000Z",
-          "wordCount": 4008,
+          "wordCount": 3577,
           "title": "The Wildest Smartphone I’ve Ever Seen 🤯",
-          "imageUrl": "https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp=-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA==&rs=AOn4CLAXJbfymjBZ13hxc1pbL1QMhfXiZg"
+          "imageUrl": "https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLAhHWwHqQZUo2sZ2miYGX12NXMb4w"
         },
         {
           "id": "https://www.youtube.com/shorts/1m5Ee9QbLF0",
@@ -1390,7 +1340,7 @@
           "description": "Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...",
           "link": "https://www.youtube.com/shorts/1m5Ee9QbLF0",
           "publishedOn": "2026-08-21T22:09:39.000Z",
-          "wordCount": 4418,
+          "wordCount": 3970,
           "title": "This Pyramid Could Be Your Next Intern",
           "imageUrl": "https://i.ytimg.com/vi/1m5Ee9QbLF0/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLAEEojLE1PzlnbSa1MxmSp7B6Ngjg&usqp=CCk"
         },
@@ -1410,9 +1360,9 @@
           "description": "Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven't revealed exact...",
           "link": "https://www.youtube.com/shorts/O-8TbMFOAfg",
           "publishedOn": "2026-08-20T12:41:43.000Z",
-          "wordCount": 4137,
+          "wordCount": 3786,
           "title": "Claude’s Text Watermark Could Follow It Everywhere",
-          "imageUrl": "https://i.ytimg.com/vi/O-8TbMFOAfg/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLD4cD5u1Stblz9utL7NxylFCHCFMA"
+          "imageUrl": "https://i.ytimg.com/vi/O-8TbMFOAfg/hq720.jpg?sqp=-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA==&rs=AOn4CLDXg-fnH6zjagurQiGTwX-L46O1MA"
         },
         {
           "id": "https://www.youtube.com/shorts/r-ORCmsRHOE",
@@ -1420,7 +1370,7 @@
           "description": "The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...",
           "link": "https://www.youtube.com/shorts/r-ORCmsRHOE",
           "publishedOn": "2026-08-19T13:37:12.000Z",
-          "wordCount": 4017,
+          "wordCount": 3899,
           "title": "Your New Backup Brain Is Here",
           "imageUrl": "https://i.ytimg.com/vi/r-ORCmsRHOE/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLDIDE76Ti1er6l4P0Lo07Lz09nAig"
         },
@@ -1440,9 +1390,9 @@
           "description": "Apparently the newest benchmark for AI models is… can it commit cyber crimes? 😭First OpenAI’s model broke out during testing and hacked Hugging Face.Then An...",
           "link": "https://www.youtube.com/shorts/9ZKeu_7k9ik",
           "publishedOn": "2026-08-17T13:18:26.000Z",
-          "wordCount": 3749,
+          "wordCount": 3775,
           "title": "Are AI Models Escaping On Purpose?",
-          "imageUrl": "https://i.ytimg.com/vi/9ZKeu_7k9ik/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLAkfG73qr5nXkdPnbbf-0hwAwxOIg&usqp=CCk"
+          "imageUrl": "https://i.ytimg.com/vi/9ZKeu_7k9ik/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAAAAJQAAyEI9AICiQ3gBuAL3GA==&rs=AOn4CLA7rxZz38qYSBtE3rxywZ_AgcbCIA&usqp=CCk"
         },
         {
           "id": "https://www.youtube.com/shorts/ZePfpQ7lbcs",
@@ -1450,9 +1400,96 @@
           "description": "Hank Green got “caught” using AI… and I genuinely don’t think he did anything wrong.The whole controversy started because Hank said “I appreciate the pushbac...",
           "link": "https://www.youtube.com/shorts/ZePfpQ7lbcs",
           "publishedOn": "2026-08-15T13:14:44.000Z",
-          "wordCount": 4140,
+          "wordCount": 3818,
           "title": "The Hank Green Situation",
           "imageUrl": "https://i.ytimg.com/vi/ZePfpQ7lbcs/hq720.jpg?sqp=-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&rs=AOn4CLDZsTIyFXStEOIVY3GFPthz_gA6vg"
+        },
+        {
+          "id": "https://www.youtube.com/shorts/aszRSGI_Iwg",
+          "author": null,
+          "description": "Most people are barely scratching the surface of what the new Codex app can do.It can now browse social media without an API, turn something you build into a...",
+          "link": "https://www.youtube.com/shorts/aszRSGI_Iwg",
+          "publishedOn": "2026-08-15T00:47:28.000Z",
+          "wordCount": 3531,
+          "title": "3 New Ways To Use ChatGPT Codex",
+          "imageUrl": "https://i.ytimg.com/vi/aszRSGI_Iwg/oar2.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLCgaZPctMfPB6abm8zaNPdib6-ctg&usqp=CCk"
+        }
+      ]
+    },
+    {
+      "title": "Fireship",
+      "feedUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA",
+      "siteUrl": "https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA",
+      "articles": [
+        {
+          "id": "https://www.youtube.com/watch?v=UuqSy1jPSUw",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=UuqSy1jPSUw",
+          "publishedOn": "2026-08-27T17:48:13.000Z",
+          "wordCount": null,
+          "title": "The most expensive software bug in history...",
+          "imageUrl": null
+        },
+        {
+          "id": "https://www.youtube.com/watch?v=xBByvFrqmWU",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=xBByvFrqmWU",
+          "publishedOn": "2026-08-20T17:53:37.000Z",
+          "wordCount": null,
+          "title": "DeepSeek is back... and Silicon Valley is terrified",
+          "imageUrl": null
+        },
+        {
+          "id": "https://www.youtube.com/watch?v=iuZPTE5qsJY",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=iuZPTE5qsJY",
+          "publishedOn": "2026-08-19T18:45:57.000Z",
+          "wordCount": null,
+          "title": "The summer Math fell to the machines...",
+          "imageUrl": null
+        },
+        {
+          "id": "https://www.youtube.com/watch?v=E7la7-dtfVM",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=E7la7-dtfVM",
+          "publishedOn": "2026-08-14T17:44:59.000Z",
+          "wordCount": null,
+          "title": "This new startup can query anywhere you've been...",
+          "imageUrl": null
+        },
+        {
+          "id": "https://www.youtube.com/watch?v=G55HSGpuh1M",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=G55HSGpuh1M",
+          "publishedOn": "2026-08-12T18:29:41.000Z",
+          "wordCount": null,
+          "title": "Meta's new model wants \"deep access\" to your personal life...",
+          "imageUrl": null
+        },
+        {
+          "id": "https://www.youtube.com/watch?v=aB5LGrHISqY",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=aB5LGrHISqY",
+          "publishedOn": "2026-08-11T16:10:08.000Z",
+          "wordCount": null,
+          "title": "I spent 3 days at MIT... the robot hype is worse than you think",
+          "imageUrl": null
+        },
+        {
+          "id": "https://www.youtube.com/watch?v=2X2V3xv_jik",
+          "author": null,
+          "description": "",
+          "link": "https://www.youtube.com/watch?v=2X2V3xv_jik",
+          "publishedOn": "2026-08-05T18:08:46.000Z",
+          "wordCount": null,
+          "title": "The safest way to store Bitcoin was just hacked...",
+          "imageUrl": null
         }
       ]
     },
