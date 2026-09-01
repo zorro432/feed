@@ -1,10 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-08-31T03:50:49.718Z</id>
+    <id>urn:2026-09-01T03:43:21.897Z</id>
     <title>osmos::feed</title>
-    <updated>2026-08-31T03:50:49.718Z</updated>
+    <updated>2026-09-01T03:43:21.897Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Introducing wrapture]]></title>
+        <id>https://simonwillison.net/2026/Aug/31/introducing-wrapture/</id>
+        <link href="https://simonwillison.net/2026/Aug/31/introducing-wrapture/"/>
+        <updated>2026-08-31T23:59:36.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://grahamdumpleton.me/posts/2026/08/introducing-wrapture/">Introducing wrapture</a></strong></p>
+New from Graham Dumpleton (of <a href="https://pypi.org/project/wrapt/">wrapt</a>, mod_wsgi, and New Relic's Python agent fame), who describes Wrapture as taking the monkeypatching ideas from wrapt and extending them to apply to testing and tracing at the same time.</p>
+<p>Wrapture (<a href="https://wrapture.readthedocs.io/">full documentation here</a>) makes it easy to wrap any function or method such that all access can be traced, or can be overridden to return a different value.</p>
+<p>It acts as both an alternative to <code>unittest.mock</code> and a way to implement tracing against an existing project:</p>
+<blockquote>
+<p>Attaching observation to code you do not control, recording what flows through it, and doing so without disturbing the program being watched, is a problem I have never really stopped thinking about.</p>
+</blockquote>
+<p>Wrapture includes <a href="https://wrapture.readthedocs.io/en/latest/otel-export.html">OpenTelemetry support</a> and even has an entirely configuration-based mechanism for adding tracing to an existing Python project, which looks like this:</p>
+<div class="highlight highlight-source-toml"><pre><span class="pl-smi">capture</span> = <span class="pl-s"><span class="pl-pds">"</span>summary<span class="pl-pds">"</span></span>
+
+[[<span class="pl-en">observe</span>]]
+<span class="pl-smi">target</span> = <span class="pl-s"><span class="pl-pds">"</span>domain:Calculator<span class="pl-pds">"</span></span>
+<span class="pl-smi">name</span> = [<span class="pl-s"><span class="pl-pds">"</span>outer<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>inner<span class="pl-pds">"</span></span>]
+
+[[<span class="pl-en">sink</span>]]
+<span class="pl-smi">type</span> = <span class="pl-s"><span class="pl-pds">"</span>jsonlines<span class="pl-pds">"</span></span>
+<span class="pl-smi">path</span> = <span class="pl-s"><span class="pl-pds">"</span>trace.jsonl<span class="pl-pds">"</span></span></pre></div>
+<p>This is still a very young project - just a few weeks old - but it's off to a very promising start.</p>
+<p>Interestingly, this is also Graham's first attempt at  large entirely agent-driven project:</p>
+<blockquote>
+<p>Every line of code and documentation in wrapture was written by an AI assistant working under my direction. I want to be upfront about that, and equally upfront about what it was not. This was not vibe coding, where a one-shot prompt produces a pile of generated code and the person driving hopes for the best because they lack the knowledge to judge what came back. Vibe coding has earned its bad reputation. I engineered wrapture carefully from the start. I have spent a long time in this particular corner of Python and knew exactly what the result needed to be, and the AI was the means of producing it rather than the source of the design.</p>
+</blockquote>
+<p>In a follow-up post, <a href="https://grahamdumpleton.me/posts/2026/09/unit-testing-with-wrapture/">Unit testing with wrapture</a>, Graham shows the testing patterns supported by the new library:</p>
+<pre><span class="pl-k">def</span> <span class="pl-en">test_stub_with_wrapture</span>():
+    <span class="pl-k">with</span> <span class="pl-s1">wrapture</span>.<span class="pl-c1">binding</span>(
+        <span class="pl-v">Gateway</span>, <span class="pl-s">"charge"</span>
+    ).<span class="pl-c1">on_call</span>.<span class="pl-c1">returns</span>({
+        <span class="pl-s">"id"</span>: <span class="pl-s">"stub"</span>, <span class="pl-s">"amount"</span>: <span class="pl-c1">0</span>}
+    ):
+        <span class="pl-k">assert</span> <span class="pl-en">OrderService</span>().<span class="pl-c1">place</span>(
+            <span class="pl-c1">500</span>
+        )[<span class="pl-s">"id"</span>] <span class="pl-c1">==</span> <span class="pl-s">"stub"</span></pre>
+<p>And this neat example of a test that calls and then modifies the return value from the original method:</p>
+<pre><span class="pl-k">def</span> <span class="pl-en">test_pinned_result_with_wrapture</span>():
+    <span class="pl-s1">charge</span> <span class="pl-c1">=</span> <span class="pl-s1">wrapture</span>.<span class="pl-c1">binding</span>(
+        <span class="pl-v">Gateway</span>, <span class="pl-s">"charge"</span>
+    )
+    <span class="pl-s1">charge</span>.<span class="pl-c1">on_call</span>.<span class="pl-c1">transforms_result</span>(
+        <span class="pl-k">lambda</span> <span class="pl-s1">r</span>: {<span class="pl-c1">**</span><span class="pl-s1">r</span>, <span class="pl-s">"id"</span>: <span class="pl-s">"ch_TEST"</span>}
+    )
+    <span class="pl-k">with</span> <span class="pl-s1">charge</span>:
+        <span class="pl-k">assert</span> <span class="pl-en">OrderService</span>().<span class="pl-c1">place</span>(
+           <span class="pl-c1">500</span>
+        ) <span class="pl-c1">==</span> {
+            <span class="pl-s">"id"</span>: <span class="pl-s">"ch_TEST"</span>, <span class="pl-s">"amount"</span>: <span class="pl-c1">500</span>
+        }</pre>
+
+<p>(In both of these examples the <code>OrderService().place(...)</code> method calls <code>Gateway().charge(...)</code>.)
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/graham-dumpleton">graham-dumpleton</a>, <a href="https://simonwillison.net/tags/monkey-patching">monkey-patching</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/testing">testing</a>, <a href="https://simonwillison.net/tags/pytest">pytest</a>, <a href="https://simonwillison.net/tags/observability">observability</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a>, <a href="https://simonwillison.net/tags/opentelemetry">opentelemetry</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Andrew Digby]]></title>
+        <id>https://simonwillison.net/2026/Aug/31/andrew-digby/</id>
+        <link href="https://simonwillison.net/2026/Aug/31/andrew-digby/"/>
+        <updated>2026-08-31T22:25:02.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://bsky.app/profile/digs.bsky.social/post/3mufrrsfhq22r"><p>325 #kakapo! The chicks from this year's record breeding season are now juveniles and so have been added to the population. In 1995 there were just 51 kākāpō left. Recovery of critically endangered species <em>is</em> possible with sustained effort.</p></blockquote>
+<p class="cite">&mdash; <a href="https://bsky.app/profile/digs.bsky.social/post/3mufrrsfhq22r">Andrew Digby</a>, providing the best news of the year</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/kakapo">kakapo</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Polimill builds Japan's next-generation public AI infrastructure]]></title>
+        <id>https://openai.com/index/polimill</id>
+        <link href="https://openai.com/index/polimill"/>
+        <updated>2026-08-31T07:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Polimill uses OpenAI GPT models and Codex to help municipalities search and use administrative knowledge while accelerating development.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A milestone in expanding access to AI]]></title>
+        <id>https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads</id>
+        <link href="https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads"/>
+        <updated>2026-08-31T04:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT Ads reaches $1 billion in annualized revenue run rate and expands globally, supporting broader access to AI through free and affordable options.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Understanding ChatGPT Work]]></title>
         <id>https://simonwillison.net/2026/Aug/30/understanding-chatgpt-work/</id>
@@ -14,6 +107,9 @@
 <h4 id="two-products">ChatGPT Work is actually two products</h4>
 <p>The more interesting version of ChatGPT Work is the one that runs in the cloud. This can be accessed via <a href="https://www.chatgpt.com/">chatgpt.com</a> or through the ChatGPT mobile apps. Let's call it <strong>Work Cloud</strong>.</p>
 <p>If you install the ChatGPT desktop app - the app that used to be called Codex - you gain access to a thing called ChatGPT Work that can access files and run programs directly on your computer. Let's call that one <strong>Work Local</strong>. This one feels more like regular Codex re-skinned to be less intimidating to non-software-developers.</p>
+
+<p>(<strong>Update</strong>: Work Cloud is also available from the ChatGPT desktop app, via a <a href="https://bsky.app/profile/jkwim.bsky.social/post/3mueurvkss52h">Where should this chat run?</a> dropdown.)</p>
+
 <p>For the rest of this article I'm going to talk exclusively about Work Cloud.</p>
 <h4 id="work-is-for-paid-subscribers-only">Work is for paid subscribers only</h4>
 <p>Right now, ChatGPT Work (in both flavors) is available only to $20/month and up subscribers. Free users and $8/month Go users do not have access.</p>
@@ -113,8 +209,44 @@
 <p>Shortly after publishing this article I had an idea. I started a fresh Work session and prompted:</p>
 <blockquote><p><code>Build a site that lists every one of your tools - nearly grouped into categories - and for each one explain what it does. Try to exactly duplicate arguments and tool descriptions where possible. Design aesthetic should be technical docs, minimal flare</code></p></blockquote>
 <p><a href="https://codex-tool-reference.simonw.chatgpt.site/">Here's the site it built</a>, which includes details of 223 registered tools - though 6 of those are from my own personal MCPs served via <a href="https://simonwillison.net/2026/Jul/31/stateless-mcp/#datasette-mcp">datasette-mcp</a>.</p>
+
+<h4 id="and-a-whole-lot-of-skills">And a whole lot of Skills</h4>
+<p>I noticed that the only browser-related tool in the list was <a href="https://codex-tool-reference.simonw.chatgpt.site/#tool-web-run">web.run</a>, which has methods for running searches, opening URLs, and clicking links, but didn't look like the full story in regards to headless browser automation.</p>
+<p>This made me suspicious that something was missing, so I told the ChatGPT Work session that built that tools reference site:</p>
+<blockquote>
+<p><code>Add full copies of every skill to the website (separate pages linked to from the homepage)</code></p>
+</blockquote>
+<p>It turns out ChatGPT Work uses <a href="https://codex-tool-reference.simonw.chatgpt.site/#skills">a lot of skills</a> - 44 in fact!</p>
+<p>The <a href="https://codex-tool-reference.simonw.chatgpt.site/skills/control-browser">control-browser skill</a> explains how the browser works:</p>
+<blockquote>
+<p>Run browser setup code through the Node REPL <code>js</code> tool. In this environment the callable tool id typically appears as <code>mcp__node_repl__js</code>. [...]</p>
+<p>The ability to interact directly with the browser is exposed through the <code>browser-client</code> runtime via the <code>agent.browsers.*</code> API. Before trying to interact with it, you MUST emit and read the complete documentation returned by <code>await browser.documentation()</code> in one go.</p>
+</blockquote>
+<p>So I told Work:</p>
+<blockquote>
+<p>Add the full output of await browser.documentation() to the bottom of the /skills/control-browser page</p>
+</blockquote>
+<p>And now you can read that <a href="https://codex-tool-reference.simonw.chatgpt.site/skills/control-browser#browser-documentation">on /skills/control-browser</a> as well.</p>
+<p>A few more interesting Skills:</p>
+<ul>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/documents">documents</a> for creating <code>.docx</code> files</li>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/imagegen">imagegen</a> with tips on creating images with the <code>image_gen</code> tool</li>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/pdf">pdf</a> for both reading and rendering PDFs</li>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/spreadsheets">Spreadsheets</a> for manipulating <code>.xlsx</code>, <code>.xls</code>, <code>.csv</code>, <code>.tsv</code>
+</li>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/sites-sites-building">sites:sites-building</a> for creating ChatGPT Sites</li>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/openai-docs">openai-docs</a> for answering questions about itself</li>
+<li>
+<a href="https://codex-tool-reference.simonw.chatgpt.site/skills/data-analytics-build-dashboard">data-analytics:build-dashboard</a> for building data dashboards</li>
+</ul>
     
-        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/code-interpreter">code-interpreter</a>, <a href="https://simonwillison.net/tags/lethal-trifecta">lethal-trifecta</a>, <a href="https://simonwillison.net/tags/general-agents">general-agents</a></p>]]></summary>
+        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/code-interpreter">code-interpreter</a>, <a href="https://simonwillison.net/tags/lethal-trifecta">lethal-trifecta</a>, <a href="https://simonwillison.net/tags/skills">skills</a>, <a href="https://simonwillison.net/tags/general-agents">general-agents</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -179,15 +311,6 @@ Anil Madhavapeddy is a professor of computer science at Cambridge and a core mai
     <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ocaml">ocaml</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Made a Massive Move Against NVIDIA]]></title>
-        <id>https://www.youtube.com/watch?v=TInwQglNkzo</id>
-        <link href="https://www.youtube.com/watch?v=TInwQglNkzo"/>
-        <updated>2026-08-28T15:00:09.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -262,24 +385,6 @@ Anthropic are putting a great deal of faith in Claude Code's auto mode for prote
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves]]></title>
-        <id>https://www.youtube.com/watch?v=KL9_1GbmCic</id>
-        <link href="https://www.youtube.com/watch?v=KL9_1GbmCic"/>
-        <updated>2026-08-27T19:16:24.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The most expensive software bug in history...]]></title>
-        <id>https://www.youtube.com/watch?v=UuqSy1jPSUw</id>
-        <link href="https://www.youtube.com/watch?v=UuqSy1jPSUw"/>
-        <updated>2026-08-27T17:48:13.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Gemini Omni 1.1 Flash lets you build with more control]]></title>
         <id>https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/</id>
         <link href="https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/"/>
@@ -297,16 +402,6 @@ Anthropic are putting a great deal of faith in Claude Code's auto mode for prote
         <summary type="html"><![CDATA[Book hotels and track airfares, plus view miles and rewards with AI Mode in Google Search.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Company Will Buy Your AI Training Data]]></title>
-        <id>https://www.youtube.com/shorts/Z93MPi8ZO3A</id>
-        <link href="https://www.youtube.com/shorts/Z93MPi8ZO3A"/>
-        <updated>2026-08-27T13:06:18.000Z</updated>
-        <summary type="html"><![CDATA[AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -370,15 +465,6 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I Built a FREE App That Runs Your Entire Business]]></title>
-        <id>https://www.youtube.com/watch?v=rKo9iLGjUbs</id>
-        <link href="https://www.youtube.com/watch?v=rKo9iLGjUbs"/>
-        <updated>2026-08-26T22:36:30.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Intelligent transcription with Gemini 3.5 Transcribe]]></title>
         <id>https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/</id>
         <link href="https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/"/>
@@ -386,16 +472,6 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         <summary type="html"><![CDATA[Now you can get more intelligent speech-to-text transcription with Gemini 3.5 Transcribe.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To EASILY Run Local AI Models]]></title>
-        <id>https://www.youtube.com/shorts/uS2gi-D8C0k</id>
-        <link href="https://www.youtube.com/shorts/uS2gi-D8C0k"/>
-        <updated>2026-08-26T13:22:25.000Z</updated>
-        <summary type="html"><![CDATA[You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -511,16 +587,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This AI Found Money I Was Wasting]]></title>
-        <id>https://www.youtube.com/shorts/f74JmwXm-sQ</id>
-        <link href="https://www.youtube.com/shorts/f74JmwXm-sQ"/>
-        <updated>2026-08-25T14:08:30.000Z</updated>
-        <summary type="html"><![CDATA[I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[The full stack behind abundant intelligence]]></title>
         <id>https://openai.com/index/the-full-stack-behind-abundant-intelligence</id>
         <link href="https://openai.com/index/the-full-stack-behind-abundant-intelligence"/>
@@ -587,16 +653,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         <p>Tags: <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/httpx">httpx</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Creates Insane 3D Worlds]]></title>
-        <id>https://www.youtube.com/shorts/ZY628bslSYY</id>
-        <link href="https://www.youtube.com/shorts/ZY628bslSYY"/>
-        <updated>2026-08-24T12:18:26.000Z</updated>
-        <summary type="html"><![CDATA[This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -764,26 +820,6 @@ llm -t lhigh -t pelican
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The Wildest Smartphone I’ve Ever Seen 🤯]]></title>
-        <id>https://www.youtube.com/shorts/aOzaO5AAGjk</id>
-        <link href="https://www.youtube.com/shorts/aOzaO5AAGjk"/>
-        <updated>2026-08-22T13:05:27.000Z</updated>
-        <summary type="html"><![CDATA[This is the wildest smartphone camera I’ve seen yet. 🤯HONOR's new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Pyramid Could Be Your Next Intern]]></title>
-        <id>https://www.youtube.com/shorts/1m5Ee9QbLF0</id>
-        <link href="https://www.youtube.com/shorts/1m5Ee9QbLF0"/>
-        <updated>2026-08-21T22:09:39.000Z</updated>
-        <summary type="html"><![CDATA[Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[llm 0.32.1]]></title>
         <id>https://simonwillison.net/2026/Aug/21/llm/</id>
         <link href="https://simonwillison.net/2026/Aug/21/llm/"/>
@@ -854,15 +890,6 @@ Thomas Ptacek advocates for building real native user interfaces for even the sm
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Just Put the Brakes on AI]]></title>
-        <id>https://www.youtube.com/watch?v=EfGF7QbJItA</id>
-        <link href="https://www.youtube.com/watch?v=EfGF7QbJItA"/>
-        <updated>2026-08-21T15:00:23.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[From Atari to EVE Online: Building on 15 Years of AI Research in Games]]></title>
         <id>https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/</id>
         <link href="https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/"/>
@@ -899,15 +926,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[DeepSeek is back... and Silicon Valley is terrified]]></title>
-        <id>https://www.youtube.com/watch?v=xBByvFrqmWU</id>
-        <link href="https://www.youtube.com/watch?v=xBByvFrqmWU"/>
-        <updated>2026-08-20T17:53:37.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView]]></title>
         <id>https://simonwillison.net/2026/Aug/20/bun-webview-json-api/</id>
         <link href="https://simonwillison.net/2026/Aug/20/bun-webview-json-api/"/>
@@ -929,29 +947,9 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Claude’s Text Watermark Could Follow It Everywhere]]></title>
-        <id>https://www.youtube.com/shorts/O-8TbMFOAfg</id>
-        <link href="https://www.youtube.com/shorts/O-8TbMFOAfg"/>
-        <updated>2026-08-20T12:41:43.000Z</updated>
-        <summary type="html"><![CDATA[Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven't revealed exact...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing Intelligence Age]]></title>
         <id>https://openai.com/index/introducing-intelligence-age</id>
         <link href="https://openai.com/index/introducing-intelligence-age"/>
-        <updated>2026-08-20T07:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Introducing Intelligence Age, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing Intelligence Age]]></title>
-        <id>https://openai.com/index/introducing-ai-futures</id>
-        <link href="https://openai.com/index/introducing-ai-futures"/>
         <updated>2026-08-20T07:00:00.000Z</updated>
         <summary type="html"><![CDATA[Introducing Intelligence Age, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.]]></summary>
         <author>
@@ -1078,25 +1076,6 @@ That’s exactly the problem with coding agents and software: it’s very easy t
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The summer Math fell to the machines...]]></title>
-        <id>https://www.youtube.com/watch?v=iuZPTE5qsJY</id>
-        <link href="https://www.youtube.com/watch?v=iuZPTE5qsJY"/>
-        <updated>2026-08-19T18:45:57.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Your New Backup Brain Is Here]]></title>
-        <id>https://www.youtube.com/shorts/r-ORCmsRHOE</id>
-        <link href="https://www.youtube.com/shorts/r-ORCmsRHOE"/>
-        <updated>2026-08-19T13:37:12.000Z</updated>
-        <summary type="html"><![CDATA[The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Replit expands access to software creation with GPT-5.6 Luna]]></title>
         <id>https://openai.com/index/replit</id>
         <link href="https://openai.com/index/replit"/>
@@ -1136,15 +1115,6 @@ The Mojo programming language has been promising an open source release <a href=
     <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/mojo">mojo</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Exclusive BTS of my Automated AI System (LIVE)]]></title>
-        <id>https://www.youtube.com/watch?v=IeT5Jn7d1aM</id>
-        <link href="https://www.youtube.com/watch?v=IeT5Jn7d1aM"/>
-        <updated>2026-08-18T21:11:16.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1255,16 +1225,6 @@ Excellent piece of reporting from 404 Media. For a while now there have been sto
     <p>Tags: <a href="https://simonwillison.net/tags/amazon">amazon</a>, <a href="https://simonwillison.net/tags/journalism">journalism</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/training-data">training-data</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/404-media">404-media</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Are AI Models Escaping On Purpose?]]></title>
-        <id>https://www.youtube.com/shorts/9ZKeu_7k9ik</id>
-        <link href="https://www.youtube.com/shorts/9ZKeu_7k9ik"/>
-        <updated>2026-08-17T13:18:26.000Z</updated>
-        <summary type="html"><![CDATA[Apparently the newest benchmark for AI models is… can it commit cyber crimes? 😭First OpenAI’s model broke out during testing and hacked Hugging Face.Then An...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1506,65 +1466,6 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Dario Amodei]]></title>
-        <id>https://simonwillison.net/2026/Aug/16/dario-amodei/</id>
-        <link href="https://simonwillison.net/2026/Aug/16/dario-amodei/"/>
-        <updated>2026-08-16T15:05:36.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://twitter.com/darioamodei/status/2088758819304443967"><p>I do agree that the public has a negative view of AI (and that this is a big problem), but I don’t think it is primarily caused by me or any other AI leader warning about AI’s risks.  I think it is fundamentally a crisis of trust.  I think that ordinary people don’t trust companies, governments, or the tech industry and always suspect that we are cooking up some new way to screw them over.  The causes of this go back decades and AI is just the latest iteration of it.  I don’t think that a glitzy marketing campaign with a positive spin (which some have advocated that Anthropic do) is the way to win back that trust — at this point, saying that AI will cure cancer is more a cliche than it is inspiring, and most people think it is deceptive.  The thing that will work is <em>actually curing cancer</em>.  I think by far the most accurate criticism of AI companies including Anthropic is that we haven’t yet delivered on our big promises to benefit the world.  That is totally on us, and I think it’s the criticism you should be making, instead of all this stuff about messaging and marketing.</p></blockquote>
-<p class="cite">&mdash; <a href="https://twitter.com/darioamodei/status/2088758819304443967">Dario Amodei</a></p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/ai-backlash">ai-backlash</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CORS Chat]]></title>
-        <id>https://simonwillison.net/2026/Aug/15/cors-chat/</id>
-        <link href="https://simonwillison.net/2026/Aug/15/cors-chat/"/>
-        <updated>2026-08-15T14:49:54.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/cors-chat">CORS Chat</a></p>
-        <p>I built this today (<a href="https://gist.github.com/simonw/92a1d97773744b45bf259e003013cf36">with GPT-5.6-Sol xhigh</a>) to help test Qwen 3.8 27B running in LM Studio on both my M5 MacBook Pro and an NVIDIA DGX Spark.</p>
-<p>It provides a web UI for exercising an OpenAI-Responses-compatible chat endpoint. I've tried it against LM Studio with the <code>--cors</code> option and OpenRouter, and both work fine.</p>
-<p>Conversations are persisted in the browser and can be exported as copy-pasted JSON. One fun detail is that it notices SVG images that are being generated and progressively renders them in the chat while the tokens are still streaming in.</p>
-<p><img alt="Alt text generated by Qwen-3.8 27B: Screenshot of the CORS Chat web interface. The left sidebar lists three saved conversations, with &quot;render an svg of five intersecting squares&quot; selected. The main panel shows a chat with the qwen3.8‑27b model: the user asked &quot;render an svg of five intersecting squares. don't overthink this,&quot; followed by the model's reasoning trace describing the design (five semi‑transparent squares rotated around a common center on a dark background). Below is an SVG preview pane displaying five overlapping, semi‑transparent colored squares—pink, blue, green, yellow, and purple—with white outlines, rotated at different angles to form a starburst pattern on a dark navy background. Top controls include endpoint/model selectors and a &quot;New chat&quot; button; the bottom has a message input and a &quot;Send&quot; button." src="https://static.simonwillison.net/static/2026/cors-chat.webp" /></p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/svg">svg</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/cors">cors</a>, <a href="https://simonwillison.net/tags/openrouter">openrouter</a>, <a href="https://simonwillison.net/tags/lm-studio">lm-studio</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Hank Green Situation]]></title>
-        <id>https://www.youtube.com/shorts/ZePfpQ7lbcs</id>
-        <link href="https://www.youtube.com/shorts/ZePfpQ7lbcs"/>
-        <updated>2026-08-15T13:14:44.000Z</updated>
-        <summary type="html"><![CDATA[Hank Green got “caught” using AI… and I genuinely don’t think he did anything wrong.The whole controversy started because Hank said “I appreciate the pushbac...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[3 New Ways To Use ChatGPT Codex]]></title>
-        <id>https://www.youtube.com/shorts/aszRSGI_Iwg</id>
-        <link href="https://www.youtube.com/shorts/aszRSGI_Iwg"/>
-        <updated>2026-08-15T00:47:28.000Z</updated>
-        <summary type="html"><![CDATA[Most people are barely scratching the surface of what the new Codex app can do.It can now browse social media without an API, turn something you build into a...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This new startup can query anywhere you've been...]]></title>
-        <id>https://www.youtube.com/watch?v=E7la7-dtfVM</id>
-        <link href="https://www.youtube.com/watch?v=E7la7-dtfVM"/>
-        <updated>2026-08-14T17:44:59.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Cursor is now a part of SpaceX]]></title>
         <id>https://cursor.com/blog/joining-spacex</id>
         <link href="https://cursor.com/blog/joining-spacex"/>
@@ -1625,6 +1526,16 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Cloud agents start 3x faster with builds]]></title>
+        <id>https://cursor.com/blog/builds</id>
+        <link href="https://cursor.com/blog/builds"/>
+        <updated>2026-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Builds are ready-to-use copies of your development environment that Cursor prepares in the background, so cloud agents start up to 3x faster at no additional cost.]]></summary>
+        <author>
+            <name>Cursor Blog</name>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Firetiger joins Cursor]]></title>
         <id>https://cursor.com/blog/firetiger</id>
         <link href="https://cursor.com/blog/firetiger"/>
@@ -1645,16 +1556,6 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Cloud agents start 3x faster with builds]]></title>
-        <id>https://cursor.com/blog/builds</id>
-        <link href="https://cursor.com/blog/builds"/>
-        <updated>2026-08-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Builds are ready-to-use copies of your development environment that Cursor prepares in the background, so cloud agents start up to 3x faster at no additional cost.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Cloud Agents Start 3x Faster with Builds]]></title>
         <id>https://cursor.com/changelog/08-13-26</id>
         <link href="https://cursor.com/changelog/08-13-26"/>
@@ -1662,15 +1563,6 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         <summary type="html"><![CDATA[Aug 13, 2026 · Changelog]]></summary>
         <author>
             <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Meta's new model wants "deep access" to your personal life...]]></title>
-        <id>https://www.youtube.com/watch?v=G55HSGpuh1M</id>
-        <link href="https://www.youtube.com/watch?v=G55HSGpuh1M"/>
-        <updated>2026-08-12T18:29:41.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1724,12 +1616,13 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I spent 3 days at MIT... the robot hype is worse than you think]]></title>
-        <id>https://www.youtube.com/watch?v=aB5LGrHISqY</id>
-        <link href="https://www.youtube.com/watch?v=aB5LGrHISqY"/>
-        <updated>2026-08-11T16:10:08.000Z</updated>
+        <title type="html"><![CDATA[Testing ads in ChatGPT]]></title>
+        <id>https://openai.com/index/testing-ads-in-chatgpt</id>
+        <link href="https://openai.com/index/testing-ads-in-chatgpt"/>
+        <updated>2026-08-11T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.]]></summary>
         <author>
-            <name>Fireship</name>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1738,16 +1631,6 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         <link href="https://openai.com/index/daybreak-models-are-now-available-on-aws"/>
         <updated>2026-08-11T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Testing ads in ChatGPT]]></title>
-        <id>https://openai.com/index/testing-ads-in-chatgpt</id>
-        <link href="https://openai.com/index/testing-ads-in-chatgpt"/>
-        <updated>2026-08-11T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1813,21 +1696,21 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[How Zapier transformed core marketing processes with ChatGPT Work]]></title>
-        <id>https://openai.com/index/zapier</id>
-        <link href="https://openai.com/index/zapier"/>
-        <updated>2026-08-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Virgin Atlantic sharpens customer journeys with ChatGPT Work]]></title>
         <id>https://openai.com/index/virgin-atlantic/chatgpt-work</id>
         <link href="https://openai.com/index/virgin-atlantic/chatgpt-work"/>
         <updated>2026-08-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[How Zapier transformed core marketing processes with ChatGPT Work]]></title>
+        <id>https://openai.com/index/zapier</id>
+        <link href="https://openai.com/index/zapier"/>
+        <updated>2026-08-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1873,15 +1756,6 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI is getting a little out of control]]></title>
-        <id>https://www.youtube.com/watch?v=xGzseSSStnw</id>
-        <link href="https://www.youtube.com/watch?v=xGzseSSStnw"/>
-        <updated>2026-08-06T15:02:06.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Improving GPT‑5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users]]></title>
         <id>https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt</id>
         <link href="https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt"/>
@@ -1919,15 +1793,6 @@ My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even n
         <summary type="html"><![CDATA[Auto Intelligence now delivers above Fable-level satisfaction at 68% lower cost. Here's how Compass and the task router choose models from real developer traffic.]]></summary>
         <author>
             <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The safest way to store Bitcoin was just hacked...]]></title>
-        <id>https://www.youtube.com/watch?v=2X2V3xv_jik</id>
-        <link href="https://www.youtube.com/watch?v=2X2V3xv_jik"/>
-        <updated>2026-08-05T18:08:46.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>

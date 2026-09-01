@@ -22,6 +22,170 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-31 datetime="2026-08-31T23:59:36.000Z">2026-08-31</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-31 datetime="2026-08-31T23:59:36.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/31/introducing-wrapture/"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing wrapture</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/31/introducing-wrapture/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Introducing wrapture
+wrapt, mod_wsgi, and New Relic&#x27;s Python agent fame), who describes Wrapture as taking the monkeypatching ideas from wrapt and extending them to apply to testing and tracing at the same time.
+Wrapture (full documentation here) makes it easy to wrap any function or method such that all access can be traced, or can be overridden to return a different value.
+It acts as both an alternative to unittest.mock and a way to implement tracing against an existing project:
+Attaching observation to code you do not control, recording what flows through it, and doing so without disturbing the program being watched, is a problem I have never really stopped thinking about.
+Wrapture includes OpenTelemetry support and even has an entirely configuration-based mechanism for adding tracing to an existing Python project, which looks like this:
+capture &#x3D; &quot;summary&quot;
+
+[[observe]]
+target &#x3D; &quot;domain:Calculator&quot;
+name &#x3D; [&quot;outer&quot;, &quot;inner&quot;]
+
+[[sink]]
+type &#x3D; &quot;jsonlines&quot;
+path &#x3D; &quot;trace.jsonl&quot;
+
+This is still a very young project - just a few weeks old - but it&#x27;s off to a very promising start.
+Interestingly, this is also Graham&#x27;s first attempt at  large entirely agent-driven project:
+Every line of code and documentation in wrapture was written by an AI assistant working under my direction. I want to be upfront about that, and equally upfront about what it was not. This was not vibe coding, where a one-shot prompt produces a pile of generated code and the person driving hopes for the best because they lack the knowledge to judge what came back. Vibe coding has earned its bad reputation. I engineered wrapture carefully from the start. I have spent a long time in this particular corner of Python and knew exactly what the result needed to be, and the AI was the means of producing it rather than the source of the design.
+In a follow-up post, Unit testing with wrapture, Graham shows the testing patterns supported by the new library:
+def test_stub_with_wrapture():
+    with wrapture.binding(
+        Gateway, &quot;charge&quot;
+    ).on_call.returns({
+        &quot;id&quot;: &quot;stub&quot;, &quot;amount&quot;: 0}
+    ):
+        assert OrderService().place(
+            500
+        )[&quot;id&quot;] &#x3D;&#x3D; &quot;stub&quot;
+And this neat example of a test that calls and then modifies the return value from the original method:
+def test_pinned_result_with_wrapture():
+    charge &#x3D; wrapture.binding(
+        Gateway, &quot;charge&quot;
+    )
+    charge.on_call.transforms_result(
+        lambda r: {**r, &quot;id&quot;: &quot;ch_TEST&quot;}
+    )
+    with charge:
+        assert OrderService().place(
+           500
+        ) &#x3D;&#x3D; {
+            &quot;id&quot;: &quot;ch_TEST&quot;, &quot;amount&quot;: 500
+        }
+(In both of these examples the OrderService().place(...) method calls Gateway().charge(...).)
+
+
+    
+Tags: graham-dumpleton, monkey-patching, python, testing, pytest, observability, ai-assisted-programming, agentic-engineering, opentelemetry</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Aug/31/andrew-digby/"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Andrew Digby</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/31/andrew-digby/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>325 #kakapo! The chicks from this year&#x27;s record breeding season are now juveniles and so have been added to the population. In 1995 there were just 51 kākāpō left. Recovery of critically endangered species is possible with sustained effort.
+
+— Andrew Digby, providing the best news of the year
+Tags: kakapo</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/polimill"
+                        open
+                      >
+                        <summary class="article-expander__title">Polimill builds Japan&#x27;s next-generation public AI infrastructure</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/polimill">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Polimill uses OpenAI GPT models and Codex to help municipalities search and use administrative knowledge while accelerating development.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads"
+                        open
+                      >
+                        <summary class="article-expander__title">A milestone in expanding access to AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>ChatGPT Ads reaches $1 billion in annualized revenue run rate and expands globally, supporting broader access to AI through free and affordable options.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-30 datetime="2026-08-30T23:59:47.000Z">2026-08-30</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-30 datetime="2026-08-30T23:59:47.000Z"></time>
           </button>
@@ -57,6 +221,10 @@ ChatGPT Work is actually two products
 The more interesting version of ChatGPT Work is the one that runs in the cloud. This can be accessed via chatgpt.com or through the ChatGPT mobile apps. Let&#x27;s call it Work Cloud.
 
 If you install the ChatGPT desktop app - the app that used to be called Codex - you gain access to a thing called ChatGPT Work that can access files and run programs directly on your computer. Let&#x27;s call that one Work Local. This one feels more like regular Codex re-skinned to be less intimidating to non-software-developers.
+
+
+(Update: Work Cloud is also available from the ChatGPT desktop app, via a Where should this chat run? dropdown.)
+
 
 For the rest of this article I&#x27;m going to talk exclusively about Work Cloud.
 
@@ -236,7 +404,64 @@ Shortly after publishing this article I had an idea. I started a fresh Work sess
 Build a site that lists every one of your tools - nearly grouped into categories - and for each one explain what it does. Try to exactly duplicate arguments and tool descriptions where possible. Design aesthetic should be technical docs, minimal flare
 
 Here&#x27;s the site it built, which includes details of 223 registered tools - though 6 of those are from my own personal MCPs served via datasette-mcp.
-Tags: ai, openai, generative-ai, chatgpt, llms, code-interpreter, lethal-trifecta, general-agents</span>
+
+
+And a whole lot of Skills
+
+I noticed that the only browser-related tool in the list was web.run, which has methods for running searches, opening URLs, and clicking links, but didn&#x27;t look like the full story in regards to headless browser automation.
+
+This made me suspicious that something was missing, so I told the ChatGPT Work session that built that tools reference site:
+
+
+Add full copies of every skill to the website (separate pages linked to from the homepage)
+
+
+It turns out ChatGPT Work uses a lot of skills - 44 in fact!
+
+The control-browser skill explains how the browser works:
+
+
+Run browser setup code through the Node REPL js tool. In this environment the callable tool id typically appears as mcp__node_repl__js. [...]
+
+The ability to interact directly with the browser is exposed through the browser-client runtime via the agent.browsers.* API. Before trying to interact with it, you MUST emit and read the complete documentation returned by await browser.documentation() in one go.
+
+
+So I told Work:
+
+
+Add the full output of await browser.documentation() to the bottom of the /skills/control-browser page
+
+
+And now you can read that on /skills/control-browser as well.
+
+A few more interesting Skills:
+
+
+
+documents for creating .docx files
+
+
+imagegen with tips on creating images with the image_gen tool
+
+
+pdf for both reading and rendering PDFs
+
+
+Spreadsheets for manipulating .xlsx, .xls, .csv, .tsv
+
+
+sites:sites-building for creating ChatGPT Sites
+
+
+openai-docs for answering questions about itself
+
+
+data-analytics:build-dashboard for building data dashboards
+
+
+    
+        
+Tags: ai, openai, generative-ai, chatgpt, llms, code-interpreter, lethal-trifecta, skills, general-agents</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
                             </span>
@@ -368,37 +593,6 @@ Via Hacker News
 Tags: open-source, security, ai, generative-ai, llms, coding-agents, ocaml, ai-security-research</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;4
                                   min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;TInwQglNkzo"
-                        open
-                      >
-                        <summary class="article-expander__title">AI News: OpenAI Made a Massive Move Against NVIDIA</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;TInwQglNkzo">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -579,68 +773,6 @@ Tags: sandboxing, security, ai, prompt-injection, generative-ai, llms, anthropic
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI Explained</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;KL9_1GbmCic"
-                        open
-                      >
-                        <summary class="article-expander__title">Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;KL9_1GbmCic">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;UuqSy1jPSUw"
-                        open
-                      >
-                        <summary class="article-expander__title">The most expensive software bug in history...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;UuqSy1jPSUw">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Google DeepMind News</button>
                   <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
                 </h3>
@@ -713,40 +845,6 @@ Tags: sandboxing, security, ai, prompt-injection, generative-ai, llms, anthropic
                             <span class="media-object__text">
                               <span>Book hotels and track airfares, plus view miles and rewards with AI Mode in Google Search.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;13
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/Z93MPi8ZO3A"
-                        open
-                      >
-                        <summary class="article-expander__title">This Company Will Buy Your AI Training Data</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Z93MPi8ZO3A">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/Z93MPi8ZO3A/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLBUxcHo6iM58dhlJUlEPQtzq4ttdQ" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -906,57 +1004,6 @@ Tags: ai, generative-ai, llms, qwen, pelican-riding-a-bicycle, ai-in-china, nvid
 — Paul Dix, The end of programming
 Tags: coding-agents, ai-assisted-programming, generative-ai, bun, ai, llms</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;rKo9iLGjUbs"
-                        open
-                      >
-                        <summary class="article-expander__title">I Built a FREE App That Runs Your Entire Business</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;rKo9iLGjUbs">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/uS2gi-D8C0k"
-                        open
-                      >
-                        <summary class="article-expander__title">How To EASILY Run Local AI Models</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/uS2gi-D8C0k">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/uS2gi-D8C0k/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLA2Qtjozc9DeKsGnr9lS4O3E24UEg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1251,40 +1298,6 @@ Tags: eve-online, migrations, python, python3, stackless</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/f74JmwXm-sQ"
-                        open
-                      >
-                        <summary class="article-expander__title">This AI Found Money I Was Wasting</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/f74JmwXm-sQ">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/f74JmwXm-sQ/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLDxJOevF0MdrGZq7TEnAJt5Fn2lZw" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;14
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -1464,40 +1477,6 @@ printf &#x27;%s\n&#x27; &#x27;:self:M:68:SELF::/usr/local/bin/self-exec:&#x27; \
 Via Hacker News
 Tags: c, linux, sqlite</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/ZY628bslSYY"
-                        open
-                      >
-                        <summary class="article-expander__title">This AI Creates Insane 3D Worlds</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ZY628bslSYY">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/ZY628bslSYY/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAcxpzRviveTzIy-elL7Zzlx9GM_g" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1768,40 +1747,6 @@ Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/aOzaO5AAGjk"
-                        open
-                      >
-                        <summary class="article-expander__title">The Wildest Smartphone I’ve Ever Seen 🤯</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/aOzaO5AAGjk">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAhHWwHqQZUo2sZ2miYGX12NXMb4w" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>This is the wildest smartphone camera I’ve seen yet. 🤯HONOR&#x27;s new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -1811,62 +1756,11 @@ Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-21 datetime="2026-08-21T22:09:39.000Z">2026-08-21</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-21 datetime="2026-08-21T22:09:39.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-21 datetime="2026-08-21T17:16:13.000Z">2026-08-21</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-21 datetime="2026-08-21T17:16:13.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/1m5Ee9QbLF0"
-                        open
-                      >
-                        <summary class="article-expander__title">This Pyramid Could Be Your Next Intern</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/1m5Ee9QbLF0">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/1m5Ee9QbLF0/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLAEEojLE1PzlnbSa1MxmSp7B6Ngjg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;EfGF7QbJItA"
-                        open
-                      >
-                        <summary class="article-expander__title">AI News: OpenAI Just Put the Brakes on AI</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;EfGF7QbJItA">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -2100,71 +1994,6 @@ Tags: browsers, javascript, ai, rust, typescript, generative-ai, llms, coding-ag
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;xBByvFrqmWU"
-                        open
-                      >
-                        <summary class="article-expander__title">DeepSeek is back... and Silicon Valley is terrified</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;xBByvFrqmWU">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/O-8TbMFOAfg"
-                        open
-                      >
-                        <summary class="article-expander__title">Claude’s Text Watermark Could Follow It Everywhere</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/O-8TbMFOAfg">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/O-8TbMFOAfg/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD4cD5u1Stblz9utL7NxylFCHCFMA" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven&#x27;t revealed exact...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -2178,23 +2007,6 @@ Tags: browsers, javascript, ai, rust, typescript, generative-ai, llms, coding-ag
                       >
                         <summary class="article-expander__title">Introducing Intelligence Age</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-intelligence-age">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Introducing Intelligence Age, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/introducing-ai-futures"
-                        open
-                      >
-                        <summary class="article-expander__title">Introducing Intelligence Age</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/introducing-ai-futures">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Introducing Intelligence Age, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.</span>
@@ -2484,71 +2296,6 @@ Tags: ai, generative-ai, llms, podcast-appearances, coding-agents</span>
                 </section>
               </section>
             </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;iuZPTE5qsJY"
-                        open
-                      >
-                        <summary class="article-expander__title">The summer Math fell to the machines...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;iuZPTE5qsJY">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/r-ORCmsRHOE"
-                        open
-                      >
-                        <summary class="article-expander__title">Your New Backup Brain Is Here</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/r-ORCmsRHOE">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/r-ORCmsRHOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDIDE76Ti1er6l4P0Lo07Lz09nAig" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -2745,37 +2492,6 @@ Tags: open-source, python, mojo</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM"
-                        open
-                      >
-                        <summary class="article-expander__title">Exclusive BTS of my Automated AI System (LIVE)</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Cursor Blog</button>
                   <a class="source-heading__link" href="https://cursor.com/blog">Open</a>
                 </h3>
@@ -2877,40 +2593,6 @@ Online forum discussions between Amazon workers confirmed that VGT3 destructivel
     
 Tags: amazon, journalism, ai, training-data, ai-ethics, 404-media</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/9ZKeu_7k9ik"
-                        open
-                      >
-                        <summary class="article-expander__title">Are AI Models Escaping On Purpose?</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/9ZKeu_7k9ik">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/9ZKeu_7k9ik/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLAkfG73qr5nXkdPnbbf-0hwAwxOIg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Apparently the newest benchmark for AI models is… can it commit cyber crimes? 😭First OpenAI’s model broke out during testing and hacked Hugging Face.Then An...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3366,28 +3048,6 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/16/dario-amodei/"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Dario Amodei</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/16/dario-amodei/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>I do agree that the public has a negative view of AI (and that this is a big problem), but I don’t think it is primarily caused by me or any other AI leader warning about AI’s risks.  I think it is fundamentally a crisis of trust.  I think that ordinary people don’t trust companies, governments, or the tech industry and always suspect that we are cooking up some new way to screw them over.  The causes of this go back decades and AI is just the latest iteration of it.  I don’t think that a glitzy marketing campaign with a positive spin (which some have advocated that Anthropic do) is the way to win back that trust — at this point, saying that AI will cure cancer is more a cliche than it is inspiring, and most people think it is deceptive.  The thing that will work is actually curing cancer.  I think by far the most accurate criticism of AI companies including Anthropic is that we haven’t yet delivered on our big promises to benefit the world.  That is totally on us, and I think it’s the criticism you should be making, instead of all this stuff about messaging and marketing.
-
-— Dario Amodei
-Tags: anthropic, ai, ai-backlash</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -3400,149 +3060,11 @@ Tags: anthropic, ai, ai-backlash</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-15 datetime="2026-08-15T14:49:54.000Z">2026-08-15</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-15 datetime="2026-08-15T14:49:54.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-14 datetime="2026-08-14T00:00:00.000Z">2026-08-14</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-14 datetime="2026-08-14T00:00:00.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/15/cors-chat/"
-                        open
-                      >
-                        <summary class="article-expander__title">CORS Chat</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/15/cors-chat/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/cors-chat.webp" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Tool: CORS Chat
-I built this today (with GPT-5.6-Sol xhigh) to help test Qwen 3.8 27B running in LM Studio on both my M5 MacBook Pro and an NVIDIA DGX Spark.
-It provides a web UI for exercising an OpenAI-Responses-compatible chat endpoint. I&#x27;ve tried it against LM Studio with the --cors option and OpenRouter, and both work fine.
-Conversations are persisted in the browser and can be exported as copy-pasted JSON. One fun detail is that it notices SVG images that are being generated and progressively renders them in the chat while the tokens are still streaming in.
-
-Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Matt Wolfe</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/ZePfpQ7lbcs"
-                        open
-                      >
-                        <summary class="article-expander__title">The Hank Green Situation</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ZePfpQ7lbcs">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/ZePfpQ7lbcs/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLA1czAAd7PqNaNAspB735yfq0Pj2w" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Hank Green got “caught” using AI… and I genuinely don’t think he did anything wrong.The whole controversy started because Hank said “I appreciate the pushbac...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;13
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/shorts/aszRSGI_Iwg"
-                        open
-                      >
-                        <summary class="article-expander__title">3 New Ways To Use ChatGPT Codex</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/aszRSGI_Iwg">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/aszRSGI_Iwg/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLCgaZPctMfPB6abm8zaNPdib6-ctg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Most people are barely scratching the surface of what the new Codex app can do.It can now browse social media without an API, turn something you build into a...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-14 datetime="2026-08-14T17:44:59.000Z">2026-08-14</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-14 datetime="2026-08-14T17:44:59.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;E7la7-dtfVM"
-                        open
-                      >
-                        <summary class="article-expander__title">This new startup can query anywhere you&#x27;ve been...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;E7la7-dtfVM">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3739,6 +3261,26 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
+                        data-accordion-key="https://cursor.com/blog/builds"
+                        open
+                      >
+                        <summary class="article-expander__title">Cloud agents start 3x faster with builds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/builds">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/builds-og-3-NuyGQslgxr6V6gDBaw0io2du12JmZW.gif" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Builds are ready-to-use copies of your development environment that Cursor prepares in the background, so cloud agents start up to 3x faster at no additional cost.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
                         data-accordion-key="https://cursor.com/blog/firetiger"
                         open
                       >
@@ -3769,26 +3311,6 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                             <span class="media-object__text">
                               <span>AIUC-1 certification for agent security and reliability</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;11
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/blog/builds"
-                        open
-                      >
-                        <summary class="article-expander__title">Cloud agents start 3x faster with builds</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/blog/builds">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/builds-og-3-NuyGQslgxr6V6gDBaw0io2du12JmZW.gif" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Builds are ready-to-use copies of your development environment that Cursor prepares in the background, so cloud agents start up to 3x faster at no additional cost.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3841,42 +3363,11 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-12 datetime="2026-08-12T18:29:41.000Z">2026-08-12</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-12 datetime="2026-08-12T18:29:41.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-12 datetime="2026-08-12T14:01:59.000Z">2026-08-12</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-12 datetime="2026-08-12T14:01:59.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;G55HSGpuh1M"
-                        open
-                      >
-                        <summary class="article-expander__title">Meta&#x27;s new model wants &quot;deep access&quot; to your personal life...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;G55HSGpuh1M">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -4048,58 +3539,10 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;aB5LGrHISqY"
-                        open
-                      >
-                        <summary class="article-expander__title">I spent 3 days at MIT... the robot hype is worse than you think</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;aB5LGrHISqY">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
                 <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/daybreak-models-are-now-available-on-aws"
-                        open
-                      >
-                        <summary class="article-expander__title">Daybreak models are now available on AWS</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-models-are-now-available-on-aws">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -4112,6 +3555,23 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/daybreak-models-are-now-available-on-aws"
+                        open
+                      >
+                        <summary class="article-expander__title">Daybreak models are now available on AWS</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-models-are-now-available-on-aws">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.</span>
                             </span>
                           </div>
                         </a>
@@ -4234,14 +3694,14 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/zapier"
+                        data-accordion-key="https://openai.com/index/virgin-atlantic/chatgpt-work"
                         open
                       >
-                        <summary class="article-expander__title">How Zapier transformed core marketing processes with ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/zapier">
+                        <summary class="article-expander__title">Virgin Atlantic sharpens customer journeys with ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/virgin-atlantic/chatgpt-work">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.</span>
+                              <span>Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.</span>
                             </span>
                           </div>
                         </a>
@@ -4251,14 +3711,14 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/virgin-atlantic/chatgpt-work"
+                        data-accordion-key="https://openai.com/index/zapier"
                         open
                       >
-                        <summary class="article-expander__title">Virgin Atlantic sharpens customer journeys with ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/virgin-atlantic/chatgpt-work">
+                        <summary class="article-expander__title">How Zapier transformed core marketing processes with ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/zapier">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.</span>
+                              <span>The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.</span>
                             </span>
                           </div>
                         </a>
@@ -4435,37 +3895,6 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI Explained</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;xGzseSSStnw"
-                        open
-                      >
-                        <summary class="article-expander__title">AI is getting a little out of control</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;xGzseSSStnw">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -4550,51 +3979,6 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
                               <span>Auto Intelligence now delivers above Fable-level satisfaction at 68% lower cost. Here&#x27;s how Compass and the task router choose models from real developer traffic.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;28
                                   min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-05 datetime="2026-08-05T18:08:46.000Z">2026-08-05</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-05 datetime="2026-08-05T18:08:46.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Fireship</button>
-                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;2X2V3xv_jik"
-                        open
-                      >
-                        <summary class="article-expander__title">The safest way to store Bitcoin was just hacked...</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;2X2V3xv_jik">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -4884,8 +4268,8 @@ Tags: svg, ai, generative-ai, llms, cors, openrouter, lm-studio</span>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/33355112590">
-        <time id="build-timestamp" datetime="2026-08-31T03:50:49.682Z">2026-08-31T03:50:49.682Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/33467203657">
+        <time id="build-timestamp" datetime="2026-09-01T03:43:21.871Z">2026-09-01T03:43:21.871Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
