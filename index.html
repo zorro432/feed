@@ -22,6 +22,475 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-01 datetime="2026-09-01T23:57:28.000Z">2026-09-01</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-01 datetime="2026-09-01T23:57:28.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/1/claude-fable-5-1/"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude Fable 5.1 made me a really nice animated pelican</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/1/claude-fable-5-1/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/fable-5.1-max.webp" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Today is Claude Fable (and Mythos) 5.1 day. Anthropic say that Fable 5.1 &quot;sets a new standard for coding, knowledge work, and long-running problem-solving tasks&quot;. Their announcement spends a notable amount of time on scientific research, boasting of a 52.6% score on the brand new Terminal-Bench-Science 0.1 benchmark (first announced on August 27th), up from 24.7% for Fable 5, 29.0% for Opus 5 and 22.4% for GPT-5.6 Sol. Other benchmarks show slightly improved scores, but none as impressive as the Science one.
+
+But how well can it pelican?
+
+Back in July I wrote about how I was losing faith in the pelican benchmark - its connection to how good the models were at other tasks didn&#x27;t seem to hold as strongly as it did back in 2025. The most interesting insights I get from it now are comparisons within model families, and particularly comparisons for the same prompt at different reasoning effort levels.
+
+Fable 5.1 has five reasoning levels: low, medium, high, xhigh, max - and no option to turn off reasoning entirely.
+
+I fixed an issue in llm-anthropic which caused reasoning traces not to be correctly recorded, then ran some prompts.
+
+Here&#x27;s the full set of pelicans for all of the reasoning levels, each with the full reasoning transcript. I&#x27;ll replicate them here:
+
+Low and medium, both without reasoning?
+
+Next, a bit of a mystery. This is what I got for effort low:
+
+
+
+The transcript doesn&#x27;t show any summarized reasoning tokens, and the output token count is 1,998. With Claude that output token count includes reasoning tokens. It took 23.8 seconds and cost 10.017 cents.
+
+I bumped that up to medium and got this:
+
+
+
+Weirdly, that one also shows no reasoning text  and used 1,977 output tokens - 21 tokens less than low. It took 23 seconds and cost 9.912 cents.
+
+So for this particular prompt (&quot;Generate an SVG of a pelican riding a bicycle&quot;) Fable 5.1 appeared to skip reasoning entirely at both low and medium settings.
+
+High
+
+Here&#x27;s high - 29.6 seconds, 2,612 output tokens, 13.087 cents:
+
+
+
+This one did do a bit of reasoning, summary here:
+
+
+I&#x27;m planning the SVG layout for a pelican riding a bicycle, with a sky and ground background, a bicycle with two spoked wheels, frame, seat and handlebars, and a white-bodied pelican with a long neck and orange beak positioned on top.
+
+
+Really not much difference from low and medium, though.
+
+Extra High
+
+At xhigh things got radically different.  36,767 output tokens, 7 minutes 51 seconds, $1.83!
+
+
+
+The reasoning trace is pretty lengthy, and includes details like this:
+
+
+Adding the eye, wings stretching down to the handlebar grip, orange legs reaching to the pedals, and a small tail feather, while keeping the pelican intentionally oversized compared to the bike for comic effect. [...]
+
+I&#x27;ll accept the slight thickness as charming rather than overengineering it.
+
+
+Max
+
+Setting effort to max gave me the best pelican I&#x27;ve seen from any of Anthropic&#x27;s models. 65,927 output tokens, 13 minutes and 54 seconds, $3.30:
+
+
+
+There&#x27;s a lot to like about this. The  background is tasteful, the legs are clearly on either side of the frame, the feet are on the pedals, the wing is on the handlebars, the pelican has a cute blue hat and there&#x27;s a basket with a fish.
+
+It&#x27;s still not showing nearly the same level of flair as Gemini 3.7 Flash, but I didn&#x27;t ask for flair - I asked for an SVG, and that&#x27;s what I got.
+
+Some highlights from that reasoning trace:
+
+
+Adding pedal shapes near both feet, with the far foot on the second leg partially visible behind the frame. I&#x27;m considering whether to add a small scarf or cap for extra character, but leaning toward keeping it simple to avoid clutter.
+
+Now I&#x27;m debating a bicycle helmet on the head versus the pelican&#x27;s signature crest—the beak and pouch already read clearly as &quot;pelican,&quot; so a helmet could reinforce the bicycle theme without losing identity, though it might compete with the crest for visual space.
+
+I realize the beak at (484,84) would overlap with the dome helmet, so I need to shrink the helmet so it only covers the top of the head, adjusting its arc endpoints to sit higher and narrower so the beak can attach cleanly at the front without collision. [...]
+
+I&#x27;m adding a darker tip region to represent the primary feathers, then reconsidering the trailing edge to include scalloped feather curves instead of one smooth line for a more natural look. [...]
+
+Now I&#x27;m checking the vent line placements on the helmet, making sure they sit far enough inside the helmet&#x27;s edge given the stroke width and rounded caps, and confirming each vent stays within the helmet&#x27;s circular boundary. [...]
+
+I decide skipping a handlebar bell and tire highlights since they&#x27;re unnecessary additions. Now I&#x27;m reconsidering the front fork&#x27;s curve — the current control point pulls the shape backward when it should bow forward for a proper rake, so I need to shift the control point rightward to fix the fork&#x27;s lean.
+
+
+OK, let&#x27;s animate it
+
+On Hacker News, swalsh commented on that Max pelican:
+
+
+Now that it&#x27;s a solved benchmark, can we get the animated version?
+
+
+I didn&#x27;t want to spend another $3 so I took the Max pelican and piped it into the default thinking level of High:
+
+
+llm logs -cx | llm -m claude-fable-5.1 -s &#x27;animate this&#x27;
+
+6,121 input, 26,201 output &#x3D; $1.37. The result looked like this, exported here as video since some people have trouble viewing animated SVGs:
+
+
+    
+    Your browser does not support HTML5 video.
+  
+
+
+The wheels in the video are rotating in the wrong direction, but I think that&#x27;s an artifact of the conversion to MP4 - they seem to be going in the correct direction in the original SVG.
+Tags: ai, generative-ai, llms, anthropic, claude, pelican-riding-a-bicycle, llm-reasoning, llm-release</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;6
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/1/codex-libreoffice/"
+                        open
+                      >
+                        <summary class="article-expander__title">Codex bundles LibreOffice</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/1/codex-libreoffice/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>I was poking around in my ~/.cache/ folder using OmniDiskSweeper when I spotted something interesting. The OpenAI Codex desktop app (since rebranded to just ChatGPT) has 1.7GB of stuff in there in a folder called codex-primary-runtime, including a full Python installation, a full Node.js installation, and native binaries for Poppler, git, and the LibreOffice open source office suite (which forked from OpenOffice.org in 2010):
+
+The ~/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime/plugins/documents folder includes skills which tell Codex how to find and use those binaries.
+Tags: codex, generative-ai, openai, ai, llms, openoffice, open-source</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/1/geojson/"
+                        open
+                      >
+                        <summary class="article-expander__title">GeoJSON Map Viewer</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/1/geojson/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/geojson-tool.webp" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Tool: GeoJSON Map Viewer
+I was helping Natalie gather some maps of local political boundaries (for the Granada Community Services District and the Midcoast Community Council and found a need to display some GeoJSON files on a map and export that as a PNG. I asked GPT-5.6-Sol for suggestions of tools and it proactively built one. After some iterations using Claude Code for web and Fable 5.1 we got to this finished tool.
+As for the GeoJSON.. it turns out if you ask ChatGPT Work to provide boundaries for almost anything it will churn away extracting and combining files from different Government data sources and build exactly what you need.
+I got this polygon from:
+I want a polygon that represents the exact boundary of the El Granada GCSD
+And this one from:
+Get me a GeoJSON file for the boundary (or boundaries if that makes sense) for the MCC - Midcoast Community Council - that operates near Half Moon Bay CA
+Here&#x27;s a link that displays both of them at the same time on the new GeoJSON map viewing tool.
+
+Tags: geospatial, tools, geojson, chatgpt</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/1/tarn-adams/"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Tarn Adams</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/1/tarn-adams/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>They took the letters from me! I have to talk about dwarf behavior now. I can&#x27;t even talk about dwarf AI. It doesn&#x27;t exist. It&#x27;s dwarf behavior, and they misbehave sometimes
+
+— Tarn Adams, co-creator of Dwarf Fortress
+Tags: ai, game-design</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;2
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/1/python-315-rc-2/"
+                        open
+                      >
+                        <summary class="article-expander__title">Python 3.15.0 candidate 2 is here!</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/1/python-315-rc-2/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Python 3.15.0 candidate 2 is here!
+Entering the release candidate phase, only reviewed code changes which are clear bug fixes are allowed between this release candidate and the final release. [...]
+We strongly encourage maintainers of third-party Python projects to prepare their projects for 3.15 during this phase, and publish Python 3.15 wheels on PyPI to be ready for the final release of 3.15.0, and to help other projects do their own testing. Any binary wheels built against Python 3.15.0 release candidates will work with future versions of Python 3.15.
+Back in 2021 I found a bug in Python 3.10 by running my test suites against it... but I hadn&#x27;t done this during the RC period, so that bug had already shipped! Since then I&#x27;ve always paid much closer attention to these RCs.
+The new RC isn&#x27;t available for GitHub Actions just yet - keep an eye on actions/python-versions for that. For the moment though you can add this to a testing matrix:
+strategy:
+  matrix:
+    python-version: [&quot;3.14&quot;, &quot;3.15&quot;]
+
+steps:
+  - uses: actions/setup-python@v7
+    with:
+      python-version: ${{ matrix.python-version }}
+      allow-prereleases: true
+      check-latest: true
+
+
+The allow-prereleases and check-latest flags mean that today this will test against RC1, and when RC2 lands it will automatically switch to that version (and then the stable version once that comes out.)
+
+    
+Via @hugovk.dev
+Tags: open-source, python, github-actions</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI</button>
+                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/innovation-and-ai/technology/google-ai-updates-august-2026/"
+                        open
+                      >
+                        <summary class="article-expander__title">The latest AI news we announced in August 2026</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/google-ai-updates-august-2026/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/August_AI_Recap_social.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Here are Google’s latest AI updates from August 2026</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;16
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://blog.google/products-and-platforms/products/workspace/google-pics/"
+                        open
+                      >
+                        <summary class="article-expander__title">Try Google Pics: Easy image creation and editing in Google Workspace</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/products-and-platforms/products/workspace/google-pics/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GooglePics_Hero.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Built on our latest Nano Banana model, Google Pics — our image creation and editing tool — is now available.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Google DeepMind News</button>
+                  <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://deepmind.google/blog/introducing-agentic-video-in-gemini/"
+                        open
+                      >
+                        <summary class="article-expander__title">Introducing agentic video understanding with Gemini</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/agentic-video___keyword__blog-header.width-1300.png" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>We’re launching agentic video understanding across our latest Gemini models for improved accuracy and lower costs and token usage.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/ai-native-company-workflows"
+                        open
+                      >
+                        <summary class="article-expander__title">How AI-native companies turn workflows into operating capability</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/ai-native-company-workflows">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Basis, Clay, and Exa Labs use AI agents to improve onboarding, account management, and developer integrations. See what enterprise leaders can apply.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/path-to-astra"
+                        open
+                      >
+                        <summary class="article-expander__title">Path to Astra: critical capabilities and frontier safeguards</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/path-to-astra">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Astra is the first OpenAI model to meet the Critical cybersecurity capability threshold under the Preparedness Framework, with stronger safeguards for release.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources"
+                        open
+                      >
+                        <summary class="article-expander__title">Healthcare organizations can now connect EHR and additional industry data to ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>ChatGPT can now connect to trusted healthcare data, helping clinicians securely access patient context, medical research, and more.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/gilbert-tobin"
+                        open
+                      >
+                        <summary class="article-expander__title">How law firm Gilbert + Tobin governs and scales AI with OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/gilbert-tobin">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>See how Gilbert + Tobin combines CEO-led commitment, rigorous governance, and human accountability to scale ChatGPT Enterprise and Codex across the firm.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/-goIBDS9UNU"
+                        open
+                      >
+                        <summary class="article-expander__title">The One-Prompt Dashboard Trick</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/-goIBDS9UNU">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/-goIBDS9UNU/oardefault.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLDpH6dWo3-sWp-iq5cVbBZkulPO7Q&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>I turned a boring spreadsheet into the ultimate content creator dashboard.It tracks my audience and growth across YouTube, Instagram, TikTok, LinkedIn, X, Th...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-31 datetime="2026-08-31T23:59:36.000Z">2026-08-31</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-31 datetime="2026-08-31T23:59:36.000Z"></time>
           </button>
@@ -140,6 +609,23 @@ Tags: kakapo</span>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
                 <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/supporting-california-bill-advance-ai-youth-safety"
+                        open
+                      >
+                        <summary class="article-expander__title">OpenAI supports California’s bill to advance youth AI safety</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/supporting-california-bill-advance-ai-youth-safety">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>OpenAI supports California SB 1119, advancing strong, age-appropriate AI safeguards for teens while preserving opportunities to learn, create, and explore.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
                     <article>
                       <details
                         class="article-expander"
@@ -608,6 +1094,37 @@ Tags: open-source, security, ai, generative-ai, llms, coding-agents, ocaml, ai-s
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;TInwQglNkzo"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: OpenAI Made a Massive Move Against NVIDIA</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;TInwQglNkzo">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -773,6 +1290,37 @@ Tags: sandboxing, security, ai, prompt-injection, generative-ai, llms, anthropic
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;KL9_1GbmCic"
+                        open
+                      >
+                        <summary class="article-expander__title">Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;KL9_1GbmCic">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >Google DeepMind News</button>
                   <a class="source-heading__link" href="https://deepmind.google/blog/">Open</a>
                 </h3>
@@ -844,6 +1392,40 @@ Tags: sandboxing, security, ai, prompt-injection, generative-ai, llms, anthropic
                               <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Search_Travel_Blog_Hero_8.27.width-1300.png" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Book hotels and track airfares, plus view miles and rewards with AI Mode in Google Search.</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/Z93MPi8ZO3A"
+                        open
+                      >
+                        <summary class="article-expander__title">This Company Will Buy Your AI Training Data</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/Z93MPi8ZO3A">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/Z93MPi8ZO3A/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDhXMPYPDE7oIeKIIHBcr8zcO-RNw" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
@@ -1004,6 +1586,57 @@ Tags: ai, generative-ai, llms, qwen, pelican-riding-a-bicycle, ai-in-china, nvid
 — Paul Dix, The end of programming
 Tags: coding-agents, ai-assisted-programming, generative-ai, bun, ai, llms</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;rKo9iLGjUbs"
+                        open
+                      >
+                        <summary class="article-expander__title">I Built a FREE App That Runs Your Entire Business</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;rKo9iLGjUbs">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/uS2gi-D8C0k"
+                        open
+                      >
+                        <summary class="article-expander__title">How To EASILY Run Local AI Models</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/uS2gi-D8C0k">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/uS2gi-D8C0k/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLA2Qtjozc9DeKsGnr9lS4O3E24UEg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1298,6 +1931,40 @@ Tags: eve-online, migrations, python, python3, stackless</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/f74JmwXm-sQ"
+                        open
+                      >
+                        <summary class="article-expander__title">This AI Found Money I Was Wasting</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/f74JmwXm-sQ">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/f74JmwXm-sQ/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLClXnsDLHQ3T1orI8qucHhLem17dQ" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;14
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
                   >OpenAI News</button>
                   <a class="source-heading__link" href="https://openai.com/news">Open</a>
                 </h3>
@@ -1477,6 +2144,40 @@ printf &#x27;%s\n&#x27; &#x27;:self:M:68:SELF::/usr/local/bin/self-exec:&#x27; \
 Via Hacker News
 Tags: c, linux, sqlite</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/ZY628bslSYY"
+                        open
+                      >
+                        <summary class="article-expander__title">This AI Creates Insane 3D Worlds</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ZY628bslSYY">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/ZY628bslSYY/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAcxpzRviveTzIy-elL7Zzlx9GM_g" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -1747,6 +2448,40 @@ Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/aOzaO5AAGjk"
+                        open
+                      >
+                        <summary class="article-expander__title">The Wildest Smartphone I’ve Ever Seen 🤯</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/aOzaO5AAGjk">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuAL3GA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLAXJbfymjBZ13hxc1pbL1QMhfXiZg" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>This is the wildest smartphone camera I’ve seen yet. 🤯HONOR&#x27;s new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -1756,11 +2491,62 @@ Tags: code-review, coding-agents, generative-ai, agentic-engineering, ai, llms</
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-21 datetime="2026-08-21T17:16:13.000Z">2026-08-21</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-21 datetime="2026-08-21T17:16:13.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-21 datetime="2026-08-21T22:09:39.000Z">2026-08-21</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-21 datetime="2026-08-21T22:09:39.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/1m5Ee9QbLF0"
+                        open
+                      >
+                        <summary class="article-expander__title">This Pyramid Could Be Your Next Intern</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/1m5Ee9QbLF0">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/1m5Ee9QbLF0/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLAEEojLE1PzlnbSa1MxmSp7B6Ngjg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;EfGF7QbJItA"
+                        open
+                      >
+                        <summary class="article-expander__title">AI News: OpenAI Just Put the Brakes on AI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;EfGF7QbJItA">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -1978,6 +2764,40 @@ I had Claude Code for web build a prototype of a web API providing the ability t
 Here&#x27;s that TypeScript server implementation, which appears to need a 192MB-256MB container to run a full Chrome against complex web pages - tested using cgroups.
 Tags: browsers, javascript, ai, rust, typescript, generative-ai, llms, coding-agents, bun</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/O-8TbMFOAfg"
+                        open
+                      >
+                        <summary class="article-expander__title">Claude’s Text Watermark Could Follow It Everywhere</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/O-8TbMFOAfg">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/O-8TbMFOAfg/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLBOO3nulD6XPWJL-0pmFIqUF2t2YQ" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven&#x27;t revealed exact...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2296,6 +3116,40 @@ Tags: ai, generative-ai, llms, podcast-appearances, coding-agents</span>
                 </section>
               </section>
             </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/shorts/r-ORCmsRHOE"
+                        open
+                      >
+                        <summary class="article-expander__title">Your New Backup Brain Is Here</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/r-ORCmsRHOE">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/r-ORCmsRHOE/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLDIDE76Ti1er6l4P0Lo07Lz09nAig" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
         </ul>
       </section>
       <section class="daily-content js-toggle-accordions-scope">
@@ -2450,33 +3304,22 @@ Tags: ai, generative-ai, llms, podcast-appearances, coding-agents</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM"
                         open
                       >
-                        <summary class="article-expander__title">Mojo🔥 is now open source</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/">
+                        <summary class="article-expander__title">Exclusive BTS of my Automated AI System (LIVE)</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;IeT5Jn7d1aM">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Mojo🔥 is now open source
-since May 2023. Last week they shipped their 1.0 and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license.
-When Mojo first launched the stated goal was to produce a superset of Python, so existing Python code could be used to bootstrap their own ecosystem. That plan changed around August 2025:
-Mojo may or may not evolve into a full superset of Python, and it’s okay if it doesn’t.
-We’re encouraged by how well AI-assisted coding tools already help migrate Python to Mojo today, and we’re confident that future tooling and ecosystem maturity will make this evolution even smoother.
-Today Mojo is its own language, optimized to make GPU programming as painless as possible using syntax inspired by Python, if not 100% compatible with existing code.
-
-    
-Via Lobste.rs
-Tags: open-source, python, mojo</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -2528,8 +3371,8 @@ Tags: open-source, python, mojo</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-17 datetime="2026-08-17T23:58:14.000Z">2026-08-17</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-17 datetime="2026-08-17T23:58:14.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-17 datetime="2026-08-17T13:18:26.000Z">2026-08-17</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-17 datetime="2026-08-17T13:18:26.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -2540,59 +3383,24 @@ Tags: open-source, python, mojo</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/"
+                        data-accordion-key="https://www.youtube.com/shorts/9ZKeu_7k9ik"
                         open
                       >
-                        <summary class="article-expander__title">Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/">
+                        <summary class="article-expander__title">Are AI Models Escaping On Purpose?</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/9ZKeu_7k9ik">
                           <div class="article-summary-box-inner media-object">
+                              <img src="https://i.ytimg.com/vi/9ZKeu_7k9ik/oar2.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAAAAJQAAyEI9AICiQ3gBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLBdr6D4fPnEawwwwsdgg8m98o4OBg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index
-753B and that DeepSeek is 1.7T parameters, and Luna is size unknown but presumably a whole lot bigger than 27B.
-Qwen 3.8 27B is a truly astonishing model.
-
-    
-Via Hacker News
-Tags: ai, generative-ai, llms, qwen, ai-in-china, artificial-analysis</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/"
-                        open
-                      >
-                        <summary class="article-expander__title">We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility
-my previous coverage of Anthropic&#x27;s book scanning from June 2025.)
-404 Media investigated with an AirTag!
-In July, one bookseller told me they received a very large order of around 1,000 books on Biblio, one of these marketplaces. The seller agreed to put an Apple AirTag provided by 404 Media in one of the books included in this order so we could see where the book was going. And by extension, which company, AI or otherwise, was behind this massive order.
-The book ended up delivered to the VGT3 corner of the LAS8 Amazon facility in the north east of Las Vegas, where the entrance carried this on-the-nose logo of a dinosaur with a book!
-
-Photo credit: 404 Media
-Online forum discussions between Amazon workers confirmed that VGT3 destructively scans large volumes of books.
-
-
-    
-Tags: amazon, journalism, ai, training-data, ai-ethics, 404-media</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
+                              <span>Apparently the newest benchmark for AI models is… can it commit cyber crimes? 😭First OpenAI’s model broke out during testing and hacked Hugging Face.Then An...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;12
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2744,8 +3552,8 @@ Tags: amazon, journalism, ai, training-data, ai-ethics, 404-media</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-16 datetime="2026-08-16T23:59:37.000Z">2026-08-16</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-16 datetime="2026-08-16T23:59:37.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-15 datetime="2026-08-15T13:14:44.000Z">2026-08-15</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-15 datetime="2026-08-15T13:14:44.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
@@ -2756,292 +3564,24 @@ Tags: amazon, journalism, ai, training-data, ai-ethics, 404-media</span>
                     class="source-heading__name"
                     data-action="toggle-accordions"
                     title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                  >Matt Wolfe</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g">Open</a>
                 </h3>
                 <section class="articles-per-source">
                     <article>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/"
+                        data-accordion-key="https://www.youtube.com/shorts/ZePfpQ7lbcs"
                         open
                       >
-                        <summary class="article-expander__title">Markdown SVG upgrades</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/">
+                        <summary class="article-expander__title">The Hank Green Situation</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/ZePfpQ7lbcs">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/rendered-svg.webp" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/ZePfpQ7lbcs/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLA1czAAd7PqNaNAspB735yfq0Pj2w" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
-                              <span>I started building my markdown-svg-renderer tool in May, but I&#x27;ve since added enough features to it that it&#x27;s worth talking about here again.
-It&#x27;s evolved into my ideal tool for sharing Markdown transcripts that include SVG documents. Given my proclivity for drawing pelicans riding bicycles this is a problem that I needed to solve!
-The tool is very simple. Navigate to markdown-svg-renderer in your browser and paste in some Markdown to see it rendered... or save that Markdown to a CORS-friendly URL or a GitHub Gist and paste in a URL to that document.
-The URL option will give you a bookmarkable page, for example https://tools.simonwillison.net/markdown-svg-renderer#url&#x3D;https%3A%2F%2Fgist.github.com%2Fsimonw%2F6f9e48293be5c916652d29f0dc0b0657 - which bakes in the URL to this Gist.
-If you visit the Gist you&#x27;ll see raw SVG:
-
-In the rendered tool that looks like this instead:
-
-As you can see, that SVG block in the Markdown has been transformed into a rendered SVG (in this case animated) plus several tabs.
-The tabs are the really fun bit. The PNG and JPEG tabs render that SVG to those image formats in the browser and lets you copy or download them - useful for sharing on platforms that don&#x27;t support SVG directly.
-The MP4 tab is new today - it examines the SVG to see if it contains any animations, attempts to guess how long the looped video should be, then renders a whole bunch of frames of the animation and loads 30+MB of ffmpeg.wasm so it can compile those frames into an MP4 video using the full power of FFMPEG compiled to WebAssembly and running in the browser.
-Being able to turn an animated SVG into a MP4 again makes it easy to share on platforms that can&#x27;t support SVG animation natively. It&#x27;s a neat trick!
-Tags: svg, markdown, tools</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/16/qwen-38-27b/"
-                        open
-                      >
-                        <summary class="article-expander__title">Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://static.simonwillison.net/static/2026/qwen-thinking-bicycle-27b.jpg" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Friday&#x27;s big release was Qwen 3.8 27B, an Apache 2 licensed 27B parameter vision-capable LLM from Alibaba&#x27;s Qwen research lab. I&#x27;ve been looking forward to this one: 27B is an excellent size for running a model on a reasonably specced laptop, and its predecessor Qwen 3.6 27B was impressive.
-
-Qwen&#x27;s self-reported benchmarks for this model are eye-opening. They show a boost from both Qwen 3.6 27B and the closed-weight Qwen 3.7-Plus, which was one of Qwen&#x27;s strongest models of any size as recently as May this year. It will be interesting to hear what independent benchmarks have to say about the model.
-
-I&#x27;ve been running the model on two different machines: my 128GB M5 Max MacBook Pro, and an NVIDIA DGX Spark. On both machines I&#x27;m running LM Studio and their 17GB Q4_K_M quantized build. I also tried  using llama-server directly on the Spark.
-
-The default of extra high results in spectacular over-thinking
-
-Qwen&#x27;s documentation describes the model as defaulting to xhigh for the reasoning effort, and the LM Studio GGUF I&#x27;ve been trying preserves that default:
-
-
-Qwen3.8 comes with official support for reasoning_effort, which can be used to adjust reasoning depth and control cost:
-
-
-
-xhigh (default): for complex tasks demanding thorough analysis
-
-
-medium: balancing accuracy and speed
-
-
-low: efficient reasoning optimizing for speed and cost
-
-
-
-This is a hilarious default. It&#x27;s absolutely not a good way to run the model, especially on consumer hardware. I&#x27;ve been finding the results extremely entertaining.
-
-I quickly ran into problems with LM Studio&#x27;s default context limit of 8,192 tokens - Qwen was using them all up thinking about even the most mundane of problems. I loaded the model with the full 262,144 maximum context length and that problem went away.
-
-Here&#x27;s the pelican riding a bicycle SVG I got from my first attempt with that increased context length. It took 21 minutes to generate, using 22,276 reasoning tokens to produce 3,223 tokens of output. You can read the reasoning trace here.
-
-
-
-This is by far the best pelican SVG I&#x27;ve been able to generate with a model that runs on a local machine - and this Qwen is pretty small, just a 17GB file on disk. There&#x27;s a lot to like about this:
-
-
-The bicycle frame is the right shape
-
-It has legs on each side of the bike - that&#x27;s very rare
-
-Good, clear pelican pouch
-
-The wings extend to touch the handlebars!
-
-The motion lines are behind, not in front
-
-It has a tasteful background - nice sun, clouds, hill, flowers and grass.
-
-
-Was that worth waiting 21 minutes for? Absolutely not.
-
-Here&#x27;s that same prompt run with reasoning turned off - transcript here. This one produced 3,715 tokens and took 137s - just over two minutes.
-
-
-And just for completeness, I used OpenRouter to run the same prompt through the much larger Qwen 3.8 2.4T-A95B (released last week) and got this snazzy animated SVG:
-
-&lt;video
-    controls&#x3D;&quot;controls&quot; loop&#x3D;&quot;loop•&quot;
-    preload&#x3D;&quot;none&quot;
-    poster&#x3D;&quot;https://static.simonwillison.net/static/2026/qwen-animated-first-frame.jpg&quot;
-    width&#x3D;&quot;720&quot;
-    height&#x3D;&quot;548&quot;
-    style&#x3D;&quot;display: block; width: 100%; height: auto;&quot;
-  &gt;
-    
-    Your browser does not support HTML5 video.
-  
-
-I said Qwen at xhigh has a tendency to over-think things, but how bad really is it?
-
-I tried a much simpler prompt, again with that default extra high setting:
-
-
-draw an svg of a circle
-
-
-Qwen&#x27;s reasoning trace started like this:
-
-
-The user is asking for an SVG drawing of a circle. Simple request — but I want it to be a carefully crafted piece. Let me make something that goes beyond just &lt;circle&gt;: a single self-contained SVG file with character — maybe a geometric &quot;circle study,&quot; with subtle animation, layered rings, and a distinctive palette.
-
-Keep the scope right: they asked for an SVG of a circle. So the core is a circle. But I can add craft: concentric guide circles (like a compass/geometry drawing), tick marks, a soft gradient fill on the main circle, restrained ambient motion (a slowly rotating dashed ring, pulsing glow). Respect prefers-reduced-motion? That&#x27;s more for CSS; SVG SMIL or CSS inside SVG will do.
-
-Palette options: deep teal ink on warm paper? Or bold vermilion circle on off-white with navy construction lines — Bauhaus/compass-drawing vibe. Let me go with a &quot;geometric study&quot; look: cool slate background, or bright paper white? Paper white is fine if it&#x27;s not the cream-and-terracotta combo. [...]
-
-
-Several minutes later it produced this absolutely beautiful animated circle, which was entirely not what I had asked for!
-
-&lt;video
-    controls&#x3D;&quot;controls&quot; loop&#x3D;&quot;loop&quot;
-    preload&#x3D;&quot;none&quot;
-    poster&#x3D;&quot;https://static.simonwillison.net/static/2026/circle-web-first-frame.jpg&quot;
-    width&#x3D;&quot;1078&quot;
-    height&#x3D;&quot;1080&quot;
-    style&#x3D;&quot;display: block; width: 100%; height: auto;&quot;
-  &gt;
-    
-    Your browser does not support HTML5 video.
-  
-
-My strong recommendation: ignore that default. Run Qwen 3.8 27B on low or even no reasoning levels at first. It&#x27;s a great model, but wow that default setting is a bad place to start.
-It&#x27;s very good at bounding boxes
-
-A fun way to test a vision model is to see how well it can return bounding boxes around items in a photograph. I&#x27;ve seen previous Qwen models deal well with this, so I decided to put it to the test drawing bounding boxes around some pelicans.
-
-I&#x27;ve seen asking for 0-1000 scale produce good results in the past. I tried this:
-
-
-llm -a https://static.inaturalist.org/photos/714731804/large.jpg \
-  -m lmstudio/qwen/qwen3.8-27b \
-  &#x27;Return JSON bounding boxes for the pelicans in this photo, 0-1000 scale for each dimension&#x27;
-
-Here&#x27;s the reasoning trace, which produced this:
-
-
-[
-  {&quot;bbox_2d&quot;: [195, 290, 370, 780], &quot;label&quot;: &quot;pelicans&quot;},
-  {&quot;bbox_2d&quot;: [445, 320, 675, 850], &quot;label&quot;: &quot;pelicans&quot;}
-]
-
-This is such a good match. Here are those boxes rendered on top of the photo:
-
-
-
-Building a tool to label bounding boxes
-
-That visualization of the bounding boxes was taken using a new custom tool that I had Qwen 3.8 27B build for me, running offline on my laptop.
-
-I forgot to dial down the thinking effort so it was massively over-engineered, but it did manage to produce this full interface from this single prompt:
-
-
-[
-   {&quot;bbox_2d&quot;: [195, 290, 370, 780], &quot;label&quot;: &quot;pelicans&quot;},
-   {&quot;bbox_2d&quot;: [445, 320, 675, 850], &quot;label&quot;: &quot;pelicans&quot;}
-]
-
-
-Build an HTML page which has an input box for accepting the URL to an image and a textarea for accepting the above style of JSON.
-
-It appends the image to the page, measures its width and height, then treats the coords in the bbox_2d as scaled from 0-1000 and scales them against the actual width and height, then it renders labelled boxes over the image.
-
-
-This screenshot shows one of the features I did not ask for - a demo scene, for if you don&#x27;t have a photograph to test the tool with:
-
-
-
-Here&#x27;s the relevant segment of the thinking trace, where it decided to draw its own pelicans purely because I had used the label &quot;pelicans&quot; in the example JSON I gave it in the prompt:
-
-
-Also a &quot;load sample&quot; that uses a known image? Can&#x27;t depend on external images, but… the image URL input is user-provided; I could add a &quot;try with sample&quot; button [...] Hmm, I can draw a simple scene on canvas, export it as a data URL, and load it into the image — that&#x27;s self-contained and demo-able! [...] But the user&#x27;s coords are for an actual pelican image; a generated placeholder can still demo the scaling. Generate a 1000x1000 placeholder: gradient water + two blob-like &quot;pelican&quot; silhouettes placed at the given bboxes (using the same scale — cute: silhouettes at the exact 0-1000 positions, showing the boxes align). This makes for a fun, self-contained demo. Keep it simple: sky gradient, sun, water, two pelican-ish shapes (ellipse body, circle head, beak). Place at bbox centers.
-
-
-(I&#x27;m slightly nervous that models around the world might have a bias towards drawing pelicans at any chance they can get, brought on by nearly two years of exposure to my own stupid benchmark.)
-
-Is all that over-thinking necessary? Maybe it is, at least a bit. I tried with reasoning turned off and got this version, (transcript here), which nearly works but shows the boxes in the wrong place:
-
-
-
-So without reasoning it didn&#x27;t quite one-shot a working tool. I&#x27;m sure it could get there with some follow-up prompts, but this is a good example of how reasoning can make a difference.
-
-Yes, it can drive coding agents
-
-One of the biggest questions around local models is whether or not they have enough horsepower to successfully run a coding agent loop. Coding agents require long context, strong code generation support and reliable tool-calling. On paper Qwen 3.8 27B has all three of these, so is it up to the task?
-
-My initial experiments with Pi have been very promising. I chose Pi because it has a shorter system prompt than most other options, making it a better fit for trying out smaller models.
-
-I configured Pi to use Qwen 3.8 27B running in LM Studio on the Spark (shared via tailscale serve) by adding this to ~/.pi/agent/models.json:
-
-
-{
-  &quot;providers&quot;: {
-    &quot;spark&quot;: {
-      &quot;baseUrl&quot;: &quot;https://spark-18b3.tail68a31.ts.net/v1&quot;,
-      &quot;api&quot;: &quot;openai-responses&quot;,
-      &quot;apiKey&quot;: &quot;dummy&quot;,
-      &quot;models&quot;: [
-        {
-          &quot;id&quot;: &quot;qwen3.8-27b&quot;,
-          &quot;reasoning&quot;: true
-        }
-      ]
-    }
-  }
-}
-
-Then ran pi --provider spark --model qwen3.8-27b in my ~/dev/datasette folder and prompted:
-
-
-how does auth work?
-
-
-After a sequence of reasoning and tool calls that accessed a bunch of different files it produced this reply, which is very solid.
-
-Just one problem: I wanted to share that transcript. So I pointed Pi and Qwen 3.8 27B at the JSONL transcript file in ~/.pi/agent/sessions/--Users-simon-Dropbox-dev-datasette-- and prompted:
-
-
-Write Python code to convert this jsonl to markdown
-
-
-And it built and tested this pi_jsonl_to_md.py, which did exactly what I needed. Here&#x27;s that session transcript, published using the tool that it created.
-
-The quest for speed
-
-So far this is all looking very promising. We have a 17GB model that runs on high-end consumer hardware and can write code, drive tools, annotate images and generally do everything that I need from an LLM for getting real work done.
-
-There&#x27;s one very significant catch: it feels slow - especially when it starts over-thinking, but even without that it&#x27;s not particularly sprightly.
-
-I&#x27;ve been getting around 15-30 tokens a second from LM Studio. That&#x27;s not terrible, but it&#x27;s slow enough that it&#x27;s going to be hard to win me away from hosted API models, which can return results a whole lot faster. Artificial Analysis track token speed and show OpenAI 5.6 Sol at 74 tokens/second and 5.6 Luna at an impressive 184/second.
-
-The good news is that the community have been exploring ways to speed things up since the model was first released two days ago.
-
-One of the most promising optimizations is baked into the model itself. Qwen supports Multi-Token Prediction, an architecture trick where a cheaper mechanism guesses several tokens ahead and the main model can then quickly verify if the guesses were correct. This can have quite a dramatic effect on inference performance.
-
-Based on this tweet from llama.cpp creator Georgi Gerganov I tried running the model with MTP like this on the Spark:
-
-
-llama serve \
- -hf  ggml-org/Qwen3.8-27B-GGUF:Q4_K_M \
- -hfd ggml-org/Qwen3.8-27B-GGUF:Q4_0 \
- --spec-default \
- --spec-type draft-mtp \
- --reasoning-preserve
-
-And sure enough, this gave me a significant boost. I had GPT-5.6 in Codex run a comparative benchmark on the Spark and the --spec-type draft-mtp server outperformed the LM Studio default GGUF by around 72%.
-
-I expect we&#x27;ll see a whole lot more innovation around serving this model faster over the next few weeks. The MLX community likely have some tricks brewing as well.
-
-Some observations
-
-The fact that a 17GB file can do all of this stuff on my home machines is a miracle. Once again, I&#x27;m delighted and amazed at how much progress local models have made this year. A year ago this would have been competitive with the best and most expensive of the proprietary models - today it can run on a capable laptop.
-
-The only thing holding this back from being a daily driver is performance. It feels pretty slow on both the M5 Mac and the DGX Spark. That&#x27;s the catch with these dense (non-Mixture-of-Experts) models - they require a whole lot of memory bandwidth to perform well, and neither of the machines I have access to are top performers in that regard.
-
-The most important thing about Qwen 3.8 27B is what it demonstrates. We can have an open weights general purpose model with a long context, effective tool calling, strong vision ability, and competent code generation, and we can fit the whole thing in just a 17GB file.
-
-The models at this size continue to get better at an impressive rate. We don&#x27;t need to spend half a million dollars on datacenter-class hardware just to run a competent model.
-Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-reasoning, llama-cpp, llm-release, coding-agents, lm-studio, ai-in-china, nvidia-spark, pi</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;10
+                              <span>Hank Green got “caught” using AI… and I genuinely don’t think he did anything wrong.The whole controversy started because Hank said “I appreciate the pushbac...</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;15
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3547,14 +4087,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/testing-ads-in-chatgpt"
+                        data-accordion-key="https://openai.com/index/daybreak-models-are-now-available-on-aws"
                         open
                       >
-                        <summary class="article-expander__title">Testing ads in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/testing-ads-in-chatgpt">
+                        <summary class="article-expander__title">Daybreak models are now available on AWS</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-models-are-now-available-on-aws">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
+                              <span>OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.</span>
                             </span>
                           </div>
                         </a>
@@ -3564,14 +4104,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/daybreak-models-are-now-available-on-aws"
+                        data-accordion-key="https://openai.com/index/testing-ads-in-chatgpt"
                         open
                       >
-                        <summary class="article-expander__title">Daybreak models are now available on AWS</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-models-are-now-available-on-aws">
+                        <summary class="article-expander__title">Testing ads in ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/testing-ads-in-chatgpt">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.</span>
+                              <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
                             </span>
                           </div>
                         </a>
@@ -3660,23 +4200,6 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows"
-                        open
-                      >
-                        <summary class="article-expander__title">Expanding Daybreak as the Cyber Defense Window Narrows</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
                         data-accordion-key="https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands"
                         open
                       >
@@ -3694,14 +4217,14 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/virgin-atlantic/chatgpt-work"
+                        data-accordion-key="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows"
                         open
                       >
-                        <summary class="article-expander__title">Virgin Atlantic sharpens customer journeys with ChatGPT Work</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/virgin-atlantic/chatgpt-work">
+                        <summary class="article-expander__title">Expanding Daybreak as the Cyber Defense Window Narrows</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.</span>
+                              <span>Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.</span>
                             </span>
                           </div>
                         </a>
@@ -3736,6 +4259,23 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Premium seats are now available on ChatGPT Business, with 5x more usage, no five-hour usage limit, and flexible seat options for every teammate.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/virgin-atlantic/chatgpt-work"
+                        open
+                      >
+                        <summary class="article-expander__title">Virgin Atlantic sharpens customer journeys with ChatGPT Work</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/virgin-atlantic/chatgpt-work">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.</span>
                             </span>
                           </div>
                         </a>
@@ -3880,6 +4420,37 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                               <span>WeatherNext enables accurate cyclone forecasts that can give an extra day of warning. Now we are open sourcing the model.</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;8
                                   min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;xGzseSSStnw"
+                        open
+                      >
+                        <summary class="article-expander__title">AI is getting a little out of control</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;xGzseSSStnw">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -4159,108 +4730,6 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/continuous-voice-interaction-with-gpt-live"
-                        open
-                      >
-                        <summary class="article-expander__title">How we built a realtime system for responsive voice AI in six months</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/continuous-voice-interaction-with-gpt-live">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>GPT-Live enables continuous voice interaction with AI, using a turnless speech model and low-latency architecture for faster, more natural conversations.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/circles"
-                        open
-                      >
-                        <summary class="article-expander__title">Circles powers telco personalization with OpenAI technology</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/circles">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Circles uses the OpenAI API and Codex to power AI-native telco experiences, increasing ARPU by 22%, reducing churn by 9%, and improving development efficiency.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >AI</button>
-                  <a class="source-heading__link" href="https://blog.google/innovation-and-ai/technology/ai/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026/"
-                        open
-                      >
-                        <summary class="article-expander__title">Inside our 353,000-person vibe coding course</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026/">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Vibe_coding_course_hero.width-1300.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Kaggle’s AI Agents Intensive with Google brought learners together in a no-cost course to build and deploy the next frontier of AI.</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Cursor Changelog</button>
-                  <a class="source-heading__link" href="https://cursor.com/changelog/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://cursor.com/changelog/google-workspace-plugins"
-                        open
-                      >
-                        <summary class="article-expander__title">Google Workspace Plugins</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://cursor.com/changelog/google-workspace-plugins">
-                          <div class="article-summary-box-inner media-object">
-                              <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/changelog/opengraph-changelog-aug-03-2028-1--6jUJResHtvYnhvhruXTuoOCA2mKuJP.png" loading="lazy" class="media-object__media article-image" />
-                            <span class="media-object__text">
-                              <span>Aug 3, 2026 · Changelog</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -4268,8 +4737,8 @@ Tags: ai, generative-ai, local-llms, llms, qwen, pelican-riding-a-bicycle, llm-r
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/33467203657">
-        <time id="build-timestamp" datetime="2026-09-01T03:43:21.871Z">2026-09-01T03:43:21.871Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/33585425201">
+        <time id="build-timestamp" datetime="2026-09-02T03:01:58.531Z">2026-09-02T03:01:58.531Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
