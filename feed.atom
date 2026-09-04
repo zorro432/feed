@@ -1,26 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-09-03T03:03:36.547Z</id>
+    <id>urn:2026-09-04T03:08:48.721Z</id>
     <title>osmos::feed</title>
-    <updated>2026-09-03T03:03:36.547Z</updated>
+    <updated>2026-09-04T03:08:48.721Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
     <entry>
-        <title type="html"><![CDATA[The Most Overhyped and Underhyped New AI Models]]></title>
-        <id>https://www.youtube.com/watch?v=Po_Dh7WLgmM</id>
-        <link href="https://www.youtube.com/watch?v=Po_Dh7WLgmM"/>
-        <updated>2026-09-03T02:14:55.000Z</updated>
+        <title type="html"><![CDATA[GPT‑6 Astra]]></title>
+        <id>https://simonwillison.net/2026/Sep/3/gpt6-astra/</id>
+        <link href="https://simonwillison.net/2026/Sep/3/gpt6-astra/"/>
+        <updated>2026-09-03T20:18:41.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://openai.com/index/gpt-6-astra/">GPT‑6 Astra</a></strong></p>
+GPT-6 Astra is "rolling out today to a limited set of organizations and over the coming days will become available to all ChatGPT Plus, Pro, Business, and Enterprise users, as well as through the OpenAI API and AWS" - I've not tried it yet myself, so I don't have a great deal to say about it yet.</p>
+<p>It's going to be API priced at the same rate as Claude Fable 5 and 5.1: $10/million input and $50/million output. This is clearly OpenAI's Fable competitor, and appears to score higher than Fable on most of OpenAI's self-reported benchmarks.</p>
+<p>Most impressively, Astra scores 99.9% on the recent (released in March) <a href="https://arcprize.org/arc-agi/3">ARC-AGI 3 benchmark</a> - though notably Fable 5 does not yet have a published result, and the <a href="https://arcprize.org/blog/astra">ARC-AGI blog notes</a> that the 99.9% score was achieved for $19K using OpenAI's custom "Provider Adapter harness", while the default ARC-AGI harness scored 62.7% for $26K.</p>
+<blockquote>
+<p>The Provider Adapter harness preserves opaque reasoning state between requests and uses compaction for longer conversations, allowing the model to reuse prior work.</p>
+</blockquote>
+<p>Unsurprisingly, given <a href="https://simonwillison.net/tags/openai-hugging-face-incident/">the recent Hugging Face incident</a>, Astra is a beast at security tasks. It scores 100% on ExploitBench (GPT-5.6 Sol got 78.5%), 42.4% on ExploitGym (Sol got 30.3%), and 99.2% within four attempts on SRE-Bench binary reverse engineering compared to Sol's 68.7%.</p>
+<p>It's also better at long context: on OpenAI's eight-needle benchmark it got 100% at 256K–512K tokens and 96.3% at 512K–1M tokens. OpenAI may have vanquished one of the ongoing challenges with long context processing.</p>
+<p>It doesn't win at everything though. <a href="https://twitter.com/ArtificialAnlys/status/2095595489031000350">Artificial Analysis</a> note that Astra is still beaten by Fable on their Intelligence Index:</p>
+<blockquote>
+<p><strong>Sits beside GPT-5.6 Sol in Intelligence</strong>: GPT-6 Astra scores equal to GPT-5.6 Sol in the Index at 61. This is 5 points lower than Claude Fable 5.1 (max with fallback). The model also trails Meta’s newly released Muse Spark 1.3 (max).</p>
+</blockquote>
+<p>It did better on their Coding Agent Index:</p>
+<blockquote>
+<p><strong>Leads Coding Agent Index cost efficiency frontier</strong>: At max effort, GPT-6 Astra costs about the same as GPT-5.6 Sol (max) while scoring 2 points higher on the Index. Per task, the model is less than half the cost of Claude Fable 5, for the same score.</p>
+</blockquote>
+<p>I'll write more about Astra once I get access to it. The API model label once it rolls out will be <code>gpt-6-astra</code>.</p>
+<!-- <small>OpenAI's blog keeps throwing 500 errors, but [here's a mirror](https://astratest.codergautam.workers.dev/GPT-6%20Astra_%20A%20new%20generation%20of%20intelligence%20_%20OpenAI) of the post I found [via Hacker News](https://news.ycombinator.com/item?id=49554273#49555070).</small> -->
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49554643">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a></p>]]></summary>
         <author>
-            <name>Matt Wolfe</name>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The most interesting hack in history just got weirder...]]></title>
-        <id>https://www.youtube.com/watch?v=0Rp9KJCEIvg</id>
-        <link href="https://www.youtube.com/watch?v=0Rp9KJCEIvg"/>
-        <updated>2026-09-02T19:01:28.000Z</updated>
+        <title type="html"><![CDATA[Introducing WeatherNext 3, our most advanced and accurate global weather AI model]]></title>
+        <id>https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/</id>
+        <link href="https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/"/>
+        <updated>2026-09-03T15:02:08.000Z</updated>
+        <summary type="html"><![CDATA[WeatherNext 3, our most advanced global weather AI model, is now in Search, Gemini, Maps, Google Maps Platform, and Cloud.]]></summary>
         <author>
-            <name>Fireship</name>
+            <name>Google DeepMind News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Daybreak for Frontline Defenders: $1B to protect essential services]]></title>
+        <id>https://openai.com/index/daybreak-for-frontline-defenders</id>
+        <link href="https://openai.com/index/daybreak-for-frontline-defenders"/>
+        <updated>2026-09-03T13:15:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI introduces Daybreak for Frontline Defenders. A $1 billion commitment expands access to frontier cyber AI, training, and support for essential services.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Legora reviewed 41 documents in minutes with GPT-6 Astra]]></title>
+        <id>https://openai.com/index/legora-financial-statement-review-with-astra</id>
+        <link href="https://openai.com/index/legora-financial-statement-review-with-astra"/>
+        <updated>2026-09-03T12:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Legora used GPT-6 Astra to review 41 documents in minutes, find all four planted errors, and improve performance by nearly 40% in this financial-review workflow.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Playco cut manual fixes 50% prototyping games with GPT-6 Astra]]></title>
+        <id>https://openai.com/index/playco-game-prototyping-with-astra</id>
+        <link href="https://openai.com/index/playco-game-prototyping-with-astra"/>
+        <updated>2026-09-03T12:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Using GPT-6 Astra, Playco built three themed game prototypes from one grey box foundation and reported 50% fewer manual fixes than with the previous model.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Safety overview: GPT-6 Astra]]></title>
+        <id>https://openai.com/index/safety-overview-gpt-6-astra</id>
+        <link href="https://openai.com/index/safety-overview-gpt-6-astra"/>
+        <updated>2026-09-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[GPT-6 Astra is our most capable broadly deployed model and our first to reach the Critical level of cybersecurity capability under our Preparedness Framework.]]></summary>
+        <author>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -372,15 +437,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The mystery is solved... and the answer is 40x cheaper than Claude]]></title>
-        <id>https://www.youtube.com/watch?v=r-tzcMlQISk</id>
-        <link href="https://www.youtube.com/watch?v=r-tzcMlQISk"/>
-        <updated>2026-09-01T17:31:27.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing agentic video understanding with Gemini]]></title>
         <id>https://deepmind.google/blog/introducing-agentic-video-in-gemini/</id>
         <link href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/"/>
@@ -476,16 +532,6 @@ Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final
     <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The One-Prompt Dashboard Trick]]></title>
-        <id>https://www.youtube.com/shorts/-goIBDS9UNU</id>
-        <link href="https://www.youtube.com/shorts/-goIBDS9UNU"/>
-        <updated>2026-09-01T14:27:45.000Z</updated>
-        <summary type="html"><![CDATA[I turned a boring spreadsheet into the ultimate content creator dashboard.It tracks my audience and growth across YouTube, Instagram, TikTok, LinkedIn, X, Th...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -837,15 +883,6 @@ Anil Madhavapeddy is a professor of computer science at Cambridge and a core mai
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Made a Massive Move Against NVIDIA]]></title>
-        <id>https://www.youtube.com/watch?v=TInwQglNkzo</id>
-        <link href="https://www.youtube.com/watch?v=TInwQglNkzo"/>
-        <updated>2026-08-28T15:00:09.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our decision on Cursor following its acquisition by SpaceX]]></title>
         <id>https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex</id>
         <link href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex"/>
@@ -917,24 +954,6 @@ Anthropic are putting a great deal of faith in Claude Code's auto mode for prote
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves]]></title>
-        <id>https://www.youtube.com/watch?v=KL9_1GbmCic</id>
-        <link href="https://www.youtube.com/watch?v=KL9_1GbmCic"/>
-        <updated>2026-08-27T19:16:24.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The most expensive software bug in history...]]></title>
-        <id>https://www.youtube.com/watch?v=UuqSy1jPSUw</id>
-        <link href="https://www.youtube.com/watch?v=UuqSy1jPSUw"/>
-        <updated>2026-08-27T17:48:13.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Gemini Omni 1.1 Flash lets you build with more control]]></title>
         <id>https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/</id>
         <link href="https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/"/>
@@ -952,16 +971,6 @@ Anthropic are putting a great deal of faith in Claude Code's auto mode for prote
         <summary type="html"><![CDATA[Book hotels and track airfares, plus view miles and rewards with AI Mode in Google Search.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Company Will Buy Your AI Training Data]]></title>
-        <id>https://www.youtube.com/shorts/Z93MPi8ZO3A</id>
-        <link href="https://www.youtube.com/shorts/Z93MPi8ZO3A"/>
-        <updated>2026-08-27T13:06:18.000Z</updated>
-        <summary type="html"><![CDATA[AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1025,15 +1034,6 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I Built a FREE App That Runs Your Entire Business]]></title>
-        <id>https://www.youtube.com/watch?v=rKo9iLGjUbs</id>
-        <link href="https://www.youtube.com/watch?v=rKo9iLGjUbs"/>
-        <updated>2026-08-26T22:36:30.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Intelligent transcription with Gemini 3.5 Transcribe]]></title>
         <id>https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/</id>
         <link href="https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/"/>
@@ -1041,16 +1041,6 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         <summary type="html"><![CDATA[Now you can get more intelligent speech-to-text transcription with Gemini 3.5 Transcribe.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To EASILY Run Local AI Models]]></title>
-        <id>https://www.youtube.com/shorts/uS2gi-D8C0k</id>
-        <link href="https://www.youtube.com/shorts/uS2gi-D8C0k"/>
-        <updated>2026-08-26T13:22:25.000Z</updated>
-        <summary type="html"><![CDATA[You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1166,16 +1156,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This AI Found Money I Was Wasting]]></title>
-        <id>https://www.youtube.com/shorts/f74JmwXm-sQ</id>
-        <link href="https://www.youtube.com/shorts/f74JmwXm-sQ"/>
-        <updated>2026-08-25T14:08:30.000Z</updated>
-        <summary type="html"><![CDATA[I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[The full stack behind abundant intelligence]]></title>
         <id>https://openai.com/index/the-full-stack-behind-abundant-intelligence</id>
         <link href="https://openai.com/index/the-full-stack-behind-abundant-intelligence"/>
@@ -1242,16 +1222,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         <p>Tags: <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/httpx">httpx</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Creates Insane 3D Worlds]]></title>
-        <id>https://www.youtube.com/shorts/ZY628bslSYY</id>
-        <link href="https://www.youtube.com/shorts/ZY628bslSYY"/>
-        <updated>2026-08-24T12:18:26.000Z</updated>
-        <summary type="html"><![CDATA[This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1419,26 +1389,6 @@ llm -t lhigh -t pelican
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The Wildest Smartphone I’ve Ever Seen 🤯]]></title>
-        <id>https://www.youtube.com/shorts/aOzaO5AAGjk</id>
-        <link href="https://www.youtube.com/shorts/aOzaO5AAGjk"/>
-        <updated>2026-08-22T13:05:27.000Z</updated>
-        <summary type="html"><![CDATA[This is the wildest smartphone camera I’ve seen yet. 🤯HONOR's new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Pyramid Could Be Your Next Intern]]></title>
-        <id>https://www.youtube.com/shorts/1m5Ee9QbLF0</id>
-        <link href="https://www.youtube.com/shorts/1m5Ee9QbLF0"/>
-        <updated>2026-08-21T22:09:39.000Z</updated>
-        <summary type="html"><![CDATA[Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[llm 0.32.1]]></title>
         <id>https://simonwillison.net/2026/Aug/21/llm/</id>
         <link href="https://simonwillison.net/2026/Aug/21/llm/"/>
@@ -1509,15 +1459,6 @@ Thomas Ptacek advocates for building real native user interfaces for even the sm
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Just Put the Brakes on AI]]></title>
-        <id>https://www.youtube.com/watch?v=EfGF7QbJItA</id>
-        <link href="https://www.youtube.com/watch?v=EfGF7QbJItA"/>
-        <updated>2026-08-21T15:00:23.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[From Atari to EVE Online: Building on 15 Years of AI Research in Games]]></title>
         <id>https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/</id>
         <link href="https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/"/>
@@ -1525,51 +1466,6 @@ Thomas Ptacek advocates for building real native user interfaces for even the sm
         <summary type="html"><![CDATA[Google DeepMind partners with game studios to prototype breakthrough AI gameplay.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ChatGPT search now uses the site:operator at scale]]></title>
-        <id>https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/</id>
-        <link href="https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/"/>
-        <updated>2026-08-20T23:57:32.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://promptwatch.com/data/chatgpt-site-operator-fanouts">ChatGPT search now uses the site:operator at scale</a></strong></p>
-Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT.</p>
-<p>The Promptwatch product uses automation to track responses to prompts across end-user chat products like ChatGPT, Claude, and Gemini. They publish aggregate reports on this as part of their own content marketing strategy, which do seem to provide credible hints as to otherwise invisible design changes to those products.</p>
-<p>Their own tracking shows a notable change aligned with the GPT-5.6 rollout earlier this month:</p>
-<blockquote>
-<p>The percentage of all ChatGPT Search fanout queries that contain the site:operator, per day. The share hovered between 0.3% and 0.5% for weeks, dipped briefly to 0.15% on August 3 to 5 (consistent with a staged rollout or pre-launch experiment), then jumped to 16-17% on August 8.</p>
-</blockquote>
-<p>It's important to note that these figures only reflect the prompts for which they have automated tracking enabled.</p>
-<p>This corresponds to OpenAI's somewhat vague <a href="https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/">August 6th announcement</a>:</p>
-<blockquote>
-<p>For Plus and Pro users, we’re updating GPT‑5.6 Sol in Chat to be more reliable with facts and provide more focused answers.</p>
-</blockquote>
-<p>Once again I am hampered by OpenAI's decision to actively obscure their system prompts, but from poking at ChatGPT I believe their latest search tool has a shape like <code>search(query, recency, domains)</code> rather than encouraging a <code>site:</code> operator directly.</p>
-<p>In <a href="https://promptwatch.com/data/reddit-citations-are-dropping-in-chatgpt">a follow-up</a> on August 18th Promptwatch reported that ChatGPT appeared to have greatly reduced the likelihood of Reddit being used in those searches. My own attempts to ascertain if the system prompt has been updated to discourage Reddit sourcing have been unsuccessful - the <a href="https://github.com/asgeirtj/system_prompts_leaks/commits/main/OpenAI">most thorough leaked system prompt</a> collection I know of doesn't yet show any relevant changes.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/reddit">reddit</a>, <a href="https://simonwillison.net/tags/seo">seo</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/ai-assisted-search">ai-assisted-search</a>, <a href="https://simonwillison.net/tags/system-prompts">system-prompts</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[DeepSeek is back... and Silicon Valley is terrified]]></title>
-        <id>https://www.youtube.com/watch?v=xBByvFrqmWU</id>
-        <link href="https://www.youtube.com/watch?v=xBByvFrqmWU"/>
-        <updated>2026-08-20T17:53:37.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude’s Text Watermark Could Follow It Everywhere]]></title>
-        <id>https://www.youtube.com/shorts/O-8TbMFOAfg</id>
-        <link href="https://www.youtube.com/shorts/O-8TbMFOAfg"/>
-        <updated>2026-08-20T12:41:43.000Z</updated>
-        <summary type="html"><![CDATA[Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven't revealed exact...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1623,25 +1519,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The summer Math fell to the machines...]]></title>
-        <id>https://www.youtube.com/watch?v=iuZPTE5qsJY</id>
-        <link href="https://www.youtube.com/watch?v=iuZPTE5qsJY"/>
-        <updated>2026-08-19T18:45:57.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Your New Backup Brain Is Here]]></title>
-        <id>https://www.youtube.com/shorts/r-ORCmsRHOE</id>
-        <link href="https://www.youtube.com/shorts/r-ORCmsRHOE"/>
-        <updated>2026-08-19T13:37:12.000Z</updated>
-        <summary type="html"><![CDATA[The amount of times I’ve said “I’ll remember that later” and absolutely did not… 😅@MemoketAI Gem is basically designed to catch all those little follow-ups,...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Replit expands access to software creation with GPT-5.6 Luna]]></title>
         <id>https://openai.com/index/replit</id>
         <link href="https://openai.com/index/replit"/>
@@ -1659,15 +1536,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         <summary type="html"><![CDATA[ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Exclusive BTS of my Automated AI System (LIVE)]]></title>
-        <id>https://www.youtube.com/watch?v=IeT5Jn7d1aM</id>
-        <link href="https://www.youtube.com/watch?v=IeT5Jn7d1aM"/>
-        <updated>2026-08-18T21:11:16.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1741,16 +1609,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Are AI Models Escaping On Purpose?]]></title>
-        <id>https://www.youtube.com/shorts/9ZKeu_7k9ik</id>
-        <link href="https://www.youtube.com/shorts/9ZKeu_7k9ik"/>
-        <updated>2026-08-17T13:18:26.000Z</updated>
-        <summary type="html"><![CDATA[Apparently the newest benchmark for AI models is… can it commit cyber crimes? 😭First OpenAI’s model broke out during testing and hacked Hugging Face.Then An...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Get closer to the game with Gemini and Pixel]]></title>
         <id>https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/</id>
         <link href="https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/"/>
@@ -1798,15 +1656,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         <summary type="html"><![CDATA[Aug 17, 2026 · Changelog]]></summary>
         <author>
             <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This new startup can query anywhere you've been...]]></title>
-        <id>https://www.youtube.com/watch?v=E7la7-dtfVM</id>
-        <link href="https://www.youtube.com/watch?v=E7la7-dtfVM"/>
-        <updated>2026-08-14T17:44:59.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1910,15 +1759,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Meta's new model wants "deep access" to your personal life...]]></title>
-        <id>https://www.youtube.com/watch?v=G55HSGpuh1M</id>
-        <link href="https://www.youtube.com/watch?v=G55HSGpuh1M"/>
-        <updated>2026-08-12T18:29:41.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Putting sign language AI into users’ hands]]></title>
         <id>https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/</id>
         <link href="https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/"/>
@@ -1969,12 +1809,13 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I spent 3 days at MIT... the robot hype is worse than you think]]></title>
-        <id>https://www.youtube.com/watch?v=aB5LGrHISqY</id>
-        <link href="https://www.youtube.com/watch?v=aB5LGrHISqY"/>
-        <updated>2026-08-11T16:10:08.000Z</updated>
+        <title type="html"><![CDATA[Testing ads in ChatGPT]]></title>
+        <id>https://openai.com/index/testing-ads-in-chatgpt</id>
+        <link href="https://openai.com/index/testing-ads-in-chatgpt"/>
+        <updated>2026-08-11T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.]]></summary>
         <author>
-            <name>Fireship</name>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1983,16 +1824,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         <link href="https://openai.com/index/daybreak-models-are-now-available-on-aws"/>
         <updated>2026-08-11T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Testing ads in ChatGPT]]></title>
-        <id>https://openai.com/index/testing-ads-in-chatgpt</id>
-        <link href="https://openai.com/index/testing-ads-in-chatgpt"/>
-        <updated>2026-08-11T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -2038,21 +1869,21 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Expanding Daybreak as the Cyber Defense Window Narrows]]></title>
-        <id>https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows</id>
-        <link href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows"/>
-        <updated>2026-08-10T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Putting frontier cyber models in more trusted hands]]></title>
         <id>https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands</id>
         <link href="https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands"/>
         <updated>2026-08-10T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[Approved Daybreak partners can use OpenAI’s frontier cyber models to deliver authorized, governed cybersecurity services to customers.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Expanding Daybreak as the Cyber Defense Window Narrows]]></title>
+        <id>https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows</id>
+        <link href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows"/>
+        <updated>2026-08-10T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -2068,21 +1899,21 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Premium seats are coming to ChatGPT Business]]></title>
-        <id>https://openai.com/index/premium-seats-chatgpt-business</id>
-        <link href="https://openai.com/index/premium-seats-chatgpt-business"/>
-        <updated>2026-08-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Premium seats are now available on ChatGPT Business, with 5x more usage, no five-hour usage limit, and flexible seat options for every teammate.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How Zapier transformed core marketing processes with ChatGPT Work]]></title>
         <id>https://openai.com/index/zapier</id>
         <link href="https://openai.com/index/zapier"/>
         <updated>2026-08-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Premium seats are coming to ChatGPT Business]]></title>
+        <id>https://openai.com/index/premium-seats-chatgpt-business</id>
+        <link href="https://openai.com/index/premium-seats-chatgpt-business"/>
+        <updated>2026-08-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Premium seats are now available on ChatGPT Business, with 5x more usage, no five-hour usage limit, and flexible seat options for every teammate.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -2115,15 +1946,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         <summary type="html"><![CDATA[WeatherNext enables accurate cyclone forecasts that can give an extra day of warning. Now we are open sourcing the model.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI is getting a little out of control]]></title>
-        <id>https://www.youtube.com/watch?v=xGzseSSStnw</id>
-        <link href="https://www.youtube.com/watch?v=xGzseSSStnw"/>
-        <updated>2026-08-06T15:02:06.000Z</updated>
-        <author>
-            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -2164,25 +1986,6 @@ Promptwatch is part of the emerging "GEO" space, for Generative Engine Optimizat
         <summary type="html"><![CDATA[Auto Intelligence now delivers above Fable-level satisfaction at 68% lower cost. Here's how Compass and the task router choose models from real developer traffic.]]></summary>
         <author>
             <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The safest way to store Bitcoin was just hacked...]]></title>
-        <id>https://www.youtube.com/watch?v=2X2V3xv_jik</id>
-        <link href="https://www.youtube.com/watch?v=2X2V3xv_jik"/>
-        <updated>2026-08-05T18:08:46.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Third-party cyber evaluations involving OpenAI models]]></title>
-        <id>https://openai.com/index/third-party-cyber-evaluations-involving-openai-models</id>
-        <link href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models"/>
-        <updated>2026-08-04T19:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI explains recent third-party cybersecurity evaluation incidents and outlines new safeguards to strengthen AI model testing and evaluation.]]></summary>
-        <author>
-            <name>OpenAI News</name>
         </author>
     </entry>
 </feed>
