@@ -22,6 +22,188 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-06 datetime="2026-09-06T23:57:40.000Z">2026-09-06</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-06 datetime="2026-09-06T23:57:40.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/"
+                        open
+                      >
+                        <summary class="article-expander__title">Research acceleration: The view inside OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison.net/static/2026/openai-agent-usage.webp" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Research acceleration: The view inside OpenAI
+An Alien Mind (by Chief Scientist Jakub Pachocki) talk about it, and this one doesn&#x27;t even bother to expand the acronym.
+Included are details on how OpenAI&#x27;s own research team are using coding agents. Like pretty much everyone else 2026 has been the year that agentic engineering really took off at OpenAI, best illustrated by this chart:
+
+I&#x27;m intrigued at what caused that significant acceleration in AI spend per researcher in late July - my best guess is that&#x27;s when internal employees gained access to the model later released as GPT-6 Astra.
+
+
+    
+Tags: ai, openai, generative-ai, chatgpt, llms, coding-agents, november-2025-inflection, recursive-self-improvement</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/"
+                        open
+                      >
+                        <summary class="article-expander__title">The purpose of DNS is to spread scams</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>The purpose of DNS is to spread scams
+On this Interisle report (via Andrew Campling), Terence says:
+It says 85 million new registrations of gTLDs were made in 2025. Of those 8.5 million were added to blocklists by May 2025. It reckons that a 10% abuse rate is the likely floor for these numbers and it&#x27;s probably closer to 20%. One in five newly registered domains with a gTLD are scams. That&#x27;s a bloody crisis.
+I had no idea. Apparently ICANN have been discussing this problem for years.
+
+
+    
+Tags: dns, scams, terence-eden</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/"
+                        open
+                      >
+                        <summary class="article-expander__title">There&#x27;s No Limit to How Bad Code Can Get</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>My comment on There&#x27;s No Limit to How Bad Code Can Get — Lobste.rs.
+[In reply to a comment about burning it down to start from scratch when technical debt becomes overwhelming]
+In my experience it&#x27;s so rare for that to work.
+You announce the old thing is irrecoverably drowning in tech debt. You spin up a team to rewrite it from scratch. Work begins.
+Meanwhile the old thing remains a moving target: it&#x27;s running the core business, so changes are still necessary. The developers working on it know that it&#x27;s going to be made obsolete by the new thing soon, so they don&#x27;t have any incentive to go beyond the smallest effort possible to add the new features. Technical debt continues to mount.
+Meanwhile, the team working on the new thing are ambitious and probably a little naive. They start out at a great pace - it&#x27;s greenfield after all - but as time progresses it becomes apparent that nobody fully understands the behavior and scope of the thing they are replacing. If it was well documented and tested it wouldn&#x27;t need to be replaced, after all...
+After months (or even years) without delivering value, the pressure is on to &quot;ship it&quot;, so the new system is launched to handle a subset of what the old system handled - or often for some new feature that was too hard to build with the now mostly unmaintained old system.
+... so now you have TWO systems in production - the janky old system that nobody wants to touch, and a new system which handles just a few production features and is 80% inactive code that is meant to replace the old system, eventually.
+If you&#x27;re really lucky the company won&#x27;t have lost patience with the new system and will allow that work to continue. The longer this all takes, and the longer the old system stays in production and stubbornly continues to work, the higher the risk that &quot;priorities have changed&quot; and the new system total replacement work is abandoned, leaving you with two systems where you used to have one.
+The best article I&#x27;ve read about completing this process responsibly is Migrations: the sole scalable fix to tech debt by Will Larson.
+If I run into a situation like this in the future, my strong recommendation will be to shore up the old system with as much automated testing as possible and then seeing if targeted refactors can get it to the desired shape. My hunch is that in many cases that will have a much higher chance of success than the siren call of a greenfield replacement.
+Tags: migrations, technical-debt</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;4
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/6/zach-kehs/"
+                        open
+                      >
+                        <summary class="article-expander__title">Quoting Zach Kehs</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/6/zach-kehs/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>If you continue to add floors and rooms to a building forever, it will collapse. Software faces no such constraint. The code can always get worse. There can always be a new layer of indirection or a reduction in performance.
+
+— Zach Kehs, There&#x27;s No Limit to How Bad Code Can Get
+Tags: technical-debt</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/an-alien-mind"
+                        open
+                      >
+                        <summary class="article-expander__title">An Alien Mind</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/an-alien-mind">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Jakub Pachocki reflects on increasingly capable AI and the challenge of keeping it aligned. He calls for stronger safeguards and international coordination.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/research-acceleration-view-inside-openai"
+                        open
+                      >
+                        <summary class="article-expander__title">Research acceleration: The view inside OpenAI</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/research-acceleration-view-inside-openai">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Inside OpenAI, coding agents are reshaping AI research. Explore early data on agent usage, experiment velocity, task complexity, and research acceleration.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-05 datetime="2026-09-05T23:27:48.000Z">2026-09-05</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-05 datetime="2026-09-05T23:27:48.000Z"></time>
           </button>
@@ -86,6 +268,7 @@ Then:
 OK make it a whole lot better
 And got this image, generated using Blender&#x27;s Python API:
 
+This was covered by my existing Codex subscription, but according to AgentsView it would have cost $4.24 at API prices for gpt-6-astra.
 Tags: ai, generative-ai, llms, blender, pelican-riding-a-bicycle, coding-agents, gpt-6-astra</span>
                                 &ensp;<span class="article-reading-time">(&hairsp;3
                                   min&hairsp;)</span>
@@ -617,14 +800,14 @@ Tags: ai, openai, generative-ai, llms, llm-release, gpt-6-astra</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/playco-game-prototyping-with-astra"
+                        data-accordion-key="https://openai.com/index/legora-financial-statement-review-with-astra"
                         open
                       >
-                        <summary class="article-expander__title">Playco cut manual fixes 50% prototyping games with GPT-6 Astra</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/playco-game-prototyping-with-astra">
+                        <summary class="article-expander__title">Legora reviewed 41 documents in minutes with GPT-6 Astra</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/legora-financial-statement-review-with-astra">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Using GPT-6 Astra, Playco built three themed game prototypes from one grey box foundation and reported 50% fewer manual fixes than with the previous model.</span>
+                              <span>Legora used GPT-6 Astra to review 41 documents in minutes, find all four planted errors, and improve performance by nearly 40% in this financial-review workflow.</span>
                             </span>
                           </div>
                         </a>
@@ -634,14 +817,14 @@ Tags: ai, openai, generative-ai, llms, llm-release, gpt-6-astra</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/legora-financial-statement-review-with-astra"
+                        data-accordion-key="https://openai.com/index/playco-game-prototyping-with-astra"
                         open
                       >
-                        <summary class="article-expander__title">Legora reviewed 41 documents in minutes with GPT-6 Astra</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/legora-financial-statement-review-with-astra">
+                        <summary class="article-expander__title">Playco cut manual fixes 50% prototyping games with GPT-6 Astra</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/playco-game-prototyping-with-astra">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>Legora used GPT-6 Astra to review 41 documents in minutes, find all four planted errors, and improve performance by nearly 40% in this financial-review workflow.</span>
+                              <span>Using GPT-6 Astra, Playco built three themed game prototypes from one grey box foundation and reported 50% fewer manual fixes than with the previous model.</span>
                             </span>
                           </div>
                         </a>
@@ -2879,10 +3062,10 @@ Tags: coding-agents, ai-assisted-programming, generative-ai, bun, ai, llms</span
                         <summary class="article-expander__title">How To EASILY Run Local AI Models</summary>
                         <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/shorts/uS2gi-D8C0k">
                           <div class="article-summary-box-inner media-object">
-                              <img src="https://i.ytimg.com/vi/uS2gi-D8C0k/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLA2Qtjozc9DeKsGnr9lS4O3E24UEg" loading="lazy" class="media-object__media article-image" />
+                              <img src="https://i.ytimg.com/vi/uS2gi-D8C0k/hq720.jpg?sqp&#x3D;-oaymwEoCJUDENAFSFryq4qpAxoIARUAAAAAJQAAyEI9AICiQ3gB0AEBuALzGA&#x3D;&#x3D;&amp;rs&#x3D;AOn4CLC1331kfiLwjUMuO3NDsbOPRLITFQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -2941,14 +3124,14 @@ Tags: coding-agents, ai-assisted-programming, generative-ai, bun, ai, llms</span
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/learning-never-stops"
+                        data-accordion-key="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts"
                         open
                       >
-                        <summary class="article-expander__title">Learning never stops: How AI makes learning continuous</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/learning-never-stops">
+                        <summary class="article-expander__title">Bringing ChatGPT for Teachers to more U.S. school districts</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI’s new report explores how students and educators use ChatGPT to make learning more continuous, with support that extends beyond the classroom.</span>
+                              <span>ChatGPT for Teachers is expanding to 55 U.S. school systems, bringing secure AI tools, training, and support to over 100,000 more educators and staff.</span>
                             </span>
                           </div>
                         </a>
@@ -2958,14 +3141,14 @@ Tags: coding-agents, ai-assisted-programming, generative-ai, bun, ai, llms</span
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts"
+                        data-accordion-key="https://openai.com/index/learning-never-stops"
                         open
                       >
-                        <summary class="article-expander__title">Bringing ChatGPT for Teachers to more U.S. school districts</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts">
+                        <summary class="article-expander__title">Learning never stops: How AI makes learning continuous</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/learning-never-stops">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>ChatGPT for Teachers is expanding to 55 U.S. school systems, bringing secure AI tools, training, and support to over 100,000 more educators and staff.</span>
+                              <span>OpenAI’s new report explores how students and educators use ChatGPT to make learning more continuous, with support that extends beyond the classroom.</span>
                             </span>
                           </div>
                         </a>
@@ -3194,7 +3377,7 @@ Tags: eve-online, migrations, python, python3, stackless</span>
                               <img src="https://i.ytimg.com/vi/f74JmwXm-sQ/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLClXnsDLHQ3T1orI8qucHhLem17dQ" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;15
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3507,172 +3690,11 @@ Tags: c, linux, sqlite</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-23 datetime="2026-08-23T20:24:52.000Z">2026-08-23</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-23 datetime="2026-08-23T20:24:52.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-22 datetime="2026-08-22T13:05:27.000Z">2026-08-22</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-22 datetime="2026-08-22T13:05:27.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/"
-                        open
-                      >
-                        <summary class="article-expander__title">Anthropic’s best AI model struggles to attract users as cheaper tools thrive</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Anthropic’s best AI model struggles to attract users as cheaper tools thrive
-Anthropic&#x27;s &quot;annualized revenue&quot; for July is up to $65bn - it was $47bn in May, and I collected more historic numbers here.
-Anthropic expect Q3 to be profitable according to the same model they used to declare Q2 profitable. &quot;It also told investors that it had 6,000 customers that spend $100,000 annually or more.&quot;
-As for OpenAI, &quot;annualised revenue has jumped 35 per cent in the quarter to date and is now over $40bn, with the launch of GPT 5.6 in July jolting the company’s performance after a sluggish start to the year&quot;.
-This article also introduced me to the Ramp AI index, which uses billing data from 70,000 Ramp credit card using companies to estimate model adoption.
-Here&#x27;s Ramp&#x27;s breakdown of Anthropic model spend for July 2026, which looks reasonable given that Opus 5 was only released on July 24th, and supports the idea that Fable&#x27;s cost has made it a less popular model:
-Opus 4.8: 28.0%
-Sonnet 4.6: 8.3%
-Fable 5: 8.0%
-Opus 4.6: 6.9%
-Sonnet 5: 3.6%
-Opus 5: 3.5%
-Opus 4.7: 1.7%
-Sonnet 4.5: 1.3%
-Haiku 4.5: 1.0%
-Opus 4.5: 0.7%
-Via Hacker News
-Tags: ai, openai, generative-ai, llms, anthropic, claude, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/23/drew-breunig/"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Drew Breunig</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/23/drew-breunig/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Prior to Fable, it felt silly to waste too much time improving your coding harness or context strategies. A new model would arrive at the same price (or cheaper!) and paper over most of your problems.
-But then Fable landed. It was (and still is!) incredible. But the cost was so high and Opus was good enough (as was 5.6, K3, and even GLM) for most of the code we needed.
-So we started to think about what work went where.
-
-— Drew Breunig, Fable &amp; The End of the Free Lunch
-Tags: drew-breunig, anthropic, claude, llm-pricing, ai, llms, generative-ai, claude-mythos-fable</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-22 datetime="2026-08-22T21:04:26.000Z">2026-08-22</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-22 datetime="2026-08-22T21:04:26.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >Simon Willison&#x27;s Weblog</button>
-                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/22/linus-torvalds/"
-                        open
-                      >
-                        <summary class="article-expander__title">Quoting Linus Torvalds</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/22/linus-torvalds/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work.
-I&#x27;d like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it.
-I suspect those things have been trained by people who may not be quite as stubborn as I am.
-But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above.
-
-— Linus Torvalds, drm/xe: Don&#x27;t hand out the flat CCS storage as usable VRAM
-Tags: linus-torvalds, linux, generative-ai, ai-assisted-programming, ai, llms</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Aug/22/llm/"
-                        open
-                      >
-                        <summary class="article-expander__title">llm 0.33</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Aug/22/llm/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>Release: llm 0.33
-My highlights from this release:
-Upgraded to the OpenAI Python library 3.x and switched the HTTP client dependency from httpx to httpx2. #1608, #1631
-I shipped a quick 0.32.1 fix for this yesterday, but this is the more comprehensive fix.
-llm embed and llm embed-multi now accept --key. The Python EmbeddingModel.embed(), EmbeddingModel.embed_multi(), Collection.embed() and Collection.embed_multi() methods accept key&#x3D; too, passing the resolved per-call key to embedding plugins without changing shared model state. Existing plugins that read self.key continue to work through a compatibility fallback. Thanks, ChrisJr404. #757, #1620
-The embedding models now use the same pattern for keys that regular LLM models do.
-llm prompt -t/--template can now be repeated to combine templates in order. This allows model configuration and options from one template to be used with a prompt from another.
-This unlocks a neat pattern where you can create templates that package a model with a set of default options:
-llm -m gpt-5.6-luna -o reasoning_effort high --save lhigh
-llm &quot;Generate an SVG of a pelican riding a bicycle&quot; --save pelican
-# Combine and run the templates
-llm -t lhigh -t pelican
-
-Reasoning-capable Responses API models now support a reasoning_summary option with auto, concise, and detailed values. This can be used with llm openai endpoint --responses. #1600
-This is particularly useful for exercising different models that provide their own imitation of the OpenAI Responses API.
-Tags: annotated-release-notes, llm</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3697,7 +3719,7 @@ Tags: annotated-release-notes, llm</span>
                               <img src="https://i.ytimg.com/vi/aOzaO5AAGjk/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLAhHWwHqQZUo2sZ2miYGX12NXMb4w" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>This is the wildest smartphone camera I’ve seen yet. 🤯HONOR&#x27;s new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;14
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3745,7 +3767,7 @@ Tags: annotated-release-notes, llm</span>
                               <img src="https://i.ytimg.com/vi/1m5Ee9QbLF0/oar2.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs&#x3D;AOn4CLAEEojLE1PzlnbSa1MxmSp7B6Ngjg&amp;usqp&#x3D;CCk" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;16
+                                &ensp;<span class="article-reading-time">(&hairsp;15
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -3875,7 +3897,7 @@ Tags: annotated-release-notes, llm</span>
                               <img src="https://i.ytimg.com/vi/O-8TbMFOAfg/hq720.jpg?sqp&#x3D;-oaymwEkCJUDENAFSFryq4qpAxYIARUAAAAAJQAAyEI9AICiQ3gB0AEB&amp;rs&#x3D;AOn4CLD4cD5u1Stblz9utL7NxylFCHCFMA" loading="lazy" class="media-object__media article-image" />
                             <span class="media-object__text">
                               <span>Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven&#x27;t revealed exact...</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;12
+                                &ensp;<span class="article-reading-time">(&hairsp;13
                                   min&hairsp;)</span>
                             </span>
                           </div>
@@ -5011,14 +5033,14 @@ Tags: annotated-release-notes, llm</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/testing-ads-in-chatgpt"
+                        data-accordion-key="https://openai.com/index/daybreak-models-are-now-available-on-aws"
                         open
                       >
-                        <summary class="article-expander__title">Testing ads in ChatGPT</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/testing-ads-in-chatgpt">
+                        <summary class="article-expander__title">Daybreak models are now available on AWS</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-models-are-now-available-on-aws">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
+                              <span>OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.</span>
                             </span>
                           </div>
                         </a>
@@ -5028,14 +5050,14 @@ Tags: annotated-release-notes, llm</span>
                       <details
                         class="article-expander"
                         data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/daybreak-models-are-now-available-on-aws"
+                        data-accordion-key="https://openai.com/index/testing-ads-in-chatgpt"
                         open
                       >
-                        <summary class="article-expander__title">Daybreak models are now available on AWS</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/daybreak-models-are-now-available-on-aws">
+                        <summary class="article-expander__title">Testing ads in ChatGPT</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/testing-ads-in-chatgpt">
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
-                              <span>OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.</span>
+                              <span>OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.</span>
                             </span>
                           </div>
                         </a>
@@ -5244,55 +5266,10 @@ Tags: annotated-release-notes, llm</span>
             </li>
         </ul>
       </section>
-      <section class="daily-content js-toggle-accordions-scope">
-        <h2 class="daily-heading">
-          <button
-            class="daily-heading-toggle"
-            data-action="toggle-accordions"
-            title="Click to toggle the day, Ctrl + click to toggle all."
-          >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-07 datetime="2026-08-07T15:20:00.000Z">2026-08-07</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-07 datetime="2026-08-07T15:20:00.000Z"></time>
-          </button>
-        </h2>
-        <ul class="sources card">
-            <li class="card__section">
-              <section class="js-toggle-accordions-scope">
-                <h3 class="source-heading">
-                  <button
-                    class="source-heading__name"
-                    data-action="toggle-accordions"
-                    title="Click to toggle the source, Ctrl + click to toggle all."
-                  >OpenAI News</button>
-                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
-                </h3>
-                <section class="articles-per-source">
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities"
-                        open
-                      >
-                        <summary class="article-expander__title">Responding to the next frontier of critical cyber capabilities</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>OpenAI is sharing preliminary cybersecurity evaluations for Astra and the steps we’re taking to strengthen safeguards and security controls.</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                </section>
-              </section>
-            </li>
-        </ul>
-      </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/34008079993">
-        <time id="build-timestamp" datetime="2026-09-06T03:05:07.103Z">2026-09-06T03:05:07.103Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/34078269285">
+        <time id="build-timestamp" datetime="2026-09-07T03:02:59.380Z">2026-09-07T03:02:59.380Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
