@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-09-07T03:02:59.400Z</id>
+    <id>urn:2026-09-08T03:12:22.878Z</id>
     <title>osmos::feed</title>
-    <updated>2026-09-07T03:02:59.400Z</updated>
+    <updated>2026-09-08T03:12:22.878Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[llm 0.35]]></title>
+        <id>https://simonwillison.net/2026/Sep/7/llm/</id>
+        <link href="https://simonwillison.net/2026/Sep/7/llm/"/>
+        <updated>2026-09-07T23:54:54.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.35">llm 0.35</a></p>
+        <blockquote>
+<ul>
+<li>New OpenAI model: <code>gpt-6-astra</code> for <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a>.</li>
+</ul>
+</blockquote>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/gpt-6-astra">gpt-6-astra</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Creepy crawlies]]></title>
+        <id>https://simonwillison.net/2026/Sep/7/creepy-crawlies/</id>
+        <link href="https://simonwillison.net/2026/Sep/7/creepy-crawlies/"/>
+        <updated>2026-09-07T23:08:58.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong><a href="https://people.kernel.org/monsieuricon/creepy-crawlies">Creepy crawlies</a></strong></p>
+Konstantin Ryabitsev discusses how bad the "background radiation" of abusive crawlers has become from the perspective of <a href="https://git.kernel.org/">git.kernel.org</a>, the official Git repository for the Linux kernel:</p>
+<blockquote>
+<p>TL;DR: we spend more CPU cycles rendering commits for scrapers than we spend on all other kinds of legitimate access, including git clones. At any one time, across 5 geo-distributed nodes, there are 14 CPU cores doing nothing but rendering git commits as html.</p>
+</blockquote>
+<p>I worry about this a lot from the perspective of Datasette, which serves a huge number of crawlable web pages.
+
+    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49491791">Hacker News</a></small></p>
+
+
+    <p>Tags: <a href="https://simonwillison.net/tags/crawling">crawling</a>, <a href="https://simonwillison.net/tags/git">git</a>, <a href="https://simonwillison.net/tags/linux">linux</a>, <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Jakub Pachocki]]></title>
+        <id>https://simonwillison.net/2026/Sep/7/jakub-pachocki/</id>
+        <link href="https://simonwillison.net/2026/Sep/7/jakub-pachocki/"/>
+        <updated>2026-09-07T22:26:25.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://openai.com/index/an-alien-mind/#scalable-defense"><p>The strongest argument I see for continuing to train much smarter models quickly is the need to build defensive systems against the dangers posed by other AI. [...]</p>
+<p>We will need powerful, aligned AI for defense; to secure infrastructure, to protect against rogue agents in real time, and to invent entirely new protective measures. This will be a primary focus of OpenAI’s deployment efforts.</p>
+<p>At the same time, even with the uncertainty that comes from anticipated broad AI progress and the need to build defensive systems, we must not let that become an excuse for recklessness. The idea of racing forward at all costs seems absurd once one internalizes the seriousness of the stakes.</p></blockquote>
+<p class="cite">&mdash; <a href="https://openai.com/index/an-alien-mind/#scalable-defense">Jakub Pachocki</a>, Chief Scientist at OpenAI</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/ai">ai</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Video compressor]]></title>
+        <id>https://simonwillison.net/2026/Sep/7/video-compressor/</id>
+        <link href="https://simonwillison.net/2026/Sep/7/video-compressor/"/>
+        <updated>2026-09-07T18:29:07.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/video-compressor">Video compressor</a></p>
+        <p>I recorded a short demo video of <a href="https://simonwillison.net/2026/Sep/7/equal-earth/">my Equal Earth</a> animation on my phone and wanted to publish an optimized version of that video (using FFMPEG) on my blog, so I had Claude Fable 5.1 in Claude Code for web <a href="https://claude.ai/code/session_01QHTdJZ4xg6TZfDXCmuvAE9">build me this tool</a> using the WebAssembly build of FFMPEG.</p>
+<p><img alt="Screenshot of a video compression web tool. Under &quot;Versions to generate&quot; is a table of five presets (Largest, Large, Medium, Small, Smallest) with output sizes of 854×370 or 640×276, CRF quality settings from 22 to 28, and audio bitrates from 128 to 64 kbps, plus options for encoder speed, H.264 profile, 30 fps limit, stripping metadata, dropping audio, and encoding only the first 10 seconds. A green &quot;Generate versions&quot; button reads &quot;Done: 5 versions in 11.8s.&quot; Below, &quot;Results, smallest first&quot; shows three video players: Smallest at 145 KB (48% of original), Medium at 241 KB (79%), and Small at 264 KB (87%), each with a Download .mp4 button and a collapsible ffmpeg command." src="https://static.simonwillison.net/static/2026-09-07/video-compressor.webp" /></p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/ffmpeg">ffmpeg</a>, <a href="https://simonwillison.net/tags/video">video</a>, <a href="https://simonwillison.net/tags/webassembly">webassembly</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mercator ↔ Equal Earth]]></title>
+        <id>https://simonwillison.net/2026/Sep/7/equal-earth/</id>
+        <link href="https://simonwillison.net/2026/Sep/7/equal-earth/"/>
+        <updated>2026-09-07T16:24:16.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/equal-earth">Mercator ↔ Equal Earth</a></p>
+        <p>I got curious about the Equal Earth map projection that was recently <a href="https://www.theguardian.com/world/2026/sep/04/un-vote-world-map-mercator-equal-earth-africa">voted on at the UN</a> so I had GPT-6 Astra (medium) in ChatGPT Work <a href="https://chatgpt.com/share/6a9ee520-c82c-83ea-8111-2f7050c08638">build me</a> this animated transition between Mercator and Equal Earth using D3.</p>
+<center><video controls playsinline preload="none" width="360" height="476" poster="https://static.simonwillison.net/static/2026-09-07/equal-earth.jpg">
+  <source src="https://static.simonwillison.net/static/2026-09-07/equal-earth-medium.mp4" type="video/mp4">
+</video></center>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/geospatial">geospatial</a>, <a href="https://simonwillison.net/tags/d3">d3</a>, <a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a href="https://simonwillison.net/tags/gpt-6-astra">gpt-6-astra</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Supporting independent journalism in Ukraine]]></title>
+        <id>https://openai.com/index/supporting-independent-journalism-in-ukraine</id>
+        <link href="https://openai.com/index/supporting-independent-journalism-in-ukraine"/>
+        <updated>2026-09-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[OpenAI, AIRPPU and WAN-IFRA launch an AI program to help Ukrainian news organizations strengthen innovation, resilience, and independent journalism.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Research acceleration: The view inside OpenAI]]></title>
         <id>https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/</id>
@@ -169,15 +264,6 @@ See <a href="https://static.simonwillison.net/static/2026/gpt-6-and-5.6-pelicans
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Did OpenAI actually build AGI? GPT-6 Astra first look]]></title>
-        <id>https://www.youtube.com/watch?v=FluKUJyeYD8</id>
-        <link href="https://www.youtube.com/watch?v=FluKUJyeYD8"/>
-        <updated>2026-09-04T20:14:12.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenAI's rogue agents were caught communicating via public wikis]]></title>
         <id>https://simonwillison.net/2026/Sep/4/rogue-agent-wikis/</id>
         <link href="https://simonwillison.net/2026/Sep/4/rogue-agent-wikis/"/>
@@ -256,24 +342,6 @@ See <a href="https://static.simonwillison.net/static/2026/gpt-6-and-5.6-pelicans
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[AI News: The Most Insane Week So Far This Year!]]></title>
-        <id>https://www.youtube.com/watch?v=GfPZm9yucQo</id>
-        <link href="https://www.youtube.com/watch?v=GfPZm9yucQo"/>
-        <updated>2026-09-04T15:00:34.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT 6 Astra, so good even OpenAI are worried]]></title>
-        <id>https://www.youtube.com/watch?v=Spuza-KwTJ4</id>
-        <link href="https://www.youtube.com/watch?v=Spuza-KwTJ4"/>
-        <updated>2026-09-04T11:37:27.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[August newsletter is out]]></title>
         <id>https://simonwillison.net/2026/Sep/4/august-newsletter/</id>
         <link href="https://simonwillison.net/2026/Sep/4/august-newsletter/"/>
@@ -295,15 +363,6 @@ See <a href="https://static.simonwillison.net/static/2026/gpt-6-and-5.6-pelicans
     <p>Tags: <a href="https://simonwillison.net/tags/newsletter">newsletter</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT-6 Astra Is Finally Here (And It’s REALLY Good)]]></title>
-        <id>https://www.youtube.com/watch?v=GGzT7zVrRTU</id>
-        <link href="https://www.youtube.com/watch?v=GGzT7zVrRTU"/>
-        <updated>2026-09-03T22:45:47.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -350,16 +409,6 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This Robot Can Learn Almost ANY Task]]></title>
-        <id>https://www.youtube.com/shorts/K_iUGDw2Sho</id>
-        <link href="https://www.youtube.com/shorts/K_iUGDw2Sho"/>
-        <updated>2026-09-03T14:23:29.000Z</updated>
-        <summary type="html"><![CDATA[This robot can repot plants, make pour-over coffee, assemble kits, and even cook pancakes. And all of those tasks were learned from a single video demonstrat...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Daybreak for Frontline Defenders: $1B to protect essential services]]></title>
         <id>https://openai.com/index/daybreak-for-frontline-defenders</id>
         <link href="https://openai.com/index/daybreak-for-frontline-defenders"/>
@@ -400,15 +449,6 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The Most Overhyped and Underhyped New AI Models]]></title>
-        <id>https://www.youtube.com/watch?v=Po_Dh7WLgmM</id>
-        <link href="https://www.youtube.com/watch?v=Po_Dh7WLgmM"/>
-        <updated>2026-09-03T02:14:55.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Safety overview: GPT-6 Astra]]></title>
         <id>https://openai.com/index/safety-overview-gpt-6-astra</id>
         <link href="https://openai.com/index/safety-overview-gpt-6-astra"/>
@@ -419,12 +459,55 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The most interesting hack in history just got weirder...]]></title>
-        <id>https://www.youtube.com/watch?v=0Rp9KJCEIvg</id>
-        <link href="https://www.youtube.com/watch?v=0Rp9KJCEIvg"/>
-        <updated>2026-09-02T19:01:28.000Z</updated>
+        <title type="html"><![CDATA[llm-openrouter 0.7.1]]></title>
+        <id>https://simonwillison.net/2026/Sep/2/llm-openrouter/</id>
+        <link href="https://simonwillison.net/2026/Sep/2/llm-openrouter/"/>
+        <updated>2026-09-02T20:23:26.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-openrouter/releases/tag/0.7.1">llm-openrouter 0.7.1</a></p>
+        <blockquote>
+<ul>
+<li>Performance fix for loading OpenRouter models. Thanks, <a href="https://github.com/waveplate">waveplate</a>. <a href="https://github.com/simonw/llm-openrouter/issues/59">#59</a></li>
+</ul>
+</blockquote>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/openrouter">openrouter</a></p>]]></summary>
         <author>
-            <name>Fireship</name>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[llm 0.34]]></title>
+        <id>https://simonwillison.net/2026/Sep/2/llm/</id>
+        <link href="https://simonwillison.net/2026/Sep/2/llm/"/>
+        <updated>2026-09-02T19:23:52.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm/releases/tag/0.34">llm 0.34</a></p>
+        <p>One new feature:</p>
+<blockquote>
+<ul>
+<li><code>llm logs --usage</code> Markdown output now includes the response duration in milliseconds and as a human-readable duration. <code>llm logs --short</code> includes a new <code>duration_ms</code> field. <a href="https://github.com/simonw/llm/issues/1653">#1653</a></li>
+</ul>
+</blockquote>
+<p>Plus several contributed bug fixes, and a significant performance improvement to <code>llm logs</code> thanks to <a href="https://github.com/waveplate">waveplate</a> on GitHub, see also <a href="https://simonwillison.net/2026/Sep/2/llm-openrouter/">llm-openrouter 0.7.1</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[llm-anthropic 0.28]]></title>
+        <id>https://simonwillison.net/2026/Sep/2/llm-anthropic/</id>
+        <link href="https://simonwillison.net/2026/Sep/2/llm-anthropic/"/>
+        <updated>2026-09-02T17:59:32.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.28">llm-anthropic 0.28</a></p>
+        <p><a href="https://www.anthropic.com/claude/fable">Claude Fable 5.1</a>, reasoning traces are now displayed by default for models that support them, plus a new <code>llm_anthropic.ClaudeRefusal</code> exception for when Claude throws a refusal.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/claude-mythos-fable">claude-mythos-fable</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -776,15 +859,6 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The mystery is solved... and the answer is 40x cheaper than Claude]]></title>
-        <id>https://www.youtube.com/watch?v=r-tzcMlQISk</id>
-        <link href="https://www.youtube.com/watch?v=r-tzcMlQISk"/>
-        <updated>2026-09-01T17:31:27.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing agentic video understanding with Gemini]]></title>
         <id>https://deepmind.google/blog/introducing-agentic-video-in-gemini/</id>
         <link href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/"/>
@@ -880,16 +954,6 @@ Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final
     <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The One-Prompt Dashboard Trick]]></title>
-        <id>https://www.youtube.com/shorts/-goIBDS9UNU</id>
-        <link href="https://www.youtube.com/shorts/-goIBDS9UNU"/>
-        <updated>2026-09-01T14:27:45.000Z</updated>
-        <summary type="html"><![CDATA[I turned a boring spreadsheet into the ultimate content creator dashboard.It tracks my audience and growth across YouTube, Instagram, TikTok, LinkedIn, X, Th...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1179,77 +1243,6 @@ New from Graham Dumpleton (of <a href="https://pypi.org/project/wrapt/">wrapt</a
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing Hy4 Preview]]></title>
-        <id>https://simonwillison.net/2026/Aug/29/hy4/</id>
-        <link href="https://simonwillison.net/2026/Aug/29/hy4/"/>
-        <updated>2026-08-29T23:53:13.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://hy.tencent.ai/research/hy4-preview">Introducing Hy4 Preview</a></strong></p>
-New open weight text input (no vision)  LLM from Chinese company Tencent today: 770B total parameters, 49B active parameters, 1M token context window, <a href="https://huggingface.co/tencent/Hy4-preview">1.56TB on Hugging Face</a>.</p>
-<p>This is a big size increase from their previous <a href="https://huggingface.co/tencent/Hy3">Hy3</a> in July, which was 295B, 21B active, 256,000 context, 598GB.</p>
-<p>I recently started using model chat templates to better understand their capabilities. Here's Hy4's  <a href="https://huggingface.co/tencent/Hy4-preview/blob/main/chat_template.jinja">chat_template.jinja</a> on Hugging Face, which includes this section:</p>
-<div class="highlight highlight-text-html-django"><pre><span class="pl-e">{%</span>- <span class="pl-k">if</span> <span class="pl-k">not</span> <span class="pl-s">reasoning_effort</span> <span class="pl-s">is</span> <span class="pl-s">defined</span> <span class="pl-e">%}</span>
-    <span class="pl-e">{%</span>- <span class="pl-s">set</span> <span class="pl-s">reasoning_effort</span> = <span class="pl-s">'high'</span> <span class="pl-e">%}</span>
-<span class="pl-e">{%</span>- <span class="pl-s">elif</span> <span class="pl-s">reasoning_effort</span> <span class="pl-k">not</span> <span class="pl-k">in</span> [<span class="pl-s">'high'</span>, <span class="pl-s">'no_think'</span>] <span class="pl-e">%}</span>
-    <span class="pl-e">{%</span>- <span class="pl-k">if</span> <span class="pl-s">reasoning_effort</span> <span class="pl-s">is</span> <span class="pl-s">none</span> <span class="pl-e">%}</span>
-        {{- raise_exception('reasoning_effort error : None, should be no_think/high') }}
-    <span class="pl-e">{%</span>- <span class="pl-k">else</span> <span class="pl-e">%}</span>
-        {{- raise_exception('reasoning_effort error : ' + reasoning_effort + ', should be no_think/high') }}
-    <span class="pl-e">{%</span>- <span class="pl-k">endif</span> <span class="pl-e">%}</span>
-<span class="pl-e">{%</span>- <span class="pl-k">endif</span> <span class="pl-e">%}</span></pre></div>
-<p>So it looks like there are just two reasoning effort levels: "high" (the default) and "no_think" (reason by disabled).</p>
-<p>I tried my "Generate an SVG of a pelican riding a bicycle" prompt with the default high reasoning <a href="https://openrouter.ai/tencent/hy4-preview#apps">via OpenRouter</a> and <a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fcb69816b3fb940f2782569a82a523af1">got this</a>:</p>
-<p><img alt="Flat vector cartoon illustration of a white pelican with a large orange bill riding a red bicycle to the right along a grey road with a dashed white centre line, its orange webbed feet on the pedals and grey tail feathers fanned out behind, against a pale blue sky with a yellow sun, white clouds and horizontal white motion lines suggesting speed" src="https://static.simonwillison.net/static/2026-08-29/IMG_7725.jpeg" /></p>
-<p>Quoting the reasoning trace:</p>
-<blockquote>
-<p>[...] Let's maybe add a helmet? It could improve riding theme, but may obscure head. Maybe a small cycling cap or helmet? The user didn't ask; can add red helmet? Might be cute. But pelican with big beak; a helmet might obscure. Better maybe no.</p>
-<p>Maybe add sunglasses? no.</p>
-<p>Maybe add water? no.</p>
-</blockquote>
-<p>It's interesting how the reasoning trace uses slightly truncated English, presumably because perfect grammar isn't useful or token efficient for hidden reasoning text.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-reasoning">llm-reasoning</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Just a rumour of a bug is enough to find a security exploit these days]]></title>
-        <id>https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/</id>
-        <link href="https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/"/>
-        <updated>2026-08-28T22:12:02.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://anil.recoil.org/notes/rumour-is-the-exploit">Just a rumour of a bug is enough to find a security exploit these days</a></strong></p>
-Anil Madhavapeddy is a professor of computer science at Cambridge and a core maintainer of the OCaml compiler. In this somewhat alarming post he reports that security issues in OCaml projects are seeing evidence of attempted exploits within minutes of patches being shared for discussion:</p>
-<blockquote>
-<p>This normally takes a few days and a release within a week or two is reasonable. Within about ten minutes (!) this website was fielding probes for percent-encoded traversal sequences, indicating that automated watchers are keeping an eye on public repositories.</p>
-</blockquote>
-<p>Modern coding agents have become so effective at finding flaws that the slightest hint at a new bug can be enough information for them to find it, something Anil has been able to demonstrate using his own agents, switching to DeepSeek V4 Pro⁠ when Claude Fable refused the task.</p>
-<p>Anil points out that this rate of discovery appears incompatible with existing open source embargo practices for new issues. If an issue can become an exploit this fast, we need to figure out new processes for keeping our communities safe.</p>
-<p>rclone maintainer Nick Craig-Wood <a href="https://news.ycombinator.com/item?id=49480466#49480777">confirms in the Hacker News comments</a> that his project is seeing this problem:</p>
-<blockquote>
-<p>In the first 10 years of the rclone project we received about 20 security disclosures through GitHub. We had to deal with over 40 in the last month! That has taken a huge amount of my time, even using AI tools to triage and come up with fixes for review.</p>
-<p>The hit rate for those security disclosures is pretty good - about 75% of them have a nugget of something which needs looking at. [...]</p>
-<p>GitHub assigns CVEs for the advisories. Before the AI apocalypse they took 2-3 days for an assignment but now it they are running at 3-4 weeks so I have to send the point releases out with CVE-PENDING in the changelog which isn't ideal.</p>
-</blockquote>
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49480466">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ocaml">ocaml</a>, <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Made a Massive Move Against NVIDIA]]></title>
-        <id>https://www.youtube.com/watch?v=TInwQglNkzo</id>
-        <link href="https://www.youtube.com/watch?v=TInwQglNkzo"/>
-        <updated>2026-08-28T15:00:09.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Our decision on Cursor following its acquisition by SpaceX]]></title>
         <id>https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex</id>
         <link href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex"/>
@@ -1290,55 +1283,6 @@ Anil Madhavapeddy is a professor of computer science at Cambridge and a core mai
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Breaking Claude Code Opus 5 Auto Mode]]></title>
-        <id>https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/</id>
-        <link href="https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/"/>
-        <updated>2026-08-27T22:50:25.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/">Breaking Claude Code Opus 5 Auto Mode</a></strong></p>
-Anthropic are putting a great deal of faith in Claude Code's auto mode for protecting their coding agent users against prompt injection attacks. They recently <a href="https://simonwillison.net/2026/Aug/8/auto-mode/">made that the default</a> and have made bold claims about its effectiveness.</p>
-<p>Johann Rehberger is one of the most credible prompt injection researchers active today. He found an attack against auto mode which he claims works 80% of the time, by tricking Claude Code into downloading and uncompressing a zip archive, then executing code that imports <code>base64</code> without noticing that this will import and execute a local <code>struct.py</code> file extracted from the archive.</p>
-<p>In a few cases auto mode directly prevented the agent from preventing harmful code from continuing to execute!</p>
-<blockquote>
-<p>In a few runs Claude tried to terminate the malware process once it noticed the compromise, but Auto Mode denied the cleanup command.</p>
-<p>Claude detects the compromise, but <strong>Auto Mode blocks its cleanup command</strong></p>
-<p>The safety mechanism itself can become part of the failure. The classifier allowed the creation of the malware process, but then it blocked the command intended to stop it!</p>
-</blockquote>
-<p>I agree with Johann's conclusion here: the only safe way to run agents if there's any risk of attracting the attention of an adversarial attack is with a sandbox:</p>
-<blockquote>
-<ul>
-<li>Run unattended coding agents in a container, VM or OS sandbox.</li>
-<li>Restrict network egress.</li>
-<li>Monitor your agents.</li>
-<li>Do not expose home directories, SSH keys, cloud credentials,… to the agent runtime. [...]</li>
-</ul>
-</blockquote>
-<p><strong>Update 30th August 2026</strong>: On Lobste.rs <a href="https://lobste.rs/s/ktbweg/prompt_injection_claude_code_opus_5_auto#c_gi7eqj">hyperpape points out</a> that this doesn't fit the bill of a classic prompt injection attack because at no point are malicious instructions from the website accidentally followed by the LLM. They're right: this is more of a confused environment attack where the nature of the environment that the agent is exposed to results in an exploit.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/sandboxing">sandboxing</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/prompt-injection">prompt-injection</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/johann-rehberger">johann-rehberger</a>, <a href="https://simonwillison.net/tags/claude-code">claude-code</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves]]></title>
-        <id>https://www.youtube.com/watch?v=KL9_1GbmCic</id>
-        <link href="https://www.youtube.com/watch?v=KL9_1GbmCic"/>
-        <updated>2026-08-27T19:16:24.000Z</updated>
-        <author>
-            <name>AI Explained</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The most expensive software bug in history...]]></title>
-        <id>https://www.youtube.com/watch?v=UuqSy1jPSUw</id>
-        <link href="https://www.youtube.com/watch?v=UuqSy1jPSUw"/>
-        <updated>2026-08-27T17:48:13.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Gemini Omni 1.1 Flash lets you build with more control]]></title>
         <id>https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/</id>
         <link href="https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/"/>
@@ -1356,16 +1300,6 @@ Anthropic are putting a great deal of faith in Claude Code's auto mode for prote
         <summary type="html"><![CDATA[Book hotels and track airfares, plus view miles and rewards with AI Mode in Google Search.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Company Will Buy Your AI Training Data]]></title>
-        <id>https://www.youtube.com/shorts/Z93MPi8ZO3A</id>
-        <link href="https://www.youtube.com/shorts/Z93MPi8ZO3A"/>
-        <updated>2026-08-27T13:06:18.000Z</updated>
-        <summary type="html"><![CDATA[AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1409,35 +1343,6 @@ Anthropic are putting a great deal of faith in Claude Code's auto mode for prote
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Qwen3.8-Flash-Next]]></title>
-        <id>https://simonwillison.net/2026/Aug/26/qwen38-flash-next/</id>
-        <link href="https://simonwillison.net/2026/Aug/26/qwen38-flash-next/"/>
-        <updated>2026-08-26T23:52:58.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://qwen.ai/blog?id=qwen3.8-flash-next">Qwen3.8-Flash-Next</a></strong></p>
-Another open weights model from Qwen. This one is "a multimodal MoE model that also serves as an early preview of the architecture used in Qwen4".</p>
-<p>It's pretty big: 125B parameters but only 6B active which means it gets a significant performance boost.</p>
-<p>I've been trying it out on a DGX Spark using <a href="https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF">these Unsloth quantized models</a>. I'm still exploring the model - so far I've tried the 72.5GB UD-IQ1_S one (producing <a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Ff9c69ebdab90d8a45b8de4742cc7b840">these pelicans</a>) and the 78.9GB UD-Q2_K_XL (producing <a href="https://tools.simonwillison.net/markdown-svg-renderer#url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F6ba7cbfc1a9336986703b41f7fccd73a">these</a>).</p>
-<p>My favorite so far was this xhigh reasoning effort one from UD-Q2_K_XL:</p>
-<p><img alt="Flat vector illustration: a white pelican with an orange beak and orange legs rides a red bicycle along a sandy path, a wicker basket on the handlebars holding a blue fish, with green rolling hills, a small tree and bushes, white clouds and a bright yellow sun in a blue sky behind it" src="https://static.simonwillison.net/static/2026-08-27/IMG_7667.png" />
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49448210">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/llm-release">llm-release</a>, <a href="https://simonwillison.net/tags/ai-in-china">ai-in-china</a>, <a href="https://simonwillison.net/tags/nvidia-spark">nvidia-spark</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[I Built a FREE App That Runs Your Entire Business]]></title>
-        <id>https://www.youtube.com/watch?v=rKo9iLGjUbs</id>
-        <link href="https://www.youtube.com/watch?v=rKo9iLGjUbs"/>
-        <updated>2026-08-26T22:36:30.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Intelligent transcription with Gemini 3.5 Transcribe]]></title>
         <id>https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/</id>
         <link href="https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/"/>
@@ -1445,26 +1350,6 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         <summary type="html"><![CDATA[Now you can get more intelligent speech-to-text transcription with Gemini 3.5 Transcribe.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To EASILY Run Local AI Models]]></title>
-        <id>https://www.youtube.com/shorts/uS2gi-D8C0k</id>
-        <link href="https://www.youtube.com/shorts/uS2gi-D8C0k"/>
-        <updated>2026-08-26T13:22:25.000Z</updated>
-        <summary type="html"><![CDATA[You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Bringing ChatGPT for Teachers to more U.S. school districts]]></title>
-        <id>https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts</id>
-        <link href="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts"/>
-        <updated>2026-08-26T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT for Teachers is expanding to 55 U.S. school systems, bringing secure AI tools, training, and support to over 100,000 more educators and staff.]]></summary>
-        <author>
-            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1478,16 +1363,13 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Paul Dix]]></title>
-        <id>https://simonwillison.net/2026/Aug/26/paul-dix/</id>
-        <link href="https://simonwillison.net/2026/Aug/26/paul-dix/"/>
-        <updated>2026-08-26T08:07:55.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://pauldix.com/the-end-of-programming"><p>The fact that AI wrote 1M LOC and then refined it over the course of the next couple of months to produce a reliable piece of software that is currently running on millions of developer machines is absolutely mind blowing. And you can say, “well it’s not that impressive because they had an oracle to compare against, so it was simple to go from one language to another”, but I think that’s selling this entire thing short. If you can build a verification system and give proper direction, AI can produce a highly complex, highly sophisticated piece of software and it can continue to refine it until it just works.</p></blockquote>
-<p class="cite">&mdash; <a href="https://pauldix.com/the-end-of-programming">Paul Dix</a>, The end of programming</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/bun">bun</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <title type="html"><![CDATA[Bringing ChatGPT for Teachers to more U.S. school districts]]></title>
+        <id>https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts</id>
+        <link href="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts"/>
+        <updated>2026-08-26T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT for Teachers is expanding to 55 U.S. school systems, bringing secure AI tools, training, and support to over 100,000 more educators and staff.]]></summary>
         <author>
-            <name>Simon Willison's Weblog</name>
+            <name>OpenAI News</name>
         </author>
     </entry>
     <entry>
@@ -1541,25 +1423,6 @@ Another open weights model from Qwen. This one is "a multimodal MoE model that a
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[EVE Online: The Move to Python 3 Begins!]]></title>
-        <id>https://simonwillison.net/2026/Aug/25/eve-online-move-to-python-3/</id>
-        <link href="https://simonwillison.net/2026/Aug/25/eve-online-move-to-python-3/"/>
-        <updated>2026-08-25T22:59:30.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.eveonline.com/news/view/the-move-to-python-3-begins">EVE Online: The Move to Python 3 Begins!</a></strong></p>
-EVE Online has been one of the most interesting case studies in Python at scale for over twenty years now.</p>
-<p>They've been running on <a href="https://github.com/stackless-dev/stackless/wiki/">Stackless Python</a> since their launch in 2003, and their last major upgrade was 16 years ago, to Stackless Python 2.7 <a href="https://www.eveonline.com/news/view/stackless-python-2.7">in 2010</a>.</p>
-<p>Their upgrade to Python 3 will start using the <a href="https://python-future.org/futurize.html">futurize</a> script against 2.4 million lines of code, followed by careful manual review of the ~20,000 places where Python 2 and 3 behavior differ - for example <code>1 / 2</code> is <code>0</code> in Python 2 but is <code>0.5</code> in Python 3.</p>
-<p>There's nothing in this announcement about how they plan to replace Stackless, but at their conference last year they presented <a href="https://youtu.be/-x299qHLQs0">Scheduling in Carbon: Leaving Stackless Python Behind</a> describing how they replaced Stackless in the Carbon engine for their more recent game EVE Frontier, using their (now open source) <a href="https://github.com/carbonengine/scheduler">carbonengine/scheduler</a> library.
-
-    <p><small></small>Via <a href="https://lobste.rs/s/e1oalq/move_python_3_begins">Lobster.rs</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/eve-online">eve-online</a>, <a href="https://simonwillison.net/tags/migrations">migrations</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/python3">python3</a>, <a href="https://simonwillison.net/tags/stackless">stackless</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[5 ways to upgrade your home decor with Google Search]]></title>
         <id>https://blog.google/products-and-platforms/products/search/home-decor-tips/</id>
         <link href="https://blog.google/products-and-platforms/products/search/home-decor-tips/"/>
@@ -1567,16 +1430,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         <summary type="html"><![CDATA[Learn how to use Google Search tools to find home decor inspiration, shop for furniture, and tackle DIY projects.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Found Money I Was Wasting]]></title>
-        <id>https://www.youtube.com/shorts/f74JmwXm-sQ</id>
-        <link href="https://www.youtube.com/shorts/f74JmwXm-sQ"/>
-        <updated>2026-08-25T14:08:30.000Z</updated>
-        <summary type="html"><![CDATA[I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1630,35 +1483,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[llm-anthropic 0.27]]></title>
-        <id>https://simonwillison.net/2026/Aug/24/llm-anthropic/</id>
-        <link href="https://simonwillison.net/2026/Aug/24/llm-anthropic/"/>
-        <updated>2026-08-24T16:27:04.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.27">llm-anthropic 0.27</a></p>
-        <p>This release of the Anthropic plugin for <a href="https://llm.datasette.io/">LLM</a> mainly provides compatibility with the recently released <a href="https://github.com/anthropics/anthropic-sdk-python/releases/tag/v1.0.0">anthropic v1.0.0</a> Python library, which switches from <code>httpx</code> to <a href="https://github.com/pydantic/httpx2">httpx2</a>. OpenAI made the same change in their <a href="https://github.com/openai/openai-python/releases/tag/v3.0.0">v3.0.0 release</a> two weeks ago.</p>
-<p>Anthropic provide this <a href="https://github.com/anthropics/anthropic-sdk-python/blob/v1.0.0/MIGRATION.md">migration guide</a> for upgrading to 1.0, so I prompted Fable 5 in Claude Code with:</p>
-<blockquote>
-<p><code>Upgrade to anthropic&gt;=1 - read https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/refs/heads/main/MIGRATION.md and get the tests passing</code></p>
-</blockquote>
-<p>Here's <a href="https://github.com/simonw/llm-anthropic/pull/84">the resulting PR</a>.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/httpx">httpx</a>, <a href="https://simonwillison.net/tags/llm">llm</a>, <a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Creates Insane 3D Worlds]]></title>
-        <id>https://www.youtube.com/shorts/ZY628bslSYY</id>
-        <link href="https://www.youtube.com/shorts/ZY628bslSYY"/>
-        <updated>2026-08-24T12:18:26.000Z</updated>
-        <summary type="html"><![CDATA[This might be one of the coolest AI models I’ve seen all year.Tencent’s new WorldClaw model can generate an entire editable 3D world from a prompt — not just...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Advancing price-performance for developers with GPT‑5.6 in Kiro]]></title>
         <id>https://openai.com/index/gpt-5-6-in-kiro</id>
         <link href="https://openai.com/index/gpt-5-6-in-kiro"/>
@@ -1666,28 +1490,6 @@ EVE Online has been one of the most interesting case studies in Python at scale 
         <summary type="html"><![CDATA[GPT‑5.6 is now available in Kiro, helping developers plan, build, review, and test software with better price-performance.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Your executable is a SQLite database]]></title>
-        <id>https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/</id>
-        <link href="https://simonwillison.net/2026/Aug/24/your-executable-is-a-sqlite-database/"/>
-        <updated>2026-08-24T11:38:15.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://fzakaria.com/2026/08/23/your-executable-is-a-sqlite-database">Your executable is a SQLite database</a></strong></p>
-Farid Zakaria describes a neat Linux pattern for creating a SQLite database file that can be directly used as an executable binary.</p>
-<p>The trick sets the SQLite file format's 4-byte application ID (68 bytes into the file) to SELF, standing for Structured Executable &amp; Linkable Format.  The various components of the ELF executable format are then arranged into a number of different SQLite tables, using <a href="https://github.com/fzakaria/selfdb/blob/main/schema/self.sql">this schema</a>.</p>
-<p>Their <code>self-exec</code> interpreter (<a href="https://github.com/fzakaria/selfdb/blob/main/loader/self-exec.c">C code here</a>) can then extract and execute the necessary pieces.</p>
-<p>You can additionally use a Linux mechanism called <a href="https://docs.kernel.org/admin-guide/binfmt-misc.html">binfmt_misc</a> to teach the kernel to execute that any time it encounters an executable matching that binary pattern. Farid uses NixOS here, but without NixOS I think registration looks something like this:</p>
-<pre><code>printf '%s\n' ':self:M:68:SELF::/usr/local/bin/self-exec:' \
-  &gt; /proc/sys/fs/binfmt_misc/register
-</code></pre>
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49415271">Hacker News</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/c">c</a>, <a href="https://simonwillison.net/tags/linux">linux</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1701,35 +1503,6 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The Wildest Smartphone I’ve Ever Seen 🤯]]></title>
-        <id>https://www.youtube.com/shorts/aOzaO5AAGjk</id>
-        <link href="https://www.youtube.com/shorts/aOzaO5AAGjk"/>
-        <updated>2026-08-22T13:05:27.000Z</updated>
-        <summary type="html"><![CDATA[This is the wildest smartphone camera I’ve seen yet. 🤯HONOR's new Robot Phone has a 200MP camera mounted on a motorized titanium gimbal that literally unfol...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Pyramid Could Be Your Next Intern]]></title>
-        <id>https://www.youtube.com/shorts/1m5Ee9QbLF0</id>
-        <link href="https://www.youtube.com/shorts/1m5Ee9QbLF0"/>
-        <updated>2026-08-21T22:09:39.000Z</updated>
-        <summary type="html"><![CDATA[Your next intern might be a tiny pyramid-shaped computer 🤖The Autonomous Intern 2 is built specifically to run AI agents.You can connect it to Slack, Telegr...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Just Put the Brakes on AI]]></title>
-        <id>https://www.youtube.com/watch?v=EfGF7QbJItA</id>
-        <link href="https://www.youtube.com/watch?v=EfGF7QbJItA"/>
-        <updated>2026-08-21T15:00:23.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[From Atari to EVE Online: Building on 15 Years of AI Research in Games]]></title>
         <id>https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/</id>
         <link href="https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/"/>
@@ -1737,25 +1510,6 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         <summary type="html"><![CDATA[Google DeepMind partners with game studios to prototype breakthrough AI gameplay.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[DeepSeek is back... and Silicon Valley is terrified]]></title>
-        <id>https://www.youtube.com/watch?v=xBByvFrqmWU</id>
-        <link href="https://www.youtube.com/watch?v=xBByvFrqmWU"/>
-        <updated>2026-08-20T17:53:37.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Claude’s Text Watermark Could Follow It Everywhere]]></title>
-        <id>https://www.youtube.com/shorts/O-8TbMFOAfg</id>
-        <link href="https://www.youtube.com/shorts/O-8TbMFOAfg"/>
-        <updated>2026-08-20T12:41:43.000Z</updated>
-        <summary type="html"><![CDATA[Anthropic is working on a watermark for Claude-generated text that could follow the text even after you copy, paste, or edit it 👀They haven't revealed exact...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1806,15 +1560,6 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         <summary type="html"><![CDATA[OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety without compromising data privacy.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The summer Math fell to the machines...]]></title>
-        <id>https://www.youtube.com/watch?v=iuZPTE5qsJY</id>
-        <link href="https://www.youtube.com/watch?v=iuZPTE5qsJY"/>
-        <updated>2026-08-19T18:45:57.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -1958,15 +1703,6 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This new startup can query anywhere you've been...]]></title>
-        <id>https://www.youtube.com/watch?v=E7la7-dtfVM</id>
-        <link href="https://www.youtube.com/watch?v=E7la7-dtfVM"/>
-        <updated>2026-08-14T17:44:59.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Cursor is now a part of SpaceX]]></title>
         <id>https://cursor.com/blog/joining-spacex</id>
         <link href="https://cursor.com/blog/joining-spacex"/>
@@ -2067,15 +1803,6 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Meta's new model wants "deep access" to your personal life...]]></title>
-        <id>https://www.youtube.com/watch?v=G55HSGpuh1M</id>
-        <link href="https://www.youtube.com/watch?v=G55HSGpuh1M"/>
-        <updated>2026-08-12T18:29:41.000Z</updated>
-        <author>
-            <name>Fireship</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Putting sign language AI into users’ hands]]></title>
         <id>https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/</id>
         <link href="https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/"/>
@@ -2123,15 +1850,6 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         <summary type="html"><![CDATA[Google introduces AMIE for real-time clinical video consultations in simulated settings.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[I spent 3 days at MIT... the robot hype is worse than you think]]></title>
-        <id>https://www.youtube.com/watch?v=aB5LGrHISqY</id>
-        <link href="https://www.youtube.com/watch?v=aB5LGrHISqY"/>
-        <updated>2026-08-11T16:10:08.000Z</updated>
-        <author>
-            <name>Fireship</name>
         </author>
     </entry>
     <entry>
@@ -2215,21 +1933,21 @@ Farid Zakaria describes a neat Linux pattern for creating a SQLite database file
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Virgin Atlantic sharpens customer journeys with ChatGPT Work]]></title>
-        <id>https://openai.com/index/virgin-atlantic/chatgpt-work</id>
-        <link href="https://openai.com/index/virgin-atlantic/chatgpt-work"/>
-        <updated>2026-08-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Premium seats are coming to ChatGPT Business]]></title>
         <id>https://openai.com/index/premium-seats-chatgpt-business</id>
         <link href="https://openai.com/index/premium-seats-chatgpt-business"/>
         <updated>2026-08-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Premium seats are now available on ChatGPT Business, with 5x more usage, no five-hour usage limit, and flexible seat options for every teammate.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Virgin Atlantic sharpens customer journeys with ChatGPT Work]]></title>
+        <id>https://openai.com/index/virgin-atlantic/chatgpt-work</id>
+        <link href="https://openai.com/index/virgin-atlantic/chatgpt-work"/>
+        <updated>2026-08-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
