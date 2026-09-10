@@ -1,10 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-09-09T03:14:42.723Z</id>
+    <id>urn:2026-09-10T03:14:23.307Z</id>
     <title>osmos::feed</title>
-    <updated>2026-09-09T03:14:42.723Z</updated>
+    <updated>2026-09-10T03:14:23.307Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Quoting Calif Research]]></title>
+        <id>https://simonwillison.net/2026/Sep/10/calif-research/</id>
+        <link href="https://simonwillison.net/2026/Sep/10/calif-research/"/>
+        <updated>2026-09-10T00:56:41.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://calif.io/research/weworm"><p>Today, we're releasing a demo of WeWorm, the first zero-click worm to spread through WeChat calls across iOS and Android. [...]</p>
+<p>The victim does not need to answer the call, or interact with their phone at all. Even if they do answer, they hear nothing, and the exploit still succeeds. [...]</p>
+<p>Working with AI, our team found the bug and wrote the first remote code execution (RCE) exploit in about two days. Building the worm took one more week.</p>
+<p>A worm at this scale used to be the kind of thing that took a larger team months. AI can already do most of the work here. Our team provided the judgment about what to target and how to test it safely.</p></blockquote>
+<p class="cite">&mdash; <a href="https://calif.io/research/weworm">Calif Research</a>, WeWorm</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[.blend URL Viewer]]></title>
+        <id>https://simonwillison.net/2026/Sep/9/blender-viewer/</id>
+        <link href="https://simonwillison.net/2026/Sep/9/blender-viewer/"/>
+        <updated>2026-09-09T23:58:32.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/blender-viewer">.blend URL Viewer</a></p>
+        <p>I'm continuing to have a lot of fun with GPT-6 Astra and Blender (see <a href="https://til.simonwillison.net/llms/blender-coding-agents-macos">my TIL</a>).</p>
+<p>As a big fan of the <a href="https://en.wikipedia.org/wiki/Faberg%C3%A9_egg">Imperial Fabergé Easter eggs</a>, I've always thought it would be fun to make some new ones that celebrate popular culture.</p>
+<p>Yesterday I decided to try out the new <a href="https://simonwillison.net/2026/Sep/8/introducing-chatgpt-images-25/">ChatGPT Images 2.5</a> by <a href="https://chatgpt.com/share/6aa1f6d2-a7d8-83ea-92ec-0daeb8422617">running this prompt</a>:</p>
+<blockquote>
+<p><code>Generate a photo of a faberge egg that's themed after the TV show Pluribus - research first</code></p>
+</blockquote>
+<p>It gave me this - honestly not bad for a first attempt!</p>
+<p><img alt="It's a yellow Fabergé egg, half open. Inside you can clearly see Carol in her black outfit facing off against a choir of creepy white-faced joined humans. There are cacti and it has an Albuquerque New Mexico feel to it. The egg stand has a Pluribus plaque." src="https://static.simonwillison.net/static/2026/pluribus-egg.jpg" /></p>
+<p>Then, just to see what would happen, I pasted that image into Codex running GPT-6 Astra (high) and prompted:</p>
+<blockquote>
+<p><code>Use your blender local skill to create a blender model of this faverge egg</code></p>
+</blockquote>
+<p>(Here's <a href="https://github.com/simonw/gpt-6-astra-blender-pelican-bicycle/blob/main/outputs/blender-local/SKILL.md">the skill file</a>, which I created <a href="https://til.simonwillison.net/llms/blender-coding-agents-macos#creating-a-skill">like this</a>.)</p>
+<p>It churned away for 17m51s and built me <a href="https://github.com/simonw/vibe-coded-blender-projects/tree/main/pluribus-faberge-egg/deliverables">several <code>.blend</code> files</a>. I already had this vibe-coded Blender viewing experiment lying around, so I added that to my <a href="https://tools.simonwillison.net/">tools collection</a> and now you can use it to <a href="https://tools.simonwillison.net/blender-viewer?url=https%3A%2F%2Fgithub.com%2Fsimonw%2Fvibe-coded-blender-projects%2Fblob%2Fmain%2Fpluribus-faberge-egg%2Fdeliverables%2FPluribus_Jeweled_Egg_v1.blend">see my Pluribus blender model in your browser</a>:</p>
+<p><img alt="Screenshot of a web-based 3D Blender file viewer showing a rendered gold Fabergé-style jeweled egg. The top of the egg is lifted open, revealing a miniature desert diorama inside with green cacti, brown rocks, and a small black-suited figure standing in the center. The egg's shell is decorated with green gems, pearls, ornate scrollwork, a ring of smiling white egg-shaped faces, and oval medallions painted with a cactus and desert scene. The egg stands on four gold legs over a black marbled base with a gold plaque reading PLURIBUS. The URL bar reads https://github.com/simonw/vibe-coded-blender-projects/blob/main/pluribus-faberge-egg/deliverables/Pluribus_Jeweled_Egg_v1.blend with a View button; top-right buttons read Fit, Wireframe, Clear. A bottom-left info panel reads: Loaded Blender 05.01 · 7.2 MB / 387 meshes · 1099 curves · 1 text · 783,764 vertices · 1,446,560 triangles · 17 materials / Preview: approximate materials and text; unapplied modifiers are omitted. / GitHub URL resolved through jsDelivr" src="https://static.simonwillison.net/static/2026/pluribus-blender-viewer.webp" /></p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/3d">3d</a>, <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/tools">tools</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/blender">blender</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/codex">codex</a>, <a href="https://simonwillison.net/tags/gpt-6-astra">gpt-6-astra</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Paul Christiano joins OpenAI Foundation Board]]></title>
+        <id>https://openai.com/index/paul-christiano-joins-openai-foundation-board</id>
+        <link href="https://openai.com/index/paul-christiano-joins-openai-foundation-board"/>
+        <updated>2026-09-09T17:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Paul Christiano joins the OpenAI Foundation Board and its Safety and Security Committee, bringing experience in AI alignment, safety, and standards.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Get ready for the game with new football features in Search]]></title>
+        <id>https://blog.google/products-and-platforms/products/search/football-features-google-search/</id>
+        <link href="https://blog.google/products-and-platforms/products/search/football-features-google-search/"/>
+        <updated>2026-09-09T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Track live game feeds, explore detailed stats, and get custom fantasy recommendations directly in Search this season.]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Recreating a 70-year love story frame by frame]]></title>
+        <id>https://blog.google/innovation-and-ai/technology/ai/love-rendered-film/</id>
+        <link href="https://blog.google/innovation-and-ai/technology/ai/love-rendered-film/"/>
+        <updated>2026-09-09T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Discover how filmmakers and Google DeepMind used AI to recreate a couple's unrecorded past in the short film "Love, Rendered."]]></summary>
+        <author>
+            <name>AI</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The AI policy window is open. We need to act.]]></title>
+        <id>https://openai.com/index/ai-policy-window</id>
+        <link href="https://openai.com/index/ai-policy-window"/>
+        <updated>2026-09-09T13:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains open.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GPT-6 Astra: The next generation in intelligence for work]]></title>
+        <id>https://openai.com/index/gpt-6-astra-next-generation-work</id>
+        <link href="https://openai.com/index/gpt-6-astra-next-generation-work"/>
+        <updated>2026-09-09T11:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Meet GPT-6 Astra, OpenAI’s most capable model for business, with advanced reasoning, computer use, and stronger writing and design judgment.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Quoting Terence Tao]]></title>
         <id>https://simonwillison.net/2026/Sep/9/terence-tao/</id>
@@ -586,21 +680,21 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Playco cut manual fixes 50% prototyping games with GPT-6 Astra]]></title>
-        <id>https://openai.com/index/playco-game-prototyping-with-astra</id>
-        <link href="https://openai.com/index/playco-game-prototyping-with-astra"/>
-        <updated>2026-09-03T12:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Using GPT-6 Astra, Playco built three themed game prototypes from one grey box foundation and reported 50% fewer manual fixes than with the previous model.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Legora reviewed 41 documents in minutes with GPT-6 Astra]]></title>
         <id>https://openai.com/index/legora-financial-statement-review-with-astra</id>
         <link href="https://openai.com/index/legora-financial-statement-review-with-astra"/>
         <updated>2026-09-03T12:00:00.000Z</updated>
         <summary type="html"><![CDATA[Legora used GPT-6 Astra to review 41 documents in minutes, find all four planted errors, and improve performance by nearly 40% in this financial-review workflow.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Playco cut manual fixes 50% prototyping games with GPT-6 Astra]]></title>
+        <id>https://openai.com/index/playco-game-prototyping-with-astra</id>
+        <link href="https://openai.com/index/playco-game-prototyping-with-astra"/>
+        <updated>2026-09-03T12:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Using GPT-6 Astra, Playco built three themed game prototypes from one grey box foundation and reported 50% fewer manual fixes than with the previous model.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1069,61 +1163,6 @@ GPT-6 Astra is "rolling out today to a limited set of organizations and over the
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[datasette-mcp 0.2]]></title>
-        <id>https://simonwillison.net/2026/Sep/1/datasette-mcp/</id>
-        <link href="https://simonwillison.net/2026/Sep/1/datasette-mcp/"/>
-        <updated>2026-09-01T15:30:12.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/datasette/datasette-mcp/releases/tag/0.2">datasette-mcp 0.2</a></p>
-        <blockquote>
-<ul>
-<li><code>"rows"</code> from <code>execute_sql</code> is now an array of objects. Previously it was an array of arrays. This should help weaker models avoid losing track of which positional array element maps to which column. <a href="https://github.com/datasette/datasette-mcp/issues/1">#1</a></li>
-<li>Now depends on <code>mcp&gt;=2.1.1</code>.</li>
-</ul>
-</blockquote>
-<p>This is the first non-alpha release of the plugin. I'm confident it's ready as I've been using it quite a bit myself.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/datasette">datasette</a>, <a href="https://simonwillison.net/tags/model-context-protocol">model-context-protocol</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python 3.15.0 candidate 2 is here!]]></title>
-        <id>https://simonwillison.net/2026/Sep/1/python-315-rc-2/</id>
-        <link href="https://simonwillison.net/2026/Sep/1/python-315-rc-2/"/>
-        <updated>2026-09-01T14:59:18.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://discuss.python.org/t/python-3-15-0-candidate-2-is-here/108841">Python 3.15.0 candidate 2 is here!</a></strong></p>
-Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final release candidate for Python 3.15, scheduled for release in October:</p>
-<blockquote>
-<p>Entering the release candidate phase, only reviewed code changes which are clear bug fixes are allowed between this release candidate and the final release. [...]</p>
-<p>We <strong>strongly encourage</strong> maintainers of third-party Python projects to prepare their projects for 3.15 during this phase, and publish Python 3.15 wheels on PyPI to be ready for the final release of 3.15.0, and to help other projects do their own testing. Any binary wheels built against Python 3.15.0 release candidates <strong>will work</strong> with future versions of Python 3.15.</p>
-</blockquote>
-<p>Back in 2021 I <a href="https://simonwillison.net/2021/Oct/9/finding-and-reporting-a-bug/">found a bug in Python 3.10</a> by running my test suites against it... but I hadn't done this during the RC period, so that bug had already shipped! Since then I've always paid much closer attention to these RCs.</p>
-<p>The new RC isn't available for GitHub Actions just yet - keep an eye on <a href="https://github.com/actions/python-versions/releases">actions/python-versions</a> for that. For the moment though you can add this to a testing matrix:</p>
-<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">strategy</span>:
-  <span class="pl-ent">matrix</span>:
-    <span class="pl-ent">python-version</span>: <span class="pl-s">["3.14", "3.15"]</span>
-
-<span class="pl-ent">steps</span>:
-  - <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-python@v7</span>
-    <span class="pl-ent">with</span>:
-      <span class="pl-ent">python-version</span>: <span class="pl-s">${{ matrix.python-version }}</span>
-      <span class="pl-ent">allow-prereleases</span>: <span class="pl-c1">true</span>
-      <span class="pl-ent">check-latest</span>: <span class="pl-c1">true</span></pre></div>
-
-<p>The <a href="https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#allow-pre-releases">allow-prereleases</a> and <a href="https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#check-latest-version">check-latest</a> flags mean that today this will test against RC1, and when RC2 lands it will automatically switch to that version (and then the stable version once that comes out.)</p>
-<p><strong>Update</strong>: <a href="https://github.com/simonw/datasette/pull/2895">Datasette passes</a>, <a href="https://github.com/simonw/sqlite-utils/pull/852">sqlite-utils passes</a>, LLM is <a href="https://github.com/simonw/llm/pull/1652#issuecomment-5504533598">currently blocked</a> waiting for a 3.15 wheel for <a href="https://github.com/scikit-learn/scikit-learn/issues/34652">scikit-learn</a>, which is optionally used in the test suite.
-
-    <p><small></small>Via <a href="https://bsky.app/profile/hugovk.dev/post/3muhjndhw322i">@hugovk.dev</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/open-source">open-source</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/github-actions">github-actions</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Path to Astra: critical capabilities and frontier safeguards]]></title>
         <id>https://openai.com/index/path-to-astra</id>
         <link href="https://openai.com/index/path-to-astra"/>
@@ -1294,21 +1333,21 @@ Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Bringing ChatGPT for Teachers to more U.S. school districts]]></title>
-        <id>https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts</id>
-        <link href="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts"/>
-        <updated>2026-08-26T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT for Teachers is expanding to 55 U.S. school systems, bringing secure AI tools, training, and support to over 100,000 more educators and staff.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Learning never stops: How AI makes learning continuous]]></title>
         <id>https://openai.com/index/learning-never-stops</id>
         <link href="https://openai.com/index/learning-never-stops"/>
         <updated>2026-08-26T10:00:00.000Z</updated>
         <summary type="html"><![CDATA[OpenAI’s new report explores how students and educators use ChatGPT to make learning more continuous, with support that extends beyond the classroom.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bringing ChatGPT for Teachers to more U.S. school districts]]></title>
+        <id>https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts</id>
+        <link href="https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts"/>
+        <updated>2026-08-26T10:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ChatGPT for Teachers is expanding to 55 U.S. school systems, bringing secure AI tools, training, and support to over 100,000 more educators and staff.]]></summary>
         <author>
             <name>OpenAI News</name>
         </author>
@@ -1791,36 +1830,6 @@ Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final
         <summary type="html"><![CDATA[Google introduces AMIE for real-time clinical video consultations in simulated settings.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Daybreak models are now available on AWS]]></title>
-        <id>https://openai.com/index/daybreak-models-are-now-available-on-aws</id>
-        <link href="https://openai.com/index/daybreak-models-are-now-available-on-aws"/>
-        <updated>2026-08-11T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Testing ads in ChatGPT]]></title>
-        <id>https://openai.com/index/testing-ads-in-chatgpt</id>
-        <link href="https://openai.com/index/testing-ads-in-chatgpt"/>
-        <updated>2026-08-11T10:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.]]></summary>
-        <author>
-            <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[What building an AI-native finance function taught me]]></title>
-        <id>https://openai.com/index/building-an-ai-native-finance-function</id>
-        <link href="https://openai.com/index/building-an-ai-native-finance-function"/>
-        <updated>2026-08-10T17:00:00.000Z</updated>
-        <summary type="html"><![CDATA[OpenAI CFO Sarah Friar shares five lessons for building an AI-native finance function, from automated forecasting to stronger controls and AI ROI.]]></summary>
-        <author>
-            <name>OpenAI News</name>
         </author>
     </entry>
 </feed>
