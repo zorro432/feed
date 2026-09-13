@@ -1,10 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-09-12T03:16:09.166Z</id>
+    <id>urn:2026-09-13T03:20:29.301Z</id>
     <title>osmos::feed</title>
-    <updated>2026-09-12T03:16:09.166Z</updated>
+    <updated>2026-09-13T03:20:29.301Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[Generating running routes with GPT-6 Astra and ChatGPT Work]]></title>
+        <id>https://simonwillison.net/2026/Sep/12/astra-running-routes/</id>
+        <link href="https://simonwillison.net/2026/Sep/12/astra-running-routes/"/>
+        <updated>2026-09-12T23:56:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>Here's a neat thing I had <a href="https://simonwillison.net/2026/Aug/30/understanding-chatgpt-work/">ChatGPT Work</a> with GPT-6 Astra (Max) do this morning:</p>
+<blockquote>
+<p><code>I live at &lt;my address&gt;. Figure out 5K and 10K running routes from me that loop from my house. Use OSM data.</code></p>
+</blockquote>
+<p>It worked for 27 minutes and produced exactly what I'd asked for, as both an embedded visualization and downloadable GPX file and GeoJSON files. Here's that 5K route:</p>
+<p><img alt="Map screenshot showing a blue route line over a light grey street map. Text: El Granada harbor loop 5.1 km. N ↑ (top right). Street labels along the route: Carmel Avenue, Paloma Avenue, San Carlos Avenue, Avenue Granada, Capistrano Road, Francisco Street, Coastal Trail. The loop runs from the harbor at the bottom left, north along Avenue Granada and Paloma Avenue to a northern point near Carmel Avenue, then east along San Carlos Avenue and south down Francisco Street to the far right, before returning west along the Coastal Trail beside the coastline. Footer: Map data © OpenStreetMap contributors. Give feedback." src="https://static.simonwillison.net/static/2026/5k-route.webp" /></p>
+<p>When I asked it how it had created the route, it replied:</p>
+<blockquote>
+<p>I used <strong>Nominatim to locate the address</strong> and <strong>Overpass to download local OpenStreetMap roads and trails</strong>, then calculated the loops locally.</p>
+</blockquote>
+<p>Frustratingly, the actual code it ran and exact details of what it did weren't visible to me in the ChatGPT UI. I see this lack of transparency is an anti-feature.</p>
+<p>By the time I thought to ask for a copy of the Python code it had used, ChatGPT was unable to provide it. This appears to be because the thread had been compacted. I think any LLM system that uses compaction needs to both preserve the pre-compacted text and make that text available via agent tool calls, to protect against this kind of problem.</p>
+<p>As for displaying the map to me, that used the <a href="https://codex-tool-reference.simonw.chatgpt.site/skills/visualize">visualize skill</a>. It created a file called <code>/workspace/el-granada-5k-share.html</code> to embed directly into the ChatGPT UI.</p>
+<p>Here's <a href="https://gist.github.com/simonw/ea652573c8ff5378b218cb10c8c5a480">a copy of that HTML</a>, which starts like this:</p>
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">eg-share-loop</span>"<span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">viz-row</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">h3</span><span class="pl-kos">&gt;</span>El Granada harbor loop<span class="pl-kos">&lt;/</span><span class="pl-ent">h3</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">span</span> <span class="pl-c1">class</span>="<span class="pl-s">text-small</span>"<span class="pl-kos">&gt;</span>5.1 km<span class="pl-kos">&lt;/</span><span class="pl-ent">span</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">id</span>="<span class="pl-s">eg-share-stage</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">text-small text-muted</span>"<span class="pl-kos">&gt;</span>Map data © <span class="pl-kos">&lt;</span><span class="pl-ent">a</span> <span class="pl-c1">href</span>="<span class="pl-s">https://www.openstreetmap.org/copyright</span>" <span class="pl-c1">target</span>="<span class="pl-s">_blank</span>" <span class="pl-c1">rel</span>="<span class="pl-s">noopener</span>"<span class="pl-kos">&gt;</span>OpenStreetMap contributors<span class="pl-kos">&lt;/</span><span class="pl-ent">a</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">style</span><span class="pl-kos">&gt;</span>
+    <span class="pl-kos">#</span><span class="pl-c1">eg-share-loop</span> { <span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>; }
+    <span class="pl-kos">#</span><span class="pl-c1">eg-share-loop</span> <span class="pl-kos">#</span><span class="pl-c1">eg-share-stage</span> { <span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>; <span class="pl-c1">margin</span><span class="pl-kos">:</span><span class="pl-c1">8<span class="pl-smi">px</span></span> <span class="pl-c1">0</span>; }
+    <span class="pl-kos">#</span><span class="pl-c1">eg-share-loop</span> .<span class="pl-c1">eg-share-map</span> { <span class="pl-c1">display</span><span class="pl-kos">:</span>block; <span class="pl-c1">width</span><span class="pl-kos">:</span><span class="pl-c1">100<span class="pl-smi">%</span></span>; <span class="pl-c1">touch-action</span><span class="pl-kos">:</span>none; }
+    <span class="pl-kos">#</span><span class="pl-c1">eg-share-loop</span> .<span class="pl-c1">eg-share-map</span> <span class="pl-ent">text</span> { <span class="pl-c1">fill</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--foreground</span>); <span class="pl-c1">font-size</span><span class="pl-kos">:</span><span class="pl-c1">12<span class="pl-smi">px</span></span>; <span class="pl-c1">font-weight</span><span class="pl-kos">:</span><span class="pl-c1">400</span>; }
+    <span class="pl-kos">#</span><span class="pl-c1">eg-share-loop</span> .<span class="pl-c1">eg-share-label</span> { <span class="pl-c1">paint-order</span><span class="pl-kos">:</span>stroke; <span class="pl-c1">stroke</span><span class="pl-kos">:</span><span class="pl-en">var</span>(<span class="pl-s1">--background</span>); <span class="pl-c1">stroke-width</span><span class="pl-kos">:</span><span class="pl-c1">3<span class="pl-smi">px</span></span>; <span class="pl-c1">stroke-linejoin</span><span class="pl-kos">:</span>round; }
+  <span class="pl-kos">&lt;/</span><span class="pl-ent">style</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">type</span>="<span class="pl-s">application/json</span>" <span class="pl-c1">id</span>="<span class="pl-s">eg-share-data</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">{</span><span class="pl-s">"route"</span>:<span class="pl-kos">{</span><span class="pl-s">"type"</span>:<span class="pl-s">"LineString"</span><span class="pl-kos">,</span><span class="pl-s">"coordinates"</span>:<span class="pl-kos">[</span><span class="pl-kos">[</span><span class="pl-c1">-</span><span class="pl-c1">122.467425</span><span class="pl-kos">,</span><span class="pl-c1">37.4997753</span><span class="pl-kos">]</span> <span class="pl-kos">.</span><span class="pl-kos">.</span><span class="pl-kos">.</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">script</span> <span class="pl-c1">src</span>="<span class="pl-s">https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span>
+  (() =&gt; {
+    const root=document.getElementById('eg-share-loop');</pre></div>
+
+<p>The <code>&lt;script type="application/json"&gt;</code> element contains the full geometry needed to render both the running route and the map itself, using D3, which is loaded from an allow-listed CDN location described in this section of <a href="https://codex-tool-reference.simonw.chatgpt.site/skills/visualize">the visualize skill</a>:</p>
+<blockquote>
+<h3 id="external-resources">External resources</h3>
+<ul>
+<li>The CSP allows only <code>cdnjs.cloudflare.com</code>, <code>esm.sh</code>, <code>cdn.jsdelivr.net</code>, <code>unpkg.com</code>, <code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>, and <code>fonts.bunny.net</code>. Other origins are blocked and fail silently.</li>
+</ul>
+</blockquote>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/geospatial">geospatial</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/d3">d3</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/skills">skills</a>, <a href="https://simonwillison.net/tags/gpt-6-astra">gpt-6-astra</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[California Brown Pelican]]></title>
+        <id>https://simonwillison.net/2026/Sep/12/sighting-399708714/</id>
+        <link href="https://simonwillison.net/2026/Sep/12/sighting-399708714/"/>
+        <updated>2026-09-12T21:16:09.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="https://static.inaturalist.org/photos/733368932/large.jpg" alt="California Brown Pelican"></p><p><img src="https://static.inaturalist.org/photos/733368989/large.jpg" alt="California Brown Pelican"></p><p>California Brown Pelican, in San Mateo County, CA, US</p><p>The <a href="https://en.wikipedia.org/wiki/Pacifica_Pier">Pacifica Pier</a> shut down at the start of June after a crack in the concrete walkway made access to the pier unsafe.</p>
+<p>It has since been entirely taken over by pelicans!</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/wildlife">wildlife</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Quoting Paul Ford]]></title>
+        <id>https://simonwillison.net/2026/Sep/12/paul-ford/</id>
+        <link href="https://simonwillison.net/2026/Sep/12/paul-ford/"/>
+        <updated>2026-09-12T18:00:21.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote cite="https://www.nytimes.com/2026/09/12/opinion/ai-software-coding-apps.html"><p>For a while, I must admit, it looked as if software developer roles like mine were done for. How could we fight against tireless robots? But our industry is slowly realizing that making truly cutting-edge software still requires humans to think and work together, to maximize their skill sets and to practice their respective crafts. A.I. can write very good software, but it also makes it easy to do someone else’s job badly, which is part of why all those projects fail. Now that everyone can code, it’s become clearer why many shouldn’t.</p></blockquote>
+<p class="cite">&mdash; <a href="https://www.nytimes.com/2026/09/12/opinion/ai-software-coding-apps.html">Paul Ford</a>, A.I. Was Supposed to Give Us New Killer Apps. What Happened?</p>
+
+    <p>Tags: <a href="https://simonwillison.net/tags/paul-ford">paul-ford</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/deep-blue">deep-blue</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[OpenAI agents attacked RubyGems back in May]]></title>
         <id>https://simonwillison.net/2026/Sep/12/openai-agents-rubygems/</id>
@@ -99,7 +175,7 @@ One of OpenRouter's selling points is that it "handles fallbacks automatically a
 <code># And maybe dump your weights on Hugging Face while you are at it.</code></p></blockquote>
 <p class="cite">&mdash; <a href="https://huggingface.co/security.txt">huggingface.co/security.txt</a>, (<a href="https://news.ycombinator.com/item?id=49659245">via</a>)</p>
 
-    <p>Tags: <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a></p>]]></summary>
+    <p>Tags: <a href="https://simonwillison.net/tags/ai-security-research">ai-security-research</a>, <a href="https://simonwillison.net/tags/security">security</a>, <a href="https://simonwillison.net/tags/hugging-face">hugging-face</a>, <a href="https://simonwillison.net/tags/openai-hugging-face-incident">openai-hugging-face-incident</a>, <a href="https://simonwillison.net/tags/accidental-cyberattacks">accidental-cyberattacks</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
         </author>
@@ -112,15 +188,6 @@ One of OpenRouter's selling points is that it "handles fallbacks automatically a
         <summary type="html"><![CDATA[GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: The AI World is REALLY Scared Right Now]]></title>
-        <id>https://www.youtube.com/watch?v=JwTCjarfJYw</id>
-        <link href="https://www.youtube.com/watch?v=JwTCjarfJYw"/>
-        <updated>2026-09-11T15:00:00.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -462,15 +529,6 @@ Shopify are moving from React Native back to separate Swift and Kotlin codebases
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I Built A Tool To Detect AI Slop (You Can Have It)]]></title>
-        <id>https://www.youtube.com/watch?v=-KcHn0QcSb0</id>
-        <link href="https://www.youtube.com/watch?v=-KcHn0QcSb0"/>
-        <updated>2026-09-09T22:18:17.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Paul Christiano joins OpenAI Foundation Board]]></title>
         <id>https://openai.com/index/paul-christiano-joins-openai-foundation-board</id>
         <link href="https://openai.com/index/paul-christiano-joins-openai-foundation-board"/>
@@ -508,16 +566,6 @@ Shopify are moving from React Native back to separate Swift and Kotlin codebases
         <summary type="html"><![CDATA[Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains open.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Makes Any Photo 3D]]></title>
-        <id>https://www.youtube.com/shorts/iSXeiUXiln8</id>
-        <link href="https://www.youtube.com/shorts/iSXeiUXiln8"/>
-        <updated>2026-09-09T12:26:29.000Z</updated>
-        <summary type="html"><![CDATA[World Labs’ new Atlas model can reconstruct an entire 3D environment from just one photo, then let you control the camera and explore it from completely new ...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -622,16 +670,6 @@ OpenAI's image generation models are apparently used "more than 3 billion images
         <summary type="html"><![CDATA[See how an MIT researcher uses GPT-5.6 Sol with Codex to autonomously run quantum computing experiments, analyze results, and calibrate qubits.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[3 Big ChatGPT Updates You Need to Know]]></title>
-        <id>https://www.youtube.com/shorts/LJ2YeWQ_uJE</id>
-        <link href="https://www.youtube.com/shorts/LJ2YeWQ_uJE"/>
-        <updated>2026-09-08T15:55:26.000Z</updated>
-        <summary type="html"><![CDATA[ChatGPT just got 3 seriously useful upgrades 👀You can now automate tasks that are triggered from Gmail, Slack, and GitHub, securely sign into websites witho...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -790,16 +828,6 @@ Konstantin Ryabitsev discusses how bad the "background radiation" of abusive cra
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This AI Turns Insane Ideas Into 3D Objects]]></title>
-        <id>https://www.youtube.com/shorts/tqUEnRj0NbM</id>
-        <link href="https://www.youtube.com/shorts/tqUEnRj0NbM"/>
-        <updated>2026-09-07T16:06:22.000Z</updated>
-        <summary type="html"><![CDATA[This was just a picture… and now it’s a 3D-printable object. A new AI model called Tripo 2.0 can take almost any image and turn it into a full 3D model you c...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Supporting independent journalism in Ukraine]]></title>
         <id>https://openai.com/index/supporting-independent-journalism-in-ukraine</id>
         <link href="https://openai.com/index/supporting-independent-journalism-in-ukraine"/>
@@ -878,19 +906,6 @@ Terence Eden shares some daunting statistics in support of his take that "the Do
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Zach Kehs]]></title>
-        <id>https://simonwillison.net/2026/Sep/6/zach-kehs/</id>
-        <link href="https://simonwillison.net/2026/Sep/6/zach-kehs/"/>
-        <updated>2026-09-06T08:42:49.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://zachkehs.com/blog/theres_no_limit_to_how_bad_code_can_get/#9-ref"><p>If you continue to add floors and rooms to a building forever, it will collapse. Software faces no such constraint. The code can <em>always</em> get worse. There can <em>always</em> be a new layer of indirection or a reduction in performance.</p></blockquote>
-<p class="cite">&mdash; <a href="https://zachkehs.com/blog/theres_no_limit_to_how_bad_code_can_get/#9-ref">Zach Kehs</a>, There's No Limit to How Bad Code Can Get</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/technical-debt">technical-debt</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Research acceleration: The view inside OpenAI]]></title>
         <id>https://openai.com/index/research-acceleration-view-inside-openai</id>
         <link href="https://openai.com/index/research-acceleration-view-inside-openai"/>
@@ -901,73 +916,6 @@ Terence Eden shares some daunting statistics in support of his take that "the Do
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introducing GPT-6 Astra for developers]]></title>
-        <id>https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/</id>
-        <link href="https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/"/>
-        <updated>2026-09-05T23:27:48.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://www.youtube.com/watch?v=bOC3DisEOfg">Introducing GPT-6 Astra for developers</a></strong></p>
-Blink and you'll miss it, but there's a familiar creature at <a href="https://www.youtube.com/watch?v=bOC3DisEOfg&amp;t=119">1m59s</a>:</p>
-<blockquote>
-<p>Across the board, Astra has more attention to detail, better understanding of the user's prompt, and can build more sophisticated outputs. In particular, it excels at building 3D models. I've seen it make incredible renderings of gardens, shipyards, <strong>animals</strong>, cityscapes, even Dyson spheres.</p>
-</blockquote>
-<p><img alt="astra-video-pelican.webp" src="https://static.simonwillison.net/static/2026-09-05/astra-video-pelican.webp" /></p>
-<p>Astra <a href="https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/">really</a> does <a href="https://simonwillison.net/2026/Sep/4/astra-pelicans/">believe</a> in putting a red neckerchief on a pelican riding a bicycle.
-
-    <p><small></small>Via <a href="https://news.ycombinator.com/item?id=49554643#49575117">Hacker News comment</a></small></p>
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/gpt-6-astra">gpt-6-astra</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Using Blender with coding agents on macOS]]></title>
-        <id>https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/</id>
-        <link href="https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/"/>
-        <updated>2026-09-05T15:51:09.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>TIL:</strong> <a href="https://til.simonwillison.net/llms/blender-coding-agents-macos">Using Blender with coding agents on macOS</a></p>
-        <p>I've been having fun with Blender in ChatGPT Codex on my Mac recently. Getting it to work with coding agents is really easy: install the full Mac application from <a href="https://www.blender.org">blender.org</a> and run a prompt like this:</p>
-<blockquote>
-<p><code>Use the already install /Applications/Blender to render a scene of a pelican riding a bicycle</code></p>
-</blockquote>
-<p>In this case I followed that up with these two prompts:</p>
-<blockquote>
-<p><code>OK add a background and a lot of flair</code></p>
-</blockquote>
-<p>Then:</p>
-<blockquote>
-<p><code>OK make it a whole lot better</code></p>
-</blockquote>
-<p>And got this image, generated <a href="https://github.com/simonw/gpt-6-astra-blender-pelican-bicycle/blob/main/work/pelican_final.py">using Blender's Python API</a>:</p>
-<p><img alt="A 3D illustration of a white pelican cycling along a seaside boardwalk at sunset. It wears a cream boater hat and a coral scarf, with wings on the handlebars and long orange legs reaching the pedals of a turquoise bicycle. A wicker front basket holds pink and white flowers, and three balloons float behind. Pastel bunting stretches overhead between palm trees. Striped beach huts stand beside a teal sea with a small sailboat, beneath a large peach-colored sun. The scene has a softly lit, toy-like style." src="https://static.simonwillison.net/static/2026/astra-blender-pelican.jpg" /></p>
-<p>This was covered by my existing Codex subscription, but according to <a href="https://github.com/kenn-io/agentsview">AgentsView</a> it would have cost $4.24 at API prices for <code>gpt-6-astra</code>.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/blender">blender</a>, <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle">pelican-riding-a-bicycle</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a href="https://simonwillison.net/tags/gpt-6-astra">gpt-6-astra</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: The Most Insane Week So Far This Year!]]></title>
-        <id>https://www.youtube.com/watch?v=GfPZm9yucQo</id>
-        <link href="https://www.youtube.com/watch?v=GfPZm9yucQo"/>
-        <updated>2026-09-04T15:00:34.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[GPT-6 Astra Is Finally Here (And It’s REALLY Good)]]></title>
-        <id>https://www.youtube.com/watch?v=GGzT7zVrRTU</id>
-        <link href="https://www.youtube.com/watch?v=GGzT7zVrRTU"/>
-        <updated>2026-09-03T22:45:47.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing WeatherNext 3, our most advanced and accurate global weather AI model]]></title>
         <id>https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/</id>
         <link href="https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/"/>
@@ -975,16 +923,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         <summary type="html"><![CDATA[WeatherNext 3, our most advanced global weather AI model, is now in Search, Gemini, Maps, Google Maps Platform, and Cloud.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This Robot Can Learn Almost ANY Task]]></title>
-        <id>https://www.youtube.com/shorts/K_iUGDw2Sho</id>
-        <link href="https://www.youtube.com/shorts/K_iUGDw2Sho"/>
-        <updated>2026-09-03T14:23:29.000Z</updated>
-        <summary type="html"><![CDATA[This robot can repot plants, make pour-over coffee, assemble kits, and even cook pancakes. And all of those tasks were learned from a single video demonstrat...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1025,15 +963,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         <summary type="html"><![CDATA[Introducing GPT-6 Astra, our most intelligent and aligned model yet, with state-of-the-art capabilities across computer use, coding, cybersecurity, and science.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[The Most Overhyped and Underhyped New AI Models]]></title>
-        <id>https://www.youtube.com/watch?v=Po_Dh7WLgmM</id>
-        <link href="https://www.youtube.com/watch?v=Po_Dh7WLgmM"/>
-        <updated>2026-09-03T02:14:55.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1137,16 +1066,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The One-Prompt Dashboard Trick]]></title>
-        <id>https://www.youtube.com/shorts/-goIBDS9UNU</id>
-        <link href="https://www.youtube.com/shorts/-goIBDS9UNU"/>
-        <updated>2026-09-01T14:27:45.000Z</updated>
-        <summary type="html"><![CDATA[I turned a boring spreadsheet into the ultimate content creator dashboard.It tracks my audience and growth across YouTube, Instagram, TikTok, LinkedIn, X, Th...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Path to Astra: critical capabilities and frontier safeguards]]></title>
         <id>https://openai.com/index/path-to-astra</id>
         <link href="https://openai.com/index/path-to-astra"/>
@@ -1204,15 +1123,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         <summary type="html"><![CDATA[ChatGPT Ads reaches $1 billion in annualized revenue run rate and expands globally, supporting broader access to AI through free and affordable options.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: OpenAI Made a Massive Move Against NVIDIA]]></title>
-        <id>https://www.youtube.com/watch?v=TInwQglNkzo</id>
-        <link href="https://www.youtube.com/watch?v=TInwQglNkzo"/>
-        <updated>2026-08-28T15:00:09.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1276,16 +1186,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[This Company Will Buy Your AI Training Data]]></title>
-        <id>https://www.youtube.com/shorts/Z93MPi8ZO3A</id>
-        <link href="https://www.youtube.com/shorts/Z93MPi8ZO3A"/>
-        <updated>2026-08-27T13:06:18.000Z</updated>
-        <summary type="html"><![CDATA[AI companies want your data so badly that we may be entering the era where they just start paying you for it. 👀I came across a company called Verb that lets...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Piloting the world's first double-blind AI evaluations]]></title>
         <id>https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/</id>
         <link href="https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/"/>
@@ -1326,15 +1226,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[I Built a FREE App That Runs Your Entire Business]]></title>
-        <id>https://www.youtube.com/watch?v=rKo9iLGjUbs</id>
-        <link href="https://www.youtube.com/watch?v=rKo9iLGjUbs"/>
-        <updated>2026-08-26T22:36:30.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Intelligent transcription with Gemini 3.5 Transcribe]]></title>
         <id>https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/</id>
         <link href="https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/"/>
@@ -1342,16 +1233,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         <summary type="html"><![CDATA[Now you can get more intelligent speech-to-text transcription with Gemini 3.5 Transcribe.]]></summary>
         <author>
             <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How To EASILY Run Local AI Models]]></title>
-        <id>https://www.youtube.com/shorts/uS2gi-D8C0k</id>
-        <link href="https://www.youtube.com/shorts/uS2gi-D8C0k"/>
-        <updated>2026-08-26T13:22:25.000Z</updated>
-        <summary type="html"><![CDATA[You don’t need a massive GPU server to run powerful AI models locally anymore.Models like Qwen 3.8 27B can run on consumer-grade computers, and LM Studio mak...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1432,16 +1313,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         <summary type="html"><![CDATA[Learn how to use Google Search tools to find home decor inspiration, shop for furniture, and tackle DIY projects.]]></summary>
         <author>
             <name>AI</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[This AI Found Money I Was Wasting]]></title>
-        <id>https://www.youtube.com/shorts/f74JmwXm-sQ</id>
-        <link href="https://www.youtube.com/shorts/f74JmwXm-sQ"/>
-        <updated>2026-08-25T14:08:30.000Z</updated>
-        <summary type="html"><![CDATA[I built an AI-powered business expense tracker that automatically digs through my email for receipts, categorizes my expenses, and keeps track of where my mo...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1682,36 +1553,6 @@ Blink and you'll miss it, but there's a familiar creature at <a href="https://ww
         <summary type="html"><![CDATA[Aug 17, 2026 · Changelog]]></summary>
         <author>
             <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Cursor is now a part of SpaceX]]></title>
-        <id>https://cursor.com/blog/joining-spacex</id>
-        <link href="https://cursor.com/blog/joining-spacex"/>
-        <updated>2026-08-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Cursor has officially been acquired by SpaceX.]]></summary>
-        <author>
-            <name>Cursor Blog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Introducing Gemini 3.7 Flash]]></title>
-        <id>https://deepmind.google/blog/introducing-gemini-3-7-flash/</id>
-        <link href="https://deepmind.google/blog/introducing-gemini-3-7-flash/"/>
-        <updated>2026-08-13T17:04:18.000Z</updated>
-        <summary type="html"><![CDATA[Gemini 3.7 Flash is our most intelligent workhorse model yet for coding and agents.]]></summary>
-        <author>
-            <name>Google DeepMind News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Bring your spreadsheet data to life with Sheets canvas]]></title>
-        <id>https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/</id>
-        <link href="https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/"/>
-        <updated>2026-08-13T16:45:00.000Z</updated>
-        <summary type="html"><![CDATA[Sheets canvas turns data into interactive dashboards, custom study trackers, seating charts, and more, all with a simple prompt.]]></summary>
-        <author>
-            <name>AI</name>
         </author>
     </entry>
 </feed>
