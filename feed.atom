@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-09-13T03:20:29.301Z</id>
+    <id>urn:2026-09-14T03:31:50.695Z</id>
     <title>osmos::feed</title>
-    <updated>2026-09-13T03:20:29.301Z</updated>
+    <updated>2026-09-14T03:31:50.695Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[commit-rewriter 0.1]]></title>
+        <id>https://simonwillison.net/2026/Sep/14/commit-rewriter/</id>
+        <link href="https://simonwillison.net/2026/Sep/14/commit-rewriter/"/>
+        <updated>2026-09-14T00:28:10.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/commit-rewriter/releases/tag/0.1">commit-rewriter 0.1</a></p>
+        <p>I built this little web app the other day to help edit the commit messages for the <a href="https://datasette.io/blog/2026/september-security-releases/">Datasette security releases</a>. The initial commits were full of coding agent cruft and references to issue IDs from our private repository, so they weren't fit for publication.</p>
+<p>If you want to edit the commit messages for a repository you can run it like this:</p>
+<pre><code>uvx commit-rewriter path/to/repo
+</code></pre>
+<p>Omit the path if you are already in the directory for that repo.</p>
+<p><img alt="Screenshot of the commit-rewriter web interface. A heading reads commit-rewriter above the repository path and current branch and commit hash, with a short description of the tool. A toolbar shows a pending edits count with Discard drafts and Rewrite commit messages buttons, followed by a search box for message, author, or hash and an Edited only checkbox. A left sidebar titled Navigate commits lists recent commit messages with their short hashes. The main panel shows a card for each commit with its hash, author and timestamp, an editable text area containing the commit message, and a View full formatted diff toggle." src="https://static.simonwillison.net/static/2026/commit-rewriter.webp" /></p>
+<p>When you submit your edits the tool creates a timestamped branch of your current repo state - to allow you to revert if you need to - and then rewrites every commit from the first one you edited to the most recent.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/git">git</a>, <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/python">python</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Perplexity trusts GPT-6 Astra with end-to-end systems]]></title>
+        <id>https://openai.com/index/perplexity-improving-accuracy-with-astra</id>
+        <link href="https://openai.com/index/perplexity-improving-accuracy-with-astra"/>
+        <updated>2026-09-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.]]></summary>
+        <author>
+            <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[shot-scraper 1.12]]></title>
+        <id>https://simonwillison.net/2026/Sep/13/shot-scraper/</id>
+        <link href="https://simonwillison.net/2026/Sep/13/shot-scraper/"/>
+        <updated>2026-09-13T23:58:14.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/shot-scraper/releases/tag/1.12">shot-scraper 1.12</a></p>
+        <p>I've added WebP support to my <a href="https://shot-scraper.datasette.io/">shot-scraper</a> screenshot automation tool. You can now take a WebP screenshot of a web page like this:</p>
+<pre><code>shot-scraper https://simonwillison.net -o screenshot.webp --quality 80
+</code></pre>
+<p>The <code>--quality</code> option sets the quality - without that option the WebP file will be lossless.</p>
+<p>In my experience WebP screenshots are almost always significantly smaller in file size than their JPEG or PNG equivalents. See <a href="https://github.com/simonw/shot-scraper/pull/210">the PR</a> for some examples.</p>
+<p>I shipped this feature so I could use it to generate the screenshot <a href="https://simonwillison.net/2026/Sep/14/commit-rewriter/">for my new commit-rewriter tool</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/playwright">playwright</a>, <a href="https://simonwillison.net/tags/shot-scraper">shot-scraper</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Generating running routes with GPT-6 Astra and ChatGPT Work]]></title>
         <id>https://simonwillison.net/2026/Sep/12/astra-running-routes/</id>
@@ -855,47 +904,6 @@ Apparently today is RSI day at OpenAI, for Recursive Self-Improvement - I think 
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[The purpose of DNS is to spread scams]]></title>
-        <id>https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/</id>
-        <link href="https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/"/>
-        <updated>2026-09-06T14:40:07.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong><a href="https://shkspr.mobi/blog/2026/09/the-purpose-of-dns-is-to-spread-scams/">The purpose of DNS is to spread scams</a></strong></p>
-Terence Eden shares some daunting statistics in support of his take that "the Domain Name System's purpose seems to be a vector for criminals to run scams on people at a terrifyingly high rate".</p>
-<p>On <a href="https://interisle.net/insights/cybercriminaldomaindemand">this Interisle report</a> (<a href="https://labs.ripe.net/author/andrew_campling/dns-abuse-and-criminal-infrastructure-beyond-definitions-and-blocklists/">via Andrew Campling</a>), Terence says:</p>
-<blockquote>
-<p>It says 85 million new registrations of gTLDs were made in 2025. Of those 8.5 million were added to blocklists by May 2025. It reckons that a 10% abuse rate is the likely floor for these numbers and it's probably closer to 20%. One in five newly registered domains with a gTLD are scams. That's a bloody crisis.</p>
-</blockquote>
-<p>I had no idea. Apparently ICANN have been discussing this problem for years.
-
-
-    <p>Tags: <a href="https://simonwillison.net/tags/dns">dns</a>, <a href="https://simonwillison.net/tags/scams">scams</a>, <a href="https://simonwillison.net/tags/terence-eden">terence-eden</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[There's No Limit to How Bad Code Can Get]]></title>
-        <id>https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/</id>
-        <link href="https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/"/>
-        <updated>2026-09-06T09:08:06.000Z</updated>
-        <summary type="html"><![CDATA[<p><a href="https://lobste.rs/s/rfn2mn/there_s_no_limit_how_bad_code_can_get#c_8kdtaw">My comment</a> on <a href="https://lobste.rs/s/rfn2mn/there_s_no_limit_how_bad_code_can_get">There&#x27;s No Limit to How Bad Code Can Get</a> &mdash; Lobste.rs.</p><p><em>[In reply to a comment about burning it down to start from scratch when technical debt becomes overwhelming]</em></p>
-<p>In my experience it's <em>so rare</em> for that to work.</p>
-<p>You announce the old thing is irrecoverably drowning in tech debt. You spin up a team to rewrite it from scratch. Work begins.</p>
-<p>Meanwhile the old thing remains a moving target: it's running the core business, so changes are still necessary. The developers working on it know that it's going to be made obsolete by the new thing soon, so they don't have any incentive to go beyond the smallest effort possible to add the new features. Technical debt continues to mount.</p>
-<p>Meanwhile, the team working on the new thing are ambitious and probably a little naive. They start out at a great pace - it's greenfield after all - but as time progresses it becomes apparent that nobody fully understands the behavior and scope of the thing they are replacing. If it was well documented and tested it wouldn't <em>need</em> to be replaced, after all...</p>
-<p>After months (or even years) without delivering value, the pressure is on to "ship it", so the new system is launched to handle a subset of what the old system handled - or often for some new feature that was too hard to build with the now mostly unmaintained old system.</p>
-<p>... so now you have TWO systems in production - the janky old system that nobody wants to touch, and a new system which handles just a few production features and is 80% inactive code that is meant to replace the old system, eventually.</p>
-<p>If you're <em>really lucky</em> the company won't have lost patience with the new system and will allow that work to continue. The longer this all takes, and the longer the old system stays in production and stubbornly continues to work, the higher the risk that "priorities have changed" and the new system total replacement work is abandoned, leaving you with two systems where you used to have one.</p>
-<p>The best article I've read about completing this process responsibly is <a href="https://lethain.com/migrations/">Migrations: the sole scalable fix to tech debt</a> by Will Larson.</p>
-<p>If I run into a situation like this in the future, my strong recommendation will be to shore up the old system with as much automated testing as possible and then seeing if targeted refactors can get it to the desired shape. My hunch is that in many cases that will have a much higher chance of success than the siren call of a greenfield replacement.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/migrations">migrations</a>, <a href="https://simonwillison.net/tags/technical-debt">technical-debt</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[An Alien Mind]]></title>
         <id>https://openai.com/index/an-alien-mind</id>
         <link href="https://openai.com/index/an-alien-mind"/>
@@ -913,6 +921,15 @@ Terence Eden shares some daunting statistics in support of his take that "the Do
         <summary type="html"><![CDATA[Inside OpenAI, coding agents are reshaping AI research. Explore early data on agent usage, experiment velocity, task complexity, and research acceleration.]]></summary>
         <author>
             <name>OpenAI News</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GPT 6 Astra, so good even OpenAI are worried]]></title>
+        <id>https://www.youtube.com/watch?v=Spuza-KwTJ4</id>
+        <link href="https://www.youtube.com/watch?v=Spuza-KwTJ4"/>
+        <updated>2026-09-04T11:37:27.000Z</updated>
+        <author>
+            <name>AI Explained</name>
         </author>
     </entry>
     <entry>
@@ -1163,6 +1180,15 @@ Terence Eden shares some daunting statistics in support of his take that "the Do
         <summary type="html"><![CDATA[Evaluating AI agents that use external tools requires realistic test scenarios that capture how practitioners compose tools and iterate across conversation turns. Constructing such scenarios by hand demands deep domain expertise, does not scale across tool ecosystems, and produces static benchmarks that cannot track evolving APIs. We observe that tool specifications—function names, natural-language descriptions, and typed parameter schemas—already encode sufficient semantic information to synthesize realistic evaluation scenarios without manual curation or live tool execution. Agent Seer…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves]]></title>
+        <id>https://www.youtube.com/watch?v=KL9_1GbmCic</id>
+        <link href="https://www.youtube.com/watch?v=KL9_1GbmCic"/>
+        <updated>2026-08-27T19:16:24.000Z</updated>
+        <author>
+            <name>AI Explained</name>
         </author>
     </entry>
     <entry>

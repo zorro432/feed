@@ -22,6 +22,147 @@
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-14 datetime="2026-09-14T00:28:10.000Z">2026-09-14</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-14 datetime="2026-09-14T00:28:10.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/14/commit-rewriter/"
+                        open
+                      >
+                        <summary class="article-expander__title">commit-rewriter 0.1</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/14/commit-rewriter/">
+                          <div class="article-summary-box-inner media-object">
+                              <img src="https://static.simonwillison/static/2026/commit-rewriter.webp" loading="lazy" class="media-object__media article-image" />
+                            <span class="media-object__text">
+                              <span>Release: commit-rewriter 0.1
+I built this little web app the other day to help edit the commit messages for the Datasette security releases. The initial commits were full of coding agent cruft and references to issue IDs from our private repository, so they weren&#x27;t fit for publication.
+If you want to edit the commit messages for a repository you can run it like this:
+uvx commit-rewriter path/to/repo
+
+Omit the path if you are already in the directory for that repo.
+
+When you submit your edits the tool creates a timestamped branch of your current repo state - to allow you to revert if you need to - and then rewrites every commit from the first one you edited to the most recent.
+Tags: git, projects, python, ai-assisted-programming</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >OpenAI News</button>
+                  <a class="source-heading__link" href="https://openai.com/news">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://openai.com/index/perplexity-improving-accuracy-with-astra"
+                        open
+                      >
+                        <summary class="article-expander__title">Perplexity trusts GPT-6 Astra with end-to-end systems</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://openai.com/index/perplexity-improving-accuracy-with-astra">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-13 datetime="2026-09-13T23:58:14.000Z">2026-09-13</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-13 datetime="2026-09-13T23:58:14.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >Simon Willison&#x27;s Weblog</button>
+                  <a class="source-heading__link" href="http://simonwillison.net/">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://simonwillison.net/2026/Sep/13/shot-scraper/"
+                        open
+                      >
+                        <summary class="article-expander__title">shot-scraper 1.12</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/13/shot-scraper/">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>Release: shot-scraper 1.12
+I&#x27;ve added WebP support to my shot-scraper screenshot automation tool. You can now take a WebP screenshot of a web page like this:
+shot-scraper https://simonwillison.net -o screenshot.webp --quality 80
+
+The --quality option sets the quality - without that option the WebP file will be lossless.
+In my experience WebP screenshots are almost always significantly smaller in file size than their JPEG or PNG equivalents. See the PR for some examples.
+I shipped this feature so I could use it to generate the screenshot for my new commit-rewriter tool.
+Tags: playwright, shot-scraper</span>
+                                &ensp;<span class="article-reading-time">(&hairsp;3
+                                  min&hairsp;)</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
             <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-12 datetime="2026-09-12T23:56:42.000Z">2026-09-12</time>
             <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-12 datetime="2026-09-12T23:56:42.000Z"></time>
           </button>
@@ -1637,62 +1778,6 @@ Tags: ai, openai, generative-ai, chatgpt, llms, coding-agents, november-2025-inf
                         </a>
                       </details>
                     </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/"
-                        open
-                      >
-                        <summary class="article-expander__title">The purpose of DNS is to spread scams</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>The purpose of DNS is to spread scams
-On this Interisle report (via Andrew Campling), Terence says:
-It says 85 million new registrations of gTLDs were made in 2025. Of those 8.5 million were added to blocklists by May 2025. It reckons that a 10% abuse rate is the likely floor for these numbers and it&#x27;s probably closer to 20%. One in five newly registered domains with a gTLD are scams. That&#x27;s a bloody crisis.
-I had no idea. Apparently ICANN have been discussing this problem for years.
-
-
-    
-Tags: dns, scams, terence-eden</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;3
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
-                    <article>
-                      <details
-                        class="article-expander"
-                        data-action="toggle-native-accordion"
-                        data-accordion-key="https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/"
-                        open
-                      >
-                        <summary class="article-expander__title">There&#x27;s No Limit to How Bad Code Can Get</summary>
-                        <a class="article-summary-link article-summary-box-outer" href="https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/">
-                          <div class="article-summary-box-inner media-object">
-                            <span class="media-object__text">
-                              <span>My comment on There&#x27;s No Limit to How Bad Code Can Get — Lobste.rs.
-[In reply to a comment about burning it down to start from scratch when technical debt becomes overwhelming]
-In my experience it&#x27;s so rare for that to work.
-You announce the old thing is irrecoverably drowning in tech debt. You spin up a team to rewrite it from scratch. Work begins.
-Meanwhile the old thing remains a moving target: it&#x27;s running the core business, so changes are still necessary. The developers working on it know that it&#x27;s going to be made obsolete by the new thing soon, so they don&#x27;t have any incentive to go beyond the smallest effort possible to add the new features. Technical debt continues to mount.
-Meanwhile, the team working on the new thing are ambitious and probably a little naive. They start out at a great pace - it&#x27;s greenfield after all - but as time progresses it becomes apparent that nobody fully understands the behavior and scope of the thing they are replacing. If it was well documented and tested it wouldn&#x27;t need to be replaced, after all...
-After months (or even years) without delivering value, the pressure is on to &quot;ship it&quot;, so the new system is launched to handle a subset of what the old system handled - or often for some new feature that was too hard to build with the now mostly unmaintained old system.
-... so now you have TWO systems in production - the janky old system that nobody wants to touch, and a new system which handles just a few production features and is 80% inactive code that is meant to replace the old system, eventually.
-If you&#x27;re really lucky the company won&#x27;t have lost patience with the new system and will allow that work to continue. The longer this all takes, and the longer the old system stays in production and stubbornly continues to work, the higher the risk that &quot;priorities have changed&quot; and the new system total replacement work is abandoned, leaving you with two systems where you used to have one.
-The best article I&#x27;ve read about completing this process responsibly is Migrations: the sole scalable fix to tech debt by Will Larson.
-If I run into a situation like this in the future, my strong recommendation will be to shore up the old system with as much automated testing as possible and then seeing if targeted refactors can get it to the desired shape. My hunch is that in many cases that will have a much higher chance of success than the siren call of a greenfield replacement.
-Tags: migrations, technical-debt</span>
-                                &ensp;<span class="article-reading-time">(&hairsp;4
-                                  min&hairsp;)</span>
-                            </span>
-                          </div>
-                        </a>
-                      </details>
-                    </article>
                 </section>
               </section>
             </li>
@@ -1736,6 +1821,51 @@ Tags: migrations, technical-debt</span>
                           <div class="article-summary-box-inner media-object">
                             <span class="media-object__text">
                               <span>Inside OpenAI, coding agents are reshaping AI research. Explore early data on agent usage, experiment velocity, task complexity, and research acceleration.</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
+        </ul>
+      </section>
+      <section class="daily-content js-toggle-accordions-scope">
+        <h2 class="daily-heading">
+          <button
+            class="daily-heading-toggle"
+            data-action="toggle-accordions"
+            title="Click to toggle the day, Ctrl + click to toggle all."
+          >
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-09-04 datetime="2026-09-04T11:37:27.000Z">2026-09-04</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-09-04 datetime="2026-09-04T11:37:27.000Z"></time>
+          </button>
+        </h2>
+        <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;Spuza-KwTJ4"
+                        open
+                      >
+                        <summary class="article-expander__title">GPT 6 Astra, so good even OpenAI are worried</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;Spuza-KwTJ4">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
                             </span>
                           </div>
                         </a>
@@ -2446,11 +2576,42 @@ Tags: migrations, technical-debt</span>
             data-action="toggle-accordions"
             title="Click to toggle the day, Ctrl + click to toggle all."
           >
-            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-27 datetime="2026-08-27T16:11:32.000Z">2026-08-27</time>
-            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-27 datetime="2026-08-27T16:11:32.000Z"></time>
+            <time class="daily-heading-toggle__weekday js-offset-weekday" data-offset-date=2026-08-27 datetime="2026-08-27T19:16:24.000Z">2026-08-27</time>
+            <time class="daily-heading-toggle__date js-offset-date" data-offset-date=2026-08-27 datetime="2026-08-27T19:16:24.000Z"></time>
           </button>
         </h2>
         <ul class="sources card">
+            <li class="card__section">
+              <section class="js-toggle-accordions-scope">
+                <h3 class="source-heading">
+                  <button
+                    class="source-heading__name"
+                    data-action="toggle-accordions"
+                    title="Click to toggle the source, Ctrl + click to toggle all."
+                  >AI Explained</button>
+                  <a class="source-heading__link" href="https://www.youtube.com/channel/UCNJ1Ymd5yFuUPtn21xtRbbw">Open</a>
+                </h3>
+                <section class="articles-per-source">
+                    <article>
+                      <details
+                        class="article-expander"
+                        data-action="toggle-native-accordion"
+                        data-accordion-key="https://www.youtube.com/watch?v&#x3D;KL9_1GbmCic"
+                        open
+                      >
+                        <summary class="article-expander__title">Sam Altman :‘AGI in 2026’, just as Models Start to [Mis]Train Themselves</summary>
+                        <a class="article-summary-link article-summary-box-outer" href="https://www.youtube.com/watch?v&#x3D;KL9_1GbmCic">
+                          <div class="article-summary-box-inner media-object">
+                            <span class="media-object__text">
+                              <span>No content preview</span>
+                            </span>
+                          </div>
+                        </a>
+                      </details>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="card__section">
               <section class="js-toggle-accordions-scope">
                 <h3 class="source-heading">
@@ -3538,8 +3699,8 @@ Tags: migrations, technical-debt</span>
       </section>
 
     <footer>
-      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/34735216943">
-        <time id="build-timestamp" datetime="2026-09-13T03:20:29.281Z">2026-09-13T03:20:29.281Z</time>
+      <a class="footer-link" href="https://github.com/zorro432/feed/actions/runs/34802889416">
+        <time id="build-timestamp" datetime="2026-09-14T03:31:50.667Z">2026-09-14T03:31:50.667Z</time>
       </a>
       <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 1.15.1</a>
     </footer>
