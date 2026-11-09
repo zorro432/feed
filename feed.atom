@@ -1,10 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:2026-11-08T04:37:12.990Z</id>
+    <id>urn:2026-11-09T04:47:43.535Z</id>
     <title>osmos::feed</title>
-    <updated>2026-11-08T04:37:12.990Z</updated>
+    <updated>2026-11-09T04:47:43.535Z</updated>
     <generator>osmosfeed 1.15.1</generator>
     <link rel="alternate" href="index.html"/>
+    <entry>
+        <title type="html"><![CDATA[The Web Is More Than Enough, by Paul Ford]]></title>
+        <id>https://simonwillison.net/2026/Nov/9/hn-50421091/</id>
+        <link href="https://simonwillison.net/2026/Nov/9/hn-50421091/"/>
+        <updated>2026-11-09T04:32:33.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://news.ycombinator.com/item?id=50416456#50421091">My comment</a> on <a href="https://news.ycombinator.com/item?id=50416456">The Web Is More Than Enough, by Paul Ford</a> &mdash; Hacker News.</p><p>OK, this comment convinced me to give that a shot.</p>
+<p>Here's a thing I made in Three.js this morning - a Nudibranch themed Faberge Egg: <a href="https://static.simonwillison.net/static/2026/Hidden-Reef-Egg-threejs.html">https://static.simonwillison.net/static/2026/Hidden-Reef-Egg...</a> (77KB)</p>
+<p>I just asked Claude (Opus 5.5 Medium running in regular Claude Chat) to port that to Vanilla JS, in the same thread where it had built it, and got this: <a href="https://static.simonwillison.net/static/2026/Hidden-Reef-Egg-Vanilla-WebGL.html">https://static.simonwillison.net/static/2026/Hidden-Reef-Egg...</a> (98KB)</p>
+<p>They aren't identical - you can see what Claude said about that in the transcript (I don't fully understand why it differed): <a href="https://claude.ai/share/e56d163e-2793-4677-aa11-191d5058b414">https://claude.ai/share/e56d163e-2793-4677-aa11-191d5058b414</a></p>
+<p>But yeah, it turns out Claude Opus 5.5 is perfectly capable of 3D modeling in Vanilla JS + WebGL without Three.js.</p>
+<p>In eyeballing the code I find the Three.js slightly easier to understand myself, but I rarely look at the code for these 3D projects so that isn't a particularly big deal.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/hacker-news">hacker-news</a>, <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/claude">claude</a>, <a href="https://simonwillison.net/tags/three-js">three-js</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hide your slop PR descriptions behind <details><summary>]]></title>
+        <id>https://simonwillison.net/2026/Nov/9/details-summary/</id>
+        <link href="https://simonwillison.net/2026/Nov/9/details-summary/"/>
+        <updated>2026-11-09T04:25:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>Most of the changes I make to my projects these days come in the form of PRs opened for me by Claude Code or Codex. The PR is my unit of work - I use them to bundle commits together, iterating on them until a feature is complete, document decisions and then merge the finished result. Today's coding agents are great at writing PR descriptions.</p>
+<h4 id="they-re-too-good-at-describing-the-work">They're too good at describing the work</h4>
+<p>The problem is that they are <em>too</em> good. An agent-written PR description is accurate and comprehensive. It describes the problem, the detailed solution, and the steps taken to verify it. That's a lot of information to absorb.</p>
+<p>It's not necessarily slop, but it <em>reads</em> like slop!</p>
+<p>It's very easy to spot an AI-written PR, and as with other forms of AI writing my instant reaction is best summarized as "I'm not reading all of that". It doesn't matter how accurate or useful the information is, I'm instantly put off by the thought that it will take me longer to read than it took the driving author to write... even when that driving author is me!</p>
+<p>I want human editorial judgement. I want someone to have thought just long enough about the PR to give me a human-approved introduction that helps me understand, at a high level, what the PR is for and whether it deserves more of my attention.</p>
+<p>I think I've found a low-effort way to do this that feels right.</p>
+<h4 id="hide-most-of-it-in-a-details-summary">Hide most of it in a details/summary</h4>
+<p>The HTML <code>&lt;details&gt;&lt;summary&gt;</code> elements render as a collapsed heading (the summary) that can be expanded to view the larger piece of text. The code looks like this:</p>
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-kos">&lt;</span><span class="pl-ent">details</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">summary</span><span class="pl-kos">&gt;</span>Claude Opus 5.5<span class="pl-kos">&lt;/</span><span class="pl-ent">summary</span><span class="pl-kos">&gt;</span>
+  <span class="pl-kos">&lt;</span><span class="pl-ent">h2</span><span class="pl-kos">&gt;</span>The hook<span class="pl-kos">&lt;/</span><span class="pl-ent">h2</span><span class="pl-kos">&gt;</span>
+  Plugins implement <span class="pl-kos">&lt;</span><span class="pl-ent">code</span><span class="pl-kos">&gt;</span>register_agent_reference_types(datasette)<span class="pl-kos">&lt;/</span><span class="pl-ent">code</span><span class="pl-kos">&gt;</span>...
+<span class="pl-kos">&lt;/</span><span class="pl-ent">details</span><span class="pl-kos">&gt;</span></pre></div>
+<p>When rendered, it looks <a href="https://github.com/datasette/datasette-agent/pull/51">like this</a>:</p>
+<p><img src="https://static.simonwillison.net/static/2026/details-summary-pr.gif" alt="Screenshot of a GitHub PR. The text &quot;Claude Opus 5.5&quot; sits next to a little black arrow. Clicking on that text expands a full description inside the PR body." style="max-width: 100%;" /></p>
+<p>Crucially, <code>&lt;details&gt;&lt;summary&gt;</code> <em>is supported in GitHub Markdown</em>. You can drop those tags directly into an issue comment or PR description and GitHub will hide the details and display just the summary plus an expansion arrow.</p>
+<p>I've started using this for my AI-generated pull requests.</p>
+<p>The opening paragraph of my PRs will be carefully selected to act as a high-level explanation of what's going on - the shortest text a human can read that will help get them up to speed.</p>
+<p>I'll sometimes throw in a screenshot as well, since images are often the best way to quickly illustrate a new feature.</p>
+<p>The full agent-written essay then follows in a <code>&lt;details&gt;&lt;summary&gt;</code>. I use the model name and often the effort level as that summary, to make it abundantly clear what is going on - "Claude Opus 5.5 Medium" for example.</p>
+<p>My PRs don't feel nearly as sloppy now! The information is all still there, but a reader can glance at it and get the top, human-curated information without their eyes glazing over at multiple paragraphs of agent-written details.</p>
+<p>I don't always write the introduction myself - sometimes the agent has given me what I need already, hidden away in the avalanche of other text. My promise to the reader is that the short opener will represent my human judgement as to what is definitely worth their time.</p>
+<p>Here are some recent examples where I've used this pattern, including the opener I used:</p>
+<ul>
+<li>
+<a href="https://github.com/simonw/datasette/pull/3052">datasette PR #3052: Redesign row page as a vertical list of fields</a> - "The row page showed its single row as a one-row table. For wide tables, like a 46-column GitHub <code>repos</code> table, that scrolled far off to the right and left most of the page blank." (then a screenshot)</li>
+<li>
+<a href="https://github.com/simonw/datasette/pull/3043">datasette PR #3043: Pagination bar showing which rows are on the current page</a> - "Table pages that span more than one page now make it obvious where you are, and offer navigation at the top of the page as well as the bottom." (plus screenshot)</li>
+<li>
+<a href="https://github.com/simonw/datasette/pull/3042">datasette PR #3042: Load edit-tools.js on demand via a small loader</a> - "<code>edit-tools.js</code> (~220KB) was loaded on every table, row and database page, even for users who couldn't edit anything. Now only load it for users who can edit when they first interact with an edit feature (including mouse over an edit link)."</li>
+<li>
+<a href="https://github.com/datasette/datasette-agent/pull/51">datasette-agent PR #51: register_agent_reference_types plugin hook</a> - "Lets plugins add their own kinds of item to the <code>#</code> tagging in the chat composer using a new <code>register_agent_reference_types(datasette)</code> plugin hook." - pictured above.</li>
+<li>
+<a href="https://github.com/simonw/llm/pull/1838">llm PR #1838: Add llm openai endpoint add/list/remove/path commands</a> - "Adds commands for managing the records in <code>extra-openai-models.yaml</code>, so OpenAI-compatible endpoints can be saved from the command line instead of by hand-editing YAML." - then copied <code>--help</code> output.</li>
+</ul>
+<h4 id="the-mnemonic">The mnemonic</h4>
+<p>I used to have trouble remembering the order of the tags - is it <code>&lt;details&gt;&lt;summary&gt;</code> or <code>&lt;summary&gt;&lt;details&gt;</code>?</p>
+<p>Here are two tricks that helped me.</p>
+<p>First, and most obviously, the <code>&lt;summary&gt;</code> is clearly the bit where you summarize the details. That's the tag for your line of text that can be clicked to expand - the <code>&lt;details&gt;</code> element must then wrap everything else.</p>
+<p>An even better trick is to always refer to these two tags as "details-summary".</p>
+<p>"details-summary" is two syllables followed by three syllables. That rolls off the tongue more smoothly than the three-two punch of "summary-details".</p>
+<p>Say "details-summary" out loud just a few times and you'll never forget the order of the tags again.</p>
+<p>(I still wish GitHub would add a button to their Markdown editor for this - partly to save me painstakingly typing it on my mobile keyboard, and partly to help spread the word to more GitHub users that this feature exists.)</p>
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/github">github</a>, <a href="https://simonwillison.net/tags/html">html</a>, <a href="https://simonwillison.net/tags/markdown">markdown</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>, <a href="https://simonwillison.net/tags/coding-agents">coding-agents</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[parse_number() as a SQLite extension: C vs Rust]]></title>
+        <id>https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/</id>
+        <link href="https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/"/>
+        <updated>2026-11-08T22:26:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/sqlite-parse-number-c-vs-rust#readme">parse_number() as a SQLite extension: C vs Rust</a></p>
+        <p>I was out walking the dog when I got curious about how easy/difficult it would be to write a SQLite C extension that adds a <code>parse_number()</code> function for turning strings like <code>-$1,234.56</code> or <code>'12.5%'</code> into numeric values that could be summed and sorted.</p>
+<p>I fired up regular Claude chat (Opus 5.5) <a href="https://claude.ai/share/7f18f157-6c96-4d49-a1d4-f02403e3b261">and prompted</a>:</p>
+<blockquote>
+<p><code>I'm thinking about a SQLite custom function 'parse_number(value)' that strips ',', '$', '£' and '%', handles a leading '-', and returns 'NULL' for anything it can’t parse</code></p>
+<p><code>Explore the difference between building this as a SQLite extension in C v.s. in Rust - I want to compare performance and code complexity and size of the resulting</code>.so<code>(or whatever) file</code></p>
+</blockquote>
+<p>This gave me a solid starting point - the Rust extension was 321 KB (using <a href="https://github.com/rusqlite/rusqlite">Rusqlite</a>) and 298 KB (using <a href="https://github.com/asg017/sqlite-loadable-rs">sqlite-loadable-rs</a>), while the C extension was 14 KB. But the Rust extension was faster!</p>
+<p>Turns out that's because the Rust equivalent of C's <code>strtod</code> is "twice as fast". So I prompted:</p>
+<blockquote>
+<p><code>Try writing your own C function for parsing text into a decimal number that catches up to or beats the Rust implementation</code></p>
+</blockquote>
+<p>And it did:</p>
+<blockquote>
+<p>Net cost per row over 2 million rows, lower is better:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>first C</th>
+<th>new C</th>
+<th>rusqlite</th>
+<th>sqlite-loadable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mixed data</td>
+<td>67 ns</td>
+<td><strong>19 ns</strong></td>
+<td>46 ns</td>
+<td>41 ns</td>
+</tr>
+<tr>
+<td>Integers only</td>
+<td>25 ns</td>
+<td><strong>16 ns</strong></td>
+<td>36 ns</td>
+<td>32 ns</td>
+</tr>
+<tr>
+<td>Decimals only</td>
+<td>106 ns</td>
+<td><strong>18 ns</strong></td>
+<td>55 ns</td>
+<td>47 ns</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+
+<p>Finally, I had it rewrite the prototype as a research report to match the others in <a href="https://github.com/simonw/research">simonw/research</a> by prompting this:</p>
+<blockquote>
+<p><code>Clone simonw/research from GitHub and turn your above investigation into a research report as seen in that repository - you can give me a zip file to download that contains your new folder</code></p>
+</blockquote>
+<p>Here's <a href="https://github.com/simonw/research/tree/main/sqlite-parse-number-c-vs-rust#readme">the resulting report</a>.</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/c">c</a>, <a href="https://simonwillison.net/tags/research">research</a>, <a href="https://simonwillison.net/tags/sqlite">sqlite</a>, <a href="https://simonwillison.net/tags/rust">rust</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
+        <author>
+            <name>Simon Willison's Weblog</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[datasette #3046: Don't serve link: rel=next HTTP headers to Firefox for HTML pages]]></title>
         <id>https://simonwillison.net/2026/Nov/7/link-rel-next/</id>
@@ -25,32 +166,20 @@ I was looking at the Firefox network panel today when I noticed that requests to
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Claude Code Just Called My Phone]]></title>
-        <id>https://www.youtube.com/shorts/A5SfzBD6M3o</id>
-        <link href="https://www.youtube.com/shorts/A5SfzBD6M3o"/>
-        <updated>2026-11-07T17:00:37.000Z</updated>
-        <summary type="html"><![CDATA[Your AI agent can now call you when it needs help 🤯Here's how I'm using it with Claude Code to edit my videos:1. If it needs a creative decision, it calls m...]]></summary>
+        <title type="html"><![CDATA[Terry Pratchett's Study]]></title>
+        <id>https://simonwillison.net/2026/Nov/7/hn-50407316/</id>
+        <link href="https://simonwillison.net/2026/Nov/7/hn-50407316/"/>
+        <updated>2026-11-07T19:34:24.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://news.ycombinator.com/item?id=50405674#50407316">My comment</a> on <a href="https://news.ycombinator.com/item?id=50405674">Terry Pratchett&#x27;s Study</a> &mdash; Hacker News.</p><p>Terry Pratchett once wrote about the concept of "horizontal wealth". Vertical wealth is where you spend money on rich people stuff - yachts and suchlike. Horizontal wealth is where you spend more money on the things you liked before you got rich: <a href="https://chibuikeani.blogspot.com/2017/02/the-price-of-happiness-horizontal-vs.html">https://chibuikeani.blogspot.com/2017/02/the-price-of-happin...</a></p>
+<blockquote>
+<p>But horizontal wealth means not letting your increased income dictate your tastes. You like books and now you have money? Buy more books! Change those catenary bookshelves for good hardwood ones! In my case, build a library extension to your office. And, of course, you buy what will be useful for that most wonderful of pursuits, blind research, which is research without direction for the sheer joy of it.</p>
+</blockquote>
+<p>(Original source is his book A Slip of the Keyboard - this linked blog post quotes that bit.)</p>
+    
+    
+        <p>Tags: <a href="https://simonwillison.net/tags/hacker-news">hacker-news</a>, <a href="https://simonwillison.net/tags/terry-pratchett">terry-pratchett</a></p>]]></summary>
         <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[That is Some Crazy Fabric]]></title>
-        <id>https://www.youtube.com/shorts/w3z3Fa7ACt8</id>
-        <link href="https://www.youtube.com/shorts/w3z3Fa7ACt8"/>
-        <updated>2026-11-07T07:36:33.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: New ChatGPT & Google Models (14 Updates Worth Knowing)]]></title>
-        <id>https://www.youtube.com/watch?v=IrAHINf0M6E</id>
-        <link href="https://www.youtube.com/watch?v=IrAHINf0M6E"/>
-        <updated>2026-11-06T18:20:31.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
+            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -108,16 +237,6 @@ I was looking at the Firefox network panel today when I noticed that requests to
         <summary type="html"><![CDATA[Cult.fit is using Codex to help teams across functions build tools, move faster, and change how work gets done.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[What will people REALLY use these for?]]></title>
-        <id>https://www.youtube.com/shorts/hniPlxcQ7X4</id>
-        <link href="https://www.youtube.com/shorts/hniPlxcQ7X4"/>
-        <updated>2026-11-05T19:07:54.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -232,15 +351,6 @@ As the number of keys grows to millions and vector dimensions reach thousands, t
         <summary type="html"><![CDATA[Nov 5, 2026 · Changelog]]></summary>
         <author>
             <name>Cursor Changelog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[How I Get Claude To Edit My Videos (Step-By-Step)]]></title>
-        <id>https://www.youtube.com/watch?v=ep4psgAFOqc</id>
-        <link href="https://www.youtube.com/watch?v=ep4psgAFOqc"/>
-        <updated>2026-11-04T16:40:16.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -359,16 +469,6 @@ As the number of keys grows to millions and vector dimensions reach thousands, t
         <p>Tags: <a href="https://simonwillison.net/tags/llm">llm</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[A real-life speeder bike from Return of the Jedi (Not AI)]]></title>
-        <id>https://www.youtube.com/shorts/PRAY_SewRxI</id>
-        <link href="https://www.youtube.com/shorts/PRAY_SewRxI"/>
-        <updated>2026-11-03T20:51:24.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -555,16 +655,6 @@ Genius piece of OSINT by Colsto, who demonstrates how you can take almost imperc
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Generate Worlds in Real-Time (Free & Open Source)]]></title>
-        <id>https://www.youtube.com/shorts/lZes3U_WIug</id>
-        <link href="https://www.youtube.com/shorts/lZes3U_WIug"/>
-        <updated>2026-11-02T23:12:03.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Preparing our next security sprint to harden OpenAI]]></title>
         <id>https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai</id>
         <link href="https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai"/>
@@ -677,16 +767,6 @@ Genius piece of OSINT by Colsto, who demonstrates how you can take almost imperc
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Would you be excited to see this at Disneyland?]]></title>
-        <id>https://www.youtube.com/shorts/h5SNFLIZl_U</id>
-        <link href="https://www.youtube.com/shorts/h5SNFLIZl_U"/>
-        <updated>2026-11-02T04:16:43.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[OpenAI appoints Dan Driscoll as Senior Counselor for National Security Modernization]]></title>
         <id>https://openai.com/index/dan-driscoll-joins-openai</id>
         <link href="https://openai.com/index/dan-driscoll-joins-openai"/>
@@ -786,16 +866,6 @@ Parameter Labs describe an exploit they found against ChatGPT's implementation o
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Glasses That Make You Telepathic]]></title>
-        <id>https://www.youtube.com/shorts/_9R7QOhJh-o</id>
-        <link href="https://www.youtube.com/shorts/_9R7QOhJh-o"/>
-        <updated>2026-10-31T18:16:57.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[dbreunig/nesformer]]></title>
         <id>https://simonwillison.net/2026/Oct/30/nesformer/</id>
         <link href="https://simonwillison.net/2026/Oct/30/nesformer/"/>
@@ -818,25 +888,6 @@ Inspired by <a href="https://divagr.com/blog/qwenputer">qwenputer</a> by Divyans
     <p>Tags: <a href="https://simonwillison.net/tags/games">games</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/drew-breunig">drew-breunig</a>, <a href="https://simonwillison.net/tags/qwen">qwen</a>, <a href="https://simonwillison.net/tags/conformance-suites">conformance-suites</a></p>]]></summary>
         <author>
             <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[AI News: The Only 6 Stories Worth Knowing This Week]]></title>
-        <id>https://www.youtube.com/watch?v=eDiQNFa-zYg</id>
-        <link href="https://www.youtube.com/watch?v=eDiQNFa-zYg"/>
-        <updated>2026-10-30T21:15:04.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[When a humanoid and a drone become besties]]></title>
-        <id>https://www.youtube.com/shorts/4sGplZdBy6A</id>
-        <link href="https://www.youtube.com/shorts/4sGplZdBy6A"/>
-        <updated>2026-10-30T19:21:44.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -939,16 +990,6 @@ Don't be put off by the clickbait headline, this piece by Jacob Sansbury describ
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[3 Critical Tasks AI Can Automate For You]]></title>
-        <id>https://www.youtube.com/shorts/evXFML_Rnc0</id>
-        <link href="https://www.youtube.com/shorts/evXFML_Rnc0"/>
-        <updated>2026-10-29T15:28:47.000Z</updated>
-        <summary type="html"><![CDATA[Here are 3 things EVERY business owner should automate with AI:1️⃣ Checking failed email deliveries. 2️⃣ Sending appointment reminders3️⃣ Getting new custome...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Quoting Ben Hylak]]></title>
         <id>https://simonwillison.net/2026/Oct/29/ben-hylak/</id>
         <link href="https://simonwillison.net/2026/Oct/29/ben-hylak/"/>
@@ -1027,25 +1068,6 @@ Don't be put off by the clickbait headline, this piece by Jacob Sansbury describ
         <summary type="html"><![CDATA[Evernote used ChatGPT Ads to introduce its note-taking app to people working with AI. The team tracked how often free trials led to paid subscriptions.]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[He Built an AI Board of Billionaires (Free & Open-Source)]]></title>
-        <id>https://www.youtube.com/watch?v=AtjFk9f44HE</id>
-        <link href="https://www.youtube.com/watch?v=AtjFk9f44HE"/>
-        <updated>2026-10-28T19:25:38.000Z</updated>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Insane Interactive World Creator (Genie 4)]]></title>
-        <id>https://www.youtube.com/shorts/DZbCL56oz3M</id>
-        <link href="https://www.youtube.com/shorts/DZbCL56oz3M"/>
-        <updated>2026-10-28T18:25:36.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
         </author>
     </entry>
     <entry>
@@ -1268,16 +1290,6 @@ I'm at GitHub Universe this week and, <a href="https://simonwillison.net/2025/Oc
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Crazy Spy Tech You Can Use For Free!]]></title>
-        <id>https://www.youtube.com/shorts/EUjd_UBApoA</id>
-        <link href="https://www.youtube.com/shorts/EUjd_UBApoA"/>
-        <updated>2026-10-27T16:43:52.000Z</updated>
-        <summary type="html"><![CDATA[Sharing the latest news and advancements in AIDiscover More:🛠️ Explore AI Tools & News: https://futuretools.io/📰 Weekly Newsletter: https://futuretools.io/...]]></summary>
-        <author>
-            <name>Matt Wolfe</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Genie 4: A new generation of world simulation]]></title>
         <id>https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/</id>
         <link href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"/>
@@ -1358,19 +1370,6 @@ It's always interesting to note which aspects of a new model are emphasized in t
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Quoting Jason Koebler]]></title>
-        <id>https://simonwillison.net/2026/Oct/26/jason-koebler/</id>
-        <link href="https://simonwillison.net/2026/Oct/26/jason-koebler/"/>
-        <updated>2026-10-26T19:00:25.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote cite="https://www.404media.co/chatgpt-keeps-telling-people-404-media-can-solve-their-tech-support-problems/"><p>Because big tech platforms essentially do not have customer support and make it impossible for their users to contact a human, many people experiencing run-of-the-mill tech problems have turned to ChatGPT. And, increasingly, ChatGPT is telling people that have normal tech support problems that they have discovered something journalistically notable and that 404 Media, specifically, can help them.</p></blockquote>
-<p class="cite">&mdash; <a href="https://www.404media.co/chatgpt-keeps-telling-people-404-media-can-solve-their-tech-support-problems/">Jason Koebler</a>, ChatGPT Keeps Telling People 404 Media Can Solve Their Tech Support Problems</p>
-
-    <p>Tags: <a href="https://simonwillison.net/tags/jason-koebler">jason-koebler</a>, <a href="https://simonwillison.net/tags/openai">openai</a>, <a href="https://simonwillison.net/tags/journalism">journalism</a>, <a href="https://simonwillison.net/tags/ai">ai</a>, <a href="https://simonwillison.net/tags/llms">llms</a>, <a href="https://simonwillison.net/tags/ai-ethics">ai-ethics</a>, <a href="https://simonwillison.net/tags/ai-misuse">ai-misuse</a>, <a href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a href="https://simonwillison.net/tags/chatgpt">chatgpt</a>, <a href="https://simonwillison.net/tags/404-media">404-media</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Introducing GPT-6.1 Terra]]></title>
         <id>https://openai.com/index/introducing-gpt-6-1-terra</id>
         <link href="https://openai.com/index/introducing-gpt-6-1-terra"/>
@@ -1378,26 +1377,6 @@ It's always interesting to note which aspects of a new model are emphasized in t
         <summary type="html"><![CDATA[Delivering fast and capable computer use at scale]]></summary>
         <author>
             <name>OpenAI News</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[webframe: evaluated as a scraper and a sandbox]]></title>
-        <id>https://simonwillison.net/2026/Oct/26/webframe-evaluation/</id>
-        <link href="https://simonwillison.net/2026/Oct/26/webframe-evaluation/"/>
-        <updated>2026-10-26T16:15:00.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Research:</strong> <a href="https://github.com/simonw/research/tree/main/webframe-evaluation#readme">webframe: evaluated as a scraper and a sandbox</a></p>
-        <p><a href="https://github.com/tractordev/webframe">webframe</a> is a neat little project from Jeff Lindsay which lets you "run a web page like a program" - you point it at a URL or file and it executes it in a hidden headless web view and outputs <code>console.log()</code> to standard output and any exceptions to standard error.</p>
-<p>It's written in Go on top of the <a href="https://github.com/crgimenes/glaze">glaze</a> library, which provides access to a system browser ("WKWebView on macOS, WebKitGTK on Linux, WebView2 on Windows") so it doesn't need to bundle its own browser engine.</p>
-<p>It reminds me of my own <a href="https://shot-scraper.datasette.io/en/stable/javascript.html">shot-scraper javascript</a> tool, albeit in a much smaller package that doesn't depend on Playwright.</p>
-<p>I had Claude Opus 5.5 <a href="https://claude.ai/code/cshk_01MX3aJH8vDGmGSj1xH9BYhj2HviVvLDaJbiELHyDoReYT">put it through its paces</a> and prepare a research report for me. Here's the prompt I used:</p>
-<blockquote>
-<p><code>Explore https://github.com/tractordev/webframe try running it and put it though its paces, build a few exploratory prototypes, then evaluate it as a potential sandboxing tool and as a tool for scraping web pages using the same patterns encouraged by the "shot-scraper JavaScript" command (see simonw/shot-scraper on GitHub, docs directory)</code></p>
-</blockquote>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/browsers">browsers</a>, <a href="https://simonwillison.net/tags/go">go</a>, <a href="https://simonwillison.net/tags/javascript">javascript</a>, <a href="https://simonwillison.net/tags/jeff-lindsay">jeff-lindsay</a>, <a href="https://simonwillison.net/tags/shot-scraper">shot-scraper</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
@@ -1468,43 +1447,6 @@ It's always interesting to note which aspects of a new model are emphasized in t
         <summary type="html"><![CDATA[We present GHARP (Real-time Gaussian Head Animation from Large-scale Reconstruction Prior), a method that animates 3D human heads in real time from a few input images of a subject and a driving expression signal. We decouple the problem into an identity stage that builds a representation of the subject’s geometry and appearance offline, and an animation stage that predicts expression-dependent residuals on top of it at runtime. This separation offers a favorable trade-off with respect to fidelity, quality and runtime: the identity stage can be expensive while the animation stage runs a…]]></summary>
         <author>
             <name>Apple Machine Learning Research</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Seam Cutter]]></title>
-        <id>https://simonwillison.net/2026/Oct/25/seam-cutter/</id>
-        <link href="https://simonwillison.net/2026/Oct/25/seam-cutter/"/>
-        <updated>2026-10-25T15:10:19.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Tool:</strong> <a href="https://tools.simonwillison.net/seam-cutter">Seam Cutter</a></p>
-        <p>I built this weird and very specific cropping tool - it lets you create a horizontal or vertical cut across an image, then slide the two sides relative to each other. Effectively it lets you crop out a section in the middle of an image.</p>
-<p>I wanted this because I often use <a href="https://apps.apple.com/us/app/tailor-screenshot-stitching/id926653095">Tailor</a> on my iPhone to stitch several screenshots together into lot long image, but sometimes I find myself wanting to crop out a section in the middle - to redact an irrelevant prompt from a transcript, for example.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/tools">tools</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[battledrones v14: Compass Rose, a four player map]]></title>
-        <id>https://simonwillison.net/2026/Oct/24/battledrones/</id>
-        <link href="https://simonwillison.net/2026/Oct/24/battledrones/"/>
-        <updated>2026-10-24T03:59:57.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>Release:</strong> <a href="https://github.com/simonw/battledrones/releases/tag/v14">battledrones v14: Compass Rose, a four player map</a></p>
-        <p>I added four player online mode to <a href="https://simonwillison.net/2026/Oct/20/battledrones/">Battledrones</a> - previous maps were limited to two.</p>
-<p>Here's the initial prompt I used: </p>
-<blockquote>
-<p><code>Add a new map for a four player battle - four way rotational symmetry, up to four AI players, works with the WebSocket non-audio based multiplayer mode so up to four human players can join (any spare slots use AI)</code></p>
-</blockquote>
-<p>Claude Opus 5.5 added a new map called "Compass Rose" and modified the WebSockets multiplayer network code to support up to four players for that map, joining via share links or QR codes.</p>
-<p><img alt="The new map does indeed look a bit like a rose - it uses the cold and ice biome. Also shown are purple robots battling on the map." src="https://raw.githubusercontent.com/simonw/battledrones/v14/progress-shots/v14/compass-rose.jpg" /></p>
-<p>The new teams use robots themed in purple and green, joining the existing blue and red designs. You can preview those colors in <a href="https://simonw.github.io/battledrones/models.html">the updated model browser</a>.</p>
-<p>Here's <a href="https://simonw.github.io/battledrones/v14/?replay=https://gist.githubusercontent.com/simonw/faa550a002b25a78f1c88a64217786c1/raw/4ff9b03de71d757cd33eb5d1a0e388155b6c20e5/compass.json">a replay link</a> to watch a four way AI battle with the "Goliath Armada" mutator turned on, where each side starts with four giant Goliath mech units.</p>
-    
-    
-        <p>Tags: <a href="https://simonwillison.net/tags/game-design">game-design</a>, <a href="https://simonwillison.net/tags/projects">projects</a>, <a href="https://simonwillison.net/tags/claude">claude</a></p>]]></summary>
-        <author>
-            <name>Simon Willison's Weblog</name>
         </author>
     </entry>
     <entry>
